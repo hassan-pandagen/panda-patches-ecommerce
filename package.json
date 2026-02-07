@@ -1,0 +1,39 @@
+{
+  "name": "panda-patches-ecommerce",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@portabletext/react": "^3.0.0",
+    "@supabase/supabase-js": "^2.91.0",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.36.1",
+    "framer-motion": "^10.16.16",
+    "lucide-react": "^0.344.0",
+    "next": "14.2.15",
+    "next-sanity": "^9.0.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hook-form": "^7.51.0",
+    "sanity": "^3.50.0",
+    "stripe": "^20.2.0",
+    "yet-another-react-lightbox": "^3.28.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.23",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.15",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}

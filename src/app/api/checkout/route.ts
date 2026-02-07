@@ -1,0 +1,209 @@
+import { NextResponse } from 'next/server';
+import Stripe from 'stripe';
+import { createClient } from '@supabase/supabase-js';
+import { z } from 'zod';
+import { calculatePatchPrice } from '@/lib/pricingCalculator';
+
+// 0. Request Size Limit Configuration
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '1mb', // Prevent DoS via large payloads
+    },
+  },
+};
+
+// 1. Init Stripe
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2024-12-18.acacia',
+});
+
+// 2. Init Supabase
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
+// 3. Allowed origins for Stripe redirects (add your production domain when ready)
+const ALLOWED_ORIGINS = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'https://pandapatches.com',
+  'https://www.pandapatches.com',
+];
+
+// 4. Define Validation Schema
+const CheckoutSchema = z.object({
+  productName: z.string().min(1, 'Product name is required').max(100, 'Product name too long'),
+  price: z.number().positive('Price must be positive').max(100000, 'Price too high'),
+  quantity: z.number().int('Quantity must be an integer').min(1, 'Minimum quantity is 1').max(10000, 'Quantity too high'),
+  backing: z.enum(['iron', 'sew', 'velcro', 'peel'], {
+    errorMap: () => ({ message: 'Invalid backing type' })
+  }),
+  width: z.number().positive('Width must be positive').min(0.5, 'Minimum width is 0.5 inches').max(50, 'Maximum width is 50 inches'),
+  height: z.number().positive('Height must be positive').min(0.5, 'Minimum height is 0.5 inches').max(50, 'Maximum height is 50 inches'),
+  customer: z.object({
+    name: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name too long'),
+    email: z.string().email('Invalid email address'),
+    phone: z.string().regex(/^[\d\s\-()+ ]+$/, 'Invalid phone number format').optional().or(z.literal('')),
+  }),
+  shippingAddress: z.string().min(5, 'Please enter a complete shipping address'),
+  deliveryOption: z.enum(['rush', 'standard', 'economy']),
+  rushDate: z.string().optional().or(z.null()),
+  discount: z.string().optional().or(z.null()),
+  artworkUrl: z.string().url().optional().or(z.null()),
+  addons: z.array(z.string()).optional().or(z.null()),
+  specialInstructions: z.string().optional().or(z.null())
+});
+
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
+
+    // Validate input
+    const validationResult = CheckoutSchema.safeParse(body);
+
+    if (!validationResult.success) {
+      return NextResponse.json(
+        {
+          error: 'Validation failed',
+          details: validationResult.error.errors.map(e => ({
+            field: e.path.join('.'),
+            message: e.message
+          }))
+        },
+        { status: 400 }
+      );
+    }
+
+    const {
+      productName,
+      price: clientPrice,
+      quantity,
+      backing,
+      width,
+      height,
+      customer,
+      shippingAddress,
+      deliveryOption,
+      rushDate,
+      artworkUrl,
+      addons,
+      specialInstructions
+    } = validationResult.data;
+
+    // SECURITY: Calculate price server-side to prevent manipulation
+    const priceResult = calculatePatchPrice(productName, width, height, quantity);
+
+    if (priceResult.error) {
+      return NextResponse.json(
+        { error: priceResult.error },
+        { status: 400 }
+      );
+    }
+
+    // Apply economy discount if applicable (10% off)
+    let finalPrice = priceResult.totalPrice;
+    if (deliveryOption === 'economy') {
+      finalPrice = Math.round(finalPrice * 0.9 * 100) / 100;
+    }
+
+    // Log price mismatch for debugging (helps catch client-side calculation bugs)
+    if (Math.abs(clientPrice - finalPrice) > 0.5) {
+      console.warn(`Price mismatch detected: Client sent $${clientPrice}, Server calculated $${finalPrice}`);
+    }
+
+    // Validate origin to prevent open redirect attacks
+    const origin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/');
+    const baseUrl = ALLOWED_ORIGINS.find(allowed => origin?.startsWith(allowed)) || ALLOWED_ORIGINS[0];
+
+    // === MATCHING YOUR EXISTING CRM SCHEMA ===
+    const { data: order, error: dbError } = await supabase
+      .from('orders')
+      .insert({
+        // Your CRM Column Name : Data from Website
+        customer_name: customer.name,
+        customer_email: customer.email,
+        customer_phone: customer.phone,
+
+        design_name: productName,         // Maps to 'design_name' (required field)
+        patches_type: productName,        // Maps to 'patches_type'
+        patches_quantity: quantity,       // Maps to 'patches_quantity'
+        design_backing: backing,          // Maps to 'design_backing'
+        design_size: `${width}" x ${height}"`, // Combines W & H into 'design_size'
+        artwork_url: artworkUrl,          // Customer uploaded artwork file URL
+
+        // Shipping Address (single field for reduced friction)
+        shipping_address: shippingAddress,
+
+        // Delivery & Customization (new structured columns)
+        delivery_option: deliveryOption,
+        rush_date: rushDate || null,
+        addons: addons || null,
+        special_instructions: specialInstructions || null,
+
+        order_amount: finalPrice,         // Maps to 'order_amount' (server-calculated)
+        amount_paid: 0,                   // Initially 0 until Stripe confirms
+        status: 'WEBSITE_CHECKOUT',       // Special status so you know it came from the site
+
+        // Tracking Payment
+        payment_status: 'pending',
+        sales_agent: 'WEBSITE_BOT'        // Required field in your schema
+      })
+      .select()
+      .single();
+
+    if (dbError) {
+      console.error("Supabase Error:", dbError);
+      return NextResponse.json(
+        { error: 'Failed to create order. Please try again.' },
+        { status: 500 }
+      );
+    }
+
+    // B. Create Stripe Checkout Session
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: `${productName} (${width}" x ${height}")`,
+              description: `Backing: ${backing} | Qty: ${quantity}`,
+            },
+            unit_amount: Math.round((finalPrice / quantity) * 100),
+          },
+          quantity: quantity,
+        },
+      ],
+      mode: 'payment',
+      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/error-payment`,
+      metadata: {
+        order_id: order.id,
+      },
+    });
+
+    // C. Update Supabase with Session ID
+    await supabase
+      .from('orders')
+      .update({ stripe_session_id: session.id })
+      .eq('id', order.id);
+
+    return NextResponse.json({ url: session.url });
+
+  } catch (error: any) {
+    // Log detailed error server-side
+    console.error('Checkout Error:', error);
+
+    // Return generic error to client (don't expose internal details)
+    return NextResponse.json(
+      {
+        error: 'Payment processing failed',
+        message: 'We encountered an error processing your payment. Please try again or contact support.'
+      },
+      { status: 500 }
+    );
+  }
+}

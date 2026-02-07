@@ -1,0 +1,54 @@
+## 🗺️ Detailed Page Breakdown (The "50 Page" Plan)
+
+We are building a **Scalable Design System**. We will build "Templates" that allow us to generate dozens of pages instantly.
+
+### 🟢 Group A: Core Brand Pages (Static & Visual)
+*These are the storytelling pages visible in your Figma "About Us" and "Contact" frames.*
+- [x] **Home Page:** (Hero, Form, Trusted By, Features, CTA).
+- [ ] **About Us:** (Our Story, Factory Photos, "Why Panda?", Team Section).
+- [ ] **Contact Us:** (Contact Info, Map, "Send a Message" Form - separate from Quote).
+- [ ] **Patch Style / Gallery:** (Grid view of "Insta Banner" style photos).
+- [ ] **Blog Index:** (List of SEO articles).
+- [ ] **Blog Post Template:** (The actual article reading page).
+
+### 🟡 Group B: The Product Landing Pages (The Money Makers)
+*Visible in Figma as "Product- Custom Patch". We will build ONE master template that works for all types (Chenille, Embroidered, PVC, Leather).*
+- [ ] **Master Product Template:**
+    - **Hero:** "Custom [Patch Type] Patches".
+    - **Gallery Slider:** Specific photos of that patch type.
+    - **Pricing Grid:** Specific matrix for that type.
+    - **FAQ Section:** Specific questions for that type.
+- [ ] **The Variations (Generated via Sanity CMS):**
+    - Custom Chenille Patches
+    - Custom Embroidered Patches
+    - Custom Leather Patches
+    - Custom PVC Patches
+    - (And the rest of the 50 SEO pages...)
+
+### 🟠 Group C: The Order Flow (The Calculator)
+*This is the complex interactive part.*
+- [ ] **Quote Calculator (Step 1):** Size & Quantity Slider.
+- [ ] **Upload & Design (Step 2):** File Dropzone or AI Generator.
+- [ ] **Review & Checkout (Step 3):** Final summary and Stripe Payment.
+- [ ] **Thank You / Order Tracking:** "Order #1234 Received".
+
+### 🔵 Group D: Utility & Legal
+- [ ] **Privacy Policy & Terms.**
+- [ ] **404 Error Page** (Custom "Panda" theme).
+- [ ] **Sitemap.xml** (For Google SEO).
+
+---
+
+## 📅 Revised Timeline (Adjusted for Page Volume)
+
+| Phase | Deliverable | Deadline | Status |
+|-------|-------------|----------|--------|
+| **1. Foundation** | Setup, Header, Home Hero | Jan 15 | **90% Done** |
+| **2. Brand Pages** | About, Contact, Gallery | Jan 18 | Pending |
+| **3. Product Template** | The Master "Tall" Page | Jan 22 | Pending |
+| **4. The Calculator** | The Logic Engine | Jan 26 | Pending |
+| **5. AI & Uploads** | DALL-E 3 & S3 Storage | Jan 29 | Pending |
+| **6. Integration** | Stripe & Supabase CRM | Feb 2 | Pending |
+| **7. SEO Content** | Filling the 50 pages | Feb 5 | Pending |
+
+**Total Estimated Completion:** Feb 5th, 2026.

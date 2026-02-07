@@ -1,0 +1,32 @@
+{
+  "models": [
+    {
+      "title": "MiniMax 2.1",
+      "provider": "openai",
+      "model": "minimax/minimax-m2.1",
+      "apiKey": "vck_4vc7HqRxBmMH4BA2yJRueD8GQA4epCZE3JpVSzxSQLUQyVjUD8Rj1v",
+      "apiBase": "https://ai-gateway.vercel.sh/v1"
+    },
+    {
+      "title": "Claude Sonnet 4.5",
+      "provider": "openai",
+      "model": "anthropic/claude-sonnet-4-5",
+      "apiKey": "vck_4vc7HqRxBmMH4BA2yJRueD8GQA4epCZE3JpVSzxSQLUQyVjUD8Rj1v",
+      "apiBase": "https://ai-gateway.vercel.sh/v1"
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "MiniMax Lightning",
+    "provider": "openai",
+    "model": "minimax/minimax-m2.1-lightning",
+    "apiKey": "vck_4vc7HqRxBmMH4BA2yJRueD8GQA4epCZE3JpVSzxSQLUQyVjUD8Rj1v",
+    "apiBase": "https://ai-gateway.vercel.sh/v1"
+  },
+  "customCommands": [
+    {
+      "name": "website",
+      "prompt": "Create a beautiful, modern website with great UI/UX, smooth animations, and excellent visual design."
+    }
+  ],
+  "allowAnonymousTelemetry": false
+}
