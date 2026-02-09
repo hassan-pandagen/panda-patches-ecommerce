@@ -3,14 +3,19 @@ import { client, urlFor } from "@/lib/sanity";
 import HeroForm from "./HeroForm";
 
 async function getHeroData() {
-  const query = `*[_type == "hero"][0] {
-    title,
-    subtitle,
-    "heroImage": heroImage.asset->url,
-    "trustBadges": trustBadges[].asset->url
-  }`;
-  const data = await client.fetch(query);
-  return data;
+  try {
+    const query = `*[_type == "hero"][0] {
+      title,
+      subtitle,
+      "heroImage": heroImage.asset->url,
+      "trustBadges": trustBadges[].asset->url
+    }`;
+    const data = await client.fetch(query);
+    return data;
+  } catch (error) {
+    console.error("Hero fetch error:", error);
+    return null;
+  }
 }
 
 export default async function Hero() {
