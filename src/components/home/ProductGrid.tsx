@@ -4,26 +4,31 @@ import Link from "next/link";
 import { client, urlFor } from "@/lib/sanity";
 
 async function getProducts() {
-  const query = `
-    {
-      "main": *[_type == "product" && category == "main"] | order(_createdAt asc) {
-        _id,
-        title,
-        image,
-        tag,
-        description
-      },
-      "other": *[_type == "product" && category == "other"] | order(_createdAt asc) {
-        _id,
-        title,
-        image,
-        tag,
-        description
+  try {
+    const query = `
+      {
+        "main": *[_type == "product" && category == "main"] | order(_createdAt asc) {
+          _id,
+          title,
+          image,
+          tag,
+          description
+        },
+        "other": *[_type == "product" && category == "other"] | order(_createdAt asc) {
+          _id,
+          title,
+          image,
+          tag,
+          description
+        }
       }
-    }
-  `;
-  const data = await client.fetch(query);
-  return data;
+    `;
+    const data = await client.fetch(query);
+    return data || { main: [], other: [] };
+  } catch (error) {
+    console.error("ProductGrid fetch error:", error);
+    return { main: [], other: [] };
+  }
 }
 
 // Map product titles to their existing page URLs
