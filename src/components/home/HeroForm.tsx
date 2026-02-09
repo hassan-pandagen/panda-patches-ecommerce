@@ -6,11 +6,13 @@ import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { sanitizeString, sanitizeEmail, sanitizePhone, sanitizeInteger, sanitizeNumber } from "@/lib/sanitize";
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+// Initialize Supabase client (with fallback if keys missing)
+const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  ? createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    )
+  : null;
 
 export default function HeroForm() {
   const { register, handleSubmit, reset } = useForm();
@@ -22,6 +24,11 @@ export default function HeroForm() {
     setMessage(null);
 
     try {
+      // Check if Supabase is configured
+      if (!supabase) {
+        throw new Error('Supabase not configured. Please contact support.');
+      }
+
       let artworkUrl = null;
 
       // Upload artwork file if provided
