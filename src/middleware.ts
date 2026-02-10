@@ -39,6 +39,8 @@ const ALLOWED_ORIGINS = [
   'http://localhost:3001',
   'https://pandapatches.com',
   'https://www.pandapatches.com',
+  'https://panda-patches-ecommerce.vercel.app',
+  'https://panda-patches-ecommerce-7w28lefz.vercel.app',
 ];
 
 export async function middleware(request: NextRequest) {
@@ -110,7 +112,8 @@ export async function middleware(request: NextRequest) {
     // Allow requests without origin (direct API calls, server-to-server)
     // But validate if present
     if (origin) {
-      const isAllowed = ALLOWED_ORIGINS.some(allowed => origin.startsWith(allowed));
+      const isAllowed = ALLOWED_ORIGINS.some(allowed => origin.startsWith(allowed)) ||
+                        origin.includes('vercel.app'); // Allow all Vercel preview deployments
       if (!isAllowed) {
         return NextResponse.json(
           { error: 'Forbidden', message: 'Invalid origin' },
