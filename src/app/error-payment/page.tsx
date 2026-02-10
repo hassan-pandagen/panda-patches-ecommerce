@@ -24,7 +24,7 @@ export default function PaymentErrorPage() {
           </h1>
 
           <p className="text-xl text-gray-600 mb-8">
-            We couldn't process your payment. Don't worry, you haven't been charged.
+            We couldn&apos;t process your payment. Don&apos;t worry, you haven&apos;t been charged.
           </p>
 
           {/* Common Issues Box */}

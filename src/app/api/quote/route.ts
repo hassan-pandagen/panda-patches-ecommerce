@@ -2,15 +2,6 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 
-// Request Size Limit Configuration
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '1mb', // Prevent DoS via large payloads
-    },
-  },
-};
-
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -20,7 +11,7 @@ const supabase = createClient(
 const QuoteSchema = z.object({
   customer: z.object({
     name: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name too long'),
-    email: z.string().email('Invalid email address'),
+    email: z.string().email({ message: 'Invalid email address' }),
     phone: z.string().regex(/^[\d\s\-()+ ]+$/, 'Invalid phone number format').optional().or(z.literal('')),
   }),
   details: z.object({
@@ -28,11 +19,11 @@ const QuoteSchema = z.object({
     height: z.number().positive('Height must be positive').min(0.5, 'Minimum height is 0.5 inches').max(50, 'Maximum height is 50 inches'),
     quantity: z.number().int('Quantity must be an integer').min(1, 'Minimum quantity is 1').max(10000, 'Quantity too high'),
     backing: z.enum(['iron', 'sew', 'velcro', 'peel'], {
-      errorMap: () => ({ message: 'Invalid backing type' })
+      message: 'Invalid backing type'
     }),
     placement: z.string().min(1, 'Placement is required').max(200, 'Placement description too long')
   }),
-  artworkUrl: z.string().url().optional().or(z.null())
+  artworkUrl: z.string().url({ message: 'Invalid URL' }).optional().or(z.null())
 });
 
 export async function POST(req: Request) {
@@ -46,9 +37,9 @@ export async function POST(req: Request) {
       return NextResponse.json(
         {
           error: 'Validation failed',
-          details: validationResult.error.errors.map(e => ({
-            field: e.path.join('.'),
-            message: e.message
+          details: validationResult.error.issues.map((issue) => ({
+            field: issue.path.join('.'),
+            message: issue.message
           }))
         },
         { status: 400 }
@@ -87,7 +78,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Log detailed error server-side
     console.error('Quote Submission Error:', error);
 

@@ -11,7 +11,7 @@ export default async function FactorySection() {
   const data = await getData();
 
   const title = data?.factoryHeading || "PANDA PATCHES FACTORY";
-  const desc = data?.factoryDescription || "Our Factory in Pakistan isn't just a production line...";
+  const desc = data?.factoryDescription || "Our Factory in Pakistan isn&apos;t just a production line...";
   // Fallback if no image uploaded
   const image = data?.factoryImage ? urlFor(data.factoryImage).url() : null;
 

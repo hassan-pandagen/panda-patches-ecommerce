@@ -58,7 +58,7 @@ export default async function CatchAllPage({ params }: { params: { slug: string 
       <div className="flex-1 flex flex-col items-center justify-center gap-4 text-center">
         <h1 className="text-4xl font-black text-panda-dark">Page Not Found</h1>
         <p className="text-gray-500">
-          We couldn't find a page or blog post at <span className="font-mono bg-gray-100 px-2 py-1">{params.slug}</span>
+          We couldn&apos;t find a page or blog post at <span className="font-mono bg-gray-100 px-2 py-1">{params.slug}</span>
         </p>
       </div>
       <Footer />

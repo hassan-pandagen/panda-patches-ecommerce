@@ -5,7 +5,7 @@ import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 export default function ContactHero() {
   const { register, handleSubmit } = useForm();
-  
+
   const onSubmit = (data: any) => {
     // TODO: Connect to your backend/email service to send the message
     // For now, just show success message
@@ -29,7 +29,7 @@ export default function ContactHero() {
               We would love to hear from you.
             </h2>
             <p className="text-gray-500 mb-10 text-[16px]">
-              If you've got great products your making or looking to work with us then drop us a line.
+              If you&apos;ve got great products your making or looking to work with us then drop us a line.
             </p>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -139,7 +139,7 @@ export default function ContactHero() {
 
             {/* Hours */}
             <div>
-              <h3 className="text-xl font-bold text-panda-dark mb-2">We're Open</h3>
+              <h3 className="text-xl font-bold text-panda-dark mb-2">We&apos;re Open</h3>
               <p className="text-gray-600 mb-1">Our store has re-opened for shopping, exchanges</p>
               <p className="text-gray-900 font-bold">Every day 11am to 7pm</p>
             </div>

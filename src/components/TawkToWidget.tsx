@@ -11,7 +11,6 @@ const TawkToWidget = () => {
     // Function to detect referral source
     const detectReferralSource = () => {
       const referrer = document.referrer.toLowerCase();
-      const hostname = window.location.hostname;
       const searchParams = new URLSearchParams(window.location.search);
 
       // Check URL parameters first (for tracking links)
@@ -101,7 +100,7 @@ const TawkToWidget = () => {
           const refUrl = new URL(referrer);
           source = `Referral: ${refUrl.hostname}`;
           details = refUrl.hostname;
-        } catch (e) {
+        } catch {
           source = 'External Referral';
         }
       } else {
@@ -153,21 +152,21 @@ const TawkToWidget = () => {
 
         // Add tags for easier filtering
         if (storedReferral.source.includes('Facebook')) {
-          (window as any).Tawk_API.addTags(['facebook'], function(error: any) {});
+          (window as any).Tawk_API.addTags(['facebook']);
         } else if (storedReferral.source.includes('Instagram')) {
-          (window as any).Tawk_API.addTags(['instagram'], function(error: any) {});
+          (window as any).Tawk_API.addTags(['instagram']);
         } else if (storedReferral.source.includes('ChatGPT')) {
-          (window as any).Tawk_API.addTags(['chatgpt', 'ai', 'llm'], function(error: any) {});
+          (window as any).Tawk_API.addTags(['chatgpt', 'ai', 'llm']);
         } else if (storedReferral.source.includes('Claude')) {
-          (window as any).Tawk_API.addTags(['claude', 'ai', 'llm'], function(error: any) {});
+          (window as any).Tawk_API.addTags(['claude', 'ai', 'llm']);
         } else if (storedReferral.source.includes('Gemini')) {
-          (window as any).Tawk_API.addTags(['gemini', 'ai', 'llm'], function(error: any) {});
+          (window as any).Tawk_API.addTags(['gemini', 'ai', 'llm']);
         } else if (storedReferral.source.includes('Copilot')) {
-          (window as any).Tawk_API.addTags(['copilot', 'ai', 'llm'], function(error: any) {});
+          (window as any).Tawk_API.addTags(['copilot', 'ai', 'llm']);
         } else if (storedReferral.source.includes('AI')) {
-          (window as any).Tawk_API.addTags(['ai', 'llm'], function(error: any) {});
+          (window as any).Tawk_API.addTags(['ai', 'llm']);
         } else if (storedReferral.source.includes('Google')) {
-          (window as any).Tawk_API.addTags(['google'], function(error: any) {});
+          (window as any).Tawk_API.addTags(['google']);
         }
 
 

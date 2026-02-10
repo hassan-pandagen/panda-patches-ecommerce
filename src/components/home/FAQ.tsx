@@ -3,8 +3,13 @@
 import { useEffect, useState } from "react";
 import FAQList from "./FAQList";
 
+interface FAQData {
+  heading?: string;
+  questions: Array<{ question: string; answer: string }>;
+}
+
 export default function FAQ() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<FAQData | null>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

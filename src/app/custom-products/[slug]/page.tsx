@@ -44,7 +44,7 @@ export default async function CustomProductPage({ params }: { params: { slug: st
   );
 
   // === PROFESSIONAL SEO TEXT COMPONENT ===
-  const SEOText = ({ content, bgColor = "bg-white" }: { content: any, bgColor?: string }) => (
+  const SEOText = ({ content, bgColor = "bg-white" }: { content: any; bgColor?: string }) => (
     <section className={`py-20 ${bgColor}`}>
       <div className="container mx-auto px-6 max-w-[1000px]">
         

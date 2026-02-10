@@ -4,18 +4,9 @@ import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { calculatePatchPrice } from '@/lib/pricingCalculator';
 
-// 0. Request Size Limit Configuration
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '1mb', // Prevent DoS via large payloads
-    },
-  },
-};
-
 // 1. Init Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-12-18.acacia',
+  apiVersion: '2026-01-28.clover',
 });
 
 // 2. Init Supabase
@@ -38,20 +29,20 @@ const CheckoutSchema = z.object({
   price: z.number().positive('Price must be positive').max(100000, 'Price too high'),
   quantity: z.number().int('Quantity must be an integer').min(1, 'Minimum quantity is 1').max(10000, 'Quantity too high'),
   backing: z.enum(['iron', 'sew', 'velcro', 'peel'], {
-    errorMap: () => ({ message: 'Invalid backing type' })
+    message: 'Invalid backing type'
   }),
   width: z.number().positive('Width must be positive').min(0.5, 'Minimum width is 0.5 inches').max(50, 'Maximum width is 50 inches'),
   height: z.number().positive('Height must be positive').min(0.5, 'Minimum height is 0.5 inches').max(50, 'Maximum height is 50 inches'),
   customer: z.object({
     name: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name too long'),
-    email: z.string().email('Invalid email address'),
+    email: z.string().email({ message: 'Invalid email address' }),
     phone: z.string().regex(/^[\d\s\-()+ ]+$/, 'Invalid phone number format').optional().or(z.literal('')),
   }),
   shippingAddress: z.string().min(5, 'Please enter a complete shipping address'),
   deliveryOption: z.enum(['rush', 'standard', 'economy']),
   rushDate: z.string().optional().or(z.null()),
   discount: z.string().optional().or(z.null()),
-  artworkUrl: z.string().url().optional().or(z.null()),
+  artworkUrl: z.string().url({ message: 'Invalid URL' }).optional().or(z.null()),
   addons: z.array(z.string()).optional().or(z.null()),
   specialInstructions: z.string().optional().or(z.null())
 });
@@ -67,9 +58,9 @@ export async function POST(req: Request) {
       return NextResponse.json(
         {
           error: 'Validation failed',
-          details: validationResult.error.errors.map(e => ({
-            field: e.path.join('.'),
-            message: e.message
+          details: validationResult.error.issues.map((issue) => ({
+            field: issue.path.join('.'),
+            message: issue.message
           }))
         },
         { status: 400 }
@@ -193,7 +184,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ url: session.url });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Log detailed error server-side
     console.error('Checkout Error:', error);
 

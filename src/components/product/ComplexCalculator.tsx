@@ -63,7 +63,7 @@ export default function ComplexCalculator({
       return DEFAULT_BACKINGS;
     }
 
-    return backingOptions.map((option, index) => ({
+    return backingOptions.map((option) => ({
       id: option.title.toLowerCase().replace(/\s+/g, '-'),
       name: option.title,
       icon: option.image ? urlFor(option.image).width(100).height(100).url() : "🔲"
@@ -76,7 +76,7 @@ export default function ComplexCalculator({
       return [];
     }
 
-    return upgradeOptions.map((option, index) => ({
+    return upgradeOptions.map((option) => ({
       id: option.title.toLowerCase().replace(/\s+/g, '-'),
       name: option.title,
       category: "Upgrade",
@@ -424,7 +424,7 @@ export default function ComplexCalculator({
                 </div>
               </div>
               <p className="text-xs text-gray-400 mt-3 font-medium">
-                📧 We'll send your quote and order updates to this email
+                📧 We&apos;ll send your quote and order updates to this email
               </p>
             </div>
             {/* 1. BACKING SELECTOR */}
@@ -796,7 +796,7 @@ export default function ComplexCalculator({
             className="w-full h-[120px] border-2 border-gray-300 rounded-[12px] px-5 py-4 font-medium text-base text-black outline-none focus:border-black transition-all resize-none"
           />
           <p className="text-xs text-gray-400 mt-2 font-medium">
-            Example: "Please use metallic gold thread", "Add text on back side", "Match Pantone color 123C"
+            Example: &quot;Please use metallic gold thread&quot;, &quot;Add text on back side&quot;, &quot;Match Pantone color 123C&quot;
           </p>
         </div>
 
@@ -824,7 +824,7 @@ export default function ComplexCalculator({
                       <span className="font-semibold">${unitPrice.toFixed(2)}</span> per patch × {quantity} patches
                     </p>
                     <p className="text-xs text-gray-400 mt-1">
-                      Pricing based on {priceResult.patchSize}" average size
+                      Pricing based on {priceResult.patchSize}&quot; average size
                     </p>
                   </div>
                   <div className="text-right">

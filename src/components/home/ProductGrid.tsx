@@ -62,7 +62,7 @@ export default async function ProductGrid() {
           </h2>
           <p className="text-[17px] text-gray-800 leading-[1.8] max-w-[1020px] mx-auto font-medium">
             From personalized logo patches, to <span className="underline decoration-gray-400 underline-offset-4">personalized name patch</span>, from <span className="underline decoration-gray-400 underline-offset-4">military patches</span>, to <span className="underline decoration-gray-400 underline-offset-4">personalized patches for jackets</span>, and custom <span className="underline decoration-gray-400 underline-offset-4">Velcro patches</span>,
-            our tailored selection ensures a lasting impression, showcasing your unique style. At Panda Patches, we're dedicated to providing personalized iron on
+            our tailored selection ensures a lasting impression, showcasing your unique style. At Panda Patches, we&apos;re dedicated to providing personalized iron on
             patches in the US, that bring brand vision to life and take your product to the next level.
           </p>
         </div>

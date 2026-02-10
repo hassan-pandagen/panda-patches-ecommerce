@@ -50,7 +50,7 @@ export default async function BlogsPage({ searchParams }: { searchParams: { page
             
             {/* === LEFT COLUMN: BLOG LIST === */}
             <div className="flex-1 flex flex-col gap-10">
-              {paginatedBlogs.map((post: any, idx: number) => (
+              {paginatedBlogs.map((post: any) => (
                 <div 
                   key={post._id} 
                   className="flex flex-row bg-white overflow-hidden shadow-sm hover:shadow-lg transition-all border-2 border-purple-300 rounded-[20px]"

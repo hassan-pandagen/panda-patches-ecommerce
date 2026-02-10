@@ -25,16 +25,16 @@ function SuccessContent() {
           </h1>
 
           <p className="text-xl text-gray-600 mb-8">
-            Thank you for your order. We've received your payment successfully.
+            Thank you for your order. We&apos;ve received your payment successfully.
           </p>
 
           {/* Info Box */}
           <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-100">
-            <h2 className="text-2xl font-bold text-panda-dark mb-4">What's Next?</h2>
+            <h2 className="text-2xl font-bold text-panda-dark mb-4">What&apos;s Next?</h2>
             <ul className="text-left space-y-4 text-gray-700">
               <li className="flex items-start gap-3">
                 <CheckCircle2 size={20} className="text-green-600 mt-1 flex-shrink-0" />
-                <span>You'll receive an <strong>order confirmation email</strong> shortly with your order details.</span>
+                <span>You&apos;ll receive an <strong>order confirmation email</strong> shortly with your order details.</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 size={20} className="text-green-600 mt-1 flex-shrink-0" />
@@ -42,7 +42,7 @@ function SuccessContent() {
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 size={20} className="text-green-600 mt-1 flex-shrink-0" />
-                <span>We'll send you a <strong>free digital mockup</strong> for approval before production.</span>
+                <span>We&apos;ll send you a <strong>free digital mockup</strong> for approval before production.</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 size={20} className="text-green-600 mt-1 flex-shrink-0" />

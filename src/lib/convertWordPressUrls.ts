@@ -43,7 +43,7 @@ export function convertWordPressUrl(href: string): string {
     // Return the path for Next.js (relative URL)
     // This will work on your new domain automatically
     return cleanPath || '/';
-  } catch (e) {
+  } catch {
     // If URL parsing fails, return original
     return href;
   }

@@ -135,7 +135,7 @@ export default function Footer() {
               <li><Link href="/custom-anime-patches">Custom Anime Patches</Link></li>
               <li><Link href="/custom-baseball-patches">Custom Baseball Patches</Link></li>
               <li><Link href="/christmas-patches">Christmas Patches</Link></li>
-              <li><Link href="/valentines-day-patches">Valentine's Day Patches</Link></li>
+              <li><Link href="/valentines-day-patches">Valentine&apos;s Day Patches</Link></li>
               <li><Link href="/custom-morale-patches">Custom Morale Patches</Link></li>
               <li><Link href="/custom-soccer-patches">Custom Soccer Patches</Link></li>
               <li><Link href="/custom-fire-department-patches">Custom Fire Department Patches</Link></li>

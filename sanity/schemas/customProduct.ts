@@ -86,6 +86,7 @@ export default defineType({
       type: 'array',
       of: [
         defineField({
+          name: 'productType',
           type: 'object',
           fields: [
             defineField({ name: 'title', title: 'Title', type: 'string' }),
@@ -117,6 +118,7 @@ export default defineType({
       type: 'array', 
       of: [
         defineField({
+          name: 'option1Card',
           type: 'object',
           fields: [
             defineField({ name: 'title', title: 'Title', type: 'string' }),
@@ -147,6 +149,7 @@ export default defineType({
       type: 'array', 
       of: [
         defineField({
+          name: 'option2Card',
           type: 'object',
           fields: [
             defineField({ name: 'title', title: 'Title', type: 'string' }),
@@ -177,6 +180,7 @@ export default defineType({
       type: 'array', 
       of: [
         defineField({
+          name: 'option3Card',
           type: 'object',
           fields: [
             defineField({ name: 'title', title: 'Title', type: 'string' }),

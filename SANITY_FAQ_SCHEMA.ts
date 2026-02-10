@@ -268,7 +268,7 @@ export const productFAQ = {
               title: 'question',
               category: 'answerCategory',
             },
-            prepare({ title, category }) {
+            prepare({ title, category }: { title: string; category?: string }) {
               return {
                 title,
                 subtitle: category ? `(${category})` : '',
@@ -588,7 +588,7 @@ export const faqStructure = {
 export const initialHomepageFAQ = {
   _type: 'globalFAQ',
   heading: 'FREQUENTLY ASKED QUESTIONS',
-  description: 'Have questions about custom patches? We've got answers.',
+  description: 'Have questions about custom patches? We\'ve got answers.',
   questions: [
     {
       _type: 'faqItem',

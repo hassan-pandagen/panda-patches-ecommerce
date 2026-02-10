@@ -9,7 +9,7 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 
 // Memoized image card to prevent unnecessary re-renders
-const WorkSampleCard = memo(({ img, idx, onClick }: { img: any; idx: number; onClick: () => void }) => {
+const WorkSampleCard = memo(({ img, onClick }: { img: any; onClick: () => void }) => {
   return (
     <div
       onClick={onClick}
@@ -41,7 +41,6 @@ WorkSampleCard.displayName = 'WorkSampleCard';
 
 export default function WorkSamples({ samples }: { samples: any[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -103,20 +102,19 @@ export default function WorkSamples({ samples }: { samples: any[] }) {
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory py-4"
           >
-            {samples.map((img: any, idx: number) => (
+            {samples.map((img: any, index: number) => (
               <WorkSampleCard
-                key={idx}
+                key={index}
                 img={img}
-                idx={idx}
-                onClick={() => openLightbox(idx)}
+                onClick={() => openLightbox(index)}
               />
             ))}
           </div>
 
           {/* DOTS INDICATOR */}
           <div className="flex justify-center gap-3 mt-8">
-             {samples.slice(0, 5).map((_, idx) => (
-               <div key={idx} className="w-2 h-2 rounded-full bg-gray-300 first:bg-panda-green first:w-6 transition-all" />
+             {samples.slice(0, 5).map((_, index) => (
+               <div key={index} className="w-2 h-2 rounded-full bg-gray-300 first:bg-panda-green first:w-6 transition-all" />
              ))}
           </div>
 
