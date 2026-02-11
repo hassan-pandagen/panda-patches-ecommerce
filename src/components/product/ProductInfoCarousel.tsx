@@ -47,52 +47,54 @@ export default function ProductInfoCarousel({
     { _id: 5, title: "Border Options", description: "Merrowed borders for a classic look, or hot cut for intricate shapes." },
   ];
 
-  // The Title Card Component
+  // The Title Card Component - Responsive
   const TitleCard = () => (
     <div className="
-      flex-shrink-0 
-      w-[280px] h-[277px] 
-      flex flex-col items-center justify-center 
-      bg-white 
+      flex-shrink-0
+      w-[240px] md:w-[280px]
+      flex flex-col items-center justify-center
+      bg-white
+      px-4
+      py-8
     ">
-       <div className="w-[120px] h-[50px] relative mb-4">
+       <div className="w-[100px] md:w-[120px] h-[40px] md:h-[50px] relative mb-4">
          <Image src="/assets/logo-panda.svg" alt="Panda" fill className="object-contain" sizes="120px" quality={90} />
        </div>
-       <h3 className="text-[26px] font-black text-panda-dark text-center leading-tight">
+       <h3 className="text-[22px] md:text-[26px] font-black text-panda-dark text-center leading-tight">
          {title}
        </h3>
-       <p className="text-[14px] text-gray-400 mt-2 font-medium tracking-wide text-center">
+       <p className="text-[13px] md:text-[14px] text-gray-400 mt-2 font-medium tracking-wide text-center">
          {subtitle}
        </p>
     </div>
   );
 
   return (
-    <section className="w-full py-16 bg-white border-t border-gray-100">
+    <section className="w-full py-12 md:py-16 bg-white border-t border-gray-100">
       <div className="container mx-auto px-4 max-w-[1400px]">
-        
+
         <div className="relative group">
-          
-          {/* ARROWS */}
-          <button 
-            onClick={() => scroll('left')} 
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white shadow-md rounded-full flex items-center justify-center border border-gray-200 hover:bg-black hover:text-white transition-all -ml-4 opacity-0 group-hover:opacity-100"
+
+          {/* ARROWS - Hide on mobile, show on desktop */}
+          <button
+            onClick={() => scroll('left')}
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white shadow-md rounded-full items-center justify-center border border-gray-200 hover:bg-black hover:text-white transition-all -ml-4 opacity-0 group-hover:opacity-100"
           >
             <ChevronLeft size={20} />
           </button>
 
-          <button 
-            onClick={() => scroll('right')} 
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white shadow-md rounded-full flex items-center justify-center border border-gray-200 hover:bg-black hover:text-white transition-all -mr-4 opacity-0 group-hover:opacity-100"
+          <button
+            onClick={() => scroll('right')}
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white shadow-md rounded-full items-center justify-center border border-gray-200 hover:bg-black hover:text-white transition-all -mr-4 opacity-0 group-hover:opacity-100"
           >
             <ChevronRight size={20} />
           </button>
 
-          {/* TRACK */}
-          <div 
+          {/* TRACK - Responsive */}
+          <div
             ref={scrollRef}
             className={`
-              flex flex-nowrap items-center gap-5 overflow-x-auto no-scrollbar scroll-smooth py-4 pl-1
+              flex flex-nowrap items-center gap-3 md:gap-5 overflow-x-auto no-scrollbar scroll-smooth py-4 pl-1
               ${layout === 'right' ? 'flex-row-reverse' : 'flex-row'}
             `}
           >
@@ -102,40 +104,41 @@ export default function ProductInfoCarousel({
 
             {/* DYNAMIC CARDS */}
             {cards.map((card: OptionCard, idx: number) => (
-              <div 
+              <div
                 key={idx}
                 className="
-                  flex-shrink-0 
-                  w-[280px] h-[277px] 
-                  bg-[#F9FAF5] 
-                  rounded-[8px] 
-                  overflow-hidden 
+                  flex-shrink-0
+                  w-[240px] md:w-[280px]
+                  bg-white
+                  rounded-[12px]
+                  overflow-hidden
                   flex flex-col
-                  shadow-sm hover:shadow-md transition-shadow
+                  shadow-md hover:shadow-xl transition-all duration-300
+                  border border-gray-100
                 "
               >
-                {/* Image Area */}
-                <div className="h-[160px] relative w-full bg-gray-200">
+                {/* Image Area with Background - Industry Standard: Square aspect ratio */}
+                <div className="aspect-square relative w-full bg-gradient-to-br from-gray-50 via-white to-gray-50">
                   {card.image ? (
                      <Image
-                       src={urlFor(card.image).url()}
+                       src={urlFor(card.image).width(400).quality(90).fit('max').url()}
                        alt={card.title}
                        fill
-                       className="object-cover"
-                       sizes="280px"
-                       quality={85}
+                       className="object-contain p-3"
+                       sizes="(max-width: 768px) 240px, 280px"
+                       quality={90}
                      />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-400 text-[12px]">Image</div>
                   )}
                 </div>
 
-                {/* Text Area */}
-<div className="flex-1 flex flex-col items-center text-center justify-center p-4">
-                   <h4 className="text-[18px] font-bold text-panda-dark mb-2">
+                {/* Text Area - Responsive */}
+                <div className="flex-1 flex flex-col items-center text-center justify-center p-3 md:p-4">
+                   <h4 className="text-[16px] md:text-[18px] font-bold text-panda-dark mb-2 leading-tight">
                      {card.title}
                    </h4>
-                   <p className="text-[14px] leading-[20px] font-normal text-gray-600 max-w-[245px]">
+                   <p className="text-[13px] md:text-[14px] leading-[18px] md:leading-[20px] font-normal text-gray-600 line-clamp-3">
                      {card.description}
                    </p>
                 </div>

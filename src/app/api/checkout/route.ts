@@ -38,7 +38,7 @@ const CheckoutSchema = z.object({
     email: z.string().email({ message: 'Invalid email address' }),
     phone: z.string().regex(/^[\d\s\-()+ ]+$/, 'Invalid phone number format').optional().or(z.literal('')),
   }),
-  shippingAddress: z.string().min(5, 'Please enter a complete shipping address'),
+  shippingAddress: z.string().optional(),
   deliveryOption: z.enum(['rush', 'standard', 'economy']),
   rushDate: z.string().optional().or(z.null()),
   discount: z.string().optional().or(z.null()),

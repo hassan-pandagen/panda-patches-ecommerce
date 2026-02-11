@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { MessageCircle, ChevronDown } from "lucide-react";
+import { MessageCircle, ChevronDown, Package } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 // CONFIGURATION: Define your menus here
@@ -152,8 +152,8 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* === 3. SOCIALS & CHAT === */}
-        <div className="flex items-center gap-4">
+        {/* === 3. SOCIALS & ACTION BUTTONS === */}
+        <div className="flex items-center gap-3 flex-nowrap">
           <div className="hidden lg:flex gap-2">
             {/* 1. Facebook */}
             <a href="#" className="w-[32px] h-[32px] bg-[#051C05] rounded-full flex items-center justify-center hover:scale-110 transition-transform group">
@@ -173,10 +173,27 @@ export default function Navbar() {
             </a>
           </div>
 
-          <button className="flex items-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[13px] px-6 py-3 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group">
+          {/* Chat Now Button */}
+          <button
+            onClick={() => {
+              if (typeof window !== 'undefined' && (window as any).Tawk_API) {
+                (window as any).Tawk_API.toggle();
+              }
+            }}
+            className="flex items-center gap-2.5 bg-[#DFFF00] text-[#051C05] font-bold text-[15px] px-7 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
+          >
+            <MessageCircle size={20} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
             <span>Chat Now</span>
-            <MessageCircle size={16} className="group-hover:translate-x-1 transition-transform" />
           </button>
+
+          {/* Sample Box Button */}
+          <Link
+            href="/sample-box"
+            className="flex items-center gap-2.5 bg-[#051C05] text-[#DFFF00] font-bold text-[15px] px-7 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
+          >
+            <Package size={20} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" />
+            <span>Sample Box</span>
+          </Link>
         </div>
 
       </div>
