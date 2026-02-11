@@ -44,10 +44,15 @@ export default function VideoPlayer({ videoUrl, thumbnail, instagramLink }: Vide
       });
     };
 
-    const handleError = () => {
+    const handleError = (e: Event) => {
       setIsLoading(false);
       setHasError(true);
-      console.error("Video failed to load:", videoUrl);
+      console.error("Video failed to load:", videoUrl, e);
+      // Log more details about the error
+      if (video.error) {
+        console.error("Video error code:", video.error.code);
+        console.error("Video error message:", video.error.message);
+      }
     };
 
     const handleLoadStart = () => {

@@ -12,7 +12,14 @@ async function getData() {
       link
     }
   }`;
-  const data = await client.fetch(query);
+
+  const data = await client.fetch(query, {}, {
+    cache: 'no-store', // Disable caching to always get fresh data
+  });
+
+  console.log('Craftsmanship data:', data); // Debug log
+  console.log('Videos:', data?.videos); // Debug log
+
   return data;
 }
 
@@ -20,6 +27,8 @@ export default async function Craftsmanship() {
   const data = await getData();
   const heading = data?.heading || "SEE OUR CRAFTSMANSHIP";
   const videos = data?.videos || [];
+
+  console.log('Rendering videos count:', videos.length); // Debug log
 
   return (
     <section className="w-full pt-16 pb-8 bg-[#F7F7F7]">

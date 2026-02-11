@@ -15,7 +15,8 @@ const CTASection = dynamic(() => import("@/components/home/CTASection"), { ssr: 
 const Footer = dynamic(() => import("@/components/layout/Footer"), { ssr: true });
 
 // ISR: Revalidate homepage every hour
-export const revalidate = 3600;
+// Revalidate every 60 seconds (faster for development, increase for production)
+export const revalidate = 60;
 
 // 1. THIS MUST BE A SERVER COMPONENT (No 'use client')
 export default function Home() {
