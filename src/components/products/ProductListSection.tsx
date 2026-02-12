@@ -45,7 +45,7 @@ export default async function ProductListSection() {
 
                 {/* TEXT */}
                 <div className="flex-1 space-y-6">
-                  <h3 className="text-[32px] font-black text-panda-dark uppercase leading-tight">
+                  <h3 className="text-[24px] md:text-[28px] lg:text-[32px] font-black text-panda-dark uppercase leading-tight">
                     {product.title}
                   </h3>
                   

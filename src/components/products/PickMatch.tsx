@@ -13,7 +13,7 @@ export default function PickMatch() {
     <section className="w-full pb-24 pt-10 bg-white">
       <div className="container mx-auto px-4 text-center">
         
-        <h2 className="text-[32px] font-black text-panda-dark uppercase tracking-tight mb-12">
+        <h2 className="text-[24px] md:text-[28px] lg:text-[32px] font-black text-panda-dark uppercase tracking-tight mb-8 md:mb-10 lg:mb-12">
           Pick Your Match!
         </h2>
 

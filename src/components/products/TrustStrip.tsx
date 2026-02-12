@@ -18,7 +18,7 @@ export default async function TrustStrip() {
       <div className="container mx-auto px-4 text-center">
         
         {/* HEADING */}
-        <h2 className="text-[28px] lg:text-[32px] font-black text-black uppercase tracking-[0.15em] mb-12">
+        <h2 className="text-[22px] md:text-[28px] lg:text-[32px] font-black text-black uppercase tracking-[0.15em] mb-8 md:mb-10 lg:mb-12">
           PANDA IS 5 STAR RATED
         </h2>
         

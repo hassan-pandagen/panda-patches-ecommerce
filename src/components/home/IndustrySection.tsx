@@ -53,7 +53,7 @@ export default async function IndustrySection() {
           <p className="text-[16px] text-gray-500 font-medium max-w-4xl mx-auto leading-[1.8]">
             {desc}
           </p>
-          <p className="text-[30px] font-bold text-panda-dark mt-4">
+          <p className="text-[20px] md:text-[24px] lg:text-[30px] font-bold text-panda-dark mt-4">
             Explore a few of our most popular patch categories:
           </p>
         </div>

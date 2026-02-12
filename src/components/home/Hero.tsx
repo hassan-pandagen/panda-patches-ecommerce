@@ -22,76 +22,79 @@ export default async function Hero() {
   const data = await getHeroData();
 
   return (
-    // Reduced height slightly to keep brands visible
-    <section className="relative w-full min-h-[850px] bg-white overflow-hidden flex flex-col justify-center">
-      
-      {/* 
+    // Mobile and desktop responsive heights
+    <section className="relative w-full min-h-screen md:min-h-[850px] bg-white overflow-hidden flex flex-col justify-center">
+
+      {/*
          FIX 1: GREEN BLOB (Exact Dimensions Logic)
          - width: ~46% of screen (matches the 888px visual on a 1920 screen)
          - height: 85% (leaves white space at bottom for brands)
+         - Hidden on mobile for cleaner look
       */}
-      <div className="absolute top-0 right-0 h-[88%] w-[48%] z-0 pointer-events-none">
-         <Image 
-            src="/assets/hero-bg.svg" 
-            alt="Background" 
-            fill 
-            className="object-cover object-left-bottom" 
-            priority 
+      <div className="hidden lg:block absolute top-0 right-0 h-[88%] w-[48%] z-0 pointer-events-none">
+         <Image
+            src="/assets/hero-bg.svg"
+            alt="Background"
+            fill
+            className="object-cover object-left-bottom"
+            priority
          />
       </div>
 
       {/* MAIN CONTENT */}
-      <div className="container mx-auto px-6 lg:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center flex-grow pt-12">
+      <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center flex-grow pt-8 md:pt-12">
         
         {/* === LEFT SIDE (Text & Patches) === */}
         <div className="flex flex-col justify-center h-full">
           
-          {/* 
-             FIX 2: EXACT TYPOGRAPHY 
-             - Font Size: 40px
+          {/*
+             FIX 2: EXACT TYPOGRAPHY
+             - Desktop: Font Size 40px
+             - Mobile: Font Size 28px
              - Weight: SemiBold (600)
              - Color: Dark (No Yellow)
           */}
-          <h1 className="text-[40px] leading-[1.2] font-semibold text-panda-dark tracking-tight mb-4 max-w-[550px]">
+          <h1 className="text-[28px] md:text-[40px] leading-[1.2] font-semibold text-panda-dark tracking-tight mb-3 md:mb-4 max-w-full md:max-w-[550px]">
             {data?.title || "Custom Iron On Patches: No Minimums, Quick Delivery!"}
           </h1>
-          
-          {/* 
-             FIX 3: SUBHEADING 
-             - Font Size: 20px
+
+          {/*
+             FIX 3: SUBHEADING
+             - Desktop: Font Size 20px
+             - Mobile: Font Size 16px
              - Width constrained to force 3 lines
           */}
-          <p className="text-[20px] text-gray-600 font-medium leading-[1.5] max-w-[520px] mb-6">
+          <p className="text-[16px] md:text-[20px] text-gray-600 font-medium leading-[1.5] max-w-full md:max-w-[520px] mb-4 md:mb-6">
             {data?.subtitle || "Welcome to Panda Patches, where brand stories are stitched into reality! From company logos to promotional swag, let your brand speak loud and clear with our iron on patches. Crafted with care, delivered with precision."}
           </p>
 
-          {/* Badges */}
-          <div className="flex flex-nowrap items-center justify-start gap-5 mb-8">
+          {/* Badges - Responsive with wrapping */}
+          <div className="flex flex-wrap items-center justify-start gap-3 md:gap-5 mb-6 md:mb-8 max-w-full overflow-hidden">
              {data?.trustBadges && data.trustBadges.map((badge: any, idx: number) => (
-               <div key={idx} className="relative h-8 w-24 flex-shrink-0">
+               <div key={idx} className="relative h-7 md:h-8 w-20 md:w-24 flex-shrink-0">
                  <Image src={urlFor(badge).url()} alt="Trust Badge" fill className="object-contain object-left" />
                </div>
              ))}
           </div>
 
-          {/* 
-             FIX 4: IMAGE SIZE 
-             - Width: 630px
-             - Height: 379px (Aspect Ratio preserved)
+          {/*
+             FIX 4: IMAGE SIZE
+             - Desktop: Width 630px, Height 379px
+             - Mobile: Responsive with full width
           */}
-          <div className="relative w-[630px] h-[379px] -ml-4 mt-2">
+          <div className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -ml-0 md:-ml-4 mt-2">
              {data?.heroImage && (
                <Image
                  src={urlFor(data.heroImage).url()}
                  alt="Custom Patches"
                  fill
-                 className="object-contain object-left hover:scale-[1.02] transition-transform duration-700"
+                 className="object-contain object-center md:object-left hover:scale-[1.02] transition-transform duration-700"
                  priority
                />
              )}
 
-             {/* 1 Million Badge */}
-             <div className="absolute bottom-16 right-20 bg-white shadow-xl rounded-xl p-3 flex items-center gap-3 animate-bounce-slow border border-gray-100">
+             {/* 1 Million Badge - Hidden on mobile */}
+             <div className="hidden md:flex absolute bottom-16 right-20 bg-white shadow-xl rounded-xl p-3 items-center gap-3 animate-bounce-slow border border-gray-100">
                 <div className="bg-[#E4EFE0] rounded-full p-2">✅</div>
                 <div>
                   <p className="text-[12px] text-gray-400 uppercase font-bold tracking-wider">Patches Delivered</p>
@@ -101,11 +104,12 @@ export default async function Hero() {
           </div>
         </div>
 
-        {/* 
+        {/*
            === RIGHT SIDE (Form) ===
            - Centered layout for the right column to place form deep in green
+           - Responsive padding for mobile
         */}
-        <div className="w-full flex justify-center lg:justify-end items-center h-full pl-10">
+        <div className="w-full flex justify-center lg:justify-end items-center h-full pl-0 lg:pl-10">
            <div className="w-full max-w-[620px]">
               <HeroForm />
            </div>
@@ -113,19 +117,28 @@ export default async function Hero() {
 
       </div>
 
-      {/* === GLOBAL BRANDS (On White Background) === */}
-      <div className="relative z-20 w-full pb-10 -mt-8 bg-transparent">
-        <div className="container mx-auto px-6 text-center">
-          
-          <p className="text-[12px] font-black text-black uppercase tracking-[0.2em] mb-8 opacity-100">
+      {/* === GLOBAL BRANDS (On Hero Background) === */}
+      <div className="relative z-20 w-full pb-6 md:pb-8 pt-4 md:pt-6 bg-transparent">
+        <div className="container mx-auto px-4 md:px-6 text-center">
+
+          <p className="text-[11px] md:text-[13px] font-black text-black text-center uppercase tracking-[0.15em] md:tracking-[0.2em] mb-5 md:mb-7 opacity-100">
             Trusted By Global Brands
           </p>
-          
-          <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-24 grayscale hover:grayscale-0 transition-all duration-500">
-             <Image src="/assets/logo-google.svg" alt="Google" width={100} height={35} className="object-contain" />
-             <Image src="/assets/logo-microsoft.svg" alt="Microsoft" width={120} height={35} className="object-contain" />
-             <Image src="/assets/logo-cocacola.svg" alt="CocaCola" width={110} height={35} className="object-contain" />
-             <Image src="/assets/logo-nissan.svg" alt="Nissan" width={90} height={35} className="object-contain" />
+
+          {/* Mobile: 2x2 Grid | Desktop: 4 in 1 row */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full max-w-5xl mx-auto">
+             <div className="flex items-center justify-center h-12 md:h-16">
+               <Image src="/assets/logo-google.svg" alt="Google" width={110} height={50} className="object-contain brightness-0" />
+             </div>
+             <div className="flex items-center justify-center h-12 md:h-16">
+               <Image src="/assets/logo-microsoft.svg" alt="Microsoft" width={130} height={50} className="object-contain brightness-0" />
+             </div>
+             <div className="flex items-center justify-center h-12 md:h-16">
+               <Image src="/assets/logo-cocacola.svg" alt="CocaCola" width={120} height={50} className="object-contain brightness-0" />
+             </div>
+             <div className="flex items-center justify-center h-12 md:h-16">
+               <Image src="/assets/logo-nissan.svg" alt="Nissan" width={100} height={50} className="object-contain brightness-0" />
+             </div>
           </div>
         </div>
       </div>

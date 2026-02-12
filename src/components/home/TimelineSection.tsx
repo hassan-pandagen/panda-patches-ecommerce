@@ -62,7 +62,7 @@ export default async function TimelineSection() {
         
         {/* HEADER */}
         <div className="text-center mb-6">
-          <h2 className="text-[32px] md:text-[38px] font-black text-panda-dark uppercase tracking-tight leading-tight max-w-3xl mx-auto">
+          <h2 className="text-[24px] md:text-[32px] lg:text-[38px] font-black text-panda-dark uppercase tracking-tight leading-tight max-w-3xl mx-auto">
             {title}
           </h2>
           <p className="text-[16px] text-gray-600 mt-3 font-medium max-w-2xl mx-auto">

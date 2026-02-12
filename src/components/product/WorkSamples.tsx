@@ -73,8 +73,8 @@ export default function WorkSamples({ samples }: { samples: any[] }) {
     <div className="w-full py-24 bg-[#F9FAF5]">
       <div className="container mx-auto px-4 max-w-[1400px]">
         
-        {/* HEADING */}
-        <h2 className="text-[32px] font-black text-center text-panda-dark uppercase tracking-tight mb-16">
+        {/* HEADING - Mobile Optimized */}
+        <h2 className="text-[24px] md:text-[28px] lg:text-[32px] font-black text-center text-panda-dark uppercase tracking-tight mb-8 md:mb-12 lg:mb-16">
           WORK SAMPLE
         </h2>
 

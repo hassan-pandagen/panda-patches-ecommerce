@@ -36,7 +36,7 @@ export default function ProductTypesList({ types, heading }: { types: any[], hea
 
                 {/* TEXT */}
                 <div className="flex-1 space-y-6 text-center lg:text-left">
-                  <h3 className="text-[32px] font-bold text-panda-dark uppercase leading-tight">
+                  <h3 className="text-[24px] md:text-[28px] lg:text-[32px] font-bold text-panda-dark uppercase leading-tight">
                     {item.title}
                   </h3>
                   <p className="text-[17px] text-gray-600 leading-[1.8]">

@@ -76,7 +76,7 @@ export default async function ProductGrid() {
 
         {/* OTHER PRODUCTS HEADING */}
         <div className="text-center mb-16">
-           <h3 className="text-[32px] font-bold text-gray-800 uppercase tracking-wide">
+           <h3 className="text-[24px] md:text-[28px] lg:text-[32px] font-bold text-gray-800 uppercase tracking-wide">
              OTHER CUSTOM PRODUCTS THAT WILL AMAZE YOU!
            </h3>
         </div>

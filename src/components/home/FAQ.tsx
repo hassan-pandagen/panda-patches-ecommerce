@@ -118,8 +118,8 @@ export default function FAQ() {
     <section className="w-full py-12 bg-white">
       <div className="container mx-auto px-6">
         
-        {/* HEADING */}
-        <h2 className="text-[36px] font-bold text-center text-panda-dark uppercase tracking-wide mb-16">
+        {/* HEADING - Mobile Optimized */}
+        <h2 className="text-[24px] md:text-[32px] lg:text-[36px] font-bold text-center text-panda-dark uppercase tracking-wide mb-8 md:mb-12 lg:mb-16">
           {data?.heading || "FREQUENTLY ASKED QUESTIONS"}
         </h2>
 

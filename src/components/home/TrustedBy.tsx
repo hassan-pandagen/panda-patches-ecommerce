@@ -11,23 +11,26 @@ const brands = [
 
 export default function TrustedBy() {
   return (
-    // Reduced padding to bring section closer
-    <section className="w-full pb-12 pt-0 bg-white">
-      <div className="container mx-auto px-6 text-center">
-        <p className="text-[13px] font-bold text-black uppercase tracking-[0.2em] mb-10">
+    <section className="w-full py-12 md:py-16 bg-white">
+      <div className="container mx-auto px-4 md:px-6 text-center">
+        <h3 className="text-xs md:text-sm font-black text-black uppercase tracking-[0.15em] md:tracking-[0.2em] mb-8 md:mb-12 opacity-100">
           Trusted By Global Brands
-        </p>
+        </h3>
         
-        <div className="flex flex-wrap justify-center items-end gap-12 lg:gap-24 opacity-80">
+        {/* Mobile: 2x2 Grid | Desktop: 4 in 1 row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full">
           {brands.map((brand) => (
-            <div key={brand.name} className="relative h-10 flex items-center justify-center">
-               <Image 
-                 src={brand.src} 
-                 alt={brand.name} 
-                 width={brand.width} 
-                 height={40} 
-                 className="object-contain grayscale brightness-0 hover:grayscale-0 hover:brightness-100 transition-all duration-300"
-               />
+            <div 
+              key={brand.name} 
+              className="flex items-center justify-center h-12 md:h-16"
+            >
+              <Image
+                src={brand.src}
+                alt={brand.name}
+                width={brand.width}
+                height={50}
+                className="object-contain brightness-0"
+              />
             </div>
           ))}
         </div>

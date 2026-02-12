@@ -72,7 +72,7 @@ export default async function ContentSection() {
                  - Size: 40px
                  - Weight: Medium (500)
               */}
-              <h2 className="text-[32px] lg:text-[40px] font-medium text-panda-dark leading-tight">
+              <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-medium text-panda-dark leading-tight">
                 {section.heading}
               </h2>
 

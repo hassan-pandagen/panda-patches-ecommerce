@@ -24,6 +24,7 @@
     "sanity": "^3.50.0",
     "stripe": "^20.2.0",
     "styled-components": "^6.3.9",
+    "swiper": "^12.1.0",
     "yet-another-react-lightbox": "^3.28.0",
     "zod": "^4.3.6"
   },

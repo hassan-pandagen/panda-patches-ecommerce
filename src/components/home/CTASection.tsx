@@ -41,7 +41,7 @@ export default async function CTASection() {
         <div className="max-w-[380px] flex flex-col items-center gap-6">
           
           {/* Heading */}
-          <h2 className="text-[32px] font-bold text-black leading-[1.3] tracking-tight">
+          <h2 className="text-[24px] md:text-[28px] lg:text-[32px] font-bold text-black leading-[1.3] tracking-tight">
             {heading}
           </h2>
 

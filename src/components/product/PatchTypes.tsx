@@ -28,8 +28,8 @@ export default function PatchTypes({ types }: { types: any[] }) {
     <section className="w-full py-20 bg-white">
       <div className="container mx-auto px-4 max-w-[1350px]">
         
-        {/* HEADING */}
-        <h2 className="text-[40px] font-black text-center text-panda-dark uppercase tracking-tight mb-16">
+        {/* HEADING - Mobile Optimized */}
+        <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-black text-center text-panda-dark uppercase tracking-tight mb-8 md:mb-12 lg:mb-16">
           TYPES OF CUSTOM PATCHES
         </h2>
 
@@ -61,7 +61,7 @@ export default function PatchTypes({ types }: { types: any[] }) {
             {/* RIGHT: CONTENT (White Background) */}
             <div className="flex-1 p-12 lg:p-16 flex flex-col justify-center">
               
-              <h3 className="text-[32px] font-bold text-panda-dark mb-6">
+              <h3 className="text-[22px] md:text-[28px] lg:text-[32px] font-bold text-panda-dark mb-4 md:mb-5 lg:mb-6">
                 {currentSlide.title}
               </h3>
               

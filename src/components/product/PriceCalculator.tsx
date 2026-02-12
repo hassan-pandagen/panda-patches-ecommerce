@@ -48,7 +48,7 @@ export default function PriceCalculator() {
       
       {/* 1. HEADER */}
       <div className="mb-5">
-        <h2 className="text-[34px] font-extrabold text-panda-dark leading-tight mb-2">
+        <h2 className="text-[24px] md:text-[28px] lg:text-[34px] font-extrabold text-panda-dark leading-tight mb-2">
           Custom Embroidered Patches
         </h2>
         <div className="flex items-center gap-3 text-sm">

@@ -94,7 +94,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://js.stripe.com https://tawk.to https://www.googletagmanager.com https://www.google-analytics.com https://*.sanity.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.sanity.io; img-src 'self' https: data: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.stripe.com https://tawk.to https://www.google-analytics.com https://*.sanity.io https://*.supabase.co; frame-src 'self' https://js.stripe.com https://tawk.to https://*.sanity.io; object-src 'none';",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://js.stripe.com https://tawk.to https://www.googletagmanager.com https://www.google-analytics.com https://*.sanity.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.sanity.io; img-src 'self' https: data: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.stripe.com https://tawk.to https://www.google-analytics.com https://*.sanity.io https://*.supabase.co; frame-src 'self' https://js.stripe.com https://tawk.to https://*.sanity.io; media-src 'self' https://*.sanity.io https://cdn.sanity.io blob: data:; object-src 'none';",
           },
         ],
       },

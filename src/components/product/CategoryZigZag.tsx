@@ -60,7 +60,7 @@ export default async function CategoryZigZag({ locationName }: CategoryZigZagPro
 
                 {/* TEXT */}
                 <div className="flex-1 space-y-8">
-                  <h3 className="text-[36px] font-black text-panda-dark uppercase leading-none">
+                  <h3 className="text-[24px] md:text-[30px] lg:text-[36px] font-black text-panda-dark uppercase leading-none">
                     {displayTitle}
                   </h3>
                   
