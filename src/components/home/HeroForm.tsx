@@ -48,11 +48,11 @@ export default function HeroForm() {
           throw new Error('Failed to upload artwork');
         }
 
-        const { data } = supabase.storage
+        const { data: publicUrlData } = supabase.storage
            .from('patches')
            .getPublicUrl(filePath);
 
-         artworkUrl = data?.publicUrl || null;
+         artworkUrl = publicUrlData?.publicUrl || null;
       }
 
       // Submit quote to API (with sanitized inputs)
