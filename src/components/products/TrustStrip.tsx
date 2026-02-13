@@ -14,23 +14,23 @@ export default async function TrustStrip() {
   if (!badges) return null;
 
   return (
-    <section className="w-full py-16 bg-white border-b border-gray-100">
+    <section className="w-full py-12 bg-white border-b border-gray-100">
       <div className="container mx-auto px-4 text-center">
-        
+
         {/* HEADING */}
-        <h2 className="text-[22px] md:text-[28px] lg:text-[32px] font-black text-black uppercase tracking-[0.15em] mb-8 md:mb-10 lg:mb-12">
+        <h2 className="text-[20px] md:text-[28px] lg:text-[32px] font-black text-black uppercase tracking-[0.1em] md:tracking-[0.15em] mb-8">
           PANDA IS 5 STAR RATED
         </h2>
-        
-        {/* BADGES ROW (Fetched from Sanity) */}
-        <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-20">
+
+        {/* BADGES - 2x2 on Mobile, Single Row on Desktop */}
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5 max-w-[900px] mx-auto place-items-center">
           {badges.map((badge: any, idx: number) => (
-            <div key={idx} className="relative h-[50px] w-[120px]">
-              <Image 
-                src={urlFor(badge).url()} 
-                alt="Trust Badge" 
-                fill 
-                className="object-contain" 
+            <div key={idx} className="relative h-8 md:h-10 w-20 md:w-24 flex items-center justify-center">
+              <Image
+                src={urlFor(badge).url()}
+                alt="Trust Badge"
+                fill
+                className="object-contain"
               />
             </div>
           ))}

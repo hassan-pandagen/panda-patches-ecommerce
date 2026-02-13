@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import AboutContent from "@/components/about/AboutContent";
@@ -7,6 +8,35 @@ import CTASection from "@/components/home/CTASection";
 import FactorySection from "@/components/about/FactorySection";
 import PickPatch from "@/components/about/PickPatch";
 import ProcessSection from "@/components/home/ProcessSection";
+
+// SEO Metadata for About Page
+export const metadata: Metadata = {
+  title: "About Panda Patches | 8+ Years Custom Patch Experts",
+  description: "Learn about Panda Patches - 8+ years creating custom embroidered patches with no minimums. Family-owned, Pakistan-based factory, 4.9★ Trustpilot rating, trusted by military & sports teams.",
+  openGraph: {
+    title: "About Panda Patches | 8+ Years Custom Patch Experts",
+    description: "Family-owned custom patch manufacturer with 8+ years experience. No minimums, free design services, 4.9★ rated.",
+    type: "website",
+    url: "https://pandapatches.com/about",
+    images: [
+      {
+        url: "https://pandapatches.com/assets/logo-panda.svg",
+        width: 1200,
+        height: 630,
+        alt: "About Panda Patches"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Panda Patches | 8+ Years Custom Patch Experts",
+    description: "Family-owned custom patch manufacturer with 8+ years experience. No minimums, free design services.",
+    images: ["https://pandapatches.com/assets/logo-panda.svg"]
+  },
+  alternates: {
+    canonical: "https://pandapatches.com/about"
+  }
+};
 
 export default function AboutPage() {
   return (

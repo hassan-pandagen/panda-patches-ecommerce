@@ -1,7 +1,8 @@
-import { client } from "@/lib/sanity";
+import { client, urlFor } from "@/lib/sanity";
 import { PortableText } from "@portabletext/react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { generateProductSchema, generateBreadcrumbSchema, generateSchemaScript } from "@/lib/schemas";
 
 // COMPONENTS
 import ProductHero from "@/components/product/ProductHero";
@@ -90,8 +91,36 @@ export default async function CustomProductPage({ params }: { params: { slug: st
     </section>
   );
 
+  // Generate schema markup for SEO
+  const productSchema = generateProductSchema({
+    name: data.title,
+    description: data.description || `Custom ${data.title.toLowerCase()} with no minimums, fast delivery, and free design services.`,
+    image: data.heroImage ? urlFor(data.heroImage).url() : 'https://pandapatches.com/assets/logo-panda.svg',
+    url: `https://pandapatches.com/custom-products/${params.slug}`,
+    priceRange: "$100-$1000", // Typical price range for custom coins/pins/keychains
+    includeReviews: true, // Include Trustpilot 4.9 rating
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://pandapatches.com" },
+    { name: "Custom Products", url: "https://pandapatches.com/custom-products" },
+    { name: data.title, url: `https://pandapatches.com/custom-products/${params.slug}` },
+  ]);
+
   return (
     <main className="min-h-screen bg-white">
+      {/* Product Schema for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(productSchema)}
+      />
+
+      {/* Breadcrumb Schema for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
+
       <Navbar />
       
       {/* 1. HERO (Gallery + Quote Form) */}

@@ -73,21 +73,36 @@ export default function ProductInfoCarousel({
     <section className="w-full py-12 md:py-16 bg-white border-t border-gray-100">
       <div className="container mx-auto px-4 max-w-[1400px]">
 
+        {/* MOBILE HEADING - Show only on mobile */}
+        <div className="md:hidden text-center mb-8">
+          <div className="w-[100px] h-[40px] relative mx-auto mb-4">
+            <Image src="/assets/logo-panda.svg" alt="Panda" fill className="object-contain" sizes="100px" quality={90} />
+          </div>
+          <h3 className="text-[24px] font-black text-panda-dark uppercase tracking-tight">
+            {title}
+          </h3>
+          <p className="text-[13px] text-gray-500 mt-2 font-medium">
+            {subtitle}
+          </p>
+        </div>
+
         <div className="relative group">
 
           {/* ARROWS - Hide on mobile, show on desktop */}
           <button
             onClick={() => scroll('left')}
-            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white shadow-md rounded-full items-center justify-center border border-gray-200 hover:bg-black hover:text-white transition-all -ml-4 opacity-0 group-hover:opacity-100"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 p-2 rounded-full bg-black text-white hover:bg-panda-yellow hover:text-black hover:shadow-lg transition-all z-10"
+            aria-label="Previous"
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={20} strokeWidth={3} />
           </button>
 
           <button
             onClick={() => scroll('right')}
-            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white shadow-md rounded-full items-center justify-center border border-gray-200 hover:bg-black hover:text-white transition-all -mr-4 opacity-0 group-hover:opacity-100"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 p-2 rounded-full bg-black text-white hover:bg-panda-yellow hover:text-black hover:shadow-lg transition-all z-10"
+            aria-label="Next"
           >
-            <ChevronRight size={20} />
+            <ChevronRight size={20} strokeWidth={3} />
           </button>
 
           {/* TRACK - Responsive */}
@@ -98,9 +113,11 @@ export default function ProductInfoCarousel({
               ${layout === 'right' ? 'flex-row-reverse' : 'flex-row'}
             `}
           >
-            
-            {/* TITLE CARD */}
-            <TitleCard />
+
+            {/* TITLE CARD - Hide on mobile, show on desktop */}
+            <div className="hidden md:block">
+              <TitleCard />
+            </div>
 
             {/* DYNAMIC CARDS */}
             {cards.map((card: OptionCard, idx: number) => (

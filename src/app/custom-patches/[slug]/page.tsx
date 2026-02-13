@@ -2,6 +2,7 @@ import { client, urlFor } from "@/lib/sanity";
 import { Metadata } from "next";
 import dynamic from 'next/dynamic';
 import Navbar from "@/components/layout/Navbar";
+import { generateProductSchema, generateBreadcrumbSchema, generateSchemaScript } from "@/lib/schemas";
 
 // COMPONENTS - Above the fold
 import ProductHero from "@/components/product/ProductHero";
@@ -109,8 +110,36 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
     );
   }
 
+  // Generate schema markup for SEO
+  const productSchema = generateProductSchema({
+    name: data.title,
+    description: data.description || `High-quality ${data.title.toLowerCase()} with no minimums, fast delivery, and free design services.`,
+    image: data.heroImage ? urlFor(data.heroImage).url() : 'https://pandapatches.com/assets/logo-panda.svg',
+    url: `https://pandapatches.com/custom-patches/${params.slug}`,
+    priceRange: "$50-$500", // Typical price range for custom patches
+    includeReviews: true, // Include Trustpilot 4.9 rating
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "https://pandapatches.com" },
+    { name: "Custom Patches", url: "https://pandapatches.com/custom-patches" },
+    { name: data.title, url: `https://pandapatches.com/custom-patches/${params.slug}` },
+  ]);
+
   return (
     <main className="min-h-screen bg-white">
+      {/* Product Schema for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(productSchema)}
+      />
+
+      {/* Breadcrumb Schema for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
+
       <Navbar />
 
       {/* 1. HERO (Calculator with Checkout) */}

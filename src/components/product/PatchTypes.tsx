@@ -104,9 +104,10 @@ export default function PatchTypes({ types }: { types: any[] }) {
           {/* Prev Arrow */}
           <button 
             onClick={prevSlide}
-            className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-black hover:text-white transition-colors"
+            className="p-2 rounded-full bg-black text-white hover:bg-panda-yellow hover:text-black hover:shadow-lg transition-all"
+            aria-label="Previous"
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={20} strokeWidth={3} />
           </button>
 
           {/* Dots */}
@@ -126,9 +127,10 @@ export default function PatchTypes({ types }: { types: any[] }) {
           {/* Next Arrow */}
           <button 
             onClick={nextSlide}
-            className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-black hover:text-white transition-colors"
+            className="p-2 rounded-full bg-black text-white hover:bg-panda-yellow hover:text-black hover:shadow-lg transition-all"
+            aria-label="Next"
           >
-            <ChevronRight size={20} />
+            <ChevronRight size={20} strokeWidth={3} />
           </button>
 
         </div>

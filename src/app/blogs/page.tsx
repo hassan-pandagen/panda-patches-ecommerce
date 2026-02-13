@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from 'next';
 import { client, urlFor } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -7,6 +8,35 @@ import CTASection from "@/components/home/CTASection";
 
 // ISR: Revalidate blog listing every 30 minutes (blogs update frequently)
 export const revalidate = 1800;
+
+// SEO Metadata for Blogs Page
+export const metadata: Metadata = {
+  title: "Custom Patch Blog - Tips, Guides & Industry News | Panda Patches",
+  description: "Read expert guides on custom patches, embroidery tips, design ideas, and industry trends. Learn about patch types, backing options, military patches, and more from Panda Patches.",
+  openGraph: {
+    title: "Custom Patch Blog - Tips & Guides | Panda Patches",
+    description: "Expert guides on custom patches, embroidery tips, design ideas, and industry trends from Panda Patches.",
+    type: "website",
+    url: "https://pandapatches.com/blogs",
+    images: [
+      {
+        url: "https://pandapatches.com/assets/logo-panda.svg",
+        width: 1200,
+        height: 630,
+        alt: "Panda Patches Blog"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Custom Patch Blog | Panda Patches",
+    description: "Expert guides on custom patches, embroidery tips, and design ideas.",
+    images: ["https://pandapatches.com/assets/logo-panda.svg"]
+  },
+  alternates: {
+    canonical: "https://pandapatches.com/blogs"
+  }
+};
 
 const POSTS_PER_PAGE = 10;
 

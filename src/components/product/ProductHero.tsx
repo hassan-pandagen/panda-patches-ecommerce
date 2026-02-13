@@ -2,17 +2,32 @@ import Image from "next/image";
 import ProductGallery from "./ProductGallery";
 import ComplexCalculator from "./ComplexCalculator";
 import HeroForm from "@/components/home/HeroForm";
+import { client } from "@/lib/sanity";
 
 interface Props {
   productData: any;
   isMainPage?: boolean;
 }
 
-export default function ProductHero({ productData, isMainPage = false }: Props) {
-  
+async function getTrustBadges() {
+  try {
+    const query = `*[_type == "hero"][0] {
+      "trustBadges": trustBadges[].asset->url
+    }`;
+    const data = await client.fetch(query);
+    return data?.trustBadges || [];
+  } catch (error) {
+    console.error("Trust badges fetch error:", error);
+    return [];
+  }
+}
+
+export default async function ProductHero({ productData, isMainPage = false }: Props) {
+
   const title = productData?.title || "Custom Patches";
   const desc = productData?.description || "Level up your brand's appearance with us. Mini billboards stitched into jackets, bags, and more!";
   const gallery = productData?.gallery || [];
+  const trustBadges = await getTrustBadges();
 
   return (
     <section className="w-full pt-8 md:pt-12 pb-16 md:pb-24 bg-white">
@@ -49,6 +64,26 @@ export default function ProductHero({ productData, isMainPage = false }: Props) 
           `}>
              {isMainPage ? (
                <div className="mt-2">
+                 {/* Trust Badges */}
+                 {trustBadges && trustBadges.length > 0 && (
+                   <div className="mb-6 pb-6 border-b border-gray-200">
+                     <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5 place-items-center">
+                       {trustBadges.map((badge: any, idx: number) => (
+                         <div
+                           key={idx}
+                           className="relative h-8 md:h-10 w-20 md:w-24 flex items-center justify-center"
+                         >
+                           <Image
+                             src={badge}
+                             alt="Trust Badge"
+                             fill
+                             className="object-contain"
+                           />
+                         </div>
+                       ))}
+                     </div>
+                   </div>
+                 )}
                  <HeroForm />
                </div>
              ) : (
@@ -56,6 +91,7 @@ export default function ProductHero({ productData, isMainPage = false }: Props) 
                  backingOptions={productData?.backingOptions || []}
                  upgradeOptions={productData?.upgradeOptions || []}
                  productType={productData?.title || "Custom Patch"}
+                 trustBadges={trustBadges}
                />
              )}
           </div>

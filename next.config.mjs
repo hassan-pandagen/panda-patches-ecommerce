@@ -100,6 +100,88 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // OLD BLOG URL → NEW BLOGS URL
+      {
+        source: '/blog',
+        destination: '/blogs',
+        permanent: true, // 301 redirect
+      },
+      {
+        source: '/blog/',
+        destination: '/blogs',
+        permanent: true,
+      },
+      {
+        source: '/blog/feed',
+        destination: '/blogs',
+        permanent: true,
+      },
+      {
+        source: '/blog/feed/',
+        destination: '/blogs',
+        permanent: true,
+      },
+
+      // CHECKOUT REDIRECTS
+      {
+        source: '/thank-you',
+        destination: '/success',
+        permanent: true,
+      },
+      {
+        source: '/thank-you/',
+        destination: '/success',
+        permanent: true,
+      },
+      {
+        source: '/secure-checkout',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/secure-checkout/',
+        destination: '/',
+        permanent: true,
+      },
+
+      // ASSET REDIRECTS
+      {
+        source: '/thread-chart',
+        destination: '/assets/thread-chart',
+        permanent: true,
+      },
+      {
+        source: '/thread-chart/',
+        destination: '/assets/thread-chart',
+        permanent: true,
+      },
+
+      // POLICY PAGES - Redirect to homepage for now
+      // TODO: Create these pages in Sanity or as static pages
+      {
+        source: '/privacy-policy',
+        destination: '/',
+        permanent: false, // 302 temporary until pages are created
+      },
+      {
+        source: '/privacy-policy/',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/terms-conditions',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/terms-conditions/',
+        destination: '/',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

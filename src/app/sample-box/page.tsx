@@ -6,8 +6,31 @@ import ProductSwiper from "@/components/samplebox/ProductSwiper";
 import { Check } from "lucide-react";
 
 export const metadata = {
-  title: "Order Sample Box | Panda Patches",
-  description: "Order our sample box and experience the high quality of our custom products.",
+  title: "Order Sample Box - 9 Patch Samples for $45 | Panda Patches",
+  description: "Get 9 high-quality custom patch samples including embroidered, PVC, chenille, woven, leather & more. Only $45 with free shipping. Experience our quality before ordering.",
+  openGraph: {
+    title: "Order Sample Box - 9 Patch Samples for $45 | Panda Patches",
+    description: "Get 9 patch samples for $45. Experience embroidered, PVC, chenille, woven patches & more with free shipping.",
+    type: "website",
+    url: "https://pandapatches.com/sample-box",
+    images: [
+      {
+        url: "https://pandapatches.com/assets/logo-panda.svg",
+        width: 1200,
+        height: 630,
+        alt: "Panda Patches Sample Box"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary",
+    title: "Order Sample Box - 9 Patch Samples for $45",
+    description: "Get 9 patch samples including embroidered, PVC, chenille & more for only $45 with free shipping.",
+    images: ["https://pandapatches.com/assets/logo-panda.svg"]
+  },
+  alternates: {
+    canonical: "https://pandapatches.com/sample-box"
+  }
 };
 
 // Categories included in the sample box - All 9 categories

@@ -47,6 +47,22 @@ function getProductUrl(title: string): string {
   return urlMap[title] || '#';
 }
 
+// Map product titles to their starting prices
+function getProductPrice(title: string): string {
+  const priceMap: { [key: string]: string } = {
+    'Custom Embroidered Patches': '0.85',
+    'Custom PVC Patches': '0.50',
+    'Custom Chenille Patches': '2.50',
+    'Custom Woven Patches': '1.20',
+    'Custom Leather Patches': '1.50',
+    'Custom Printed Patches': '0.75',
+    'Custom No Background 3D Embroidery': '1.00',
+    'Custom Sequin Patches': '2.00',
+  };
+
+  return priceMap[title] || '0.99';
+}
+
 export default async function ProductGrid() {
   const { main, other } = await getProducts();
 
@@ -118,6 +134,7 @@ function CustomGridPlusIcon({ className }: { className?: string }) {
 // === PRODUCT CARD ===
 function ProductCard({ item }: { item: any }) {
   const href = getProductUrl(item.title);
+  const price = getProductPrice(item.title);
 
   return (
     <Link href={href} className="
@@ -133,12 +150,12 @@ function ProductCard({ item }: { item: any }) {
     ">
       {/* IMAGE AREA */}
       <div className="relative w-full h-[296px] bg-[#F9FAF5] flex items-center justify-center p-6 transition-colors duration-500 group-hover:bg-white">
-        
+
         {/* Discount Tag (Fixed to Black Box - Premium Look) */}
         <div className="absolute top-0 right-0 bg-black text-white text-[12px] font-bold px-3 py-1.5 uppercase z-10 tracking-widest">
           {item.tag || "25% Off"}
         </div>
-        
+
         {/* Image */}
         <div className="relative w-full h-full">
            {item.image ? (
@@ -161,8 +178,13 @@ function ProductCard({ item }: { item: any }) {
         <h3 className="text-[18px] font-black text-panda-dark uppercase mb-3 leading-tight min-h-[36px]">
           {item.title}
         </h3>
-        <p className="text-[15px] text-gray-500 leading-relaxed line-clamp-3">
+        <p className="text-[15px] text-gray-500 leading-relaxed line-clamp-3 mb-3">
           {item.description}
+        </p>
+
+        {/* Pricing */}
+        <p className="text-[16px] font-bold text-panda-dark">
+          From ${price}/piece
         </p>
       </div>
 

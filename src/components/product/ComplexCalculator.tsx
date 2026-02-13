@@ -8,6 +8,7 @@ import HeroForm from "@/components/home/HeroForm";
 import { createClient } from '@supabase/supabase-js';
 import { urlFor } from "@/lib/sanity";
 import { calculatePatchPrice } from "@/lib/pricingCalculator";
+import TrustBadges from "@/components/shared/TrustBadges";
 
 // Initialize Supabase client
 const supabase = createClient(
@@ -50,12 +51,14 @@ interface Props {
   backingOptions?: BackingOption[];
   upgradeOptions?: UpgradeOption[];
   productType?: string;
+  trustBadges?: any[];
 }
 
 export default function ComplexCalculator({
   backingOptions = [],
   upgradeOptions = [],
-  productType = "Custom Patch"
+  productType = "Custom Patch",
+  trustBadges = []
 }: Props) {
   // Transform Sanity backing options to component format
   const BACKINGS = useMemo(() => {
@@ -363,16 +366,9 @@ export default function ComplexCalculator({
   return (
     <div className="w-full bg-white text-left font-sans">
 
-      {/* TRUST FEATURES */}
-      <div className="grid grid-cols-2 gap-y-4 gap-x-6 mb-10 pb-8 border-b border-gray-200">
-         {["No MOQ", "2D & 3D Options", "Quick Turnaround", "Glow-in-the-dark"].map((feat, i) => (
-           <div key={i} className="flex items-center gap-3">
-             <div className="w-6 h-6 rounded-full bg-black flex items-center justify-center text-panda-yellow">
-                <Check size={14} strokeWidth={4} />
-             </div>
-             <span className="text-[14px] font-bold text-gray-800">{feat}</span>
-           </div>
-         ))}
+      {/* TRUST BADGES */}
+      <div className="mb-4 pb-4 border-b border-gray-200">
+        <TrustBadges badges={trustBadges} layout="grid" />
       </div>
 
       <form onSubmit={handleCheckout} className="space-y-10">
@@ -859,9 +855,10 @@ export default function ComplexCalculator({
               <button
                 type="button"
                 onClick={handleNext}
-                className="w-full h-[70px] bg-black text-panda-yellow rounded-[14px] font-black text-[18px] uppercase tracking-widest hover:scale-[1.01] transition-transform shadow-xl"
+                className="w-full h-[70px] bg-black text-panda-yellow rounded-[14px] font-black text-[14px] md:text-[18px] uppercase tracking-wide md:tracking-widest hover:scale-[1.01] transition-transform shadow-xl"
               >
-                Continue to Personalization & Delivery →
+                <span className="md:hidden">Continue →</span>
+                <span className="hidden md:inline">Continue to Personalization & Delivery →</span>
               </button>
             </div>
           ) : (

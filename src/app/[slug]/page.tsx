@@ -1,8 +1,9 @@
-import { client } from "@/lib/sanity";
+import { client, urlFor } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BlogPostLayout from "@/components/blog/BlogPostLayout";
 import LocationLayout from "@/components/locations/LocationLayout";
+import { generateArticleSchema, generateSchemaScript } from "@/lib/schemas";
 
 // ISR: Revalidate blog/location/patch-style pages every 1 hour
 export const revalidate = 3600;
@@ -48,7 +49,30 @@ export default async function CatchAllPage({ params }: { params: { slug: string 
 
   // OPTION C: It's a Blog Post
   if (data.blog) {
-    return <BlogPostLayout post={data.blog} />;
+    // Generate Article schema for SEO
+    const articleSchema = generateArticleSchema({
+      title: data.blog.title || "Blog Post",
+      description: data.blog.description || data.blog.excerpt || "Read our latest blog post about custom patches.",
+      datePublished: data.blog._createdAt || new Date().toISOString(),
+      dateModified: data.blog._updatedAt || data.blog._createdAt || new Date().toISOString(),
+      image: data.blog.mainImage
+        ? urlFor(data.blog.mainImage).url()
+        : data.blog.image
+          ? urlFor(data.blog.image).url()
+          : 'https://pandapatches.com/assets/logo-panda.svg',
+      url: `https://pandapatches.com/${params.slug}`,
+    });
+
+    return (
+      <>
+        {/* Article Schema for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={generateSchemaScript(articleSchema)}
+        />
+        <BlogPostLayout post={data.blog} />
+      </>
+    );
   }
 
   // OPTION D: 404 Not Found

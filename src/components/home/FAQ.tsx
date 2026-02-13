@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import FAQList from "./FAQList";
+import { generateFAQSchema, generateSchemaScript } from "@/lib/schemas";
 
 interface FAQData {
   heading?: string;
@@ -114,8 +115,17 @@ export default function FAQ() {
     return null;
   }
 
+  // Generate FAQ schema for SEO
+  const faqSchema = generateFAQSchema(questions);
+
   return (
     <section className="w-full py-12 bg-white">
+      {/* FAQ Schema for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(faqSchema)}
+      />
+
       <div className="container mx-auto px-6">
         
         {/* HEADING - Mobile Optimized */}

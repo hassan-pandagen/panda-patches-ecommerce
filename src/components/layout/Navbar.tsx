@@ -15,14 +15,14 @@ const navLinks = [
     href: "/custom-patches",
     dropdown: [
       { name: "Custom Embroidery Patches", href: "/custom-patches/embroidered" },
-      { name: "Custom PVC Patches", href: "/custom-patches/pvc" },
-      { name: "Custom Leather Patches", href: "/custom-patches/leather" },
-      { name: "Custom Sequin Patches", href: "/custom-patches/sequin" },
       { name: "Custom 3D Embroidered Transfers", href: "/custom-patches/custom-3d-embroidered-transfers" },
       { name: "Custom Chenille Patches", href: "/custom-patches/chenille" },
+      { name: "Custom PVC Patches", href: "/custom-patches/pvc" },
       { name: "Custom Woven Patches", href: "/custom-patches/woven" },
-      { name: "Custom Printed Patches", href: "/custom-patches/printed" },
+      { name: "Custom Leather Patches", href: "/custom-patches/leather" },
       { name: "Custom Silicone Labels", href: "/custom-patches/custom-silicone-labels" },
+      { name: "Custom Printed Patches", href: "/custom-patches/printed" },
+      { name: "Custom Sequin Patches", href: "/custom-patches/sequin" },
     ]
   },
   {
@@ -249,18 +249,24 @@ export default function Navbar() {
               <div key={link.name} className="border-b border-gray-100 last:border-0">
                 {/* Main Link */}
                 {hasDropdown ? (
-                  <button
-                    onClick={() => setOpenDropdown(isDropdownOpen ? null : link.name)}
-                    className="w-full flex items-center justify-between py-4 px-3 text-left hover:bg-gray-50 transition-colors"
-                  >
-                    <span className="text-[15px] font-bold text-gray-800 uppercase tracking-wide">
+                  <div className="flex items-center hover:bg-gray-50 transition-colors">
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex-1 py-4 px-3 text-[15px] font-bold text-gray-800 uppercase tracking-wide"
+                    >
                       {link.name}
-                    </span>
-                    <ChevronDown
-                      size={18}
-                      className={`text-gray-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
-                    />
-                  </button>
+                    </Link>
+                    <button
+                      onClick={() => setOpenDropdown(isDropdownOpen ? null : link.name)}
+                      className="py-4 px-4"
+                    >
+                      <ChevronDown
+                        size={18}
+                        className={`text-gray-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+                  </div>
                 ) : (
                   <Link
                     href={link.href}

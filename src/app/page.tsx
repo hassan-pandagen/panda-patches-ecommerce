@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import { Metadata } from 'next';
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
 import Craftsmanship from "@/components/home/Craftsmanship";
@@ -17,6 +18,58 @@ const Footer = dynamic(() => import("@/components/layout/Footer"), { ssr: true }
 // ISR: Revalidate homepage every hour
 // Revalidate every 60 seconds (faster for development, increase for production)
 export const revalidate = 60;
+
+// SEO Metadata for Homepage
+export const metadata: Metadata = {
+  title: "Custom Patches & Embroidered Patches - No Minimums | Panda Patches",
+  description: "Create custom embroidered patches, iron-on patches, woven patches, PVC patches with no minimum orders. Free design, fast 7-14 day delivery, 4.9★ rated. Get instant quote!",
+  keywords: [
+    "custom patches",
+    "embroidered patches",
+    "iron on patches",
+    "custom embroidered patches",
+    "woven patches",
+    "PVC patches",
+    "no minimum patches",
+    "custom patch maker",
+    "patch design services"
+  ],
+  openGraph: {
+    title: "Custom Patches & Embroidered Patches - No Minimums | Panda Patches",
+    description: "Create custom embroidered patches, iron-on patches, woven patches with no minimums. Free design, fast delivery, 4.9★ rated by 50+ customers.",
+    type: "website",
+    url: "https://pandapatches.com",
+    images: [
+      {
+        url: "https://pandapatches.com/assets/logo-panda.svg",
+        width: 1200,
+        height: 630,
+        alt: "Panda Patches - Custom Embroidered Patches"
+      }
+    ],
+    siteName: "Panda Patches"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Custom Patches & Embroidered Patches - No Minimums",
+    description: "Create custom embroidered patches with no minimums. Free design, fast delivery, 4.9★ rated.",
+    images: ["https://pandapatches.com/assets/logo-panda.svg"]
+  },
+  alternates: {
+    canonical: "https://pandapatches.com"
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    }
+  }
+};
 
 // 1. THIS MUST BE A SERVER COMPONENT (No 'use client')
 export default function Home() {
