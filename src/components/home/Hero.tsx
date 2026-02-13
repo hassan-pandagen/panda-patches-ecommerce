@@ -23,7 +23,7 @@ export default async function Hero() {
 
   return (
     // Mobile and desktop responsive heights
-    <section className="relative w-full min-h-screen md:min-h-[850px] bg-white overflow-hidden flex flex-col justify-center">
+    <section className="relative w-full min-h-screen md:min-h-[850px] bg-white overflow-hidden flex flex-col justify-start md:justify-center">
 
       {/*
          FIX 1: GREEN BLOB (Exact Dimensions Logic)
@@ -42,10 +42,10 @@ export default async function Hero() {
       </div>
 
       {/* MAIN CONTENT */}
-      <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center flex-grow pt-8 md:pt-12">
+      <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 items-center flex-grow pt-0 md:pt-8 lg:justify-items-start justify-items-center">
         
         {/* === LEFT SIDE (Text & Patches) === */}
-        <div className="flex flex-col justify-center h-full">
+        <div className="flex flex-col justify-center h-full text-center lg:text-left w-full lg:w-auto">
           
           {/*
              FIX 2: EXACT TYPOGRAPHY
@@ -54,7 +54,7 @@ export default async function Hero() {
              - Weight: SemiBold (600)
              - Color: Dark (No Yellow)
           */}
-          <h1 className="text-[28px] md:text-[40px] leading-[1.2] font-semibold text-panda-dark tracking-tight mb-3 md:mb-4 max-w-full md:max-w-[550px]">
+          <h1 className="text-[28px] md:text-[40px] leading-[1.2] font-semibold text-panda-dark tracking-tight mb-2 md:mb-4 max-w-full md:max-w-[550px]">
             {data?.title || "Custom Iron On Patches: No Minimums, Quick Delivery!"}
           </h1>
 
@@ -64,15 +64,15 @@ export default async function Hero() {
              - Mobile: Font Size 16px
              - Width constrained to force 3 lines
           */}
-          <p className="text-[16px] md:text-[20px] text-gray-600 font-medium leading-[1.5] max-w-full md:max-w-[520px] mb-4 md:mb-6">
+          <p className="text-[16px] md:text-[20px] text-gray-600 font-medium leading-[1.5] max-w-full md:max-w-[520px] mb-3 md:mb-6">
             {data?.subtitle || "Welcome to Panda Patches, where brand stories are stitched into reality! From company logos to promotional swag, let your brand speak loud and clear with our iron on patches. Crafted with care, delivered with precision."}
           </p>
 
-          {/* Badges - Responsive with wrapping */}
-          <div className="flex flex-wrap items-center justify-start gap-3 md:gap-5 mb-6 md:mb-8 max-w-full overflow-hidden">
+          {/* Badges - 2x2 Grid on mobile, Single row on desktop */}
+          <div className="grid grid-cols-2 md:flex md:flex-wrap md:items-center md:justify-center lg:justify-start gap-3 md:gap-5 mb-8 md:mb-8 w-full mx-auto md:mx-0 max-w-[280px] md:max-w-full place-items-center">
              {data?.trustBadges && data.trustBadges.map((badge: any, idx: number) => (
-               <div key={idx} className="relative h-7 md:h-8 w-20 md:w-24 flex-shrink-0">
-                 <Image src={urlFor(badge).url()} alt="Trust Badge" fill className="object-contain object-left" />
+               <div key={idx} className="relative h-12 md:h-8 w-24 md:w-24 flex-shrink-0 flex items-center justify-center">
+                 <Image src={urlFor(badge).url()} alt="Trust Badge" fill className="object-contain object-center" />
                </div>
              ))}
           </div>
@@ -82,7 +82,7 @@ export default async function Hero() {
              - Desktop: Width 630px, Height 379px
              - Mobile: Responsive with full width
           */}
-          <div className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -ml-0 md:-ml-4 mt-2">
+          <div className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-8 md:-mt-10 mx-auto md:mx-0">
              {data?.heroImage && (
                <Image
                  src={urlFor(data.heroImage).url()}

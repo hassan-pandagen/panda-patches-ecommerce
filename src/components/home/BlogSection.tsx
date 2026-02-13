@@ -1,19 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { client, urlFor } from "@/lib/sanity";
+import BlogSwiper from "./BlogSwiper";
 
 async function getBlogs() {
-  // Fetch latest 3 blogs with only needed fields
-  const query = `*[_type == "blog"] | order(_createdAt desc)[0...3] {
-    _id,
-    title,
-    excerpt,
-    "slug": slug.current,
-    image,
-    _createdAt
-  }`;
-  const data = await client.fetch(query);
-  return data;
+   // Fetch all blogs with only needed fields
+   const query = `*[_type == "blog"] | order(_createdAt desc) {
+     _id,
+     title,
+     excerpt,
+     "slug": slug.current,
+     image,
+     _createdAt
+   }`;
+   const data = await client.fetch(query);
+   return data;
 }
 
 export default async function BlogSection() {
@@ -56,12 +57,8 @@ export default async function BlogSection() {
           </h2>
         </div>
 
-        {/* GRID: 3 Columns - Centered */}
-        <div className="flex flex-wrap justify-center gap-8">
-          {displayBlogs.map((blog: any) => (
-            <BlogCard key={blog._id} blog={blog} />
-          ))}
-        </div>
+        {/* Swiper for both Mobile and Desktop */}
+        <BlogSwiper blogs={displayBlogs} />
 
       </div>
     </section>

@@ -57,7 +57,7 @@ export default async function TimelineSection() {
   const imgRight = sanityData?.imageRight ? urlFor(sanityData.imageRight).url() : "/assets/timeline-2.png";
 
   return (
-    <section className="w-full pt-12 pb-6 bg-white overflow-visible font-sans">
+    <section className="w-full pt-0 md:pt-12 pb-6 bg-white overflow-visible font-sans">
       <div className="container mx-auto px-4 max-w-[1250px]">
         
         {/* HEADER */}
@@ -74,8 +74,8 @@ export default async function TimelineSection() {
         <div className="relative">
           
           {/* MOBILE VIEW (Stacked) */}
-          <div className="lg:hidden flex flex-col gap-10">
-             <div className="flex justify-center mb-4">
+          <div className="lg:hidden flex flex-col gap-6">
+             <div className="flex justify-center mb-2">
                 <div className="relative w-[300px] h-[250px]">
                    <Image src={imgLeft} alt="Collage 1" fill className="object-contain" sizes="300px" quality={85} />
                 </div>
@@ -83,7 +83,7 @@ export default async function TimelineSection() {
              {steps.slice(0, 2).map((step: TimelineStep, index: number) => (
                <TimelineStep key={index} step={step} align="left" mobile />
              ))}
-             <div className="flex justify-center my-4">
+             <div className="flex justify-center my-2">
                 <div className="relative w-[300px] h-[250px]">
                    <Image src={imgRight} alt="Collage 2" fill className="object-contain" sizes="300px" quality={85} />
                 </div>

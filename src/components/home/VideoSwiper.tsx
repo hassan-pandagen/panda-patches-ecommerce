@@ -20,16 +20,12 @@ export default function VideoSwiper({ videos }: VideoSwiperProps) {
       {/* Mobile: Swiper */}
       <div className="block lg:hidden mb-10">
         <Swiper
-          modules={[Pagination, Autoplay]}
+          modules={[Pagination]}
           spaceBetween={20}
           slidesPerView={1.2}
           centeredSlides={true}
           pagination={{
             clickable: true,
-          }}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
           }}
           className="craftsmanship-swiper !pb-12"
         >

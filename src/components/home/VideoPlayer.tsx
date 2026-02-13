@@ -16,12 +16,13 @@ export default function VideoPlayer({ videoUrl, thumbnail, instagramLink }: Vide
   const [hasError, setHasError] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showInstagramPrompt, setShowInstagramPrompt] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hoverTimeoutRef = useRef<NodeJS.Timeout>();
 
-  // Lazy load video only when hovered
+  // Lazy load video when hovered or clicked
   useEffect(() => {
-    if (!isHovered || !videoRef.current) return;
+    if ((!isHovered && !isClicked) || !videoRef.current) return;
 
     const video = videoRef.current;
 
@@ -72,17 +73,21 @@ export default function VideoPlayer({ videoUrl, thumbnail, instagramLink }: Vide
       video.removeEventListener('error', handleError);
       video.removeEventListener('loadstart', handleLoadStart);
     };
-  }, [isHovered, videoUrl]);
+  }, [isHovered, isClicked, videoUrl]);
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
-    setShowInstagramPrompt(false);
+    // Don't auto-play on hover on mobile
+    if (window.innerWidth >= 1024) {
+      setIsHovered(true);
+      setShowInstagramPrompt(false);
+    }
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
     setIsPlaying(false);
     setShowInstagramPrompt(false);
+    setIsClicked(false);
 
     if (videoRef.current) {
       videoRef.current.pause();
@@ -98,9 +103,15 @@ export default function VideoPlayer({ videoUrl, thumbnail, instagramLink }: Vide
   };
 
   const handleContainerClick = () => {
-    // Only open Instagram if the prompt is showing
+    // If prompt is showing, open Instagram
     if (showInstagramPrompt && instagramLink) {
       window.open(instagramLink, '_blank');
+      return;
+    }
+    
+    // Otherwise, trigger play on click
+    if (!isClicked && !isHovered) {
+      setIsClicked(true);
     }
   };
 
@@ -111,8 +122,8 @@ export default function VideoPlayer({ videoUrl, thumbnail, instagramLink }: Vide
       onMouseLeave={handleMouseLeave}
       onClick={handleContainerClick}
     >
-      {/* Thumbnail (shown when not hovering) */}
-      {!isHovered && thumbnail && (
+      {/* Thumbnail (shown when not hovering or clicking) */}
+      {!isHovered && !isClicked && thumbnail && (
         <div className="absolute inset-0 z-10">
           <Image
             src={thumbnail}

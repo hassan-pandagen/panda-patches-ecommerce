@@ -126,25 +126,37 @@ export default function HeroForm() {
         </div>
 
         {/* Row 3 */}
-        <div className="grid grid-cols-2 gap-3">
-          <div className="relative">
-            <select {...register("size")} className="form-input appearance-none text-gray-500 cursor-pointer">
-              <option>Size or Placement</option>
-              <option value="2">2 inches</option>
-              <option value="3">3 inches</option>
-            </select>
-            <div className="absolute right-4 top-4 pointer-events-none opacity-40">▼</div>
-          </div>
+         <div className="grid grid-cols-2 gap-3">
+           <div className="relative">
+             <select {...register("size")} className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+               <option>Size or Placement</option>
+               <option value="2.5">Cap (2.25 - 2.5 inches)</option>
+               <option value="3.5">Left Chest (3 - 4 inches)</option>
+               <option value="2.5">Hat / Beanie (2.5 inches)</option>
+               <option value="3.5">Sleeve (3.5 - 4 inches)</option>
+               <option value="11">Across Chest (10 - 12 inches)</option>
+               <option value="13">Jacket Back (12 - 14 inches)</option>
+               <option value="custom">Custom Size</option>
+             </select>
+             <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
+           </div>
 
-          <div className="relative">
-            <select {...register("type")} className="form-input appearance-none text-gray-500 cursor-pointer">
-              <option>Patch Type</option>
-              <option value="chenille">Chenille</option>
-              <option value="embroidered">Embroidered</option>
-            </select>
-            <div className="absolute right-4 top-4 pointer-events-none opacity-40">▼</div>
-          </div>
-        </div>
+           <div className="relative">
+             <select {...register("type")} className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+               <option>Patch Type</option>
+               <option value="embroidered">Embroidered</option>
+               <option value="chenille">Chenille</option>
+               <option value="woven">Woven</option>
+               <option value="pvc">PVC</option>
+               <option value="rubber">Rubber</option>
+               <option value="leather">Leather</option>
+               <option value="sequin">Sequin</option>
+               <option value="metallic">Metallic</option>
+               <option value="velvet">Velvet</option>
+             </select>
+             <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
+           </div>
+         </div>
 
         {/* Instructions */}
         <textarea 

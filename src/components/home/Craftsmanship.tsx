@@ -49,20 +49,17 @@ export default async function Craftsmanship() {
             <VideoSwiper videos={videos} />
           )}
 
-          {/* BUTTONS */}
-          <div className="flex items-center justify-center gap-4">
-            <button className="px-8 py-3 rounded-full border border-gray-300 text-sm font-bold text-gray-600 hover:border-black hover:text-black transition-all">
-              Load more
-            </button>
-            <Link 
-              href="https://www.instagram.com/pandapatchesofficial/" 
-              target="_blank"
-              className="px-8 py-3 rounded-full bg-panda-dark text-white text-sm font-bold flex items-center gap-2 hover:bg-black hover:scale-105 transition-all shadow-lg"
-            >
-              <span>Follow on Instagram</span>
-              <Instagram size={16} className="text-panda-yellow" />
-            </Link>
-          </div>
+          {/* FOLLOW BUTTON */}
+           <div className="flex items-center justify-center">
+             <Link 
+               href="https://www.instagram.com/pandapatchesofficial/" 
+               target="_blank"
+               className="px-6 md:px-8 py-2.5 md:py-3 rounded-full bg-panda-dark text-white text-xs md:text-sm font-bold flex items-center gap-2 hover:bg-black hover:shadow-lg transition-all"
+             >
+               <Instagram size={16} className="text-panda-yellow flex-shrink-0" />
+               <span>Follow on Instagram</span>
+             </Link>
+           </div>
 
         </div>
 

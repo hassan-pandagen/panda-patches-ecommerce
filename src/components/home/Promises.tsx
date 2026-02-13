@@ -12,7 +12,7 @@ const promises = [
 // === THIS IS THE FIX: Add bgColor prop ===
 export default function Promises({ bgColor = "bg-[#F7F7F7]" }: { bgColor?: string }) {
   return (
-    <section className={`w-full pb-24 pt-10 ${bgColor}`}>
+    <section className={`w-full pb-8 md:pb-24 pt-10 ${bgColor}`}>
       <div className="container mx-auto px-6 flex flex-col items-center">
         
         <h2 className="text-[24px] md:text-[28px] lg:text-[32px] font-black text-center text-panda-dark uppercase tracking-wide mb-8 md:mb-12 lg:mb-16">
@@ -27,7 +27,7 @@ export default function Promises({ bgColor = "bg-[#F7F7F7]" }: { bgColor?: strin
                   <Image src={item.icon} alt={item.title} fill className="object-contain" sizes="38px" quality={90} />
                 </div>
               </div>
-              <h3 className="text-[16px] md:text-[20px] font-extrabold text-panda-dark mb-2 md:mb-3 leading-tight">{item.title}</h3>
+              <h3 className="text-[13px] md:text-[18px] font-extrabold text-panda-dark mb-2 md:mb-3 leading-tight">{item.title}</h3>
               <p className="text-[13px] md:text-[15px] text-gray-500 leading-[1.6] max-w-[180px] md:max-w-[220px] font-medium">{item.desc}</p>
             </div>
           ))}

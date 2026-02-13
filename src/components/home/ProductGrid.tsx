@@ -51,17 +51,17 @@ export default async function ProductGrid() {
   const { main, other } = await getProducts();
 
   return (
-    <section className="w-full pt-10 pb-24 bg-white">
+    <section className="w-full pt-8 md:pt-10 pb-8 md:pb-24 bg-white">
       <div className="container mx-auto px-4 max-w-[1350px]">
         
         {/* HEADER TEXT */}
         <div className="text-center mb-16 space-y-6">
-          <h2 className="text-[40px] font-semibold text-panda-dark uppercase leading-tight tracking-tight">
+          <h2 className="text-[26px] md:text-[40px] font-semibold text-panda-dark uppercase leading-tight tracking-tight">
             INFUSE YOUR STYLE WITH <br />
             EXCLUSIVE BESPOKE PATCH DESIGNS
           </h2>
           <p className="text-[17px] text-gray-800 leading-[1.8] max-w-[1020px] mx-auto font-medium">
-            From personalized logo patches, to <span className="underline decoration-gray-400 underline-offset-4">personalized name patch</span>, from <span className="underline decoration-gray-400 underline-offset-4">military patches</span>, to <span className="underline decoration-gray-400 underline-offset-4">personalized patches for jackets</span>, and custom <span className="underline decoration-gray-400 underline-offset-4">Velcro patches</span>,
+            From personalized logo patches, to <Link href="/custom-name-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">personalized name patch</Link>, from <Link href="/custom-tactical-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">military patches</Link>, to <Link href="/custom-jacket-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">personalized patches for jackets</Link>, and custom <Link href="/custom-velcro-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">Velcro patches</Link>,
             our tailored selection ensures a lasting impression, showcasing your unique style. At Panda Patches, we&apos;re dedicated to providing personalized iron on
             patches in the US, that bring brand vision to life and take your product to the next level.
           </p>

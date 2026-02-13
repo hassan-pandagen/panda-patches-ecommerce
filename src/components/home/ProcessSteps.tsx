@@ -28,11 +28,11 @@ const steps = [
 
 export default function ProcessSteps() {
   return (
-    <section className="w-full py-24 bg-[#F9FAF5]">
+    <section className="w-full -mt-40 md:mt-0 pt-0 md:pt-10 pb-8 md:pb-24 bg-[#F9FAF5]">
       <div className="container mx-auto px-4 text-center">
         
         {/* === HEADINGS === */}
-        <div className="mb-20 space-y-4">
+        <div className="mb-12 md:mb-20 space-y-4">
           <h2 className="text-[40px] font-black text-panda-dark uppercase tracking-tight leading-tight">
             TAKE THE FIRST STEP ON YOUR <br /> PATCH QUEST!
           </h2>
