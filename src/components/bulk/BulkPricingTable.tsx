@@ -1,10 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import { urlFor } from "@/lib/sanity";
 
 const patchTypes = ["Embroidered", "PVC", "Woven", "Chenille", "Leather"] as const;
 
 type PatchType = (typeof patchTypes)[number];
+
+interface BulkPricingTableProps {
+  workSamples?: Record<string, any[]>;
+}
 
 // Pricing data: starting prices for 3-inch patches
 const pricingData: Record<PatchType, Record<string, string>> = {
@@ -52,8 +58,10 @@ const pricingData: Record<PatchType, Record<string, string>> = {
 
 const quantities = ["50-99", "100-299", "300-499", "500-999", "1,000-4,999", "5,000+"];
 
-export default function BulkPricingTable() {
+export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableProps) {
   const [activeType, setActiveType] = useState<PatchType>("Embroidered");
+
+  const currentSamples = workSamples[activeType] || [];
 
   return (
     <section className="w-full py-16 md:py-24 bg-panda-light">
@@ -86,58 +94,79 @@ export default function BulkPricingTable() {
           ))}
         </div>
 
+        {/* Work Samples Gallery */}
+        {currentSamples.length > 0 && (
+          <div className="mb-8">
+            <p className="text-[12px] md:text-[13px] font-bold text-gray-400 uppercase tracking-widest text-center mb-4">
+              Our {activeType} Work
+            </p>
+            <div className="flex gap-3 md:gap-4 overflow-x-auto no-scrollbar pb-2 snap-x snap-mandatory">
+              {currentSamples.slice(0, 8).map((img: any, idx: number) => (
+                <div
+                  key={idx}
+                  className="relative min-w-[140px] h-[140px] md:min-w-[160px] md:h-[160px] lg:min-w-[180px] lg:h-[180px] flex-shrink-0 rounded-[12px] overflow-hidden border-2 border-white shadow-sm hover:shadow-lg transition-all duration-300 snap-start group"
+                >
+                  <Image
+                    src={urlFor(img).width(400).height(400).url()}
+                    alt={`${activeType} patch sample ${idx + 1}`}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    sizes="180px"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Pricing Grid - Desktop */}
         <div className="hidden md:block overflow-hidden rounded-[16px] border border-gray-200 bg-white shadow-sm">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-panda-dark text-panda-yellow">
-                <th className="text-left py-4 px-6 text-[14px] font-bold uppercase tracking-wide">Quantity</th>
-                <th className="text-center py-4 px-6 text-[14px] font-bold uppercase tracking-wide">Price Per Patch</th>
-                <th className="text-center py-4 px-6 text-[14px] font-bold uppercase tracking-wide">Savings</th>
-                <th className="text-right py-4 px-6 text-[14px] font-bold uppercase tracking-wide"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {quantities.map((qty, idx) => {
-                const price = pricingData[activeType][qty];
-                const basePrice = parseFloat(pricingData[activeType]["50-99"].replace("$", ""));
-                const currentPrice = parseFloat(price.replace("$", ""));
-                const savings = Math.round(((basePrice - currentPrice) / basePrice) * 100);
+          {/* Header */}
+          <div className="grid grid-cols-4 bg-panda-dark text-panda-yellow">
+            <div className="py-4 px-6 text-[14px] font-bold uppercase tracking-wide">Quantity</div>
+            <div className="py-4 px-6 text-center text-[14px] font-bold uppercase tracking-wide">Price Per Patch</div>
+            <div className="py-4 px-6 text-center text-[14px] font-bold uppercase tracking-wide">Savings</div>
+            <div className="py-4 px-6 text-right text-[14px] font-bold uppercase tracking-wide"></div>
+          </div>
+          {/* Rows */}
+          {quantities.map((qty, idx) => {
+            const price = pricingData[activeType][qty];
+            const basePrice = parseFloat(pricingData[activeType]["50-99"].replace("$", ""));
+            const currentPrice = parseFloat(price.replace("$", ""));
+            const savings = Math.round(((basePrice - currentPrice) / basePrice) * 100);
 
-                return (
-                  <tr
-                    key={qty}
-                    className={`border-t border-gray-100 ${idx % 2 === 0 ? "bg-white" : "bg-gray-50/50"} hover:bg-panda-light/50 transition-colors`}
+            return (
+              <div
+                key={qty}
+                className={`grid grid-cols-4 items-center border-t border-gray-100 ${idx % 2 === 0 ? "bg-white" : "bg-gray-50/50"} hover:bg-panda-light/50 transition-colors`}
+              >
+                <div className="py-4 px-6">
+                  <span className="text-[16px] font-bold text-panda-dark">{qty} pieces</span>
+                </div>
+                <div className="py-4 px-6 text-center">
+                  <span className="text-[20px] font-black text-panda-green">{price}</span>
+                  <span className="text-[13px] text-gray-400 ml-1">/ patch</span>
+                </div>
+                <div className="py-4 px-6 text-center">
+                  {savings > 0 ? (
+                    <span className="inline-block bg-green-100 text-green-700 text-[12px] font-bold px-3 py-1 rounded-full">
+                      Save {savings}%
+                    </span>
+                  ) : (
+                    <span className="text-[12px] text-gray-400">Base Price</span>
+                  )}
+                </div>
+                <div className="py-4 px-6 text-right">
+                  <a
+                    href="#bulk-quote"
+                    className="text-[13px] font-bold text-panda-green hover:underline"
                   >
-                    <td className="py-4 px-6">
-                      <span className="text-[16px] font-bold text-panda-dark">{qty} pieces</span>
-                    </td>
-                    <td className="py-4 px-6 text-center">
-                      <span className="text-[20px] font-black text-panda-green">{price}</span>
-                      <span className="text-[13px] text-gray-400 ml-1">/ patch</span>
-                    </td>
-                    <td className="py-4 px-6 text-center">
-                      {savings > 0 ? (
-                        <span className="inline-block bg-green-100 text-green-700 text-[12px] font-bold px-3 py-1 rounded-full">
-                          Save {savings}%
-                        </span>
-                      ) : (
-                        <span className="text-[12px] text-gray-400">Base Price</span>
-                      )}
-                    </td>
-                    <td className="py-4 px-6 text-right">
-                      <a
-                        href="#bulk-quote"
-                        className="text-[13px] font-bold text-panda-green hover:underline"
-                      >
-                        Get Quote →
-                      </a>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                    Get Quote →
+                  </a>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* Pricing Grid - Mobile (Cards) */}

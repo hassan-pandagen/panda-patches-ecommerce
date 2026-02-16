@@ -10,11 +10,30 @@ import Promises from "@/components/home/Promises";
 import ProcessSection from "@/components/home/ProcessSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript } from "@/lib/schemas";
+import { client } from "@/lib/sanity";
 import Link from "next/link";
 import { Users, Flame, Shield, Trophy, Building2, Truck } from "lucide-react";
 
 // ISR: Revalidate every 24 hours
 export const revalidate = 86400;
+
+// Fetch work samples for all patch categories
+async function getWorkSamples() {
+  try {
+    const query = `{
+      "Embroidered": *[_type == "productPage" && slug.current == "embroidered"][0].workSamples,
+      "PVC": *[_type == "productPage" && slug.current == "pvc"][0].workSamples,
+      "Woven": *[_type == "productPage" && slug.current == "woven"][0].workSamples,
+      "Chenille": *[_type == "productPage" && slug.current == "chenille"][0].workSamples,
+      "Leather": *[_type == "productPage" && slug.current == "leather"][0].workSamples
+    }`;
+    const data = await client.fetch(query);
+    return data || {};
+  } catch (error) {
+    console.error("Bulk work samples fetch error:", error);
+    return {};
+  }
+}
 
 // SEO Metadata
 export const metadata: Metadata = {
@@ -137,7 +156,9 @@ const breadcrumbSchema = {
   ],
 };
 
-export default function BulkCustomPatchesPage() {
+export default async function BulkCustomPatchesPage() {
+  const workSamples = await getWorkSamples();
+
   return (
     <main className="min-h-screen bg-white">
       {/* Schemas */}
@@ -186,7 +207,7 @@ export default function BulkCustomPatchesPage() {
       </section>
 
       {/* 3. BULK PRICING TABLE */}
-      <BulkPricingTable />
+      <BulkPricingTable workSamples={workSamples} />
 
       {/* 4. HOW BULK ORDERING WORKS (4-Step Process) */}
       <section className="w-full py-16 md:py-24 bg-white">
