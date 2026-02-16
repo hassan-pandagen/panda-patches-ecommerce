@@ -3,7 +3,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BulkHero from "@/components/bulk/BulkHero";
 import BulkPricingTable from "@/components/bulk/BulkPricingTable";
-import BulkQuoteForm from "@/components/bulk/BulkQuoteForm";
 import BulkCaseStudies from "@/components/bulk/BulkCaseStudies";
 import BulkFAQ from "@/components/bulk/BulkFAQ";
 import Promises from "@/components/home/Promises";
@@ -11,8 +10,6 @@ import ProcessSection from "@/components/home/ProcessSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
-import Link from "next/link";
-import { Users, Flame, Shield, Trophy, Building2, Truck } from "lucide-react";
 
 // ISR: Revalidate every 24 hours
 export const revalidate = 86400;
@@ -68,46 +65,6 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-
-// Target audiences for "Who This Is For" section
-const audiences = [
-  {
-    icon: Building2,
-    title: "Brands & Apparel",
-    desc: "Custom patches for clothing lines, streetwear, and merchandise.",
-    link: "/custom-patches",
-  },
-  {
-    icon: Trophy,
-    title: "Sports Teams & Leagues",
-    desc: "Uniform patches, championship patches, and fan merchandise.",
-    link: "/custom-patches",
-  },
-  {
-    icon: Flame,
-    title: "Fire Departments",
-    desc: "Shoulder patches, rank insignia, and unit identification.",
-    link: "/custom-firefighter-patches",
-  },
-  {
-    icon: Shield,
-    title: "Law Enforcement",
-    desc: "Badge patches, department patches, and tactical gear.",
-    link: "/custom-law-enforcement-patches",
-  },
-  {
-    icon: Users,
-    title: "Corporate & Events",
-    desc: "Employee uniforms, team building, conferences, and tradeshows.",
-    link: "/custom-patches",
-  },
-  {
-    icon: Truck,
-    title: "Distributors & Resellers",
-    desc: "White-label options, distributor pricing, and Net 30/60 terms.",
-    link: "/contact",
-  },
-];
 
 // Product schema for bulk pricing
 const productSchema = {
@@ -176,37 +133,7 @@ export default async function BulkCustomPatchesPage() {
       {/* 1. HERO */}
       <BulkHero />
 
-      {/* 2. WHO THIS IS FOR */}
-      <section className="w-full py-16 md:py-20 bg-panda-light">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">
-          <div className="text-center mb-10 md:mb-14">
-            <h2 className="text-[24px] md:text-[36px] font-black text-panda-dark uppercase tracking-tight mb-4">
-              Who Orders Patches in Bulk?
-            </h2>
-            <p className="text-[14px] md:text-[16px] text-gray-500 font-medium max-w-[550px] mx-auto">
-              From startups to Fortune 500 — we serve every industry that needs custom patches at scale.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            {audiences.map((item, idx) => (
-              <Link
-                key={idx}
-                href={item.link}
-                className="bg-white rounded-[14px] p-5 md:p-6 border border-gray-100 hover:shadow-lg hover:border-panda-green/30 transition-all duration-300 group text-center"
-              >
-                <div className="w-12 h-12 bg-panda-dark rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                  <item.icon className="w-5 h-5 text-panda-yellow" />
-                </div>
-                <h3 className="text-[14px] md:text-[16px] font-bold text-panda-dark mb-1">{item.title}</h3>
-                <p className="text-[12px] md:text-[13px] text-gray-500 leading-[1.5]">{item.desc}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. BULK PRICING TABLE */}
+      {/* 2. BULK PRICING TABLE */}
       <BulkPricingTable workSamples={workSamples} />
 
       {/* 4. HOW BULK ORDERING WORKS (4-Step Process) */}
@@ -260,8 +187,7 @@ export default async function BulkCustomPatchesPage() {
       {/* 7. OUR PROCESS */}
       <ProcessSection />
 
-      {/* 8. BULK QUOTE FORM */}
-      <BulkQuoteForm />
+      {/* 8. BULK QUOTE FORM — Now in Hero section */}
 
       {/* 9. BULK FAQ */}
       <BulkFAQ />

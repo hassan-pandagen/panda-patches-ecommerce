@@ -35,9 +35,10 @@ const navLinks = [
       { name: "Custom PVC Shoe Charms", href: "/custom-products/pvc-shoe-charms" },
     ]
   },
-  { 
-    name: "ASSETS", 
-    href: "/assets", 
+  { name: "BULK ORDER", href: "/bulk-custom-patches" },
+  {
+    name: "ASSETS",
+    href: "/assets",
     dropdown: [
       { name: "Thread Color Chart", href: "/assets/thread-color-chart" },
       { name: "Iron On Instructions", href: "/assets/iron-on-instructions" }

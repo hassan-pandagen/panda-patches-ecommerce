@@ -1,51 +1,52 @@
 import { Shield, Clock, Star, Award } from "lucide-react";
+import BulkQuoteForm from "./BulkQuoteForm";
 
 export default function BulkHero() {
   return (
     <section className="w-full pt-10 md:pt-16 pb-16 md:pb-24 bg-white">
       <div className="container mx-auto px-4 md:px-6 max-w-[1200px]">
 
-        {/* Main Content */}
-        <div className="text-center max-w-[900px] mx-auto">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
 
-          {/* H1 */}
-          <h1 className="text-[28px] md:text-[42px] lg:text-[52px] font-black text-panda-dark leading-[1.1] tracking-tight mb-6">
-            Custom Patches at Scale —{" "}
-            <span className="text-panda-green">From 50 to 50,000 Pieces</span>
-          </h1>
+          {/* LEFT - Content */}
+          <div className="flex-1 text-center lg:text-left lg:pt-8">
+            {/* H1 */}
+            <h1 className="text-[28px] md:text-[42px] lg:text-[48px] font-black text-panda-dark leading-[1.1] tracking-tight mb-6">
+              Custom Patches at Scale{" "}
+              <span className="text-panda-green">From 50 to 50,000 Pieces</span>
+            </h1>
 
-          {/* Subheadline */}
-          <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.7] font-medium mb-8 max-w-[700px] mx-auto">
-            Trusted by brands, sports teams, fire departments, and Fortune 500 companies.
-            2-week turnaround, no setup fees, free mockups included.
-          </p>
+            {/* Subheadline */}
+            <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.7] font-medium mb-8 max-w-[600px] mx-auto lg:mx-0">
+              Trusted by brands, sports teams, fire departments, and Fortune 500 companies.
+              2-week turnaround, no setup fees, free mockups included.
+            </p>
 
-          {/* CTA Button */}
-          <a
-            href="#bulk-quote"
-            className="inline-block bg-panda-dark text-panda-yellow font-black text-[16px] md:text-[18px] px-10 md:px-14 py-4 md:py-5 rounded-[12px] hover:scale-[1.02] transition-transform duration-300 shadow-xl uppercase tracking-widest"
-          >
-            GET BULK QUOTE →
-          </a>
-        </div>
-
-        {/* Trust Bar */}
-        <div className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-[900px] mx-auto">
-          {[
-            { icon: Award, label: "4,000+ Bulk Orders", sub: "Delivered" },
-            { icon: Shield, label: "ASI Verified", sub: "Supplier" },
-            { icon: Star, label: "4.9★ Trustpilot", sub: "Rating" },
-            { icon: Clock, label: "2-Week", sub: "Turnaround" },
-          ].map((item, idx) => (
-            <div
-              key={idx}
-              className="flex flex-col items-center text-center bg-panda-light rounded-[12px] py-5 px-3 border border-gray-100"
-            >
-              <item.icon className="w-6 h-6 md:w-7 md:h-7 text-panda-green mb-2" strokeWidth={2.5} />
-              <span className="text-[13px] md:text-[15px] font-bold text-panda-dark leading-tight">{item.label}</span>
-              <span className="text-[11px] md:text-[13px] text-gray-500 font-medium">{item.sub}</span>
+            {/* Trust Bar */}
+            <div className="grid grid-cols-2 gap-3 md:gap-4 max-w-[500px] mx-auto lg:mx-0">
+              {[
+                { icon: Award, label: "4,000+ Bulk Orders", sub: "Delivered" },
+                { icon: Shield, label: "ASI Verified", sub: "Supplier" },
+                { icon: Star, label: "4.9★ Trustpilot", sub: "Rating" },
+                { icon: Clock, label: "2-Week", sub: "Turnaround" },
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="flex flex-col items-center text-center bg-panda-light rounded-[12px] py-4 px-3 border border-gray-100"
+                >
+                  <item.icon className="w-5 h-5 md:w-6 md:h-6 text-panda-green mb-1.5" strokeWidth={2.5} />
+                  <span className="text-[12px] md:text-[14px] font-bold text-panda-dark leading-tight">{item.label}</span>
+                  <span className="text-[10px] md:text-[12px] text-gray-500 font-medium">{item.sub}</span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* RIGHT - Full Quote Form */}
+          <div className="w-full lg:w-[520px] flex-shrink-0">
+            <BulkQuoteForm />
+          </div>
+
         </div>
 
       </div>

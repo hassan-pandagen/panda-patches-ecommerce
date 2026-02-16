@@ -3,6 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
 
 const patchTypes = ["Embroidered", "PVC", "Woven", "Chenille", "Leather"] as const;
 
@@ -60,8 +63,20 @@ const quantities = ["50-99", "100-299", "300-499", "500-999", "1,000-4,999", "5,
 
 export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableProps) {
   const [activeType, setActiveType] = useState<PatchType>("Embroidered");
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const currentSamples = workSamples[activeType] || [];
+
+  const slides = currentSamples.slice(0, 8).map((img: any) => ({
+    src: urlFor(img).url(),
+    alt: `${activeType} patch sample`,
+  }));
+
+  const openLightbox = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
 
   return (
     <section className="w-full py-16 md:py-24 bg-panda-light">
@@ -94,17 +109,18 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
           ))}
         </div>
 
-        {/* Work Samples Gallery */}
+        {/* Work Samples Gallery - Centered with Lightbox */}
         {currentSamples.length > 0 && (
-          <div className="mb-8">
-            <p className="text-[12px] md:text-[13px] font-bold text-gray-400 uppercase tracking-widest text-center mb-4">
+          <div className="mb-10">
+            <p className="text-[12px] md:text-[13px] font-bold text-gray-400 uppercase tracking-widest text-center mb-5">
               Our {activeType} Work
             </p>
-            <div className="flex gap-3 md:gap-4 overflow-x-auto no-scrollbar pb-2 snap-x snap-mandatory">
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
               {currentSamples.slice(0, 8).map((img: any, idx: number) => (
                 <div
                   key={idx}
-                  className="relative min-w-[140px] h-[140px] md:min-w-[160px] md:h-[160px] lg:min-w-[180px] lg:h-[180px] flex-shrink-0 rounded-[12px] overflow-hidden border-2 border-white shadow-sm hover:shadow-lg transition-all duration-300 snap-start group"
+                  onClick={() => openLightbox(idx)}
+                  className="relative w-[140px] h-[140px] md:w-[160px] md:h-[160px] lg:w-[180px] lg:h-[180px] rounded-[12px] overflow-hidden border-2 border-white shadow-sm hover:shadow-xl transition-all duration-300 cursor-zoom-in group"
                 >
                   <Image
                     src={urlFor(img).width(400).height(400).url()}
@@ -113,11 +129,47 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                     sizes="180px"
                   />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                    <div className="bg-white/90 px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-opacity">
+                      Click to Zoom
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         )}
+
+        {/* Lightbox */}
+        <Lightbox
+          open={lightboxOpen}
+          close={() => setLightboxOpen(false)}
+          slides={slides}
+          index={lightboxIndex}
+          plugins={[Zoom]}
+          zoom={{
+            maxZoomPixelRatio: 3,
+            zoomInMultiplier: 2,
+            doubleTapDelay: 300,
+            doubleClickDelay: 300,
+            doubleClickMaxStops: 2,
+            keyboardMoveDistance: 50,
+            wheelZoomDistanceFactor: 100,
+            pinchZoomDistanceFactor: 100,
+            scrollToZoom: true,
+          }}
+          carousel={{
+            finite: false,
+            preload: 2,
+          }}
+          animation={{
+            fade: 250,
+            swipe: 250,
+          }}
+          styles={{
+            container: { backgroundColor: "rgba(0, 0, 0, 0.95)" },
+          }}
+        />
 
         {/* Pricing Grid - Desktop */}
         <div className="hidden md:block overflow-hidden rounded-[16px] border border-gray-200 bg-white shadow-sm">
