@@ -66,13 +66,20 @@ export default defineType({
     }),
     defineField({
       name: 'patchCards',
-      title: 'Patch Cards (Add 5)',
+      title: 'Patch Cards (Add as many as you want - will show grid on desktop, swiper on mobile)',
       type: 'array',
       of: [{
         type: 'object',
         fields: [
           defineField({ name: 'image', title: 'Patch Image', type: 'image' }),
           defineField({ name: 'label', title: 'Label (e.g. Chenille Patches)', type: 'string' }),
+          defineField({
+            name: 'link',
+            title: 'Link to Category Page',
+            type: 'string',
+            description: 'e.g. /custom-patches/embroidered-patches',
+            validation: Rule => Rule.regex(/^\//, { name: 'relative-url' }).error('Must start with / for relative URL')
+          }),
         ]
       }]
     }),

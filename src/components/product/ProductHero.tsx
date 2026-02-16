@@ -43,12 +43,12 @@ export default async function ProductHero({ productData, isMainPage = false }: P
                - Responsive text sizing for all screen sizes
                - Better mobile readability
             */}
-            <h1 className="text-[28px] md:text-[36px] lg:text-[42px] font-extrabold text-panda-dark leading-tight mb-4 md:mb-6 w-full tracking-tight">
+            <h1 className="text-[28px] md:text-[36px] lg:text-[42px] font-extrabold text-panda-dark leading-tight mb-4 md:mb-6 w-full tracking-tight text-center md:text-left">
               {title}
             </h1>
 
             {/* Description - Mobile Responsive */}
-            <p className="text-[14px] md:text-[16px] text-gray-600 leading-[1.6] md:leading-[1.7] font-medium mb-6 md:mb-10 max-w-[600px]">
+            <p className="text-[14px] md:text-[16px] text-gray-600 leading-[1.6] md:leading-[1.7] font-medium mb-6 md:mb-10 max-w-[600px] text-center md:text-left mx-auto md:mx-0">
               {desc}
             </p>
 

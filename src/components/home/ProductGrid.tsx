@@ -175,7 +175,7 @@ function ProductCard({ item }: { item: any }) {
 
       {/* TEXT AREA */}
       <div className="flex-grow p-6 text-center flex flex-col items-center justify-center">
-        <h3 className="text-[18px] font-black text-panda-dark uppercase mb-3 leading-tight min-h-[36px]">
+        <h3 className="text-[18px] font-black text-panda-dark uppercase mb-3 leading-tight min-h-[48px] max-w-[180px] mx-auto">
           {item.title}
         </h3>
         <p className="text-[15px] text-gray-500 leading-relaxed line-clamp-3 mb-3">

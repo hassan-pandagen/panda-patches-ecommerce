@@ -857,8 +857,8 @@ export default function ComplexCalculator({
                 onClick={handleNext}
                 className="w-full h-[70px] bg-black text-panda-yellow rounded-[14px] font-black text-[14px] md:text-[18px] uppercase tracking-wide md:tracking-widest hover:scale-[1.01] transition-transform shadow-xl"
               >
-                <span className="md:hidden">Continue →</span>
-                <span className="hidden md:inline">Continue to Personalization & Delivery →</span>
+                <span className="md:hidden">GET BEST PRICE →</span>
+                <span className="hidden md:inline">GET THE BEST PRICE →</span>
               </button>
             </div>
           ) : (
