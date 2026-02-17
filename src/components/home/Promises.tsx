@@ -1,12 +1,10 @@
-"use client";
-
 import Image from "next/image";
 
 const promises = [
   { icon: "/assets/icon-money.svg", title: "Money Back Guarantee", desc: "Your satisfaction owns the patch; our promise ensures it's truly yours!" },
-  { icon: "/assets/icon-check.svg", title: "Low Minimums", desc: "Witness the magic of custom patches with no minimums. Craft your distinct style with just 5 patches!" },
+  { icon: "/assets/icon-check.svg", title: "Low Minimums", desc: "Craft your distinct style starting from just 5 patches. Low minimums, maximum creativity!" },
   { icon: "/assets/icon-mail.svg", title: "Quick Turnaround", desc: "Need it tomorrow? Get it today! Skip the wait with the fast turnaround – 7-14 days, delivered." },
-  { icon: "/assets/icon-clock.svg", title: "24/7 Chat Support", desc: "Our 24/7 chat ensures prompt and reliable support, day or night!" },
+  { icon: "/assets/icon-check.svg", title: "Free Sample First", desc: "For orders 500+, get a free physical sample. Verify quality, color, and sizing before full production." },
 ];
 
 // === THIS IS THE FIX: Add bgColor prop ===
@@ -27,7 +25,7 @@ export default function Promises({ bgColor = "bg-[#F7F7F7]" }: { bgColor?: strin
                   <Image src={item.icon} alt={item.title} fill className="object-contain" sizes="38px" quality={90} />
                 </div>
               </div>
-              <h3 className="text-[13px] md:text-[18px] font-extrabold text-panda-dark mb-2 md:mb-3 leading-tight">{item.title}</h3>
+              <h3 className="text-[15px] md:text-[18px] font-extrabold text-panda-dark mb-2 md:mb-3 leading-tight">{item.title}</h3>
               <p className="text-[13px] md:text-[15px] text-gray-500 leading-[1.6] max-w-[180px] md:max-w-[220px] font-medium">{item.desc}</p>
             </div>
           ))}

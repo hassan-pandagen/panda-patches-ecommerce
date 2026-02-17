@@ -2,12 +2,21 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { urlFor } from "@/lib/sanity";
 import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 
 const patchTypes = ["Embroidered", "PVC", "Woven", "Chenille", "Leather"] as const;
+
+const categoryLinks: Record<string, string> = {
+  Embroidered: "/custom-patches/embroidered",
+  PVC: "/custom-patches/pvc",
+  Woven: "/custom-patches/woven",
+  Chenille: "/custom-patches/chenille",
+  Leather: "/custom-patches/leather",
+};
 
 type PatchType = (typeof patchTypes)[number];
 
@@ -209,12 +218,12 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
                   )}
                 </div>
                 <div className="py-4 px-6 text-right">
-                  <a
-                    href="#bulk-quote"
-                    className="text-[13px] font-bold text-panda-green hover:underline"
+                  <Link
+                    href={categoryLinks[activeType]}
+                    className="inline-flex items-center gap-1.5 bg-panda-dark text-panda-yellow text-[12px] font-bold px-4 py-2 rounded-full hover:bg-panda-green hover:text-white transition-all duration-200 whitespace-nowrap"
                   >
-                    Get Quote →
-                  </a>
+                    Order Now →
+                  </Link>
                 </div>
               </div>
             );
@@ -237,9 +246,17 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
                     <span className="text-[11px] font-bold text-green-600">Save {savings}%</span>
                   )}
                 </div>
-                <div className="text-right">
-                  <span className="text-[20px] font-black text-panda-green">{price}</span>
-                  <span className="text-[11px] text-gray-400 block">per patch</span>
+                <div className="flex items-center gap-3">
+                  <div className="text-right">
+                    <span className="text-[20px] font-black text-panda-green">{price}</span>
+                    <span className="text-[11px] text-gray-400 block">per patch</span>
+                  </div>
+                  <Link
+                    href={categoryLinks[activeType]}
+                    className="bg-panda-dark text-panda-yellow text-[11px] font-bold px-3 py-1.5 rounded-full whitespace-nowrap"
+                  >
+                    Order →
+                  </Link>
                 </div>
               </div>
             );

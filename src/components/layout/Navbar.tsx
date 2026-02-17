@@ -26,7 +26,7 @@ const navLinks = [
     ]
   },
   {
-    name: "CUSTOM PRODUCTS",
+    name: "PRODUCTS",
     href: "/custom-products",
     dropdown: [
       { name: "Custom Lapel Pins", href: "/custom-products/lapel-pins" },
@@ -44,30 +44,6 @@ const navLinks = [
       { name: "Iron On Instructions", href: "/assets/iron-on-instructions" }
     ] 
   },
-  {
-    name: "PATCH STYLE",
-    href: "/custom-morale-patches",
-    dropdown: [
-      { name: "Custom Morale Patches", href: "/custom-morale-patches" },
-      { name: "Custom Anime Patches", href: "/custom-anime-patches" },
-      { name: "Custom Baseball Patches", href: "/custom-baseball-patches" },
-      { name: "Christmas Patches", href: "/christmas-patches" },
-      { name: "Valentine's Day Patches", href: "/valentines-day-patches" },
-      { name: "Custom Soccer Patches", href: "/custom-soccer-patches" },
-      { name: "Custom Fire Department Patches", href: "/custom-fire-department-patches" },
-      { name: "Custom Hockey Patches", href: "/custom-hockey-patches" },
-      { name: "Patches For Hats", href: "/patches-for-hats" },
-      { name: "Custom Jacket Patches", href: "/custom-jacket-patches" },
-      { name: "Custom Law Enforcement Patches", href: "/custom-law-enforcement-patches" },
-      { name: "Custom Logo Patches", href: "/custom-logo-patches" },
-      { name: "Motorcycle Patches", href: "/motorcycle-patches" },
-      { name: "Custom Name Patches", href: "/custom-name-patches" },
-      { name: "Custom Rock Band Patches", href: "/custom-rock-band-patches" },
-      { name: "Custom Super Bowl Patch", href: "/custom-super-bowl-patch" },
-      { name: "Custom Tactical Patches", href: "/custom-tactical-patches" },
-      { name: "Custom Velcro Patches", href: "/custom-velcro-patches" },
-    ]
-  },
   { name: "BLOGS", href: "/blogs" },
   { name: "CONTACT US", href: "/contact" },
 ];
@@ -79,34 +55,37 @@ export default function Navbar() {
 
   return (
     <header className="w-full bg-white relative z-50">
-      <div className="w-full mx-auto px-4 md:px-8 lg:px-12 xl:px-16 h-[80px] md:h-[115px] flex items-center justify-between">
+      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 xl:px-12 h-[80px] md:h-[100px] flex items-center justify-between">
 
-        {/* === 1. LOGO === */}
-        <Link href="/" className="flex-shrink-0 relative w-[140px] h-[45px] md:w-[175px] md:h-[55px]">
-           <Image
-             src="/assets/logo-panda.svg"
-             alt="Panda Patches"
-             fill
-             className="object-contain object-left"
-             priority
-           />
-        </Link>
+        {/* === LEFT GROUP: Logo + Nav together === */}
+        <div className="flex items-center gap-4">
 
-        {/* === MOBILE HAMBURGER BUTTON (Shows on mobile only) === */}
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="xl:hidden w-[50px] h-[50px] bg-gradient-to-br from-[#051C05] to-[#0a3d0a] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg z-50"
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? (
-            <X size={24} className="text-[#DFFF00]" strokeWidth={2.5} />
-          ) : (
-            <Menu size={24} className="text-[#DFFF00]" strokeWidth={2.5} />
-          )}
-        </button>
+          {/* === 1. LOGO === */}
+          <Link href="/" className="flex-shrink-0 relative w-[140px] h-[45px] md:w-[160px] md:h-[50px]">
+             <Image
+               src="/assets/logo-panda.svg"
+               alt="Panda Patches"
+               fill
+               className="object-contain object-left"
+               priority
+             />
+          </Link>
 
-        {/* === 2. NAVIGATION (Center) === */}
-        <nav className="hidden xl:flex items-center bg-[#F0F0F0] rounded-full px-2.5 py-2 shadow-sm">
+          {/* === MOBILE HAMBURGER BUTTON (Shows on mobile only) === */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="xl:hidden w-[50px] h-[50px] bg-gradient-to-br from-[#051C05] to-[#0a3d0a] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg z-50"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X size={24} className="text-[#DFFF00]" strokeWidth={2.5} />
+            ) : (
+              <Menu size={24} className="text-[#DFFF00]" strokeWidth={2.5} />
+            )}
+          </button>
+
+          {/* === 2. NAVIGATION (Right next to logo) === */}
+          <nav className="hidden xl:flex items-center bg-[#F0F0F0] rounded-full px-2 py-1.5 shadow-sm">
           {navLinks.map((link: any) => {
             const isActive = pathname === link.href;
             const hasDropdown = link.dropdown && link.dropdown.length > 0;
@@ -119,7 +98,7 @@ export default function Navbar() {
                   href={link.href}
                   className={`
                     flex items-center gap-1 whitespace-nowrap
-                    text-[13px] font-bold tracking-wide px-5 py-3 rounded-full transition-all duration-300
+                    text-[12px] font-bold tracking-wide px-4 py-2.5 rounded-full transition-all duration-300
                     ${isActive
                       ? "bg-[#051C05] text-[#DFFF00] shadow-md"
                       : "text-gray-700 hover:text-black hover:bg-gray-200/50"
@@ -169,9 +148,11 @@ export default function Navbar() {
           })}
         </nav>
 
+        </div>{/* end left group */}
+
         {/* === 3. SOCIALS & ACTION BUTTONS (Hidden on mobile) === */}
-        <div className="hidden xl:flex items-center gap-3 flex-nowrap">
-          <div className="hidden lg:flex gap-2.5">
+        <div className="hidden xl:flex items-center gap-2.5 flex-nowrap flex-shrink-0">
+          <div className="hidden lg:flex gap-2">
             {/* 1. Facebook */}
             <a href="#" className="w-[36px] h-[36px] bg-[#051C05] rounded-full flex items-center justify-center hover:scale-110 transition-transform group">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[17px] h-[17px] text-[#DFFF00]"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
@@ -197,18 +178,18 @@ export default function Navbar() {
                 (window as any).Tawk_API.toggle();
               }
             }}
-            className="flex items-center gap-2.5 bg-[#DFFF00] text-[#051C05] font-bold text-[15px] px-8 py-4 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
+            className="flex items-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[14px] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
           >
-            <MessageCircle size={20} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
+            <MessageCircle size={18} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
             <span>Chat Now</span>
           </button>
 
           {/* Sample Box Button */}
           <Link
             href="/sample-box"
-            className="flex items-center gap-2.5 bg-[#051C05] text-[#DFFF00] font-bold text-[15px] px-8 py-4 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
+            className="flex items-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[14px] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
           >
-            <Package size={20} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" />
+            <Package size={18} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" />
             <span>Sample Box</span>
           </Link>
         </div>

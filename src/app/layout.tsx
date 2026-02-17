@@ -13,7 +13,7 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: "Panda Patches | Custom Iron On Patches",
-  description: "No Minimums, Quick Delivery!",
+  description: "Low Minimums, Quick Delivery!",
   icons: {
     icon: [
       { url: '/favicon.ico' },

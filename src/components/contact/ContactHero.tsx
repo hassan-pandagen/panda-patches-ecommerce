@@ -17,7 +17,7 @@ export default function ContactHero() {
       <div className="container mx-auto px-6 max-w-[1360px]">
         
         {/* MAIN HEADING */}
-        <h1 className="text-[50px] font-black text-center text-panda-dark uppercase mb-20 tracking-tight">
+        <h1 className="text-[28px] md:text-[50px] font-black text-center text-panda-dark uppercase mb-20 tracking-tight">
           Contact Us
         </h1>
 
@@ -25,7 +25,7 @@ export default function ContactHero() {
           
           {/* === LEFT COLUMN: FORM (Spans 7 cols) === */}
           <div className="lg:col-span-7">
-            <h2 className="text-[32px] font-bold text-panda-dark mb-4">
+            <h2 className="text-[20px] md:text-[32px] font-bold text-panda-dark mb-4">
               We would love to hear from you.
             </h2>
             <p className="text-gray-500 mb-10 text-[16px]">

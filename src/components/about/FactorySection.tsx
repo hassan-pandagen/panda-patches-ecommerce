@@ -21,7 +21,7 @@ export default async function FactorySection() {
         
         {/* LEFT: TEXT */}
         <div className="flex-1 space-y-6 text-center lg:text-left">
-          <h2 className="text-[32px] font-black text-panda-dark uppercase tracking-tight">
+          <h2 className="text-[20px] md:text-[32px] font-black text-panda-dark uppercase tracking-tight">
             {title}
           </h2>
           <p className="text-[16px] text-gray-600 leading-[1.8] font-medium">

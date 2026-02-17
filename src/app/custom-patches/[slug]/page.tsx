@@ -74,7 +74,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     return { title: '404 - Product Not Found | Panda Patches' };
   }
 
-  const description = product.description || `High-quality ${product.title.toLowerCase()} with no minimums, fast delivery, and free design services from Panda Patches.`;
+  const description = product.description || `High-quality ${product.title.toLowerCase()} with low minimums, fast delivery, and free design services from Panda Patches.`;
   const imageUrl = product.heroImage ? urlFor(product.heroImage).url() : 'https://pandapatches.com/assets/logo-panda.svg';
 
   return {
@@ -113,7 +113,7 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
   // Generate schema markup for SEO
   const productSchema = generateProductSchema({
     name: data.title,
-    description: data.description || `High-quality ${data.title.toLowerCase()} with no minimums, fast delivery, and free design services.`,
+    description: data.description || `High-quality ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
     image: data.heroImage ? urlFor(data.heroImage).url() : 'https://pandapatches.com/assets/logo-panda.svg',
     url: `https://pandapatches.com/custom-patches/${params.slug}`,
     priceRange: "$50-$500", // Typical price range for custom patches

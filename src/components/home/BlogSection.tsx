@@ -52,7 +52,7 @@ export default async function BlogSection() {
         
         {/* HEADING */}
         <div className="text-center mb-16">
-          <h2 className="text-[40px] font-black text-panda-dark uppercase tracking-tight">
+          <h2 className="text-[24px] md:text-[40px] font-black text-panda-dark uppercase tracking-tight">
             OUR BLOGS
           </h2>
         </div>
@@ -99,7 +99,7 @@ function BlogCard({ blog }: { blog: any }) {
       <div className="flex flex-col items-center text-center pt-8 pb-6 px-4 flex-grow">
         
         {/* Title */}
-        <h3 className="text-[22px] leading-[1.3] font-bold text-panda-dark mb-4">
+        <h3 className="text-[18px] md:text-[22px] leading-[1.3] font-bold text-panda-dark mb-4">
           {blog.title}
         </h3>
 

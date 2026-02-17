@@ -47,7 +47,7 @@ export default async function IndustrySection() {
         
         {/* === HEADER === */}
         <div className="text-center mb-16 space-y-6">
-          <h2 className="text-[40px] font-black text-panda-dark uppercase tracking-tight max-w-4xl mx-auto leading-tight">
+          <h2 className="text-[24px] md:text-[40px] font-black text-panda-dark uppercase tracking-tight max-w-4xl mx-auto leading-tight">
             {heading}
           </h2>
           <p className="text-[16px] text-gray-500 font-medium max-w-4xl mx-auto leading-[1.8]">
@@ -74,7 +74,7 @@ export default async function IndustrySection() {
             >
               
               {/* Title */}
-              <h3 className="text-[24px] font-bold text-panda-dark mb-6">
+              <h3 className="text-[18px] md:text-[24px] font-bold text-panda-dark mb-6">
                 {card.title}
               </h3>
 

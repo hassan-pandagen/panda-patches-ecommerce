@@ -72,7 +72,7 @@ export default async function BlogsPage({ searchParams }: { searchParams: { page
         <div className="container mx-auto px-4 max-w-[1200px]">
           
           {/* PAGE TITLE */}
-          <h1 className="text-[50px] font-black text-center text-panda-dark uppercase mb-20 tracking-tight">
+          <h1 className="text-[24px] md:text-[50px] font-black text-center text-panda-dark uppercase mb-20 tracking-tight">
             Our Blogs
           </h1>
 
@@ -101,7 +101,7 @@ export default async function BlogsPage({ searchParams }: { searchParams: { page
 
                   {/* TEXT CONTENT */}
                   <div className="flex-1 p-8 flex flex-col justify-center bg-[#F4F4F4]">
-                    <h2 className="text-[28px] font-bold text-panda-dark leading-tight mb-4">
+                    <h2 className="text-[18px] md:text-[28px] font-bold text-panda-dark leading-tight mb-4">
                       {post.title}
                     </h2>
                     <p className="text-[16px] text-gray-600 leading-[1.6] mb-8 line-clamp-3">

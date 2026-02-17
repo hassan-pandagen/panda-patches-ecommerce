@@ -94,7 +94,7 @@ export default async function CustomProductPage({ params }: { params: { slug: st
   // Generate schema markup for SEO
   const productSchema = generateProductSchema({
     name: data.title,
-    description: data.description || `Custom ${data.title.toLowerCase()} with no minimums, fast delivery, and free design services.`,
+    description: data.description || `Custom ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
     image: data.heroImage ? urlFor(data.heroImage).url() : 'https://pandapatches.com/assets/logo-panda.svg',
     url: `https://pandapatches.com/custom-products/${params.slug}`,
     priceRange: "$100-$1000", // Typical price range for custom coins/pins/keychains

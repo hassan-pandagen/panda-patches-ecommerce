@@ -44,7 +44,7 @@ export default function PickPatch() {
       <div className="container mx-auto px-4 text-center">
 
         {/* HEADING */}
-        <h2 className="text-[32px] font-black text-panda-dark uppercase tracking-tight mb-12">
+        <h2 className="text-[22px] md:text-[32px] font-black text-panda-dark uppercase tracking-tight mb-12">
           {title}
         </h2>
 

@@ -76,7 +76,7 @@ export default async function ProductGrid() {
             INFUSE YOUR STYLE WITH <br />
             EXCLUSIVE BESPOKE PATCH DESIGNS
           </h2>
-          <p className="text-[17px] text-gray-800 leading-[1.8] max-w-[1020px] mx-auto font-medium">
+          <p className="text-[14px] md:text-[17px] text-gray-800 leading-[1.8] max-w-[1020px] mx-auto font-medium">
             From personalized logo patches, to <Link href="/custom-name-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">personalized name patch</Link>, from <Link href="/custom-tactical-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">military patches</Link>, to <Link href="/custom-jacket-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">personalized patches for jackets</Link>, and custom <Link href="/custom-velcro-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">Velcro patches</Link>,
             our tailored selection ensures a lasting impression, showcasing your unique style. At Panda Patches, we&apos;re dedicated to providing personalized iron on
             patches in the US, that bring brand vision to life and take your product to the next level.

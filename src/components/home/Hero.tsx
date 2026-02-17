@@ -55,7 +55,7 @@ export default async function Hero() {
              - Color: Dark (No Yellow)
           */}
           <h1 className="text-[28px] md:text-[40px] leading-[1.2] font-semibold text-panda-dark tracking-tight mb-2 md:mb-4 max-w-full md:max-w-[550px]">
-            {data?.title || "Custom Iron On Patches: No Minimums, Quick Delivery!"}
+            {data?.title || "Custom Iron On Patches: Low Minimums, Quick Delivery!"}
           </h1>
 
           {/*

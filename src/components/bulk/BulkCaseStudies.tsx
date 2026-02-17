@@ -78,21 +78,21 @@ export default function BulkCaseStudies() {
                 <div className="w-10 h-10 bg-panda-dark rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                   <study.icon className="w-5 h-5 text-panda-yellow" />
                 </div>
-                <h3 className="text-[16px] font-bold text-panda-dark leading-tight">{study.title}</h3>
+                <h3 className="text-[16px] md:text-[18px] font-bold text-panda-dark leading-tight">{study.title}</h3>
               </div>
 
               {/* Description */}
-              <p className="text-[13px] text-gray-500 leading-[1.6] mb-4">{study.description}</p>
+              <p className="text-[14px] md:text-[15px] text-gray-500 leading-[1.6] mb-4">{study.description}</p>
 
               {/* Stats */}
               <div className="flex flex-wrap gap-2">
-                <span className="bg-white text-[11px] font-bold text-panda-dark px-3 py-1 rounded-full border border-gray-200">
+                <span className="bg-white text-[12px] md:text-[13px] font-bold text-panda-dark px-3 py-1 rounded-full border border-gray-200">
                   {study.quantity}
                 </span>
-                <span className="bg-white text-[11px] font-bold text-panda-green px-3 py-1 rounded-full border border-gray-200">
+                <span className="bg-white text-[12px] md:text-[13px] font-bold text-panda-green px-3 py-1 rounded-full border border-gray-200">
                   {study.type}
                 </span>
-                <span className="bg-white text-[11px] font-bold text-gray-500 px-3 py-1 rounded-full border border-gray-200">
+                <span className="bg-white text-[12px] md:text-[13px] font-bold text-gray-500 px-3 py-1 rounded-full border border-gray-200">
                   {study.turnaround}
                 </span>
               </div>

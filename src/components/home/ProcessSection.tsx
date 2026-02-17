@@ -18,10 +18,10 @@ export default async function ProcessSection() {
         
         {/* HEADINGS */}
         <div className="mb-16 space-y-6">
-          <h2 className="text-[40px] font-black text-panda-dark uppercase tracking-tight leading-tight">
+          <h2 className="text-[26px] md:text-[40px] font-black text-panda-dark uppercase tracking-tight leading-tight">
             {data.heading}
           </h2>
-          <p className="text-[17px] text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[15px] md:text-[17px] text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">
             {data.subheading}
           </p>
         </div>

@@ -14,21 +14,31 @@ import { client } from "@/lib/sanity";
 // ISR: Revalidate every 24 hours
 export const revalidate = 86400;
 
-// Fetch work samples for all patch categories
-async function getWorkSamples() {
+// Fetch work samples for all patch categories + hero image
+async function getBulkPageData() {
   try {
     const query = `{
-      "Embroidered": *[_type == "productPage" && slug.current == "embroidered"][0].workSamples,
-      "PVC": *[_type == "productPage" && slug.current == "pvc"][0].workSamples,
-      "Woven": *[_type == "productPage" && slug.current == "woven"][0].workSamples,
-      "Chenille": *[_type == "productPage" && slug.current == "chenille"][0].workSamples,
-      "Leather": *[_type == "productPage" && slug.current == "leather"][0].workSamples
+      "workSamples": {
+        "Embroidered": *[_type == "productPage" && slug.current == "embroidered"][0].workSamples,
+        "PVC": *[_type == "productPage" && slug.current == "pvc"][0].workSamples,
+        "Woven": *[_type == "productPage" && slug.current == "woven"][0].workSamples,
+        "Chenille": *[_type == "productPage" && slug.current == "chenille"][0].workSamples,
+        "Leather": *[_type == "productPage" && slug.current == "leather"][0].workSamples
+      },
+      "hero": *[_type == "hero"][0] {
+        "heroImage": heroImage.asset->url,
+        "trustBadges": trustBadges[].asset->url
+      }
     }`;
     const data = await client.fetch(query);
-    return data || {};
+    return {
+      workSamples: data?.workSamples || {},
+      heroImage: data?.hero?.heroImage || null,
+      trustBadges: data?.hero?.trustBadges || [],
+    };
   } catch (error) {
-    console.error("Bulk work samples fetch error:", error);
-    return {};
+    console.error("Bulk page data fetch error:", error);
+    return { workSamples: {}, heroImage: null };
   }
 }
 
@@ -114,7 +124,7 @@ const breadcrumbSchema = {
 };
 
 export default async function BulkCustomPatchesPage() {
-  const workSamples = await getWorkSamples();
+  const { workSamples, heroImage, trustBadges } = await getBulkPageData();
 
   return (
     <main className="min-h-screen bg-white">
@@ -131,7 +141,7 @@ export default async function BulkCustomPatchesPage() {
       <Navbar />
 
       {/* 1. HERO */}
-      <BulkHero />
+      <BulkHero heroImage={heroImage} trustBadges={trustBadges} />
 
       {/* 2. BULK PRICING TABLE */}
       <BulkPricingTable workSamples={workSamples} />
@@ -143,7 +153,7 @@ export default async function BulkCustomPatchesPage() {
             How Bulk Ordering Works
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {[
               {
                 step: "01",
@@ -170,8 +180,8 @@ export default async function BulkCustomPatchesPage() {
                 <div className="w-14 h-14 bg-panda-dark rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-panda-yellow font-black text-[18px]">{item.step}</span>
                 </div>
-                <h3 className="text-[15px] md:text-[17px] font-bold text-panda-dark mb-2">{item.title}</h3>
-                <p className="text-[13px] text-gray-500 leading-[1.6] max-w-[220px] mx-auto">{item.desc}</p>
+                <h3 className="text-[16px] md:text-[19px] font-bold text-panda-dark mb-2 leading-tight">{item.title}</h3>
+                <p className="text-[13px] md:text-[15px] text-gray-500 leading-[1.6] max-w-[200px] mx-auto">{item.desc}</p>
               </div>
             ))}
           </div>

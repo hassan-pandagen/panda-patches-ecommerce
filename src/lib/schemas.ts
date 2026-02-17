@@ -34,7 +34,7 @@ export function generateOrganizationSchema() {
     "url": "https://pandapatches.com",
     "logo": "https://pandapatches.com/assets/logo-panda.svg",
     "foundingDate": "2016",
-    "description": "Custom embroidered patches, challenge coins, enamel pins, and keychains with no minimums, free design services, and fast 7-14 day delivery. 8+ years of excellence.",
+    "description": "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 8+ years of excellence.",
     "email": "admin@pandapatches.com",
     "telephone": "+1-302-250-4340",
     "address": {
@@ -402,7 +402,7 @@ import { generateProductSchema, generateSchemaScript } from '@/lib/schemas';
 
 const productSchema = generateProductSchema({
   name: "Custom Embroidered Patches",
-  description: "High-quality custom patches with no minimums",
+  description: "High-quality custom patches with low minimums",
   image: "https://pandapatches.com/patch-image.jpg",
   url: "https://pandapatches.com/custom-patches/embroidered-patches",
   priceRange: "$50-$500"

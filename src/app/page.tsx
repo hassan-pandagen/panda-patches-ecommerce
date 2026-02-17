@@ -21,7 +21,7 @@ export const revalidate = 60;
 
 // SEO Metadata for Homepage
 export const metadata: Metadata = {
-  title: "Custom Patches & Embroidered Patches - No Minimums | Panda Patches",
+  title: "Custom Patches & Embroidered Patches - Low Minimums | Panda Patches",
   description: "Create custom embroidered patches, iron-on patches, woven patches, PVC patches with no minimum orders. Free design, fast 7-14 day delivery, 4.9★ rated. Get instant quote!",
   keywords: [
     "custom patches",
@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     "patch design services"
   ],
   openGraph: {
-    title: "Custom Patches & Embroidered Patches - No Minimums | Panda Patches",
-    description: "Create custom embroidered patches, iron-on patches, woven patches with no minimums. Free design, fast delivery, 4.9★ rated by 50+ customers.",
+    title: "Custom Patches & Embroidered Patches - Low Minimums | Panda Patches",
+    description: "Create custom embroidered patches, iron-on patches, woven patches with low minimums. Free design, fast delivery, 4.9★ rated by 50+ customers.",
     type: "website",
     url: "https://pandapatches.com",
     images: [
@@ -51,8 +51,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Custom Patches & Embroidered Patches - No Minimums",
-    description: "Create custom embroidered patches with no minimums. Free design, fast delivery, 4.9★ rated.",
+    title: "Custom Patches & Embroidered Patches - Low Minimums",
+    description: "Create custom embroidered patches with low minimums. Free design, fast delivery, 4.9★ rated.",
     images: ["https://pandapatches.com/assets/logo-panda.svg"]
   },
   alternates: {

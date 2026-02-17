@@ -47,7 +47,7 @@ export default async function AboutContent() {
       <div className="container mx-auto px-4 flex flex-col items-center">
         
         {/* === MAIN PAGE TITLE === */}
-        <h1 className="text-[70px] font-semibold text-panda-dark uppercase mb-10 tracking-tight">
+        <h1 className="text-[32px] md:text-[70px] font-semibold text-panda-dark uppercase mb-10 tracking-tight">
           {title}
         </h1>
 
@@ -75,12 +75,12 @@ export default async function AboutContent() {
             <div key={idx} className="space-y-4">
               
               {/* HEADING */}
-              <h2 className="text-[40px] font-semibold text-panda-dark leading-tight">
+              <h2 className="text-[24px] md:text-[40px] font-semibold text-panda-dark leading-tight">
                 {section.heading}
               </h2>
 
               {/* DESCRIPTION */}
-              <p className="text-[20px] font-normal text-gray-600 leading-[1.4] max-w-[1250px] mx-auto">
+              <p className="text-[16px] md:text-[20px] font-normal text-gray-600 leading-[1.4] max-w-[1250px] mx-auto">
                 {section.description}
               </p>
 
