@@ -9,10 +9,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-01-28.clover',
 });
 
-// 2. Init Supabase
+// 2. Init Supabase — use service role key server-side to bypass RLS
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
 // 3. Allowed origins for Stripe redirects (add your production domain when ready)
@@ -28,9 +28,7 @@ const CheckoutSchema = z.object({
   productName: z.string().min(1, 'Product name is required').max(100, 'Product name too long'),
   price: z.number().positive('Price must be positive').max(100000, 'Price too high'),
   quantity: z.number().int('Quantity must be an integer').min(1, 'Minimum quantity is 1').max(10000, 'Quantity too high'),
-  backing: z.enum(['iron', 'sew', 'velcro', 'peel'], {
-    message: 'Invalid backing type'
-  }),
+  backing: z.string().max(100, 'Backing type too long').optional().or(z.literal('')),
   width: z.number().positive('Width must be positive').min(0.5, 'Minimum width is 0.5 inches').max(50, 'Maximum width is 50 inches'),
   height: z.number().positive('Height must be positive').min(0.5, 'Minimum height is 0.5 inches').max(50, 'Maximum height is 50 inches'),
   customer: z.object({
@@ -42,7 +40,7 @@ const CheckoutSchema = z.object({
   deliveryOption: z.enum(['rush', 'standard', 'economy']),
   rushDate: z.string().optional().or(z.null()),
   discount: z.string().optional().or(z.null()),
-  artworkUrl: z.string().url({ message: 'Invalid URL' }).optional().or(z.null()),
+  artworkUrl: z.string().url({ message: 'Invalid URL' }).optional().or(z.null()).or(z.literal('')),
   addons: z.array(z.string()).optional().or(z.null()),
   specialInstructions: z.string().optional().or(z.null())
 });
@@ -120,7 +118,7 @@ export async function POST(req: Request) {
         design_name: productName,         // Maps to 'design_name' (required field)
         patches_type: productName,        // Maps to 'patches_type'
         patches_quantity: quantity,       // Maps to 'patches_quantity'
-        design_backing: backing,          // Maps to 'design_backing'
+        design_backing: backing || null,   // Maps to 'design_backing' (optional)
         design_size: `${width}" x ${height}"`, // Combines W & H into 'design_size'
         artwork_url: artworkUrl,          // Customer uploaded artwork file URL
 
@@ -161,7 +159,7 @@ export async function POST(req: Request) {
             currency: 'usd',
             product_data: {
               name: `${productName} (${width}" x ${height}")`,
-              description: `Backing: ${backing} | Qty: ${quantity}`,
+              description: `${backing ? `Backing: ${backing} | ` : ''}Qty: ${quantity}`,
             },
             unit_amount: Math.round((finalPrice / quantity) * 100),
           },

@@ -12,10 +12,10 @@ import ProcessSection from "@/components/home/ProcessSection";
 // SEO Metadata for About Page
 export const metadata: Metadata = {
   title: "About Panda Patches | 8+ Years Custom Patch Experts",
-  description: "Learn about Panda Patches - 8+ years creating custom embroidered patches with low minimums. Family-owned, Pakistan-based factory, 4.9★ Trustpilot rating, trusted by military & sports teams.",
+  description: "Learn about Panda Patches - 8+ years creating custom embroidered patches with low minimums. Family-owned, Pakistan-based factory, 4.7★ Trustpilot rating, trusted by military & sports teams.",
   openGraph: {
     title: "About Panda Patches | 8+ Years Custom Patch Experts",
-    description: "Family-owned custom patch manufacturer with 8+ years experience. Low minimums, free design services, 4.9★ rated.",
+    description: "Family-owned custom patch manufacturer with 8+ years experience. Low minimums, free design services, 4.7★ rated.",
     type: "website",
     url: "https://pandapatches.com/about",
     images: [

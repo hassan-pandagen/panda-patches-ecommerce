@@ -1,0 +1,58 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /studio/
+
+# === GOOGLE ===
+User-agent: Googlebot
+Allow: /
+
+# Allow Google AI (Gemini) to crawl
+User-agent: Google-Extended
+Allow: /
+
+# === OPENAI / CHATGPT ===
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# === ANTHROPIC / CLAUDE ===
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# === PERPLEXITY ===
+User-agent: PerplexityBot
+Allow: /
+
+# === MICROSOFT / BING COPILOT ===
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+# === META AI ===
+User-agent: meta-externalagent
+Allow: /
+
+# === COHERE ===
+User-agent: cohere-ai
+Allow: /
+
+# === COMMON CRAWL (used to train AI models) ===
+User-agent: CCBot
+Allow: /
+
+# === OTHER AI CRAWLERS ===
+User-agent: YouBot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+Sitemap: https://pandapatches.com/sitemap.xml

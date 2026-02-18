@@ -1,12 +1,79 @@
+import type { Metadata } from "next";
 import { client, urlFor } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BlogPostLayout from "@/components/blog/BlogPostLayout";
 import LocationLayout from "@/components/locations/LocationLayout";
-import { generateArticleSchema, generateSchemaScript } from "@/lib/schemas";
+import { generateArticleSchema, generateLocationBusinessSchema, generateSchemaScript } from "@/lib/schemas";
 
 // ISR: Revalidate blog/location/patch-style pages every 1 hour
 export const revalidate = 3600;
+
+// Dynamic metadata for Google/AI search engines
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const data = await getData(params.slug);
+
+  // Location page metadata
+  if (data.location) {
+    const locationName = data.location.locationName;
+    return {
+      title: `Custom Patches in ${locationName} | Panda Patches`,
+      description: `Order custom embroidered patches in ${locationName}. Low minimums, free mockups, fast 7-14 day turnaround. Get a free quote today!`,
+      alternates: { canonical: `https://pandapatches.com/${params.slug}` },
+      openGraph: {
+        title: `Custom Patches in ${locationName} | Panda Patches`,
+        description: `Custom patches delivered anywhere in ${locationName}. Low minimums, free design, fast shipping.`,
+        url: `https://pandapatches.com/${params.slug}`,
+        siteName: 'Panda Patches',
+        type: 'website',
+      },
+    };
+  }
+
+  // Patch style page metadata
+  if (data.patchStyle) {
+    const styleName = data.patchStyle.title;
+    return {
+      title: `${styleName} | Custom Patches | Panda Patches`,
+      description: `Order custom ${styleName} with low minimums, free design services, and fast 7-14 day delivery. Get a free quote today!`,
+      alternates: { canonical: `https://pandapatches.com/${params.slug}` },
+      openGraph: {
+        title: `${styleName} | Panda Patches`,
+        description: `Custom ${styleName} with free mockups and fast delivery.`,
+        url: `https://pandapatches.com/${params.slug}`,
+        siteName: 'Panda Patches',
+        type: 'website',
+      },
+    };
+  }
+
+  // Blog post metadata
+  if (data.blog) {
+    const imageUrl = data.blog.mainImage
+      ? urlFor(data.blog.mainImage).url()
+      : data.blog.image
+        ? urlFor(data.blog.image).url()
+        : 'https://pandapatches.com/assets/logo-panda.svg';
+    return {
+      title: `${data.blog.title} | Panda Patches Blog`,
+      description: data.blog.excerpt || data.blog.description || 'Custom patch tips, tutorials, and industry insights from Panda Patches.',
+      alternates: { canonical: `https://pandapatches.com/${params.slug}` },
+      openGraph: {
+        title: data.blog.title,
+        description: data.blog.excerpt || data.blog.description || '',
+        url: `https://pandapatches.com/${params.slug}`,
+        siteName: 'Panda Patches',
+        type: 'article',
+        images: [{ url: imageUrl }],
+      },
+    };
+  }
+
+  return {
+    title: 'Panda Patches | Custom Iron On Patches',
+    description: 'Low Minimums, Quick Delivery!',
+  };
+}
 
 // Fetch Logic: Try to find Blog, Location Page, OR Patch Style Page
 async function getData(slug: string) {
@@ -44,7 +111,16 @@ export default async function CatchAllPage({ params }: { params: { slug: string 
 
   // OPTION B: It's a Location Page (e.g., "custom-patches-in-alabama")
   if (data.location) {
-    return <LocationLayout data={data.location} />;
+    const locationSchema = generateLocationBusinessSchema(data.location.locationName);
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={generateSchemaScript(locationSchema)}
+        />
+        <LocationLayout data={data.location} />
+      </>
+    );
   }
 
   // OPTION C: It's a Blog Post

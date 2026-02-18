@@ -132,6 +132,21 @@ const TawkToWidget = () => {
       (window as any).Tawk_API = (window as any).Tawk_API || {};
       (window as any).Tawk_LoadStart = new Date();
 
+      // GTM: Fire event when chat is started
+      (window as any).Tawk_API.onChatStarted = function() {
+        if ((window as any).dataLayer) {
+          (window as any).dataLayer.push({ event: 'chat_started' });
+        }
+      };
+
+      // Auto-maximize once per user after 10 seconds
+      setTimeout(function() {
+        if (!localStorage.getItem('tawk_auto_opened') && (window as any).Tawk_API?.maximize) {
+          (window as any).Tawk_API.maximize();
+          localStorage.setItem('tawk_auto_opened', 'true');
+        }
+      }, 10000);
+
       // When Tawk loads, set custom attributes
       (window as any).Tawk_API.onLoad = function() {
         const storedReferral = JSON.parse(sessionStorage.getItem('tawk_referral') || '{}');

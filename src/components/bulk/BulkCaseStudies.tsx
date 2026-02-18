@@ -85,14 +85,14 @@ export default function BulkCaseStudies() {
               <p className="text-[14px] md:text-[15px] text-gray-500 leading-[1.6] mb-4">{study.description}</p>
 
               {/* Stats */}
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-white text-[12px] md:text-[13px] font-bold text-panda-dark px-3 py-1 rounded-full border border-gray-200">
+              <div className="flex flex-nowrap gap-2">
+                <span className="bg-white text-[12px] md:text-[13px] font-bold text-panda-dark px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
                   {study.quantity}
                 </span>
-                <span className="bg-white text-[12px] md:text-[13px] font-bold text-panda-green px-3 py-1 rounded-full border border-gray-200">
+                <span className="bg-white text-[12px] md:text-[13px] font-bold text-panda-green px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
                   {study.type}
                 </span>
-                <span className="bg-white text-[12px] md:text-[13px] font-bold text-gray-500 px-3 py-1 rounded-full border border-gray-200">
+                <span className="bg-white text-[12px] md:text-[13px] font-bold text-gray-500 px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
                   {study.turnaround}
                 </span>
               </div>

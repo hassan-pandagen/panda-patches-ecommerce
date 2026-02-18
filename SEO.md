@@ -703,13 +703,354 @@ src/
 
 ---
 
-**Last Updated:** 2026-02-14 (MASSIVE Revenue Strategy Updated! $100K → $500K Plan! 🚀💰)
+**Last Updated:** 2026-02-18 (SEO Audit Complete - Gaps Identified & Action Plan Added)
 **Current Revenue:** $40K/month from existing customers ✅
 **Immediate Target:** $100K/month (Month 1-2)
 **Ultimate Target:** $500K/month (Month 7-12)
-**Current Phase:** Phase 11 - Bulk/Wholesale Landing Page + Enterprise Sales Strategy
-**Next Step:** BUILD bulk landing page → Launch Google Ads ($200-300/day) → Land 1 enterprise client ($50K) → Hit $100K in Month 1!
-**Status:** ✅ CORE SEO COMPLETE (10/10) | 🚀 SCALING PHASE STARTED (0/6) | 📊 KEYWORD RESEARCH COMPLETE (500+ keywords) | 💰 $40K BASELINE → $100K → $500K PATH MAPPED
+**Current Phase:** Phase 12 - Industry Landing Pages + Local SEO + Content Publishing
+**Next Step:** Publish 3 Tier 1 blog posts → Create Privacy/Terms pages → Fix local SEO metadata → Build industry pages → Google Ads
+**Status:** ✅ CORE SEO COMPLETE (10/10) | 🚀 SCALING PHASE STARTED | 📊 KEYWORD RESEARCH COMPLETE (500+ keywords) | 💰 $40K BASELINE → $100K → $500K PATH MAPPED
+
+---
+
+# 🔍 SEO AUDIT RESULTS (2026-02-18)
+
+**Overall Rating: 7.5 / 10**
+Technical foundation is top 5% for any e-commerce site. Gaps are content and authority — expected at 20 days but must be fixed urgently.
+
+---
+
+## ✅ What's Genuinely Strong
+
+- Dynamic sitemap auto-updating from Sanity CMS ✅
+- robots.txt blocking `/studio/` and `/api/` ✅
+- 8 schema types (Organization, Product, Article, FAQ, Breadcrumb, AggregateRating, Review, LocalBusiness) ✅
+- ISR configured with correct per-content-type cache strategy ✅
+- 301 redirects protecting WordPress rankings ✅
+- Security headers in next.config.mjs ✅
+- Open Graph + Twitter Cards on all pages ✅
+- Canonical URLs throughout ✅
+- Bulk landing page live with Product + FAQ + Breadcrumb schema ✅
+- URL structure 95% preserved from WordPress migration ✅
+
+---
+
+## ❌ GAPS IDENTIFIED & HOW TO FIX THEM
+
+---
+
+### GAP #1: ZERO Blog Content Published
+**Impact: CRITICAL | Revenue Impact: HIGH**
+
+25-post content calendar planned, 0 posts live. Without content, Google sandbox effect keeps you on page 5-8 for competitive terms indefinitely.
+
+**Fix:**
+Publish Tier 1 posts first (highest buyer intent):
+1. "Iron On vs Sew On Patches: Which Is Better?" (5,400/mo searches)
+2. "Custom Patch Pricing Guide 2026" (3,200/mo)
+3. "How to Design a Custom Patch: Step-by-Step" (2,900/mo)
+4. "How to Remove Iron On Patches Without Damage" (2,100/mo)
+5. "Best Custom Patch Companies in 2026" (comparison post - drives conversions)
+
+**Target:** 2 posts/week minimum. After 60 days of consistent publishing, Google exits sandbox mode.
+
+**Files to create:** Add as Sanity blog documents → they auto-appear at `/{slug}` via catch-all route.
+
+---
+
+### GAP #2: No Backlinks
+**Impact: CRITICAL | Domain Authority: 0**
+
+Competitors ranking for "custom patches" (49,500/mo) have DR 40-65. Technical SEO = 30% of rankings. Backlinks = 70%. Without them, even perfect schema doesn't rank.
+
+**Fix (Priority Order):**
+
+1. **Supplier/Partner Links (Free, DR 80+)**
+   - Contact Sanity, Vercel, Stripe asking to be listed as customer case study
+   - Takes 1 email each, no cost
+
+2. **HARO/Qwoted (High Authority, Free)**
+   - Sign up at helpareporter.com and qwoted.com
+   - Respond to journalist queries about small business, custom merchandise, branding
+   - One Forbes/Inc mention = 50 blog posts worth of authority
+
+3. **Local Citations (Foundation Trust Signals)**
+   - Yelp: yelp.com/biz/add
+   - BBB: bbb.org/start
+   - Texas Chamber of Commerce directory
+   - Missouri City TX business directory
+   - Bing Places for Business (separate from Google)
+   - Apple Maps Connect
+
+4. **Niche Community Links (Referral Traffic + Authority)**
+   - Reddit: r/Embroidery, r/DIY, r/streetwear, r/Patches
+   - Facebook Groups: biker clubs, fire department groups, youth sports leagues
+   - Help people, mention Panda Patches naturally
+
+5. **Guest Posts (Niche-Relevant Backlinks)**
+   - Write for print/apparel industry blogs
+   - Screen-printing industry sites, promotional products blogs
+   - Target sites covering small business merchandise, custom apparel
+
+**Monthly Backlink Goal:** 10-15 new links/month for first 6 months.
+
+---
+
+### GAP #3: Phase 12 Industry Pages Not Built
+**Impact: HIGH | High-LTV Buyers**
+
+Fire departments, law enforcement, sports leagues search with extremely specific intent and have very high order values ($2,000-$20,000+). These pages are planned but not built.
+
+**Pages to create:**
+
+| Page | URL | Primary Keyword | Est. Order Value |
+|------|-----|-----------------|-----------------|
+| Fire Department | `/custom-fire-department-patches` | "custom fire department patches" | $3K-$15K |
+| Law Enforcement | `/custom-law-enforcement-patches` | "custom police patches" | $2K-$10K |
+| Sports Teams | `/custom-sports-team-patches` | "custom sports patches bulk" | $1K-$8K |
+| Corporate | `/custom-corporate-patches` | "corporate patches bulk" | $5K-$20K |
+
+**Each page needs:**
+- Hero H1 targeting primary keyword
+- Industry-specific content (regulations, common designs, order volumes)
+- Product schema with relevant keywords
+- FAQ schema (4-6 industry-specific questions)
+- Breadcrumb schema: Home → Industry Pages → {Page Name}
+- Internal links to bulk landing page + relevant product pages
+- ISR revalidation: 24 hours
+- File: `src/app/{slug}/page.tsx` or dedicated directory
+
+**See Phase 12 section above for detailed content outline.**
+
+---
+
+### GAP #4: Privacy Policy + Terms Pages Missing
+**Impact: MEDIUM | Legal Liability + E-E-A-T**
+
+Currently `/privacy-policy` and `/terms-conditions` are 302-redirected to homepage. This is:
+- A Google E-E-A-T trust signal failure (Google explicitly checks for these)
+- A legal liability (Meta Pixel, GTM, Tawk.to = GDPR/CCPA tracking without disclosure)
+- Bad UX (users who want to read terms hit homepage)
+
+**Fix:**
+1. Use Termly (termly.io) or Iubenda to generate compliant policies — free tier available
+2. Create `src/app/privacy-policy/page.tsx` with static content
+3. Create `src/app/terms-of-service/page.tsx` with static content
+4. Update next.config.mjs: change 302 redirects to actual pages (remove those redirect rules)
+5. Add links to both pages in site footer
+
+**Time to fix: 2-3 hours**
+
+```tsx
+// src/app/privacy-policy/page.tsx
+export const metadata = {
+  title: 'Privacy Policy | Panda Patches',
+  description: 'Privacy policy for Panda Patches...',
+};
+export default function PrivacyPolicy() {
+  return <main>{/* generated policy content */}</main>;
+}
+```
+
+---
+
+### GAP #5: Web Manifest Incomplete
+**Impact: LOW | Lighthouse Score + PWA Signals**
+
+`public/site.webmanifest` has empty `name` and `short_name` fields. Google Lighthouse flags this.
+
+**Fix (10 minutes):**
+Open `public/site.webmanifest` and update:
+```json
+{
+  "name": "Panda Patches",
+  "short_name": "PandaPatches",
+  "description": "Custom Iron On Patches - Low Minimums, Quick Delivery",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#FFD700"
+}
+```
+
+---
+
+### GAP #6: Google Business Profile Not Confirmed
+**Impact: MEDIUM | Local Map Pack Rankings**
+
+A verified Google Business Profile can rank in the Map Pack (top 3 local results) immediately, even for brand-new domains. GBP has separate authority from your website domain.
+
+**Fix:**
+1. Go to business.google.com
+2. Claim/create listing for "Panda Patches"
+3. Categories: "Embroidery Shop", "Promotional Products Supplier", "Custom Clothing Store"
+4. Add: all photos, hours (Daily 11am-7pm), phone (+1 302 250 4340), website, description
+5. Verify via postcard (takes ~5 days) or phone/email if available
+6. Once verified: post weekly updates, respond to all reviews within 24 hours
+
+**Local keywords GBP can rank for immediately:**
+- "custom patches Missouri City TX"
+- "custom patches Houston"
+- "custom patches Texas"
+- "embroidery shop near me" (for online shops, appears in broader searches)
+
+---
+
+### GAP #7: Local SEO Pages — Infrastructure Built, Content Missing
+**Impact: HIGH | Long-tail Local Keywords**
+
+Good news: The full local page infrastructure already exists.
+
+**What's already built ✅:**
+- `sanity/schemas/locationPage.ts` — schema with auto-slug: "custom-patches-in-{location}"
+- `src/components/locations/LocationLayout.tsx` — complete page component (Hero, Trust, PickPatch, Process, FAQ, Industry, CTA)
+- Catch-all route `src/app/[slug]/page.tsx` handles location pages
+- Sitemap includes location pages dynamically
+
+**What's missing ❌:**
+
+**1. generateMetadata in catch-all route for location pages**
+`src/app/[slug]/page.tsx` has NO `generateMetadata` export. Location pages render with no `<title>` or `<meta description>` in Google search results.
+
+Fix — add to `src/app/[slug]/page.tsx`:
+```tsx
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const data = await fetchPageData(params.slug);
+  if (data?.locationPage) {
+    return {
+      title: `Custom Patches in ${data.locationPage.locationName} | Panda Patches`,
+      description: `Order custom embroidered patches in ${data.locationPage.locationName}. Low minimums, free mockups, 7-14 day turnaround. Get a free quote today!`,
+      alternates: { canonical: `https://pandapatches.com/custom-patches-in-${params.slug}` },
+      openGraph: {
+        title: `Custom Patches in ${data.locationPage.locationName}`,
+        description: `Custom patches delivered anywhere in ${data.locationPage.locationName}`,
+      },
+    };
+  }
+  // ... existing blog metadata
+}
+```
+
+**2. LocalBusiness schema on location pages**
+Add to `src/lib/schemas.ts`:
+```ts
+export function generateLocalBusinessSchema(locationName: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": `Custom Patches in ${locationName} | Panda Patches`,
+    "description": `Custom embroidered patches delivered to ${locationName}`,
+    "telephone": "+1 302 250 4340",
+    "email": "admin@pandapatches.com",
+    "url": `https://pandapatches.com/custom-patches-in-${locationName.toLowerCase().replace(/\s+/g, '-')}`,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Missouri City",
+      "addressRegion": "TX",
+      "addressCountry": "US"
+    },
+    "areaServed": { "@type": "State", "name": locationName },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "50" }
+  };
+}
+```
+
+**3. Zero Sanity location documents created**
+No actual location pages exist in Sanity. Must create them to appear in search.
+
+**Target Locations to Create (Priority Order):**
+
+Tier 1 — High Population States (create first):
+- California: `custom-patches-in-california`
+- Texas: `custom-patches-in-texas`
+- New York: `custom-patches-in-new-york`
+- Florida: `custom-patches-in-florida`
+- Illinois: `custom-patches-in-illinois`
+
+Tier 2 — Mid-Size States:
+- Pennsylvania, Ohio, Georgia, North Carolina, Michigan
+- Washington, Arizona, Tennessee, Colorado, Virginia
+
+Tier 3 — Remaining States (50 total = 50 pages = powerful local SEO signal)
+
+**Content for each page:**
+- Use `seoSection1` for local-specific intro: "Looking for custom patches in [State]? Panda Patches ships nationwide with 7-14 day delivery to [State]..."
+- Use `seoSection2` for local industries: "Serving [State] fire departments, sports teams, biker clubs, and businesses"
+- Each page should have unique copy — don't copy-paste between locations
+
+**Local keyword pattern:** "custom patches in [state/city]" + "custom embroidered patches [state]" + "[city] custom patch maker"
+
+---
+
+### GAP #8: Hardcoded Trustpilot Review Data
+**Impact: LOW-MEDIUM | Schema Freshness**
+
+Organization schema and Product schema have `reviewCount: 50, ratingValue: 4.9` hardcoded.
+When you grow to 100, 200, 500 reviews — schema data is stale. Google can detect discrepancies.
+
+**Fix Options:**
+- **Option A (Simple):** Set monthly calendar reminder to update count in `src/lib/schemas.ts`
+- **Option B (Automated):** Integrate Trustpilot Business API to fetch live rating data
+  - Trustpilot Business tier required (~$300/mo)
+  - Create API route: `/api/trustpilot-rating` that fetches and caches rating
+
+**Recommended now:** Manual monthly updates until review count grows significantly (200+).
+
+---
+
+## 📊 UPDATED PROGRESS TRACKER
+
+### Phase 12: Industry Landing Pages ⏳ NEXT
+- [ ] Fire Department Patches page (`/custom-fire-department-patches`)
+- [ ] Police & Law Enforcement page (`/custom-law-enforcement-patches`)
+- [ ] Sports Team Patches page (`/custom-sports-team-patches`)
+- [ ] Corporate Employee Patches page (`/custom-corporate-patches`)
+
+### Phase 13: Quick Wins from Audit ⏳ NEXT
+- [ ] Create `/privacy-policy` page (legal + E-E-A-T)
+- [ ] Create `/terms-of-service` page (legal + E-E-A-T)
+- [ ] Fix `public/site.webmanifest` (name + short_name)
+- [ ] Set up Google Business Profile + verify
+- [ ] Sign up for HARO + Qwoted (backlink building)
+- [ ] Submit to 5 local citation directories (Yelp, BBB, Bing Places, Apple Maps, Chamber)
+
+### Phase 14: Local SEO Pages ⏳ PLANNED
+- [ ] Add `generateMetadata` to `src/app/[slug]/page.tsx` for location pages
+- [ ] Add `generateLocalBusinessSchema()` to `src/lib/schemas.ts`
+- [ ] Inject LocalBusiness schema in `src/components/locations/LocationLayout.tsx`
+- [ ] Create Tier 1 location pages in Sanity (5 states: CA, TX, NY, FL, IL)
+- [ ] Create Tier 2 location pages in Sanity (10 states)
+- [ ] Create remaining location pages (35 states = 50 total)
+
+### Phase 15: Blog Content ⏳ PLANNED (Week 2-8)
+- [ ] Tier 1 Blog Posts (5 posts — high buyer intent):
+  - "Iron On vs Sew On Patches: Which Is Better?" (5,400/mo)
+  - "Custom Patch Pricing Guide 2026" (3,200/mo)
+  - "How to Design a Custom Patch: Step-by-Step" (2,900/mo)
+  - "How to Remove Iron On Patches Without Damage" (2,100/mo)
+  - "Best Custom Patch Companies 2026: Honest Comparison" (conversion driver)
+- [ ] Tier 2 Blog Posts (5 posts — medium priority)
+- [ ] Tier 3 Niche Posts (10 posts)
+- [ ] Tier 4 How-To Guides (5 posts)
+
+### Phase 16: Authority Building (Ongoing)
+- [ ] 10-15 backlinks/month target
+- [ ] Monthly Trustpilot review count update in `src/lib/schemas.ts`
+- [ ] Monthly GSC ranking check for target keywords
+- [ ] Quarterly content audit and refresh
+
+---
+
+## 🗓️ UPDATED TIMELINE
+
+| Phase | Tasks | Target Date | Status |
+|-------|-------|-------------|--------|
+| Phase 12 | Industry Landing Pages (4 pages) | 2026-02-28 | ⏳ NEXT |
+| Phase 13 | Quick Wins from Audit | 2026-02-22 | ⏳ NEXT |
+| Phase 14 | Local SEO Pages (metadata fix + 50 locations) | 2026-03-15 | ⏳ PLANNED |
+| Phase 15 | Tier 1 Blog Posts (5 posts) | 2026-03-07 | ⏳ PLANNED |
+| Phase 15 | Tier 2-4 Blog Posts (20 posts) | 2026-03-31 | ⏳ PLANNED |
+| Phase 16 | Authority/Backlink Building | Ongoing | ⏳ ONGOING |
 
 ---
 

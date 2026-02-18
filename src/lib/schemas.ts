@@ -21,6 +21,39 @@ export function generateSchemaScript(schema: Record<string, any>) {
 }
 
 // ============================================
+// 0. PERSON SCHEMA (Imran Raza - Founder Authority for E-E-A-T + AEO)
+// ============================================
+
+export function generatePersonSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Imran Raza",
+    "jobTitle": "Founder & CEO",
+    "description": "Founder of Panda Patches with 13 years of hands-on experience in embroidered patches and textile manufacturing. Expert in custom patch production, quality control, and textile industry standards.",
+    "url": "https://pandapatches.com/about",
+    "sameAs": [
+      "https://www.linkedin.com/in/imran-raza-ladhani/"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Panda Patches",
+      "url": "https://pandapatches.com"
+    },
+    "knowsAbout": [
+      "Custom Embroidered Patches",
+      "Iron On Patches",
+      "Textile Manufacturing",
+      "Custom Patch Design",
+      "Wholesale Patches",
+      "Embroidery Production",
+      "Military & Tactical Patches",
+      "Velcro Patches"
+    ]
+  };
+}
+
+// ============================================
 // 1. ORGANIZATION SCHEMA (Global - for layout.tsx)
 // ============================================
 
@@ -37,6 +70,11 @@ export function generateOrganizationSchema() {
     "description": "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 8+ years of excellence.",
     "email": "admin@pandapatches.com",
     "telephone": "+1-302-250-4340",
+    "founder": {
+      "@type": "Person",
+      "name": "Imran Raza",
+      "sameAs": "https://www.linkedin.com/in/imran-raza-ladhani/"
+    },
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Missouri City",
@@ -69,8 +107,8 @@ export function generateOrganizationSchema() {
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "50",
+      "ratingValue": "4.7",
+      "reviewCount": "55",
       "bestRating": "5",
       "worstRating": "1"
     },
@@ -157,8 +195,8 @@ export function generateProductSchema(params: ProductSchemaParams) {
   if (includeReviews) {
     productSchema.aggregateRating = {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "50",
+      "ratingValue": "4.7",
+      "reviewCount": "55",
       "bestRating": "5",
       "worstRating": "1"
     };
@@ -190,8 +228,8 @@ export function generateArticleSchema(params: ArticleSchemaParams) {
     dateModified,
     image,
     url,
-    authorName = "Panda Patches Team",
-    authorUrl = "https://pandapatches.com/about",
+    authorName = "Imran Raza",
+    authorUrl = "https://www.linkedin.com/in/imran-raza-ladhani/",
   } = params;
 
   return {
@@ -203,9 +241,12 @@ export function generateArticleSchema(params: ArticleSchemaParams) {
     "datePublished": datePublished,
     "dateModified": dateModified,
     "author": {
-      "@type": "Organization",
+      "@type": "Person",
       "name": authorName,
-      "url": authorUrl
+      "url": authorUrl,
+      "sameAs": "https://www.linkedin.com/in/imran-raza-ladhani/",
+      "jobTitle": "Founder & CEO, Panda Patches",
+      "description": "13 years of expertise in embroidered patches and textile manufacturing"
     },
     "publisher": {
       "@type": "Organization",
@@ -343,7 +384,7 @@ export function generateReviewSchema(params: ReviewSchemaParams) {
 }
 
 // ============================================
-// 8. LOCAL BUSINESS SCHEMA (optional enhancement)
+// 8. LOCAL BUSINESS SCHEMA (global - for homepage/about)
 // ============================================
 
 export function generateLocalBusinessSchema() {
@@ -362,10 +403,15 @@ export function generateLocalBusinessSchema() {
     "email": "admin@pandapatches.com",
     "url": "https://pandapatches.com",
     "priceRange": "$$",
+    "founder": {
+      "@type": "Person",
+      "name": "Imran Raza",
+      "sameAs": "https://www.linkedin.com/in/imran-raza-ladhani/"
+    },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "50"
+      "ratingValue": "4.7",
+      "reviewCount": "55"
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -381,6 +427,93 @@ export function generateLocalBusinessSchema() {
       "opens": "11:00",
       "closes": "19:00"
     }
+  };
+}
+
+// ============================================
+// 9. LOCATION-SPECIFIC LOCAL BUSINESS SCHEMA (for state/city landing pages)
+// ============================================
+
+export function generateLocationBusinessSchema(locationName: string) {
+  const slug = locationName.toLowerCase().replace(/\s+/g, '-');
+  return {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "Store"],
+    "name": `Custom Patches in ${locationName} | Panda Patches`,
+    "description": `Order custom embroidered patches delivered to ${locationName}. Low minimums, free mockups, fast 7-14 day turnaround. Founded by Imran Raza with 13 years of patch manufacturing expertise.`,
+    "telephone": "+1-302-250-4340",
+    "email": "admin@pandapatches.com",
+    "url": `https://pandapatches.com/custom-patches-in-${slug}`,
+    "image": "https://pandapatches.com/assets/logo-panda.svg",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Missouri City",
+      "addressRegion": "TX",
+      "addressCountry": "US"
+    },
+    "areaServed": {
+      "@type": "State",
+      "name": locationName
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Imran Raza",
+      "sameAs": "https://www.linkedin.com/in/imran-raza-ladhani/"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.7",
+      "reviewCount": "55",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  };
+}
+
+// ============================================
+// 10. HOW-TO SCHEMA (for process/ordering section - AEO)
+// ============================================
+
+export function generateHowToSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Order Custom Patches from Panda Patches",
+    "description": "Order custom embroidered patches in 4 simple steps. Free mockup, no minimum order, 7-14 day delivery.",
+    "totalTime": "PT14D",
+    "supply": [
+      { "@type": "HowToSupply", "name": "Artwork file or design idea" }
+    ],
+    "tool": [
+      { "@type": "HowToTool", "name": "Online quote calculator" }
+    ],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Submit Your Design",
+        "text": "Upload your artwork or describe your idea. Our designers send a free digital mockup within 24 hours."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Approve Your Mockup",
+        "text": "Review the free digital proof. Request unlimited revisions until you are 100% satisfied."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Place Your Order",
+        "text": "Confirm patch type, size, quantity, and backing. No minimum order required. Pay securely online."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Receive Your Patches",
+        "text": "Your custom patches are manufactured and delivered to your door within 7-14 business days."
+      }
+    ]
   };
 }
 

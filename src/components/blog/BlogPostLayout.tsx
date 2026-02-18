@@ -26,10 +26,28 @@ export default function BlogPostLayout({ post }: { post: any }) {
           </div>
         )}
 
+        {/* Author Byline (before content) */}
+        <div className="flex items-center gap-3 mb-10 pb-8 border-b border-gray-100">
+          <div className="w-10 h-10 rounded-full bg-panda-dark flex items-center justify-center flex-shrink-0">
+            <span className="text-white font-black text-sm">IR</span>
+          </div>
+          <div>
+            <a
+              href="https://www.linkedin.com/in/imran-raza-ladhani/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[15px] font-bold text-panda-dark hover:underline"
+            >
+              Imran Raza
+            </a>
+            <p className="text-[13px] text-gray-500">Founder & CEO · 13 years in patch manufacturing</p>
+          </div>
+        </div>
+
         {/* Content Body - Custom Styling */}
         <div className="text-gray-800">
-          <PortableText 
-            value={post.content} 
+          <PortableText
+            value={post.content}
             components={{
               block: {
                 // H1 in Body
@@ -81,6 +99,33 @@ export default function BlogPostLayout({ post }: { post: any }) {
               }
             }}
           />
+        </div>
+
+        {/* Author Bio Card (bottom) */}
+        <div className="mt-16 pt-10 border-t border-gray-100">
+          <div className="bg-gray-50 rounded-2xl p-8 flex flex-col sm:flex-row items-start gap-6">
+            <div className="w-16 h-16 rounded-full bg-panda-dark flex items-center justify-center flex-shrink-0">
+              <span className="text-white font-black text-2xl">IR</span>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-1">Written by</p>
+              <a
+                href="https://www.linkedin.com/in/imran-raza-ladhani/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[20px] font-black text-panda-dark hover:underline block mb-1"
+              >
+                Imran Raza
+              </a>
+              <p className="text-[14px] text-gray-500 font-medium mb-3">Founder & CEO, Panda Patches</p>
+              <p className="text-[15px] text-gray-600 leading-[1.8]">
+                Imran brings 13 years of hands-on expertise in embroidered patches and textile manufacturing.
+                As the founder of Panda Patches, he oversees quality control, production standards, and customer satisfaction
+                for thousands of custom patch orders each year. He founded the company in 2016 to make premium custom patches
+                accessible with no minimum orders and a fast turnaround.
+              </p>
+            </div>
+          </div>
         </div>
 
       </article>

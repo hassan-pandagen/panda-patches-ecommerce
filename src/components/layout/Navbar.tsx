@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MessageCircle, ChevronDown, Package, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // CONFIGURATION: Define your menus here
 const navLinks = [
@@ -42,7 +42,7 @@ const navLinks = [
     dropdown: [
       { name: "Thread Color Chart", href: "/assets/thread-color-chart" },
       { name: "Iron On Instructions", href: "/assets/iron-on-instructions" }
-    ] 
+    ]
   },
   { name: "BLOGS", href: "/blogs" },
   { name: "CONTACT US", href: "/contact" },
@@ -52,16 +52,30 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="w-full bg-white relative z-50">
-      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 xl:px-12 h-[80px] md:h-[100px] flex items-center justify-between">
+    <header className={`
+      sticky top-0 z-50 w-full transition-all duration-300
+      xl:bg-white xl:shadow-none
+      ${scrolled
+        ? 'bg-white/95 backdrop-blur-md shadow-md'
+        : 'bg-transparent xl:bg-white'
+      }
+    `}>
+      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 xl:px-12 h-[70px] md:h-[100px] flex items-center justify-between">
 
         {/* === LEFT GROUP: Logo + Nav together === */}
         <div className="flex items-center gap-4">
 
           {/* === 1. LOGO === */}
-          <Link href="/" className="flex-shrink-0 relative w-[140px] h-[45px] md:w-[160px] md:h-[50px]">
+          <Link href="/" className="flex-shrink-0 relative w-[130px] h-[42px] md:w-[160px] md:h-[50px]">
              <Image
                src="/assets/logo-panda.svg"
                alt="Panda Patches"
@@ -71,20 +85,7 @@ export default function Navbar() {
              />
           </Link>
 
-          {/* === MOBILE HAMBURGER BUTTON (Shows on mobile only) === */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="xl:hidden w-[50px] h-[50px] bg-gradient-to-br from-[#051C05] to-[#0a3d0a] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg z-50"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X size={24} className="text-[#DFFF00]" strokeWidth={2.5} />
-            ) : (
-              <Menu size={24} className="text-[#DFFF00]" strokeWidth={2.5} />
-            )}
-          </button>
-
-          {/* === 2. NAVIGATION (Right next to logo) === */}
+          {/* === 2. NAVIGATION (Right next to logo, desktop only) === */}
           <nav className="hidden xl:flex items-center bg-[#F0F0F0] rounded-full px-2 py-1.5 shadow-sm">
           {navLinks.map((link: any) => {
             const isActive = pathname === link.href;
@@ -106,12 +107,12 @@ export default function Navbar() {
                   `}
                 >
                   {link.name}
-                  
+
                   {/* The Arrow Icon */}
                   {hasDropdown && (
-                    <ChevronDown 
-                      size={14} 
-                      className={`ml-1 transition-transform duration-300 group-hover:rotate-180 ${isActive ? "text-[#DFFF00]" : "text-gray-500"}`} 
+                    <ChevronDown
+                      size={14}
+                      className={`ml-1 transition-transform duration-300 group-hover:rotate-180 ${isActive ? "text-[#DFFF00]" : "text-gray-500"}`}
                     />
                   )}
                 </Link>
@@ -119,19 +120,19 @@ export default function Navbar() {
                 {/* === DROPDOWN MENU (Appears on Hover) === */}
                 {hasDropdown && (
                   <div className="
-                    absolute top-full left-0 mt-2 w-[220px] 
-                    bg-white rounded-xl shadow-xl border border-gray-100 
-                    opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                    absolute top-full left-0 mt-2 w-[220px]
+                    bg-white rounded-xl shadow-xl border border-gray-100
+                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
                     transition-all duration-300 transform group-hover:translate-y-0 translate-y-2
                     overflow-hidden z-50
                   ">
                     <div className="flex flex-col py-2">
                       {link.dropdown.map((subItem: any, idx: number) => (
-                        <Link 
-                          key={idx} 
+                        <Link
+                          key={idx}
                           href={subItem.href}
                           className="
-                            px-5 py-3 text-[13px] font-medium text-gray-600 
+                            px-5 py-3 text-[13px] font-medium text-gray-600
                             hover:bg-[#F9FAF5] hover:text-panda-green hover:pl-7
                             transition-all duration-200 border-b border-gray-50 last:border-0
                           "
@@ -150,22 +151,38 @@ export default function Navbar() {
 
         </div>{/* end left group */}
 
-        {/* === 3. SOCIALS & ACTION BUTTONS (Hidden on mobile) === */}
-        <div className="hidden xl:flex items-center gap-2.5 flex-nowrap flex-shrink-0">
+        {/* === RIGHT: Hamburger (mobile) + Socials/Buttons (desktop) === */}
+        <div className="flex items-center gap-2.5 flex-shrink-0">
+
+          {/* === MOBILE HAMBURGER BUTTON === */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="xl:hidden w-[44px] h-[44px] bg-[#051C05] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X size={22} className="text-[#DFFF00]" strokeWidth={2.5} />
+            ) : (
+              <Menu size={22} className="text-[#DFFF00]" strokeWidth={2.5} />
+            )}
+          </button>
+
+          {/* === SOCIALS & ACTION BUTTONS (Desktop only) === */}
+          <div className="hidden xl:flex items-center gap-2.5 flex-nowrap">
           <div className="hidden lg:flex gap-2">
-            {/* 1. Facebook */}
+            {/* Facebook */}
             <a href="#" className="w-[36px] h-[36px] bg-[#051C05] rounded-full flex items-center justify-center hover:scale-110 transition-transform group">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[17px] h-[17px] text-[#DFFF00]"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
             </a>
-            {/* 2. Instagram */}
+            {/* Instagram */}
             <a href="#" className="w-[36px] h-[36px] bg-[#051C05] rounded-full flex items-center justify-center hover:scale-110 transition-transform group">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[17px] h-[17px] text-[#DFFF00]"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
             </a>
-            {/* 3. LinkedIn */}
+            {/* LinkedIn */}
             <a href="#" className="w-[36px] h-[36px] bg-[#051C05] rounded-full flex items-center justify-center hover:scale-110 transition-transform group">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[17px] h-[17px] text-[#DFFF00]"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
             </a>
-            {/* 4. TikTok */}
+            {/* TikTok */}
             <a href="#" className="w-[36px] h-[36px] bg-[#051C05] rounded-full flex items-center justify-center hover:scale-110 transition-transform group">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[17px] h-[17px] text-[#DFFF00]"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg>
             </a>
@@ -192,10 +209,14 @@ export default function Navbar() {
             <Package size={18} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" />
             <span>Sample Box</span>
           </Link>
-        </div>
+          </div>{/* end desktop-only socials/buttons */}
+
+        </div>{/* end right group */}
 
       </div>
-      <div className="w-full h-[1px] bg-gray-200 opacity-50"></div>
+
+      {/* Desktop divider only */}
+      <div className="hidden xl:block w-full h-[1px] bg-gray-200 opacity-50" />
 
       {/* === MOBILE MENU OVERLAY === */}
       {isMobileMenuOpen && (
@@ -229,7 +250,6 @@ export default function Navbar() {
 
             return (
               <div key={link.name} className="border-b border-gray-100 last:border-0">
-                {/* Main Link */}
                 {hasDropdown ? (
                   <div className="flex items-center hover:bg-gray-50 transition-colors">
                     <Link
