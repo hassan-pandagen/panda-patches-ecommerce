@@ -77,9 +77,9 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
 
   const currentSamples = workSamples[activeType] || [];
 
-  const slides = currentSamples.slice(0, 8).map((img: any) => ({
-    src: urlFor(img).url(),
-    alt: `${activeType} patch sample`,
+  const slides = currentSamples.slice(0, 8).map((img: any, idx: number) => ({
+    src: urlFor(img.image || img).url(),
+    alt: img.alt || `${activeType} custom patch work sample ${idx + 1} | Panda Patches`,
   }));
 
   const openLightbox = (index: number) => {
@@ -124,19 +124,19 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
             <p className="text-[12px] md:text-[13px] font-bold text-gray-400 uppercase tracking-widest text-center mb-5">
               Our {activeType} Work
             </p>
-            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-              {currentSamples.slice(0, 8).map((img: any, idx: number) => (
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 max-w-[1100px] mx-auto">
+              {currentSamples.slice(0, 6).map((img: any, idx: number) => (
                 <div
                   key={idx}
                   onClick={() => openLightbox(idx)}
-                  className="relative w-[140px] h-[140px] md:w-[160px] md:h-[160px] lg:w-[180px] lg:h-[180px] rounded-[12px] overflow-hidden border-2 border-white shadow-sm hover:shadow-xl transition-all duration-300 cursor-zoom-in group"
+                  className="relative w-full aspect-square rounded-[12px] overflow-hidden border-2 border-white shadow-sm hover:shadow-xl transition-all duration-300 cursor-zoom-in group"
                 >
                   <Image
-                    src={urlFor(img).width(400).height(400).url()}
-                    alt={`${activeType} patch sample ${idx + 1}`}
+                    src={urlFor(img.image || img).width(400).height(400).url()}
+                    alt={img.alt || `${activeType} custom patch sample showcasing detailed craftsmanship | Panda Patches`}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    sizes="180px"
+                    sizes="(max-width: 768px) 33vw, 180px"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                     <div className="bg-white/90 px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-opacity">

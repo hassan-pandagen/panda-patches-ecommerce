@@ -5,10 +5,19 @@ import BulkQuoteForm from "./BulkQuoteForm";
 
 interface BulkHeroProps {
   heroImage?: string | null;
-  trustBadges?: string[];
+  trustBadges?: Array<{ url: string; alt: string }>;
+  customHeading?: string;
+  customSubheading?: string;
+  customDescription?: string;
 }
 
-export default function BulkHero({ heroImage, trustBadges = [] }: BulkHeroProps) {
+export default function BulkHero({
+  heroImage,
+  trustBadges = [],
+  customHeading,
+  customSubheading,
+  customDescription
+}: BulkHeroProps) {
   return (
     <section className="w-full pt-8 md:pt-12 pb-12 md:pb-20 bg-white">
       <div className="container mx-auto px-4 md:px-6 max-w-[1200px]">
@@ -19,14 +28,24 @@ export default function BulkHero({ heroImage, trustBadges = [] }: BulkHeroProps)
           <div className="flex-1 text-center lg:text-left">
             {/* H1 */}
             <h1 className="text-[28px] md:text-[42px] lg:text-[48px] font-black text-panda-dark leading-[1.1] tracking-tight mb-4">
-              Custom Patches at Scale{" "}
-              <span className="text-panda-green">From 50 to 50,000 Pieces</span>
+              {customHeading || (
+                <>
+                  Custom Patches at Scale{" "}
+                  <span className="text-panda-green">From 50 to 50,000 Pieces</span>
+                </>
+              )}
             </h1>
 
             {/* Subheadline */}
+            {customSubheading && (
+              <p className="text-[16px] md:text-[19px] font-bold text-panda-dark leading-[1.3] mb-3 max-w-[560px] mx-auto lg:mx-0">
+                {customSubheading}
+              </p>
+            )}
+
+            {/* Description */}
             <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.6] font-medium mb-5 max-w-[560px] mx-auto lg:mx-0">
-              Trusted by brands, sports teams, fire departments, and Fortune 500 companies.
-              2-week turnaround, no setup fees, free mockups included.
+              {customDescription || "Trusted by brands, sports teams, fire departments, and Fortune 500 companies. 2-week turnaround, no setup fees, free mockups included."}
             </p>
 
             {/* Trust Bar - Compact */}
@@ -51,11 +70,11 @@ export default function BulkHero({ heroImage, trustBadges = [] }: BulkHeroProps)
             {/* Trust Badge Strip */}
             {trustBadges.length > 0 && (
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 max-w-[480px] mx-auto lg:mx-0 mb-6">
-                {trustBadges.map((badge, idx) => (
+                {trustBadges.filter((badge) => badge?.url).map((badge, idx) => (
                   <div key={idx} className="relative h-[44px] w-[96px] flex-shrink-0">
                     <Image
-                      src={badge}
-                      alt="Trust Badge"
+                      src={urlFor(badge.url).url()}
+                      alt={badge.alt || "Trust badge | Panda Patches"}
                       fill
                       className="object-contain"
                       sizes="96px"

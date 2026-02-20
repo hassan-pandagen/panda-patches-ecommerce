@@ -36,8 +36,8 @@ const Thumbnail = memo(({
       `}
     >
       <Image
-        src={urlFor(img).width(200).quality(85).fit('max').url()}
-        alt="Thumbnail"
+        src={urlFor(img.image || img).width(200).quality(85).fit('max').url()}
+        alt={img.alt || "Custom patch thumbnail"}
         fill
         className="object-contain p-2"
         quality={85}
@@ -62,9 +62,9 @@ export default function ProductGallery({ images }: { images: any[] }) {
   if (!images || images.length === 0) return <div className="w-full h-[400px] bg-gray-50 rounded-xl flex items-center justify-center text-gray-400">No Images</div>;
 
   // Prepare slides for lightbox - load full resolution without forced dimensions
-  const slides = images.map((img: any) => ({
-    src: urlFor(img).width(2000).quality(90).fit('max').url(),
-    alt: "Product Image"
+  const slides = images.map((img: any, idx: number) => ({
+    src: urlFor(img.image || img).width(2000).quality(90).fit('max').url(),
+    alt: img.alt || `Custom patch product image ${idx + 1} | Panda Patches`
   }));
 
   const openLightbox = (index: number) => {
@@ -82,8 +82,8 @@ export default function ProductGallery({ images }: { images: any[] }) {
             {images[0] && (
               <div className="relative w-full h-full">
                 <Image
-                  src={urlFor(images[0]).width(1200).quality(95).fit('max').url()}
-                  alt="Product"
+                  src={urlFor(images[0].image || images[0]).width(1200).quality(95).fit('max').url()}
+                  alt={images[0].alt || "Custom embroidered patch product display | Panda Patches"}
                   fill
                   className="object-contain"
                   quality={95}
@@ -113,8 +113,8 @@ export default function ProductGallery({ images }: { images: any[] }) {
               className="relative w-full h-full bg-gradient-to-br from-gray-50 via-white to-gray-50 cursor-zoom-in group"
             >
               <Image
-                src={urlFor(img).width(1200).quality(95).fit('max').url()}
-                alt={`Product Image ${idx + 1}`}
+                src={urlFor(img.image || img).width(1200).quality(95).fit('max').url()}
+                alt={img.alt || `Custom patch product showcase ${idx + 1} | Panda Patches`}
                 fill
                 className="object-contain p-4 md:p-6 group-hover:scale-[1.02] transition-transform duration-500"
                 quality={95}
@@ -141,8 +141,8 @@ export default function ProductGallery({ images }: { images: any[] }) {
             <SwiperSlide key={idx} className="!w-[90px] md:!w-[120px]">
               <div className="relative w-[90px] h-[90px] md:w-[120px] md:h-[120px] rounded-[12px] md:rounded-[16px] cursor-pointer border-2 border-gray-200 hover:border-gray-300 transition-all duration-200 overflow-hidden bg-gradient-to-br from-gray-50 to-white">
                 <Image
-                  src={urlFor(img).width(200).quality(85).fit('max').url()}
-                  alt={`Thumbnail ${idx + 1}`}
+                  src={urlFor(img.image || img).width(200).quality(85).fit('max').url()}
+                  alt={img.alt || `Patch thumbnail ${idx + 1}`}
                   fill
                   className="object-contain p-2"
                   quality={85}
@@ -158,8 +158,8 @@ export default function ProductGallery({ images }: { images: any[] }) {
           {images.slice(0, 4).map((img: any, idx: number) => (
             <div key={idx} className="relative w-[90px] h-[90px] md:w-[120px] md:h-[120px] rounded-[12px] md:rounded-[16px] border-2 border-gray-200 overflow-hidden bg-gradient-to-br from-gray-50 to-white flex-shrink-0">
               <Image
-                src={urlFor(img).width(200).quality(85).fit('max').url()}
-                alt={`Thumbnail ${idx + 1}`}
+                src={urlFor(img.image || img).width(200).quality(85).fit('max').url()}
+                alt={img.alt || `Patch thumbnail ${idx + 1}`}
                 fill
                 className="object-contain p-2"
                 quality={85}

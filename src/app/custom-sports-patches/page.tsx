@@ -1,10 +1,90 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import BulkHero from "@/components/bulk/BulkHero";
+import WorkGallery from "@/components/bulk/WorkGallery";
+import CategoryFAQ from "@/components/bulk/CategoryFAQ";
+import Promises from "@/components/home/Promises";
 import ProcessSection from "@/components/home/ProcessSection";
 import CTASection from "@/components/home/CTASection";
-import { generateFAQSchema, generateProductSchema, generateSchemaScript } from "@/lib/schemas";
+import { generateSchemaScript } from "@/lib/schemas";
+import { client } from "@/lib/sanity";
+
+// Sports-specific FAQs
+const sportsFAQs = [
+  {
+    question: "What sports team patches do you make?",
+    answer: "We make patches for all sports: football, baseball, basketball, soccer, hockey, wrestling, swimming, tennis, volleyball, lacrosse, and more. We create team logo patches, jersey number patches, varsity letters, championship patches, and custom uniform patches."
+  },
+  {
+    question: "Can you match our exact team colors?",
+    answer: "Absolutely! We use Pantone color-matching to replicate your team colors precisely. Send us your team colors (Pantone codes, hex codes, or color swatches), and we'll match them exactly across all patch types."
+  },
+  {
+    question: "Can you make patches for youth sports leagues?",
+    answer: "Yes! We work with youth leagues, high school teams, college athletics, and professional sports organizations. No minimum order required — perfect for small recreational leagues to large conference-wide orders."
+  },
+  {
+    question: "What's the turnaround time for team orders?",
+    answer: "Standard production is 2 weeks (10-14 business days). Rush production (7 business days) is available for urgent season needs. We understand game schedules and can accommodate tight deadlines."
+  },
+  {
+    question: "Do you offer bulk pricing for entire leagues?",
+    answer: "Absolutely! Volume pricing starts at 100+ pieces with additional discounts at 500+ and 1,000+. League-wide orders get bulk pricing across all teams, even if each team has different designs."
+  },
+  {
+    question: "Can you create jersey number patches?",
+    answer: "Yes! We create custom jersey number patches in any font, color, and size. Perfect for uniforms, practice jerseys, and fan merchandise. Available in iron-on or sew-on backing."
+  },
+  {
+    question: "What backing is best for sports uniforms?",
+    answer: "For jerseys and uniforms, we recommend sew-on backing for maximum durability through repeated washing and game wear. Iron-on backing works well for practice gear and fan apparel."
+  },
+  {
+    question: "Can you make championship or tournament patches?",
+    answer: "Absolutely! We specialize in custom championship patches, tournament patches, all-star patches, and MVP awards. Rush production available for post-season orders."
+  },
+];
+
+// ISR: Revalidate every 24 hours
+export const revalidate = 86400;
+
+// Fetch category-specific work samples + hero
+async function getSportsPageData() {
+  try {
+    const query = `{
+      "categoryData": *[_type == "categoryPage" && slug.current == "custom-sports-patches"][0] {
+        "heroImage": {
+          "url": heroImage.asset->url,
+          "alt": heroImage.alt
+        },
+        "workSamples": workSamples[]{
+          "image": @,
+          "alt": alt
+        },
+        seoHeading,
+        seoContent
+      },
+      "hero": *[_type == "hero"][0] {
+        "trustBadges": trustBadges[] {
+          "url": image.asset->url,
+          "alt": alt
+        }
+      }
+    }`;
+    const data = await client.fetch(query);
+    return {
+      heroImage: data?.categoryData?.heroImage?.url || null,
+      workSamples: data?.categoryData?.workSamples || [],
+      trustBadges: data?.hero?.trustBadges || [],
+      seoHeading: data?.categoryData?.seoHeading || null,
+      seoContent: data?.categoryData?.seoContent || null,
+    };
+  } catch (error) {
+    console.error("Sports page data fetch error:", error);
+    return { heroImage: null, workSamples: [], trustBadges: [], seoHeading: null, seoContent: null };
+  }
+}
 
 export const metadata: Metadata = {
   title: "Custom Sports Team Patches | Sports Uniform Patches | Panda Patches",
@@ -32,171 +112,116 @@ export const metadata: Metadata = {
   },
 };
 
-const productSchema = generateProductSchema({
+// Product schema
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
   name: "Custom Sports Team Patches",
-  description: "Custom embroidered patches for sports teams, leagues, and athletic clubs. Uniform patches, championship patches, varsity letters. No minimum order.",
-  image: "https://pandapatches.com/assets/logo-panda.svg",
-  url: "https://pandapatches.com/custom-sports-patches",
-  priceRange: "$50-$500",
-  includeReviews: true,
-});
-
-const faqSchema = generateFAQSchema([
-  {
-    question: "What sports team patches do you make?",
-    answer: "We make patches for football, baseball, basketball, soccer, hockey, wrestling, swimming, tennis, and any sport. Types include team logo patches, number patches, varsity letters, championship patches, and uniform patches.",
+  description: "Custom embroidered patches for sports teams, leagues, and athletic clubs.",
+  brand: {
+    "@type": "Brand",
+    name: "Panda Patches",
   },
-  {
-    question: "Can you make patches for youth sports leagues?",
-    answer: "Yes. We serve youth leagues, high school teams, college clubs, and professional organizations. No minimum order — perfect for small teams.",
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "USD",
+    lowPrice: "0.85",
+    highPrice: "5.50",
+    offerCount: "6",
+    availability: "https://schema.org/InStock",
   },
-  {
-    question: "What backing is best for sports uniform patches?",
-    answer: "Iron-on backing is the most popular for jerseys and uniforms — apply with a household iron. Sew-on backing provides the most durability for heavy-use athletic wear.",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "1200",
+    bestRating: "5",
   },
-  {
-    question: "Can you make championship patches?",
-    answer: "Yes. We specialize in championship, trophy, and award patches for leagues and tournaments. Custom shapes, metallic threads, and premium embroidery available.",
-  },
-]);
+};
 
-const PATCH_TYPES = [
-  { title: "Team Logo Patches", desc: "Bring your team mascot, logo, and colors to life with precision embroidery. Perfect for jerseys, jackets, and bags." },
-  { title: "Varsity Letter Patches", desc: "Traditional chenille or embroidered varsity letters for high school and college athletic programs." },
-  { title: "Championship Patches", desc: "Commemorate victories with custom championship patches. Metallic threads, custom shapes, premium quality." },
-  { title: "Uniform Number Patches", desc: "Embroidered or woven number patches for jerseys and uniforms. Heat-press iron-on for easy application." },
-  { title: "League & Club Patches", desc: "Identify your league division, club affiliation, or conference with distinctive embroidered patches." },
-  { title: "Award & Recognition Patches", desc: "MVP, most improved, all-star — custom award patches for recognizing athletes and celebrating achievement." },
-];
+// Breadcrumb schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://pandapatches.com",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Custom Sports Patches",
+      item: "https://pandapatches.com/custom-sports-patches",
+    },
+  ],
+};
 
-const SPORTS = ["Football", "Baseball", "Basketball", "Soccer", "Hockey", "Wrestling", "Swimming", "Tennis", "Lacrosse", "Softball", "Volleyball", "Track & Field"];
+export default async function SportsPatchesPage() {
+  const { workSamples, heroImage, trustBadges, seoHeading, seoContent } = await getSportsPageData();
 
-export default function SportsPatchesPage() {
   return (
     <main className="min-h-screen bg-white">
-      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(productSchema)} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(faqSchema)} />
+      {/* Schemas */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(productSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
 
       <Navbar />
 
-      {/* HERO */}
-      <section className="w-full bg-panda-dark pt-28 pb-20 px-4">
-        <div className="container mx-auto max-w-[900px] text-center">
-          <p className="text-panda-yellow font-bold text-[14px] uppercase tracking-widest mb-4">For Teams of Every Size</p>
-          <h1 className="text-[34px] md:text-[54px] font-black text-white leading-tight tracking-tight mb-6">
-            Custom Sports Team Patches
-          </h1>
-          <p className="text-[17px] md:text-[19px] text-gray-300 leading-[1.8] max-w-[700px] mx-auto mb-10">
-            Custom embroidered patches for sports teams, leagues, and athletic clubs.
-            Jersey patches, championship patches, varsity letters, and more.
-            No minimum order. Free mockup. 7–14 day delivery.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/#quote" className="inline-block bg-panda-yellow text-panda-dark font-black text-[16px] px-8 py-4 rounded-full hover:opacity-90 transition-opacity">
-              Get a Free Quote
-            </Link>
-            <Link href="/bulk-custom-patches" className="inline-block bg-white/10 text-white font-bold text-[16px] px-8 py-4 rounded-full hover:bg-white/20 transition-colors">
-              Bulk Team Orders
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* 1. HERO */}
+      <BulkHero
+        heroImage={heroImage}
+        trustBadges={trustBadges}
+        customHeading="Custom Sports Team Patches"
+        customSubheading="Trusted by Youth Leagues & Pro Teams"
+        customDescription="Premium embroidered sports patches for uniforms, jerseys, varsity jackets, and championship gear. Team logos, numbers, and custom designs. No minimum order. Free mockup. 2-week turnaround."
+      />
 
-      {/* TRUST BAR */}
-      <section className="w-full bg-panda-yellow py-4">
-        <div className="container mx-auto px-4 flex flex-wrap justify-center gap-x-10 gap-y-2 text-panda-dark font-bold text-[14px] text-center">
-          <span>★ 4.7/5 on Trustpilot</span>
-          <span>✓ No Minimum Order</span>
-          <span>✓ Free Digital Mockup</span>
-          <span>✓ Iron-On & Sew-On Options</span>
-          <span>✓ Varsity Chenille Available</span>
-        </div>
-      </section>
+      {/* 2. WORK GALLERY */}
+      <WorkGallery samples={workSamples} />
 
-      {/* SPORTS LIST */}
-      <section className="w-full py-12 bg-[#F6F6F6]">
-        <div className="container mx-auto px-4 max-w-[900px] text-center">
-          <p className="text-[15px] font-bold text-gray-500 uppercase tracking-wider mb-6">We make patches for every sport including:</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {SPORTS.map((sport) => (
-              <span key={sport} className="bg-white border border-gray-200 text-panda-dark font-semibold text-[14px] px-4 py-2 rounded-full">
-                {sport}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 3. WHY CHOOSE PANDA */}
+      <Promises bgColor="bg-white" />
 
-      {/* PATCH TYPES */}
-      <section className="w-full py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-[1200px]">
-          <h2 className="text-[26px] md:text-[38px] font-black text-panda-dark text-center uppercase tracking-tight mb-14">
-            Sports Patch Types
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PATCH_TYPES.map((type, idx) => (
-              <div key={idx} className="border border-gray-100 rounded-2xl p-7 hover:shadow-lg transition-shadow">
-                <h3 className="text-[18px] font-black text-panda-dark mb-3">{type.title}</h3>
-                <p className="text-[15px] text-gray-600 leading-[1.7]">{type.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SEO COPY */}
-      <section className="w-full py-20 bg-[#F6F6F6]">
-        <div className="container mx-auto px-4 max-w-[900px]">
-          <h2 className="text-[26px] md:text-[38px] font-black text-panda-dark text-center uppercase tracking-tight mb-10">
-            Patches Built for Athletic Excellence
-          </h2>
-          <div className="space-y-5 text-[16px] text-gray-700 leading-[1.8]">
-            <p>
-              From youth recreational leagues to professional clubs, sports teams across the United States choose
-              Panda Patches for their custom uniform and award patches. Our founder <strong>Imran Raza</strong> has
-              13 years of embroidery and textile manufacturing expertise — the same level of precision that goes into
-              every sports team patch we produce.
-            </p>
-            <p>
-              We understand that sports patches serve multiple purposes: team identity, player recognition, milestone
-              commemoration, and fan merchandise. That&apos;s why we offer the full range of embroidery styles —
-              flat embroidery, 3D puff, chenille, and metallic threads — to match the prestige of each application.
-            </p>
-            <p>
-              For uniform patches, iron-on backing allows coaches and players to apply patches at home. For championship
-              patches and award patches, we recommend sew-on backing for the most durable attachment to letterman jackets
-              and athletic bags.
-            </p>
-          </div>
-        </div>
-      </section>
-
+      {/* 4. OUR PROCESS */}
       <ProcessSection />
 
-      {/* FAQ */}
-      <section className="w-full py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-[800px]">
-          <h2 className="text-[26px] md:text-[38px] font-black text-panda-dark text-center uppercase tracking-tight mb-12">
-            Sports Patch FAQs
+      {/* 5. SPORTS FAQ */}
+      <CategoryFAQ title="Sports Patches FAQ" faqs={sportsFAQs} />
+
+      {/* 6. SEO CONTENT */}
+      <section className="w-full py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+            Custom Sports Patches — Professional Quality for Teams & Athletes
           </h2>
-          <div className="space-y-6">
-            {[
-              { q: "What sports do you make patches for?", a: "All of them — football, baseball, basketball, soccer, hockey, wrestling, swimming, tennis, lacrosse, track and field, and more." },
-              { q: "What's the best backing for jersey patches?", a: "Iron-on backing is most popular for jerseys and uniforms. Sew-on provides the most durability for heavy-use athletic wear." },
-              { q: "Do you make championship patches?", a: "Yes. Championship, trophy, and award patches with custom shapes, metallic threads, and premium embroidery." },
-              { q: "Can you do varsity letters?", a: "Yes. Traditional chenille and embroidered varsity letters for high school and college athletic programs." },
-              { q: "Is there a minimum order?", a: "No minimum. We work with small youth teams and large leagues equally." },
-            ].map((item, idx) => (
-              <div key={idx} className="border-b border-gray-100 pb-6">
-                <h3 className="text-[17px] font-bold text-panda-dark mb-2">{item.q}</h3>
-                <p className="text-[15px] text-gray-600 leading-[1.7]">{item.a}</p>
-              </div>
-            ))}
+          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+            <p>
+              Looking for <strong>custom sports team patches</strong> for your league or club? Panda Patches is the trusted choice for youth sports leagues, high school teams, college athletics, and professional organizations that need high-quality embroidered patches for uniforms and gear.
+            </p>
+            <p>
+              We produce <strong>custom sports patches</strong> for all sports: football, baseball, basketball, soccer, hockey, wrestling, swimming, tennis, and more. From <strong>team logo patches</strong> and <strong>jersey numbers</strong> to <strong>varsity letters</strong> and <strong>championship patches</strong>, we deliver consistent quality that stands up to game-day wear and washing.
+            </p>
+            <p>
+              Whether you need <strong>50 patches for a youth team</strong> or <strong>5,000 patches for an entire league</strong>, we handle orders of all sizes with the same attention to detail. With <strong>no setup fees</strong>, <strong>free design mockups</strong>, and a standard <strong>2-week turnaround</strong>, getting custom patches for your team has never been easier.
+            </p>
+            <p>
+              Ready to get started? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> today. We respond to all inquiries within 2 business hours and include a complimentary digital mockup with every quote.
+            </p>
           </div>
         </div>
       </section>
 
+      {/* 7. CTA */}
       <CTASection />
+
       <Footer />
     </main>
   );

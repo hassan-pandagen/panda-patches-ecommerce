@@ -3,7 +3,12 @@ import Footer from "@/components/layout/Footer";
 import SampleBoxHero from "@/components/samplebox/SampleBoxHero";
 import SampleBoxForm from "@/components/samplebox/SampleBoxForm";
 import ProductSwiper from "@/components/samplebox/ProductSwiper";
+import SampleBoxMedia from "@/components/samplebox/SampleBoxMedia";
 import { Check } from "lucide-react";
+import { client } from "@/lib/sanity";
+
+// ISR: Revalidate every hour
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Order Sample Box - 9 Patch Samples for $45 | Panda Patches",
@@ -46,7 +51,26 @@ const includedCategories = [
   "Custom Silicone Labels",
 ];
 
-export default function SampleBoxPage() {
+// Fetch Sample Box media from Sanity
+async function getSampleBoxMedia() {
+  const query = `*[_type == "sampleBox"][0]{
+    gallery[]{
+      "url": image.asset->url,
+      alt,
+      caption
+    },
+    video{
+      "url": file.asset->url,
+      "thumbnail": thumbnail.asset->url,
+      title
+    }
+  }`;
+
+  return await client.fetch(query);
+}
+
+export default async function SampleBoxPage() {
+  const mediaData = await getSampleBoxMedia();
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
@@ -57,24 +81,25 @@ export default function SampleBoxPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Left: Large Sample Box Image & Info */}
             <div className="w-full">
-              <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-panda-green/10 to-panda-yellow/10 border-4 border-panda-green/20">
-                {/* Placeholder sample box visual */}
-                <div className="w-full h-full flex items-center justify-center p-8">
-                  <div className="text-center">
-                    <div className="text-9xl mb-4">📦</div>
-                    <h3 className="text-3xl font-black text-panda-dark uppercase mb-2">Sample Box</h3>
-                    <p className="text-lg text-gray-700 font-semibold">High-Quality Patch Samples</p>
-                    <p className="text-2xl font-black text-panda-green mt-4">Only $45</p>
+              {/* Image Gallery + Video Component */}
+              {mediaData?.gallery && mediaData.gallery.length > 0 ? (
+                <SampleBoxMedia
+                  images={mediaData.gallery}
+                  video={mediaData.video}
+                />
+              ) : (
+                <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-panda-green/10 to-panda-yellow/10 border-4 border-panda-green/20">
+                  <div className="w-full h-full flex items-center justify-center p-8">
+                    <div className="text-center">
+                      <div className="text-9xl mb-4">📦</div>
+                      <h3 className="text-3xl font-black text-panda-dark uppercase mb-2">Sample Box</h3>
+                      <p className="text-lg text-gray-700 font-semibold">High-Quality Patch Samples</p>
+                      <p className="text-2xl font-black text-panda-green mt-4">Only $45</p>
+                      <p className="text-sm text-gray-500 mt-4">Add media in Sanity CMS</p>
+                    </div>
                   </div>
                 </div>
-                {/* You can replace this div with an actual image when you have one:
-                <img
-                  src="/assets/sample-box.jpg"
-                  alt="Panda Patches Sample Box"
-                  className="w-full h-full object-cover"
-                />
-                */}
-              </div>
+              )}
 
               {/* What's Included Section */}
               <div className="mt-8 bg-gradient-to-br from-panda-green/5 to-panda-yellow/5 rounded-xl p-6 border-2 border-panda-green/20">

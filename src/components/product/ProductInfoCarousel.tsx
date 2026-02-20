@@ -47,6 +47,9 @@ export default function ProductInfoCarousel({
     { _id: 5, title: "Border Options", description: "Merrowed borders for a classic look, or hot cut for intricate shapes." },
   ];
 
+  // Hide swiper arrows if 3 or fewer options
+  const showArrows = cards.length > 3;
+
   // The Title Card Component - Responsive
   const TitleCard = () => (
     <div className="
@@ -88,22 +91,26 @@ export default function ProductInfoCarousel({
 
         <div className="relative group">
 
-          {/* ARROWS - Hide on mobile, show on desktop */}
-          <button
-            onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 p-2 rounded-full bg-black text-white hover:bg-panda-yellow hover:text-black hover:shadow-lg transition-all z-10"
-            aria-label="Previous"
-          >
-            <ChevronLeft size={20} strokeWidth={3} />
-          </button>
+          {/* ARROWS - Only show if more than 3 options */}
+          {showArrows && (
+            <>
+              <button
+                onClick={() => scroll('left')}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 p-2 rounded-full bg-black text-white hover:bg-panda-yellow hover:text-black hover:shadow-lg transition-all z-10"
+                aria-label="Previous"
+              >
+                <ChevronLeft size={20} strokeWidth={3} />
+              </button>
 
-          <button
-            onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 p-2 rounded-full bg-black text-white hover:bg-panda-yellow hover:text-black hover:shadow-lg transition-all z-10"
-            aria-label="Next"
-          >
-            <ChevronRight size={20} strokeWidth={3} />
-          </button>
+              <button
+                onClick={() => scroll('right')}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 p-2 rounded-full bg-black text-white hover:bg-panda-yellow hover:text-black hover:shadow-lg transition-all z-10"
+                aria-label="Next"
+              >
+                <ChevronRight size={20} strokeWidth={3} />
+              </button>
+            </>
+          )}
 
           {/* TRACK - Responsive */}
           <div

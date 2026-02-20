@@ -1,182 +1,225 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import BulkHero from "@/components/bulk/BulkHero";
+import WorkGallery from "@/components/bulk/WorkGallery";
+import CategoryFAQ from "@/components/bulk/CategoryFAQ";
+import Promises from "@/components/home/Promises";
 import ProcessSection from "@/components/home/ProcessSection";
 import CTASection from "@/components/home/CTASection";
-import { generateFAQSchema, generateProductSchema, generateSchemaScript } from "@/lib/schemas";
+import { generateSchemaScript } from "@/lib/schemas";
+import { client } from "@/lib/sanity";
+
+// Police-specific FAQs
+const policeFAQs = [
+  {
+    question: "What types of law enforcement patches do you make?",
+    answer: "We create all types of law enforcement patches: department badges, sheriff patches, tactical patches, K-9 unit patches, SWAT patches, detective badges, security patches, and custom morale patches for police departments."
+  },
+  {
+    question: "Can you replicate our department badge exactly?",
+    answer: "Yes! We specialize in precise replication of department badges, shields, and insignia. Send us your badge artwork or photo, and we'll create an exact embroidered or PVC reproduction with meticulous attention to detail."
+  },
+  {
+    question: "Are your patches durable enough for law enforcement use?",
+    answer: "Absolutely. Our patches are built for daily law enforcement wear. We use military-grade thread, professional twill backing, and reinforced stitching to withstand constant use, washing, and the demands of police work."
+  },
+  {
+    question: "Do you offer bulk pricing for entire departments?",
+    answer: "Yes! We provide volume pricing for department orders starting at 100+ pieces. Large departments (500+ pieces) receive dedicated account management, free pre-production samples, and priority pricing."
+  },
+  {
+    question: "What backing options work best for police uniforms?",
+    answer: "For law enforcement uniforms, we recommend sew-on backing for maximum durability and professional appearance. Velcro backing is popular for tactical vests and removable duty patches."
+  },
+  {
+    question: "Can you create tactical patches for special units?",
+    answer: "Absolutely. We specialize in custom tactical patches for SWAT, K-9, narcotics, detective units, and special operations teams. PVC patches are especially popular for tactical gear due to their durability and weather resistance."
+  },
+  {
+    question: "What is your turnaround time for department orders?",
+    answer: "Standard production is 2 weeks (10-14 business days). For urgent departmental needs, rush production (7 business days) is available. We understand the importance of timely delivery for law enforcement."
+  },
+  {
+    question: "Do you work with multiple departments or county-wide orders?",
+    answer: "Yes! We frequently handle county-wide orders covering multiple departments, sheriff's offices, and municipalities. Volume pricing applies across all departments in the order, even with different designs."
+  },
+];
+
+// ISR: Revalidate every 24 hours
+export const revalidate = 86400;
+
+// Fetch category-specific work samples + hero
+async function getPolicePageData() {
+  try {
+    const query = `{
+      "categoryData": *[_type == "categoryPage" && slug.current == "custom-police-patches"][0] {
+        "heroImage": {
+          "url": heroImage.asset->url,
+          "alt": heroImage.alt
+        },
+        "workSamples": workSamples[]{
+          "image": @,
+          "alt": alt
+        },
+        seoHeading,
+        seoContent
+      },
+      "hero": *[_type == "hero"][0] {
+        "trustBadges": trustBadges[] {
+          "url": image.asset->url,
+          "alt": alt
+        }
+      }
+    }`;
+    const data = await client.fetch(query);
+    return {
+      heroImage: data?.categoryData?.heroImage?.url || null,
+      workSamples: data?.categoryData?.workSamples || [],
+      trustBadges: data?.hero?.trustBadges || [],
+      seoHeading: data?.categoryData?.seoHeading || null,
+      seoContent: data?.categoryData?.seoContent || null,
+    };
+  } catch (error) {
+    console.error("Police page data fetch error:", error);
+    return { heroImage: null, workSamples: [], trustBadges: [], seoHeading: null, seoContent: null };
+  }
+}
 
 export const metadata: Metadata = {
   title: "Custom Police Patches | Law Enforcement Patches | Panda Patches",
-  description: "Custom police patches for law enforcement agencies, sheriff departments, and security teams. Embroidered, PVC, and velcro options. No minimum, free mockup, 7-14 day delivery.",
+  description: "Custom police department patches, sheriff badges, law enforcement patches, and tactical patches. Embroidered, PVC, and woven formats. Trusted by departments nationwide.",
   keywords: [
     "custom police patches",
     "law enforcement patches",
-    "sheriff department patches",
-    "custom tactical patches",
-    "police velcro patches",
-    "custom morale patches police",
-    "law enforcement name patches",
-    "custom security patches",
+    "police department patches",
+    "sheriff patches",
+    "tactical patches",
+    "custom police badges",
+    "embroidered police patches",
+    "police uniform patches",
+    "custom law enforcement badges",
   ],
   alternates: { canonical: "https://pandapatches.com/custom-police-patches" },
   openGraph: {
     title: "Custom Police & Law Enforcement Patches | Panda Patches",
-    description: "Custom patches for police, sheriff, and law enforcement agencies. No minimum order, free mockup, fast delivery.",
+    description: "Custom police department patches and law enforcement badges. Trusted by departments nationwide. Fast turnaround, bulk pricing.",
     url: "https://pandapatches.com/custom-police-patches",
     siteName: "Panda Patches",
     type: "website",
   },
 };
 
-const productSchema = generateProductSchema({
-  name: "Custom Police & Law Enforcement Patches",
-  description: "Custom embroidered, PVC, and velcro patches for police departments, sheriff offices, and law enforcement agencies. No minimum order.",
-  image: "https://pandapatches.com/assets/logo-panda.svg",
-  url: "https://pandapatches.com/custom-police-patches",
-  priceRange: "$50-$500",
-  includeReviews: true,
-});
+// Product schema
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Custom Police Department Patches",
+  description: "Custom police and law enforcement patches for departments, sheriffs, and tactical units.",
+  brand: {
+    "@type": "Brand",
+    name: "Panda Patches",
+  },
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "USD",
+    lowPrice: "0.85",
+    highPrice: "5.50",
+    offerCount: "6",
+    availability: "https://schema.org/InStock",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "1200",
+    bestRating: "5",
+  },
+};
 
-const faqSchema = generateFAQSchema([
-  {
-    question: "What types of patches do you make for police departments?",
-    answer: "We make embroidered, PVC, velcro, and woven patches for police and law enforcement. Common types include department shoulder patches, rank patches, unit patches, K9 patches, SWAT patches, and name patches.",
-  },
-  {
-    question: "Can you replicate our department's official seal or badge on a patch?",
-    answer: "Yes. We can replicate official department seals, badges, and insignia with precision embroidery. We Pantone color-match to your official department colors.",
-  },
-  {
-    question: "Do you offer PVC patches for law enforcement?",
-    answer: "Yes. PVC patches are a popular choice for tactical gear, plate carriers, and helmets. They are waterproof, durable, and hold fine detail better than embroidery for complex designs.",
-  },
-  {
-    question: "What is the minimum order for police patches?",
-    answer: "No minimum order. We produce patches for individual officers as well as bulk orders for entire departments.",
-  },
-]);
+// Breadcrumb schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://pandapatches.com",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Custom Police Patches",
+      item: "https://pandapatches.com/custom-police-patches",
+    },
+  ],
+};
 
-const PATCH_TYPES = [
-  { title: "Department Shoulder Patches", desc: "Classic embroidered shoulder patches with your department name, seal, and state. Precise color matching and professional finish." },
-  { title: "Rank & Chevron Patches", desc: "Officer, Detective, Sergeant, Lieutenant, Captain — clear rank identification in embroidered or woven styles." },
-  { title: "Unit & Division Patches", desc: "SWAT, K9, Narcotics, Traffic — specialized unit identification patches for distinct teams within your department." },
-  { title: "Tactical PVC Patches", desc: "Waterproof and durable PVC patches for plate carriers, tactical vests, helmets, and bags. Perfect for field operations." },
-  { title: "Name Patches", desc: "Officer name patches for uniforms in embroidered or woven style. Sew-on, velcro, or iron-on backing options." },
-  { title: "Morale Patches", desc: "Custom morale patches for police teams — unit pride, humor, and esprit de corps. Hook-and-loop backing for easy swapping." },
-];
+export default async function PolicePatchesPage() {
+  const { workSamples, heroImage, trustBadges, seoHeading, seoContent } = await getPolicePageData();
 
-export default function PolicePatchesPage() {
   return (
     <main className="min-h-screen bg-white">
-      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(productSchema)} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(faqSchema)} />
+      {/* Schemas */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(productSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
 
       <Navbar />
 
-      {/* HERO */}
-      <section className="w-full bg-panda-dark pt-28 pb-20 px-4">
-        <div className="container mx-auto max-w-[900px] text-center">
-          <p className="text-panda-yellow font-bold text-[14px] uppercase tracking-widest mb-4">Trusted by Law Enforcement Agencies</p>
-          <h1 className="text-[34px] md:text-[54px] font-black text-white leading-tight tracking-tight mb-6">
-            Custom Police &amp; Law Enforcement Patches
-          </h1>
-          <p className="text-[17px] md:text-[19px] text-gray-300 leading-[1.8] max-w-[700px] mx-auto mb-10">
-            Professional embroidered, PVC, and velcro patches for police departments, sheriff offices, and security agencies.
-            No minimum order. Free mockup. 7–14 day turnaround.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/#quote" className="inline-block bg-panda-yellow text-panda-dark font-black text-[16px] px-8 py-4 rounded-full hover:opacity-90 transition-opacity">
-              Get a Free Quote
-            </Link>
-            <Link href="/custom-tactical-patches" className="inline-block bg-white/10 text-white font-bold text-[16px] px-8 py-4 rounded-full hover:bg-white/20 transition-colors">
-              View Tactical Patches
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* 1. HERO */}
+      <BulkHero
+        heroImage={heroImage}
+        trustBadges={trustBadges}
+        customHeading="Custom Police Patches"
+        customSubheading="Trusted by Law Enforcement Nationwide"
+        customDescription="Professional police department patches, sheriff badges, and tactical patches. Embroidered, PVC, and woven formats. Trusted by departments for quality and durability. Volume pricing available. 2-week turnaround."
+      />
 
-      {/* TRUST BAR */}
-      <section className="w-full bg-panda-yellow py-4">
-        <div className="container mx-auto px-4 flex flex-wrap justify-center gap-x-10 gap-y-2 text-panda-dark font-bold text-[14px] text-center">
-          <span>★ 4.7/5 on Trustpilot</span>
-          <span>✓ No Minimum Order</span>
-          <span>✓ Free Digital Mockup</span>
-          <span>✓ Pantone Color Matching</span>
-          <span>✓ PVC + Embroidered Options</span>
-        </div>
-      </section>
+      {/* 2. WORK GALLERY */}
+      <WorkGallery samples={workSamples} />
 
-      {/* PATCH TYPES */}
-      <section className="w-full py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-[1200px]">
-          <h2 className="text-[26px] md:text-[38px] font-black text-panda-dark text-center uppercase tracking-tight mb-14">
-            Patch Types for Law Enforcement
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PATCH_TYPES.map((type, idx) => (
-              <div key={idx} className="border border-gray-100 rounded-2xl p-7 hover:shadow-lg transition-shadow">
-                <h3 className="text-[18px] font-black text-panda-dark mb-3">{type.title}</h3>
-                <p className="text-[15px] text-gray-600 leading-[1.7]">{type.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 3. WHY CHOOSE PANDA */}
+      <Promises bgColor="bg-white" />
 
-      {/* SEO COPY */}
-      <section className="w-full py-20 bg-[#F6F6F6]">
-        <div className="container mx-auto px-4 max-w-[900px]">
-          <h2 className="text-[26px] md:text-[38px] font-black text-panda-dark text-center uppercase tracking-tight mb-10">
-            Why Law Enforcement Chooses Panda Patches
-          </h2>
-          <div className="space-y-5 text-[16px] text-gray-700 leading-[1.8]">
-            <p>
-              Law enforcement agencies trust Panda Patches because accuracy matters. Your department&apos;s patch is
-              more than a logo — it&apos;s a symbol of service, accountability, and professionalism. Founded by{" "}
-              <strong>Imran Raza</strong>, with 13 years of patch and textile manufacturing expertise, we ensure
-              every patch meets your exact specifications.
-            </p>
-            <p>
-              We produce <strong>custom police patches</strong> and <strong>law enforcement patches</strong> in embroidered,
-              PVC, woven, and iron-on formats. Our embroidery machines achieve thread counts and detail levels that capture
-              even the finest badge elements. PVC patches are available for tactical and field use where waterproofing and
-              durability are essential.
-            </p>
-            <p>
-              No minimum order — order patches for one officer or an entire department. Free digital mockup with every
-              order, Pantone color matching, and unlimited revisions until your design is perfect.
-            </p>
-          </div>
-        </div>
-      </section>
-
+      {/* 4. OUR PROCESS */}
       <ProcessSection />
 
-      {/* FAQ */}
-      <section className="w-full py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-[800px]">
-          <h2 className="text-[26px] md:text-[38px] font-black text-panda-dark text-center uppercase tracking-tight mb-12">
-            Law Enforcement Patch FAQs
+      {/* 5. POLICE FAQ */}
+      <CategoryFAQ title="Law Enforcement Patches FAQ" faqs={policeFAQs} />
+
+      {/* 6. SEO CONTENT */}
+      <section className="w-full py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+            Custom Police Patches — Professional Law Enforcement Patches
           </h2>
-          <div className="space-y-6">
-            {[
-              { q: "Can you replicate our department seal or badge?", a: "Yes. We replicate official seals, badges, and insignia with precision embroidery and Pantone color matching to your official department colors." },
-              { q: "Do you offer PVC patches for tactical use?", a: "Yes. PVC patches are waterproof, durable, and ideal for plate carriers, helmets, and tactical bags." },
-              { q: "What is the minimum order?", a: "No minimum. We serve individual officers and full department bulk orders with equal quality and service." },
-              { q: "How long does production take?", a: "Standard is 7-14 business days after mockup approval. Rush 7-day production is available." },
-              { q: "Do you do velcro backing for police patches?", a: "Yes. Hook-and-loop velcro is available on all patch types. Most popular for uniforms and tactical vests." },
-            ].map((item, idx) => (
-              <div key={idx} className="border-b border-gray-100 pb-6">
-                <h3 className="text-[17px] font-bold text-panda-dark mb-2">{item.q}</h3>
-                <p className="text-[15px] text-gray-600 leading-[1.7]">{item.a}</p>
-              </div>
-            ))}
+          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+            <p>
+              Looking for <strong>custom police patches</strong> for your department? Panda Patches is the trusted choice for law enforcement agencies nationwide that need professional, durable patches for uniforms, tactical gear, and departmental use.
+            </p>
+            <p>
+              We produce <strong>custom law enforcement patches</strong> for police departments, sheriff&apos;s offices, tactical units, K-9 units, SWAT teams, and security departments. From <strong>embroidered department badges</strong> and <strong>PVC tactical patches</strong> to <strong>woven name patches</strong>, every patch is built to withstand the demands of daily law enforcement work.
+            </p>
+            <p>
+              Whether you need <strong>50 patches for a small department</strong> or <strong>5,000 patches for a county-wide rollout</strong>, we handle orders of all sizes with the same professional standards. With <strong>volume pricing</strong>, <strong>free design mockups</strong>, and a reliable <strong>2-week turnaround</strong>, equipping your department with quality patches has never been easier.
+            </p>
+            <p>
+              Ready to get started? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> today. We respond to all inquiries within 2 business hours and work directly with your department specifications.
+            </p>
           </div>
         </div>
       </section>
 
+      {/* 7. CTA */}
       <CTASection />
+
       <Footer />
     </main>
   );

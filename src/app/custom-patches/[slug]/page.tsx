@@ -32,25 +32,45 @@ async function getProductData(slug: string) {
   // Explicitly exclude drafts to only get published documents
   const query = `*[_type == "productPage" && slug.current == $slug && !(_id in path("drafts.**"))][0]{
     ...,
+    "gallery": gallery[]{
+      "image": @,
+      "alt": alt
+    },
+    "workSamples": workSamples[]{
+      "image": @,
+      "alt": alt
+    },
     backingOptions[]{
       title,
       description,
-      image
+      "image": image{
+        ...,
+        "alt": alt
+      }
     },
     borderOptions[]{
       title,
       description,
-      image
+      "image": image{
+        ...,
+        "alt": alt
+      }
     },
     threadOptions[]{
       title,
       description,
-      image
+      "image": image{
+        ...,
+        "alt": alt
+      }
     },
     upgradeOptions[]{
       title,
       description,
-      image
+      "image": image{
+        ...,
+        "alt": alt
+      }
     },
     productVariants{
       heading,
@@ -58,7 +78,10 @@ async function getProductData(slug: string) {
       types[]{
         title,
         description,
-        image
+        "image": image{
+          ...,
+          "alt": alt
+        }
       }
     }
   }`;

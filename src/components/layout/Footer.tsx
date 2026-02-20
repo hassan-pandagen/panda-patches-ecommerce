@@ -117,7 +117,19 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* COLUMN 4: Custom Products (Spans 1) */}
+          {/* COLUMN 4: Bulk Orders (Spans 1) */}
+          <div className="lg:col-span-1 space-y-4">
+            <h4 className="font-bold text-lg text-panda-dark">Bulk Orders</h4>
+            <ul className="space-y-2 text-gray-700">
+              <li><Link href="/bulk-custom-patches">Bulk Custom Patches</Link></li>
+              <li><Link href="/custom-corporate-patches">Custom Corporate Patches</Link></li>
+              <li><Link href="/custom-sports-patches">Custom Sports Patches</Link></li>
+              <li><Link href="/custom-police-patches">Custom Police Patches</Link></li>
+              <li><Link href="/custom-fire-department-patches">Custom Fire Dept Patches</Link></li>
+            </ul>
+          </div>
+
+          {/* COLUMN 5: Custom Products (Spans 1) */}
           <div className="lg:col-span-1 space-y-4">
             <h4 className="font-bold text-lg text-panda-dark">Custom Products</h4>
             <ul className="space-y-2 text-gray-700">
@@ -128,7 +140,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* COLUMN 5: Patch Style (Spans 2) */}
+          {/* COLUMN 6: Patch Style (Spans 2) */}
           <div className="lg:col-span-2 space-y-4">
             <h4 className="font-bold text-lg text-panda-dark">Patch Style</h4>
             <ul className="space-y-2 text-gray-700">
@@ -153,7 +165,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* COLUMN 6: Locations (Spans 2) */}
+          {/* COLUMN 7: Locations (Spans 2) */}
           <div className="lg:col-span-2 space-y-4">
             <h4 className="font-bold text-lg text-panda-dark">Custom Patches</h4>
             <ul className="space-y-2 text-gray-700">

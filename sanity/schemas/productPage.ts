@@ -6,7 +6,20 @@ const optionCard = {
   fields: [
     defineField({ name: 'title', title: 'Title', type: 'string' }),
     defineField({ name: 'description', title: 'Description', type: 'text', rows: 3 }),
-    defineField({ name: 'image', title: 'Image', type: 'image', options: { hotspot: true } }),
+    defineField({
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text (SEO)',
+          type: 'string',
+          description: 'Describe this option image for SEO',
+        }),
+      ],
+    }),
   ]
 }
 
@@ -23,7 +36,24 @@ export default defineType({
     // === MAIN INFO ===
     defineField({ name: 'title', title: 'Page Title', type: 'string', group: 'main', validation: rule => rule.required() }),
     defineField({ name: 'slug', title: 'URL Slug', type: 'slug', options: { source: 'title' }, group: 'main', validation: rule => rule.required() }),
-    defineField({ name: 'gallery', title: 'Hero Gallery', type: 'array', of: [{ type: 'image' }], group: 'main' }),
+    defineField({
+      name: 'gallery',
+      title: 'Hero Gallery',
+      type: 'array',
+      of: [{
+        type: 'image',
+        fields: [
+          defineField({
+            name: 'alt',
+            title: 'Alt Text (SEO)',
+            type: 'string',
+            description: 'Describe this specific patch image for SEO',
+            validation: (rule) => rule.required(),
+          }),
+        ],
+      }],
+      group: 'main'
+    }),
     defineField({ name: 'description', title: 'Hero Description', type: 'text', rows: 4, group: 'main' }),
 
     // === CUSTOMIZATION OPTIONS (Specific to this Product) ===
@@ -116,9 +146,20 @@ export default defineType({
       name: 'workSamples',
       title: 'Work Sample Gallery',
       type: 'array',
-      of: [{ type: 'image' }],
+      of: [{
+        type: 'image',
+        fields: [
+          defineField({
+            name: 'alt',
+            title: 'Alt Text (SEO)',
+            type: 'string',
+            description: 'Describe this work sample: e.g., "Custom embroidered firefighter patch with Maltese cross design"',
+            validation: (rule) => rule.required(),
+          }),
+        ],
+      }],
       group: 'gallery',
-      description: 'Real photos of THIS specific product type.'
+      description: 'Real photos of THIS specific product type with SEO-friendly descriptions.'
     }),
   ],
 })

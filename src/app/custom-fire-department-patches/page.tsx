@@ -1,194 +1,225 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import BulkHero from "@/components/bulk/BulkHero";
+import WorkGallery from "@/components/bulk/WorkGallery";
+import CategoryFAQ from "@/components/bulk/CategoryFAQ";
+import Promises from "@/components/home/Promises";
 import ProcessSection from "@/components/home/ProcessSection";
 import CTASection from "@/components/home/CTASection";
-import { generateFAQSchema, generateProductSchema, generateSchemaScript } from "@/lib/schemas";
+import { generateSchemaScript } from "@/lib/schemas";
+import { client } from "@/lib/sanity";
+
+// Fire Department-specific FAQs
+const fireFAQs = [
+  {
+    question: "What types of fire department patches do you make?",
+    answer: "We create all types of fire department patches: station patches, firefighter badges, Maltese cross patches, EMS patches, rescue squad patches, volunteer fire department patches, and custom fire service patches. Available in embroidered, PVC, and Nomex formats."
+  },
+  {
+    question: "Do you offer heat-resistant patches for turnout gear?",
+    answer: "Yes! We offer Nomex and heat-resistant patches specifically designed for turnout gear and firefighting equipment. These patches withstand extreme temperatures and meet fire service standards for safety equipment."
+  },
+  {
+    question: "Can you replicate our fire department badge exactly?",
+    answer: "Absolutely! We specialize in precise replication of fire department badges, Maltese crosses, and station insignia. Send us your badge artwork or photo, and we'll create an exact embroidered or PVC reproduction with meticulous detail."
+  },
+  {
+    question: "Are your patches durable enough for firefighting gear?",
+    answer: "Yes. Our patches are built for the demanding conditions of firefighting and emergency response. We use military-grade thread, professional backing, and reinforced stitching. For turnout gear, we offer Nomex patches rated for extreme heat."
+  },
+  {
+    question: "Do you offer bulk pricing for entire fire departments?",
+    answer: "Absolutely! We provide volume pricing for department orders starting at 100+ pieces. Large departments (500+ pieces) receive dedicated account management, free pre-production samples, and priority pricing."
+  },
+  {
+    question: "Can you create patches for volunteer fire departments?",
+    answer: "Yes! We work with volunteer fire departments, career departments, and combination departments. No minimum order required — perfect for small volunteer stations to large city fire departments."
+  },
+  {
+    question: "What backing options work best for fire service uniforms?",
+    answer: "For fire service uniforms and Class A dress uniforms, we recommend sew-on backing for professional appearance and durability. For turnout gear, Nomex heat-resistant backing is essential. Velcro backing works well for removable duty patches."
+  },
+  {
+    question: "What is your turnaround time for fire department orders?",
+    answer: "Standard production is 2 weeks (10-14 business days). For urgent departmental needs or memorial patches, rush production (7 business days) is available. We understand the importance of timely delivery for fire service."
+  },
+];
+
+// ISR: Revalidate every 24 hours
+export const revalidate = 86400;
+
+// Fetch category-specific work samples + hero
+async function getFirePageData() {
+  try {
+    const query = `{
+      "categoryData": *[_type == "categoryPage" && slug.current == "custom-fire-department-patches"][0] {
+        "heroImage": {
+          "url": heroImage.asset->url,
+          "alt": heroImage.alt
+        },
+        "workSamples": workSamples[]{
+          "image": @,
+          "alt": alt
+        },
+        seoHeading,
+        seoContent
+      },
+      "hero": *[_type == "hero"][0] {
+        "trustBadges": trustBadges[] {
+          "url": image.asset->url,
+          "alt": alt
+        }
+      }
+    }`;
+    const data = await client.fetch(query);
+    return {
+      heroImage: data?.categoryData?.heroImage?.url || null,
+      workSamples: data?.categoryData?.workSamples || [],
+      trustBadges: data?.hero?.trustBadges || [],
+      seoHeading: data?.categoryData?.seoHeading || null,
+      seoContent: data?.categoryData?.seoContent || null,
+    };
+  } catch (error) {
+    console.error("Fire page data fetch error:", error);
+    return { heroImage: null, workSamples: [], trustBadges: [], seoHeading: null, seoContent: null };
+  }
+}
 
 export const metadata: Metadata = {
   title: "Custom Fire Department Patches | Firefighter Patches | Panda Patches",
-  description: "Custom fire department patches for firefighters, EMTs, and fire rescue units. Embroidered, PVC, and velcro options. No minimum order, free mockup, 7-14 day delivery.",
+  description: "Custom fire department patches, firefighter badges, and station patches. Embroidered, PVC, and Nomex options. Trusted by fire departments nationwide. Volume pricing available.",
   keywords: [
     "custom fire department patches",
     "firefighter patches",
-    "fire dept patches",
-    "custom fire rescue patches",
-    "EMT patches",
-    "fire department velcro patches",
-    "firefighter name patches",
-    "custom fire patches bulk",
+    "fire station patches",
+    "custom fire badges",
+    "embroidered fire patches",
+    "firefighter uniform patches",
+    "custom EMS patches",
+    "fire department badges",
+    "nomex fire patches",
   ],
   alternates: { canonical: "https://pandapatches.com/custom-fire-department-patches" },
   openGraph: {
     title: "Custom Fire Department Patches | Panda Patches",
-    description: "High-quality custom patches for fire departments, firefighters, and EMTs. Free mockup, no minimum order.",
+    description: "Custom fire department patches and firefighter badges. Trusted by departments nationwide. Fast turnaround, bulk pricing.",
     url: "https://pandapatches.com/custom-fire-department-patches",
     siteName: "Panda Patches",
     type: "website",
   },
 };
 
-const productSchema = generateProductSchema({
+// Product schema
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
   name: "Custom Fire Department Patches",
-  description: "Custom embroidered and PVC patches for fire departments, firefighters, and EMTs. No minimum order, free design, 7-14 day turnaround.",
-  image: "https://pandapatches.com/assets/logo-panda.svg",
-  url: "https://pandapatches.com/custom-fire-department-patches",
-  priceRange: "$50-$500",
-  includeReviews: true,
-});
+  description: "Custom fire department patches, firefighter badges, and station patches for departments nationwide.",
+  brand: {
+    "@type": "Brand",
+    name: "Panda Patches",
+  },
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "USD",
+    lowPrice: "0.85",
+    highPrice: "5.50",
+    offerCount: "6",
+    availability: "https://schema.org/InStock",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "1200",
+    bestRating: "5",
+  },
+};
 
-const faqSchema = generateFAQSchema([
-  {
-    question: "What types of patches do you make for fire departments?",
-    answer: "We make embroidered, PVC, velcro, woven, and iron-on patches for fire departments. Common types include station patches, rank patches, name patches, helmet decals, and commemorative patches.",
-  },
-  {
-    question: "Do you offer velcro backing for firefighter patches?",
-    answer: "Yes. We offer hook-and-loop (velcro) backing for all patch types. This is the most popular option for firefighter gear, helmets, and tactical vests.",
-  },
-  {
-    question: "What is the minimum order for fire department patches?",
-    answer: "There is no minimum order. Whether you need 5 patches for your crew or 5,000 for your department, we handle all order sizes.",
-  },
-  {
-    question: "How long does it take to produce fire department patches?",
-    answer: "Standard production time is 7-14 business days after artwork approval. Rush 7-day production is available for urgent orders.",
-  },
-  {
-    question: "Can you match our department's specific colors?",
-    answer: "Yes. We color-match to Pantone standards and can replicate your department's exact colors, badges, and insignia.",
-  },
-]);
+// Breadcrumb schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://pandapatches.com",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Custom Fire Department Patches",
+      item: "https://pandapatches.com/custom-fire-department-patches",
+    },
+  ],
+};
 
-const PATCH_TYPES = [
-  { title: "Station & Unit Patches", desc: "Identify your station, battalion, or unit with precision-embroidered patches. Custom shapes, colors, and badge designs." },
-  { title: "Rank Patches", desc: "Captain, Lieutenant, Engineer, Firefighter — clear rank identification with durable embroidered or woven patches." },
-  { title: "Name Patches", desc: "Personalized firefighter name patches in embroidered or woven styles. Sew-on, velcro, or iron-on backing." },
-  { title: "Helmet & Gear Patches", desc: "PVC and embroidered patches designed to withstand heat, moisture, and heavy use on helmets and turnout gear." },
-  { title: "Commemorative Patches", desc: "Honor fallen heroes, mark anniversaries, or celebrate department milestones with collectible patches." },
-  { title: "Tactical Velcro Patches", desc: "Hook-and-loop patches for vests, jackets, and bags. Interchangeable and built to last in demanding conditions." },
-];
+export default async function FireDepartmentPatchesPage() {
+  const { workSamples, heroImage, trustBadges, seoHeading, seoContent } = await getFirePageData();
 
-export default function FireDepartmentPatchesPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Schemas */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(productSchema)} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(faqSchema)} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(productSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
 
       <Navbar />
 
-      {/* HERO */}
-      <section className="w-full bg-panda-dark pt-28 pb-20 px-4">
-        <div className="container mx-auto max-w-[900px] text-center">
-          <p className="text-panda-yellow font-bold text-[14px] uppercase tracking-widest mb-4">Trusted by Fire Departments Nationwide</p>
-          <h1 className="text-[34px] md:text-[54px] font-black text-white leading-tight tracking-tight mb-6">
-            Custom Fire Department Patches
-          </h1>
-          <p className="text-[17px] md:text-[19px] text-gray-300 leading-[1.8] max-w-[700px] mx-auto mb-10">
-            High-quality embroidered, PVC, and velcro patches for fire departments, firefighters, and EMTs.
-            No minimum order. Free mockup. 7–14 day turnaround.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/#quote"
-              className="inline-block bg-panda-yellow text-panda-dark font-black text-[16px] px-8 py-4 rounded-full hover:opacity-90 transition-opacity"
-            >
-              Get a Free Quote
-            </Link>
-            <Link
-              href="/bulk-custom-patches"
-              className="inline-block bg-white/10 text-white font-bold text-[16px] px-8 py-4 rounded-full hover:bg-white/20 transition-colors"
-            >
-              Bulk Orders (50+)
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* 1. HERO */}
+      <BulkHero
+        heroImage={heroImage}
+        trustBadges={trustBadges}
+        customHeading="Custom Fire Department Patches"
+        customSubheading="Trusted by Fire Departments Nationwide"
+        customDescription="Professional fire department patches, firefighter badges, and station patches. Embroidered, PVC, and Nomex options. Heat-resistant materials available. Volume pricing for departments. 2-week turnaround."
+      />
 
-      {/* TRUST BAR */}
-      <section className="w-full bg-panda-yellow py-4">
-        <div className="container mx-auto px-4 flex flex-wrap justify-center gap-x-10 gap-y-2 text-panda-dark font-bold text-[14px] text-center">
-          <span>★ 4.7/5 on Trustpilot</span>
-          <span>✓ No Minimum Order</span>
-          <span>✓ Free Digital Mockup</span>
-          <span>✓ 7-14 Day Turnaround</span>
-          <span>✓ Velcro, Iron-On & Sew-On</span>
-        </div>
-      </section>
+      {/* 2. WORK GALLERY */}
+      <WorkGallery samples={workSamples} />
 
-      {/* PATCH TYPES */}
-      <section className="w-full py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-[1200px]">
-          <h2 className="text-[26px] md:text-[38px] font-black text-panda-dark text-center uppercase tracking-tight mb-14">
-            Patch Types for Fire Departments
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PATCH_TYPES.map((type, idx) => (
-              <div key={idx} className="border border-gray-100 rounded-2xl p-7 hover:shadow-lg transition-shadow">
-                <h3 className="text-[18px] font-black text-panda-dark mb-3">{type.title}</h3>
-                <p className="text-[15px] text-gray-600 leading-[1.7]">{type.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 3. WHY CHOOSE PANDA */}
+      <Promises bgColor="bg-white" />
 
-      {/* WHY CHOOSE US */}
-      <section className="w-full py-20 bg-[#F6F6F6]">
-        <div className="container mx-auto px-4 max-w-[900px]">
-          <h2 className="text-[26px] md:text-[38px] font-black text-panda-dark text-center uppercase tracking-tight mb-10">
-            Why Fire Departments Choose Panda Patches
-          </h2>
-          <div className="space-y-5 text-[16px] text-gray-700 leading-[1.8]">
-            <p>
-              Fire departments across the United States trust Panda Patches for their custom patch needs.
-              Founded by <strong>Imran Raza</strong> with 13 years of textile and embroidery expertise, we understand
-              that every detail of a fire department patch carries meaning — from the color of a rank stripe to the
-              precision of a department seal.
-            </p>
-            <p>
-              We produce <strong>custom fire department patches</strong> in embroidered, PVC, woven, and iron-on formats.
-              Our patches withstand the rigors of the job — heat, moisture, and heavy use — while maintaining their
-              color and structure. Hook-and-loop (velcro) backing is our most popular option for turnout gear and tactical vests.
-            </p>
-            <p>
-              Whether you need <strong>1 commemorative patch</strong> for a retirement ceremony or <strong>500 station patches</strong>
-              for a department-wide rollout, we deliver the same quality and care. Free digital mockup included with every order.
-              Color-matched to your department&apos;s official colors.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* PROCESS */}
+      {/* 4. OUR PROCESS */}
       <ProcessSection />
 
-      {/* FAQ */}
-      <section className="w-full py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-[800px]">
-          <h2 className="text-[26px] md:text-[38px] font-black text-panda-dark text-center uppercase tracking-tight mb-12">
-            Fire Department Patch FAQs
+      {/* 5. FIRE DEPARTMENT FAQ */}
+      <CategoryFAQ title="Fire Department Patches FAQ" faqs={fireFAQs} />
+
+      {/* 6. SEO CONTENT */}
+      <section className="w-full py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+            Custom Fire Department Patches — Professional Firefighter Patches
           </h2>
-          <div className="space-y-6">
-            {[
-              { q: "What types of patches do you make for fire departments?", a: "We make embroidered, PVC, velcro, woven, and iron-on patches. Common types include station patches, rank patches, name patches, helmet patches, and commemorative patches." },
-              { q: "Is there a minimum order quantity?", a: "No minimum. Order 1 or 10,000 — same quality, same service." },
-              { q: "Do you offer velcro backing?", a: "Yes. Hook-and-loop (velcro) is our most popular backing for fire department patches. It works on gear, vests, helmets, and bags." },
-              { q: "Can you match our department's exact colors?", a: "Yes. We Pantone color-match to replicate your department's official colors, seals, and badge designs accurately." },
-              { q: "How long does production take?", a: "Standard production is 7-14 business days after mockup approval. Rush 7-day production is available." },
-            ].map((item, idx) => (
-              <div key={idx} className="border-b border-gray-100 pb-6">
-                <h3 className="text-[17px] font-bold text-panda-dark mb-2">{item.q}</h3>
-                <p className="text-[15px] text-gray-600 leading-[1.7]">{item.a}</p>
-              </div>
-            ))}
+          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+            <p>
+              Looking for <strong>custom fire department patches</strong> for your station? Panda Patches is the trusted choice for fire departments nationwide that need professional, durable patches for uniforms, turnout gear, and station use.
+            </p>
+            <p>
+              We produce <strong>custom firefighter patches</strong> for fire stations, EMS departments, volunteer fire departments, and rescue squads. From <strong>embroidered department badges</strong> and <strong>Nomex heat-resistant patches</strong> to <strong>PVC Maltese cross patches</strong>, every patch is built to withstand the demanding conditions of firefighting and emergency response.
+            </p>
+            <p>
+              Whether you need <strong>50 patches for a volunteer station</strong> or <strong>5,000 patches for a city-wide department</strong>, we handle orders of all sizes with the same professional standards. With <strong>volume pricing</strong>, <strong>free design mockups</strong>, and a reliable <strong>2-week turnaround</strong>, equipping your department with quality patches has never been easier.
+            </p>
+            <p>
+              Ready to get started? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> today. We respond to all inquiries within 2 business hours and work directly with your department specifications.
+            </p>
           </div>
         </div>
       </section>
 
+      {/* 7. CTA */}
       <CTASection />
+
       <Footer />
     </main>
   );

@@ -333,7 +333,22 @@ export default function ComplexCalculator({
     }
   };
 
-  const handleInc = (setter: any, val: number) => setter(val + 0.5);
+  // Get max size based on product type
+  const getMaxSize = () => {
+    const type = productType.toLowerCase();
+    if (type.includes('pvc') || type.includes('woven') || type.includes('leather')) {
+      return 6; // 6 inches max for PVC, Woven, and Leather
+    }
+    return 50; // Default max for other types
+  };
+
+  const maxSize = getMaxSize();
+
+  const handleInc = (setter: any, val: number) => {
+    if (val < maxSize) {
+      setter(val + 0.5);
+    }
+  };
   const handleDec = (setter: any, val: number) => val > 0.5 && setter(val - 0.5);
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {

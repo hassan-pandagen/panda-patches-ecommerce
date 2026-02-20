@@ -40,7 +40,7 @@ function getProductUrl(title: string): string {
     'Custom Woven Patches': '/custom-patches/woven',
     'Custom Leather Patches': '/custom-patches/leather',
     'Custom Printed Patches': '/custom-patches/printed',
-    'Custom No Background 3D Embroidery': '/custom-patches/3d-embroidered-transfers',
+    'Custom No Background 3D Embroidery': '/custom-patches/custom-3d-embroidered-transfers',
     'Custom Sequin Patches': '/custom-patches/sequin',
   };
 
@@ -161,7 +161,7 @@ function ProductCard({ item }: { item: any }) {
            {item.image ? (
              <Image
                src={urlFor(item.image).url()}
-               alt={item.title}
+               alt={`${item.title} - Custom patches with low minimums and fast delivery | Panda Patches`}
                fill
                className="object-contain group-hover:scale-110 transition-transform duration-500"
                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 296px"

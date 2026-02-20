@@ -15,8 +15,19 @@ export default defineType({
       name: 'images',
       title: 'Sample Images',
       type: 'array',
-      of: [{ type: 'image' }],
-      description: 'Upload 4-8 high quality photos of finished patches.'
+      of: [{
+        type: 'image',
+        fields: [
+          defineField({
+            name: 'alt',
+            title: 'Alt Text (SEO)',
+            type: 'string',
+            description: 'Describe this work sample: e.g., "Custom police badge patch with detailed embroidery"',
+            validation: (rule) => rule.required(),
+          }),
+        ],
+      }],
+      description: 'Upload 4-8 high quality photos of finished patches with SEO descriptions.'
     }),
   ],
 })

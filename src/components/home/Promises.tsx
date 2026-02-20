@@ -22,7 +22,7 @@ export default function Promises({ bgColor = "bg-[#F7F7F7]" }: { bgColor?: strin
             <div key={idx} className="flex flex-col items-center text-center">
               <div className="w-[70px] h-[70px] md:w-[84px] md:h-[84px] bg-black rounded-full flex items-center justify-center mb-4 md:mb-6 shadow-lg hover:scale-110 transition-transform duration-300">
                 <div className="relative w-[32px] h-[32px] md:w-[38px] md:h-[38px]">
-                  <Image src={item.icon} alt={item.title} fill className="object-contain" sizes="38px" quality={90} />
+                  <Image src={item.icon} alt={`${item.title} icon - Panda Patches guarantee`} fill className="object-contain" sizes="38px" quality={90} />
                 </div>
               </div>
               <h3 className="text-[15px] md:text-[18px] font-extrabold text-panda-dark mb-2 md:mb-3 leading-tight">{item.title}</h3>

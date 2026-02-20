@@ -83,7 +83,7 @@ export default async function IndustrySection() {
                 {card.image && (
                   <Image
                      src={card.image.asset ? urlFor(card.image).url() : card.image}
-                     alt={card.title}
+                     alt={`${card.title} custom patches and badges | Panda Patches`}
                      fill
                      className="object-contain hover:scale-105 transition-transform duration-500"
                      sizes="252px"
