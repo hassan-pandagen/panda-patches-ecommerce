@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Footer from "@/components/layout/Footer";
 import BulkHero from "@/components/bulk/BulkHero";
 import WorkGallery from "@/components/bulk/WorkGallery";
@@ -87,7 +88,7 @@ async function getFirePageData() {
 }
 
 export const metadata: Metadata = {
-  title: "Custom Fire Department Patches | Firefighter Patches | Panda Patches",
+  title: "Fire Department Patches - Nomex & Heat Resistant",
   description: "Custom fire department patches, firefighter badges, and station patches. Embroidered, PVC, and Nomex options. Trusted by fire departments nationwide. Volume pricing available.",
   keywords: [
     "custom fire department patches",
@@ -172,6 +173,14 @@ export default async function FireDepartmentPatchesPage() {
       />
 
       <Navbar />
+
+      {/* Breadcrumb Navigation */}
+      <Breadcrumbs
+        items={[
+          { label: "Bulk Orders", href: "/bulk-custom-patches" }
+        ]}
+        currentPage="Fire Department Patches"
+      />
 
       {/* 1. HERO */}
       <BulkHero

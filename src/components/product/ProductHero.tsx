@@ -40,10 +40,11 @@ export default async function ProductHero({ productData, isMainPage = false }: P
 
             {/*
                TITLE - Mobile Responsive
-               - Responsive text sizing for all screen sizes
-               - Better mobile readability
+               - Smaller font sizes for better balance with form
+               - Single line on all screen sizes
+               - Optimized for mobile and desktop
             */}
-            <h1 className="text-[28px] md:text-[36px] lg:text-[42px] font-extrabold text-panda-dark leading-tight mb-4 md:mb-6 w-full tracking-tight text-center md:text-left">
+            <h1 className="text-[20px] sm:text-[22px] md:text-[26px] lg:text-[30px] xl:text-[34px] font-extrabold text-panda-dark leading-tight mb-4 md:mb-6 w-full tracking-tight text-center md:text-left whitespace-nowrap overflow-hidden">
               {title}
             </h1>
 

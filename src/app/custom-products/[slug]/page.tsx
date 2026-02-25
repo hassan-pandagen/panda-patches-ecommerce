@@ -1,6 +1,7 @@
 import { client, urlFor } from "@/lib/sanity";
 import { PortableText } from "@portabletext/react";
 import Navbar from "@/components/layout/Navbar";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Footer from "@/components/layout/Footer";
 import { generateProductSchema, generateBreadcrumbSchema, generateSchemaScript } from "@/lib/schemas";
 
@@ -122,7 +123,15 @@ export default async function CustomProductPage({ params }: { params: { slug: st
       />
 
       <Navbar />
-      
+
+      {/* Breadcrumb Navigation */}
+      <Breadcrumbs
+        items={[
+          { label: "Custom Products", href: "/custom-products" }
+        ]}
+        currentPage={data.title}
+      />
+
       {/* 1. HERO (Gallery + Quote Form) */}
       <ProductHero productData={data} isMainPage={true} />
       

@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  webpack: (config, { isServer }) => {
+    // Redirect @upstash/redis to its edge-compatible build to avoid Node.js API warnings
+    config.resolve.alias['@upstash/redis'] = '@upstash/redis/cloudflare';
+    return config;
+  },
   images: {
     remotePatterns: [
       {
@@ -92,10 +97,6 @@ const nextConfig = {
             key: 'Strict-Transport-Security',
             value: 'max-age=31536000; includeSubDomains; preload',
           },
-          {
-            key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://js.stripe.com https://tawk.to https://www.googletagmanager.com https://www.google-analytics.com https://*.sanity.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.sanity.io; img-src 'self' https: data: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.stripe.com https://tawk.to https://www.google-analytics.com https://*.sanity.io https://*.supabase.co; frame-src 'self' https://js.stripe.com https://tawk.to https://*.sanity.io; media-src 'self' https://*.sanity.io https://cdn.sanity.io blob: data:; object-src 'none';",
-          },
         ],
       },
     ];
@@ -158,27 +159,16 @@ const nextConfig = {
         permanent: true,
       },
 
-      // POLICY PAGES - Redirect to homepage for now
-      // TODO: Create these pages in Sanity or as static pages
-      {
-        source: '/privacy-policy',
-        destination: '/',
-        permanent: false, // 302 temporary until pages are created
-      },
-      {
-        source: '/privacy-policy/',
-        destination: '/',
-        permanent: false,
-      },
+      // POLICY PAGES - Redirect old URL to new URL
       {
         source: '/terms-conditions',
-        destination: '/',
-        permanent: false,
+        destination: '/terms-of-service',
+        permanent: true, // 301 permanent redirect
       },
       {
         source: '/terms-conditions/',
-        destination: '/',
-        permanent: false,
+        destination: '/terms-of-service',
+        permanent: true,
       },
     ];
   },

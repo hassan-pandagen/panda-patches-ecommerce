@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState, useEffect, useMemo, useRef } from "react";
@@ -7,7 +8,7 @@ import Modal from "@/components/ui/Modal";
 import HeroForm from "@/components/home/HeroForm";
 import { createClient } from '@supabase/supabase-js';
 import { urlFor } from "@/lib/sanity";
-import { calculatePatchPrice } from "@/lib/pricingCalculator";
+import { calculatePatchPrice, getUpsellTiers } from "@/lib/pricingCalculator";
 import TrustBadges from "@/components/shared/TrustBadges";
 
 // Initialize Supabase client (anon key is fine for storage uploads)
@@ -93,8 +94,8 @@ export default function ComplexCalculator({
   const [placement, setPlacement] = useState(PLACEMENTS[0].label);
   const [width, setWidth] = useState(3);
   const [height, setHeight] = useState(3);
-  const [quantity, setQuantity] = useState(50);
-  const [quantityInput, setQuantityInput] = useState('50');
+  const [quantity, setQuantity] = useState(1);
+  const [quantityInput, setQuantityInput] = useState('1');
 
   // Contact State (used in Step 2)
   const [name, setName] = useState("");
@@ -135,6 +136,12 @@ export default function ComplexCalculator({
   const [quoteMessage, setQuoteMessage] = useState("");
   const [quoteSubmitting, setQuoteSubmitting] = useState(false);
   const [quoteSubmitted, setQuoteSubmitted] = useState(false);
+
+  // Payment Method State
+  const [paymentMethod, setPaymentMethod] = useState<"card" | "paypal" | "cashapp" | "afterpay" | "applepay" | "klarna">("card");
+
+  // Checkout Loading State
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   // Prevent hydration mismatch
   useEffect(() => {
@@ -190,6 +197,11 @@ export default function ComplexCalculator({
   const basePrice = originalPrice - discountAmount;
   const unitPrice = priceResult.unitPrice;
 
+  // Upsell tiers — next 2 quantity breakpoints with savings
+  const upsellTiers = useMemo(() => {
+    return getUpsellTiers(productType, width, height, quantity);
+  }, [productType, width, height, quantity]);
+
   useEffect(() => {
     setPricePulse(true);
     const timer = setTimeout(() => setPricePulse(false), 300);
@@ -199,11 +211,6 @@ export default function ComplexCalculator({
   // Step validation
   const validateStep = (step: number): boolean => {
     if (step === 1) {
-      // Step 1 only requires placement selection
-      if (placement === "Choose Size / Placement") {
-        alert("Please select a size or placement");
-        return false;
-      }
       return true;
     }
     if (step === 2) {
@@ -248,8 +255,13 @@ export default function ComplexCalculator({
       return;
     }
 
+    setCheckoutLoading(true);
+
     try {
-      const response = await fetch('/api/checkout', {
+      // Choose API endpoint based on payment method
+      const endpoint = paymentMethod === 'paypal' ? '/api/checkout-paypal' : '/api/checkout';
+
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -266,7 +278,8 @@ export default function ComplexCalculator({
           discount: discount > 0 ? `${(discount * 100).toFixed(0)}% Economy Delivery Discount (16-18 business days)` : null,
           artworkUrl: fileUrl || null,
           addons: selectedAddons.length > 0 ? selectedAddons.map(id => ADDON_OPTIONS.find(opt => opt.id === id)?.name).filter(Boolean) : null,
-          specialInstructions: specialInstructions || null
+          specialInstructions: specialInstructions || null,
+          paymentMethod: paymentMethod // Pass payment method to backend
         }),
       });
 
@@ -275,10 +288,12 @@ export default function ComplexCalculator({
       if (data.url) {
         window.location.href = data.url;
       } else {
+        setCheckoutLoading(false);
         alert("Payment Error: " + data.error);
       }
 
     } catch (err) {
+      setCheckoutLoading(false);
       console.error(err);
       alert("Something went wrong.");
     }
@@ -365,7 +380,7 @@ export default function ComplexCalculator({
       const uniqueFileName = `artwork-${randomId}-${timestamp}.${fileExt}`;
 
       const { data, error } = await supabase.storage
-        .from('customer-artwork')
+        .from('order-attachments')
         .upload(uniqueFileName, file, {
           cacheControl: '3600',
           upsert: false
@@ -380,7 +395,7 @@ export default function ComplexCalculator({
       }
 
       const { data: urlData } = supabase.storage
-        .from('customer-artwork')
+        .from('order-attachments')
         .getPublicUrl(uniqueFileName);
 
       setFileUrl(urlData.publicUrl);
@@ -484,7 +499,10 @@ export default function ComplexCalculator({
 
             {/* 2. PLACEMENT & SIZE */}
             <div>
-              <label className="text-sm font-black text-black uppercase tracking-wide mb-2 block">Size & Placement</label>
+              <div className="flex justify-between items-center mb-2">
+                <label className="text-sm font-black text-black uppercase tracking-wide">Size & Placement</label>
+                <span className="text-[11px] font-semibold text-gray-400">Optional</span>
+              </div>
               <div className="relative mb-3">
                 <select
                   value={placement}
@@ -529,7 +547,7 @@ export default function ComplexCalculator({
                   }}
                   onBlur={(e) => {
                     const val = e.target.value;
-                    const num = val === '' ? 50 : Math.max(1, Number(val));
+                    const num = val === '' ? 1 : Math.max(1, Number(val));
                     setQuantity(num);
                     setQuantityInput(String(num));
                   }}
@@ -539,7 +557,7 @@ export default function ComplexCalculator({
               </div>
             </div>
 
-            {/* 4. ARTWORK UPLOAD */}
+            {/* 4. ARTWORK UPLOAD - Moved UP */}
             <div>
               <div className="flex justify-between items-end mb-2">
                 <label className="text-sm font-black text-black uppercase tracking-wide">
@@ -592,7 +610,36 @@ export default function ComplexCalculator({
               </label>
             </div>
 
-            {/* 5. PRICE BAR — shown on Step 1 so they see the price before proceeding */}
+            {/* 5. UPSELL TIERS — Moved near price for better visibility */}
+            {upsellTiers.length > 0 && !priceResult.error && (
+              <div className="space-y-3">
+                {upsellTiers.map((tier) => (
+                  <button
+                    key={tier.quantity}
+                    type="button"
+                    onClick={() => {
+                      setQuantity(tier.quantity);
+                      setQuantityInput(String(tier.quantity));
+                    }}
+                    className="w-full flex items-center justify-between px-5 py-4 rounded-[14px] border-2 border-dashed border-green-400 bg-green-50 hover:border-green-600 hover:bg-green-100 transition-all group shadow-sm hover:shadow-md"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="bg-green-600 text-white text-[13px] font-black px-3 py-1.5 rounded-md uppercase tracking-wide">
+                        SAVE {tier.savingsPercent}%
+                      </span>
+                      <span className="text-base font-bold text-gray-800 group-hover:text-black">
+                        Order {tier.quantity} pcs
+                      </span>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-base font-black text-green-700 group-hover:text-green-800">${tier.unitPrice.toFixed(2)}/ea</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* 6. PRICE BAR — shown on Step 1 so they see the price before proceeding */}
             <div className="bg-white border-2 border-black p-5 rounded-[16px] shadow-lg">
               {priceResult.error ? (
                 <div className="text-center py-2">
@@ -884,6 +931,38 @@ export default function ComplexCalculator({
               />
             </div>
 
+            {/* UPSELL TIERS ON STEP 2 — Moved near price for better visibility */}
+            {upsellTiers.length > 0 && !priceResult.error && (
+              <div className="space-y-3">
+                <label className="text-sm font-black text-black uppercase tracking-wide block">
+                  💰 Save More on Bulk Orders
+                </label>
+                {upsellTiers.map((tier) => (
+                  <button
+                    key={tier.quantity}
+                    type="button"
+                    onClick={() => {
+                      setQuantity(tier.quantity);
+                      setQuantityInput(String(tier.quantity));
+                    }}
+                    className="w-full flex items-center justify-between px-5 py-4 rounded-[14px] border-2 border-dashed border-green-400 bg-green-50 hover:border-green-600 hover:bg-green-100 transition-all group shadow-sm hover:shadow-md"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="bg-green-600 text-white text-[13px] font-black px-3 py-1.5 rounded-md uppercase tracking-wide">
+                        SAVE {tier.savingsPercent}%
+                      </span>
+                      <span className="text-base font-bold text-gray-800 group-hover:text-black">
+                        Order {tier.quantity} pcs
+                      </span>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-base font-black text-green-700 group-hover:text-green-800">${tier.unitPrice.toFixed(2)}/ea</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+
             {/* PRICE SUMMARY (Step 2) */}
             <div className="bg-white border-2 border-black p-5 rounded-[16px] shadow-lg">
               {priceResult.error ? (
@@ -930,6 +1009,94 @@ export default function ComplexCalculator({
           </>
         )}
 
+        {/* === PAYMENT METHOD SELECTOR (Step 2 only) === */}
+        {mounted && currentStep === 2 && (
+          <div className="bg-white border border-gray-200 rounded-xl p-5">
+            <label className="text-sm font-bold text-black uppercase tracking-wide mb-4 block">
+              Payment Method
+            </label>
+            <div className="grid grid-cols-3 gap-3">
+
+              {/* Credit/Debit Cards */}
+              <button
+                type="button"
+                onClick={() => setPaymentMethod("card")}
+                className={`h-[72px] rounded-xl border-2 transition-all duration-150 flex items-center justify-center px-1 ${
+                  paymentMethod === "card" ? "border-black bg-white shadow-md" : "border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-white hover:shadow-sm"
+                }`}
+              >
+                <img src="/assets/payments/cards.svg" alt="Visa, Mastercard, Amex" style={{width: '100%', height: 'auto'}} />
+              </button>
+
+              {/* PayPal */}
+              <button
+                type="button"
+                onClick={() => setPaymentMethod("paypal")}
+                className={`h-[72px] rounded-xl border-2 transition-all duration-150 flex items-center justify-center px-3 ${
+                  paymentMethod === "paypal" ? "border-black bg-white shadow-md" : "border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-white hover:shadow-sm"
+                }`}
+              >
+                <img src="/assets/payments/paypal.svg" alt="PayPal" style={{height: '52px', width: 'auto'}} />
+              </button>
+
+              {/* Cash App */}
+              <button
+                type="button"
+                onClick={() => setPaymentMethod("cashapp")}
+                className={`h-[72px] rounded-xl border-2 transition-all duration-150 flex items-center justify-center px-3 ${
+                  paymentMethod === "cashapp" ? "border-black bg-white shadow-md" : "border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-white hover:shadow-sm"
+                }`}
+              >
+                <img src="/assets/payments/cashapp.svg" alt="Cash App" style={{height: '50px', width: 'auto'}} />
+              </button>
+
+              {/* Afterpay */}
+              <button
+                type="button"
+                onClick={() => setPaymentMethod("afterpay")}
+                className={`h-[72px] rounded-xl border-2 transition-all duration-150 flex items-center justify-center px-1 ${
+                  paymentMethod === "afterpay" ? "border-black bg-white shadow-md" : "border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-white hover:shadow-sm"
+                }`}
+              >
+                <img src="/assets/payments/afterpay.svg" alt="Afterpay" style={{width: '100%', height: 'auto'}} />
+              </button>
+
+              {/* Apple Pay */}
+              <button
+                type="button"
+                onClick={() => setPaymentMethod("applepay")}
+                className={`h-[72px] rounded-xl border-2 transition-all duration-150 flex items-center justify-center px-3 ${
+                  paymentMethod === "applepay" ? "border-black bg-white shadow-md" : "border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-white hover:shadow-sm"
+                }`}
+              >
+                <img src="/assets/payments/applepay.svg" alt="Apple Pay" style={{height: '50px', width: 'auto'}} />
+              </button>
+
+              {/* Klarna */}
+              <button
+                type="button"
+                onClick={() => setPaymentMethod("klarna")}
+                className={`h-[72px] rounded-xl border-2 transition-all duration-150 flex items-center justify-center px-1 ${
+                  paymentMethod === "klarna" ? "border-black bg-white shadow-md" : "border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-white hover:shadow-sm"
+                }`}
+              >
+                <img src="/assets/payments/klarna.svg" alt="Klarna" style={{width: '100%', height: 'auto'}} />
+              </button>
+
+            </div>
+
+            {/* Security Badge */}
+            <div className="mt-4 flex items-center justify-center gap-2 text-xs text-gray-500">
+              <svg className="w-3.5 h-3.5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              <span className="font-semibold text-green-700">
+                {paymentMethod === "paypal" ? "Secure PayPal checkout" : "256-bit SSL encrypted payment"}
+              </span>
+            </div>
+          </div>
+        )}
+
         {/* === NAVIGATION BUTTONS === */}
         {mounted && (
         <div className="space-y-3 pt-4 border-t border-gray-200">
@@ -966,10 +1133,22 @@ export default function ComplexCalculator({
             <>
               <button
                 type="submit"
-                className="w-full h-[70px] bg-black text-panda-yellow rounded-[14px] font-black text-[18px] uppercase tracking-widest hover:scale-[1.01] transition-transform shadow-2xl flex items-center justify-center gap-3"
+                disabled={checkoutLoading}
+                className={`w-full h-[70px] bg-black text-panda-yellow rounded-[14px] font-black text-[18px] uppercase tracking-widest transition-all shadow-2xl flex items-center justify-center gap-3 ${
+                  checkoutLoading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-[1.01]'
+                }`}
               >
-                <ShoppingCart size={22} strokeWidth={2.5} />
-                <span>Proceed to Checkout</span>
+                {checkoutLoading ? (
+                  <>
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-panda-yellow"></div>
+                    <span>Processing...</span>
+                  </>
+                ) : (
+                  <>
+                    <ShoppingCart size={22} strokeWidth={2.5} />
+                    <span>Proceed to Checkout</span>
+                  </>
+                )}
               </button>
 
               <button

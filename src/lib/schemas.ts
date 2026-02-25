@@ -141,17 +141,36 @@ export function generateOrganizationSchema() {
 // 2. PRODUCT SCHEMA (for product pages)
 // ============================================
 
+interface PricingTier {
+  minQuantity: number;
+  maxQuantity?: number;
+  unitPrice: number;
+}
+
+interface ProductVariant {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
 interface ProductSchemaParams {
   name: string;
   description: string;
   image: string;
   url: string;
   sku?: string;
+  gtin?: string;
   brand?: string;
   priceRange?: string; // e.g., "$50-$500"
   priceCurrency?: string;
-  availability?: "InStock" | "OutOfStock" | "PreOrder";
+  availability?: "InStock" | "OutOfStock" | "PreOrder" | "MadeToOrder";
   includeReviews?: boolean; // Include Trustpilot aggregate rating
+  // UCP / Variant Support
+  pricingTiers?: PricingTier[];
+  variants?: ProductVariant[];
+  materials?: string[];
+  weight?: { value: number; unit: string };
+  dimensions?: { width?: number; height?: number; depth?: number };
 }
 
 export function generateProductSchema(params: ProductSchemaParams) {
@@ -161,12 +180,38 @@ export function generateProductSchema(params: ProductSchemaParams) {
     image,
     url,
     sku = "custom-product",
+    gtin,
     brand = "Panda Patches",
     priceRange = "$50-$500",
     priceCurrency = "USD",
     availability = "InStock",
     includeReviews = true,
+    pricingTiers,
+    variants,
+    materials,
+    weight,
+    dimensions,
   } = params;
+
+  // Calculate price range from pricing tiers if available
+  let lowPrice = priceRange.split('-')[0].replace('$', '').trim();
+  let highPrice = priceRange.split('-')[1]?.replace('$', '').trim() || lowPrice;
+
+  if (pricingTiers && pricingTiers.length > 0) {
+    const prices = pricingTiers.map(tier => tier.unitPrice);
+    lowPrice = Math.min(...prices).toFixed(2);
+    highPrice = Math.max(...prices).toFixed(2);
+  }
+
+  // Map availability to Schema.org format
+  const availabilityMap: Record<string, string> = {
+    'InStock': 'InStock',
+    'OutOfStock': 'OutOfStock',
+    'PreOrder': 'PreOrder',
+    'MadeToOrder': 'PreOrder', // Map MadeToOrder to PreOrder for Schema.org
+  };
+
+  const schemaAvailability = availabilityMap[availability] || 'InStock';
 
   const productSchema: Record<string, any> = {
     "@context": "https://schema.org",
@@ -183,13 +228,105 @@ export function generateProductSchema(params: ProductSchemaParams) {
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": priceCurrency,
-      "lowPrice": priceRange.split('-')[0].replace('$', ''),
-      "highPrice": priceRange.split('-')[1].replace('$', ''),
-      "availability": `https://schema.org/${availability}`,
+      "lowPrice": lowPrice,
+      "highPrice": highPrice,
+      "availability": `https://schema.org/${schemaAvailability}`,
       "url": url,
       "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
     }
   };
+
+  // Add GTIN if available
+  if (gtin) {
+    productSchema.gtin = gtin;
+  }
+
+  // Add material if available
+  if (materials && materials.length > 0) {
+    productSchema.material = materials.join(', ');
+  }
+
+  // Add weight if available
+  if (weight?.value && weight?.unit) {
+    productSchema.weight = {
+      "@type": "QuantitativeValue",
+      "value": weight.value,
+      "unitText": weight.unit
+    };
+  }
+
+  // Add dimensions if available
+  if (dimensions?.width || dimensions?.height || dimensions?.depth) {
+    const dim = dimensions;
+    if (dim.width && dim.height && dim.depth) {
+      productSchema.depth = {
+        "@type": "QuantitativeValue",
+        "value": dim.depth,
+        "unitText": "in"
+      };
+      productSchema.height = {
+        "@type": "QuantitativeValue",
+        "value": dim.height,
+        "unitText": "in"
+      };
+      productSchema.width = {
+        "@type": "QuantitativeValue",
+        "value": dim.width,
+        "unitText": "in"
+      };
+    }
+  }
+
+  // Add individual offers for pricing tiers (UCP enhancement)
+  if (pricingTiers && pricingTiers.length > 0) {
+    productSchema.offers = {
+      "@type": "AggregateOffer",
+      "priceCurrency": priceCurrency,
+      "lowPrice": lowPrice,
+      "highPrice": highPrice,
+      "availability": `https://schema.org/${schemaAvailability}`,
+      "url": url,
+      "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+      "offers": pricingTiers.map((tier, index) => ({
+        "@type": "Offer",
+        "price": tier.unitPrice.toFixed(2),
+        "priceCurrency": priceCurrency,
+        "availability": `https://schema.org/${schemaAvailability}`,
+        "eligibleQuantity": {
+          "@type": "QuantitativeValue",
+          "minValue": tier.minQuantity,
+          "maxValue": tier.maxQuantity || 999999,
+          "unitText": "units"
+        },
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": tier.unitPrice.toFixed(2),
+          "priceCurrency": priceCurrency,
+          "referenceQuantity": {
+            "@type": "QuantitativeValue",
+            "value": 1,
+            "unitText": "unit"
+          }
+        }
+      }))
+    };
+  }
+
+  // Add product variants (if available)
+  if (variants && variants.length > 0) {
+    productSchema.isVariantOf = {
+      "@type": "ProductGroup",
+      "name": name,
+      "variesBy": "material",
+      "hasVariant": variants.map((variant, index) => ({
+        "@type": "Product",
+        "name": variant.title,
+        "description": variant.description || description,
+        "image": variant.image || image,
+        "sku": `${sku}-VARIANT-${index + 1}`
+      }))
+    };
+  }
 
   // Add aggregate rating from Trustpilot
   if (includeReviews) {

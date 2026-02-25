@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { client } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -14,6 +15,38 @@ import FAQ from "@/components/home/FAQ";
 import ContentSection from "@/components/home/ContentSection";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import CTASection from "@/components/home/CTASection";
+
+export const metadata: Metadata = {
+  title: "Custom Patches - Embroidered, PVC, Woven & More | Panda Patches",
+  description: "Browse all custom patch types: embroidered patches, PVC patches, woven patches, chenille patches, and leather patches. Low minimums, free design services, 7-14 day delivery. Order your custom patches today!",
+  keywords: [
+    "custom patches",
+    "embroidered patches",
+    "PVC patches",
+    "woven patches",
+    "chenille patches",
+    "leather patches",
+    "iron on patches",
+    "velcro patches",
+    "custom patch maker",
+    "patch manufacturing",
+  ],
+  alternates: {
+    canonical: "https://pandapatches.com/custom-patches",
+  },
+  openGraph: {
+    title: "Custom Patches - All Types | Panda Patches",
+    description: "Browse all custom patch types with low minimums and fast delivery. Embroidered, PVC, woven, chenille, and leather patches available.",
+    url: "https://pandapatches.com/custom-patches",
+    siteName: "Panda Patches",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Custom Patches - All Types | Panda Patches",
+    description: "Browse all custom patch types with low minimums and fast delivery.",
+  },
+};
 
 // ISR: Revalidate main patches page every 24 hours
 export const revalidate = 86400;

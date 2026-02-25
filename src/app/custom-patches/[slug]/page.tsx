@@ -2,6 +2,7 @@ import { client, urlFor } from "@/lib/sanity";
 import { Metadata } from "next";
 import dynamic from 'next/dynamic';
 import Navbar from "@/components/layout/Navbar";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { generateProductSchema, generateBreadcrumbSchema, generateSchemaScript } from "@/lib/schemas";
 
 // COMPONENTS - Above the fold
@@ -164,6 +165,14 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
       />
 
       <Navbar />
+
+      {/* Breadcrumb Navigation */}
+      <Breadcrumbs
+        items={[
+          { label: "Custom Patches", href: "/custom-patches" }
+        ]}
+        currentPage={data.title}
+      />
 
       {/* 1. HERO (Calculator with Checkout) */}
       <ProductHero productData={data} isMainPage={false} />

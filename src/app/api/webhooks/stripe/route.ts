@@ -7,10 +7,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-01-28.clover',
 });
 
-// Initialize Supabase
+// Initialize Supabase with service role key to bypass RLS
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
 // IMPORTANT: This endpoint must be excluded from middleware body parsing
@@ -51,12 +51,23 @@ export async function POST(req: Request) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
 
-        // Get the order ID from metadata
-        const orderId = session.metadata?.order_id;
+        // Try to get order ID from metadata first (website checkout)
+        let orderId = session.metadata?.order_id;
 
+        // If no order_id in metadata, try to find by session ID (fallback for payment links)
         if (!orderId) {
-          console.error('No order_id in session metadata');
-          break;
+          const { data: order } = await supabase
+            .from('orders')
+            .select('id')
+            .eq('stripe_session_id', session.id)
+            .single();
+
+          if (order) {
+            orderId = order.id;
+          } else {
+            console.error('No order found for session:', session.id);
+            break;
+          }
         }
 
         // Update the order in Supabase

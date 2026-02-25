@@ -3,6 +3,7 @@ import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { calculatePatchPrice } from '@/lib/pricingCalculator';
+import { resolveBaseUrl, applyEconomyDiscount } from '@/lib/checkoutConfig';
 
 // 1. Init Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -14,14 +15,6 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
-
-// 3. Allowed origins for Stripe redirects (add your production domain when ready)
-const ALLOWED_ORIGINS = [
-  'http://localhost:3000',
-  'http://localhost:3001',
-  'https://pandapatches.com',
-  'https://www.pandapatches.com',
-];
 
 // 4. Define Validation Schema
 const CheckoutSchema = z.object({
@@ -42,7 +35,8 @@ const CheckoutSchema = z.object({
   discount: z.string().optional().or(z.null()),
   artworkUrl: z.string().url({ message: 'Invalid URL' }).optional().or(z.null()).or(z.literal('')),
   addons: z.array(z.string()).optional().or(z.null()),
-  specialInstructions: z.string().optional().or(z.null())
+  specialInstructions: z.string().optional().or(z.null()),
+  paymentMethod: z.enum(['card', 'cashapp', 'afterpay', 'applepay', 'klarna']).optional()
 });
 
 export async function POST(req: Request) {
@@ -78,7 +72,8 @@ export async function POST(req: Request) {
       rushDate,
       artworkUrl,
       addons,
-      specialInstructions
+      specialInstructions,
+      paymentMethod = 'card'
     } = validationResult.data;
 
     // SECURITY: Calculate price server-side to prevent manipulation
@@ -92,19 +87,11 @@ export async function POST(req: Request) {
     }
 
     // Apply economy discount if applicable (10% off)
-    let finalPrice = priceResult.totalPrice;
-    if (deliveryOption === 'economy') {
-      finalPrice = Math.round(finalPrice * 0.9 * 100) / 100;
-    }
-
-    // Log price mismatch for debugging (helps catch client-side calculation bugs)
-    if (Math.abs(clientPrice - finalPrice) > 0.5) {
-      console.warn(`Price mismatch detected: Client sent $${clientPrice}, Server calculated $${finalPrice}`);
-    }
+    const finalPrice = applyEconomyDiscount(priceResult.totalPrice, deliveryOption);
 
     // Validate origin to prevent open redirect attacks
     const origin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/');
-    const baseUrl = ALLOWED_ORIGINS.find(allowed => origin?.startsWith(allowed)) || ALLOWED_ORIGINS[0];
+    const baseUrl = resolveBaseUrl(origin);
 
     // === MATCHING YOUR EXISTING CRM SCHEMA ===
     const { data: order, error: dbError } = await supabase
@@ -150,9 +137,24 @@ export async function POST(req: Request) {
       );
     }
 
-    // B. Create Stripe Checkout Session
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+    // B. Determine Stripe payment method types based on selection
+    const paymentMethodTypes: Stripe.Checkout.SessionCreateParams.PaymentMethodType[] = [];
+    if (paymentMethod === 'card' || paymentMethod === 'applepay') {
+      // Apple Pay is automatically offered by Stripe when 'card' is enabled on supported devices
+      paymentMethodTypes.push('card');
+    } else if (paymentMethod === 'cashapp') {
+      paymentMethodTypes.push('cashapp');
+    } else if (paymentMethod === 'afterpay') {
+      paymentMethodTypes.push('afterpay_clearpay');
+    } else if (paymentMethod === 'klarna') {
+      paymentMethodTypes.push('klarna');
+    } else {
+      paymentMethodTypes.push('card');
+    }
+
+    // C. Create Stripe Checkout Session
+    const sessionConfig: Stripe.Checkout.SessionCreateParams = {
+      payment_method_types: paymentMethodTypes,
       line_items: [
         {
           price_data: {
@@ -172,9 +174,16 @@ export async function POST(req: Request) {
       metadata: {
         order_id: order.id,
       },
-    });
+    };
 
-    // C. Update Supabase with Session ID
+    // Add customer email for better UX
+    if (customer.email) {
+      sessionConfig.customer_email = customer.email;
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionConfig);
+
+    // D. Update Supabase with Session ID
     await supabase
       .from('orders')
       .update({ stripe_session_id: session.id })

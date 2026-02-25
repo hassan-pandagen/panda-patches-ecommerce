@@ -88,11 +88,12 @@ export default function BulkHero({
             {heroImage && (
               <div className="relative w-full max-w-[520px] h-[200px] md:h-[320px] mx-auto lg:mx-0">
                 <Image
-                  src={urlFor(heroImage).url()}
+                  src={urlFor(heroImage).width(1040).height(640).quality(85).auto('format').url()}
                   alt="Custom Patches Bulk Order"
                   fill
                   className="object-contain object-center lg:object-left"
                   priority
+                  sizes="(max-width: 768px) 100vw, 520px"
                 />
                 {/* 1 Million Badge */}
                 <div className="hidden md:flex absolute bottom-6 right-6 bg-white shadow-xl rounded-xl p-2.5 items-center gap-2.5 border border-gray-100">

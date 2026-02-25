@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
-import TawkToWidget from "@/components/TawkToWidget";
 import { generateOrganizationSchema, generateSchemaScript } from "@/lib/schemas";
+import TawkToWidget from "@/components/TawkToWidget";
 
 // Configure Outfit Font
 const outfit = Outfit({
@@ -12,17 +12,23 @@ const outfit = Outfit({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
   title: "Panda Patches | Custom Iron On Patches",
-  description: "Low Minimums, Quick Delivery!",
+  description: "Order custom embroidered patches, iron-on patches, PVC patches with low minimums. Free design services, 7-14 day delivery. 4.9★ rated by 1000+ customers. No setup fees!",
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/assets/favicon.ico' },
+      { url: '/assets/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/assets/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/assets/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   manifest: '/site.webmanifest',
@@ -56,7 +62,6 @@ export default function RootLayout({
           dangerouslySetInnerHTML={generateSchemaScript(generateOrganizationSchema())}
         />
 
-        <TawkToWidget />
         {children}
 
         {/* Google Tag Manager */}
@@ -86,6 +91,9 @@ fbq('track', 'PageView');`}
         <Script id="bing-uet" strategy="afterInteractive">
           {`(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97147013", enableAutoSpaTracking: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");`}
         </Script>
+
+        {/* Tawk.to Live Chat with Advanced Tracking */}
+        <TawkToWidget />
 
       </body>
     </html>

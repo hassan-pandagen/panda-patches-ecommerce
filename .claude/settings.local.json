@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:pandapatches.com)"
+      "WebFetch(domain:pandapatches.com)",
+      "Bash(npx tsc:*)"
     ]
   }
 }

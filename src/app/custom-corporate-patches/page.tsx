@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Footer from "@/components/layout/Footer";
 import BulkHero from "@/components/bulk/BulkHero";
 import WorkGallery from "@/components/bulk/WorkGallery";
@@ -87,7 +88,7 @@ async function getCorporatePageData() {
 }
 
 export const metadata: Metadata = {
-  title: "Custom Corporate Patches | Company Logo Patches | Panda Patches",
+  title: "Corporate Logo Patches - Bulk Pricing Available",
   description: "Custom corporate logo patches for businesses, brands, and employee uniforms. Embroidered company patches with no minimum order, free mockup, and 7-14 day turnaround.",
   keywords: [
     "custom corporate patches",
@@ -172,6 +173,14 @@ export default async function CorporatePatchesPage() {
       />
 
       <Navbar />
+
+      {/* Breadcrumb Navigation */}
+      <Breadcrumbs
+        items={[
+          { label: "Bulk Orders", href: "/bulk-custom-patches" }
+        ]}
+        currentPage="Corporate & Business Patches"
+      />
 
       {/* 1. HERO */}
       <BulkHero

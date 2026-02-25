@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Footer from "@/components/layout/Footer";
 import BulkHero from "@/components/bulk/BulkHero";
 import WorkGallery from "@/components/bulk/WorkGallery";
@@ -87,7 +88,7 @@ async function getPolicePageData() {
 }
 
 export const metadata: Metadata = {
-  title: "Custom Police Patches | Law Enforcement Patches | Panda Patches",
+  title: "Police & Law Enforcement Patches - Tactical Grade",
   description: "Custom police department patches, sheriff badges, law enforcement patches, and tactical patches. Embroidered, PVC, and woven formats. Trusted by departments nationwide.",
   keywords: [
     "custom police patches",
@@ -172,6 +173,14 @@ export default async function PolicePatchesPage() {
       />
 
       <Navbar />
+
+      {/* Breadcrumb Navigation */}
+      <Breadcrumbs
+        items={[
+          { label: "Bulk Orders", href: "/bulk-custom-patches" }
+        ]}
+        currentPage="Police & Law Enforcement Patches"
+      />
 
       {/* 1. HERO */}
       <BulkHero

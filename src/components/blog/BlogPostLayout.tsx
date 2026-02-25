@@ -6,6 +6,7 @@ import { convertWordPressUrl } from "@/lib/convertWordPressUrls";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
+import RelatedLinks from "@/components/seo/RelatedLinks";
 
 export default function BlogPostLayout({ post }: { post: any }) {
   return (
@@ -50,12 +51,12 @@ export default function BlogPostLayout({ post }: { post: any }) {
             value={post.content}
             components={{
               block: {
-                // H1 in Body
-                h1: ({children}) => <h1 className="text-4xl font-black text-panda-dark mt-12 mb-6">{children}</h1>,
-                
+                // H1 converted to H2 for SEO (only one H1 per page - the post title)
+                h1: ({children}) => <h2 className="text-4xl font-black text-panda-dark mt-12 mb-6">{children}</h2>,
+
                 // H2 in Body (Like "Conclusion")
                 h2: ({children}) => <h2 className="text-3xl font-bold text-panda-dark mt-12 mb-6">{children}</h2>,
-                
+
                 // H3 in Body
                 h3: ({children}) => <h3 className="text-2xl font-bold text-panda-dark mt-10 mb-4">{children}</h3>,
                 
@@ -129,6 +130,13 @@ export default function BlogPostLayout({ post }: { post: any }) {
         </div>
 
       </article>
+
+      {/* Related Internal Links for SEO */}
+      <RelatedLinks
+        content={post.title + " " + (post.excerpt || "")}
+        title="Related Pages You Might Like"
+        maxLinks={4}
+      />
 
       <CTASection />
       <Footer />

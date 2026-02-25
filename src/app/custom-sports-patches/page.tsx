@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Footer from "@/components/layout/Footer";
 import BulkHero from "@/components/bulk/BulkHero";
 import WorkGallery from "@/components/bulk/WorkGallery";
@@ -87,7 +88,7 @@ async function getSportsPageData() {
 }
 
 export const metadata: Metadata = {
-  title: "Custom Sports Team Patches | Sports Uniform Patches | Panda Patches",
+  title: "Sports Team Patches - No Minimum, Fast Turnaround",
   description: "Custom sports patches for teams, leagues, and clubs. Embroidered uniform patches, jersey numbers, varsity letters, and championship patches. No minimum, free mockup.",
   keywords: [
     "custom sports patches",
@@ -174,6 +175,14 @@ export default async function SportsPatchesPage() {
       />
 
       <Navbar />
+
+      {/* Breadcrumb Navigation */}
+      <Breadcrumbs
+        items={[
+          { label: "Bulk Orders", href: "/bulk-custom-patches" }
+        ]}
+        currentPage="Sports Team Patches"
+      />
 
       {/* 1. HERO */}
       <BulkHero
