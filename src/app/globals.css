@@ -5,6 +5,40 @@
 /* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind utilities;
 
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slide-up 0.35s ease-out forwards;
+}
+
+/* Phone icon ring animation — wiggles like a phone ringing */
+@keyframes phone-ring {
+  0%, 100%  { transform: rotate(0deg); }
+  10%       { transform: rotate(-14deg); }
+  20%       { transform: rotate(14deg); }
+  30%       { transform: rotate(-14deg); }
+  40%       { transform: rotate(14deg); }
+  50%       { transform: rotate(0deg); }
+}
+.animate-phone-ring {
+  animation: phone-ring 3s ease-in-out 1s infinite;
+}
+
+/* Whole popup nudges left-right every 4s to catch attention */
+@keyframes popup-ring {
+  0%, 100%  { transform: translateX(0); }
+  10%       { transform: translateX(-5px); }
+  20%       { transform: translateX(5px); }
+  30%       { transform: translateX(-5px); }
+  40%       { transform: translateX(5px); }
+  50%       { transform: translateX(0); }
+}
+.animate-popup-ring {
+  animation: popup-ring 5s ease-in-out 3s infinite;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 249, 250, 245; /* panda-light */

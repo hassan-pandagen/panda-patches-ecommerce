@@ -4,6 +4,7 @@ import "./globals.css";
 import Script from "next/script";
 import { generateOrganizationSchema, generateSchemaScript } from "@/lib/schemas";
 import TawkToWidget from "@/components/TawkToWidget";
+import CallNowPopup from "@/components/CallNowPopup";
 
 // Configure Outfit Font
 const outfit = Outfit({
@@ -94,6 +95,9 @@ fbq('track', 'PageView');`}
 
         {/* Tawk.to Live Chat with Advanced Tracking */}
         <TawkToWidget />
+
+        {/* Call Now Popup — appears after 60s of browsing */}
+        <CallNowPopup />
 
       </body>
     </html>

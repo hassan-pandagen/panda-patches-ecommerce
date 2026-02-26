@@ -17,6 +17,8 @@ const navLinks = [
       { name: "Custom Embroidery Patches", href: "/custom-patches/embroidered" },
       { name: "Custom 3D Embroidered Transfers", href: "/custom-patches/custom-3d-embroidered-transfers" },
       { name: "Custom Chenille Patches", href: "/custom-patches/chenille" },
+      { name: "Custom Chenille TPU Patches", href: "/custom-patches/custom-chenille-tpu-patches" },
+      { name: "Custom Chenille Glitter Patches", href: "/custom-patches/custom-chenille-glitter-patches" },
       { name: "Custom PVC Patches", href: "/custom-patches/pvc" },
       { name: "Custom Woven Patches", href: "/custom-patches/woven" },
       { name: "Custom Leather Patches", href: "/custom-patches/leather" },

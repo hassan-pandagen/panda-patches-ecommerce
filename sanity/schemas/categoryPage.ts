@@ -36,6 +36,8 @@ export default defineType({
           { title: 'Corporate / Business', value: 'corporate' },
           { title: 'Military', value: 'military' },
           { title: 'Schools / Universities', value: 'schools' },
+          { title: 'Chenille TPU Patches', value: 'chenille-tpu' },
+          { title: 'Chenille Glitter Patches', value: 'chenille-glitter' },
         ],
         layout: 'dropdown',
       },
