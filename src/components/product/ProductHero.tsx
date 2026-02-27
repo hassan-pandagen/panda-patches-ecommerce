@@ -85,11 +85,13 @@ export default async function ProductHero({ productData, isMainPage = false }: P
                      </div>
                    </div>
                  )}
-                 <HeroForm />
+                 <HeroForm productSlug={productData?.slug?.current} />
                </div>
              ) : (
                <ComplexCalculator
                  backingOptions={productData?.backingOptions || []}
+                 borderOptions={productData?.borderOptions || []}
+                 borderSectionLabel={productData?.borderSectionLabel || ""}
                  upgradeOptions={productData?.upgradeOptions || []}
                  productType={productData?.title || "Custom Patch"}
                  trustBadges={trustBadges}

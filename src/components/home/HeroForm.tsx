@@ -14,7 +14,8 @@ const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC
     )
   : null;
 
-export default function HeroForm() {
+export default function HeroForm({ productSlug }: { productSlug?: string }) {
+  const isKeychains = productSlug === 'keychains';
   const { register, handleSubmit, reset } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
@@ -40,7 +41,7 @@ export default function HeroForm() {
         const filePath = `artwork/${fileName}`;
 
         const { error: uploadError } = await supabase.storage
-          .from('patches')
+          .from('order-attachments')
           .upload(filePath, file);
 
         if (uploadError) {
@@ -49,7 +50,7 @@ export default function HeroForm() {
         }
 
         const { data: publicUrlData } = supabase.storage
-           .from('patches')
+           .from('order-attachments')
            .getPublicUrl(filePath);
 
          artworkUrl = publicUrlData?.publicUrl || null;
@@ -128,32 +129,50 @@ export default function HeroForm() {
         {/* Row 3 */}
          <div className="grid grid-cols-2 gap-3">
            <div className="relative">
-             <select {...register("size")} className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
-               <option>Size or Placement</option>
-               <option value="2.5">Cap (2.25 - 2.5 inches)</option>
-               <option value="3.5">Left Chest (3 - 4 inches)</option>
-               <option value="2.5">Hat / Beanie (2.5 inches)</option>
-               <option value="3.5">Sleeve (3.5 - 4 inches)</option>
-               <option value="11">Across Chest (10 - 12 inches)</option>
-               <option value="13">Jacket Back (12 - 14 inches)</option>
-               <option value="custom">Custom Size</option>
-             </select>
+             {isKeychains ? (
+               <select {...register("size")} defaultValue="" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+                 <option value="" disabled hidden>Single or Double Side?</option>
+                 <option value="single-side">Single Side</option>
+                 <option value="double-side">Double Side</option>
+               </select>
+             ) : (
+               <select {...register("size")} className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+                 <option>Size or Placement</option>
+                 <option value="2.5">Cap (2.25 - 2.5 inches)</option>
+                 <option value="3.5">Left Chest (3 - 4 inches)</option>
+                 <option value="2.5">Hat / Beanie (2.5 inches)</option>
+                 <option value="3.5">Sleeve (3.5 - 4 inches)</option>
+                 <option value="12">Across Chest (12 x 12 inches)</option>
+                 <option value="14">Jacket Back (14 x 14 inches)</option>
+                 <option value="custom">Custom Size</option>
+               </select>
+             )}
              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
            </div>
 
            <div className="relative">
-             <select {...register("type")} className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
-               <option>Patch Type</option>
-               <option value="embroidered">Embroidered</option>
-               <option value="chenille">Chenille</option>
-               <option value="woven">Woven</option>
-               <option value="pvc">PVC</option>
-               <option value="rubber">Rubber</option>
-               <option value="leather">Leather</option>
-               <option value="sequin">Sequin</option>
-               <option value="metallic">Metallic</option>
-               <option value="velvet">Velvet</option>
-             </select>
+             {isKeychains ? (
+               <select {...register("type")} defaultValue="" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+                 <option value="" disabled hidden>Keychain Type</option>
+                 <option value="chenille-keychain">Chenille Keychain</option>
+                 <option value="embroidered-keychain">Embroidered Keychain</option>
+                 <option value="leather-keychain">Leather Keychain</option>
+                 <option value="pvc-keychain">PVC Keychain</option>
+               </select>
+             ) : (
+               <select {...register("type")} className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+                 <option>Patch Type</option>
+                 <option value="embroidered">Embroidered</option>
+                 <option value="chenille">Chenille</option>
+                 <option value="woven">Woven</option>
+                 <option value="pvc">PVC</option>
+                 <option value="rubber">Rubber</option>
+                 <option value="leather">Leather</option>
+                 <option value="sequin">Sequin</option>
+                 <option value="metallic">Metallic</option>
+                 <option value="velvet">Velvet</option>
+               </select>
+             )}
              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
            </div>
          </div>

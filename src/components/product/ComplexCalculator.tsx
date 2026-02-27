@@ -31,12 +31,18 @@ const PLACEMENTS = [
   { label: "Left Chest (3 - 4 inches)", w: 3.5, h: 3.5 },
   { label: "Hat / Beanie (2.5 inches)", w: 2.5, h: 2.5 },
   { label: "Sleeve (3.5 - 4 inches)", w: 3.5, h: 3.5 },
-  { label: "Across Chest (10 - 12 inches)", w: 11, h: 5 },
-  { label: "Jacket Back (12 - 14 inches)", w: 13, h: 10 },
+  { label: "Across Chest (12 x 12 inches)", w: 12, h: 12 },
+  { label: "Jacket Back (14 x 14 inches)", w: 14, h: 14 },
   { label: "Custom Size", w: 3, h: 3 },
 ];
 
 interface BackingOption {
+  title: string;
+  description?: string;
+  image?: any;
+}
+
+interface ColorOption {
   title: string;
   description?: string;
   image?: any;
@@ -50,6 +56,8 @@ interface UpgradeOption {
 
 interface Props {
   backingOptions?: BackingOption[];
+  borderOptions?: ColorOption[];
+  borderSectionLabel?: string;
   upgradeOptions?: UpgradeOption[];
   productType?: string;
   trustBadges?: any[];
@@ -57,6 +65,8 @@ interface Props {
 
 export default function ComplexCalculator({
   backingOptions = [],
+  borderOptions = [],
+  borderSectionLabel = "",
   upgradeOptions = [],
   productType = "Custom Patch",
   trustBadges = []
@@ -90,6 +100,7 @@ export default function ComplexCalculator({
 
   const [backing, setBacking] = useState("");
   const [showBackingDropdown, setShowBackingDropdown] = useState(false);
+  const [selectedColor, setSelectedColor] = useState("");
   const backingDropdownRef = useRef<HTMLDivElement>(null);
   const [placement, setPlacement] = useState(PLACEMENTS[0].label);
   const [width, setWidth] = useState(3);
@@ -269,6 +280,7 @@ export default function ComplexCalculator({
           price: basePrice,
           quantity: quantity,
           backing: backing,
+          color: selectedColor || null,
           width: width,
           height: height,
           customer: { name, email, phone },
@@ -325,6 +337,7 @@ export default function ComplexCalculator({
             height,
             quantity,
             backing: backing || 'Not specified',
+            color: selectedColor || 'Not specified',
             placement,
             instructions: quoteMessage || '',
             patchType: productType,
@@ -495,6 +508,56 @@ export default function ComplexCalculator({
                 </div>
               )}
             </div>
+            )}
+
+            {/* 1b. COLOR / BORDER SELECTOR */}
+            {borderOptions.length > 0 && (
+              <div>
+                <div className="flex justify-between items-center mb-2">
+                  <label className="text-sm font-black text-black uppercase tracking-wide">
+                    {borderSectionLabel || "Select Color / Border"}
+                  </label>
+                  <span className="text-[11px] font-semibold text-gray-400">Optional</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {borderOptions.map((opt) => {
+                    const id = opt.title.toLowerCase().replace(/\s+/g, '-');
+                    const imgUrl = opt.image ? urlFor(opt.image).width(80).height(80).url() : null;
+                    const isSelected = selectedColor === id;
+                    return (
+                      <button
+                        key={id}
+                        type="button"
+                        onClick={() => setSelectedColor(isSelected ? "" : id)}
+                        title={opt.title}
+                        className={`flex flex-col items-center gap-1 p-1.5 rounded-[10px] border-2 transition-all
+                          ${isSelected ? 'border-black shadow-md scale-105' : 'border-gray-200 hover:border-gray-400'}
+                        `}
+                      >
+                        {imgUrl ? (
+                          <div className="relative w-10 h-10 rounded-[6px] overflow-hidden flex-shrink-0">
+                            <Image src={imgUrl} alt={opt.title} fill className="object-cover" />
+                          </div>
+                        ) : (
+                          <div className="w-10 h-10 rounded-[6px] bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-500">
+                            {opt.title.charAt(0)}
+                          </div>
+                        )}
+                        <span className={`text-[10px] font-bold leading-tight text-center max-w-[44px] truncate ${isSelected ? 'text-black' : 'text-gray-600'}`}>
+                          {opt.title}
+                        </span>
+                        {isSelected && <Check size={10} className="text-green-600" strokeWidth={3} />}
+                      </button>
+                    );
+                  })}
+                </div>
+                {selectedColor && (
+                  <p className="text-xs text-gray-500 mt-1.5 font-medium">
+                    Selected: <span className="font-black text-black">{borderOptions.find(o => o.title.toLowerCase().replace(/\s+/g, '-') === selectedColor)?.title}</span>
+                    <button type="button" onClick={() => setSelectedColor("")} className="ml-2 text-gray-400 hover:text-gray-600 underline text-[10px]">clear</button>
+                  </p>
+                )}
+              </div>
             )}
 
             {/* 2. PLACEMENT & SIZE */}

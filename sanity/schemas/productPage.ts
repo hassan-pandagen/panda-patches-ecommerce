@@ -68,16 +68,32 @@ export default defineType({
       description: 'Specific backings for this product (e.g. PVC backing vs Embroidery backing)'
     }),
 
-    // 2. BORDERS
+    // 2. BORDERS / COLOR OPTIONS
+    defineField({
+      name: 'borderSectionLabel',
+      title: '2. Section Label (rename "Border Options")',
+      type: 'string',
+      group: 'options',
+      description: 'Optional: rename this section. E.g. "TPU Color Options", "Glitter Colors", "Border Style". Leave blank to use default "Border Options".',
+      initialValue: '',
+    }),
     defineField({
       name: 'borderOptions',
-      title: '2. Border Options',
+      title: '2. Border / Color Options',
       type: 'array',
       of: [optionCard],
       group: 'options'
     }),
 
     // 3. THREADS / COLORS
+    defineField({
+      name: 'threadSectionLabel',
+      title: '3. Section Label (rename "Thread/Color Options")',
+      type: 'string',
+      group: 'options',
+      description: 'Optional: rename this section. E.g. "Available Colors", "Pattern Options". Leave blank to use default "Thread/Color Options".',
+      initialValue: '',
+    }),
     defineField({
       name: 'threadOptions',
       title: '3. Thread/Color Options',

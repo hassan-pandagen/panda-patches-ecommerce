@@ -33,6 +33,8 @@ async function getProductData(slug: string) {
   // Explicitly exclude drafts to only get published documents
   const query = `*[_type == "productPage" && slug.current == $slug && !(_id in path("drafts.**"))][0]{
     ...,
+    borderSectionLabel,
+    threadSectionLabel,
     "gallery": gallery[]{
       "image": @,
       "alt": alt
@@ -193,12 +195,12 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
         />
       )}
 
-      {/* 5. BORDER OPTIONS */}
+      {/* 5. BORDER / COLOR OPTIONS */}
       {data.borderOptions && data.borderOptions.length > 0 && (
         <ProductInfoCarousel
           options={data.borderOptions}
-          title="Border Options"
-          subtitle="Customize your patch borders"
+          title={data.borderSectionLabel || "Border Options"}
+          subtitle="Customize your patch borders and colors"
           layout="right"
         />
       )}
@@ -207,7 +209,7 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
       {data.threadOptions && data.threadOptions.length > 0 && (
         <ProductInfoCarousel
           options={data.threadOptions}
-          title="Thread & Color Options"
+          title={data.threadSectionLabel || "Thread & Color Options"}
           subtitle="Special thread and color effects"
           layout="left"
         />
