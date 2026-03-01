@@ -17,6 +17,7 @@ const CheckoutSchema = z.object({
   price: z.number().positive('Price must be positive').max(100000, 'Price too high'),
   quantity: z.number().int('Quantity must be an integer').min(1, 'Minimum quantity is 1').max(10000, 'Quantity too high'),
   backing: z.string().max(100, 'Backing type too long').optional().or(z.literal('')),
+  color: z.string().max(100).optional().or(z.null()).or(z.literal('')),
   width: z.number().positive('Width must be positive').min(0.5, 'Minimum width is 0.5 inches').max(50, 'Maximum width is 50 inches'),
   height: z.number().positive('Height must be positive').min(0.5, 'Minimum height is 0.5 inches').max(50, 'Maximum height is 50 inches'),
   customer: z.object({
@@ -58,6 +59,7 @@ export async function POST(req: Request) {
       price: clientPrice,
       quantity,
       backing,
+      color,
       width,
       height,
       customer,
@@ -86,28 +88,38 @@ export async function POST(req: Request) {
     const origin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/');
     const baseUrl = resolveBaseUrl(origin);
 
-    // Create order in Supabase
+    // Build instructions field — same as Stripe route
+    const instructionsParts = [
+      specialInstructions || null,
+      addons?.length ? `Add-ons: ${addons.join(', ')}` : null,
+      color ? `Color/Border: ${color}` : null,
+      deliveryOption === 'rush' && rushDate ? `Rush Date: ${rushDate}` : null,
+      deliveryOption === 'economy' ? 'Economy Delivery (16-18 business days, 10% discount)' : null,
+    ].filter(Boolean);
+
+    // Create order in Supabase — mapped to exact portal column names
     const { data: order, error: dbError } = await supabase
       .from('orders')
       .insert({
         customer_name: customer.name,
         customer_email: customer.email,
         customer_phone: customer.phone,
+        shipping_address: shippingAddress,
         design_name: productName,
         patches_type: productName,
         patches_quantity: quantity,
         design_backing: backing || null,
         design_size: `${width}" x ${height}"`,
-        artwork_url: artworkUrl,
-        shipping_address: shippingAddress,
+        customer_attachment_urls: artworkUrl ? [artworkUrl] : null,
+        instructions: instructionsParts.length > 0 ? instructionsParts.join(' | ') : null,
         delivery_option: deliveryOption,
         rush_date: rushDate || null,
-        addons: addons || null,
-        special_instructions: specialInstructions || null,
+        website_addons: addons || null,
         order_amount: finalPrice,
         amount_paid: 0,
         status: 'WEBSITE_CHECKOUT_PAYPAL',
         payment_status: 'pending',
+        lead_source: 'WEBSITE',
         sales_agent: 'WEBSITE_BOT'
       })
       .select()

@@ -173,6 +173,40 @@ const nextConfig = {
         destination: '/terms-of-service',
         permanent: true,
       },
+
+      // ABOUT & CONTACT - WordPress used 'about-us' / 'contact-us', new site uses 'about' / 'contact'
+      {
+        source: '/about-us',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/about-us/',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/contact-us',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/contact-us/',
+        destination: '/contact',
+        permanent: true,
+      },
+
+      // IRON-ON INSTRUCTIONS - Static WordPress page, redirect to relevant blog post
+      {
+        source: '/iron-on-instructions',
+        destination: '/how-to-iron-on-patches',
+        permanent: true,
+      },
+      {
+        source: '/iron-on-instructions/',
+        destination: '/how-to-iron-on-patches',
+        permanent: true,
+      },
     ];
   },
 };

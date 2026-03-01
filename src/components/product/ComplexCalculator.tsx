@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useMemo, useRef } from "react";
 import Image from "next/image";
-import { UploadCloud, Check, ChevronDown, ShoppingCart, FileText, X } from "lucide-react";
+import { UploadCloud, Check, ChevronDown, ShoppingCart, FileText, X, Lightbulb } from "lucide-react";
 import Modal from "@/components/ui/Modal";
 import HeroForm from "@/components/home/HeroForm";
 import { createClient } from '@supabase/supabase-js';
@@ -24,6 +24,57 @@ const DEFAULT_BACKINGS = [
   { id: "velcro", name: "Velcro", icon: "🔗" },
   { id: "peel", name: "Peel & Stick", icon: "🏷️" },
 ];
+
+const SHAPES = [
+  { id: "circle", name: "Circle" },
+  { id: "square", name: "Square" },
+  { id: "rectangle", name: "Rectangle" },
+  { id: "oval", name: "Oval" },
+  { id: "cut-to-shape", name: "Cut to Shape" },
+];
+
+function ShapeIcon({ id, size = 24 }: { id: string; size?: number }) {
+  const s = size;
+  switch (id) {
+    case 'circle':
+      return (
+        <svg width={s} height={s} viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
+          <circle cx="12" cy="12" r="9.5" stroke="currentColor" strokeWidth="1.75"/>
+          <circle cx="12" cy="12" r="6" stroke="currentColor" strokeWidth="0.75" strokeDasharray="2 2" opacity="0.4"/>
+        </svg>
+      );
+    case 'square':
+      return (
+        <svg width={s} height={s} viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="2.5" stroke="currentColor" strokeWidth="1.75"/>
+          <rect x="6" y="6" width="12" height="12" rx="1" stroke="currentColor" strokeWidth="0.75" strokeDasharray="2 2" opacity="0.4"/>
+        </svg>
+      );
+    case 'rectangle':
+      return (
+        <svg width={Math.round(s * 1.4)} height={s} viewBox="0 0 34 24" fill="none" className="flex-shrink-0">
+          <rect x="2" y="3" width="30" height="18" rx="2.5" stroke="currentColor" strokeWidth="1.75"/>
+          <rect x="6" y="7" width="22" height="10" rx="1" stroke="currentColor" strokeWidth="0.75" strokeDasharray="2 2" opacity="0.4"/>
+        </svg>
+      );
+    case 'oval':
+      return (
+        <svg width={Math.round(s * 1.4)} height={s} viewBox="0 0 34 24" fill="none" className="flex-shrink-0">
+          <ellipse cx="17" cy="12" rx="14.5" ry="9" stroke="currentColor" strokeWidth="1.75"/>
+          <ellipse cx="17" cy="12" rx="9" ry="5.5" stroke="currentColor" strokeWidth="0.75" strokeDasharray="2 2" opacity="0.4"/>
+        </svg>
+      );
+    case 'cut-to-shape':
+      return (
+        <svg width={s} height={s} viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
+          <path d="M12 2.5L14.2 8.7L21 9.6L16.2 14.1L17.6 20.8L12 17.6L6.4 20.8L7.8 14.1L3 9.6L9.8 8.7L12 2.5Z" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round"/>
+          <path d="M12 6L13.4 9.8L17.5 10.4L14.5 13.2L15.3 17.2L12 15.4L8.7 17.2L9.5 13.2L6.5 10.4L10.6 9.8L12 6Z" stroke="currentColor" strokeWidth="0.6" strokeDasharray="1.5 1.5" opacity="0.4"/>
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
 
 const PLACEMENTS = [
   { label: "Choose Size / Placement", w: 0, h: 0 },
@@ -100,11 +151,16 @@ export default function ComplexCalculator({
 
   const [backing, setBacking] = useState("");
   const [showBackingDropdown, setShowBackingDropdown] = useState(false);
+  const [shape, setShape] = useState("");
+  const [showShapeDropdown, setShowShapeDropdown] = useState(false);
   const [selectedColor, setSelectedColor] = useState("");
   const backingDropdownRef = useRef<HTMLDivElement>(null);
+  const shapeDropdownRef = useRef<HTMLDivElement>(null);
   const [placement, setPlacement] = useState(PLACEMENTS[0].label);
   const [width, setWidth] = useState(3);
   const [height, setHeight] = useState(3);
+  const [widthInput, setWidthInput] = useState('3');
+  const [heightInput, setHeightInput] = useState('3');
   const [quantity, setQuantity] = useState(1);
   const [quantityInput, setQuantityInput] = useState('1');
 
@@ -148,6 +204,10 @@ export default function ComplexCalculator({
   const [quoteSubmitting, setQuoteSubmitting] = useState(false);
   const [quoteSubmitted, setQuoteSubmitted] = useState(false);
 
+  // Patch Idea State
+  const [patchIdea, setPatchIdea] = useState("");
+  const [showPatchIdea, setShowPatchIdea] = useState(false);
+
   // Payment Method State
   const [paymentMethod, setPaymentMethod] = useState<"card" | "paypal" | "cashapp" | "afterpay" | "applepay" | "klarna">("card");
 
@@ -159,11 +219,55 @@ export default function ComplexCalculator({
     setMounted(true);
   }, []);
 
-  // Close backing dropdown on outside click
+  // Restore saved form state from localStorage (survives Stripe redirects / failures)
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('pp_checkout_state');
+      if (!saved) return;
+      const s = JSON.parse(saved);
+      if (s.backing) setBacking(s.backing);
+      if (s.shape) setShape(s.shape);
+      if (s.selectedColor) setSelectedColor(s.selectedColor);
+      if (s.placement) setPlacement(s.placement);
+      if (s.width) { const w = Math.ceil(s.width); setWidth(w); setWidthInput(String(w)); }
+      if (s.height) { const h = Math.ceil(s.height); setHeight(h); setHeightInput(String(h)); }
+      if (s.quantity) { setQuantity(s.quantity); setQuantityInput(String(s.quantity)); }
+      if (s.fileUrl) { setFileUrl(s.fileUrl); setFileName(s.fileName || ''); }
+      if (s.name) setName(s.name);
+      if (s.email) setEmail(s.email);
+      if (s.phone) setPhone(s.phone);
+      if (s.address) setAddress(s.address);
+      if (s.deliveryOption) setDeliveryOption(s.deliveryOption);
+      if (s.rushDate) setRushDate(s.rushDate);
+      if (s.specialInstructions) setSpecialInstructions(s.specialInstructions);
+      if (s.selectedAddons) setSelectedAddons(s.selectedAddons);
+      if (s.paymentMethod) setPaymentMethod(s.paymentMethod);
+      if (s.currentStep) setCurrentStep(s.currentStep);
+      if (s.patchIdea) { setPatchIdea(s.patchIdea); setShowPatchIdea(true); }
+    } catch {}
+  }, []);
+
+  // Save form state to localStorage on every change
+  useEffect(() => {
+    if (!mounted) return;
+    try {
+      localStorage.setItem('pp_checkout_state', JSON.stringify({
+        backing, shape, selectedColor, placement, width, height, quantity,
+        fileUrl, fileName, name, email, phone, address,
+        deliveryOption, rushDate, specialInstructions, selectedAddons, paymentMethod, currentStep,
+        patchIdea
+      }));
+    } catch {}
+  }, [mounted, backing, shape, selectedColor, placement, width, height, quantity, fileUrl, fileName, name, email, phone, address, deliveryOption, rushDate, specialInstructions, selectedAddons, paymentMethod, currentStep, patchIdea]);
+
+  // Close backing/shape dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (backingDropdownRef.current && !backingDropdownRef.current.contains(e.target as Node)) {
         setShowBackingDropdown(false);
+      }
+      if (shapeDropdownRef.current && !shapeDropdownRef.current.contains(e.target as Node)) {
+        setShowShapeDropdown(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -193,8 +297,12 @@ export default function ComplexCalculator({
   useEffect(() => {
     const selected = PLACEMENTS.find(p => p.label === placement);
     if (selected && selected.label !== "Custom Size" && selected.label !== "Choose Size / Placement") {
-      setWidth(selected.w);
-      setHeight(selected.h);
+      const rw = Math.ceil(selected.w);
+      const rh = Math.ceil(selected.h);
+      setWidth(rw);
+      setHeight(rh);
+      setWidthInput(String(rw));
+      setHeightInput(String(rh));
     }
   }, [placement]);
 
@@ -290,7 +398,7 @@ export default function ComplexCalculator({
           discount: discount > 0 ? `${(discount * 100).toFixed(0)}% Economy Delivery Discount (16-18 business days)` : null,
           artworkUrl: fileUrl || null,
           addons: selectedAddons.length > 0 ? selectedAddons.map(id => ADDON_OPTIONS.find(opt => opt.id === id)?.name).filter(Boolean) : null,
-          specialInstructions: specialInstructions || null,
+          specialInstructions: [shape ? `Shape: ${SHAPES.find(s => s.id === shape)?.name}` : null, patchIdea ? `Patch Idea: ${patchIdea}` : null, specialInstructions || null].filter(Boolean).join(' | ') || null,
           paymentMethod: paymentMethod // Pass payment method to backend
         }),
       });
@@ -298,6 +406,8 @@ export default function ComplexCalculator({
       const data = await response.json();
 
       if (data.url) {
+        // Clear saved state only on successful Stripe redirect
+        try { localStorage.removeItem('pp_checkout_state'); } catch {}
         window.location.href = data.url;
       } else {
         setCheckoutLoading(false);
@@ -449,7 +559,6 @@ export default function ComplexCalculator({
             <div ref={backingDropdownRef} className="relative">
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm font-black text-black uppercase tracking-wide">Select Backing</label>
-                <span className="text-[11px] font-semibold text-gray-400">Optional</span>
               </div>
               {/* Trigger button */}
               <button
@@ -510,7 +619,56 @@ export default function ComplexCalculator({
             </div>
             )}
 
-            {/* 1b. COLOR / BORDER SELECTOR */}
+            {/* 1b. SHAPE SELECTOR */}
+            <div ref={shapeDropdownRef} className="relative">
+              <div className="flex justify-between items-center mb-2">
+                <label className="text-sm font-black text-black uppercase tracking-wide">Select Shape</label>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowShapeDropdown(!showShapeDropdown)}
+                className={`w-full h-[52px] border-2 rounded-[12px] px-4 flex items-center justify-between transition-all ${showShapeDropdown ? 'border-black' : 'border-gray-300 hover:border-gray-400'} bg-white`}
+              >
+                <div className="flex items-center gap-3">
+                  {shape ? (() => {
+                    const sel = SHAPES.find(s => s.id === shape);
+                    return sel ? (
+                      <>
+                        <ShapeIcon id={shape} size={24} />
+                        <span className="font-bold text-black text-sm">{sel.name}</span>
+                      </>
+                    ) : null;
+                  })() : (
+                    <span className="text-gray-400 font-medium text-sm">Select Patch Shape</span>
+                  )}
+                </div>
+                <ChevronDown size={18} className={`text-gray-500 transition-transform duration-200 ${showShapeDropdown ? 'rotate-180' : ''}`} />
+              </button>
+
+              {showShapeDropdown && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-black rounded-[14px] shadow-2xl z-50 overflow-hidden">
+                  <div
+                    onClick={() => { setShape(''); setShowShapeDropdown(false); }}
+                    className={`flex items-center gap-3 px-4 py-3 cursor-pointer border-b border-gray-100 hover:bg-gray-50 transition-colors ${!shape ? 'bg-gray-50' : ''}`}
+                  >
+                    <span className="text-gray-400 text-sm font-medium">No preference / Skip</span>
+                  </div>
+                  {SHAPES.map((opt) => (
+                    <div
+                      key={opt.id}
+                      onClick={() => { setShape(opt.id); setShowShapeDropdown(false); }}
+                      className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-panda-yellow/10 transition-colors ${shape === opt.id ? 'bg-panda-yellow/20' : ''}`}
+                    >
+                      <span className="text-gray-600"><ShapeIcon id={opt.id} size={24} /></span>
+                      <span className={`font-bold text-sm flex-1 ${shape === opt.id ? 'text-black' : 'text-gray-700'}`}>{opt.name}</span>
+                      {shape === opt.id && <Check size={16} className="text-green-600" strokeWidth={3} />}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* 1c. COLOR / BORDER SELECTOR */}
             {borderOptions.length > 0 && (
               <div>
                 <div className="flex justify-between items-center mb-2">
@@ -564,7 +722,6 @@ export default function ComplexCalculator({
             <div>
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm font-black text-black uppercase tracking-wide">Size & Placement</label>
-                <span className="text-[11px] font-semibold text-gray-400">Optional</span>
               </div>
               <div className="relative mb-3">
                 <select
@@ -578,15 +735,57 @@ export default function ComplexCalculator({
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="flex items-center border-2 border-gray-300 rounded-[12px] overflow-hidden h-[52px]">
-                  <button type="button" onClick={() => handleDec(setWidth, width)} className="px-4 hover:bg-gray-100 text-gray-500 font-black text-xl border-r border-gray-300 h-full">-</button>
-                  <div className="flex-1 text-center font-black text-black text-xl">{width} <span className="text-gray-400 text-sm font-medium ml-1">W</span></div>
-                  <button type="button" onClick={() => handleInc(setWidth, width)} className="px-4 hover:bg-black hover:text-white text-gray-500 border-l border-gray-300 transition-colors font-black text-xl h-full">+</button>
+                <div className="flex items-center border-2 border-gray-300 rounded-[12px] overflow-hidden h-[52px] focus-within:border-black transition-all">
+                  <button type="button" onClick={() => { const v = Math.max(1, width - 1); setWidth(v); setWidthInput(String(v)); }} className="px-4 hover:bg-gray-100 text-gray-500 font-black text-xl border-r border-gray-300 h-full flex-shrink-0">-</button>
+                  <div className="flex-1 flex items-center justify-center gap-1 min-w-0">
+                    <input
+                      type="number"
+                      inputMode="decimal"
+                      step="1"
+                      min="1"
+                      max={maxSize}
+                      value={widthInput}
+                      onChange={(e) => {
+                        setWidthInput(e.target.value);
+                        const val = parseFloat(e.target.value);
+                        if (!isNaN(val) && val >= 1) setWidth(Math.min(Math.ceil(val), maxSize));
+                      }}
+                      onBlur={(e) => {
+                        const val = parseFloat(e.target.value);
+                        if (isNaN(val) || val < 1) { setWidth(1); setWidthInput('1'); }
+                        else { const v = Math.min(Math.ceil(val), maxSize); setWidth(v); setWidthInput(String(v)); }
+                      }}
+                      className="w-full text-center font-black text-black text-xl outline-none bg-transparent min-w-0"
+                    />
+                    <span className="text-gray-400 text-sm font-medium flex-shrink-0">W</span>
+                  </div>
+                  <button type="button" onClick={() => { const v = Math.min(maxSize, width + 1); setWidth(v); setWidthInput(String(v)); }} className="px-4 hover:bg-black hover:text-white text-gray-500 border-l border-gray-300 transition-colors font-black text-xl h-full flex-shrink-0">+</button>
                 </div>
-                <div className="flex items-center border-2 border-gray-300 rounded-[12px] overflow-hidden h-[52px]">
-                  <button type="button" onClick={() => handleDec(setHeight, height)} className="px-4 hover:bg-gray-100 text-gray-500 font-black text-xl border-r border-gray-300 h-full">-</button>
-                  <div className="flex-1 text-center font-black text-black text-xl">{height} <span className="text-gray-400 text-sm font-medium ml-1">H</span></div>
-                  <button type="button" onClick={() => handleInc(setHeight, height)} className="px-4 hover:bg-black hover:text-white text-gray-500 border-l border-gray-300 transition-colors font-black text-xl h-full">+</button>
+                <div className="flex items-center border-2 border-gray-300 rounded-[12px] overflow-hidden h-[52px] focus-within:border-black transition-all">
+                  <button type="button" onClick={() => { const v = Math.max(1, height - 1); setHeight(v); setHeightInput(String(v)); }} className="px-4 hover:bg-gray-100 text-gray-500 font-black text-xl border-r border-gray-300 h-full flex-shrink-0">-</button>
+                  <div className="flex-1 flex items-center justify-center gap-1 min-w-0">
+                    <input
+                      type="number"
+                      inputMode="decimal"
+                      step="1"
+                      min="1"
+                      max={maxSize}
+                      value={heightInput}
+                      onChange={(e) => {
+                        setHeightInput(e.target.value);
+                        const val = parseFloat(e.target.value);
+                        if (!isNaN(val) && val >= 1) setHeight(Math.min(Math.ceil(val), maxSize));
+                      }}
+                      onBlur={(e) => {
+                        const val = parseFloat(e.target.value);
+                        if (isNaN(val) || val < 1) { setHeight(1); setHeightInput('1'); }
+                        else { const v = Math.min(Math.ceil(val), maxSize); setHeight(v); setHeightInput(String(v)); }
+                      }}
+                      className="w-full text-center font-black text-black text-xl outline-none bg-transparent min-w-0"
+                    />
+                    <span className="text-gray-400 text-sm font-medium flex-shrink-0">H</span>
+                  </div>
+                  <button type="button" onClick={() => { const v = Math.min(maxSize, height + 1); setHeight(v); setHeightInput(String(v)); }} className="px-4 hover:bg-black hover:text-white text-gray-500 border-l border-gray-300 transition-colors font-black text-xl h-full flex-shrink-0">+</button>
                 </div>
               </div>
             </div>
@@ -671,6 +870,37 @@ export default function ComplexCalculator({
                   </>
                 )}
               </label>
+
+              {/* Describe Patch Idea */}
+              <button
+                type="button"
+                onClick={() => setShowPatchIdea(!showPatchIdea)}
+                className={`mt-3 w-full flex items-center justify-between px-4 py-3 border-2 rounded-[12px] transition-all ${showPatchIdea ? 'border-black bg-gray-50' : 'border-dashed border-gray-300 hover:border-gray-500 bg-white'}`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Lightbulb size={18} className={showPatchIdea ? 'text-black' : 'text-gray-500'} />
+                  <span className={`text-sm font-bold ${showPatchIdea ? 'text-black' : 'text-gray-600'}`}>
+                    No artwork? Describe your patch idea
+                  </span>
+                </div>
+                <ChevronDown size={16} className={`text-gray-400 transition-transform duration-200 ${showPatchIdea ? 'rotate-180' : ''}`} />
+              </button>
+
+              {showPatchIdea && (
+                <div className="mt-2">
+                  <textarea
+                    value={patchIdea}
+                    onChange={(e) => setPatchIdea(e.target.value)}
+                    placeholder={`Describe your patch idea in detail — our designers will create a free mockup!\n\ne.g. "A fierce eagle with wings spread wide, bold text reading 'IRON PACK' below, dark navy & gold colors, vintage distressed style, circular shape."\n\nTell us: subject / image, any text, colors, style, and any references you like.`}
+                    rows={5}
+                    className="w-full border-2 border-black rounded-[12px] px-4 py-3 font-medium text-sm text-black outline-none focus:border-black transition-all resize-none placeholder:text-gray-400 leading-relaxed"
+                    autoFocus
+                  />
+                  <p className="text-xs text-gray-400 mt-1.5 font-medium">
+                    No file needed — our team designs for free based on your description.
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* 5. UPSELL TIERS — Moved near price for better visibility */}

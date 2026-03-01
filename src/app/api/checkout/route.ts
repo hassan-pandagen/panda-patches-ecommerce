@@ -22,6 +22,7 @@ const CheckoutSchema = z.object({
   price: z.number().positive('Price must be positive').max(100000, 'Price too high'),
   quantity: z.number().int('Quantity must be an integer').min(1, 'Minimum quantity is 1').max(10000, 'Quantity too high'),
   backing: z.string().max(100, 'Backing type too long').optional().or(z.literal('')),
+  color: z.string().max(100).optional().or(z.null()).or(z.literal('')),
   width: z.number().positive('Width must be positive').min(0.5, 'Minimum width is 0.5 inches').max(50, 'Maximum width is 50 inches'),
   height: z.number().positive('Height must be positive').min(0.5, 'Minimum height is 0.5 inches').max(50, 'Maximum height is 50 inches'),
   customer: z.object({
@@ -64,6 +65,7 @@ export async function POST(req: Request) {
       price: clientPrice,
       quantity,
       backing,
+      color,
       width,
       height,
       customer,
@@ -93,38 +95,52 @@ export async function POST(req: Request) {
     const origin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/');
     const baseUrl = resolveBaseUrl(origin);
 
-    // === MATCHING YOUR EXISTING CRM SCHEMA ===
+    // Build instructions field combining all order details for portal visibility
+    const instructionsParts = [
+      specialInstructions || null,
+      addons?.length ? `Add-ons: ${addons.join(', ')}` : null,
+      color ? `Color/Border: ${color}` : null,
+      deliveryOption === 'rush' && rushDate ? `Rush Date: ${rushDate}` : null,
+      deliveryOption === 'economy' ? 'Economy Delivery (16-18 business days, 10% discount)' : null,
+    ].filter(Boolean);
+
+    // === MATCHING YOUR PORTAL CRM SCHEMA ===
     const { data: order, error: dbError } = await supabase
       .from('orders')
       .insert({
-        // Your CRM Column Name : Data from Website
+        // Customer Info
         customer_name: customer.name,
         customer_email: customer.email,
         customer_phone: customer.phone,
-
-        design_name: productName,         // Maps to 'design_name' (required field)
-        patches_type: productName,        // Maps to 'patches_type'
-        patches_quantity: quantity,       // Maps to 'patches_quantity'
-        design_backing: backing || null,   // Maps to 'design_backing' (optional)
-        design_size: `${width}" x ${height}"`, // Combines W & H into 'design_size'
-        artwork_url: artworkUrl,          // Customer uploaded artwork file URL
-
-        // Shipping Address (single field for reduced friction)
         shipping_address: shippingAddress,
 
-        // Delivery & Customization (new structured columns)
+        // Order Details — mapped to exact portal column names
+        design_name: productName,
+        patches_type: productName,
+        patches_quantity: quantity,
+        design_backing: backing || null,
+        design_size: `${width}" x ${height}"`,
+
+        // Customer artwork → portal's customer_attachment_urls (array)
+        customer_attachment_urls: artworkUrl ? [artworkUrl] : null,
+
+        // Instructions = special instructions + addons + color + delivery info
+        instructions: instructionsParts.length > 0 ? instructionsParts.join(' | ') : null,
+
+        // New columns (add via SQL migration below)
         delivery_option: deliveryOption,
         rush_date: rushDate || null,
-        addons: addons || null,
-        special_instructions: specialInstructions || null,
+        website_addons: addons || null,
 
-        order_amount: finalPrice,         // Maps to 'order_amount' (server-calculated)
-        amount_paid: 0,                   // Initially 0 until Stripe confirms
-        status: 'WEBSITE_CHECKOUT',       // Special status so you know it came from the site
+        // Financials
+        order_amount: finalPrice,
+        amount_paid: 0,
 
-        // Tracking Payment
+        // Status & tracking
+        status: 'WEBSITE_CHECKOUT',
         payment_status: 'pending',
-        sales_agent: 'WEBSITE_BOT'        // Required field in your schema
+        lead_source: 'WEBSITE',
+        sales_agent: 'WEBSITE_BOT',
       })
       .select()
       .single();
