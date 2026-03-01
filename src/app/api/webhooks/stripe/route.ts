@@ -76,8 +76,6 @@ export async function POST(req: Request) {
           .update({
             payment_status: 'paid',
             amount_paid: session.amount_total ? session.amount_total / 100 : 0,
-            stripe_session_id: session.id,
-            stripe_payment_intent_id: session.payment_intent as string | null,
             status: 'PAID',
           })
           .eq('id', orderId);
