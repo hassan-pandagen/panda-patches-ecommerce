@@ -42,9 +42,17 @@ function getProductUrl(title: string): string {
     'Custom Printed Patches': '/custom-patches/printed',
     'Custom No Background 3D Embroidery': '/custom-patches/custom-3d-embroidered-transfers',
     'Custom Sequin Patches': '/custom-patches/sequin',
+    'Custom Lapel Pins': '/custom-products/lapel-pins',
+    'Lapel Pins': '/custom-products/lapel-pins',
+    'Custom Challenge Coins': '/custom-products/challenge-coin',
+    'Challenge Coins': '/custom-products/challenge-coin',
+    'Custom Keychains': '/custom-products/keychains',
+    'Keychains': '/custom-products/keychains',
+    'Custom PVC Shoe Charms': '/custom-products/pvc-shoe-charms',
+    'PVC Shoe Charms': '/custom-products/pvc-shoe-charms',
   };
 
-  return urlMap[title] || '#';
+  return urlMap[title] || '/custom-products';
 }
 
 // Map product titles to their starting prices

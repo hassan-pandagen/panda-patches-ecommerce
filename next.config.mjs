@@ -207,6 +207,82 @@ const nextConfig = {
         destination: '/how-to-iron-on-patches',
         permanent: true,
       },
+
+      // WORDPRESS BLOG POSTS - /blog/:slug → /:slug (individual posts now at root level)
+      {
+        source: '/blog/:slug',
+        destination: '/:slug',
+        permanent: true,
+      },
+      {
+        source: '/blog/:slug/',
+        destination: '/:slug',
+        permanent: true,
+      },
+
+      // WORDPRESS SYSTEM PATHS - Protect crawl budget, block bots hitting 404s
+      {
+        source: '/wp-admin',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/wp-admin/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/wp-login.php',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/wp-content/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/wp-includes/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/xmlrpc.php',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/feed',
+        destination: '/blogs',
+        permanent: true,
+      },
+      {
+        source: '/feed/',
+        destination: '/blogs',
+        permanent: true,
+      },
+      {
+        source: '/:path*/feed',
+        destination: '/blogs',
+        permanent: true,
+      },
+      {
+        source: '/:path*/feed/',
+        destination: '/blogs',
+        permanent: true,
+      },
+
+      // TRAILING SLASH NORMALISATION
+      {
+        source: '/custom-patches/:slug/',
+        destination: '/custom-patches/:slug',
+        permanent: true,
+      },
+      {
+        source: '/custom-products/:slug/',
+        destination: '/custom-products/:slug',
+        permanent: true,
+      },
     ];
   },
 };

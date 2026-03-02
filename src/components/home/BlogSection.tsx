@@ -27,21 +27,21 @@ export default async function BlogSection() {
       title: "Top Types of Hats and How to Wear Them",
       excerpt: "Whether you're dressing for function, fashion, or a little bit of both, hats are one of the most versatile accessories in any wardrobe...",
       image: "/assets/blog-1.png",
-      slug: { current: "#" }
+      slug: null
     },
     {
       _id: "2",
       title: "Boy Scout Patch Placements: A Complete Guide",
       excerpt: "For Scouts, every patch tells a story. From early achievements to higher ranks, patches represent dedication and accomplishments...",
       image: "/assets/blog-2.png",
-      slug: { current: "#" }
+      slug: null
     },
     {
       _id: "3",
       title: "Can Civilians Own Challenge Coins?",
       excerpt: "Challenge coins have long held a revered place in military, law enforcement, and first responder cultures worldwide...",
       image: "/assets/blog-3.png",
-      slug: { current: "#" }
+      slug: null
     },
   ];
 
@@ -113,7 +113,7 @@ function BlogCard({ blog }: { blog: any }) {
            - Default: Black
            - Hover: Yellow (Like Figma middle card)
         */}
-        <Link href={`/blog/${blog.slug?.current || "#"}`} className="mt-6">
+        <Link href={blog.slug ? `/${blog.slug}` : '/blogs'} className="mt-6">
           <button className="
             px-8 py-3 
             bg-black text-white 

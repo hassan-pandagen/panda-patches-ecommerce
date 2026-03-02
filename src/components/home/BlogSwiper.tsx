@@ -11,7 +11,7 @@ interface Blog {
   title: string;
   excerpt: string;
   image?: any;
-  slug?: { current: string };
+  slug?: string | null;
 }
 
 export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
@@ -75,7 +75,7 @@ export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
             </p>
 
             {/* Button */}
-            <Link href={`/blog/${currentBlog.slug?.current || "#"}`} className="mt-6">
+            <Link href={currentBlog.slug ? `/${currentBlog.slug}` : '/blogs'} className="mt-6">
               <button className="
                 px-8 py-3 
                 bg-black text-white 
@@ -156,7 +156,7 @@ export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
                 </p>
 
                 {/* Button */}
-                <Link href={`/blog/${blog.slug?.current || "#"}`} className="mt-6">
+                <Link href={blog.slug ? `/${blog.slug}` : '/blogs'} className="mt-6">
                   <button className="
                     px-8 py-3 
                     bg-black text-white 

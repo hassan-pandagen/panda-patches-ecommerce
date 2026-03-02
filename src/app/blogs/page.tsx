@@ -115,7 +115,7 @@ export default async function BlogsPage({ searchParams }: { searchParams: { page
                         </button>
                       </Link>
                     ) : (
-                      <Link href={`/blog/${post._id}`}>
+                      <Link href="/blogs">
                         <button className="bg-black text-panda-yellow font-black text-xs uppercase px-8 py-3 tracking-widest hover:scale-105 transition-transform">
                           Read More
                         </button>
