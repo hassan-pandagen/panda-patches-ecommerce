@@ -13,7 +13,7 @@ export default async function ProcessSection() {
   if (!data) return null; // Don't crash if no data
 
   return (
-    <section className="w-full py-24 bg-[#F9FAF5]">
+    <section className="w-full py-10 md:py-16 bg-[#F9FAF5]">
       <div className="container mx-auto px-4 text-center">
         
         {/* HEADINGS */}

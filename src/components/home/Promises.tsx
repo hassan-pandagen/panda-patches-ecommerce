@@ -16,7 +16,7 @@ const defaultPromises: PromiseItem[] = [
 export default function Promises({ bgColor = "bg-[#F7F7F7]", items }: { bgColor?: string; items?: PromiseItem[] }) {
   const promises = items ?? defaultPromises;
   return (
-    <section className={`w-full pb-8 md:pb-24 pt-10 ${bgColor}`}>
+    <section className={`w-full pb-6 md:pb-12 pt-8 ${bgColor}`}>
       <div className="container mx-auto px-6 flex flex-col items-center">
         
         <h2 className="text-[24px] md:text-[28px] lg:text-[32px] font-black text-center text-panda-dark uppercase tracking-wide mb-8 md:mb-12 lg:mb-16">

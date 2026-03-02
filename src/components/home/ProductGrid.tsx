@@ -100,7 +100,7 @@ export default async function ProductGrid() {
   const { main, other } = await getProducts();
 
   return (
-    <section className="w-full pt-8 md:pt-10 pb-8 md:pb-24 bg-white">
+    <section className="w-full pt-8 md:pt-10 pb-6 md:pb-12 bg-white">
       <div className="container mx-auto px-4 max-w-[1350px]">
         
         {/* HEADER TEXT */}

@@ -22,7 +22,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://pandapatches.com'),
   title: "Panda Patches | Custom Iron On Patches",
-  description: "Order custom embroidered patches, iron-on patches, PVC patches with low minimums. Free design services, 7-14 day delivery. 4.9★ rated by 1000+ customers. No setup fees!",
+  description: "Order custom embroidered patches, iron-on patches, PVC patches with low minimums. Free design services, 7-14 day delivery. 4.8★ rated on Trustpilot. No setup fees!",
   icons: {
     icon: [
       { url: '/assets/favicon.ico' },
@@ -93,6 +93,23 @@ fbq('track', 'PageView');`}
         <Script id="bing-uet" strategy="afterInteractive">
           {`(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97147013", enableAutoSpaTracking: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");`}
         </Script>
+
+        {/* Google Ads Tag */}
+        <Script
+          id="google-ads-tag"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11221237770"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-init" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-11221237770');`}
+        </Script>
+
+        {/* Trustpilot Widget Script */}
+        <Script
+          id="trustpilot"
+          src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+          strategy="lazyOnload"
+        />
 
         {/* Tawk.to Live Chat with Advanced Tracking */}
         <TawkToWidget />

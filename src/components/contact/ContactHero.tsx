@@ -13,7 +13,7 @@ export default function ContactHero() {
   };
 
   return (
-    <section className="w-full pt-16 pb-24 bg-white">
+    <section className="w-full pt-8 pb-14 bg-white">
       <div className="container mx-auto px-6 max-w-[1360px]">
         
         {/* MAIN HEADING */}

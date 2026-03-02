@@ -78,6 +78,13 @@ export default function BulkQuoteForm() {
       setMessage({ type: "success", text: "Quote submitted! We'll respond within 2 business hours with your free mockup." });
       setUploadedName(null);
       reset();
+
+      // Fire Google Ads quote form conversion
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'conversion', {
+          send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
+        });
+      }
     } catch (error) {
       console.error("Bulk quote error:", error);
       setMessage({ type: "error", text: "Failed to submit. Please try again or call us at (302) 250-4340." });

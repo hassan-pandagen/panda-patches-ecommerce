@@ -59,7 +59,7 @@ export default async function ContentSection() {
   ];
 
   return (
-    <section className="w-full py-20 bg-white">
+    <section className="w-full py-10 md:py-14 bg-white">
       <div className="container mx-auto px-4 max-w-[1170px]">
         
         <div className="flex flex-col gap-16 text-center">

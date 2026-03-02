@@ -19,7 +19,7 @@ const bulkFAQs = [
   },
   {
     question: "Do you offer distributor or wholesale pricing?",
-    answer: "Yes! We work with promotional products distributors, ASI members, and resellers. Contact us for special distributor rates, white-label options, and Net 30/60 payment terms. We're set up to be your go-to patch supplier."
+    answer: "Yes! We work with promotional products distributors, ASI members, and resellers. Contact us for special distributor rates, white-label options, and Net 15/30 payment terms. We're set up to be your go-to patch supplier."
   },
   {
     question: "What's the turnaround time for 1,000+ pieces?",
@@ -44,7 +44,7 @@ export default function BulkFAQ() {
   const faqSchema = generateFAQSchema(bulkFAQs);
 
   return (
-    <section className="w-full py-16 md:py-24 bg-panda-light">
+    <section className="w-full py-8 md:py-14 bg-panda-light">
       {/* FAQ Schema for SEO */}
       <script
         type="application/ld+json"

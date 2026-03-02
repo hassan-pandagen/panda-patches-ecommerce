@@ -7,6 +7,9 @@ import WorkGallery from "@/components/bulk/WorkGallery";
 import CategoryFAQ from "@/components/bulk/CategoryFAQ";
 import Promises from "@/components/home/Promises";
 import ProcessSection from "@/components/home/ProcessSection";
+import TrustStrip from "@/components/products/TrustStrip";
+import Craftsmanship from "@/components/home/Craftsmanship";
+import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
@@ -198,6 +201,7 @@ export default async function ChenilleTpuPatchesPage() {
 
       {/* 2. WORK GALLERY */}
       <WorkGallery samples={workSamples} />
+      <TrustStrip />
 
       {/* 3. WHY CHOOSE PANDA */}
       <Promises bgColor="bg-white" />
@@ -209,7 +213,7 @@ export default async function ChenilleTpuPatchesPage() {
       <CategoryFAQ title="Chenille TPU Patches FAQ" faqs={chenilleTpuFAQs} />
 
       {/* 6. SEO CONTENT */}
-      <section className="w-full py-16 md:py-20 bg-white">
+      <section className="w-full py-8 md:py-12 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
           <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
             Custom Chenille TPU Patches: Durable, Flexible and Water-Resistant
@@ -235,6 +239,9 @@ export default async function ChenilleTpuPatchesPage() {
       </section>
 
       {/* 7. CTA */}
+      <Craftsmanship />
+      <ReviewsSection />
+
       <CTASection />
 
       <Footer />

@@ -203,8 +203,23 @@ export default function Footer() {
 
         </div>
 
+        {/* TRUSTPILOT WIDGET */}
+        <div className="border-t border-gray-200 mt-16 pt-8">
+          <div
+            className="trustpilot-widget mx-auto max-w-[400px]"
+            data-locale="en-US"
+            data-template-id="56278e9abfbbba0bdcd568bc"
+            data-businessunit-id="64cd0f13776bfed6d424bd91"
+            data-style-height="52px"
+            data-style-width="100%"
+            data-token="310a8a2e-1471-4f00-8ad2-771892d88a34"
+          >
+            <a href="https://www.trustpilot.com/review/pandapatches.com" target="_blank" rel="noopener">Trustpilot</a>
+          </div>
+        </div>
+
         {/* BOTTOM COPYRIGHT */}
-        <div className="border-t border-gray-200 mt-16 pt-8 text-center text-gray-500 font-medium">
+        <div className="pt-6 text-center text-gray-500 font-medium">
           <p>Copyright © {new Date().getFullYear()} <span className="text-black font-bold">Panda Patches</span> All rights reserved</p>
         </div>
 

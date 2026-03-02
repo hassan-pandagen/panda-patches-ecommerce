@@ -1,8 +1,10 @@
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
+import { generateLocalBusinessSchema, generateSchemaScript } from "@/lib/schemas";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
 import Craftsmanship from "@/components/home/Craftsmanship";
+import ReviewsSection from "@/components/home/ReviewsSection";
 import Promises from "@/components/home/Promises";
 import ProductGrid from "@/components/home/ProductGrid";
 
@@ -22,7 +24,7 @@ export const revalidate = 60;
 // SEO Metadata for Homepage
 export const metadata: Metadata = {
   title: "Custom Patches & Embroidered Patches - Low Minimums | Panda Patches",
-  description: "Create custom embroidered patches, iron-on patches, woven patches, PVC patches with no minimum orders. Free design, fast 7-14 day delivery, 4.9★ rated. Get instant quote!",
+  description: "Create custom embroidered patches, iron-on patches, woven patches, PVC patches with no minimum orders. Free design, fast 7-14 day delivery, 4.8★ on Trustpilot. Get instant quote!",
   keywords: [
     "custom patches",
     "embroidered patches",
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Custom Patches & Embroidered Patches - Low Minimums | Panda Patches",
-    description: "Create custom embroidered patches, iron-on patches, woven patches with low minimums. Free design, fast delivery, 4.9★ rated by 50+ customers.",
+    description: "Create custom embroidered patches, iron-on patches, woven patches with low minimums. Free design, fast delivery, 4.8★ rated by 50+ customers.",
     type: "website",
     url: "https://pandapatches.com",
     images: [
@@ -52,7 +54,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Custom Patches & Embroidered Patches - Low Minimums",
-    description: "Create custom embroidered patches with low minimums. Free design, fast delivery, 4.9★ rated.",
+    description: "Create custom embroidered patches with low minimums. Free design, fast delivery, 4.8★ rated.",
     images: ["https://pandapatches.com/assets/logo-panda.svg"]
   },
   alternates: {
@@ -75,6 +77,13 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
+
+      {/* LocalBusiness Schema — triggers star ratings in Google Search results */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(generateLocalBusinessSchema())}
+      />
+
       <Navbar />
 
       {/* 2. Hero fetches data from Sanity (Async) - TrustedBy section now inside Hero */}
@@ -82,6 +91,10 @@ export default function Home() {
 
       {/* New Sections Added Here */}
       <Craftsmanship />
+
+      {/* Customer Reviews — social proof immediately after craftsmanship */}
+      <ReviewsSection />
+
       <Promises />
       
       {/* The New Grid */}

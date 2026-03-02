@@ -19,7 +19,7 @@ export default function BulkHero({
   customDescription
 }: BulkHeroProps) {
   return (
-    <section className="w-full pt-8 md:pt-12 pb-12 md:pb-20 bg-white">
+    <section className="w-full pt-8 md:pt-12 pb-6 md:pb-10 bg-white">
       <div className="container mx-auto px-4 md:px-6 max-w-[1200px]">
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">

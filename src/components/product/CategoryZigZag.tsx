@@ -21,7 +21,7 @@ export default async function CategoryZigZag({ locationName }: CategoryZigZagPro
   if (!products || products.length === 0) return null;
 
   return (
-    <section className="w-full py-20 bg-white">
+    <section className="w-full py-10 md:py-14 bg-white">
       <div className="container mx-auto px-6 max-w-[1300px]">
         
         <h2 className="text-[40px] font-black text-center text-panda-dark mb-24 uppercase tracking-tight">

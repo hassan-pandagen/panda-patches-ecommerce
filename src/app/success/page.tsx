@@ -3,11 +3,15 @@ import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PurchaseConversion from "@/components/PurchaseConversion";
 
 function SuccessContent() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
       <Navbar />
+
+      {/* Fire Google Ads purchase conversion on mount */}
+      <PurchaseConversion />
 
       <div className="container mx-auto px-6 py-20">
         <div className="max-w-2xl mx-auto text-center">

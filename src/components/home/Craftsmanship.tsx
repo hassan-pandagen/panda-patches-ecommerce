@@ -26,7 +26,7 @@ export default async function Craftsmanship() {
   const videos = data?.videos || [];
 
   return (
-    <section className="w-full pt-16 pb-8 bg-[#F7F7F7]">
+    <section className="w-full pt-8 pb-6 bg-[#F7F7F7]">
       <div className="container mx-auto px-6 text-center">
         
         {/* HEADING - Mobile Optimized */}

@@ -13,7 +13,9 @@ import ProcessSection from "@/components/home/ProcessSection";
 import IndustrySection from "@/components/home/IndustrySection";
 import FAQ from "@/components/home/FAQ";
 import ContentSection from "@/components/home/ContentSection";
+import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
+import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 
 export const metadata: Metadata = {
@@ -77,6 +79,7 @@ export default async function ProductLandingPage() {
       
       {/* 1. HERO (Quote Form Mode) */}
       <ProductHero productData={data} isMainPage={true} />
+      <TrustStrip />
       
       {/* 2. PICK YOUR PATCH (5 Cards) */}
       <PickPatch />
@@ -118,6 +121,7 @@ export default async function ProductLandingPage() {
 
       {/* 9. REELS & CTA */}
       <Craftsmanship />
+      <ReviewsSection />
       <CTASection />
       
       <Footer />

@@ -11,7 +11,8 @@ function PayPalSuccessContent() {
   const [message, setMessage] = useState('Processing your payment...');
 
   useEffect(() => {
-    const orderId = searchParams.get('order_id');
+    // PayPal redirects back with ?token=PAYPAL_ORDER_ID&PayerID=...
+    const orderId = searchParams.get('token') || searchParams.get('order_id');
 
     if (!orderId) {
       setStatus('error');

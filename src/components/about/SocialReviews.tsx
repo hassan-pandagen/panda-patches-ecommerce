@@ -16,7 +16,7 @@ export default async function SocialReviews() {
     : "/assets/social-reviews.png"; // Fallback if you haven&apos;t uploaded yet
 
   return (
-    <section className="w-full pt-20 pb-10 bg-[#F6F6F6]">
+    <section className="w-full pt-10 pb-8 bg-[#F6F6F6]">
       <div className="container mx-auto px-4 flex flex-col items-center">
         
         {/* HEADING */}

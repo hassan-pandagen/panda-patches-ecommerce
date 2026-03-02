@@ -111,7 +111,7 @@ export default async function LocationLayout({ data }: { data: any }) {
 
       {/* 7. SEO TEXT SECTION 1 (Buy [Location] Iron On...) */}
       {data.seoSection1 && (
-        <section className="py-12 md:py-16 bg-white border-t border-b border-gray-100">
+        <section className="py-8 md:py-10 bg-white border-t border-b border-gray-100">
           <div className="container mx-auto px-6 max-w-[860px]">
             <div className="w-10 h-1 bg-panda-yellow mb-6 rounded-full" />
             <SEOText content={data.seoSection1} />
@@ -127,7 +127,7 @@ export default async function LocationLayout({ data }: { data: any }) {
 
       {/* 10. SEO TEXT SECTION 2 (Why Choose Us / Ordering Made Easy...) */}
       {data.seoSection2 && (
-        <section className="py-12 md:py-16 bg-[#F9FAF5] border-t border-gray-100">
+        <section className="py-8 md:py-10 bg-[#F9FAF5] border-t border-gray-100">
           <div className="container mx-auto px-6 max-w-[860px]">
             <div className="w-10 h-1 bg-panda-yellow mb-6 rounded-full" />
             <SEOText content={data.seoSection2} />

@@ -76,14 +76,32 @@ const threeDEmbroideryPricing = {
   maxSize: 12
 };
 
-// PVC Pricing
+// PVC Pricing — updated, max 8 inches, min 1 inch
+// Qty breaks: 10, 25, 50, 100, 200, 500, 1000, 5000
+// Size 1 uses same price as size 2 (1.0–1.9 inch inputs)
 const pvcPricing = {
+  qtyBreaks: [10, 25, 50, 100, 200, 500, 1000, 5000],
+  prices: {
+    //         10      25      50     100    200    500    1000   5000
+    1:  [13.75,  7.50,  5.00,  3.44,  2.50,  1.88,  1.56,  1.56],
+    2:  [13.75,  7.50,  5.00,  3.44,  2.50,  1.88,  1.56,  1.56],
+    3:  [16.25,  8.75,  6.25,  4.38,  3.75,  3.13,  2.81,  2.81],
+    4:  [18.75, 10.00,  7.50,  6.25,  5.00,  4.38,  3.75,  3.75],
+    5:  [22.50, 15.00,  8.13,  7.30,  6.15,  5.00,  4.50,  4.50],
+    6:  [23.75, 16.25,  9.00,  7.75,  6.54,  6.03,  4.80,  4.80],
+    7:  [28.75, 17.50, 11.25,  9.00,  8.31,  7.40,  6.15,  6.15],
+    8:  [31.25, 22.50, 15.00, 10.13,  9.00,  7.95,  6.25,  6.25],
+  },
+  minSize: 1,
+  maxSize: 8
+};
+
+// Base pricing shared by Woven, Leather, Silicone (unchanged)
+const wovenLeatherBasePricing = {
   qtyBreaks: [10, 25, 50, 100, 250, 500, 1000, 5000],
   prices: {
-    // Up to 3 inches
     2:  [13.00, 6.80, 4.60, 3.00, 2.80, 2.00, 1.50, 1.00],
     3:  [13.00, 6.80, 4.60, 3.00, 2.80, 2.00, 1.50, 1.00],
-    // Scales up
     4:  [15.00, 7.50, 5.20, 3.50, 3.20, 2.30, 1.70, 1.20],
     5:  [17.00, 8.50, 6.00, 4.00, 3.60, 2.70, 2.00, 1.40],
     6:  [20.00, 10.00, 7.00, 5.00, 4.20, 3.30, 2.50, 1.70],
@@ -98,14 +116,14 @@ const pvcPricing = {
   maxSize: 12
 };
 
-// Woven Pricing - Same as PVC
-const wovenPricing = pvcPricing;
+// Woven Pricing
+const wovenPricing = wovenLeatherBasePricing;
 
-// Leather Pricing - Same as PVC
-const leatherPricing = pvcPricing;
+// Leather Pricing
+const leatherPricing = wovenLeatherBasePricing;
 
-// Silicone Labels Pricing - Same as PVC
-const siliconePricing = pvcPricing;
+// Silicone Labels Pricing
+const siliconePricing = wovenLeatherBasePricing;
 
 // Sublimated/Printed Pricing - Same as Embroidery
 const sublimatedPricing = embroideryPricing;

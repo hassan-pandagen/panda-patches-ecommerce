@@ -40,7 +40,7 @@ export default function PickPatch() {
   const patches: PatchCard[] = data?.patchCards || [];
 
   return (
-    <section className="w-full pb-24 pt-10 bg-white">
+    <section className="w-full pb-14 pt-6 bg-white">
       <div className="container mx-auto px-4 text-center">
 
         {/* HEADING */}

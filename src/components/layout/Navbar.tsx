@@ -17,14 +17,14 @@ const navLinks = [
       { name: "Custom Embroidery Patches", href: "/custom-patches/embroidered" },
       { name: "Custom 3D Embroidered Transfers", href: "/custom-patches/custom-3d-embroidered-transfers" },
       { name: "Custom Chenille Patches", href: "/custom-patches/chenille" },
-      { name: "Custom Chenille TPU Patches", href: "/custom-patches/custom-chenille-tpu-patches" },
-      { name: "Custom Chenille Glitter Patches", href: "/custom-patches/custom-chenille-glitter-patches" },
+      { name: "Custom Printed Patches", href: "/custom-patches/printed" },
       { name: "Custom PVC Patches", href: "/custom-patches/pvc" },
       { name: "Custom Woven Patches", href: "/custom-patches/woven" },
       { name: "Custom Leather Patches", href: "/custom-patches/leather" },
       { name: "Custom Silicone Labels", href: "/custom-patches/custom-silicone-labels" },
-      { name: "Custom Printed Patches", href: "/custom-patches/printed" },
       { name: "Custom Sequin Patches", href: "/custom-patches/sequin" },
+      { name: "Custom Chenille TPU Patches", href: "/custom-patches/custom-chenille-tpu-patches" },
+      { name: "Custom Chenille Glitter Patches", href: "/custom-patches/custom-chenille-glitter-patches" },
     ]
   },
   {
@@ -75,14 +75,15 @@ export default function Navbar() {
 
         {/* === 1. LEFT: LOGO === */}
         <div className="flex items-center justify-start flex-shrink-0">
-          <Link href="/" className="relative w-[130px] h-[42px] md:w-[160px] md:h-[50px]">
-             <Image
-               src="/assets/logo-panda.svg"
-               alt="Panda Patches"
-               fill
-               className="object-contain object-left"
-               priority
-             />
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/assets/logo-panda.svg"
+              alt="Panda Patches"
+              width={160}
+              height={50}
+              className="w-[130px] h-[42px] md:w-[160px] md:h-[50px] object-contain transform-gpu"
+              priority
+            />
           </Link>
         </div>
 

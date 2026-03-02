@@ -43,7 +43,7 @@ export default async function AboutContent() {
   ];
 
   return (
-    <section className="w-full pt-16 pb-24 bg-white">
+    <section className="w-full pt-8 pb-14 bg-white">
       <div className="container mx-auto px-4 flex flex-col items-center">
         
         {/* === MAIN PAGE TITLE === */}

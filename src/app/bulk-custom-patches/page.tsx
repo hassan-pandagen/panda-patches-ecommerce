@@ -8,6 +8,9 @@ import BulkCaseStudies from "@/components/bulk/BulkCaseStudies";
 import BulkFAQ from "@/components/bulk/BulkFAQ";
 import Promises from "@/components/home/Promises";
 import ProcessSection from "@/components/home/ProcessSection";
+import TrustStrip from "@/components/products/TrustStrip";
+import Craftsmanship from "@/components/home/Craftsmanship";
+import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateOrganizationSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
@@ -161,12 +164,13 @@ export default async function BulkCustomPatchesPage() {
 
       {/* 1. HERO */}
       <BulkHero heroImage={heroImage} trustBadges={trustBadges} />
+      <TrustStrip />
 
       {/* 2. BULK PRICING TABLE */}
       <BulkPricingTable workSamples={workSamples} />
 
       {/* 4. HOW BULK ORDERING WORKS (4-Step Process) */}
-      <section className="w-full py-16 md:py-24 bg-white">
+      <section className="w-full py-8 md:py-14 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-[1000px]">
           <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-10 md:mb-14">
             How Bulk Ordering Works
@@ -211,7 +215,7 @@ export default async function BulkCustomPatchesPage() {
       <BulkCaseStudies />
 
       {/* 6. WHO ORDERS BULK PATCHES */}
-      <section className="w-full py-16 md:py-20 bg-panda-light">
+      <section className="w-full py-8 md:py-12 bg-panda-light">
         <div className="container mx-auto px-4 md:px-6 max-w-[960px]">
           <h2 className="text-[24px] md:text-[34px] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
             Who Orders Bulk Custom Patches?
@@ -223,7 +227,7 @@ export default async function BulkCustomPatchesPage() {
 
             <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
               <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Promotional Products Distributors & ASI Members</h3>
-              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">We are set up to work as your behind-the-scenes patch supplier. White-label fulfillment, blind shipping, Net 30/60 terms, and competitive distributor pricing for ASI members. Many of our distributor partners place recurring monthly orders with locked-in volume rates.</p>
+              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">We are set up to work as your behind-the-scenes patch supplier. White-label fulfillment, blind shipping, Net 15/30 terms, and competitive distributor pricing for ASI members. Many of our distributor partners place recurring monthly orders with locked-in volume rates.</p>
             </div>
 
             <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
@@ -261,7 +265,7 @@ export default async function BulkCustomPatchesPage() {
       </section>
 
       {/* 7. MATERIALS & PATCH TYPES */}
-      <section className="w-full py-16 md:py-20 bg-white">
+      <section className="w-full py-8 md:py-12 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">
           <h2 className="text-[24px] md:text-[34px] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
             Materials & Patch Types
@@ -292,7 +296,7 @@ export default async function BulkCustomPatchesPage() {
       </section>
 
       {/* 8. REORDER PROCESS */}
-      <section className="w-full py-16 md:py-20 bg-panda-dark">
+      <section className="w-full py-8 md:py-12 bg-panda-dark">
         <div className="container mx-auto px-4 md:px-6 max-w-[900px] text-center">
           <h2 className="text-[24px] md:text-[34px] font-black text-white uppercase tracking-tight mb-3">
             Repeat Orders Are Even Easier
@@ -325,13 +329,13 @@ export default async function BulkCustomPatchesPage() {
         },
         {
           icon: "/assets/icon-money.svg",
-          title: "Net 30/60 Payment Terms",
-          desc: "Qualified distributors and repeat clients can apply for Net 30 or Net 60 payment terms. No upfront cash required.",
+          title: "Net 15/30 Payment Terms",
+          desc: "Qualified distributors and repeat clients can apply for Net 15 or Net 30 payment terms. No upfront cash required.",
         },
         {
           icon: "/assets/icon-clock.svg",
-          title: "Locked-In Reorder Pricing",
-          desc: "Once you place your first bulk order, your per-unit price is locked in for all future reorders — regardless of material cost changes.",
+          title: "Easy Reorder, Every Time",
+          desc: "We save every order for 3–4 years so you can easily reorder and get the exact same design — no hassle, no starting over.",
         },
         {
           icon: "/assets/icon-check.svg",
@@ -349,7 +353,7 @@ export default async function BulkCustomPatchesPage() {
       <BulkFAQ />
 
       {/* 10. WHY BUSINESSES CHOOSE PANDA */}
-      <section className="w-full py-16 md:py-20 bg-panda-light">
+      <section className="w-full py-8 md:py-12 bg-panda-light">
         <div className="container mx-auto px-4 md:px-6 max-w-[960px]">
           <h2 className="text-[24px] md:text-[34px] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
             Why Businesses Choose Panda Patches for Bulk Orders
@@ -365,7 +369,7 @@ export default async function BulkCustomPatchesPage() {
               },
               {
                 title: "ASI Verified Supplier",
-                body: "We are a verified supplier in the ASI network. Promotional products distributors can confidently recommend us to their clients — we understand blind shipping, white-label packaging, and Net 30/60 terms.",
+                body: "We are a verified supplier in the ASI network. Promotional products distributors can confidently recommend us to their clients — we understand blind shipping, white-label packaging, and Net 15/30 terms.",
               },
               {
                 title: "5-Point Quality Inspection on Every Patch",
@@ -395,7 +399,7 @@ export default async function BulkCustomPatchesPage() {
       </section>
 
       {/* 11. SEO CONTENT */}
-      <section className="w-full py-16 md:py-20 bg-white">
+      <section className="w-full py-8 md:py-12 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
           <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
             Custom Patches in Bulk — Your Complete Guide
@@ -423,7 +427,11 @@ export default async function BulkCustomPatchesPage() {
         </div>
       </section>
 
-      {/* 11. CTA */}
+      {/* 11. Craftsmanship + Reviews */}
+      <Craftsmanship />
+      <ReviewsSection />
+
+      {/* 12. CTA */}
       <CTASection />
 
       <Footer />

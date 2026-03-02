@@ -7,6 +7,9 @@ import WorkGallery from "@/components/bulk/WorkGallery";
 import CategoryFAQ from "@/components/bulk/CategoryFAQ";
 import Promises from "@/components/home/Promises";
 import ProcessSection from "@/components/home/ProcessSection";
+import TrustStrip from "@/components/products/TrustStrip";
+import Craftsmanship from "@/components/home/Craftsmanship";
+import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
@@ -39,7 +42,7 @@ const corporateFAQs = [
   },
   {
     question: "Do you work with promotional products distributors?",
-    answer: "Absolutely. We work with ASI members, promotional distributors, and resellers. Contact us for special distributor rates, white-label options, and Net 30/60 payment terms."
+    answer: "Absolutely. We work with ASI members, promotional distributors, and resellers. Contact us for special distributor rates, white-label options, and Net 15/30 payment terms."
   },
   {
     question: "What backing options are best for corporate apparel?",
@@ -193,6 +196,7 @@ export default async function CorporatePatchesPage() {
 
       {/* 2. WORK GALLERY */}
       <WorkGallery samples={workSamples} />
+      <TrustStrip />
 
       {/* 3. WHY CHOOSE PANDA */}
       <Promises bgColor="bg-white" />
@@ -204,7 +208,7 @@ export default async function CorporatePatchesPage() {
       <CategoryFAQ title="Corporate Patches FAQ" faqs={corporateFAQs} />
 
       {/* 6. SEO CONTENT */}
-      <section className="w-full py-16 md:py-20 bg-white">
+      <section className="w-full py-8 md:py-12 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
           <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
             Custom Corporate Patches — Professional Quality for Your Brand
@@ -227,6 +231,9 @@ export default async function CorporatePatchesPage() {
       </section>
 
       {/* 7. CTA */}
+      <Craftsmanship />
+      <ReviewsSection />
+
       <CTASection />
 
       <Footer />

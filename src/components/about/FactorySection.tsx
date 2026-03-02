@@ -16,7 +16,7 @@ export default async function FactorySection() {
   const image = data?.factoryImage ? urlFor(data.factoryImage).url() : null;
 
   return (
-    <section className="w-full py-24 bg-white">
+    <section className="w-full py-10 md:py-16 bg-white">
       <div className="container mx-auto px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         
         {/* LEFT: TEXT */}

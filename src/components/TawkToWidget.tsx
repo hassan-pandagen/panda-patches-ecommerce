@@ -15,6 +15,15 @@ const TawkToWidget = () => {
 
     // Initialize Tawk_API
     (window as any).Tawk_API = (window as any).Tawk_API || {};
+
+    // Mobile positioning — keep widget from covering page content
+    (window as any).Tawk_API.customStyle = {
+      visibility: {
+        mobile: { position: 'br', xOffset: 0, yOffset: 60 },
+        desktop: { position: 'br', xOffset: 0, yOffset: 0 },
+      }
+    };
+
     (window as any).Tawk_LoadStart = new Date();
 
     // Advanced tracking setup

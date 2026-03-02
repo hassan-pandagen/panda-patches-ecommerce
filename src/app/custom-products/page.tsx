@@ -4,6 +4,8 @@ import { client, urlFor } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import TrustStrip from "@/components/products/TrustStrip";
+import Craftsmanship from "@/components/home/Craftsmanship";
+import ReviewsSection from "@/components/home/ReviewsSection";
 import Promises from "@/components/home/Promises";
 import ProcessSection from "@/components/home/ProcessSection";
 import TimelineSection from "@/components/home/TimelineSection";
@@ -154,6 +156,9 @@ export default async function CustomProductsPage() {
 
       {/* 4 WAYS OF ORDERING */}
       <TimelineSection />
+
+      <Craftsmanship />
+      <ReviewsSection />
 
       <Footer />
     </main>

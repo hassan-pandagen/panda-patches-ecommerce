@@ -19,7 +19,7 @@ export default function CategoryFAQ({ title = "Frequently Asked Questions", faqs
   const faqSchema = generateFAQSchema(faqs);
 
   return (
-    <section className="w-full py-16 md:py-24 bg-panda-light">
+    <section className="w-full py-8 md:py-14 bg-panda-light">
       {/* FAQ Schema for SEO */}
       <script
         type="application/ld+json"

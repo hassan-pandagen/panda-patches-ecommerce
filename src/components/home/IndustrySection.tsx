@@ -42,7 +42,7 @@ export default async function IndustrySection() {
 
   return (
     // SECTION BACKGROUND: #F6F6F6 (Grey)
-    <section className="w-full py-24 bg-[#F6F6F6]">
+    <section className="w-full py-10 md:py-16 bg-[#F6F6F6]">
       <div className="container mx-auto px-4 max-w-[1400px]">
         
         {/* === HEADER === */}

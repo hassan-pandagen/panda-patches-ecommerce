@@ -107,8 +107,8 @@ export function generateOrganizationSchema() {
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.7",
-      "reviewCount": "55",
+      "ratingValue": "4.8",
+      "reviewCount": "57",
       "bestRating": "5",
       "worstRating": "1"
     },
@@ -332,8 +332,8 @@ export function generateProductSchema(params: ProductSchemaParams) {
   if (includeReviews) {
     productSchema.aggregateRating = {
       "@type": "AggregateRating",
-      "ratingValue": "4.7",
-      "reviewCount": "55",
+      "ratingValue": "4.8",
+      "reviewCount": "57",
       "bestRating": "5",
       "worstRating": "1"
     };
@@ -547,8 +547,8 @@ export function generateLocalBusinessSchema() {
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.7",
-      "reviewCount": "55"
+      "ratingValue": "4.8",
+      "reviewCount": "57"
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -600,8 +600,8 @@ export function generateLocationBusinessSchema(locationName: string) {
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.7",
-      "reviewCount": "55",
+      "ratingValue": "4.8",
+      "reviewCount": "57",
       "bestRating": "5",
       "worstRating": "1"
     }

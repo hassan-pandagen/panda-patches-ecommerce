@@ -140,7 +140,7 @@ export async function POST(req: Request) {
       currency: 'USD',
       description: `${productName} (${width}" x ${height}") - Qty: ${quantity}`,
       orderId: order.id.toString(),
-      returnUrl: `${baseUrl}/success-paypal?order_id={ORDER_ID}`,
+      returnUrl: `${baseUrl}/success-paypal`,
       cancelUrl: `${baseUrl}/error-payment`
     });
 

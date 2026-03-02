@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function TrustStrip() {
   return (
-    <section className="w-full py-12 bg-white border-b border-gray-100">
+    <section className="w-full py-8 bg-white border-b border-gray-100">
       <div className="container mx-auto px-4 text-center">
 
         {/* HEADING */}

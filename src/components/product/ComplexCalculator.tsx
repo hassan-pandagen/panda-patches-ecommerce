@@ -474,9 +474,8 @@ export default function ComplexCalculator({
   // Get max size based on product type
   const getMaxSize = () => {
     const type = productType.toLowerCase();
-    if (type.includes('pvc') || type.includes('woven') || type.includes('leather')) {
-      return 6; // 6 inches max for PVC, Woven, and Leather
-    }
+    if (type.includes('pvc')) return 8; // PVC max 8 inches
+    if (type.includes('woven') || type.includes('leather')) return 12;
     return 50; // Default max for other types
   };
 
@@ -729,7 +728,12 @@ export default function ComplexCalculator({
                   onChange={(e) => setPlacement(e.target.value)}
                   className="w-full h-[52px] border-2 border-gray-300 rounded-[12px] px-5 font-bold text-base text-black outline-none focus:border-black appearance-none cursor-pointer bg-white"
                 >
-                  {PLACEMENTS.map((p, i) => <option key={i} value={p.label}>{p.label}</option>)}
+                  {PLACEMENTS
+                    .filter(p => productType.toLowerCase().includes('pvc')
+                      ? p.label !== "Across Chest (12 x 12 inches)" && p.label !== "Jacket Back (14 x 14 inches)"
+                      : true
+                    )
+                    .map((p, i) => <option key={i} value={p.label}>{p.label}</option>)}
                 </select>
                 <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 text-black pointer-events-none" size={20} />
               </div>

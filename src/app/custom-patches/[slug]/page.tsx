@@ -18,6 +18,8 @@ const WorkSamples = dynamic(() => import("@/components/product/WorkSamples"), { 
 const TimelineSection = dynamic(() => import("@/components/home/TimelineSection"), { ssr: true });
 const FAQ = dynamic(() => import("@/components/home/FAQ"), { ssr: true });
 const ContentSection = dynamic(() => import("@/components/home/ContentSection"), { ssr: true });
+const Craftsmanship = dynamic(() => import("@/components/home/Craftsmanship"), { ssr: true });
+const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"), { ssr: true });
 const CTASection = dynamic(() => import("@/components/home/CTASection"), { ssr: true });
 const Footer = dynamic(() => import("@/components/layout/Footer"), { ssr: true });
 
@@ -249,13 +251,13 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
             Ordering 50+ pieces?
           </p>
           <h2 className="text-white text-[20px] md:text-[28px] font-black uppercase mb-5 leading-tight">
-            Order {data.title} in Bulk
+            Order in Bulk &amp; Save More
           </h2>
           <Link
             href="/bulk-custom-patches"
             className="inline-flex items-center gap-2 bg-panda-yellow text-panda-dark font-black px-8 py-3 rounded-full text-[13px] uppercase tracking-widest hover:bg-white transition-colors"
           >
-            Order {data.title} in Bulk →
+            Get Bulk Pricing →
           </Link>
         </div>
       </section>
@@ -267,7 +269,11 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
       <ContentSection />
       <FAQ />
 
-      {/* 13. CTA */}
+      {/* 13. Craftsmanship + Reviews */}
+      <Craftsmanship />
+      <ReviewsSection />
+
+      {/* 14. CTA */}
       <CTASection />
       
       <Footer />

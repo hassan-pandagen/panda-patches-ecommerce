@@ -30,7 +30,7 @@ export default async function BulkCaseStudies() {
   const usingSanity = !!sanityStudies;
 
   return (
-    <section className="w-full py-16 md:py-24 bg-white">
+    <section className="w-full py-8 md:py-14 bg-white">
       <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">
 
         {/* Heading */}

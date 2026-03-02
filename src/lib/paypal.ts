@@ -1,4 +1,4 @@
-import { Client, Environment, OrdersController, OrderRequest, CheckoutPaymentIntent, AmountWithBreakdown, OrderApplicationContextShippingPreference, OrderApplicationContextUserAction } from '@paypal/paypal-server-sdk';
+import { Client, Environment, OrdersController, OrderRequest, CheckoutPaymentIntent, AmountWithBreakdown } from '@paypal/paypal-server-sdk';
 
 /**
  * PayPal Client
@@ -60,20 +60,25 @@ export class PayPalClient {
         purchaseUnits: [
           {
             referenceId: params.orderId,
-            description: params.description,
+            description: params.description.substring(0, 127), // PayPal max 127 chars
             amount: {
               currencyCode: params.currency,
               value: params.amount,
             } as AmountWithBreakdown,
           },
         ],
-        applicationContext: {
-          returnUrl: params.returnUrl,
-          cancelUrl: params.cancelUrl,
-          shippingPreference: OrderApplicationContextShippingPreference.NoShipping,
-          userAction: OrderApplicationContextUserAction.PayNow,
-          brandName: 'Panda Patches',
-        },
+        // paymentSource replaces deprecated applicationContext in SDK v2+
+        paymentSource: {
+          paypal: {
+            experienceContext: {
+              brandName: 'Panda Patches',
+              shippingPreference: 'NO_SHIPPING' as any,
+              userAction: 'PAY_NOW' as any,
+              returnUrl: params.returnUrl,
+              cancelUrl: params.cancelUrl,
+            } as any,
+          },
+        } as any,
       };
 
       const { result } = await this.ordersController.createOrder({

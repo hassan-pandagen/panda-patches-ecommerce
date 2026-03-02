@@ -8,6 +8,8 @@ import { generateProductSchema, generateBreadcrumbSchema, generateSchemaScript }
 // COMPONENTS
 import ProductHero from "@/components/product/ProductHero";
 import TrustStrip from "@/components/products/TrustStrip";
+import Craftsmanship from "@/components/home/Craftsmanship";
+import ReviewsSection from "@/components/home/ReviewsSection";
 import Promises from "@/components/home/Promises";
 import ProductTypesList from "@/components/products/ProductTypesList";
 import ProductInfoCarousel from "@/components/product/ProductInfoCarousel";
@@ -195,7 +197,10 @@ export default async function CustomProductPage({ params }: { params: { slug: st
 
       {/* 11. SEO SECTION 2 (Grey Background to separate it) */}
       {data.seoBottom && <SEOText content={data.seoBottom} bgColor="bg-[#F9FAF5]" />}
-      
+
+      <Craftsmanship />
+      <ReviewsSection />
+
       <Footer />
     </main>
   );
