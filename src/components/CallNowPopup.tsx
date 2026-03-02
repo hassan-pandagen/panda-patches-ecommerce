@@ -6,7 +6,7 @@ import { X, Phone } from 'lucide-react';
 const PHONE_NUMBER = '+1 (302) 250-4340';
 const PHONE_TEL = 'tel:+13022504340';
 const WHATSAPP_URL = 'https://wa.me/14157999969?text=Hi%20I%20need%20help%20placing%20my%20order';
-const DELAY_MS = 60_000; // show after 60 seconds
+const DELAY_MS = 15_000; // show after 15 seconds
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15">

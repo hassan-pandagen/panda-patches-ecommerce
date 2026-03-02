@@ -7,7 +7,7 @@ export default function TrustStrip() {
 
         {/* HEADING */}
         <h2 className="text-[20px] md:text-[28px] lg:text-[32px] font-black text-black uppercase tracking-[0.1em] md:tracking-[0.15em] mb-8">
-          Trusted By Global Brands
+          Patches Made For Teams At
         </h2>
 
         {/* Brand Logos - 2x2 on Mobile, Single Row on Desktop */}

@@ -43,16 +43,41 @@ function getProductUrl(title: string): string {
     'Custom No Background 3D Embroidery': '/custom-patches/custom-3d-embroidered-transfers',
     'Custom Sequin Patches': '/custom-patches/sequin',
     'Custom Lapel Pins': '/custom-products/lapel-pins',
+    'Custom Lapel Pin': '/custom-products/lapel-pins',
     'Lapel Pins': '/custom-products/lapel-pins',
     'Custom Challenge Coins': '/custom-products/challenge-coin',
+    'Custom Challenge Coin': '/custom-products/challenge-coin',
     'Challenge Coins': '/custom-products/challenge-coin',
+    'Challenge Coin': '/custom-products/challenge-coin',
     'Custom Keychains': '/custom-products/keychains',
+    'Custom Keychain': '/custom-products/keychains',
     'Keychains': '/custom-products/keychains',
     'Custom PVC Shoe Charms': '/custom-products/pvc-shoe-charms',
+    'Custom PVC Shoe Charm': '/custom-products/pvc-shoe-charms',
     'PVC Shoe Charms': '/custom-products/pvc-shoe-charms',
   };
 
   return urlMap[title] || '/custom-products';
+}
+
+// Override descriptions to ensure they display fully and correctly
+function getProductDescription(title: string, sanityDesc: string): string {
+  const descMap: { [key: string]: string } = {
+    'Custom Embroidered Patches':           'We turn your creative vision into beautifully crafted embroidered patches with precision stitching and vivid thread colors.',
+    'Custom PVC Patches':                   'The most trending patch type. From intricate details to vibrant colors, our PVC patches are durable, waterproof, and built to last.',
+    'Custom Chenille Patches':              'With the timeless appeal of chenille patches, perfect for varsity jackets and winter clothing. Thick, textured, and eye-catching.',
+    'Custom Woven Patches':                 'Whether you need a 0.5-inch patch with text or intricate designs, woven patches have you covered. Up to 10 colors for perfectionists.',
+    'Custom Leather Patches':               'We turn your vision into luxurious leather patches with authentic texture and enduring style. Perfect for hats, bags, and premium apparel.',
+    'Custom Printed Patches':               'Want to showcase small details? Printed patches with a merrowed border deliver photo-quality designs at unbeatable prices.',
+    'Custom No Background 3D Embroidery':   'Embroidered patches without a backing for a clean, floating look. These 3D transfers apply directly to garments for a sleek, modern finish.',
+    'Custom Sequin Patches':                'Sparkle and shine with sequin patches. Eye-catching accents perfect for fashion brands, dance teams, and special events.',
+    'Custom Lapel Pins':                    'Elevate your style and make a statement with our custom lapel pins. Perfect for suits, bags, and branded merchandise.',
+    'Custom Challenge Coins':               'Honor achievements, commemorate special events, or boost team spirit with our custom challenge coins. Detailed, durable, and collectible.',
+    'Custom Challenge Coin':                'Honor achievements, commemorate special events, or boost team spirit with our custom challenge coins. Detailed, durable, and collectible.',
+    'Custom Keychains':                     'Let your customers remember you every time they reach for their keys. Custom keychains for brands, events, and giveaways.',
+    'Custom PVC Shoe Charms':               'Custom PVC shoe charms for Crocs and clogs. Your logo turned into fun, durable charms. Perfect for branded merchandise and events.',
+  };
+  return descMap[title] || sanityDesc;
 }
 
 // Map product titles to their starting prices
@@ -92,9 +117,9 @@ export default async function ProductGrid() {
         </div>
 
         {/* TOP GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 place-items-center mb-28">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 justify-items-center mb-28">
           {main.map((item: any) => (
-            <ProductCard key={item._id} item={item} />
+            <ProductCard key={item._id} item={item} showTag={true} />
           ))}
         </div>
 
@@ -106,9 +131,9 @@ export default async function ProductGrid() {
         </div>
 
         {/* BOTTOM GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 place-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 justify-items-center">
           {other.map((item: any) => (
-            <ProductCard key={item._id} item={item} />
+            <ProductCard key={item._id} item={item} showTag={false} />
           ))}
         </div>
 
@@ -140,14 +165,15 @@ function CustomGridPlusIcon({ className }: { className?: string }) {
 }
 
 // === PRODUCT CARD ===
-function ProductCard({ item }: { item: any }) {
+function ProductCard({ item, showTag }: { item: any; showTag?: boolean }) {
   const href = getProductUrl(item.title);
   const price = getProductPrice(item.title);
+  const description = getProductDescription(item.title, item.description);
 
   return (
     <Link href={href} className="
       group relative
-      w-[296px] h-[484px]
+      w-[296px] h-full min-h-[484px]
       bg-white
       shadow-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)]
       transition-all duration-500
@@ -160,9 +186,11 @@ function ProductCard({ item }: { item: any }) {
       <div className="relative w-full h-[296px] bg-[#F9FAF5] flex items-center justify-center p-6 transition-colors duration-500 group-hover:bg-white">
 
         {/* Discount Tag (Fixed to Black Box - Premium Look) */}
-        <div className="absolute top-0 right-0 bg-black text-white text-[12px] font-bold px-3 py-1.5 uppercase z-10 tracking-widest">
-          {item.tag || "25% Off"}
-        </div>
+        {showTag && (
+          <div className="absolute top-0 right-0 bg-black text-white text-[12px] font-bold px-3 py-1.5 uppercase z-10 tracking-widest">
+            Save 25% at 100+ pcs
+          </div>
+        )}
 
         {/* Image */}
         <div className="relative w-full h-full">
@@ -186,8 +214,8 @@ function ProductCard({ item }: { item: any }) {
         <h3 className="text-[18px] font-black text-panda-dark uppercase mb-3 leading-tight min-h-[48px] max-w-[180px] mx-auto">
           {item.title}
         </h3>
-        <p className="text-[15px] text-gray-500 leading-relaxed line-clamp-3 mb-3">
-          {item.description}
+        <p className="text-[15px] text-gray-500 leading-relaxed mb-3">
+          {description}
         </p>
 
         {/* Pricing */}

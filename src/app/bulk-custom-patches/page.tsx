@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -8,7 +9,7 @@ import BulkFAQ from "@/components/bulk/BulkFAQ";
 import Promises from "@/components/home/Promises";
 import ProcessSection from "@/components/home/ProcessSection";
 import CTASection from "@/components/home/CTASection";
-import { generateSchemaScript } from "@/lib/schemas";
+import { generateSchemaScript, generateOrganizationSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 
 // ISR: Revalidate every 24 hours
@@ -44,9 +45,9 @@ async function getBulkPageData() {
 
 // SEO Metadata
 export const metadata: Metadata = {
-  title: "Custom Patches in Bulk | Volume Pricing from 50-50,000+ Pieces | Panda Patches",
+  title: "Bulk Custom Patches | Wholesale Volume Pricing | Panda Patches",
   description:
-    "Order custom patches in bulk — embroidered, PVC, woven, chenille, leather. Volume pricing from 50 to 50,000+ pieces. Free mockups, 2-week turnaround, no setup fees. Trusted by brands, fire departments, and Fortune 500 companies.",
+    "Order bulk custom patches at wholesale prices. Embroidered, PVC, chenille, woven, leather. Free mockup, 2-week delivery, pricing from $0.85/pc. Get your free quote today.",
   keywords: [
     "custom patches bulk order",
     "wholesale custom patches",
@@ -67,12 +68,26 @@ export const metadata: Metadata = {
     canonical: "https://pandapatches.com/bulk-custom-patches",
   },
   openGraph: {
-    title: "Custom Patches in Bulk | Volume Pricing | Panda Patches",
+    title: "Bulk Custom Patches | Wholesale Volume Pricing | Panda Patches",
     description:
-      "Order custom patches in bulk from 50 to 50,000+ pieces. Embroidered, PVC, woven, leather. Free mockups, 2-week turnaround.",
+      "Order bulk custom patches at wholesale prices. Embroidered, PVC, chenille, woven, leather. Free mockup, 2-week delivery, pricing from $0.85/pc.",
     url: "https://pandapatches.com/bulk-custom-patches",
     siteName: "Panda Patches",
     type: "website",
+    images: [
+      {
+        url: "https://pandapatches.com/assets/logo-panda.svg",
+        width: 1200,
+        height: 630,
+        alt: "Panda Patches — Bulk Custom Patches",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bulk Custom Patches | Wholesale Volume Pricing | Panda Patches",
+    description: "Order bulk custom patches at wholesale prices. Free mockup, 2-week delivery, from $0.85/pc.",
+    images: ["https://pandapatches.com/assets/logo-panda.svg"],
   },
 };
 
@@ -97,8 +112,8 @@ const productSchema = {
   },
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "1200",
+    ratingValue: "4.7",
+    reviewCount: "55",
     bestRating: "5",
   },
 };
@@ -136,6 +151,10 @@ export default async function BulkCustomPatchesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(generateOrganizationSchema())}
       />
 
       <Navbar />
@@ -191,8 +210,135 @@ export default async function BulkCustomPatchesPage() {
       {/* 5. CASE STUDIES */}
       <BulkCaseStudies />
 
-      {/* 6. WHY BRANDS CHOOSE PANDA */}
-      <Promises bgColor="bg-white" />
+      {/* 6. WHO ORDERS BULK PATCHES */}
+      <section className="w-full py-16 md:py-20 bg-panda-light">
+        <div className="container mx-auto px-4 md:px-6 max-w-[960px]">
+          <h2 className="text-[24px] md:text-[34px] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
+            Who Orders Bulk Custom Patches?
+          </h2>
+          <p className="text-center text-gray-500 text-[15px] md:text-[16px] mb-10 md:mb-14 max-w-[600px] mx-auto">
+            Our bulk customers span dozens of industries. If you need consistent quality across hundreds or thousands of patches, you are in the right place.
+          </p>
+          <div className="space-y-8">
+
+            <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
+              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Promotional Products Distributors & ASI Members</h3>
+              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">We are set up to work as your behind-the-scenes patch supplier. White-label fulfillment, blind shipping, Net 30/60 terms, and competitive distributor pricing for ASI members. Many of our distributor partners place recurring monthly orders with locked-in volume rates.</p>
+            </div>
+
+            <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
+              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Corporate Marketing & Branding Teams</h3>
+              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">From employee uniforms to trade show giveaways, <Link href="/custom-patches/embroidered" className="text-panda-green font-semibold underline">custom embroidered patches</Link> are one of the most cost-effective branded merchandise items. We produce patches for Fortune 500 onboarding kits, conference swag, and department insignia. Corporate clients appreciate consistent color matching across reorders and a dedicated account manager for ongoing programs.</p>
+            </div>
+
+            <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
+              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Fire Departments & Law Enforcement</h3>
+              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">Department patches are a point of pride. We produce custom fire department and law enforcement patches that meet the exacting standards these agencies require. Velcro-backed options for easy uniform swaps, merrowed borders for a clean professional look, and reorder consistency so every new batch matches the last.</p>
+            </div>
+
+            <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
+              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Sports Teams & Athletic Leagues</h3>
+              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">Whether it is patches for a little league, hockey tournament, or <Link href="/custom-patches/chenille" className="text-panda-green font-semibold underline">varsity chenille letters</Link> for letterman jackets, we handle team orders of every size. Most sports team orders range from 50 to 500 pieces and repeat seasonally.</p>
+            </div>
+
+            <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
+              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Fashion & Streetwear Brands</h3>
+              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">Independent apparel brands use our patches as premium branding elements. <Link href="/custom-patches/leather" className="text-panda-green font-semibold underline">Leather patches</Link> for hat lines, <Link href="/custom-patches/chenille" className="text-panda-green font-semibold underline">chenille patches</Link> for varsity-inspired collections, and <Link href="/custom-patches/woven" className="text-panda-green font-semibold underline">woven labels</Link> for garment tagging. We offer low minimums starting at 50 pieces so emerging brands can launch without overcommitting to inventory.</p>
+            </div>
+
+            <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
+              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Military, Veteran & Motorcycle Organizations</h3>
+              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">From unit insignia to motorcycle club back patches, we serve communities that take their patches seriously. <Link href="/custom-patches/pvc" className="text-panda-green font-semibold underline">PVC with Velcro backing</Link> for tactical applications, large embroidered back patches for riding clubs, and small patches for caps and vests.</p>
+            </div>
+
+            <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
+              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Schools, Universities & Scouting Organizations</h3>
+              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">Academic institutions and scouting groups order patches for achievement recognition, club identification, and event commemoration. We offer student-organization-friendly pricing with low minimums and fast turnaround for time-sensitive events like graduations, competitions, and annual ceremonies.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 7. MATERIALS & PATCH TYPES */}
+      <section className="w-full py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">
+          <h2 className="text-[24px] md:text-[34px] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
+            Materials & Patch Types
+          </h2>
+          <p className="text-center text-gray-500 text-[14px] md:text-[16px] mb-10 md:mb-14 max-w-[560px] mx-auto">
+            Every bulk order can mix patch types. Choose what fits your project.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {[
+              { type: "Embroidered", best: "Uniforms, teams, classic logos", from: "$0.85/pc", note: "Most popular for bulk" },
+              { type: "PVC / Rubber", best: "Outdoor gear, tactical, waterproof use", from: "$1.10/pc", note: "Extremely durable" },
+              { type: "Woven", best: "Fine detail, small text, labels", from: "$0.90/pc", note: "Thin and lightweight" },
+              { type: "Chenille", best: "Varsity jackets, colleges, retro brands", from: "$2.50/pc", note: "Premium textured look" },
+              { type: "Leather", best: "Motorcycle clubs, luxury branding", from: "$1.80/pc", note: "Real or faux leather" },
+              { type: "Custom Die-Cut", best: "Any shape, any size, any style", from: "Custom quote", note: "Fully bespoke" },
+            ].map((item, idx) => (
+              <div key={idx} className="border border-gray-200 rounded-[14px] p-5 hover:border-panda-green hover:shadow-md transition-all">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-[15px] md:text-[17px] font-black text-panda-dark">{item.type}</h3>
+                  <span className="text-[11px] font-bold text-panda-green bg-panda-light px-2.5 py-1 rounded-full">{item.from}</span>
+                </div>
+                <p className="text-[12px] md:text-[13px] text-gray-500 mb-2">{item.best}</p>
+                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wide">{item.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. REORDER PROCESS */}
+      <section className="w-full py-16 md:py-20 bg-panda-dark">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px] text-center">
+          <h2 className="text-[24px] md:text-[34px] font-black text-white uppercase tracking-tight mb-3">
+            Repeat Orders Are Even Easier
+          </h2>
+          <p className="text-gray-400 text-[14px] md:text-[16px] mb-10 md:mb-12 max-w-[520px] mx-auto">
+            Once you place your first bulk order, reordering takes minutes, not days.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+            {[
+              { step: "01", title: "Your Files Are Saved", desc: "We keep your artwork, approved mockup, and order specs on file permanently. No re-uploading." },
+              { step: "02", title: "Price Is Locked In", desc: "Your per-unit price is guaranteed for all future reorders, regardless of material cost changes." },
+              { step: "03", title: "One Message to Reorder", desc: "Email or message your account manager with quantity and delivery date. We handle the rest." },
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white/5 rounded-[14px] p-6 border border-white/10">
+                <span className="text-panda-yellow font-black text-[28px] block mb-3">{item.step}</span>
+                <h3 className="text-white font-bold text-[15px] md:text-[17px] mb-2">{item.title}</h3>
+                <p className="text-gray-400 text-[13px] md:text-[14px] leading-[1.7]">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 9. WHY BRANDS CHOOSE PANDA */}
+      <Promises bgColor="bg-white" items={[
+        {
+          icon: "/assets/icon-mail.svg",
+          title: "Dedicated Account Manager",
+          desc: "Every 500+ order gets a dedicated account manager — one point of contact from quote to delivery.",
+        },
+        {
+          icon: "/assets/icon-money.svg",
+          title: "Net 30/60 Payment Terms",
+          desc: "Qualified distributors and repeat clients can apply for Net 30 or Net 60 payment terms. No upfront cash required.",
+        },
+        {
+          icon: "/assets/icon-clock.svg",
+          title: "Locked-In Reorder Pricing",
+          desc: "Once you place your first bulk order, your per-unit price is locked in for all future reorders — regardless of material cost changes.",
+        },
+        {
+          icon: "/assets/icon-check.svg",
+          title: "Free Pre-Production Sample",
+          desc: "For orders 500+, we ship a free physical sample before full production. Verify quality, color, and sizing — zero risk.",
+        },
+      ]} />
 
       {/* 7. OUR PROCESS */}
       <ProcessSection />
@@ -202,35 +348,76 @@ export default async function BulkCustomPatchesPage() {
       {/* 9. BULK FAQ */}
       <BulkFAQ />
 
-      {/* 10. SEO CONTENT */}
+      {/* 10. WHY BUSINESSES CHOOSE PANDA */}
+      <section className="w-full py-16 md:py-20 bg-panda-light">
+        <div className="container mx-auto px-4 md:px-6 max-w-[960px]">
+          <h2 className="text-[24px] md:text-[34px] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
+            Why Businesses Choose Panda Patches for Bulk Orders
+          </h2>
+          <p className="text-center text-gray-500 text-[15px] md:text-[16px] mb-10 md:mb-14 max-w-[600px] mx-auto">
+            We are not a startup figuring things out. Here is why brands, agencies, and organizations keep coming back.
+          </p>
+          <div className="space-y-5">
+            {[
+              {
+                title: "4,000+ Bulk Orders Completed",
+                body: "From 50-piece test orders to 50,000-piece national rollouts, our production infrastructure handles volume without cutting corners. Every order ships with full tracking and a quality guarantee.",
+              },
+              {
+                title: "ASI Verified Supplier",
+                body: "We are a verified supplier in the ASI network. Promotional products distributors can confidently recommend us to their clients — we understand blind shipping, white-label packaging, and Net 30/60 terms.",
+              },
+              {
+                title: "5-Point Quality Inspection on Every Patch",
+                body: "Thread tension verification, Pantone color matching, backing durability test, stitch integrity check, and final visual inspection — every single patch in your bulk order goes through all five. This is why fire departments, police agencies, and Fortune 500 companies trust us with their branding.",
+              },
+              {
+                title: "Free Mockups, Free Revisions, No Setup Fees",
+                body: "Send your artwork in any format — or even a rough sketch — and our design team creates a professional digital mockup within 24 hours at no charge. Unlimited revisions until you are completely satisfied. The only thing you pay for is the patches themselves.",
+              },
+              {
+                title: "US-Based Support, 2-Hour Response Time",
+                body: "Every quote request is answered by a real person within 2 business hours. No chatbots, no 48-hour delays. Our team is available via phone, email, WhatsApp, and live chat from first inquiry through delivery.",
+              },
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white rounded-[14px] p-6 md:p-7 border border-gray-100 shadow-sm flex gap-4 items-start">
+                <div className="w-8 h-8 bg-panda-dark rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-panda-yellow font-black text-[13px]">{idx + 1}</span>
+                </div>
+                <div>
+                  <h3 className="text-[15px] md:text-[17px] font-black text-panda-dark mb-1.5">{item.title}</h3>
+                  <p className="text-[13px] md:text-[14px] text-gray-600 leading-[1.8]">{item.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 11. SEO CONTENT */}
       <section className="w-full py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
           <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
             Custom Patches in Bulk — Your Complete Guide
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-5">
             <p>
-              Looking to order <strong>custom patches in bulk</strong>? Panda Patches is the trusted choice for brands,
-              organizations, sports teams, and businesses that need high-quality patches at volume pricing. Whether
-              you need <strong>50 embroidered patches</strong> for your team or <strong>50,000 PVC patches</strong> for
-              a national rollout, we deliver consistent quality with every order.
+              Looking to order <strong>custom patches in bulk</strong>? Panda Patches is the trusted partner for brands, organizations, sports teams, and businesses across the United States that need high-quality patches at wholesale volume pricing. Whether you need <strong>50 embroidered patches</strong> for your startup team or <strong>50,000 PVC patches</strong> for a national product launch, we deliver consistent quality, transparent pricing, and a production process built for scale.
             </p>
             <p>
-              Our <strong>bulk custom patches</strong> come in every style: embroidered, PVC, woven, chenille, and
-              leather. Each patch goes through our 5-point quality inspection process, ensuring perfect stitching,
-              accurate colors, and durable backing. That&apos;s why fire departments, police departments, Fortune 500
-              companies, and sports leagues trust us for their <strong>wholesale patch orders</strong>.
+              Our <strong>bulk custom patches</strong> come in every style your project demands. <Link href="/custom-patches/embroidered" className="text-panda-green font-semibold underline">Custom embroidered patches</Link> remain our most requested product, offering the classic raised-thread look that works for everything from corporate uniforms to team jerseys. <Link href="/custom-patches/pvc" className="text-panda-green font-semibold underline">Custom PVC patches</Link> are the top choice for military units, law enforcement agencies, and outdoor brands thanks to their waterproof durability and Velcro compatibility. <Link href="/custom-patches/chenille" className="text-panda-green font-semibold underline">Custom chenille patches</Link> bring the soft, textured vintage feel that fashion brands and universities love for varsity jackets and letterman wear. We also produce <Link href="/custom-patches/woven" className="text-panda-green font-semibold underline">custom woven patches</Link> for ultra-fine detail work and <Link href="/custom-patches/leather" className="text-panda-green font-semibold underline">custom leather patches</Link> for premium hat lines and bags.
             </p>
             <p>
-              With <strong>no setup fees</strong>, <strong>free design mockups</strong>, and a standard{" "}
-              <strong>2-week turnaround</strong>, ordering patches in bulk has never been easier. We offer transparent
-              volume pricing — the more you order, the more you save. Plus, returning customers enjoy priority pricing
-              and a dedicated account manager.
+              What sets our bulk patch service apart is the combination of wholesale pricing with no compromise on quality. Every patch in every order goes through our 5-point quality inspection: thread tension verification, Pantone color matching, backing durability testing, stitch integrity checks, and final visual inspection. This is why organizations with zero tolerance for defects — fire departments, police departments, and Fortune 500 corporate programs — choose Panda Patches for their <strong>wholesale patch orders</strong> year after year.
             </p>
             <p>
-              Ready to get started? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free bulk quote</a> today.
-              We respond to all inquiries within 2 business hours and include a complimentary digital mockup with
-              every quote.
+              Our bulk ordering process is designed to remove friction. Submit your artwork in any format — AI, EPS, PDF, PNG, JPG, or even a rough sketch — and our design team creates a professional digital mockup within 24 hours at no charge. We offer <strong>unlimited free revisions</strong> until your design is exactly right. For orders of 500 pieces or more, we produce and ship a free pre-production sample so you can hold the actual patch in your hand and verify quality, color accuracy, and sizing before we run the full batch.
+            </p>
+            <p>
+              Turnaround time for bulk orders is a standard <strong>2 weeks (10 to 14 business days)</strong> regardless of quantity, with rush 7-day production available. We ship nationwide with full tracking from our production facility to your door. Returning clients benefit from even faster turnaround (7 to 10 days), locked-in volume pricing, and a dedicated account manager who knows their brand inside and out.
+            </p>
+            <p>
+              Ready to get started with your bulk custom patches? <a href="#bulk-quote" className="text-panda-green font-bold underline">Request your free quote</a> using the form above. We respond to every inquiry within 2 business hours with a detailed price breakdown and a complimentary digital mockup. No obligation, no setup fees, no surprises — just premium patches at wholesale prices, delivered on time.
             </p>
           </div>
         </div>

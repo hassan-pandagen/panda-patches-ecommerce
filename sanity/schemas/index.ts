@@ -20,5 +20,6 @@ import patchStyle from './patchStyle'
 import customProduct from './customProduct'
 import sampleBox from './sampleBox'
 import categoryPage from './categoryPage'
+import bulkCaseStudy from './bulkCaseStudy'
 
-export const schemaTypes = [hero, product, process, timeline, faq, blog, content, cta, about, productPage, patchTypes, patchOption, industry, workSample, ironOn, assetResource, craftsmanship, locationPage, patchStyle, customProduct, sampleBox, categoryPage]
+export const schemaTypes = [hero, product, process, timeline, faq, blog, content, cta, about, productPage, patchTypes, patchOption, industry, workSample, ironOn, assetResource, craftsmanship, locationPage, patchStyle, customProduct, sampleBox, categoryPage, bulkCaseStudy]

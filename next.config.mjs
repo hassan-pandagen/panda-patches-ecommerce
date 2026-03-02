@@ -272,7 +272,7 @@ const nextConfig = {
         permanent: true,
       },
 
-      // TRAILING SLASH NORMALISATION
+      // TRAILING SLASH NORMALISATION — specific paths
       {
         source: '/custom-patches/:slug/',
         destination: '/custom-patches/:slug',
@@ -281,6 +281,78 @@ const nextConfig = {
       {
         source: '/custom-products/:slug/',
         destination: '/custom-products/:slug',
+        permanent: true,
+      },
+
+      // TOP-LEVEL PAGES — trailing slash variants (WordPress adds these by default)
+      { source: '/about/',               destination: '/about',               permanent: true },
+      { source: '/contact/',             destination: '/contact',             permanent: true },
+      { source: '/blogs/',               destination: '/blogs',               permanent: true },
+      { source: '/bulk-custom-patches/', destination: '/bulk-custom-patches', permanent: true },
+      { source: '/sample-box/',          destination: '/sample-box',          permanent: true },
+      { source: '/custom-patches/',      destination: '/custom-patches',      permanent: true },
+      { source: '/custom-products/',     destination: '/custom-products',     permanent: true },
+      { source: '/assets/',              destination: '/assets',              permanent: true },
+
+      // LOCATION PAGES — trailing slash
+      { source: '/alabama-patches/',                    destination: '/alabama-patches',                    permanent: true },
+      { source: '/custom-austin-patches/',              destination: '/custom-austin-patches',              permanent: true },
+      { source: '/custom-patches-in-boston/',           destination: '/custom-patches-in-boston',           permanent: true },
+      { source: '/custom-california-patches/',          destination: '/custom-california-patches',          permanent: true },
+      { source: '/custom-patches-in-chicago/',          destination: '/custom-patches-in-chicago',          permanent: true },
+      { source: '/custom-patches-colorado/',            destination: '/custom-patches-colorado',            permanent: true },
+      { source: '/custom-patches-dallas/',              destination: '/custom-patches-dallas',              permanent: true },
+      { source: '/custom-denver-patches/',              destination: '/custom-denver-patches',              permanent: true },
+      { source: '/custom-patches-in-florida/',          destination: '/custom-patches-in-florida',          permanent: true },
+      { source: '/custom-patches-houston/',             destination: '/custom-patches-houston',             permanent: true },
+      { source: '/kentucky-patches/',                   destination: '/kentucky-patches',                   permanent: true },
+      { source: '/custom-patches-los-angeles/',         destination: '/custom-patches-los-angeles',         permanent: true },
+      { source: '/custom-miami-patches/',               destination: '/custom-miami-patches',               permanent: true },
+      { source: '/custom-patches-in-new-york/',         destination: '/custom-patches-in-new-york',         permanent: true },
+      { source: '/custom-ohio-state-patches/',          destination: '/custom-ohio-state-patches',          permanent: true },
+      { source: '/custom-patches-portland/',            destination: '/custom-patches-portland',            permanent: true },
+      { source: '/custom-patches-in-san-francisco/',    destination: '/custom-patches-in-san-francisco',    permanent: true },
+      { source: '/custom-patches-in-texas/',            destination: '/custom-patches-in-texas',            permanent: true },
+      { source: '/custom-utah-patches/',                destination: '/custom-utah-patches',                permanent: true },
+      { source: '/custom-patches-in-washington/',       destination: '/custom-patches-in-washington',       permanent: true },
+
+      // PATCH STYLE PAGES — trailing slash
+      { source: '/custom-anime-patches/',               destination: '/custom-anime-patches',               permanent: true },
+      { source: '/custom-baseball-patches/',            destination: '/custom-baseball-patches',            permanent: true },
+      { source: '/christmas-patches/',                  destination: '/christmas-patches',                  permanent: true },
+      { source: '/valentines-day-patches/',             destination: '/valentines-day-patches',             permanent: true },
+      { source: '/custom-morale-patches/',              destination: '/custom-morale-patches',              permanent: true },
+      { source: '/custom-soccer-patches/',              destination: '/custom-soccer-patches',              permanent: true },
+      { source: '/custom-fire-department-patches/',     destination: '/custom-fire-department-patches',     permanent: true },
+      { source: '/custom-hockey-patches/',              destination: '/custom-hockey-patches',              permanent: true },
+      { source: '/patches-for-hats/',                   destination: '/patches-for-hats',                   permanent: true },
+      { source: '/custom-jacket-patches/',              destination: '/custom-jacket-patches',              permanent: true },
+      { source: '/custom-law-enforcement-patches/',     destination: '/custom-law-enforcement-patches',     permanent: true },
+      { source: '/custom-logo-patches/',                destination: '/custom-logo-patches',                permanent: true },
+      { source: '/motorcycle-patches/',                 destination: '/motorcycle-patches',                 permanent: true },
+      { source: '/custom-name-patches/',                destination: '/custom-name-patches',                permanent: true },
+      { source: '/custom-rock-band-patches/',           destination: '/custom-rock-band-patches',           permanent: true },
+      { source: '/custom-super-bowl-patch/',            destination: '/custom-super-bowl-patch',            permanent: true },
+      { source: '/custom-tactical-patches/',            destination: '/custom-tactical-patches',            permanent: true },
+      { source: '/custom-velcro-patches/',              destination: '/custom-velcro-patches',              permanent: true },
+
+      // WORDPRESS OLD PRODUCT/SHOP PATHS — common WooCommerce patterns
+      { source: '/shop',                destination: '/custom-patches',      permanent: true },
+      { source: '/shop/',               destination: '/custom-patches',      permanent: true },
+      { source: '/shop/:path*',         destination: '/custom-patches',      permanent: true },
+      { source: '/product/:path*',      destination: '/custom-patches',      permanent: true },
+      { source: '/product-category/:path*', destination: '/custom-patches', permanent: true },
+      { source: '/cart',                destination: '/',                    permanent: true },
+      { source: '/cart/',               destination: '/',                    permanent: true },
+      { source: '/checkout',            destination: '/',                    permanent: true },
+      { source: '/checkout/',           destination: '/',                    permanent: true },
+      { source: '/my-account',          destination: '/',                    permanent: true },
+      { source: '/my-account/',         destination: '/',                    permanent: true },
+
+      // CATCH-ALL TRAILING SLASH — must be LAST (handles any remaining /:slug/ paths)
+      {
+        source: '/:slug((?!api/).*[^/])/',
+        destination: '/:slug',
         permanent: true,
       },
     ];

@@ -30,8 +30,8 @@ export default function BulkHero({
             <h1 className="text-[28px] md:text-[42px] lg:text-[48px] font-black text-panda-dark leading-[1.1] tracking-tight mb-4">
               {customHeading || (
                 <>
-                  Custom Patches at Scale{" "}
-                  <span className="text-panda-green">From 50 to 50,000 Pieces</span>
+                  Bulk Custom Patches —{" "}
+                  <span className="text-panda-green">Wholesale Pricing from 50 to 50,000 Pieces</span>
                 </>
               )}
             </h1>

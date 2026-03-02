@@ -47,7 +47,7 @@ export default async function CategoryZigZag({ locationName }: CategoryZigZagPro
               >
                 
                 {/* IMAGE */}
-                <div className="flex-1 w-full relative h-[450px] bg-[#F9FAF5] rounded-[24px] overflow-hidden group border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                <div className="flex-1 w-full relative h-[450px] bg-white rounded-[24px] overflow-hidden group border border-gray-100 shadow-sm hover:shadow-md transition-all">
                   {product.gallery && product.gallery[0] && (
                     <Image 
                       src={urlFor(product.gallery[0]).url()} 

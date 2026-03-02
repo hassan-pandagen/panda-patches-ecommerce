@@ -205,7 +205,7 @@ export default function Footer() {
 
         {/* BOTTOM COPYRIGHT */}
         <div className="border-t border-gray-200 mt-16 pt-8 text-center text-gray-500 font-medium">
-          <p>Copyright © 2023 <span className="text-black font-bold">Panda Patches</span> All rights reserved</p>
+          <p>Copyright © {new Date().getFullYear()} <span className="text-black font-bold">Panda Patches</span> All rights reserved</p>
         </div>
 
       </div>

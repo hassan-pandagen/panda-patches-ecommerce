@@ -64,7 +64,7 @@ export default function BulkQuoteForm() {
             height: 3,
             backing: sanitizeString(data.backing || "iron"),
             instructions: sanitizeString(
-              `[BULK ORDER] Company: ${data.company || "N/A"} | Qty Range: ${data.quantityRange || "N/A"} | Patch Type: ${data.patchType || "N/A"} | Size: ${data.size || "N/A"} | Timeline: ${data.timeline || "Standard"} | Notes: ${data.notes || "None"}`
+              `[BULK ORDER] Company: ${data.company || "N/A"} | Qty Range: ${data.quantityRange || "N/A"} | Patch Type: ${data.patchType || "N/A"} | Size: ${data.size || "N/A"} | Timeline: ${data.timeline || "Standard"} | Budget: ${data.budget || "N/A"} | Notes: ${data.notes || "None"}`
             ),
             patchType: sanitizeString(data.patchType || ""),
           },
@@ -204,15 +204,29 @@ export default function BulkQuoteForm() {
           </div>
         </div>
 
-        {/* Row 5: Timeline */}
-        <div className="relative">
-          <select {...register("timeline")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
-            <option value="">Timeline</option>
-            <option value="standard">Standard (2 weeks)</option>
-            <option value="rush">Rush (7 days)</option>
-            <option value="flexible">Flexible — No rush</option>
-          </select>
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-[10px]">&#9660;</div>
+        {/* Row 5: Timeline + Budget */}
+        <div className="grid grid-cols-2 gap-2.5">
+          <div className="relative">
+            <select {...register("timeline")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
+              <option value="">Timeline</option>
+              <option value="standard">Standard (2 weeks)</option>
+              <option value="rush">Rush (7 days)</option>
+              <option value="flexible">Flexible — No rush</option>
+            </select>
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-[10px]">&#9660;</div>
+          </div>
+
+          <div className="relative">
+            <select {...register("budget")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
+              <option value="">Budget Range</option>
+              <option value="under-500">Under $500</option>
+              <option value="500-1000">$500 – $1,000</option>
+              <option value="1000-5000">$1,000 – $5,000</option>
+              <option value="5000-10000">$5,000 – $10,000</option>
+              <option value="10000+">$10,000+</option>
+            </select>
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-[10px]">&#9660;</div>
+          </div>
         </div>
 
         {/* Notes */}

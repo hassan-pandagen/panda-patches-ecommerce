@@ -165,7 +165,7 @@ export default function Navbar() {
 
           {/* DESKTOP ACTION BUTTONS */}
           <div className="hidden xl:flex items-center gap-3 lg:gap-4">
-            
+
             {/* Chat Now Button */}
             <button
               onClick={() => {

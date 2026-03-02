@@ -47,7 +47,7 @@ export default async function TimelineSection() {
       number: "4", 
       title: "Delivery at Your Doorstep", 
       subtitle: "Ready to Be Impressed with apparel panda patches?",
-      description: "Ready to order custom patches? Get started in just a few steps—use our quote form or chat with our patch experts today!" 
+      description: "Once our quality control team gives their stamp of approval, your patches ship with full tracking directly to your door. We pride ourselves on delivering the highest quality, on time, every time."
     },
   ];
 

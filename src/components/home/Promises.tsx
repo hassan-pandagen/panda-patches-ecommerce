@@ -1,14 +1,20 @@
 import Image from "next/image";
 
-const promises = [
+interface PromiseItem {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+const defaultPromises: PromiseItem[] = [
   { icon: "/assets/icon-money.svg", title: "Money Back Guarantee", desc: "Your satisfaction owns the patch; our promise ensures it's truly yours!" },
   { icon: "/assets/icon-check.svg", title: "Low Minimums", desc: "Craft your distinct style starting from just 5 patches. Low minimums, maximum creativity!" },
   { icon: "/assets/icon-mail.svg", title: "Quick Turnaround", desc: "Need it tomorrow? Get it today! Skip the wait with the fast turnaround – 7-14 days, delivered." },
   { icon: "/assets/icon-check.svg", title: "Free Sample First", desc: "For orders 500+, get a free physical sample. Verify quality, color, and sizing before full production." },
 ];
 
-// === THIS IS THE FIX: Add bgColor prop ===
-export default function Promises({ bgColor = "bg-[#F7F7F7]" }: { bgColor?: string }) {
+export default function Promises({ bgColor = "bg-[#F7F7F7]", items }: { bgColor?: string; items?: PromiseItem[] }) {
+  const promises = items ?? defaultPromises;
   return (
     <section className={`w-full pb-8 md:pb-24 pt-10 ${bgColor}`}>
       <div className="container mx-auto px-6 flex flex-col items-center">

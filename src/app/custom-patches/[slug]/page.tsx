@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { client, urlFor } from "@/lib/sanity";
 import { Metadata } from "next";
 import dynamic from 'next/dynamic';
@@ -240,6 +241,24 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
 
       {/* 10. WORK SAMPLES */}
       <WorkSamples samples={data.workSamples} />
+
+      {/* BULK ORDER CALLOUT — internal link to /bulk-custom-patches */}
+      <section className="w-full py-10 md:py-14 bg-panda-dark">
+        <div className="container mx-auto px-4 md:px-6 max-w-[800px] text-center">
+          <p className="text-gray-400 text-[13px] md:text-[15px] font-medium mb-2 uppercase tracking-widest">
+            Ordering 50+ pieces?
+          </p>
+          <h2 className="text-white text-[20px] md:text-[28px] font-black uppercase mb-5 leading-tight">
+            Order {data.title} in Bulk
+          </h2>
+          <Link
+            href="/bulk-custom-patches"
+            className="inline-flex items-center gap-2 bg-panda-yellow text-panda-dark font-black px-8 py-3 rounded-full text-[13px] uppercase tracking-widest hover:bg-white transition-colors"
+          >
+            Order {data.title} in Bulk →
+          </Link>
+        </div>
+      </section>
 
       {/* 11. HOW TO ORDER (Timeline Zig Zag) */}
       <TimelineSection />

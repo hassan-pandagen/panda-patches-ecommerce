@@ -16,10 +16,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   // Location page metadata
   if (data.location) {
     const locationName = data.location.locationName;
+    const hasContent = !!(data.location.seoSection1?.length || data.location.seoSection2?.length);
     return {
       title: `Custom Patches in ${locationName} | Panda Patches`,
       description: `Order custom embroidered patches in ${locationName}. Low minimums, free mockups, fast 7-14 day turnaround. Get a free quote today!`,
       alternates: { canonical: `https://pandapatches.com/${params.slug}` },
+      // Noindex thin pages until unique content is added in Sanity
+      ...(!hasContent && { robots: { index: false, follow: false } }),
       openGraph: {
         title: `Custom Patches in ${locationName} | Panda Patches`,
         description: `Custom patches delivered anywhere in ${locationName}. Low minimums, free design, fast shipping.`,
