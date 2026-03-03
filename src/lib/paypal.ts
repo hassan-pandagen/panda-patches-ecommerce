@@ -103,9 +103,21 @@ export class PayPalClient {
       });
 
       return result;
-    } catch (error) {
-      console.error('PayPal capture order error:', error);
-      throw new Error('Failed to capture PayPal order');
+    } catch (error: any) {
+      // Extract PayPal SDK error details for Vercel logs
+      const details = {
+        statusCode: error?.statusCode,
+        message: error?.message,
+        result: error?.result,
+        body: error?.body,
+      };
+      console.error('PayPal capture order error:', JSON.stringify(details));
+      const reason =
+        error?.result?.details?.[0]?.description ||
+        error?.result?.message ||
+        error?.message ||
+        'unknown';
+      throw new Error(`PayPal capture failed [${error?.statusCode ?? 'no-status'}]: ${reason}`);
     }
   }
 

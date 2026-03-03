@@ -68,7 +68,8 @@ export async function POST(req: Request) {
     }
 
   } catch (error: unknown) {
-    console.error('PayPal capture error:', error);
+    const msg = error instanceof Error ? error.message : String(error);
+    console.error('PayPal capture route error:', msg);
     return NextResponse.json(
       {
         success: false,
