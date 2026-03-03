@@ -197,6 +197,8 @@ export default async function CorporatePatchesPage() {
       {/* 2. WORK GALLERY */}
       <WorkGallery samples={workSamples} />
       <TrustStrip />
+      <Craftsmanship />
+      <ReviewsSection />
 
       {/* 3. WHY CHOOSE PANDA */}
       <Promises bgColor="bg-white" />
@@ -231,9 +233,6 @@ export default async function CorporatePatchesPage() {
       </section>
 
       {/* 7. CTA */}
-      <Craftsmanship />
-      <ReviewsSection />
-
       <CTASection />
 
       <Footer />

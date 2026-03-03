@@ -199,6 +199,8 @@ export default async function SportsPatchesPage() {
       {/* 2. WORK GALLERY */}
       <WorkGallery samples={workSamples} />
       <TrustStrip />
+      <Craftsmanship />
+      <ReviewsSection />
 
       {/* 3. WHY CHOOSE PANDA */}
       <Promises bgColor="bg-white" />
@@ -233,9 +235,6 @@ export default async function SportsPatchesPage() {
       </section>
 
       {/* 7. CTA */}
-      <Craftsmanship />
-      <ReviewsSection />
-
       <CTASection />
 
       <Footer />

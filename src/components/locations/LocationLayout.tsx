@@ -10,9 +10,11 @@ import ProcessSection from "@/components/home/ProcessSection";
 import IndustrySection from "@/components/home/IndustrySection";
 import FAQ from "@/components/home/FAQ";
 import CTASection from "@/components/home/CTASection";
+import LocationSEOSections from "@/components/locations/LocationSEOSections";
 import { PortableText } from "@portabletext/react";
 import { convertWordPressUrl } from "@/lib/convertWordPressUrls";
 import { client } from "@/lib/sanity";
+import locationFaqs from "@/lib/locationFaqs";
 
 async function getFallbackGallery() {
   try {
@@ -23,7 +25,10 @@ async function getFallbackGallery() {
   }
 }
 
-export default async function LocationLayout({ data }: { data: any }) {
+export default async function LocationLayout({ data, slug }: { data: any; slug?: string }) {
+
+  // Look up location-specific FAQs (falls back to undefined = generic FAQ shown)
+  const locationFaqQuestions = slug ? locationFaqs[slug] : undefined;
 
   // Use location gallery if available, otherwise fall back to embroidered work samples
   const gallery = (data.gallery && data.gallery.length > 0)
@@ -122,10 +127,10 @@ export default async function LocationLayout({ data }: { data: any }) {
       {/* 8. POPULAR CATEGORIES (Industry Section) */}
       <IndustrySection />
 
-      {/* 9. FAQ */}
-      <FAQ />
+      {/* 9. FAQ — location-specific if available, otherwise generic fallback */}
+      <FAQ questions={locationFaqQuestions} />
 
-      {/* 10. SEO TEXT SECTION 2 (Why Choose Us / Ordering Made Easy...) */}
+      {/* 10. SEO TEXT SECTION 2 — Sanity content (from WordPress migration) */}
       {data.seoSection2 && (
         <section className="py-8 md:py-10 bg-[#F9FAF5] border-t border-gray-100">
           <div className="container mx-auto px-6 max-w-[860px]">
@@ -134,6 +139,9 @@ export default async function LocationLayout({ data }: { data: any }) {
           </div>
         </section>
       )}
+
+      {/* 11. HARDCODED SEO SECTIONS — location-specific content with interlinks */}
+      {slug && <LocationSEOSections slug={slug} />}
       
       <CTASection />
       <Footer />

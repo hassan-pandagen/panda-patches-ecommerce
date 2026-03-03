@@ -165,6 +165,8 @@ export default async function BulkCustomPatchesPage() {
       {/* 1. HERO */}
       <BulkHero heroImage={heroImage} trustBadges={trustBadges} />
       <TrustStrip />
+      <Craftsmanship />
+      <ReviewsSection />
 
       {/* 2. BULK PRICING TABLE */}
       <BulkPricingTable workSamples={workSamples} />
@@ -426,10 +428,6 @@ export default async function BulkCustomPatchesPage() {
           </div>
         </div>
       </section>
-
-      {/* 11. Craftsmanship + Reviews */}
-      <Craftsmanship />
-      <ReviewsSection />
 
       {/* 12. CTA */}
       <CTASection />

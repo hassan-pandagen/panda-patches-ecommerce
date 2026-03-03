@@ -147,6 +147,8 @@ export default async function CustomProductsPage() {
 
       {/* 5 STAR RATINGS */}
       <TrustStrip />
+      <Craftsmanship />
+      <ReviewsSection />
 
       {/* 4 PROMISES */}
       <Promises bgColor="bg-white" />
@@ -156,9 +158,6 @@ export default async function CustomProductsPage() {
 
       {/* 4 WAYS OF ORDERING */}
       <TimelineSection />
-
-      <Craftsmanship />
-      <ReviewsSection />
 
       <Footer />
     </main>

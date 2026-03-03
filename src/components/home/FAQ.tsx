@@ -9,7 +9,12 @@ interface FAQData {
   questions: Array<{ question: string; answer: string }>;
 }
 
-export default function FAQ() {
+interface FAQProps {
+  questions?: Array<{ question: string; answer: string }>;
+  heading?: string;
+}
+
+export default function FAQ({ questions: propQuestions, heading: propHeading }: FAQProps = {}) {
   const [data, setData] = useState<FAQData | null>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -28,8 +33,8 @@ export default function FAQ() {
     getFAQData();
   }, []);
 
-  // Fallback Data if Sanity is empty - ALL 18 FAQs
-   const questions = data?.questions || [
+  // Use prop questions if provided (location-specific), otherwise Sanity data, otherwise generic fallback
+  const questions = propQuestions || data?.questions || [
      // TIER 1 - CORE FAQs (1-6)
      { 
        question: "What's your quality guarantee?", 
@@ -130,7 +135,7 @@ export default function FAQ() {
         
         {/* HEADING - Mobile Optimized */}
         <h2 className="text-[24px] md:text-[32px] lg:text-[36px] font-bold text-center text-panda-dark uppercase tracking-wide mb-8 md:mb-12 lg:mb-16">
-          {data?.heading || "FREQUENTLY ASKED QUESTIONS"}
+          {propHeading || data?.heading || "FREQUENTLY ASKED QUESTIONS"}
         </h2>
 
         {/* LIST */}

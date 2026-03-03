@@ -121,7 +121,7 @@ export default async function CatchAllPage({ params }: { params: { slug: string 
           type="application/ld+json"
           dangerouslySetInnerHTML={generateSchemaScript(locationSchema)}
         />
-        <LocationLayout data={data.location} />
+        <LocationLayout data={data.location} slug={params.slug} />
       </>
     );
   }

@@ -139,6 +139,8 @@ export default async function CustomProductPage({ params }: { params: { slug: st
       
       {/* 2. TRUST STRIP */}
       <TrustStrip />
+      <Craftsmanship />
+      <ReviewsSection />
 
       {/* 3. PANDA PROMISES */}
       <Promises bgColor="bg-white" />
@@ -197,9 +199,6 @@ export default async function CustomProductPage({ params }: { params: { slug: st
 
       {/* 11. SEO SECTION 2 (Grey Background to separate it) */}
       {data.seoBottom && <SEOText content={data.seoBottom} bgColor="bg-[#F9FAF5]" />}
-
-      <Craftsmanship />
-      <ReviewsSection />
 
       <Footer />
     </main>

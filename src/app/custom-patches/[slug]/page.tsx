@@ -185,7 +185,11 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
       {/* 2. PANDA IS 5 STAR */}
       <TrustStrip />
 
-      {/* 3. PANDA PROMISE */}
+      {/* 3. Craftsmanship + Reviews */}
+      <Craftsmanship />
+      <ReviewsSection />
+
+      {/* 4. PANDA PROMISE */}
       <Promises bgColor="bg-white" />
 
       {/* 4. BACKING OPTIONS */}
@@ -269,11 +273,7 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
       <ContentSection />
       <FAQ />
 
-      {/* 13. Craftsmanship + Reviews */}
-      <Craftsmanship />
-      <ReviewsSection />
-
-      {/* 14. CTA */}
+      {/* 13. CTA */}
       <CTASection />
       
       <Footer />

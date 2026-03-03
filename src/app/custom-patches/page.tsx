@@ -80,7 +80,9 @@ export default async function ProductLandingPage() {
       {/* 1. HERO (Quote Form Mode) */}
       <ProductHero productData={data} isMainPage={true} />
       <TrustStrip />
-      
+      <Craftsmanship />
+      <ReviewsSection />
+
       {/* 2. PICK YOUR PATCH (5 Cards) */}
       <PickPatch />
       
@@ -120,8 +122,6 @@ export default async function ProductLandingPage() {
       <ContentSection />
 
       {/* 9. REELS & CTA */}
-      <Craftsmanship />
-      <ReviewsSection />
       <CTASection />
       
       <Footer />
