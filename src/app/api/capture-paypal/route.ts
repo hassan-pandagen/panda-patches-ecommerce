@@ -73,7 +73,8 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         success: false,
-        error: 'Failed to capture payment. Please contact support.'
+        error: 'Failed to capture payment. Please contact support.',
+        _debug: msg
       },
       { status: 500 }
     );
