@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
-import { generateOrganizationSchema, generateSchemaScript } from "@/lib/schemas";
+import { generateOrganizationSchema, generateWebSiteSchema, generateSchemaScript } from "@/lib/schemas";
 import TawkToWidget from "@/components/TawkToWidget";
 import CallNowPopup from "@/components/CallNowPopup";
 
@@ -23,6 +23,12 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://pandapatches.com'),
   title: "Panda Patches | Custom Iron On Patches",
   description: "Order custom embroidered patches, iron-on patches, PVC patches with low minimums. Free design services, 7-14 day delivery. 4.8★ rated on Trustpilot. No setup fees!",
+  twitter: {
+    card: "summary_large_image",
+    title: "Panda Patches | Custom Iron On Patches",
+    description: "Order custom embroidered patches, iron-on patches, PVC patches with low minimums. Free design services, 7-14 day delivery. 4.8★ rated on Trustpilot.",
+    images: ["https://pandapatches.com/assets/og-image.png"],
+  },
   icons: {
     icon: [
       { url: '/assets/favicon.ico' },
@@ -62,6 +68,11 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={generateSchemaScript(generateOrganizationSchema())}
+        />
+        {/* WebSite Schema for Sitelinks + Search Box */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={generateSchemaScript(generateWebSiteSchema())}
         />
 
         {children}

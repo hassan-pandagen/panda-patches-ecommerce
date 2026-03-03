@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: "https://pandapatches.com/blogs",
     images: [
       {
-        url: "https://pandapatches.com/assets/logo-panda.svg",
+        url: "https://pandapatches.com/assets/og-image.png",
         width: 1200,
         height: 630,
         alt: "Panda Patches Blog"
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Custom Patch Blog | Panda Patches",
     description: "Expert guides on custom patches, embroidery tips, and design ideas.",
-    images: ["https://pandapatches.com/assets/logo-panda.svg"]
+    images: ["https://pandapatches.com/assets/og-image.png"]
   },
   alternates: {
     canonical: "https://pandapatches.com/blogs"

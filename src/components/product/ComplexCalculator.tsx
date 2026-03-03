@@ -792,6 +792,19 @@ export default function ComplexCalculator({
                   <button type="button" onClick={() => { const v = Math.min(maxSize, height + 1); setHeight(v); setHeightInput(String(v)); }} className="px-4 hover:bg-black hover:text-white text-gray-500 border-l border-gray-300 transition-colors font-black text-xl h-full flex-shrink-0">+</button>
                 </div>
               </div>
+
+              {/* Unsure of size nudge */}
+              <a
+                href="https://wa.me/13022504340"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 flex items-center gap-1.5 text-[12px] text-gray-400 hover:text-panda-green transition-colors group"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="flex-shrink-0 group-hover:text-panda-green" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>
+                </svg>
+                Unsure of your size? Chat with us now
+              </a>
             </div>
 
             {/* 3. QUANTITY */}

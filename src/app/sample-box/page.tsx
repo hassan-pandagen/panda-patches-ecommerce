@@ -20,7 +20,7 @@ export const metadata = {
     url: "https://pandapatches.com/sample-box",
     images: [
       {
-        url: "https://pandapatches.com/assets/logo-panda.svg",
+        url: "https://pandapatches.com/assets/og-image.png",
         width: 1200,
         height: 630,
         alt: "Panda Patches Sample Box"
@@ -31,7 +31,7 @@ export const metadata = {
     card: "summary",
     title: "Order Sample Box - 9 Patch Samples for $45",
     description: "Get 9 patch samples including embroidered, PVC, chenille & more for only $45 with free shipping.",
-    images: ["https://pandapatches.com/assets/logo-panda.svg"]
+    images: ["https://pandapatches.com/assets/og-image.png"]
   },
   alternates: {
     canonical: "https://pandapatches.com/sample-box"

@@ -1,7 +1,9 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { getSanityOgImage } from "@/lib/sanityOgImage";
 import { client } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { generateSchemaScript } from "@/lib/schemas";
 
 // COMPONENTS
 import ProductHero from "@/components/product/ProductHero";
@@ -18,36 +20,160 @@ import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 
-export const metadata: Metadata = {
-  title: "Custom Patches - Embroidered, PVC, Woven & More | Panda Patches",
-  description: "Browse all custom patch types: embroidered patches, PVC patches, woven patches, chenille patches, and leather patches. Low minimums, free design services, 7-14 day delivery. Order your custom patches today!",
-  keywords: [
-    "custom patches",
-    "embroidered patches",
-    "PVC patches",
-    "woven patches",
-    "chenille patches",
-    "leather patches",
-    "iron on patches",
-    "velcro patches",
-    "custom patch maker",
-    "patch manufacturing",
+export async function generateMetadata(): Promise<Metadata> {
+  const ogImage = await getSanityOgImage();
+  return {
+    title: "Custom Patches - Embroidered, PVC, Woven & More | Panda Patches",
+    description: "Browse all custom patch types: embroidered patches, PVC patches, woven patches, chenille patches, and leather patches. Low minimums, free design services, 7-14 day delivery. Order your custom patches today!",
+    keywords: [
+      "custom patches",
+      "embroidered patches",
+      "PVC patches",
+      "woven patches",
+      "chenille patches",
+      "leather patches",
+      "iron on patches",
+      "velcro patches",
+      "custom patch maker",
+      "patch manufacturing",
+      "custom iron on patches",
+      "custom embroidered patches",
+      "no minimum patches",
+      "bulk custom patches",
+      "patch maker USA",
+      "patches for jackets",
+      "patches for hats",
+      "custom logo patches",
+      "custom name patches",
+      "military patches",
+      "police patches",
+      "sports team patches",
+      "fire department patches",
+      "cheap custom patches",
+      "wholesale patches",
+      "patch supplier USA",
+      "free design patches",
+    ],
+    alternates: {
+      canonical: "https://pandapatches.com/custom-patches",
+    },
+    openGraph: {
+      title: "Custom Patches - All Types | Panda Patches",
+      description: "Browse all custom patch types with low minimums and fast delivery. Embroidered, PVC, woven, chenille, and leather patches available.",
+      url: "https://pandapatches.com/custom-patches",
+      siteName: "Panda Patches",
+      type: "website",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: "Panda Patches - Custom Patches" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Custom Patches - All Types | Panda Patches",
+      description: "Browse all custom patch types with low minimums and fast delivery. Embroidered, PVC, woven, chenille, and leather patches.",
+      images: [ogImage],
+    },
+  };
+}
+
+// Product schema for the main patches landing page
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Custom Patches",
+  description: "Custom embroidered patches, PVC patches, woven patches, chenille patches, and leather patches with low minimums, free design services, and 7-14 day delivery.",
+  brand: {
+    "@type": "Brand",
+    name: "Panda Patches",
+  },
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "USD",
+    lowPrice: "0.85",
+    highPrice: "6.00",
+    offerCount: "5",
+    availability: "https://schema.org/InStock",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    reviewCount: "57",
+    bestRating: "5",
+  },
+};
+
+// Breadcrumb schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://pandapatches.com",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Custom Patches",
+      item: "https://pandapatches.com/custom-patches",
+    },
   ],
-  alternates: {
-    canonical: "https://pandapatches.com/custom-patches",
-  },
-  openGraph: {
-    title: "Custom Patches - All Types | Panda Patches",
-    description: "Browse all custom patch types with low minimums and fast delivery. Embroidered, PVC, woven, chenille, and leather patches available.",
-    url: "https://pandapatches.com/custom-patches",
-    siteName: "Panda Patches",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Custom Patches - All Types | Panda Patches",
-    description: "Browse all custom patch types with low minimums and fast delivery.",
-  },
+};
+
+// FAQPage schema (server-side so Google can crawl it)
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What types of custom patches do you make?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We make embroidered patches, PVC patches, woven patches, chenille patches, and leather patches. Each type is available in any size, shape, and backing option including iron-on, sew-on, and Velcro.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is there a minimum order for custom patches?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No, there is no minimum order. We accept orders as small as 1 piece and as large as 50,000+ pieces. Bulk pricing applies for orders of 50+ pieces with additional discounts at 100+, 500+, and 1,000+.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How much do custom patches cost?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Pricing starts from $0.85 per patch for large bulk orders. Small orders of 5-10 patches typically range from $3-5 each. The price depends on patch type, size, and quantity. Get a free instant quote by uploading your design.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How long does production take?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Standard production is 10-14 business days. Rush production (7 business days) is available. All timelines begin after design approval. Shipping typically adds 3-7 business days.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do you offer free design services?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, we provide a free professional digital mockup for every order within 24 hours. Unlimited revisions are included at no extra charge until you are 100% satisfied with the design.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What backing options are available?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We offer iron-on (heat-seal), sew-on, Velcro (hook and loop), adhesive, and magnetic backings. The best option depends on where you plan to apply the patch and how permanent you need it to be.",
+      },
+    },
+  ],
 };
 
 // ISR: Revalidate main patches page every 24 hours
@@ -75,6 +201,20 @@ export default async function ProductLandingPage() {
 
   return (
     <main className="min-h-screen bg-white">
+      {/* Schemas */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(productSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(faqSchema)}
+      />
+
       <Navbar />
       
       {/* 1. HERO (Quote Form Mode) */}

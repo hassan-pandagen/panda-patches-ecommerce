@@ -151,9 +151,13 @@ export async function POST(req: Request) {
       .eq('id', order.id);
 
     // Return approval URL for redirect
-    const approvalUrl = paypalOrder.links?.find((link: any) => link.rel === 'approve')?.href;
+    // PayPal returns 'payer-action' (newer paymentSource API) or 'approve' (older applicationContext API)
+    const approvalUrl = paypalOrder.links?.find(
+      (link: any) => link.rel === 'payer-action' || link.rel === 'approve'
+    )?.href;
 
     if (!approvalUrl) {
+      console.error('PayPal order missing approval URL. Full order:', JSON.stringify(paypalOrder));
       return NextResponse.json(
         { error: 'Failed to get PayPal approval URL' },
         { status: 500 }

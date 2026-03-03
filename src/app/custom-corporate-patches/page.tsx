@@ -1,4 +1,5 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { cache } from 'react';
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Footer from "@/components/layout/Footer";
@@ -11,7 +12,7 @@ import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
-import { generateSchemaScript } from "@/lib/schemas";
+import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 
 // Corporate-specific FAQs
@@ -54,7 +55,7 @@ const corporateFAQs = [
 export const revalidate = 86400;
 
 // Fetch category-specific work samples + hero
-async function getCorporatePageData() {
+const getCorporatePageData = cache(async () => {
   try {
     const query = `{
       "categoryData": *[_type == "categoryPage" && slug.current == "custom-corporate-patches"][0] {
@@ -88,31 +89,44 @@ async function getCorporatePageData() {
     console.error("Corporate page data fetch error:", error);
     return { heroImage: null, workSamples: [], trustBadges: [], seoHeading: null, seoContent: null };
   }
-}
+});
 
-export const metadata: Metadata = {
-  title: "Corporate Logo Patches - Bulk Pricing Available",
-  description: "Custom corporate logo patches for businesses, brands, and employee uniforms. Embroidered company patches with no minimum order, free mockup, and 7-14 day turnaround.",
-  keywords: [
-    "custom corporate patches",
-    "company logo patches",
-    "custom business patches",
-    "employee uniform patches",
-    "branded patches",
-    "promotional patches",
-    "custom logo patches",
-    "corporate embroidered patches",
-    "wholesale company patches",
-  ],
-  alternates: { canonical: "https://pandapatches.com/custom-corporate-patches" },
-  openGraph: {
-    title: "Custom Corporate & Company Logo Patches | Panda Patches",
-    description: "Custom embroidered patches for businesses and brands. No minimum, free mockup, fast delivery. Trusted by Fortune 500 companies.",
-    url: "https://pandapatches.com/custom-corporate-patches",
-    siteName: "Panda Patches",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { heroImage } = await getCorporatePageData();
+  const ogImage = heroImage
+    ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
+    : 'https://pandapatches.com/assets/og-image.png';
+  return {
+    title: "Corporate Logo Patches - Bulk Pricing Available",
+    description: "Custom corporate logo patches for businesses, brands, and employee uniforms. Embroidered company patches with no minimum order, free mockup, and 7-14 day turnaround.",
+    keywords: [
+      "custom corporate patches",
+      "company logo patches",
+      "custom business patches",
+      "employee uniform patches",
+      "branded patches",
+      "promotional patches",
+      "custom logo patches",
+      "corporate embroidered patches",
+      "wholesale company patches",
+    ],
+    alternates: { canonical: "https://pandapatches.com/custom-corporate-patches" },
+    openGraph: {
+      title: "Custom Corporate & Company Logo Patches | Panda Patches",
+      description: "Custom embroidered patches for businesses and brands. No minimum, free mockup, fast delivery. Trusted by Fortune 500 companies.",
+      url: "https://pandapatches.com/custom-corporate-patches",
+      siteName: "Panda Patches",
+      type: "website",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Corporate & Company Logo Patches | Panda Patches" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Custom Corporate & Company Logo Patches | Panda Patches",
+      description: "Custom embroidered patches for businesses and brands. No minimum, free mockup, fast delivery. Trusted by Fortune 500 companies.",
+      images: [ogImage],
+    },
+  };
+}
 
 // Product schema
 const productSchema = {
@@ -134,13 +148,13 @@ const productSchema = {
   },
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "1200",
+    ratingValue: "4.8",
+    reviewCount: "57",
     bestRating: "5",
   },
 };
 
-// Breadcrumb schema
+// Breadcrumb schema (3-level matching visual breadcrumb)
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -154,7 +168,13 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Custom Corporate Patches",
+      name: "Bulk Orders",
+      item: "https://pandapatches.com/bulk-custom-patches",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Corporate & Business Patches",
       item: "https://pandapatches.com/custom-corporate-patches",
     },
   ],
@@ -173,6 +193,10 @@ export default async function CorporatePatchesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(generateFAQSchema(corporateFAQs))}
       />
 
       <Navbar />

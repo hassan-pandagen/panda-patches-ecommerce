@@ -154,22 +154,22 @@ export default function Footer() {
             <h4 className="font-bold text-lg text-panda-dark">Patch Style</h4>
             <ul className="space-y-2 text-gray-700">
               <li><Link href="/custom-anime-patches">Custom Anime Patches</Link></li>
-              <li><Link href="/custom-baseball-patches">Custom Baseball Patches</Link></li>
+              <li><Link href="/custom-sports-patches">Custom Baseball Patches</Link></li>
               <li><Link href="/christmas-patches">Christmas Patches</Link></li>
               <li><Link href="/valentines-day-patches">Valentine&apos;s Day Patches</Link></li>
-              <li><Link href="/custom-morale-patches">Custom Morale Patches</Link></li>
-              <li><Link href="/custom-soccer-patches">Custom Soccer Patches</Link></li>
+              <li><Link href="/custom-police-patches">Custom Morale Patches</Link></li>
+              <li><Link href="/custom-sports-patches">Custom Soccer Patches</Link></li>
               <li><Link href="/custom-fire-department-patches">Custom Fire Department Patches</Link></li>
-              <li><Link href="/custom-hockey-patches">Custom Hockey Patches</Link></li>
+              <li><Link href="/custom-sports-patches">Custom Hockey Patches</Link></li>
               <li><Link href="/patches-for-hats">Patches For Hats</Link></li>
               <li><Link href="/custom-jacket-patches">Custom Jacket Patches</Link></li>
-              <li><Link href="/custom-law-enforcement-patches">Custom Law Enforcement Patches</Link></li>
+              <li><Link href="/custom-police-patches">Custom Law Enforcement Patches</Link></li>
               <li><Link href="/custom-logo-patches">Custom Logo Patches</Link></li>
               <li><Link href="/motorcycle-patches">Motorcycle Patches</Link></li>
               <li><Link href="/custom-name-patches">Custom Name Patches</Link></li>
               <li><Link href="/custom-rock-band-patches">Custom Rock Band Patches</Link></li>
-              <li><Link href="/custom-super-bowl-patch">Custom Super Bowl Patch</Link></li>
-              <li><Link href="/custom-tactical-patches">Custom Tactical Patches</Link></li>
+              <li><Link href="/custom-sports-patches">Custom Super Bowl Patch</Link></li>
+              <li><Link href="/custom-police-patches">Custom Tactical Patches</Link></li>
               <li><Link href="/custom-velcro-patches">Custom Velcro Patches</Link></li>
             </ul>
           </div>

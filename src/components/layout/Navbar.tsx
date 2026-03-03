@@ -65,11 +65,8 @@ export default function Navbar() {
   return (
     <header className={`
       sticky top-0 z-50 w-full transition-all duration-300
-      xl:bg-white xl:shadow-none
-      ${scrolled
-        ? 'bg-white/95 backdrop-blur-md shadow-md'
-        : 'bg-transparent xl:bg-white'
-      }
+      bg-white border-b border-gray-200
+      ${scrolled ? 'shadow-md' : 'shadow-sm'}
     `}>
       <div className="w-full max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 xl:px-12 h-[70px] md:h-[100px] flex items-center justify-between">
 
@@ -170,9 +167,9 @@ export default function Navbar() {
             {/* Chat Now Button */}
             <button
               onClick={() => {
-                if (typeof window !== 'undefined' && (window as any).Tawk_API) {
-                  (window as any).Tawk_API.toggle();
-                }
+                const api = (window as any).Tawk_API;
+                if (api?.toggle) api.toggle();
+                else if (api?.maximize) api.maximize();
               }}
               className="flex items-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[14px] px-5 py-3 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
             >
@@ -193,8 +190,6 @@ export default function Navbar() {
 
       </div>
 
-      {/* Desktop divider only */}
-      <div className="hidden xl:block w-full h-[1px] bg-gray-200 opacity-50" />
 
       {/* === MOBILE MENU OVERLAY === */}
       {isMobileMenuOpen && (

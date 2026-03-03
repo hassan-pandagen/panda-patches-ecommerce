@@ -1,4 +1,5 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { cache } from 'react';
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Footer from "@/components/layout/Footer";
@@ -11,7 +12,7 @@ import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
-import { generateSchemaScript } from "@/lib/schemas";
+import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 
 // Chenille TPU-specific FAQs
@@ -54,7 +55,7 @@ const chenilleTpuFAQs = [
 export const revalidate = 86400;
 
 // Fetch category-specific work samples + hero
-async function getChenilleTpuPageData() {
+const getChenilleTpuPageData = cache(async () => {
   try {
     const query = `{
       "categoryData": *[_type == "categoryPage" && slug.current == "custom-chenille-tpu-patches"][0] {
@@ -88,36 +89,49 @@ async function getChenilleTpuPageData() {
     console.error("Chenille TPU page data fetch error:", error);
     return { heroImage: null, workSamples: [], trustBadges: [], seoHeading: null, seoContent: null };
   }
-}
+});
 
-export const metadata: Metadata = {
-  title: "Custom Chenille TPU Patches - Waterproof & Flexible",
-  description: "Custom chenille TPU patches with a flexible, water-resistant thermoplastic polyurethane base. Perfect for varsity jackets, hoodies, and athletic gear. No minimum, free mockup, fast delivery.",
-  keywords: [
-    "custom chenille TPU patches",
-    "chenille TPU patches",
-    "chenille patches with TPU backing",
-    "waterproof chenille patches",
-    "custom chenille patches",
-    "chenille letter patches",
-    "varsity chenille patches",
-    "chenille patches for jackets",
-    "flexible chenille patches",
-    "letterman jacket patches",
-    "chenille iron on patches",
-    "custom varsity patches",
-    "chenille patches for hoodies",
-    "custom letterman patches",
-  ],
-  alternates: { canonical: "https://pandapatches.com/custom-chenille-tpu-patches" },
-  openGraph: {
-    title: "Custom Chenille TPU Patches | Panda Patches",
-    description: "Flexible, water-resistant chenille TPU patches for varsity jackets, hoodies, and athletic gear. No minimum, free mockup.",
-    url: "https://pandapatches.com/custom-chenille-tpu-patches",
-    siteName: "Panda Patches",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { heroImage } = await getChenilleTpuPageData();
+  const ogImage = heroImage
+    ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
+    : 'https://pandapatches.com/assets/og-image.png';
+  return {
+    title: "Custom Chenille TPU Patches - Waterproof & Flexible",
+    description: "Custom chenille TPU patches with a flexible, water-resistant thermoplastic polyurethane base. Perfect for varsity jackets, hoodies, and athletic gear. No minimum, free mockup, fast delivery.",
+    keywords: [
+      "custom chenille TPU patches",
+      "chenille TPU patches",
+      "chenille patches with TPU backing",
+      "waterproof chenille patches",
+      "custom chenille patches",
+      "chenille letter patches",
+      "varsity chenille patches",
+      "chenille patches for jackets",
+      "flexible chenille patches",
+      "letterman jacket patches",
+      "chenille iron on patches",
+      "custom varsity patches",
+      "chenille patches for hoodies",
+      "custom letterman patches",
+    ],
+    alternates: { canonical: "https://pandapatches.com/custom-chenille-tpu-patches" },
+    openGraph: {
+      title: "Custom Chenille TPU Patches | Panda Patches",
+      description: "Flexible, water-resistant chenille TPU patches for varsity jackets, hoodies, and athletic gear. No minimum, free mockup.",
+      url: "https://pandapatches.com/custom-chenille-tpu-patches",
+      siteName: "Panda Patches",
+      type: "website",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Chenille TPU Patches | Panda Patches" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Custom Chenille TPU Patches | Panda Patches",
+      description: "Flexible, water-resistant chenille TPU patches for varsity jackets, hoodies, and athletic gear. No minimum, free mockup.",
+      images: [ogImage],
+    },
+  };
+}
 
 // Product schema
 const productSchema = {
@@ -139,13 +153,13 @@ const productSchema = {
   },
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "1200",
+    ratingValue: "4.8",
+    reviewCount: "57",
     bestRating: "5",
   },
 };
 
-// Breadcrumb schema
+// Breadcrumb schema (3-level matching visual breadcrumb)
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -159,7 +173,13 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Custom Chenille TPU Patches",
+      name: "Bulk Orders",
+      item: "https://pandapatches.com/bulk-custom-patches",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Chenille TPU Patches",
       item: "https://pandapatches.com/custom-chenille-tpu-patches",
     },
   ],
@@ -178,6 +198,10 @@ export default async function ChenilleTpuPatchesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(generateFAQSchema(chenilleTpuFAQs))}
       />
 
       <Navbar />

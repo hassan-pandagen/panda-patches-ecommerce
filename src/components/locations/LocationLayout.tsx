@@ -15,6 +15,8 @@ import { PortableText } from "@portabletext/react";
 import { convertWordPressUrl } from "@/lib/convertWordPressUrls";
 import { client } from "@/lib/sanity";
 import locationFaqs from "@/lib/locationFaqs";
+import locationDescriptions from "@/lib/locationDescriptions";
+import { generateFAQSchema, generateBreadcrumbSchema, generateSchemaScript } from "@/lib/schemas";
 
 async function getFallbackGallery() {
   try {
@@ -27,8 +29,9 @@ async function getFallbackGallery() {
 
 export default async function LocationLayout({ data, slug }: { data: any; slug?: string }) {
 
-  // Look up location-specific FAQs (falls back to undefined = generic FAQ shown)
+  // Look up location-specific FAQs and hero description
   const locationFaqQuestions = slug ? locationFaqs[slug] : undefined;
+  const locationDescription = slug ? locationDescriptions[slug] : undefined;
 
   // Use location gallery if available, otherwise fall back to embroidered work samples
   const gallery = (data.gallery && data.gallery.length > 0)
@@ -41,9 +44,9 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
     title: data.isPatchStyle
       ? data.locationName
       : `Custom Patches in ${data.locationName}`,
-    description: data.isPatchStyle
+    description: locationDescription || (data.isPatchStyle
       ? `The best source for ${data.locationName}. High quality, fast turnaround, and free design services.`
-      : `The best source for Custom Patches in ${data.locationName}. High quality, fast turnaround, and free design services.`,
+      : `The best source for Custom Patches in ${data.locationName}. High quality, fast turnaround, and free design services.`),
     gallery: gallery
   };
 
@@ -92,8 +95,34 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
     </div>
   );
 
+  // Generate breadcrumb schema
+  const breadcrumbItems = data.isPatchStyle
+    ? [
+        { name: "Home", url: "https://pandapatches.com" },
+        { name: "Custom Patches", url: "https://pandapatches.com/custom-patches" },
+        { name: data.locationName, url: `https://pandapatches.com/${slug}` },
+      ]
+    : [
+        { name: "Home", url: "https://pandapatches.com" },
+        { name: `Custom Patches in ${data.locationName}`, url: `https://pandapatches.com/${slug}` },
+      ];
+  const breadcrumbSchema = slug ? generateBreadcrumbSchema(breadcrumbItems) : null;
+  const faqSchema = locationFaqQuestions ? generateFAQSchema(locationFaqQuestions) : null;
+
   return (
     <main className="min-h-screen bg-white">
+      {breadcrumbSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+        />
+      )}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={generateSchemaScript(faqSchema)}
+        />
+      )}
       <Navbar />
 
       {/* 1. HERO (Quote Form Mode) */}

@@ -61,6 +61,14 @@ const pricingData: Record<PatchType, Record<string, string>> = {
 
 const quantities = ["50-99", "100-299", "300-499", "500-999", "1,000-4,999", "5,000+"];
 
+const orderLinks: Record<PatchType, string> = {
+  Embroidered: "/custom-patches/embroidered",
+  PVC: "/custom-patches/pvc",
+  Woven: "/custom-patches/woven",
+  Chenille: "/custom-patches/chenille",
+  Leather: "/custom-patches/leather",
+};
+
 export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableProps) {
   const [activeType, setActiveType] = useState<PatchType>("Embroidered");
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -210,7 +218,7 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
                 </div>
                 <div className="py-4 px-6 text-right">
                   <a
-                    href="#bulk-quote"
+                    href={idx >= 3 ? "#bulk-quote" : orderLinks[activeType]}
                     className={`inline-flex items-center gap-1.5 text-[12px] font-bold px-4 py-2 rounded-full transition-all duration-200 whitespace-nowrap ${
                       idx >= 3
                         ? "bg-panda-yellow text-panda-dark hover:bg-panda-green hover:text-white"
@@ -247,7 +255,7 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
                     <span className="text-[11px] text-gray-400 block">per patch</span>
                   </div>
                   <a
-                    href="#bulk-quote"
+                    href={idx >= 3 ? "#bulk-quote" : orderLinks[activeType]}
                     className={`text-[11px] font-bold px-3 py-1.5 rounded-full whitespace-nowrap ${
                       idx >= 3
                         ? "bg-panda-yellow text-panda-dark"

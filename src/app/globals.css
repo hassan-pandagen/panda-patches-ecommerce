@@ -13,6 +13,14 @@
   animation: slide-up 0.35s ease-out forwards;
 }
 
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-down {
+  animation: slide-down 0.35s ease-out forwards;
+}
+
 /* Phone icon ring animation — wiggles like a phone ringing */
 @keyframes phone-ring {
   0%, 100%  { transform: rotate(0deg); }

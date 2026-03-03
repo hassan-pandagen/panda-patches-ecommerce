@@ -6,7 +6,8 @@ import { X, Phone } from 'lucide-react';
 const PHONE_NUMBER = '+1 (302) 250-4340';
 const PHONE_TEL = 'tel:+13022504340';
 const WHATSAPP_URL = 'https://wa.me/14157999969?text=Hi%20I%20need%20help%20placing%20my%20order';
-const DELAY_MS = 15_000; // show after 15 seconds
+const DESKTOP_DELAY_MS = 15_000; // desktop: 15 seconds
+const MOBILE_DELAY_MS  = 25_000; // mobile:  25 seconds (avoids clashing with Tawk.to)
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15">
@@ -16,13 +17,18 @@ const WhatsAppIcon = () => (
 
 export default function CallNowPopup() {
   const [visible, setVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const mobile = window.innerWidth < 768;
+    setIsMobile(mobile);
+
     if (sessionStorage.getItem('callPopupDismissed')) return;
 
+    const delay = mobile ? MOBILE_DELAY_MS : DESKTOP_DELAY_MS;
     const timer = setTimeout(() => {
       setVisible(true);
-    }, DELAY_MS);
+    }, delay);
 
     return () => clearTimeout(timer);
   }, []);
@@ -36,7 +42,7 @@ export default function CallNowPopup() {
 
   return (
     <div
-      className="fixed bottom-6 left-6 z-50 animate-slide-up animate-popup-ring"
+      className={`fixed left-6 z-50 animate-popup-ring ${isMobile ? 'top-6 animate-slide-down' : 'bottom-6 animate-slide-up'}`}
       role="dialog"
       aria-label="Call us popup"
     >

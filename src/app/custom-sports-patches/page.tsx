@@ -1,4 +1,5 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { cache } from 'react';
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Footer from "@/components/layout/Footer";
@@ -11,7 +12,7 @@ import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
-import { generateSchemaScript } from "@/lib/schemas";
+import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 
 // Sports-specific FAQs
@@ -54,7 +55,7 @@ const sportsFAQs = [
 export const revalidate = 86400;
 
 // Fetch category-specific work samples + hero
-async function getSportsPageData() {
+const getSportsPageData = cache(async () => {
   try {
     const query = `{
       "categoryData": *[_type == "categoryPage" && slug.current == "custom-sports-patches"][0] {
@@ -88,33 +89,46 @@ async function getSportsPageData() {
     console.error("Sports page data fetch error:", error);
     return { heroImage: null, workSamples: [], trustBadges: [], seoHeading: null, seoContent: null };
   }
-}
+});
 
-export const metadata: Metadata = {
-  title: "Sports Team Patches - No Minimum, Fast Turnaround",
-  description: "Custom sports patches for teams, leagues, and clubs. Embroidered uniform patches, jersey numbers, varsity letters, and championship patches. No minimum, free mockup.",
-  keywords: [
-    "custom sports patches",
-    "sports team patches",
-    "custom team patches",
-    "embroidered sports patches",
-    "custom jersey patches",
-    "varsity letter patches",
-    "championship patches",
-    "custom uniform patches",
-    "baseball patches",
-    "football patches",
-    "soccer patches",
-  ],
-  alternates: { canonical: "https://pandapatches.com/custom-sports-patches" },
-  openGraph: {
-    title: "Custom Sports Team Patches | Panda Patches",
-    description: "Custom embroidered patches for sports teams, leagues, and clubs. No minimum order, free mockup, fast delivery.",
-    url: "https://pandapatches.com/custom-sports-patches",
-    siteName: "Panda Patches",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { heroImage } = await getSportsPageData();
+  const ogImage = heroImage
+    ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
+    : 'https://pandapatches.com/assets/og-image.png';
+  return {
+    title: "Sports Team Patches - No Minimum, Fast Turnaround",
+    description: "Custom sports patches for teams, leagues, and clubs. Embroidered uniform patches, jersey numbers, varsity letters, and championship patches. No minimum, free mockup.",
+    keywords: [
+      "custom sports patches",
+      "sports team patches",
+      "custom team patches",
+      "embroidered sports patches",
+      "custom jersey patches",
+      "varsity letter patches",
+      "championship patches",
+      "custom uniform patches",
+      "baseball patches",
+      "football patches",
+      "soccer patches",
+    ],
+    alternates: { canonical: "https://pandapatches.com/custom-sports-patches" },
+    openGraph: {
+      title: "Custom Sports Team Patches | Panda Patches",
+      description: "Custom embroidered patches for sports teams, leagues, and clubs. No minimum order, free mockup, fast delivery.",
+      url: "https://pandapatches.com/custom-sports-patches",
+      siteName: "Panda Patches",
+      type: "website",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Sports Team Patches | Panda Patches" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Custom Sports Team Patches | Panda Patches",
+      description: "Custom embroidered patches for sports teams, leagues, and clubs. No minimum order, free mockup, fast delivery.",
+      images: [ogImage],
+    },
+  };
+}
 
 // Product schema
 const productSchema = {
@@ -136,13 +150,13 @@ const productSchema = {
   },
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "1200",
+    ratingValue: "4.8",
+    reviewCount: "57",
     bestRating: "5",
   },
 };
 
-// Breadcrumb schema
+// Breadcrumb schema (3-level matching visual breadcrumb)
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -156,7 +170,13 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Custom Sports Patches",
+      name: "Bulk Orders",
+      item: "https://pandapatches.com/bulk-custom-patches",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Sports Team Patches",
       item: "https://pandapatches.com/custom-sports-patches",
     },
   ],
@@ -175,6 +195,10 @@ export default async function SportsPatchesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(generateFAQSchema(sportsFAQs))}
       />
 
       <Navbar />

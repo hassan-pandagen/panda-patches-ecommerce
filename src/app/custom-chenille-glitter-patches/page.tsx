@@ -1,4 +1,5 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { cache } from 'react';
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Footer from "@/components/layout/Footer";
@@ -11,7 +12,7 @@ import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
-import { generateSchemaScript } from "@/lib/schemas";
+import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 
 // Chenille Glitter-specific FAQs
@@ -54,7 +55,7 @@ const chenilleGlitterFAQs = [
 export const revalidate = 86400;
 
 // Fetch category-specific work samples + hero
-async function getChenilleGlitterPageData() {
+const getChenilleGlitterPageData = cache(async () => {
   try {
     const query = `{
       "categoryData": *[_type == "categoryPage" && slug.current == "custom-chenille-glitter-patches"][0] {
@@ -88,38 +89,51 @@ async function getChenilleGlitterPageData() {
     console.error("Chenille Glitter page data fetch error:", error);
     return { heroImage: null, workSamples: [], trustBadges: [], seoHeading: null, seoContent: null };
   }
-}
+});
 
-export const metadata: Metadata = {
-  title: "Custom Chenille Glitter Patches - Sparkle & Texture Combined",
-  description: "Custom chenille glitter patches with embedded sparkle thread for cheer squads, dance teams, and fashion brands. Bold texture, long-lasting glitter, no minimum, free mockup.",
-  keywords: [
-    "custom chenille glitter patches",
-    "chenille glitter patches",
-    "glitter chenille patches",
-    "custom glitter patches",
-    "glitter iron on patches",
-    "sparkle patches",
-    "custom bling patches",
-    "glitter letter patches",
-    "glitter varsity patches",
-    "cheer squad patches",
-    "dance team patches",
-    "custom glitter iron on patches",
-    "bling patches",
-    "glitter embroidered patches",
-    "holographic patches",
-    "sequin patches custom",
-  ],
-  alternates: { canonical: "https://pandapatches.com/custom-chenille-glitter-patches" },
-  openGraph: {
-    title: "Custom Chenille Glitter Patches | Panda Patches",
-    description: "Custom chenille glitter patches with bold sparkle for cheer squads, dance teams, and fashion brands. No minimum, free mockup.",
-    url: "https://pandapatches.com/custom-chenille-glitter-patches",
-    siteName: "Panda Patches",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { heroImage } = await getChenilleGlitterPageData();
+  const ogImage = heroImage
+    ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
+    : 'https://pandapatches.com/assets/og-image.png';
+  return {
+    title: "Custom Chenille Glitter Patches - Sparkle & Texture Combined",
+    description: "Custom chenille glitter patches with embedded sparkle thread for cheer squads, dance teams, and fashion brands. Bold texture, long-lasting glitter, no minimum, free mockup.",
+    keywords: [
+      "custom chenille glitter patches",
+      "chenille glitter patches",
+      "glitter chenille patches",
+      "custom glitter patches",
+      "glitter iron on patches",
+      "sparkle patches",
+      "custom bling patches",
+      "glitter letter patches",
+      "glitter varsity patches",
+      "cheer squad patches",
+      "dance team patches",
+      "custom glitter iron on patches",
+      "bling patches",
+      "glitter embroidered patches",
+      "holographic patches",
+      "sequin patches custom",
+    ],
+    alternates: { canonical: "https://pandapatches.com/custom-chenille-glitter-patches" },
+    openGraph: {
+      title: "Custom Chenille Glitter Patches | Panda Patches",
+      description: "Custom chenille glitter patches with bold sparkle for cheer squads, dance teams, and fashion brands. No minimum, free mockup.",
+      url: "https://pandapatches.com/custom-chenille-glitter-patches",
+      siteName: "Panda Patches",
+      type: "website",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Chenille Glitter Patches | Panda Patches" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Custom Chenille Glitter Patches | Panda Patches",
+      description: "Custom chenille glitter patches with bold sparkle for cheer squads, dance teams, and fashion brands. No minimum, free mockup.",
+      images: [ogImage],
+    },
+  };
+}
 
 // Product schema
 const productSchema = {
@@ -141,13 +155,13 @@ const productSchema = {
   },
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "1200",
+    ratingValue: "4.8",
+    reviewCount: "57",
     bestRating: "5",
   },
 };
 
-// Breadcrumb schema
+// Breadcrumb schema (3-level matching visual breadcrumb)
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -161,7 +175,13 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Custom Chenille Glitter Patches",
+      name: "Bulk Orders",
+      item: "https://pandapatches.com/bulk-custom-patches",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Chenille Glitter Patches",
       item: "https://pandapatches.com/custom-chenille-glitter-patches",
     },
   ],
@@ -180,6 +200,10 @@ export default async function ChenilleGlitterPatchesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(generateFAQSchema(chenilleGlitterFAQs))}
       />
 
       <Navbar />

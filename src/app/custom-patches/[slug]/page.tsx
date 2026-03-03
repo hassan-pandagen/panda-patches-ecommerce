@@ -4,7 +4,8 @@ import { Metadata } from "next";
 import dynamic from 'next/dynamic';
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
-import { generateProductSchema, generateBreadcrumbSchema, generateSchemaScript } from "@/lib/schemas";
+import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema, generateSchemaScript } from "@/lib/schemas";
+import { genericFaqs } from "@/lib/genericFaqs";
 
 // COMPONENTS - Above the fold
 import ProductHero from "@/components/product/ProductHero";
@@ -104,7 +105,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   const description = product.description || `High-quality ${product.title.toLowerCase()} with low minimums, fast delivery, and free design services from Panda Patches.`;
-  const imageUrl = product.heroImage ? urlFor(product.heroImage).url() : 'https://pandapatches.com/assets/logo-panda.svg';
+  const imageUrl = product.heroImage ? urlFor(product.heroImage).url() : 'https://pandapatches.com/assets/og-image.png';
 
   return {
     title: `${product.title} | Panda Patches`,
@@ -143,7 +144,7 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
   const productSchema = generateProductSchema({
     name: data.title,
     description: data.description || `High-quality ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
-    image: data.heroImage ? urlFor(data.heroImage).url() : 'https://pandapatches.com/assets/logo-panda.svg',
+    image: data.heroImage ? urlFor(data.heroImage).url() : 'https://pandapatches.com/assets/og-image.png',
     url: `https://pandapatches.com/custom-patches/${params.slug}`,
     priceRange: "$50-$500", // Typical price range for custom patches
     includeReviews: true, // Include Trustpilot 4.9 rating
@@ -167,6 +168,12 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
+
+      {/* FAQ Schema for SEO (server-side so Google sees it on first crawl) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(generateFAQSchema(genericFaqs))}
       />
 
       <Navbar />

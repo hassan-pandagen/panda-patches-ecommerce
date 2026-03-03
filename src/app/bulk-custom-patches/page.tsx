@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { cache } from 'react';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BulkHero from "@/components/bulk/BulkHero";
@@ -12,14 +13,14 @@ import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
-import { generateSchemaScript, generateOrganizationSchema } from "@/lib/schemas";
+import { generateSchemaScript, generateOrganizationSchema, generateHowToSchema, generateServiceSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 
 // ISR: Revalidate every 24 hours
 export const revalidate = 86400;
 
 // Fetch work samples for all patch categories + hero image
-async function getBulkPageData() {
+const getBulkPageData = cache(async () => {
   try {
     const query = `{
       "workSamples": {
@@ -44,55 +45,54 @@ async function getBulkPageData() {
     console.error("Bulk page data fetch error:", error);
     return { workSamples: {}, heroImage: null };
   }
-}
+});
 
 // SEO Metadata
-export const metadata: Metadata = {
-  title: "Bulk Custom Patches | Wholesale Volume Pricing | Panda Patches",
-  description:
-    "Order bulk custom patches at wholesale prices. Embroidered, PVC, chenille, woven, leather. Free mockup, 2-week delivery, pricing from $0.85/pc. Get your free quote today.",
-  keywords: [
-    "custom patches bulk order",
-    "wholesale custom patches",
-    "bulk custom patches",
-    "custom patches manufacturer",
-    "bulk embroidered patches",
-    "custom patches for businesses",
-    "wholesale embroidered patches",
-    "bulk iron on patches",
-    "custom patches large order",
-    "promotional products patches",
-    "bulk PVC patches",
-    "wholesale woven patches",
-    "bulk fire department patches",
-    "corporate patches bulk",
-  ],
-  alternates: {
-    canonical: "https://pandapatches.com/bulk-custom-patches",
-  },
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const { heroImage } = await getBulkPageData();
+  const ogImage = heroImage
+    ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
+    : 'https://pandapatches.com/assets/og-image.png';
+  return {
     title: "Bulk Custom Patches | Wholesale Volume Pricing | Panda Patches",
     description:
-      "Order bulk custom patches at wholesale prices. Embroidered, PVC, chenille, woven, leather. Free mockup, 2-week delivery, pricing from $0.85/pc.",
-    url: "https://pandapatches.com/bulk-custom-patches",
-    siteName: "Panda Patches",
-    type: "website",
-    images: [
-      {
-        url: "https://pandapatches.com/assets/logo-panda.svg",
-        width: 1200,
-        height: 630,
-        alt: "Panda Patches — Bulk Custom Patches",
-      },
+      "Order bulk custom patches at wholesale prices. Embroidered, PVC, chenille, woven, leather. Free mockup, 2-week delivery, pricing from $0.85/pc. Get your free quote today.",
+    keywords: [
+      "custom patches bulk order",
+      "wholesale custom patches",
+      "bulk custom patches",
+      "custom patches manufacturer",
+      "bulk embroidered patches",
+      "custom patches for businesses",
+      "wholesale embroidered patches",
+      "bulk iron on patches",
+      "custom patches large order",
+      "promotional products patches",
+      "bulk PVC patches",
+      "wholesale woven patches",
+      "bulk fire department patches",
+      "corporate patches bulk",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Bulk Custom Patches | Wholesale Volume Pricing | Panda Patches",
-    description: "Order bulk custom patches at wholesale prices. Free mockup, 2-week delivery, from $0.85/pc.",
-    images: ["https://pandapatches.com/assets/logo-panda.svg"],
-  },
-};
+    alternates: {
+      canonical: "https://pandapatches.com/bulk-custom-patches",
+    },
+    openGraph: {
+      title: "Bulk Custom Patches | Wholesale Volume Pricing | Panda Patches",
+      description:
+        "Order bulk custom patches at wholesale prices. Embroidered, PVC, chenille, woven, leather. Free mockup, 2-week delivery, pricing from $0.85/pc.",
+      url: "https://pandapatches.com/bulk-custom-patches",
+      siteName: "Panda Patches",
+      type: "website",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: "Panda Patches - Bulk Custom Patches" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Bulk Custom Patches | Wholesale Volume Pricing | Panda Patches",
+      description: "Order bulk custom patches at wholesale prices. Free mockup, 2-week delivery, from $0.85/pc.",
+      images: [ogImage],
+    },
+  };
+}
 
 // Product schema for bulk pricing
 const productSchema = {
@@ -115,8 +115,8 @@ const productSchema = {
   },
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "4.7",
-    reviewCount: "55",
+    ratingValue: "4.8",
+    reviewCount: "57",
     bestRating: "5",
   },
 };
@@ -141,6 +141,62 @@ const breadcrumbSchema = {
   ],
 };
 
+// FAQPage schema (server-side for guaranteed crawlability)
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is the minimum order for bulk pricing?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We start bulk pricing at 50 pieces with no strict minimum. You get better rates at 100+, 500+, and 1,000+ pieces. Whether you need 50 patches for your team or 50,000 for a national rollout, we have you covered.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can I get a pre-production sample before placing a large order?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "For orders of 500+ pieces, we provide a free pre-production sample so you can verify quality, color accuracy, and sizing before we run the full batch. For smaller orders, samples are available for $25-$50 (credited toward your order).",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What file formats do you accept for artwork?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We accept all formats: AI, EPS, PDF, SVG (vector preferred), as well as PNG, JPG, and TIFF. No artwork? Send us a sketch, photo, or description and our design team will create a professional mockup for free.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do you offer distributor or wholesale pricing?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, we work with promotional products distributors, ASI members, and resellers. Contact us for special distributor rates, white-label options, and Net 15/30 payment terms.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is the turnaround time for bulk patch orders?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Standard production is 2 weeks (10-14 business days) for most bulk orders regardless of quantity. Rush orders of 7 business days are available for an additional fee. For orders over 10,000 pieces, turnaround may be 3-4 weeks depending on complexity.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What quality standards do you follow?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Every patch goes through our 5-point quality inspection: thread tension verification, color matching, backing durability test, stitch integrity check, and final visual inspection. Our patches are trusted by fire departments, police departments, and Fortune 500 companies.",
+      },
+    },
+  ],
+};
+
 export default async function BulkCustomPatchesPage() {
   const { workSamples, heroImage, trustBadges } = await getBulkPageData();
 
@@ -158,6 +214,18 @@ export default async function BulkCustomPatchesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={generateSchemaScript(generateOrganizationSchema())}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(faqSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(generateHowToSchema())}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(generateServiceSchema())}
       />
 
       <Navbar />

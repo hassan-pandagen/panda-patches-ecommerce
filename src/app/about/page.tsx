@@ -1,4 +1,5 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+import { getSanityOgImage } from "@/lib/sanityOgImage";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import AboutContent from "@/components/about/AboutContent";
@@ -8,39 +9,59 @@ import CTASection from "@/components/home/CTASection";
 import FactorySection from "@/components/about/FactorySection";
 import PickPatch from "@/components/about/PickPatch";
 import ProcessSection from "@/components/home/ProcessSection";
+import { generatePersonSchema, generateSchemaScript } from "@/lib/schemas";
 
 // SEO Metadata for About Page
-export const metadata: Metadata = {
-  title: "About Panda Patches | 8+ Years Custom Patch Experts",
-  description: "Learn about Panda Patches - 8+ years creating custom embroidered patches with low minimums. Family-owned, Pakistan-based factory, 4.7★ Trustpilot rating, trusted by military & sports teams.",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const ogImage = await getSanityOgImage();
+  return {
     title: "About Panda Patches | 8+ Years Custom Patch Experts",
-    description: "Family-owned custom patch manufacturer with 8+ years experience. Low minimums, free design services, 4.7★ rated.",
-    type: "website",
-    url: "https://pandapatches.com/about",
-    images: [
-      {
-        url: "https://pandapatches.com/assets/logo-panda.svg",
-        width: 1200,
-        height: 630,
-        alt: "About Panda Patches"
-      }
-    ]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Panda Patches | 8+ Years Custom Patch Experts",
-    description: "Family-owned custom patch manufacturer with 8+ years experience. Low minimums, free design services.",
-    images: ["https://pandapatches.com/assets/logo-panda.svg"]
-  },
-  alternates: {
-    canonical: "https://pandapatches.com/about"
-  }
-};
+    description: "Learn about Panda Patches - 8+ years creating custom embroidered patches with low minimums. Family-owned, Pakistan-based factory, 4.8★ Trustpilot rating, trusted by military & sports teams.",
+    keywords: [
+      "about Panda Patches",
+      "custom patch manufacturer",
+      "embroidered patch company",
+      "patch maker USA",
+      "Imran Raza founder",
+      "custom patch experts",
+      "patch supplier USA",
+      "trusted patch manufacturer",
+      "family owned patch company",
+      "8 years patch manufacturing",
+      "patch production factory",
+      "ASI patch supplier",
+      "wholesale patch manufacturer",
+      "military patch maker",
+      "police patch supplier",
+    ],
+    openGraph: {
+      title: "About Panda Patches | 8+ Years Custom Patch Experts",
+      description: "Family-owned custom patch manufacturer with 8+ years experience. Low minimums, free design services, 4.8★ rated.",
+      type: "website",
+      url: "https://pandapatches.com/about",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: "About Panda Patches" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "About Panda Patches | 8+ Years Custom Patch Experts",
+      description: "Family-owned custom patch manufacturer with 8+ years experience. Low minimums, free design services.",
+      images: [ogImage],
+    },
+    alternates: {
+      canonical: "https://pandapatches.com/about",
+    },
+  };
+}
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white">
+      {/* Person Schema for E-E-A-T authority */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(generatePersonSchema())}
+      />
+
       <Navbar />
       
       {/* 1. Main Text & Badges */}

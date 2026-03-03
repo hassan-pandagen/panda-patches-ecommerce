@@ -3,7 +3,8 @@ import { PortableText } from "@portabletext/react";
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Footer from "@/components/layout/Footer";
-import { generateProductSchema, generateBreadcrumbSchema, generateSchemaScript } from "@/lib/schemas";
+import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema, generateSchemaScript } from "@/lib/schemas";
+import { genericFaqs } from "@/lib/genericFaqs";
 
 // COMPONENTS
 import ProductHero from "@/components/product/ProductHero";
@@ -29,11 +30,29 @@ async function getData(slug: string) {
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const data = await getData(params.slug);
   if (!data) return { title: "Product Not Found" };
-  
+
+  const imageUrl = data.heroImage
+    ? urlFor(data.heroImage).url()
+    : 'https://pandapatches.com/assets/og-image.png';
+
   return {
     title: `${data.title} | Panda Patches`,
     description: data.description,
-    openGraph: { type: "website", title: data.title, description: data.description }
+    alternates: { canonical: `https://pandapatches.com/custom-products/${params.slug}` },
+    openGraph: {
+      type: "website",
+      title: data.title,
+      description: data.description,
+      url: `https://pandapatches.com/custom-products/${params.slug}`,
+      siteName: "Panda Patches",
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: data.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${data.title} | Panda Patches`,
+      description: data.description,
+      images: [imageUrl],
+    },
   };
 }
 
@@ -98,7 +117,7 @@ export default async function CustomProductPage({ params }: { params: { slug: st
   const productSchema = generateProductSchema({
     name: data.title,
     description: data.description || `Custom ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
-    image: data.heroImage ? urlFor(data.heroImage).url() : 'https://pandapatches.com/assets/logo-panda.svg',
+    image: data.heroImage ? urlFor(data.heroImage).url() : 'https://pandapatches.com/assets/og-image.png',
     url: `https://pandapatches.com/custom-products/${params.slug}`,
     priceRange: "$100-$1000", // Typical price range for custom coins/pins/keychains
     includeReviews: true, // Include Trustpilot 4.9 rating
@@ -122,6 +141,12 @@ export default async function CustomProductPage({ params }: { params: { slug: st
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
+
+      {/* FAQ Schema for SEO (server-side so Google sees it on first crawl) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(generateFAQSchema(genericFaqs))}
       />
 
       <Navbar />

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     url: "https://pandapatches.com/contact",
     images: [
       {
-        url: "https://pandapatches.com/assets/logo-panda.svg",
+        url: "https://pandapatches.com/assets/og-image.png",
         width: 1200,
         height: 630,
         alt: "Contact Panda Patches"
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Contact Us | Panda Patches",
     description: "Get custom patch quotes. Phone: +1 302 250 4340. Free design consultation.",
-    images: ["https://pandapatches.com/assets/logo-panda.svg"]
+    images: ["https://pandapatches.com/assets/og-image.png"]
   },
   alternates: {
     canonical: "https://pandapatches.com/contact"

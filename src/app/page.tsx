@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     url: "https://pandapatches.com",
     images: [
       {
-        url: "https://pandapatches.com/assets/logo-panda.svg",
+        url: "https://pandapatches.com/assets/og-image.png",
         width: 1200,
         height: 630,
         alt: "Panda Patches - Custom Embroidered Patches"
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Custom Patches & Embroidered Patches - Low Minimums",
     description: "Create custom embroidered patches with low minimums. Free design, fast delivery, 4.8★ rated.",
-    images: ["https://pandapatches.com/assets/logo-panda.svg"]
+    images: ["https://pandapatches.com/assets/og-image.png"]
   },
   alternates: {
     canonical: "https://pandapatches.com"

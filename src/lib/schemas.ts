@@ -571,8 +571,9 @@ export function generateLocalBusinessSchema() {
 // 9. LOCATION-SPECIFIC LOCAL BUSINESS SCHEMA (for state/city landing pages)
 // ============================================
 
-export function generateLocationBusinessSchema(locationName: string) {
-  const slug = locationName.toLowerCase().replace(/\s+/g, '-');
+export function generateLocationBusinessSchema(locationName: string, pageSlug?: string) {
+  const fallbackSlug = locationName.toLowerCase().replace(/\s+/g, '-');
+  const urlSlug = pageSlug || fallbackSlug;
   return {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "Store"],
@@ -580,7 +581,7 @@ export function generateLocationBusinessSchema(locationName: string) {
     "description": `Order custom embroidered patches delivered to ${locationName}. Low minimums, free mockups, fast 7-14 day turnaround. Founded by Imran Raza with 13 years of patch manufacturing expertise.`,
     "telephone": "+1-302-250-4340",
     "email": "admin@pandapatches.com",
-    "url": `https://pandapatches.com/custom-patches-in-${slug}`,
+    "url": `https://pandapatches.com/${urlSlug}`,
     "image": "https://pandapatches.com/assets/logo-panda.svg",
     "priceRange": "$$",
     "address": {
@@ -651,6 +652,70 @@ export function generateHowToSchema() {
         "text": "Your custom patches are manufactured and delivered to your door within 7-14 business days."
       }
     ]
+  };
+}
+
+// ============================================
+// 11. WEBSITE SCHEMA (global - for layout.tsx)
+// ============================================
+
+export function generateWebSiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Panda Patches",
+    "url": "https://pandapatches.com",
+    "description": "Custom embroidered patches, iron-on patches, PVC patches with low minimums, free design services, and fast 7-14 day delivery.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://pandapatches.com/custom-patches?search={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Panda Patches",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://pandapatches.com/assets/logo-panda.svg"
+      }
+    }
+  };
+}
+
+// ============================================
+// 12. SERVICE SCHEMA (for Free Design Service)
+// ============================================
+
+export function generateServiceSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Custom Patch Design",
+    "name": "Free Custom Patch Design Service",
+    "description": "Free professional digital mockup for every custom patch order. Our designers create your patch design within 24 hours with unlimited revisions until you are satisfied. No setup fees, no hidden charges.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Panda Patches",
+      "url": "https://pandapatches.com"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Free design mockup included with every patch order. Unlimited revisions at no extra cost."
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "United States"
+    },
+    "availableChannel": {
+      "@type": "ServiceChannel",
+      "serviceUrl": "https://pandapatches.com/custom-patches",
+      "servicePhone": "+1-302-250-4340"
+    }
   };
 }
 
