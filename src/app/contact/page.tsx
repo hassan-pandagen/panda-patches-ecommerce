@@ -1,6 +1,12 @@
 import { Metadata } from 'next';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Home", url: "https://pandapatches.com" },
+  { name: "Contact", url: "https://pandapatches.com/contact" },
+]);
 import ContactHero from "@/components/contact/ContactHero";
 import MapSection from "@/components/contact/MapSection";
 import Promises from "@/components/home/Promises";
@@ -38,6 +44,10 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
       <Navbar />
       
       {/* 1. Contact Form & Info */}

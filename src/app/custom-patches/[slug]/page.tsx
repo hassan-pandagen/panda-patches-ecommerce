@@ -129,6 +129,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
+const PATCH_TYPES = [
+  { name: "Embroidered Patches", slug: "embroidered-patches" },
+  { name: "PVC Patches", slug: "pvc-patches" },
+  { name: "Woven Patches", slug: "woven-patches" },
+  { name: "Chenille Patches", slug: "chenille-patches" },
+  { name: "Leather Patches", slug: "leather-patches" },
+];
+
 export default async function DynamicProductPage({ params }: { params: { slug: string } }) {
   const data = await getProductData(params.slug);
 
@@ -276,7 +284,34 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
       {/* 11. HOW TO ORDER (Timeline Zig Zag) */}
       <TimelineSection />
 
-      {/* 12. SEO & FAQ */}
+      {/* 12. RELATED PATCH TYPES — internal linking */}
+      <section className="w-full py-12 md:py-16 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px] text-center">
+          <p className="text-gray-500 text-[12px] font-semibold uppercase tracking-widest mb-2">Explore More</p>
+          <h2 className="text-[20px] md:text-[26px] font-black uppercase text-panda-dark mb-8">
+            Other Custom Patch Types
+          </h2>
+          <div className="flex flex-wrap justify-center gap-3">
+            {PATCH_TYPES.filter((p) => p.slug !== params.slug).map((patch) => (
+              <Link
+                key={patch.slug}
+                href={`/custom-patches/${patch.slug}`}
+                className="px-5 py-2.5 rounded-full border-2 border-panda-dark text-panda-dark text-[13px] font-bold uppercase tracking-wide hover:bg-panda-dark hover:text-white transition-colors"
+              >
+                {patch.name}
+              </Link>
+            ))}
+            <Link
+              href="/custom-patches"
+              className="px-5 py-2.5 rounded-full bg-panda-yellow text-panda-dark text-[13px] font-bold uppercase tracking-wide hover:bg-panda-dark hover:text-panda-yellow transition-colors"
+            >
+              All Patch Types
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 13. SEO & FAQ */}
       <ContentSection />
       <FAQ />
 

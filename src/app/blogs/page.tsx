@@ -5,6 +5,12 @@ import { client, urlFor } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
+import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Home", url: "https://pandapatches.com" },
+  { name: "Blog", url: "https://pandapatches.com/blogs" },
+]);
 
 // ISR: Revalidate blog listing every 30 minutes (blogs update frequently)
 export const revalidate = 1800;
@@ -66,6 +72,10 @@ export default async function BlogsPage({ searchParams }: { searchParams: { page
 
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
       <Navbar />
       
       <section className="w-full py-16 bg-[#F9FAF5]">

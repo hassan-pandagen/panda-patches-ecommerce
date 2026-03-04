@@ -33,10 +33,26 @@ const quoteLimiter = redis
     })
   : null;
 
+const contactLimiter = redis
+  ? new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(20, '1 h'), // 20 contact form submissions per hour
+      analytics: true,
+      prefix: 'ratelimit:contact',
+    })
+  : null;
+
+const sampleBoxLimiter = redis
+  ? new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(10, '1 h'), // 10 sample box orders per hour
+      analytics: true,
+      prefix: 'ratelimit:samplebox',
+    })
+  : null;
+
 // Allowed origins for API requests
 const ALLOWED_ORIGINS = [
-  'http://localhost:3000',
-  'http://localhost:3001',
   'https://pandapatches.com',
   'https://www.pandapatches.com',
   'https://panda-patches-ecommerce.vercel.app',
@@ -103,6 +119,60 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  if (pathname === '/api/contact' && contactLimiter) {
+    const ip = request.ip || request.headers.get('x-forwarded-for') || 'anonymous';
+    const { success, limit, reset, remaining } = await contactLimiter.limit(ip);
+
+    if (!success) {
+      const resetDate = new Date(reset);
+      const minutesUntilReset = Math.ceil((reset - Date.now()) / 1000 / 60);
+
+      return NextResponse.json(
+        {
+          error: 'Too many requests',
+          message: `You've reached the limit of ${limit} contact submissions. Please try again in ${minutesUntilReset} minutes.`,
+          retryAfter: Math.ceil((reset - Date.now()) / 1000),
+        },
+        {
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': limit.toString(),
+            'X-RateLimit-Remaining': remaining.toString(),
+            'X-RateLimit-Reset': resetDate.toISOString(),
+            'Retry-After': Math.ceil((reset - Date.now()) / 1000).toString(),
+          },
+        }
+      );
+    }
+  }
+
+  if (pathname === '/api/sample-box' && sampleBoxLimiter) {
+    const ip = request.ip || request.headers.get('x-forwarded-for') || 'anonymous';
+    const { success, limit, reset, remaining } = await sampleBoxLimiter.limit(ip);
+
+    if (!success) {
+      const resetDate = new Date(reset);
+      const minutesUntilReset = Math.ceil((reset - Date.now()) / 1000 / 60);
+
+      return NextResponse.json(
+        {
+          error: 'Too many requests',
+          message: `You've reached the limit of ${limit} sample box requests. Please try again in ${minutesUntilReset} minutes.`,
+          retryAfter: Math.ceil((reset - Date.now()) / 1000),
+        },
+        {
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': limit.toString(),
+            'X-RateLimit-Remaining': remaining.toString(),
+            'X-RateLimit-Reset': resetDate.toISOString(),
+            'Retry-After': Math.ceil((reset - Date.now()) / 1000).toString(),
+          },
+        }
+      );
+    }
+  }
+
   // ============================================
   // ORIGIN VALIDATION FOR API ROUTES
   // ============================================
@@ -127,5 +197,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/api/checkout', '/api/quote'],
+  matcher: ['/api/checkout', '/api/quote', '/api/contact', '/api/sample-box'],
 };

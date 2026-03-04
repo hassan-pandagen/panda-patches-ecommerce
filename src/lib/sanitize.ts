@@ -55,16 +55,16 @@ export function sanitizePhone(phone: string): string {
 /**
  * Sanitizes a number input
  */
-export function sanitizeNumber(input: any): number {
-  const num = typeof input === 'string' ? parseFloat(input) : input;
+export function sanitizeNumber(input: unknown): number {
+  const num = typeof input === 'string' ? parseFloat(input) : (input as number);
   return isNaN(num) ? 0 : num;
 }
 
 /**
  * Sanitizes an integer input
  */
-export function sanitizeInteger(input: any): number {
-  const num = typeof input === 'string' ? parseInt(input, 10) : input;
+export function sanitizeInteger(input: unknown): number {
+  const num = typeof input === 'string' ? parseInt(input, 10) : (input as number);
   return isNaN(num) ? 0 : num;
 }
 

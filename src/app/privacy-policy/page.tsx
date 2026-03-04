@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Home", url: "https://pandapatches.com" },
+  { name: "Privacy Policy", url: "https://pandapatches.com/privacy-policy" },
+]);
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Panda Patches",
@@ -14,6 +20,10 @@ export default function PrivacyPolicyPage() {
 
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
       <Navbar />
 
       <article className="max-w-[860px] mx-auto py-24 px-6">

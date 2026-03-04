@@ -83,11 +83,11 @@ export async function GET(request: NextRequest) {
       }
     }`;
 
-    const products = await client.fetch(query);
-
-    // Get total count
     const countQuery = `count(*[${filterString}])`;
-    const total = await client.fetch(countQuery);
+    const [products, total] = await Promise.all([
+      client.fetch(query),
+      client.fetch(countQuery),
+    ]);
 
     // Transform products for UCP/API consumption
     const transformedProducts = products.map((product: any) => {

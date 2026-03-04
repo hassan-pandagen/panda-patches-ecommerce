@@ -204,6 +204,7 @@ export default async function CorporatePatchesPage() {
       {/* Breadcrumb Navigation */}
       <Breadcrumbs
         items={[
+          { label: "Home", href: "/" },
           { label: "Bulk Orders", href: "/bulk-custom-patches" }
         ]}
         currentPage="Corporate & Business Patches"

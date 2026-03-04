@@ -209,6 +209,7 @@ export default async function ChenilleTpuPatchesPage() {
       {/* Breadcrumb Navigation */}
       <Breadcrumbs
         items={[
+          { label: "Home", href: "/" },
           { label: "Bulk Orders", href: "/bulk-custom-patches" }
         ]}
         currentPage="Chenille TPU Patches"

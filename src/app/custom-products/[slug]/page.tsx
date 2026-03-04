@@ -154,6 +154,7 @@ export default async function CustomProductPage({ params }: { params: { slug: st
       {/* Breadcrumb Navigation */}
       <Breadcrumbs
         items={[
+          { label: "Home", href: "/" },
           { label: "Custom Products", href: "/custom-products" }
         ]}
         currentPage={data.title}

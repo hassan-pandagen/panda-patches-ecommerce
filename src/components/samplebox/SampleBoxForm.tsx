@@ -2,19 +2,18 @@
 
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { sanitizeString, sanitizeEmail, sanitizePhone, sanitizeInteger } from "@/lib/sanitize";
+import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
 
 export default function SampleBoxForm() {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onSubmit = async (data: any) => {
     setIsSubmitting(true);
-    setMessage(null);
+    setErrorMessage(null);
 
     try {
-      // Submit sample box order to API
       const response = await fetch('/api/sample-box', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -22,27 +21,22 @@ export default function SampleBoxForm() {
           fullName: sanitizeString(data.fullName),
           email: sanitizeEmail(data.email),
           contactNumber: sanitizePhone(data.contactNumber),
-          quantity: 1, // Always 1 sample box
           shippingAddress: sanitizeString(data.shippingAddress || ''),
-          cardNumber: sanitizeString(data.cardNumber),
-          cardholderName: sanitizeString(data.cardholderName),
-          expiryMonth: sanitizeString(data.expiryMonth),
-          expiryYear: sanitizeString(data.expiryYear),
-          securityCode: sanitizeString(data.securityCode),
         }),
       });
 
+      const result = await response.json();
+
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to submit order');
+        throw new Error(result.message || 'Failed to submit order');
       }
 
-      setMessage({ type: 'success', text: 'Order submitted successfully! We\'ll process your sample box order shortly.' });
-      reset();
+      // Redirect to Stripe Checkout
+      if (result.checkoutUrl) {
+        window.location.href = result.checkoutUrl;
+      }
     } catch (error: any) {
-      console.error('Sample box order error:', error);
-      setMessage({ type: 'error', text: error.message || 'Failed to submit order. Please try again.' });
-    } finally {
+      setErrorMessage(error.message || 'Failed to submit order. Please try again.');
       setIsSubmitting(false);
     }
   };
@@ -60,14 +54,9 @@ export default function SampleBoxForm() {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* Success/Error Message */}
-        {message && (
-          <div className={`p-4 rounded-lg text-sm font-semibold ${
-            message.type === 'success'
-              ? 'bg-green-100 text-green-800 border border-green-300'
-              : 'bg-red-100 text-red-800 border border-red-300'
-          }`}>
-            {message.text}
+        {errorMessage && (
+          <div className="p-4 rounded-lg text-sm font-semibold bg-red-100 text-red-800 border border-red-300">
+            {errorMessage}
           </div>
         )}
 
@@ -104,53 +93,15 @@ export default function SampleBoxForm() {
           className="form-input h-[80px] resize-none"
         />
 
-        {/* Payment Section */}
+        {/* Payment Note */}
         <div className="pt-4 border-t border-gray-200">
-          <p className="text-sm font-bold text-gray-700 mb-4 flex items-center gap-2">
+          <p className="text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
             <span className="text-panda-green">✓</span>
-            We accept all major payment methods
+            Secure payment powered by Stripe
           </p>
-
-          {/* Card Number */}
-          <input
-            {...register("cardNumber", { required: true })}
-            placeholder="Card Number"
-            className="form-input mb-4"
-            required
-          />
-
-          {/* Card Details */}
-          <div className="grid grid-cols-3 gap-4 mb-4">
-            <select {...register("expiryMonth", { required: true })} className="form-input" required>
-              <option value="">MM</option>
-              {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-                <option key={month} value={month.toString().padStart(2, '0')}>
-                  {month.toString().padStart(2, '0')}
-                </option>
-              ))}
-            </select>
-            <select {...register("expiryYear", { required: true })} className="form-input" required>
-              <option value="">YYY</option>
-              {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + i).map((year) => (
-                <option key={year} value={year}>{year}</option>
-              ))}
-            </select>
-            <input
-              {...register("securityCode", { required: true })}
-              placeholder="Security Code"
-              maxLength={4}
-              className="form-input"
-              required
-            />
-          </div>
-
-          {/* Cardholder Name */}
-          <input
-            {...register("cardholderName", { required: true })}
-            placeholder="Cardholder Name"
-            className="form-input"
-            required
-          />
+          <p className="text-xs text-gray-500">
+            You will be redirected to Stripe to complete your payment securely.
+          </p>
         </div>
 
         {/* Submit Button */}
@@ -171,7 +122,7 @@ export default function SampleBoxForm() {
             disabled:opacity-50 disabled:cursor-not-allowed
           "
         >
-          {isSubmitting ? 'Processing...' : 'Order Sample Box'}
+          {isSubmitting ? 'Redirecting to Payment...' : 'Order Sample Box — $45'}
         </button>
       </form>
 

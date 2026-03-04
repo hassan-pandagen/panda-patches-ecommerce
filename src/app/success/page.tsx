@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Order Confirmed | Panda Patches",
+  description: "Your custom patch order has been confirmed. Our team will contact you within 24 hours with a free digital mockup.",
+  robots: { index: false, follow: false },
+};
 import { CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";

@@ -1,6 +1,17 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
+interface PayPalEventResource {
+  id: string;
+  amount?: { value: string };
+  supplementary_data?: { related_ids?: { order_id?: string } };
+}
+
+interface PayPalEvent {
+  event_type: string;
+  resource: PayPalEventResource;
+}
+
 // Init Supabase
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -113,7 +124,7 @@ export async function POST(req: Request) {
   }
 }
 
-async function handleOrderApproved(event: any) {
+async function handleOrderApproved(event: PayPalEvent) {
   const orderId = event.resource.id;
 
   // Update order status in database
@@ -130,10 +141,10 @@ async function handleOrderApproved(event: any) {
   }
 }
 
-async function handlePaymentCaptured(event: any) {
+async function handlePaymentCaptured(event: PayPalEvent) {
   const captureId = event.resource.id;
   const orderId = event.resource.supplementary_data?.related_ids?.order_id;
-  const amountPaid = parseFloat(event.resource.amount.value);
+  const amountPaid = parseFloat(event.resource.amount?.value ?? '0');
 
   const { error } = await supabase
     .from('orders')
@@ -151,7 +162,7 @@ async function handlePaymentCaptured(event: any) {
   }
 }
 
-async function handlePaymentDenied(event: any) {
+async function handlePaymentDenied(event: PayPalEvent) {
   const orderId = event.resource.supplementary_data?.related_ids?.order_id;
 
   // Update order status

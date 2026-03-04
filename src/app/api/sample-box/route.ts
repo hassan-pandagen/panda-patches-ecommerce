@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createClient } from '@supabase/supabase-js';
 import Stripe from 'stripe';
+import { resolveBaseUrl } from '@/lib/checkoutConfig';
 
 // Initialize Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -14,25 +15,18 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-// Validation schema
+// Validation schema — no card fields, Stripe handles payment
 const sampleBoxSchema = z.object({
-  fullName: z.string().min(1, { message: 'Full name is required' }),
+  fullName: z.string().min(1, { message: 'Full name is required' }).max(200),
   email: z.string().email({ message: 'Invalid email address' }),
-  contactNumber: z.string().min(1, { message: 'Contact number is required' }),
-  quantity: z.number().int().positive({ message: 'Quantity must be positive' }),
+  contactNumber: z.string().min(1, { message: 'Contact number is required' }).max(30),
   shippingAddress: z.string().optional(),
-  cardNumber: z.string().min(1, { message: 'Card number is required' }),
-  cardholderName: z.string().min(1, { message: 'Cardholder name is required' }),
-  expiryMonth: z.string().min(1, { message: 'Expiry month is required' }),
-  expiryYear: z.string().min(1, { message: 'Expiry year is required' }),
-  securityCode: z.string().min(1, { message: 'Security code is required' }),
 });
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // Validate input
     const validationResult = sampleBoxSchema.safeParse(body);
     if (!validationResult.success) {
       return NextResponse.json(
@@ -47,43 +41,59 @@ export async function POST(request: Request) {
     const data = validationResult.data;
     const amount = 4500; // $45.00 in cents
 
-    // Create Stripe payment intent (Note: In production, use Stripe Elements for secure card handling)
-    // For now, we'll store the order and handle payment separately
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount,
-      currency: 'usd',
-      description: `Sample Box Order - ${data.fullName}`,
+    const origin = request.headers.get('origin');
+    const baseUrl = resolveBaseUrl(origin);
+
+    // Create Stripe Checkout Session (secure — card data never touches our server)
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      customer_email: data.email,
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: 'Sample Box',
+              description: 'Custom patch sample box including setup and shipping',
+            },
+            unit_amount: amount,
+          },
+          quantity: 1,
+        },
+      ],
       metadata: {
         fullName: data.fullName,
         email: data.email,
-        quantity: data.quantity.toString(),
+        contactNumber: data.contactNumber,
+        shippingAddress: data.shippingAddress || '',
+        orderType: 'sample_box',
       },
+      success_url: `${baseUrl}/success`,
+      cancel_url: `${baseUrl}/error-payment`,
     });
 
-    // Store order in Supabase
+    // Store pending order in Supabase
     const { error: dbError } = await supabase
       .from('sample_box_orders')
       .insert({
         full_name: data.fullName,
         email: data.email,
         contact_number: data.contactNumber,
-        quantity: data.quantity,
         shipping_address: data.shippingAddress,
         amount,
-        payment_intent_id: paymentIntent.id,
+        stripe_session_id: session.id,
         status: 'pending',
         created_at: new Date().toISOString(),
       });
 
     if (dbError) {
       console.error('Database error:', dbError);
-      // Continue anyway - payment intent was created
     }
 
     return NextResponse.json({
       success: true,
-      message: 'Sample box order received successfully',
-      paymentIntentId: paymentIntent.id,
+      checkoutUrl: session.url,
     });
   } catch (error: unknown) {
     console.error('Sample box order error:', error);

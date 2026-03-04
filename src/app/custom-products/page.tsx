@@ -3,6 +3,12 @@ import { Metadata } from "next";
 import { client, urlFor } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
+
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: "Home", url: "https://pandapatches.com" },
+  { name: "Custom Products", url: "https://pandapatches.com/custom-products" },
+]);
 import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
@@ -58,6 +64,10 @@ export default async function CustomProductsPage() {
 
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
       <Navbar />
 
       {/* HERO SECTION */}

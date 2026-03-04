@@ -206,6 +206,7 @@ export default async function SportsPatchesPage() {
       {/* Breadcrumb Navigation */}
       <Breadcrumbs
         items={[
+          { label: "Home", href: "/" },
           { label: "Bulk Orders", href: "/bulk-custom-patches" }
         ]}
         currentPage="Sports Team Patches"

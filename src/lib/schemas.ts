@@ -393,6 +393,7 @@ export function generateArticleSchema(params: ArticleSchemaParams) {
         "url": "https://pandapatches.com/assets/logo-panda.svg"
       }
     },
+    "inLanguage": "en",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": url
@@ -536,6 +537,11 @@ export function generateLocalBusinessSchema() {
       "addressRegion": "TX",
       "addressCountry": "US"
     },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 29.6188,
+      "longitude": -95.5354
+    },
     "telephone": "+1-302-250-4340",
     "email": "admin@pandapatches.com",
     "url": "https://pandapatches.com",
@@ -590,10 +596,17 @@ export function generateLocationBusinessSchema(locationName: string, pageSlug?: 
       "addressRegion": "TX",
       "addressCountry": "US"
     },
-    "areaServed": {
-      "@type": "State",
-      "name": locationName
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 29.6188,
+      "longitude": -95.5354
     },
+    "areaServed": [
+      {
+        "@type": "State",
+        "name": locationName
+      }
+    ],
     "founder": {
       "@type": "Person",
       "name": "Imran Raza",

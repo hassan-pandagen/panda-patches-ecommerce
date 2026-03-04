@@ -91,7 +91,6 @@ export async function POST(req: Request) {
           );
         }
 
-        console.log(`✅ Payment successful for order ${orderId}`);
         break;
       }
 
@@ -100,7 +99,6 @@ export async function POST(req: Request) {
         const orderId = session.metadata?.order_id;
 
         if (orderId) {
-          // Mark the order as expired/cancelled
           await supabase
             .from('orders')
             .update({
@@ -108,8 +106,6 @@ export async function POST(req: Request) {
               status: 'CANCELLED',
             })
             .eq('id', orderId);
-
-          console.log(`⏰ Checkout session expired for order ${orderId}`);
         }
         break;
       }
@@ -117,7 +113,6 @@ export async function POST(req: Request) {
       case 'payment_intent.payment_failed': {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
 
-        // Find the order by payment intent ID
         const { data: order } = await supabase
           .from('orders')
           .select('id')
@@ -132,14 +127,12 @@ export async function POST(req: Request) {
               status: 'PAYMENT_FAILED',
             })
             .eq('id', order.id);
-
-          console.log(`❌ Payment failed for order ${order.id}`);
         }
         break;
       }
 
       default:
-        console.log(`Unhandled event type: ${event.type}`);
+        break;
     }
 
     return NextResponse.json({ received: true });

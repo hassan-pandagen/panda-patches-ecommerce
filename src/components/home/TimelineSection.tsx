@@ -77,7 +77,7 @@ export default async function TimelineSection() {
           <div className="lg:hidden flex flex-col gap-6">
              <div className="flex justify-center mb-2">
                 <div className="relative w-[300px] h-[250px]">
-                   <Image src={imgLeft} alt="Collage 1" fill className="object-contain" sizes="300px" quality={85} />
+                   <Image src={imgLeft} alt="Collage 1" fill className="object-contain" sizes="300px" quality={85} priority />
                 </div>
              </div>
              {steps.slice(0, 2).map((step: TimelineStep, index: number) => (
@@ -85,7 +85,7 @@ export default async function TimelineSection() {
              ))}
              <div className="flex justify-center my-2">
                 <div className="relative w-[300px] h-[250px]">
-                   <Image src={imgRight} alt="Collage 2" fill className="object-contain" sizes="300px" quality={85} />
+                   <Image src={imgRight} alt="Collage 2" fill className="object-contain" sizes="300px" quality={85} priority />
                 </div>
              </div>
              {steps.slice(2, 4).map((step: TimelineStep, index: number) => (

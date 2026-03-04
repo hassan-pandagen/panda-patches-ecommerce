@@ -2,20 +2,17 @@
 "use client";
 
 import { useState, useEffect, useMemo, useRef } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import { UploadCloud, Check, ChevronDown, ShoppingCart, FileText, X, Lightbulb } from "lucide-react";
+import { UploadCloud, Check, ChevronDown, ShoppingCart, FileText, Lightbulb } from "lucide-react";
 import Modal from "@/components/ui/Modal";
 import HeroForm from "@/components/home/HeroForm";
-import { createClient } from '@supabase/supabase-js';
 import { urlFor } from "@/lib/sanity";
-import { calculatePatchPrice, getUpsellTiers } from "@/lib/pricingCalculator";
 import TrustBadges from "@/components/shared/TrustBadges";
+import { useFileUpload } from "@/hooks/useFileUpload";
+import { usePriceCalculation } from "@/hooks/usePriceCalculation";
 
-// Initialize Supabase client (anon key is fine for storage uploads)
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+const QuoteModal = dynamic(() => import("./QuoteModal"), { ssr: false });
 
 // Default backing options if none provided
 const DEFAULT_BACKINGS = [
@@ -183,13 +180,10 @@ export default function ComplexCalculator({
   const [showAddons, setShowAddons] = useState(false);
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
 
-  // File Upload State
-  const [fileName, setFileName] = useState("");
-  const [fileUrl, setFileUrl] = useState("");
-  const [uploading, setUploading] = useState(false);
+  // File Upload (hook)
+  const { fileName, setFileName, fileUrl, setFileUrl, uploading, handleFileUpload } = useFileUpload();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [pricePulse, setPricePulse] = useState(false);
 
   // Multi-Step Form State
   const [currentStep, setCurrentStep] = useState(1);
@@ -198,11 +192,6 @@ export default function ComplexCalculator({
 
   // Quote Modal State
   const [showQuoteModal, setShowQuoteModal] = useState(false);
-  const [quoteEmail, setQuoteEmail] = useState("");
-  const [quotePhone, setQuotePhone] = useState("");
-  const [quoteMessage, setQuoteMessage] = useState("");
-  const [quoteSubmitting, setQuoteSubmitting] = useState(false);
-  const [quoteSubmitted, setQuoteSubmitted] = useState(false);
 
   // Patch Idea State
   const [patchIdea, setPatchIdea] = useState("");
@@ -245,6 +234,7 @@ export default function ComplexCalculator({
       if (s.currentStep) setCurrentStep(s.currentStep);
       if (s.patchIdea) { setPatchIdea(s.patchIdea); setShowPatchIdea(true); }
     } catch {}
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Save form state to localStorage on every change
@@ -291,9 +281,6 @@ export default function ComplexCalculator({
     return date.toISOString().split('T')[0];
   };
 
-  // Calculate discount (10% for economy delivery 16-18 business days)
-  const discount = deliveryOption === "economy" ? 0.10 : 0;
-
   useEffect(() => {
     const selected = PLACEMENTS.find(p => p.label === placement);
     if (selected && selected.label !== "Custom Size" && selected.label !== "Choose Size / Placement") {
@@ -306,30 +293,18 @@ export default function ComplexCalculator({
     }
   }, [placement]);
 
-  // Real Price Calculation using pricing tables
-  const priceResult = useMemo(() => {
-    return calculatePatchPrice(productType, width, height, quantity);
-  }, [productType, width, height, quantity]);
-
-  const originalPrice = priceResult.totalPrice;
-  const discountAmount = originalPrice * discount;
-  const basePrice = originalPrice - discountAmount;
-  const unitPrice = priceResult.unitPrice;
-
-  // Upsell tiers — next 2 quantity breakpoints with savings
-  const upsellTiers = useMemo(() => {
-    return getUpsellTiers(productType, width, height, quantity);
-  }, [productType, width, height, quantity]);
-
-  useEffect(() => {
-    setPricePulse(true);
-    const timer = setTimeout(() => setPricePulse(false), 300);
-    return () => clearTimeout(timer);
-  }, [width, height, quantity, backing, deliveryOption]);
+  // Price calculation (hook)
+  const { priceResult, upsellTiers, discount, originalPrice, discountAmount, basePrice, unitPrice, pricePulse } = usePriceCalculation({
+    productType, width, height, quantity, deliveryOption,
+  });
 
   // Step validation
   const validateStep = (step: number): boolean => {
     if (step === 1) {
+      if (priceResult.error) {
+        alert(priceResult.error);
+        return false;
+      }
       return true;
     }
     if (step === 2) {
@@ -421,56 +396,6 @@ export default function ComplexCalculator({
     }
   };
 
-  // Quote Modal Submit — saves lead to Supabase via /api/quote
-  const handleQuoteModalSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!quoteEmail) {
-      alert("Please enter your email address");
-      return;
-    }
-
-    setQuoteSubmitting(true);
-
-    try {
-      const response = await fetch('/api/quote', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          customer: {
-            name: quoteEmail, // use email as name since we don't ask for name in modal
-            email: quoteEmail,
-            phone: quotePhone || '',
-          },
-          details: {
-            width,
-            height,
-            quantity,
-            backing: backing || 'Not specified',
-            color: selectedColor || 'Not specified',
-            placement,
-            instructions: quoteMessage || '',
-            patchType: productType,
-          },
-          artworkUrl: null,
-          isBulkOrder: false,
-        }),
-      });
-
-      if (response.ok) {
-        setQuoteSubmitted(true);
-      } else {
-        const data = await response.json();
-        alert("Failed to send quote: " + (data.error || "Please try again"));
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Something went wrong. Please try again.");
-    } finally {
-      setQuoteSubmitting(false);
-    }
-  };
-
   // Get max size based on product type
   const getMaxSize = () => {
     const type = productType.toLowerCase();
@@ -488,48 +413,6 @@ export default function ComplexCalculator({
     }
   };
   const handleDec = (setter: any, val: number) => val > 0.5 && setter(val - 0.5);
-
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setUploading(true);
-    setFileName(file.name);
-
-    try {
-      const timestamp = Date.now();
-      const fileExt = file.name.split('.').pop();
-      const randomId = Math.random().toString(36).substring(2, 10).toUpperCase();
-      const uniqueFileName = `artwork-${randomId}-${timestamp}.${fileExt}`;
-
-      const { data, error } = await supabase.storage
-        .from('order-attachments')
-        .upload(uniqueFileName, file, {
-          cacheControl: '3600',
-          upsert: false
-        });
-
-      if (error) {
-        console.error('Upload error:', error);
-        alert('Failed to upload file. Please try again.');
-        setFileName('');
-        setUploading(false);
-        return;
-      }
-
-      const { data: urlData } = supabase.storage
-        .from('order-attachments')
-        .getPublicUrl(uniqueFileName);
-
-      setFileUrl(urlData.publicUrl);
-      setUploading(false);
-    } catch (err) {
-      console.error('Upload error:', err);
-      alert('Failed to upload file. Please try again.');
-      setFileName('');
-      setUploading(false);
-    }
-  };
 
   return (
     <div className="w-full bg-white text-left font-sans">
@@ -1426,10 +1309,7 @@ export default function ComplexCalculator({
               {/* Secondary CTA */}
               <button
                 type="button"
-                onClick={() => {
-                  setQuoteSubmitted(false);
-                  setShowQuoteModal(true);
-                }}
+                onClick={() => setShowQuoteModal(true)}
                 className="w-full h-[60px] bg-white border-2 border-gray-300 text-gray-800 rounded-[14px] font-bold uppercase tracking-widest text-[13px] hover:border-black hover:text-black hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
               >
                 <FileText size={18} /> GET FREE QUOTE
@@ -1476,136 +1356,17 @@ export default function ComplexCalculator({
 
       </form>
 
-      {/* === QUOTE MODAL OVERLAY === */}
-      {showQuoteModal && (
-        <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] flex items-end sm:items-center justify-center p-0 sm:p-4"
-          onClick={(e) => { if (e.target === e.currentTarget) setShowQuoteModal(false); }}
-        >
-          <div className="bg-white w-full sm:max-w-md rounded-t-[24px] sm:rounded-[24px] shadow-2xl overflow-hidden">
-
-            {/* Modal Header */}
-            <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-gray-100">
-              <div>
-                <h2 className="text-xl font-black text-black uppercase tracking-wide">Get Free Quote</h2>
-                <p className="text-sm text-gray-500 font-medium mt-0.5">We&apos;ll get back to you within 2 hours</p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setShowQuoteModal(false)}
-                className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
-              >
-                <X size={20} className="text-gray-600" />
-              </button>
-            </div>
-
-            {quoteSubmitted ? (
-              /* Success State */
-              <div className="px-6 py-10 text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Check size={32} className="text-green-600" strokeWidth={3} />
-                </div>
-                <h3 className="text-xl font-black text-black mb-2">Quote Request Sent!</h3>
-                <p className="text-gray-500 font-medium text-sm mb-6">
-                  We&apos;ve received your quote request. Our team will email you within 2 hours with the best price.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setShowQuoteModal(false)}
-                  className="w-full h-[52px] bg-black text-panda-yellow rounded-[12px] font-black text-sm uppercase tracking-widest"
-                >
-                  Close
-                </button>
-              </div>
-            ) : (
-              /* Quote Form */
-              <form onSubmit={handleQuoteModalSubmit} className="px-6 py-5 space-y-4">
-
-                {/* Patch Summary */}
-                <div className="bg-gray-50 rounded-[12px] px-4 py-3 flex items-center justify-between">
-                  <div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wide">{productType}</p>
-                    <p className="text-sm font-black text-black">
-                      {width}&quot; × {height}&quot; · {quantity} pcs
-                      {backing ? ` · ${BACKINGS.find(b => b.id === backing)?.name || ''}` : ''}
-                    </p>
-                  </div>
-                  {!priceResult.error && (
-                    <div className="text-right">
-                      <p className="text-xs text-gray-400 font-medium">Est. Price</p>
-                      <p className="text-lg font-black text-black">${basePrice.toFixed(2)}</p>
-                    </div>
-                  )}
-                </div>
-
-                {/* Email */}
-                <div>
-                  <label className="text-xs font-black text-black uppercase tracking-wide mb-1.5 block">
-                    Email Address <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    value={quoteEmail}
-                    onChange={(e) => setQuoteEmail(e.target.value)}
-                    className="w-full h-[52px] border-2 border-gray-300 rounded-[12px] px-4 font-bold text-base text-black outline-none focus:border-black transition-all"
-                    required
-                    autoFocus
-                  />
-                </div>
-
-                {/* Phone */}
-                <div>
-                  <label className="text-xs font-black text-black uppercase tracking-wide mb-1.5 block">
-                    Phone Number <span className="text-gray-400 font-medium normal-case">(Optional)</span>
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="+1 (555) 000-0000"
-                    value={quotePhone}
-                    onChange={(e) => setQuotePhone(e.target.value)}
-                    className="w-full h-[52px] border-2 border-gray-300 rounded-[12px] px-4 font-bold text-base text-black outline-none focus:border-black transition-all"
-                  />
-                </div>
-
-                {/* Message */}
-                <div>
-                  <label className="text-xs font-black text-black uppercase tracking-wide mb-1.5 block">
-                    What are you making? <span className="text-gray-400 font-medium normal-case">(Optional)</span>
-                  </label>
-                  <textarea
-                    placeholder="e.g. Patches for our school sports team, company uniforms, custom gifts..."
-                    value={quoteMessage}
-                    onChange={(e) => setQuoteMessage(e.target.value)}
-                    rows={3}
-                    className="w-full border-2 border-gray-300 rounded-[12px] px-4 py-3 font-medium text-base text-black outline-none focus:border-black transition-all resize-none"
-                  />
-                </div>
-
-                {/* Submit */}
-                <button
-                  type="submit"
-                  disabled={quoteSubmitting}
-                  className="w-full h-[60px] bg-black text-panda-yellow rounded-[14px] font-black text-[15px] uppercase tracking-widest hover:scale-[1.01] transition-transform shadow-xl disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
-                >
-                  {quoteSubmitting ? (
-                    <span className="flex items-center justify-center gap-2">
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-panda-yellow"></div>
-                      Sending...
-                    </span>
-                  ) : (
-                    'Send Quote Request'
-                  )}
-                </button>
-
-                <p className="text-center text-xs text-gray-400 font-medium pb-1">
-                  No spam. We&apos;ll only contact you about your quote.
-                </p>
-              </form>
-            )}
-          </div>
-        </div>
-      )}
+      <QuoteModal
+        show={showQuoteModal}
+        onClose={() => setShowQuoteModal(false)}
+        productType={productType}
+        width={width}
+        height={height}
+        quantity={quantity}
+        backingName={BACKINGS.find(b => b.id === backing)?.name || ""}
+        basePrice={basePrice}
+        priceError={priceResult.error}
+      />
 
     </div>
   );

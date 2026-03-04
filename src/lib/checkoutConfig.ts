@@ -3,8 +3,6 @@
  */
 
 export const ALLOWED_ORIGINS = [
-  'http://localhost:3000',
-  'http://localhost:3001',
   'https://pandapatches.com',
   'https://www.pandapatches.com',
   'https://panda-patches-ecommerce.vercel.app',

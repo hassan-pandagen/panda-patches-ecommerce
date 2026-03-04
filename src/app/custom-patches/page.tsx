@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = await getSanityOgImage();
   return {
     title: "Custom Patches - Embroidered, PVC, Woven & More | Panda Patches",
-    description: "Browse all custom patch types: embroidered patches, PVC patches, woven patches, chenille patches, and leather patches. Low minimums, free design services, 7-14 day delivery. Order your custom patches today!",
+    description: "Custom embroidered, PVC, woven, chenille and leather patches. Low minimums, free design, 7-14 day delivery. No setup fees. Order from $0.71/pc.",
     keywords: [
       "custom patches",
       "embroidered patches",

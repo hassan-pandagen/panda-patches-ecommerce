@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { XCircle, RefreshCcw, Mail, Phone } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
+export const metadata: Metadata = {
+  title: "Payment Failed | Panda Patches",
+  description: "We couldn't process your payment. Please try again.",
+  robots: { index: false, follow: false },
+};
 
 export default function PaymentErrorPage() {
   return (

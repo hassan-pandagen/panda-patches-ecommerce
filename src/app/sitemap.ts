@@ -1,6 +1,11 @@
 import { MetadataRoute } from 'next';
 import { client } from '@/lib/sanity';
 
+interface SanitySlugItem {
+  slug: string;
+  _updatedAt: string;
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://pandapatches.com';
 
@@ -106,7 +111,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   // Product pages (highest priority for SEO)
-  const productPages: MetadataRoute.Sitemap = (data.products || []).map((product: any) => ({
+  const productPages: MetadataRoute.Sitemap = (data.products || []).map((product: SanitySlugItem) => ({
     url: `${baseUrl}/custom-patches/${product.slug}`,
     lastModified: new Date(product._updatedAt),
     changeFrequency: 'weekly' as const,
@@ -114,7 +119,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Custom product pages (coins, pins, keychains)
-  const customProductPages: MetadataRoute.Sitemap = (data.customProducts || []).map((product: any) => ({
+  const customProductPages: MetadataRoute.Sitemap = (data.customProducts || []).map((product: SanitySlugItem) => ({
     url: `${baseUrl}/custom-products/${product.slug}`,
     lastModified: new Date(product._updatedAt),
     changeFrequency: 'weekly' as const,
@@ -122,7 +127,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Blog posts (good for SEO)
-  const blogPages: MetadataRoute.Sitemap = (data.blogs || []).map((blog: any) => ({
+  const blogPages: MetadataRoute.Sitemap = (data.blogs || []).map((blog: SanitySlugItem) => ({
     url: `${baseUrl}/${blog.slug}`,
     lastModified: new Date(blog._updatedAt),
     changeFrequency: 'monthly' as const,
@@ -130,7 +135,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Location pages (local SEO)
-  const locationPages: MetadataRoute.Sitemap = (data.locations || []).map((location: any) => ({
+  const locationPages: MetadataRoute.Sitemap = (data.locations || []).map((location: SanitySlugItem) => ({
     url: `${baseUrl}/${location.slug}`,
     lastModified: new Date(location._updatedAt),
     changeFrequency: 'monthly' as const,
@@ -138,7 +143,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Patch style pages (category SEO)
-  const patchStylePages: MetadataRoute.Sitemap = (data.patchStyles || []).map((style: any) => ({
+  const patchStylePages: MetadataRoute.Sitemap = (data.patchStyles || []).map((style: SanitySlugItem) => ({
     url: `${baseUrl}/${style.slug}`,
     lastModified: new Date(style._updatedAt),
     changeFrequency: 'monthly' as const,
@@ -146,14 +151,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Asset pages (thread charts, iron-on instructions)
-  const assetPages: MetadataRoute.Sitemap = (data.assets || []).map((asset: any) => ({
+  const assetPages: MetadataRoute.Sitemap = (data.assets || []).map((asset: SanitySlugItem) => ({
     url: `${baseUrl}/assets/${asset.slug}`,
     lastModified: new Date(asset._updatedAt),
     changeFrequency: 'monthly' as const,
     priority: 0.5,
   }));
 
-  const ironOnPages: MetadataRoute.Sitemap = (data.ironOn || []).map((iron: any) => ({
+  const ironOnPages: MetadataRoute.Sitemap = (data.ironOn || []).map((iron: SanitySlugItem) => ({
     url: `${baseUrl}/assets/${iron.slug}`,
     lastModified: new Date(iron._updatedAt),
     changeFrequency: 'monthly' as const,

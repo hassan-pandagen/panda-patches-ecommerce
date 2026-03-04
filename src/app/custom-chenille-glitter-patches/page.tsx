@@ -211,6 +211,7 @@ export default async function ChenilleGlitterPatchesPage() {
       {/* Breadcrumb Navigation */}
       <Breadcrumbs
         items={[
+          { label: "Home", href: "/" },
           { label: "Bulk Orders", href: "/bulk-custom-patches" }
         ]}
         currentPage="Chenille Glitter Patches"

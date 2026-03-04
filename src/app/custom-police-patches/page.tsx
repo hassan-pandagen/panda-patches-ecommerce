@@ -204,6 +204,7 @@ export default async function PolicePatchesPage() {
       {/* Breadcrumb Navigation */}
       <Breadcrumbs
         items={[
+          { label: "Home", href: "/" },
           { label: "Bulk Orders", href: "/bulk-custom-patches" }
         ]}
         currentPage="Police & Law Enforcement Patches"
