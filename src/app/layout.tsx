@@ -21,6 +21,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://pandapatches.com'),
+  robots: { index: false, follow: false },
   title: "Panda Patches | Custom Iron On Patches",
   description: "Order custom embroidered patches, iron-on patches, PVC patches with low minimums. Free design services, 7-14 day delivery. 4.8★ rated on Trustpilot. No setup fees!",
   twitter: {

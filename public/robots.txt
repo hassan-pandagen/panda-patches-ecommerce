@@ -1,17 +1,6 @@
-# *
+# TEMPORARY - Remove noindex before going live
 User-agent: *
-Allow: /
-Disallow: /api/
-Disallow: /admin/
-
-# Googlebot
-User-agent: Googlebot
-Allow: /
-Disallow: /api/
+Disallow: /
 
 # Host
 Host: https://pandapatches.com
-
-# Sitemaps
-Sitemap: https://pandapatches.com/sitemap.xml
-Sitemap: https://pandapatches.com/server-sitemap.xml
