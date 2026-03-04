@@ -474,9 +474,10 @@ export default function ComplexCalculator({
   // Get max size based on product type
   const getMaxSize = () => {
     const type = productType.toLowerCase();
-    if (type.includes('pvc')) return 8; // PVC max 8 inches
+    if (type.includes('pvc')) return 8;
     if (type.includes('woven') || type.includes('leather')) return 12;
-    return 50; // Default max for other types
+    if (type.includes('embroid')) return 14;
+    return 14; // Default max
   };
 
   const maxSize = getMaxSize();

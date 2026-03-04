@@ -31,9 +31,11 @@ export async function POST(req: Request) {
     const captureResult = await paypalClient.captureOrder(orderId);
 
     // Check if payment was successful
+    // PayPal Server SDK v2 returns camelCase (purchaseUnits), not snake_case (purchase_units)
     if (captureResult.status === 'COMPLETED') {
-      const amountPaid = parseFloat(captureResult.purchase_units[0].payments.captures[0].amount.value);
-      const captureId = captureResult.purchase_units[0].payments.captures[0].id;
+      const captureData = captureResult.purchaseUnits?.[0]?.payments?.captures?.[0];
+      const amountPaid = parseFloat(captureData?.amount?.value ?? '0');
+      const captureId = captureData?.id ?? '';
 
       // Update order in database
       const { error } = await supabase
@@ -73,8 +75,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         success: false,
-        error: 'Failed to capture payment. Please contact support.',
-        _debug: msg
+        error: 'Failed to capture payment. Please contact support.'
       },
       { status: 500 }
     );

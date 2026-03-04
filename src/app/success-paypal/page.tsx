@@ -9,7 +9,6 @@ function PayPalSuccessContent() {
   const router = useRouter();
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
   const [message, setMessage] = useState('Processing your payment...');
-  const [debugMsg, setDebugMsg] = useState<string | null>(null);
 
   useEffect(() => {
     // PayPal redirects back with ?token=PAYPAL_ORDER_ID&PayerID=...
@@ -40,7 +39,6 @@ function PayPalSuccessContent() {
         } else {
           setStatus('error');
           setMessage(data.error || 'Payment capture failed');
-          if (data._debug) setDebugMsg(data._debug);
         }
       } catch {
         setStatus('error');
@@ -76,9 +74,6 @@ function PayPalSuccessContent() {
             <XCircle className="w-16 h-16 mx-auto text-red-600 mb-4" />
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Payment Failed</h1>
             <p className="text-gray-600 mb-6">{message}</p>
-            {debugMsg && (
-              <p className="text-xs text-gray-400 bg-gray-100 rounded p-2 mb-4 break-all text-left">{debugMsg}</p>
-            )}
             <button
               onClick={() => router.push('/')}
               className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
