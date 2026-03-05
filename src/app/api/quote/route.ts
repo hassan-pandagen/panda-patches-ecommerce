@@ -15,8 +15,8 @@ const QuoteSchema = z.object({
     phone: z.string().regex(/^[\d\s\-()+ ]+$/, 'Invalid phone number format').optional().or(z.literal('')),
   }),
   details: z.object({
-    width: z.number().positive().min(0.5).max(50),
-    height: z.number().positive().min(0.5).max(50),
+    width: z.number().min(0).max(50),
+    height: z.number().min(0).max(50),
     quantity: z.number().int().min(1).max(100000),
     backing: z.string().min(1).max(50),
     placement: z.string().max(200).optional().or(z.literal('')),

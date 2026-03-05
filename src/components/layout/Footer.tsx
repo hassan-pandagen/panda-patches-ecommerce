@@ -76,16 +76,16 @@ export default function Footer() {
              <div className="space-y-2">
                <h4 className="font-bold text-lg text-panda-dark">Follow Us</h4>
                <div className="flex gap-3">
-                 <a href="https://www.facebook.com/pandapatchesofficial" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
+                 <a href="https://www.facebook.com/pandapatchesofficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on Facebook" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
                    <Facebook size={16} />
                  </a>
-                 <a href="https://www.instagram.com/pandapatchesofficial/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
+                 <a href="https://www.instagram.com/pandapatchesofficial/" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on Instagram" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
                    <Instagram size={16} />
                  </a>
-                 <a href="https://www.linkedin.com/company/pandapatches" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
+                 <a href="https://www.linkedin.com/company/pandapatches" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on LinkedIn" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
                    <Linkedin size={16} />
                  </a>
-                 <a href="https://www.tiktok.com/@pandapatchesofficial" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
+                 <a href="https://www.tiktok.com/@pandapatchesofficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on TikTok" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
                    <TikTokIcon />
                  </a>
                </div>

@@ -32,28 +32,29 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
 
       let artworkUrl = null;
 
-      // Upload artwork file if provided
-      if (data.file && data.file[0]) {
-        const file = data.file[0];
-        // Sanitize file extension to prevent path traversal
-        const fileExt = file.name.split('.').pop()?.replace(/[^a-z0-9]/gi, '').toLowerCase() || 'jpg';
-        const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
-        const filePath = `artwork/${fileName}`;
+      // Upload artwork file if provided (non-blocking — form submits even if upload fails)
+      if (data.file && data.file[0] && supabase) {
+        try {
+          const file = data.file[0];
+          const fileExt = file.name.split('.').pop()?.replace(/[^a-z0-9]/gi, '').toLowerCase() || 'jpg';
+          const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
+          const filePath = `artwork/${fileName}`;
 
-        const { error: uploadError } = await supabase.storage
-          .from('order-attachments')
-          .upload(filePath, file);
+          const { error: uploadError } = await supabase.storage
+            .from('order-attachments')
+            .upload(filePath, file);
 
-        if (uploadError) {
-          console.error('Upload error:', uploadError);
-          throw new Error('Failed to upload artwork');
+          if (!uploadError) {
+            const { data: publicUrlData } = supabase.storage
+              .from('order-attachments')
+              .getPublicUrl(filePath);
+            artworkUrl = publicUrlData?.publicUrl || null;
+          } else {
+            console.error('Artwork upload failed (non-blocking):', uploadError);
+          }
+        } catch (uploadErr) {
+          console.error('Artwork upload exception (non-blocking):', uploadErr);
         }
-
-        const { data: publicUrlData } = supabase.storage
-           .from('order-attachments')
-           .getPublicUrl(filePath);
-
-         artworkUrl = publicUrlData?.publicUrl || null;
       }
 
       // Submit quote to API (with sanitized inputs)
@@ -68,10 +69,12 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           },
           details: {
             quantity: sanitizeInteger(data.quantity),
-            width: sanitizeNumber(data.size),
-            height: sanitizeNumber(data.size),
-            backing: 'iron',
-            instructions: sanitizeString(data.instructions || ''),
+            width: data.size === 'custom' ? 0 : sanitizeNumber(data.size),
+            height: data.size === 'custom' ? 0 : sanitizeNumber(data.size),
+            backing: sanitizeString(data.backing || 'iron'),
+            instructions: data.size === 'custom'
+              ? `Custom Size. ${sanitizeString(data.instructions || '')}`
+              : sanitizeString(data.instructions || ''),
             patchType: sanitizeString(data.type || ''),
           },
           artworkUrl: artworkUrl,
@@ -130,13 +133,13 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
          <div className="grid grid-cols-2 gap-3">
            <div className="relative">
              {isKeychains ? (
-               <select {...register("size")} defaultValue="" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+               <select {...register("size")} defaultValue="" aria-label="Select single or double side" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
                  <option value="" disabled hidden>Single or Double Side?</option>
                  <option value="single-side">Single Side</option>
                  <option value="double-side">Double Side</option>
                </select>
              ) : (
-               <select {...register("size")} className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+               <select {...register("size")} aria-label="Select patch size or placement" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
                  <option>Size or Placement</option>
                  <option value="2.5">Cap (2.25 - 2.5 inches)</option>
                  <option value="3.5">Left Chest (3 - 4 inches)</option>
@@ -152,7 +155,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
 
            <div className="relative">
              {isKeychains ? (
-               <select {...register("type")} defaultValue="" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+               <select {...register("type")} defaultValue="" aria-label="Select keychain type" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
                  <option value="" disabled hidden>Keychain Type</option>
                  <option value="chenille-keychain">Chenille Keychain</option>
                  <option value="embroidered-keychain">Embroidered Keychain</option>
@@ -160,7 +163,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
                  <option value="pvc-keychain">PVC Keychain</option>
                </select>
              ) : (
-               <select {...register("type")} className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+               <select {...register("type")} aria-label="Select patch type" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
                  <option>Patch Type</option>
                  <option value="embroidered">Embroidered</option>
                  <option value="chenille">Chenille</option>
@@ -177,8 +180,22 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
            </div>
          </div>
 
+        {/* Row 4 - Backing */}
+        {!isKeychains && (
+          <div className="relative">
+            <select {...register("backing")} className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+              <option value="iron">Iron On Backing</option>
+              <option value="sew">Sew On (No Backing)</option>
+              <option value="velcro">Velcro Backing</option>
+              <option value="heat-seal">Heat Seal Backing</option>
+              <option value="peel-stick">Peel & Stick Backing</option>
+            </select>
+            <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
+          </div>
+        )}
+
         {/* Instructions */}
-        <textarea 
+        <textarea
           {...register("instructions")}
           placeholder="Instructions: Text 'Panda Patches' White background..."
           className="form-input h-[80px] resize-none leading-relaxed pt-3"

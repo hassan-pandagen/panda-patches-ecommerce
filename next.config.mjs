@@ -19,26 +19,6 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Static assets - Long cache (1 year)
-        source: '/assets/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        // SVGs, fonts - Long cache (1 year)
-        source: '/:path*.(svg|woff2|woff|ttf|eot)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
         // Next.js optimized images - Medium cache (7 days CDN, 1 day browser)
         source: '/_next/image',
         headers: [
@@ -55,6 +35,26 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
+      {
+        // Static assets - Long cache (1 year) — after /:path* so it overrides
+        source: '/assets/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // SVGs, fonts - Long cache (1 year) — after /:path* so it overrides
+        source: '/:path*.(svg|woff2|woff|ttf|eot)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
@@ -112,13 +112,13 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://js.stripe.com https://www.paypalobjects.com https://www.paypal.com https://widget.trustpilot.com https://www.clarity.ms https://embed.tawk.to https://va.vercel-scripts.com https://cdn.vercel-insights.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://js.stripe.com https://www.paypalobjects.com https://www.paypal.com https://widget.trustpilot.com https://www.clarity.ms https://scripts.clarity.ms https://embed.tawk.to https://va.vercel-scripts.com https://cdn.vercel-insights.com https://googleads.g.doubleclick.net https://connect.facebook.net https://bat.bing.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "img-src 'self' data: blob: https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://www.paypalobjects.com",
-              "connect-src 'self' https://api.sanity.io https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://api.stripe.com https://uxgzlneefybifvccfhwp.supabase.co https://www.clarity.ms https://api.zeptomail.com",
+              "img-src 'self' data: blob: https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://www.paypalobjects.com https://c.clarity.ms https://googleads.g.doubleclick.net https://www.google.com https://www.facebook.com https://bat.bing.com",
+              "connect-src 'self' https://api.sanity.io https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://api.stripe.com https://uxgzlneefybifvccfhwp.supabase.co https://www.clarity.ms https://api.zeptomail.com https://www.google.com https://stats.g.doubleclick.net https://connect.facebook.net https://www.facebook.com https://embed.tawk.to https://va.tawk.to wss://ws.tawk.to",
               "media-src 'self' https://cdn.sanity.io",
-              "frame-src https://js.stripe.com https://hooks.stripe.com https://www.paypal.com",
+              "frame-src https://js.stripe.com https://hooks.stripe.com https://www.paypal.com https://www.googletagmanager.com https://widget.trustpilot.com https://embed.tawk.to",
               "object-src 'none'",
             ].join('; '),
           },
@@ -239,6 +239,13 @@ const nextConfig = {
       {
         source: '/blog/:slug/',
         destination: '/:slug',
+        permanent: true,
+      },
+
+      // SLUG CHANGES - Old WordPress slugs that changed during migration
+      {
+        source: '/varsity-jacket-patches-winter-trend-2024',
+        destination: '/varsity-jacket-patches-or-what-can-be-done',
         permanent: true,
       },
 
