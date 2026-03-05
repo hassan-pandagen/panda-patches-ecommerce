@@ -1,126 +1,171 @@
-'use client';
+"use client";
 
 import { useEffect } from 'react';
 
-const TawkToWidget = () => {
+function getTrafficSource() {
+  const params = new URLSearchParams(window.location.search);
+  const ref = document.referrer;
+
+  if (params.get('utm_source')) {
+    return {
+      source:   params.get('utm_source')   || 'unknown',
+      medium:   params.get('utm_medium')   || 'unknown',
+      campaign: params.get('utm_campaign') || 'none',
+      term:     params.get('utm_term')     || 'none',
+      content:  params.get('utm_content')  || 'none',
+    };
+  }
+
+  if (ref) {
+    const map: Record<string, { source: string; medium: string }> = {
+      'google.com':    { source: 'Google',     medium: 'organic' },
+      'bing.com':      { source: 'Bing',       medium: 'organic' },
+      'yahoo.com':     { source: 'Yahoo',      medium: 'organic' },
+      'duckduckgo.com':{ source: 'DuckDuckGo', medium: 'organic' },
+      'facebook.com':  { source: 'Facebook',   medium: 'social' },
+      'instagram.com': { source: 'Instagram',  medium: 'social' },
+      'linkedin.com':  { source: 'LinkedIn',   medium: 'social' },
+      'twitter.com':   { source: 'Twitter/X',  medium: 'social' },
+      'x.com':         { source: 'Twitter/X',  medium: 'social' },
+      'reddit.com':    { source: 'Reddit',     medium: 'social' },
+      'youtube.com':   { source: 'YouTube',    medium: 'video' },
+      'tiktok.com':    { source: 'TikTok',     medium: 'social' },
+      'pinterest.com': { source: 'Pinterest',  medium: 'social' },
+    };
+    for (const [domain, info] of Object.entries(map)) {
+      if (ref.includes(domain)) return { ...info, campaign: 'none' };
+    }
+    try {
+      const host = new URL(ref).hostname;
+      return { source: host, medium: 'referral', campaign: 'none' };
+    } catch {
+      return { source: 'unknown-referrer', medium: 'referral', campaign: 'none' };
+    }
+  }
+
+  return { source: 'Direct', medium: 'none', campaign: 'none' };
+}
+
+function getDeviceInfo() {
+  const ua = navigator.userAgent;
+  const isMobile = /Mobi|Android|iPhone/i.test(ua);
+  const isTablet = /iPad|Tablet/i.test(ua) || (isMobile && window.innerWidth >= 768);
+
+  let browser = 'Other';
+  if (/Edg\//i.test(ua))          browser = 'Edge';
+  else if (/OPR|Opera/i.test(ua)) browser = 'Opera';
+  else if (/Chrome/i.test(ua))    browser = 'Chrome';
+  else if (/Firefox/i.test(ua))   browser = 'Firefox';
+  else if (/Safari/i.test(ua))    browser = 'Safari';
+
+  let os = 'Other';
+  if (/Windows/i.test(ua))          os = 'Windows';
+  else if (/Mac OS X/i.test(ua))    os = 'macOS';
+  else if (/Android/i.test(ua))     os = 'Android';
+  else if (/iPhone|iPad/i.test(ua)) os = 'iOS';
+  else if (/Linux/i.test(ua))       os = 'Linux';
+
+  return {
+    device:  isTablet ? 'Tablet' : isMobile ? 'Mobile' : 'Desktop',
+    browser,
+    os,
+    screen: `${window.screen.width}x${window.screen.height}`,
+  };
+}
+
+async function getGeoLocation(): Promise<{ country: string; city: string; region: string }> {
+  const cached = sessionStorage.getItem('visitorGeo');
+  if (cached) return JSON.parse(cached);
+
+  try {
+    const res = await fetch('https://ipapi.co/json/', { cache: 'no-store' });
+    if (!res.ok) throw new Error('geo fetch failed');
+    const data = await res.json();
+    const geo = {
+      country: data.country_name || 'Unknown',
+      city:    data.city         || 'Unknown',
+      region:  data.region       || 'Unknown',
+    };
+    sessionStorage.setItem('visitorGeo', JSON.stringify(geo));
+    return geo;
+  } catch {
+    return { country: 'Unknown', city: 'Unknown', region: 'Unknown' };
+  }
+}
+
+export default function TawkToWidget() {
   useEffect(() => {
-    // Tawk.to configuration
-    const propertyId = '64b56d7d94cf5d49dc6422c0';
-    const widgetId = '1h5ib7cm1';
-
-    // Prevent double initialization — check if script is already in the DOM
-    if (document.getElementById('tawk-script')) {
-      return;
+    if (!localStorage.getItem('trafficSource')) {
+      localStorage.setItem('trafficSource', JSON.stringify({
+        ...getTrafficSource(),
+        landingPage: window.location.pathname,
+        timestamp:   new Date().toISOString(),
+        fullUrl:     window.location.href,
+      }));
     }
 
-    // Initialize Tawk_API
-    (window as any).Tawk_API = (window as any).Tawk_API || {};
+    const loadTawkTo = async () => {
+      const sourceData = JSON.parse(localStorage.getItem('trafficSource') || '{}');
+      const deviceInfo = getDeviceInfo();
+      const geoData    = await getGeoLocation();
 
-    // Mobile positioning — keep widget from covering page content
-    (window as any).Tawk_API.customStyle = {
-      visibility: {
-        mobile: { position: 'br', xOffset: 0, yOffset: 60 },
-        desktop: { position: 'br', xOffset: 0, yOffset: 0 },
+      const tawkApi = (window as any).Tawk_API || {};
+      (window as any).Tawk_API = tawkApi;
+
+      tawkApi.onLoad = function () {
+        tawkApi.setAttributes(
+          {
+            'Source':       sourceData.source      || 'Direct',
+            'Medium':       sourceData.medium      || 'none',
+            'Campaign':     sourceData.campaign    || 'none',
+            'Landing Page': sourceData.landingPage || '/',
+            'First Visit':  sourceData.timestamp   || 'Unknown',
+            'Country':      geoData.country,
+            'City':         geoData.city,
+            'Region':       geoData.region,
+            'Device':       deviceInfo.device,
+            'Browser':      deviceInfo.browser,
+            'OS':           deviceInfo.os,
+            'Screen':       deviceInfo.screen,
+            'Current Page': window.location.pathname,
+            'Full URL':     window.location.href,
+          },
+          (error: any) => { if (error) console.log('Tawk.to attr error:', error); }
+        );
+      };
+
+      const s1 = document.createElement('script');
+      const s0 = document.getElementsByTagName('script')[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode?.insertBefore(s1, s0);
+    };
+
+    let loaded = false;
+    const load = () => {
+      if (loaded) return;
+      loaded = true;
+      loadTawkTo();
+    };
+
+    window.addEventListener('scroll', load, { passive: true, once: true });
+    const timer = setTimeout(load, 5000);
+
+    const updatePage = () => {
+      const api = (window as any).Tawk_API;
+      if (api?.setAttributes) {
+        api.setAttributes({ 'Current Page': window.location.pathname }, () => {});
       }
     };
+    window.addEventListener('popstate', updatePage);
 
-    (window as any).Tawk_LoadStart = new Date();
-
-    // Advanced tracking setup
-    (window as any).Tawk_API.onLoad = function () {
-      const Tawk_API = (window as any).Tawk_API;
-
-      // Detect referral source
-      const referrer = document.referrer.toLowerCase();
-      const searchParams = new URLSearchParams(window.location.search);
-      const utmSource = searchParams.get('utm_source');
-      const utmMedium = searchParams.get('utm_medium');
-      const utmCampaign = searchParams.get('utm_campaign');
-      const fbclid = searchParams.get('fbclid');
-      const gclid = searchParams.get('gclid');
-
-      let source = 'Direct Visit';
-      let category = 'Direct';
-      let details = '';
-
-      if (referrer.includes('facebook.com') || referrer.includes('fb.com') || fbclid) {
-        source = 'Facebook';
-        category = 'Social Media';
-        details = fbclid ? 'Facebook Ad (Paid)' : 'Facebook Organic';
-      } else if (referrer.includes('instagram.com')) {
-        source = 'Instagram';
-        category = 'Social Media';
-      } else if (referrer.includes('google.com') || gclid) {
-        source = 'Google';
-        category = 'Search Engine';
-        details = gclid ? 'Google Ads (Paid)' : 'Google Organic';
-      } else if (referrer.includes('chat.openai.com') || referrer.includes('chatgpt.com')) {
-        source = 'ChatGPT';
-        category = 'AI Chatbot';
-      } else if (utmSource) {
-        source = utmSource;
-        category = 'UTM Campaign';
-        details = `Medium: ${utmMedium || 'N/A'} | Campaign: ${utmCampaign || 'N/A'}`;
-      }
-
-      // Set visitor attributes
-      Tawk_API.setAttributes(
-        {
-          'Traffic Source': source,
-          'Traffic Category': category,
-          'Source Details': details || 'N/A',
-          'Landing Page': window.location.href,
-          'UTM Source': utmSource || 'None',
-          'UTM Medium': utmMedium || 'None',
-          'UTM Campaign': utmCampaign || 'None',
-        },
-        function (error: any) {
-          if (error) console.error('Tawk.to attribute error:', error);
-        }
-      );
-
-      // Add tags
-      const tags: string[] = [];
-      if (category === 'AI Chatbot') tags.push('ai-chatbot');
-      if (category === 'Social Media') tags.push('social-media');
-      if (category === 'Search Engine') tags.push('search-engine');
-      if (tags.length > 0) Tawk_API.addTags(tags);
-    };
-
-    // GTM tracking
-    (window as any).Tawk_API.onChatStarted = function () {
-      if ((window as any).dataLayer) {
-        (window as any).dataLayer.push({ event: 'chat_started' });
-      }
-    };
-
-    // Inject Tawk.to script
-    const script = document.createElement('script');
-    script.id = 'tawk-script';
-    script.async = true;
-    script.src = `https://embed.tawk.to/${propertyId}/${widgetId}`;
-    script.setAttribute('crossorigin', '*');
-
-    // Error handling
-    script.onerror = () => {
-      console.error('Failed to load Tawk.to widget. Check domain whitelist in Tawk.to dashboard.');
-    };
-
-    // Append to document
-    const firstScript = document.getElementsByTagName('script')[0];
-    if (firstScript && firstScript.parentNode) {
-      firstScript.parentNode.insertBefore(script, firstScript);
-    } else {
-      document.head.appendChild(script);
-    }
-
-    // Cleanup
     return () => {
-      // Note: Tawk.to doesn't support easy cleanup, so we just leave it
+      clearTimeout(timer);
+      window.removeEventListener('scroll', load);
+      window.removeEventListener('popstate', updatePage);
     };
   }, []);
 
   return null;
-};
-
-export default TawkToWidget;
+}
