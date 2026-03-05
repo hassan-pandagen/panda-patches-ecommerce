@@ -16,7 +16,8 @@ const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC
 
 export default function HeroForm({ productSlug }: { productSlug?: string }) {
   const isKeychains = productSlug === 'keychains';
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, watch } = useForm();
+  const selectedSize = watch('size');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
@@ -73,7 +74,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
             height: data.size === 'custom' ? 0 : sanitizeNumber(data.size),
             backing: sanitizeString(data.backing || 'iron'),
             instructions: data.size === 'custom'
-              ? `Custom Size. ${sanitizeString(data.instructions || '')}`
+              ? `Custom Size: ${sanitizeString(data.customSize || '')}. ${sanitizeString(data.instructions || '')}`
               : sanitizeString(data.instructions || ''),
             patchType: sanitizeString(data.type || ''),
           },
@@ -180,10 +181,20 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
            </div>
          </div>
 
+        {/* Custom Size Input */}
+        {selectedSize === 'custom' && (
+          <input
+            {...register("customSize")}
+            placeholder="Enter custom size (e.g. 5 x 3 inches)"
+            className="form-input"
+          />
+        )}
+
         {/* Row 4 - Backing */}
         {!isKeychains && (
           <div className="relative">
-            <select {...register("backing")} className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+            <select {...register("backing")} defaultValue="" aria-label="Select backing type" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+              <option value="" disabled hidden>Select Backing</option>
               <option value="iron">Iron On Backing</option>
               <option value="sew">Sew On (No Backing)</option>
               <option value="velcro">Velcro Backing</option>

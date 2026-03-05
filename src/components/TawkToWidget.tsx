@@ -107,7 +107,6 @@ export default function TawkToWidget() {
     const loadTawkTo = async () => {
       const sourceData = JSON.parse(localStorage.getItem('trafficSource') || '{}');
       const deviceInfo = getDeviceInfo();
-      const geoData    = await getGeoLocation();
 
       const tawkApi = (window as any).Tawk_API || {};
       (window as any).Tawk_API = tawkApi;
@@ -120,9 +119,6 @@ export default function TawkToWidget() {
             'Campaign':     sourceData.campaign    || 'none',
             'Landing Page': sourceData.landingPage || '/',
             'First Visit':  sourceData.timestamp   || 'Unknown',
-            'Country':      geoData.country,
-            'City':         geoData.city,
-            'Region':       geoData.region,
             'Device':       deviceInfo.device,
             'Browser':      deviceInfo.browser,
             'OS':           deviceInfo.os,
