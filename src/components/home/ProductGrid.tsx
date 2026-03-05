@@ -196,12 +196,12 @@ function ProductCard({ item, showTag }: { item: any; showTag?: boolean }) {
         <div className="relative w-full h-full">
            {item.image ? (
              <Image
-               src={urlFor(item.image).url()}
+               src={urlFor(item.image).width(592).height(592).quality(75).auto('format').url()}
                alt={`${item.title} - Custom patches with low minimums and fast delivery | Panda Patches`}
                fill
                className="object-contain group-hover:scale-110 transition-transform duration-500"
-               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 296px"
-               quality={85}
+               sizes="(max-width: 380px) calc(100vw - 32px), 296px"
+               quality={75}
              />
            ) : (
              <div className="w-full h-full bg-gray-200/50 animate-pulse rounded-lg" />

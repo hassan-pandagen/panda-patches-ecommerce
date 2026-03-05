@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 import { generateLocalBusinessSchema, generateSchemaScript } from "@/lib/schemas";
+import { client, urlFor } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
 import Craftsmanship from "@/components/home/Craftsmanship";
@@ -21,57 +22,70 @@ const Footer = dynamic(() => import("@/components/layout/Footer"), { ssr: true }
 // Revalidate every 60 seconds (faster for development, increase for production)
 export const revalidate = 60;
 
-// SEO Metadata for Homepage
-export const metadata: Metadata = {
-  title: "Custom Patches & Embroidered Patches - Low Minimums | Panda Patches",
-  description: "Create custom embroidered patches, iron-on patches, woven patches, PVC patches with no minimum orders. Free design, fast 7-14 day delivery, 4.8★ on Trustpilot. Get instant quote!",
-  keywords: [
-    "custom patches",
-    "embroidered patches",
-    "iron on patches",
-    "custom embroidered patches",
-    "woven patches",
-    "PVC patches",
-    "no minimum patches",
-    "custom patch maker",
-    "patch design services"
-  ],
-  openGraph: {
-    title: "Custom Patches & Embroidered Patches - Low Minimums | Panda Patches",
-    description: "Create custom embroidered patches, iron-on patches, woven patches with low minimums. Free design, fast delivery, 4.8★ rated by 50+ customers.",
-    type: "website",
-    url: "https://pandapatches.com",
-    images: [
-      {
-        url: "https://pandapatches.com/assets/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Panda Patches - Custom Embroidered Patches"
-      }
+// SEO Metadata for Homepage — OG image pulled live from Sanity hero image
+export async function generateMetadata(): Promise<Metadata> {
+  let ogImageUrl = "https://pandapatches.com/assets/og-image.png"; // fallback
+
+  try {
+    const hero = await client.fetch(`*[_type == "hero"][0]{ "imageUrl": heroImage.asset->url }`);
+    if (hero?.imageUrl) {
+      ogImageUrl = urlFor(hero.imageUrl).width(1200).height(630).quality(85).auto('format').url();
+    }
+  } catch {
+    // fallback to static image
+  }
+
+  return {
+    title: "Custom Patches, Embroidered Patches - Low Minimums | Panda Patches",
+    description: "Create custom embroidered patches, iron-on patches, woven patches, PVC patches with no minimum orders. Free design, fast 7-14 day delivery, 4.8★ on Trustpilot. Get instant quote!",
+    keywords: [
+      "custom patches",
+      "embroidered patches",
+      "iron on patches",
+      "custom embroidered patches",
+      "woven patches",
+      "PVC patches",
+      "no minimum patches",
+      "custom patch maker",
+      "patch design services"
     ],
-    siteName: "Panda Patches"
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Custom Patches & Embroidered Patches - Low Minimums",
-    description: "Create custom embroidered patches with low minimums. Free design, fast delivery, 4.8★ rated.",
-    images: ["https://pandapatches.com/assets/og-image.png"]
-  },
-  alternates: {
-    canonical: "https://pandapatches.com"
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    openGraph: {
+      title: "Custom Patches From $0.50/pc. Free Design. Ships in 14 Days.",
+      description: "1,000,000+ patches delivered to brands worldwide. Custom embroidered, PVC, chenille & woven patches with free artwork, no setup fees, and a 4.8-star rating on Trustpilot. Get your free quote today.",
+      type: "website",
+      url: "https://pandapatches.com",
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: "Panda Patches - Custom Embroidered Patches From $0.50/pc"
+        }
+      ],
+      siteName: "Panda Patches"
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Custom Patches From $0.50/pc. Free Design. Ships in 14 Days.",
+      description: "1,000,000+ patches delivered worldwide. Free artwork, no setup fees, 4.8 stars on Trustpilot.",
+      images: [ogImageUrl]
+    },
+    alternates: {
+      canonical: "https://pandapatches.com"
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      }
     }
-  }
-};
+  };
+}
 
 // 1. THIS MUST BE A SERVER COMPONENT (No 'use client')
 export default function Home() {

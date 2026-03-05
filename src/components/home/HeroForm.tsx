@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { UploadCloud, Check } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { sanitizeString, sanitizeEmail, sanitizePhone, sanitizeInteger, sanitizeNumber } from "@/lib/sanitize";
 
@@ -18,6 +18,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
   const { register, handleSubmit, reset, watch } = useForm();
   const selectedSize = watch('size');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const partialSaved = useRef(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   // Artwork upload state (upload immediately on select, like ComplexCalculator)
@@ -59,6 +60,19 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
     }
   };
 
+  const handleEmailBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const email = e.target.value.trim();
+    if (partialSaved.current || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+    partialSaved.current = true;
+    const name = (document.querySelector('input[name="name"]') as HTMLInputElement)?.value || '';
+    const phone = (document.querySelector('input[name="phone"]') as HTMLInputElement)?.value || '';
+    fetch('/api/partial-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, phone, name, source: 'HERO_FORM_PARTIAL' }),
+    }).catch(() => {});
+  };
+
   const onSubmit = async (data: any) => {
     setIsSubmitting(true);
     setMessage(null);
@@ -91,6 +105,19 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
         throw new Error('Failed to submit quote');
       }
 
+      // Google Ads — Quote Form Lead conversion
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'conversion', {
+          send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
+          value: 50.0,
+          currency: 'USD',
+        });
+      }
+      // Facebook Pixel — Lead event
+      if (typeof window !== 'undefined' && (window as any).fbq) {
+        (window as any).fbq('track', 'Lead', { value: 50.0, currency: 'USD' });
+      }
+
       setMessage({ type: 'success', text: 'Quote submitted successfully! We\'ll contact you soon.' });
       reset();
       setUploadedFileName('');
@@ -108,9 +135,9 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
     <div className="bg-[#1E4000]/5 backdrop-blur-md border-[3px] border-[#676767]/30 rounded-[20px] px-8 py-8 shadow-2xl">
 
       <div className="text-center mb-6">
-        <h3 className="text-[24px] leading-tight font-black text-panda-dark uppercase tracking-tight">
+        <h2 className="text-[24px] leading-tight font-black text-panda-dark uppercase tracking-tight">
           Get Your Free Quote & <br/> Design Mockup
-        </h3>
+        </h2>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
@@ -128,7 +155,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
         {/* Row 1 */}
         <div className="grid grid-cols-2 gap-3">
           <input {...register("name")} placeholder="Name" className="form-input" />
-          <input {...register("email")} placeholder="Email" className="form-input" />
+          <input {...register("email")} placeholder="Email" className="form-input" onBlur={handleEmailBlur} />
         </div>
 
         {/* Row 2 */}
@@ -172,16 +199,18 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
                </select>
              ) : (
                <select {...register("type")} aria-label="Select patch type" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
-                 <option>Patch Type</option>
+                 <option value="">Patch Type</option>
                  <option value="embroidered">Embroidered</option>
+                 <option value="3d-embroidered">3D Embroidered Transfers</option>
                  <option value="chenille">Chenille</option>
-                 <option value="woven">Woven</option>
+                 <option value="printed">Printed</option>
                  <option value="pvc">PVC</option>
-                 <option value="rubber">Rubber</option>
+                 <option value="woven">Woven</option>
                  <option value="leather">Leather</option>
+                 <option value="silicone">Silicone Labels</option>
                  <option value="sequin">Sequin</option>
-                 <option value="metallic">Metallic</option>
-                 <option value="velvet">Velvet</option>
+                 <option value="chenille-tpu">Chenille TPU</option>
+                 <option value="chenille-glitter">Chenille Glitter</option>
                </select>
              )}
              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
@@ -202,11 +231,11 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           <div className="relative">
             <select {...register("backing")} defaultValue="" aria-label="Select backing type" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
               <option value="" disabled hidden>Select Backing</option>
-              <option value="iron">Iron On Backing</option>
-              <option value="sew">Sew On (No Backing)</option>
-              <option value="velcro">Velcro Backing</option>
-              <option value="heat-seal">Heat Seal Backing</option>
-              <option value="peel-stick">Peel & Stick Backing</option>
+              <option value="iron">Iron-On</option>
+              <option value="sew">Sew-On</option>
+              <option value="velcro">Velcro (Hook & Loop)</option>
+              <option value="sticker">Sticker</option>
+              <option value="pin">Pin Back</option>
             </select>
             <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
           </div>

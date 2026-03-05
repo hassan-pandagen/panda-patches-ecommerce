@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { UploadCloud, CheckCircle, Phone, Clock, ShieldCheck, Check } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
 
@@ -14,8 +14,8 @@ const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC
   : null;
 
 export default function BulkQuoteForm() {
-  const { register, handleSubmit, reset, watch } = useForm();
-  const selectedSize = watch('size');
+  const { register, handleSubmit, reset } = useForm();
+  const partialSaved = useRef(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
@@ -58,15 +58,24 @@ export default function BulkQuoteForm() {
     }
   };
 
+  const handleEmailBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const email = e.target.value.trim();
+    if (partialSaved.current || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+    partialSaved.current = true;
+    const name = (document.querySelector('input[name="name"]') as HTMLInputElement)?.value || '';
+    const phone = (document.querySelector('input[name="phone"]') as HTMLInputElement)?.value || '';
+    fetch('/api/partial-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, phone, name, source: 'BULK_FORM_PARTIAL' }),
+    }).catch(() => {});
+  };
+
   const onSubmit = async (data: any) => {
     setIsSubmitting(true);
     setMessage(null);
 
     try {
-      const sizeValue = selectedSize === "custom"
-        ? sanitizeString(data.customSize || "Custom")
-        : sanitizeString(data.size || "N/A");
-
       const response = await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -82,7 +91,7 @@ export default function BulkQuoteForm() {
             height: 3,
             backing: sanitizeString(data.backing || "iron"),
             instructions: sanitizeString(
-              `[BULK ORDER] Company: ${data.company || "N/A"} | Qty Range: ${data.quantityRange || "N/A"} | Patch Type: ${data.patchType || "N/A"} | Size: ${sizeValue} | Timeline: ${data.timeline || "Standard"} | Budget: ${data.budget || "N/A"} | Notes: ${data.notes || "None"}`
+              `[BULK ORDER] Company: ${data.company || "N/A"} | Qty Range: ${data.quantityRange || "N/A"} | Patch Type: ${data.patchType || "N/A"} | Size: ${data.size || "N/A"} | Needed By: ${data.neededBy || "N/A"} | Budget: ${data.budget || "N/A"} | Notes: ${data.notes || "None"}`
             ),
             patchType: sanitizeString(data.patchType || ""),
           },
@@ -92,6 +101,12 @@ export default function BulkQuoteForm() {
       });
 
       if (!response.ok) throw new Error("Failed to submit quote");
+
+      // Google Ads conversion already fires below via existing gtag call
+      // Facebook Pixel — Lead event
+      if (typeof window !== "undefined" && (window as any).fbq) {
+        (window as any).fbq("track", "Lead", { value: 50.0, currency: "USD" });
+      }
 
       setMessage({ type: "success", text: "Quote submitted! We'll respond within 2 business hours with your free mockup." });
       setUploadedFileName("");
@@ -163,6 +178,7 @@ export default function BulkQuoteForm() {
             placeholder="Email Address *"
             className="bulk-field"
             required
+            onBlur={handleEmailBlur}
           />
           <input
             {...register("phone")}
@@ -177,11 +193,16 @@ export default function BulkQuoteForm() {
             <select {...register("patchType")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
               <option value="">Patch Type</option>
               <option value="embroidered">Embroidered</option>
-              <option value="pvc">PVC / Rubber</option>
-              <option value="woven">Woven</option>
+              <option value="3d-embroidered">3D Embroidered Transfers</option>
               <option value="chenille">Chenille</option>
+              <option value="printed">Printed</option>
+              <option value="pvc">PVC</option>
+              <option value="woven">Woven</option>
               <option value="leather">Leather</option>
-              <option value="not-sure">Not Sure — Recommend</option>
+              <option value="silicone">Silicone Labels</option>
+              <option value="sequin">Sequin</option>
+              <option value="chenille-tpu">Chenille TPU</option>
+              <option value="chenille-glitter">Chenille Glitter</option>
             </select>
             <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-[10px]">&#9660;</div>
           </div>
@@ -202,19 +223,11 @@ export default function BulkQuoteForm() {
 
         {/* Row 4: Size + Backing */}
         <div className="grid grid-cols-2 gap-2.5">
-          <div className="relative">
-            <select {...register("size")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
-              <option value="">Size</option>
-              <option value="2">2 inch</option>
-              <option value="2.5">2.5 inch (Caps)</option>
-              <option value="3">3 inch (Standard)</option>
-              <option value="3.5">3.5 inch (Chest)</option>
-              <option value="4">4 inch</option>
-              <option value="5+">5+ inch (Large)</option>
-              <option value="custom">Custom Size</option>
-            </select>
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-[10px]">&#9660;</div>
-          </div>
+          <input
+            {...register("size")}
+            placeholder="Size (e.g. 4 x 3 inches)"
+            className="bulk-field"
+          />
 
           <div className="relative">
             <select {...register("backing")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
@@ -222,45 +235,30 @@ export default function BulkQuoteForm() {
               <option value="iron">Iron-On</option>
               <option value="velcro">Velcro (Hook & Loop)</option>
               <option value="sew">Sew-On</option>
-              <option value="adhesive">Adhesive / Sticker</option>
+              <option value="sticker">Sticker</option>
               <option value="pin">Pin Back</option>
-              <option value="not-sure">Not Sure</option>
             </select>
             <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-[10px]">&#9660;</div>
           </div>
         </div>
 
-        {/* Custom Size Input */}
-        {selectedSize === "custom" && (
-          <input
-            {...register("customSize")}
-            placeholder="Enter your custom size (e.g. 5 x 3 inches, 12 x 8 inches...)"
-            className="bulk-field"
-          />
-        )}
-
-        {/* Row 5: Timeline + Budget */}
+        {/* Row 5: Needed By (date) + Budget (text) */}
         <div className="grid grid-cols-2 gap-2.5">
-          <div className="relative">
-            <select {...register("timeline")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
-              <option value="">Timeline</option>
-              <option value="standard">Standard (2 weeks)</option>
-              <option value="rush">Rush (7 days)</option>
-              <option value="flexible">Flexible — No rush</option>
-            </select>
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-[10px]">&#9660;</div>
+          <div>
+            <p className="text-[11px] text-gray-700 font-semibold mb-1 pl-1">Needed By</p>
+            <input
+              {...register("neededBy")}
+              type="date"
+              className="bulk-field"
+            />
           </div>
-
-          <div className="relative">
-            <select {...register("budget")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
-              <option value="">Budget Range</option>
-              <option value="under-500">Under $500</option>
-              <option value="500-1000">$500 – $1,000</option>
-              <option value="1000-5000">$1,000 – $5,000</option>
-              <option value="5000-10000">$5,000 – $10,000</option>
-              <option value="10000+">$10,000+</option>
-            </select>
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-[10px]">&#9660;</div>
+          <div>
+            <p className="text-[11px] text-gray-700 font-semibold mb-1 pl-1">Your Budget</p>
+            <input
+              {...register("budget")}
+              placeholder="e.g. $2,000"
+              className="bulk-field"
+            />
           </div>
         </div>
 

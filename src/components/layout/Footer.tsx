@@ -33,7 +33,7 @@ export default function Footer() {
 
              {/* CUSTOMER CARE */}
              <div className="space-y-2">
-               <h4 className="font-bold text-lg text-panda-dark">24/7 Customer Care</h4>
+               <h3 className="font-bold text-lg text-panda-dark text-left">24/7 Customer Care</h3>
                <a href="tel:+13022504340" className="flex items-center gap-2 underline decoration-1 underline-offset-2 hover:text-panda-green transition-colors">
                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 flex-shrink-0"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
                  +1 (302) 250-4340
@@ -46,7 +46,7 @@ export default function Footer() {
 
              {/* ADDRESS */}
              <div className="space-y-1">
-               <h4 className="font-bold text-lg text-panda-dark">Located At</h4>
+               <h3 className="font-bold text-lg text-panda-dark text-left">Located At</h3>
                <p className="text-gray-600 leading-relaxed">
                  1914 Quail Feather Ct,<br />
                  Missouri City, TX 77489,<br />
@@ -56,7 +56,7 @@ export default function Footer() {
 
              {/* ALSO */}
              <div className="space-y-1">
-               <h4 className="font-bold text-lg text-panda-dark">Also</h4>
+               <h3 className="font-bold text-lg text-panda-dark text-left">Also</h3>
                <a href="https://g.page/r/pandapatches" target="_blank" rel="noopener noreferrer" className="underline decoration-1 underline-offset-2">Find Us On Google</a>
              </div>
            </div>
@@ -66,7 +66,7 @@ export default function Footer() {
 
              {/* SUPPORT */}
              <div className="space-y-1 lg:pt-24">
-               <h4 className="font-bold text-lg text-panda-dark">Need Live Support</h4>
+               <h3 className="font-bold text-lg text-panda-dark text-left">Need Live Support</h3>
                <a href="mailto:admin@pandapatches.com" className="underline decoration-1 underline-offset-2 block">
                  admin@pandapatches.com
                </a>
@@ -74,7 +74,7 @@ export default function Footer() {
 
              {/* FOLLOW US */}
              <div className="space-y-2">
-               <h4 className="font-bold text-lg text-panda-dark">Follow Us</h4>
+               <h3 className="font-bold text-lg text-panda-dark text-left">Follow Us</h3>
                <div className="flex gap-3">
                  <a href="https://www.facebook.com/pandapatchesofficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on Facebook" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
                    <Facebook size={16} />
@@ -93,7 +93,7 @@ export default function Footer() {
 
              {/* PAYMENT MODES */}
              <div className="space-y-2">
-               <h4 className="font-bold text-lg text-panda-dark">Our Payment modes:</h4>
+               <h3 className="font-bold text-lg text-panda-dark text-left">Our Payment modes:</h3>
                <div className="relative w-full h-8">
                   <Image 
                     src="/assets/payment-methods.png" 
@@ -110,7 +110,7 @@ export default function Footer() {
           
           {/* COLUMN 3: Custom Patches (Spans 2) */}
           <div className="lg:col-span-2 space-y-4">
-            <h4 className="font-bold text-lg text-panda-dark text-left">Custom Patches</h4>
+            <h3 className="font-bold text-lg text-panda-dark text-left">Custom Patches</h3>
             <ul className="space-y-2 text-gray-700">
               <li><Link href="/custom-patches/embroidered">Custom Embroidered Patches</Link></li>
               <li><Link href="/custom-patches/custom-3d-embroidered-transfers">Custom 3D Embroidered Transfers</Link></li>
@@ -128,7 +128,7 @@ export default function Footer() {
 
           {/* COLUMN 4: Bulk Orders (Spans 1) */}
           <div className="lg:col-span-1 space-y-4">
-            <h4 className="font-bold text-lg text-panda-dark">Bulk Orders</h4>
+            <h3 className="font-bold text-lg text-panda-dark text-left">Bulk Orders</h3>
             <ul className="space-y-2 text-gray-700">
               <li><Link href="/bulk-custom-patches">Bulk Custom Patches</Link></li>
               <li><Link href="/custom-corporate-patches">Custom Corporate Patches</Link></li>
@@ -140,7 +140,7 @@ export default function Footer() {
 
           {/* COLUMN 5: Custom Products (Spans 1) */}
           <div className="lg:col-span-1 space-y-4">
-            <h4 className="font-bold text-lg text-panda-dark">Custom Products</h4>
+            <h3 className="font-bold text-lg text-panda-dark text-left">Custom Products</h3>
             <ul className="space-y-2 text-gray-700">
               <li><Link href="/custom-products/pvc-shoe-charms">PVC Shoe Charms</Link></li>
               <li><Link href="/custom-products/challenge-coin">Challenge Coins</Link></li>
@@ -151,7 +151,7 @@ export default function Footer() {
 
           {/* COLUMN 6: Patch Style (Spans 2) */}
           <div className="lg:col-span-2 space-y-4">
-            <h4 className="font-bold text-lg text-panda-dark">Patch Style</h4>
+            <h3 className="font-bold text-lg text-panda-dark text-left">Patch Style</h3>
             <ul className="space-y-2 text-gray-700">
               <li><Link href="/custom-anime-patches">Custom Anime Patches</Link></li>
               <li><Link href="/custom-sports-patches">Custom Baseball Patches</Link></li>
@@ -176,7 +176,7 @@ export default function Footer() {
 
           {/* COLUMN 7: Locations (Spans 2) */}
           <div className="lg:col-span-2 space-y-4">
-            <h4 className="font-bold text-lg text-panda-dark">Custom Patches</h4>
+            <h3 className="font-bold text-lg text-panda-dark text-left">Custom Patches</h3>
             <ul className="space-y-2 text-gray-700">
               <li><Link href="/alabama-patches">Alabama Patches</Link></li>
               <li><Link href="/custom-austin-patches">Custom Austin Patches</Link></li>

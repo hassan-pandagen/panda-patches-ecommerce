@@ -117,7 +117,6 @@ export default function TawkToWidget() {
       s1.async = true;
       s1.src = 'https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1';
       s1.charset = 'UTF-8';
-      s1.setAttribute('crossorigin', '*');
       s0.parentNode?.insertBefore(s1, s0);
     };
 

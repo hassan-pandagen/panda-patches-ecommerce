@@ -73,18 +73,18 @@ function ReviewCard({ review }: { review: typeof reviews[0] }) {
       </p>
       <div className="flex items-center gap-2.5 pt-4 mt-4 border-t border-gray-100">
         <div className={`w-8 h-8 rounded-full ${review.color} flex items-center justify-center flex-shrink-0`}>
-          <span className="text-white text-[11px] font-bold">{review.initials}</span>
+          <span className="text-gray-900 text-[11px] font-bold">{review.initials}</span>
         </div>
         <div className="min-w-0">
           <p className="text-[12px] font-bold text-panda-dark leading-tight truncate">{review.name}</p>
-          <p className="text-[11px] text-gray-400">{review.location} · {review.date}</p>
+          <p className="text-[11px] text-gray-600">{review.location} · {review.date}</p>
         </div>
         <div className="ml-auto flex items-center gap-1 flex-shrink-0">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00B67A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
             <polyline points="22 4 12 14.01 9 11.01" />
           </svg>
-          <span className="text-[10px] text-gray-400 font-medium">Verified</span>
+          <span className="text-[10px] text-gray-600 font-medium">Verified</span>
         </div>
       </div>
     </div>
@@ -103,7 +103,7 @@ export default function ReviewsSection() {
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
             <span className="text-[12px] font-bold text-gray-700">Trustpilot</span>
-            <span className="text-[12px] font-bold text-[#00B67A]">4.8</span>
+            <span className="text-[12px] font-bold text-green-700">4.8</span>
             <span className="text-[12px] text-gray-500">· 57 reviews</span>
           </div>
           <h2 className="text-[24px] md:text-[36px] font-black text-panda-dark uppercase tracking-tight mb-3">
