@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { UploadCloud, CheckCircle, Phone, Clock, ShieldCheck } from "lucide-react";
+import { UploadCloud, CheckCircle, Phone, Clock, ShieldCheck, Check } from "lucide-react";
 import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
@@ -14,40 +14,58 @@ const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC
   : null;
 
 export default function BulkQuoteForm() {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, watch } = useForm();
+  const selectedSize = watch('size');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [uploadedName, setUploadedName] = useState<string | null>(null);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  // Artwork upload state (upload immediately on select)
+  const [uploadedFileName, setUploadedFileName] = useState("");
+  const [uploadedFileUrl, setUploadedFileUrl] = useState("");
+  const [uploading, setUploading] = useState(false);
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !supabase) return;
+
+    setUploading(true);
+    setUploadedFileName(file.name);
+
+    try {
+      const fileExt = file.name.split(".").pop()?.replace(/[^a-z0-9]/gi, "").toLowerCase() || "jpg";
+      const randomId = Math.random().toString(36).substring(2, 10).toUpperCase();
+      const timestamp = Date.now();
+      const fileName = `artwork-${randomId}-${timestamp}.${fileExt}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("order-attachments")
+        .upload(fileName, file, { cacheControl: "3600", upsert: false });
+
+      if (!uploadError) {
+        const { data: publicUrlData } = supabase.storage
+          .from("order-attachments")
+          .getPublicUrl(fileName);
+        setUploadedFileUrl(publicUrlData?.publicUrl || "");
+      } else {
+        console.error("Artwork upload failed:", uploadError);
+        setUploadedFileName("");
+      }
+    } catch (uploadErr) {
+      console.error("Artwork upload exception:", uploadErr);
+      setUploadedFileName("");
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const onSubmit = async (data: any) => {
     setIsSubmitting(true);
     setMessage(null);
 
     try {
-      if (!supabase) {
-        throw new Error("Supabase not configured.");
-      }
-
-      let artworkUrl = null;
-
-      if (data.file && data.file[0]) {
-        const file = data.file[0];
-        const fileExt = file.name.split(".").pop()?.replace(/[^a-z0-9]/gi, "").toLowerCase() || "jpg";
-        const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
-        const filePath = `artwork/bulk/${fileName}`;
-
-        const { error: uploadError } = await supabase.storage
-          .from("patches")
-          .upload(filePath, file);
-
-        if (uploadError) throw new Error("Failed to upload artwork");
-
-        const { data: publicUrlData } = supabase.storage
-          .from("patches")
-          .getPublicUrl(filePath);
-
-        artworkUrl = publicUrlData?.publicUrl || null;
-      }
+      const sizeValue = selectedSize === "custom"
+        ? sanitizeString(data.customSize || "Custom")
+        : sanitizeString(data.size || "N/A");
 
       const response = await fetch("/api/quote", {
         method: "POST",
@@ -64,11 +82,11 @@ export default function BulkQuoteForm() {
             height: 3,
             backing: sanitizeString(data.backing || "iron"),
             instructions: sanitizeString(
-              `[BULK ORDER] Company: ${data.company || "N/A"} | Qty Range: ${data.quantityRange || "N/A"} | Patch Type: ${data.patchType || "N/A"} | Size: ${data.size || "N/A"} | Timeline: ${data.timeline || "Standard"} | Budget: ${data.budget || "N/A"} | Notes: ${data.notes || "None"}`
+              `[BULK ORDER] Company: ${data.company || "N/A"} | Qty Range: ${data.quantityRange || "N/A"} | Patch Type: ${data.patchType || "N/A"} | Size: ${sizeValue} | Timeline: ${data.timeline || "Standard"} | Budget: ${data.budget || "N/A"} | Notes: ${data.notes || "None"}`
             ),
             patchType: sanitizeString(data.patchType || ""),
           },
-          artworkUrl: artworkUrl,
+          artworkUrl: uploadedFileUrl || null,
           isBulkOrder: true,
         }),
       });
@@ -76,13 +94,14 @@ export default function BulkQuoteForm() {
       if (!response.ok) throw new Error("Failed to submit quote");
 
       setMessage({ type: "success", text: "Quote submitted! We'll respond within 2 business hours with your free mockup." });
-      setUploadedName(null);
+      setUploadedFileName("");
+      setUploadedFileUrl("");
       reset();
 
       // Fire Google Ads quote form conversion
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'conversion', {
-          send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
+      if (typeof window !== "undefined" && (window as any).gtag) {
+        (window as any).gtag("event", "conversion", {
+          send_to: "AW-11221237770/qTWjCNnZ3oEcEIqA2uYp",
         });
       }
     } catch (error) {
@@ -211,6 +230,15 @@ export default function BulkQuoteForm() {
           </div>
         </div>
 
+        {/* Custom Size Input */}
+        {selectedSize === "custom" && (
+          <input
+            {...register("customSize")}
+            placeholder="Enter your custom size (e.g. 5 x 3 inches, 12 x 8 inches...)"
+            className="bulk-field"
+          />
+        )}
+
         {/* Row 5: Timeline + Budget */}
         <div className="grid grid-cols-2 gap-2.5">
           <div className="relative">
@@ -243,7 +271,7 @@ export default function BulkQuoteForm() {
           className="bulk-field h-[80px] resize-none pt-3"
         />
 
-        {/* File Upload */}
+        {/* File Upload - immediate upload + visual feedback */}
         <label htmlFor="bulk-file-upload" className="
           border-2 border-dashed border-gray-200
           rounded-[10px] h-[70px]
@@ -251,31 +279,37 @@ export default function BulkQuoteForm() {
           bg-[#F9FAF5]/50 hover:bg-white hover:border-panda-green/40
           transition-all duration-300 cursor-pointer group px-4
         ">
-          <UploadCloud className="text-gray-400 group-hover:text-panda-green transition-colors flex-shrink-0" size={20} />
-          {uploadedName ? (
-            <p className="text-[12px] text-panda-green font-bold truncate">{uploadedName}</p>
+          {uploading ? (
+            <>
+              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-panda-green flex-shrink-0" />
+              <p className="text-[12px] text-gray-500 font-bold">Uploading...</p>
+            </>
+          ) : uploadedFileName ? (
+            <>
+              <Check className="text-panda-green flex-shrink-0" size={18} />
+              <p className="text-[12px] text-panda-green font-bold truncate">{uploadedFileName}</p>
+            </>
           ) : (
-            <p className="text-[12px] text-gray-500 font-bold">
-              Upload artwork <span className="text-gray-400 font-medium">(AI, EPS, PDF, PNG, JPG)</span>
-            </p>
+            <>
+              <UploadCloud className="text-gray-400 group-hover:text-panda-green transition-colors flex-shrink-0" size={20} />
+              <p className="text-[12px] text-gray-500 font-bold">
+                Upload artwork <span className="text-gray-400 font-medium">(AI, EPS, PDF, PNG, JPG)</span>
+              </p>
+            </>
           )}
           <input
             id="bulk-file-upload"
             type="file"
             className="hidden"
             accept="image/*,.pdf,.ai,.eps,.svg"
-            {...register("file", {
-              onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-                if (e.target.files?.[0]) setUploadedName(e.target.files[0].name);
-              }
-            })}
+            onChange={handleFileChange}
           />
         </label>
 
         {/* Submit */}
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || uploading}
           className="
             w-full bg-panda-dark text-panda-yellow
             font-black text-[16px] md:text-[18px]

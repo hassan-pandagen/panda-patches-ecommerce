@@ -1,12 +1,11 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { UploadCloud } from "lucide-react";
+import { UploadCloud, Check } from "lucide-react";
 import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { sanitizeString, sanitizeEmail, sanitizePhone, sanitizeInteger, sanitizeNumber } from "@/lib/sanitize";
 
-// Initialize Supabase client (with fallback if keys missing)
 const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   ? createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -21,44 +20,50 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
+  // Artwork upload state (upload immediately on select, like ComplexCalculator)
+  const [uploadedFileName, setUploadedFileName] = useState("");
+  const [uploadedFileUrl, setUploadedFileUrl] = useState("");
+  const [uploading, setUploading] = useState(false);
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !supabase) return;
+
+    setUploading(true);
+    setUploadedFileName(file.name);
+
+    try {
+      const fileExt = file.name.split('.').pop()?.replace(/[^a-z0-9]/gi, '').toLowerCase() || 'jpg';
+      const randomId = Math.random().toString(36).substring(2, 10).toUpperCase();
+      const timestamp = Date.now();
+      const fileName = `artwork-${randomId}-${timestamp}.${fileExt}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('order-attachments')
+        .upload(fileName, file, { cacheControl: '3600', upsert: false });
+
+      if (!uploadError) {
+        const { data: publicUrlData } = supabase.storage
+          .from('order-attachments')
+          .getPublicUrl(fileName);
+        setUploadedFileUrl(publicUrlData?.publicUrl || '');
+      } else {
+        console.error('Artwork upload failed:', uploadError);
+        setUploadedFileName('');
+      }
+    } catch (uploadErr) {
+      console.error('Artwork upload exception:', uploadErr);
+      setUploadedFileName('');
+    } finally {
+      setUploading(false);
+    }
+  };
+
   const onSubmit = async (data: any) => {
     setIsSubmitting(true);
     setMessage(null);
 
     try {
-      // Check if Supabase is configured
-      if (!supabase) {
-        throw new Error('Supabase not configured. Please contact support.');
-      }
-
-      let artworkUrl = null;
-
-      // Upload artwork file if provided (non-blocking — form submits even if upload fails)
-      if (data.file && data.file[0] && supabase) {
-        try {
-          const file = data.file[0];
-          const fileExt = file.name.split('.').pop()?.replace(/[^a-z0-9]/gi, '').toLowerCase() || 'jpg';
-          const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
-          const filePath = `artwork/${fileName}`;
-
-          const { error: uploadError } = await supabase.storage
-            .from('order-attachments')
-            .upload(filePath, file);
-
-          if (!uploadError) {
-            const { data: publicUrlData } = supabase.storage
-              .from('order-attachments')
-              .getPublicUrl(filePath);
-            artworkUrl = publicUrlData?.publicUrl || null;
-          } else {
-            console.error('Artwork upload failed (non-blocking):', uploadError);
-          }
-        } catch (uploadErr) {
-          console.error('Artwork upload exception (non-blocking):', uploadErr);
-        }
-      }
-
-      // Submit quote to API (with sanitized inputs)
       const response = await fetch('/api/quote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -78,7 +83,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
               : sanitizeString(data.instructions || ''),
             patchType: sanitizeString(data.type || ''),
           },
-          artworkUrl: artworkUrl,
+          artworkUrl: uploadedFileUrl || null,
         }),
       });
 
@@ -88,6 +93,8 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
 
       setMessage({ type: 'success', text: 'Quote submitted successfully! We\'ll contact you soon.' });
       reset();
+      setUploadedFileName('');
+      setUploadedFileUrl('');
     } catch (error) {
       console.error('Quote submission error:', error);
       setMessage({ type: 'error', text: 'Failed to submit quote. Please try again.' });
@@ -99,7 +106,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
   return (
     // Reduced padding slightly to make it fit nicely
     <div className="bg-[#1E4000]/5 backdrop-blur-md border-[3px] border-[#676767]/30 rounded-[20px] px-8 py-8 shadow-2xl">
-      
+
       <div className="text-center mb-6">
         <h3 className="text-[24px] leading-tight font-black text-panda-dark uppercase tracking-tight">
           Get Your Free Quote & <br/> Design Mockup
@@ -212,7 +219,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           className="form-input h-[80px] resize-none leading-relaxed pt-3"
         />
 
-        {/* File Upload - Reduced Height */}
+        {/* File Upload - with immediate upload + visual feedback */}
         <label htmlFor="file-upload" className="
           border-2 border-dashed border-[#676767]/30
           rounded-[12px]
@@ -222,24 +229,39 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           transition-all duration-300 cursor-pointer
           group
         ">
-           <UploadCloud className="text-gray-400 group-hover:text-panda-green transition-colors mb-1" size={24} />
-           <p className="text-[12px] text-gray-500 font-bold mb-1">Drop files here or</p>
-           <span className="bg-white border border-gray-200 px-4 py-1.5 rounded-md text-[12px] font-black text-panda-dark shadow-sm">
-             SELECT FILES
-           </span>
-           <input
-             id="file-upload"
-             type="file"
-             className="hidden"
-             accept="image/*,.pdf"
-             {...register("file")}
-           />
+          {uploading ? (
+            <>
+              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-panda-green mb-2" />
+              <p className="text-[12px] text-gray-500 font-bold">Uploading...</p>
+            </>
+          ) : uploadedFileName ? (
+            <>
+              <Check className="text-green-600 mb-1" size={22} />
+              <p className="text-[12px] text-green-700 font-bold truncate max-w-[200px]">{uploadedFileName}</p>
+              <p className="text-[11px] text-gray-400 mt-0.5">Click to change file</p>
+            </>
+          ) : (
+            <>
+              <UploadCloud className="text-gray-400 group-hover:text-panda-green transition-colors mb-1" size={24} />
+              <p className="text-[12px] text-gray-500 font-bold mb-1">Drop files here or</p>
+              <span className="bg-white border border-gray-200 px-4 py-1.5 rounded-md text-[12px] font-black text-panda-dark shadow-sm">
+                SELECT FILES
+              </span>
+            </>
+          )}
+          <input
+            id="file-upload"
+            type="file"
+            className="hidden"
+            accept="image/*,.pdf"
+            onChange={handleFileChange}
+          />
         </label>
 
         {/* Button */}
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || uploading}
           className="
             w-full
             bg-panda-dark text-panda-yellow

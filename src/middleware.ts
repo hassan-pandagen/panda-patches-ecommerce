@@ -183,7 +183,8 @@ export async function middleware(request: NextRequest) {
     // But validate if present
     if (origin) {
       const isAllowed = ALLOWED_ORIGINS.some(allowed => origin.startsWith(allowed)) ||
-                        origin.includes('vercel.app'); // Allow all Vercel preview deployments
+                        origin.includes('vercel.app') || // Allow all Vercel preview deployments
+                        origin.startsWith('http://localhost'); // Allow local development
       if (!isAllowed) {
         return NextResponse.json(
           { error: 'Forbidden', message: 'Invalid origin' },
