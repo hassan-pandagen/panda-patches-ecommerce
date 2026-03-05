@@ -130,11 +130,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 const PATCH_TYPES = [
-  { name: "Embroidered Patches", slug: "embroidered-patches" },
-  { name: "PVC Patches", slug: "pvc-patches" },
-  { name: "Woven Patches", slug: "woven-patches" },
-  { name: "Chenille Patches", slug: "chenille-patches" },
-  { name: "Leather Patches", slug: "leather-patches" },
+  { name: "Embroidered Patches", slug: "embroidered" },
+  { name: "PVC Patches", slug: "pvc" },
+  { name: "Woven Patches", slug: "woven" },
+  { name: "Chenille Patches", slug: "chenille" },
+  { name: "Leather Patches", slug: "leather" },
+  { name: "Printed Patches", slug: "printed" },
+  { name: "Sequin Patches", slug: "sequin" },
 ];
 
 export default async function DynamicProductPage({ params }: { params: { slug: string } }) {
@@ -292,7 +294,14 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
             Other Custom Patch Types
           </h2>
           <div className="flex flex-wrap justify-center gap-3">
-            {PATCH_TYPES.filter((p) => p.slug !== params.slug).map((patch) => (
+            {/* Embroidered always shows first — top seller */}
+            <Link
+              href="/custom-patches/embroidered"
+              className="px-5 py-2.5 rounded-full border-2 border-panda-dark text-panda-dark text-[13px] font-bold uppercase tracking-wide hover:bg-panda-dark hover:text-white transition-colors"
+            >
+              Embroidered Patches
+            </Link>
+            {PATCH_TYPES.filter((p) => p.slug !== params.slug && p.slug !== "embroidered").map((patch) => (
               <Link
                 key={patch.slug}
                 href={`/custom-patches/${patch.slug}`}

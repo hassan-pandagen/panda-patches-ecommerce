@@ -73,6 +73,14 @@ const nextConfig = {
         ],
       },
       {
+        // Sanity Studio — no CSP restrictions (admin only)
+        source: '/studio/:path*',
+        headers: [
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'Content-Security-Policy', value: "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:" },
+        ],
+      },
+      {
         // Security headers for all routes
         source: '/(.*)',
         headers: [
@@ -109,6 +117,7 @@ const nextConfig = {
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob: https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://www.paypalobjects.com",
               "connect-src 'self' https://api.sanity.io https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://api.stripe.com https://uxgzlneefybifvccfhwp.supabase.co https://www.clarity.ms https://api.zeptomail.com",
+              "media-src 'self' https://cdn.sanity.io",
               "frame-src https://js.stripe.com https://hooks.stripe.com https://www.paypal.com",
               "object-src 'none'",
             ].join('; '),
