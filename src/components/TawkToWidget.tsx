@@ -1,6 +1,5 @@
 "use client";
 
-import Script from 'next/script';
 import { useEffect } from 'react';
 
 function getTrafficSource() {
@@ -12,8 +11,6 @@ function getTrafficSource() {
       source:   params.get('utm_source')   || 'unknown',
       medium:   params.get('utm_medium')   || 'unknown',
       campaign: params.get('utm_campaign') || 'none',
-      term:     params.get('utm_term')     || 'none',
-      content:  params.get('utm_content')  || 'none',
     };
   }
 
@@ -86,32 +83,54 @@ export default function TawkToWidget() {
       }));
     }
 
-    // Set up Tawk_API BEFORE script loads so onLoad fires correctly
-    const tawkApi = (window as any).Tawk_API || {};
-    (window as any).Tawk_API = tawkApi;
-    (window as any).Tawk_LoadTime = new Date();
+    const injectTawkTo = () => {
+      // Set up Tawk_API BEFORE injecting the script
+      const tawkApi = (window as any).Tawk_API || {};
+      (window as any).Tawk_API  = tawkApi;
+      (window as any).Tawk_LoadTime = new Date();
 
-    tawkApi.onLoad = function () {
-      const sourceData = JSON.parse(localStorage.getItem('trafficSource') || '{}');
-      const deviceInfo = getDeviceInfo();
+      tawkApi.onLoad = function () {
+        const sourceData = JSON.parse(localStorage.getItem('trafficSource') || '{}');
+        const deviceInfo = getDeviceInfo();
 
-      tawkApi.setAttributes(
-        {
-          'Source':       sourceData.source      || 'Direct',
-          'Medium':       sourceData.medium      || 'none',
-          'Campaign':     sourceData.campaign    || 'none',
-          'Landing Page': sourceData.landingPage || '/',
-          'First Visit':  sourceData.timestamp   || 'Unknown',
-          'Device':       deviceInfo.device,
-          'Browser':      deviceInfo.browser,
-          'OS':           deviceInfo.os,
-          'Screen':       deviceInfo.screen,
-          'Current Page': window.location.pathname,
-          'Full URL':     window.location.href,
-        },
-        (error: any) => { if (error) console.log('Tawk.to attr error:', error); }
-      );
+        tawkApi.setAttributes(
+          {
+            'Source':       sourceData.source      || 'Direct',
+            'Medium':       sourceData.medium      || 'none',
+            'Campaign':     sourceData.campaign    || 'none',
+            'Landing Page': sourceData.landingPage || '/',
+            'First Visit':  sourceData.timestamp   || 'Unknown',
+            'Device':       deviceInfo.device,
+            'Browser':      deviceInfo.browser,
+            'OS':           deviceInfo.os,
+            'Screen':       deviceInfo.screen,
+            'Current Page': window.location.pathname,
+            'Full URL':     window.location.href,
+          },
+          (error: any) => { if (error) console.log('Tawk.to attr error:', error); }
+        );
+      };
+
+      // Inject script the same way Tawk.to officially recommends
+      const s1 = document.createElement('script');
+      const s0 = document.getElementsByTagName('script')[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode?.insertBefore(s1, s0);
     };
+
+    // Lazy load: first scroll OR 5s — whichever comes first
+    let loaded = false;
+    const load = () => {
+      if (loaded) return;
+      loaded = true;
+      injectTawkTo();
+    };
+
+    window.addEventListener('scroll', load, { passive: true, once: true });
+    const timer = setTimeout(load, 5000);
 
     const updatePage = () => {
       const api = (window as any).Tawk_API;
@@ -122,15 +141,11 @@ export default function TawkToWidget() {
     window.addEventListener('popstate', updatePage);
 
     return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', load);
       window.removeEventListener('popstate', updatePage);
     };
   }, []);
 
-  return (
-    <Script
-      id="tawk-to"
-      src="https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1"
-      strategy="lazyOnload"
-    />
-  );
+  return null;
 }
