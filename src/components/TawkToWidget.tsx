@@ -1,5 +1,6 @@
 "use client";
 
+import Script from 'next/script';
 import { useEffect } from 'react';
 
 function getTrafficSource() {
@@ -73,28 +74,9 @@ function getDeviceInfo() {
   };
 }
 
-async function getGeoLocation(): Promise<{ country: string; city: string; region: string }> {
-  const cached = sessionStorage.getItem('visitorGeo');
-  if (cached) return JSON.parse(cached);
-
-  try {
-    const res = await fetch('https://ipapi.co/json/', { cache: 'no-store' });
-    if (!res.ok) throw new Error('geo fetch failed');
-    const data = await res.json();
-    const geo = {
-      country: data.country_name || 'Unknown',
-      city:    data.city         || 'Unknown',
-      region:  data.region       || 'Unknown',
-    };
-    sessionStorage.setItem('visitorGeo', JSON.stringify(geo));
-    return geo;
-  } catch {
-    return { country: 'Unknown', city: 'Unknown', region: 'Unknown' };
-  }
-}
-
 export default function TawkToWidget() {
   useEffect(() => {
+    // Store traffic source on first visit only
     if (!localStorage.getItem('trafficSource')) {
       localStorage.setItem('trafficSource', JSON.stringify({
         ...getTrafficSource(),
@@ -104,49 +86,32 @@ export default function TawkToWidget() {
       }));
     }
 
-    const loadTawkTo = async () => {
+    // Set up Tawk_API BEFORE script loads so onLoad fires correctly
+    const tawkApi = (window as any).Tawk_API || {};
+    (window as any).Tawk_API = tawkApi;
+    (window as any).Tawk_LoadTime = new Date();
+
+    tawkApi.onLoad = function () {
       const sourceData = JSON.parse(localStorage.getItem('trafficSource') || '{}');
       const deviceInfo = getDeviceInfo();
 
-      const tawkApi = (window as any).Tawk_API || {};
-      (window as any).Tawk_API = tawkApi;
-
-      tawkApi.onLoad = function () {
-        tawkApi.setAttributes(
-          {
-            'Source':       sourceData.source      || 'Direct',
-            'Medium':       sourceData.medium      || 'none',
-            'Campaign':     sourceData.campaign    || 'none',
-            'Landing Page': sourceData.landingPage || '/',
-            'First Visit':  sourceData.timestamp   || 'Unknown',
-            'Device':       deviceInfo.device,
-            'Browser':      deviceInfo.browser,
-            'OS':           deviceInfo.os,
-            'Screen':       deviceInfo.screen,
-            'Current Page': window.location.pathname,
-            'Full URL':     window.location.href,
-          },
-          (error: any) => { if (error) console.log('Tawk.to attr error:', error); }
-        );
-      };
-
-      const s1 = document.createElement('script');
-      const s0 = document.getElementsByTagName('script')[0];
-      s1.async = true;
-      s1.src = 'https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1';
-      s1.setAttribute('crossorigin', '*');
-      s0.parentNode?.insertBefore(s1, s0);
+      tawkApi.setAttributes(
+        {
+          'Source':       sourceData.source      || 'Direct',
+          'Medium':       sourceData.medium      || 'none',
+          'Campaign':     sourceData.campaign    || 'none',
+          'Landing Page': sourceData.landingPage || '/',
+          'First Visit':  sourceData.timestamp   || 'Unknown',
+          'Device':       deviceInfo.device,
+          'Browser':      deviceInfo.browser,
+          'OS':           deviceInfo.os,
+          'Screen':       deviceInfo.screen,
+          'Current Page': window.location.pathname,
+          'Full URL':     window.location.href,
+        },
+        (error: any) => { if (error) console.log('Tawk.to attr error:', error); }
+      );
     };
-
-    let loaded = false;
-    const load = () => {
-      if (loaded) return;
-      loaded = true;
-      loadTawkTo();
-    };
-
-    window.addEventListener('scroll', load, { passive: true, once: true });
-    const timer = setTimeout(load, 5000);
 
     const updatePage = () => {
       const api = (window as any).Tawk_API;
@@ -157,11 +122,16 @@ export default function TawkToWidget() {
     window.addEventListener('popstate', updatePage);
 
     return () => {
-      clearTimeout(timer);
-      window.removeEventListener('scroll', load);
       window.removeEventListener('popstate', updatePage);
     };
   }, []);
 
-  return null;
+  return (
+    <Script
+      id="tawk-to"
+      src="https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1"
+      strategy="lazyOnload"
+      crossOrigin="anonymous"
+    />
+  );
 }
