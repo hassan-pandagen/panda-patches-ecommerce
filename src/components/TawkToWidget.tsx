@@ -131,7 +131,6 @@ export default function TawkToWidget() {
       id="tawk-to"
       src="https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1"
       strategy="lazyOnload"
-      crossOrigin="anonymous"
     />
   );
 }

@@ -119,6 +119,7 @@ const nextConfig = {
               "connect-src 'self' https://api.sanity.io https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://api.stripe.com https://uxgzlneefybifvccfhwp.supabase.co https://www.clarity.ms https://api.zeptomail.com https://www.google.com https://stats.g.doubleclick.net https://connect.facebook.net https://www.facebook.com https://*.tawk.to wss://*.tawk.to https://widget.trustpilot.com",
               "media-src 'self' data: https://cdn.sanity.io https://*.tawk.to",
               "frame-src https://js.stripe.com https://hooks.stripe.com https://www.paypal.com https://www.googletagmanager.com https://widget.trustpilot.com https://*.tawk.to",
+              "worker-src 'self' blob:",
               "object-src 'none'",
             ].join('; '),
           },
