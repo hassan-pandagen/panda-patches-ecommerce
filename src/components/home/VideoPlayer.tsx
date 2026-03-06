@@ -126,13 +126,13 @@ export default function VideoPlayer({ videoUrl, thumbnail, instagramLink }: Vide
       {!isHovered && !isClicked && thumbnail && (
         <div className="absolute inset-0 z-10">
           <Image
-            src={thumbnail}
-            alt="Video thumbnail"
-            fill
-            className="object-cover"
-            sizes="255px"
-            quality={70}
-          />
+             src={thumbnail}
+             alt="Video thumbnail"
+             fill
+             className="object-cover"
+             sizes="255px"
+             quality={55}
+           />
           {/* Play button overlay */}
           <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
             <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-xl">

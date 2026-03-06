@@ -98,12 +98,12 @@ export default async function Hero() {
           <div className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-8 md:-mt-10 mx-auto md:mx-0">
              {data?.heroImage && (
                <Image
-                 src={urlFor(data.heroImage.url).width(1280).auto('format').url()}
+                 src={urlFor(data.heroImage.url).width(630).quality(50).auto('format').url()}
                  alt={data.heroImage.alt || "Custom embroidered patches display featuring various designs including military, sports, and corporate patches | Panda Patches"}
                  fill
                  className="object-contain object-center md:object-left hover:scale-[1.02] transition-transform duration-700"
                  priority
-                 quality={55}
+                 quality={50}
                  sizes="(max-width: 768px) 100vw, 630px"
                />
              )}

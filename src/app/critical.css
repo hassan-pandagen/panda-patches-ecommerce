@@ -1,0 +1,72 @@
+/* CRITICAL CSS — ABOVE-THE-FOLD ONLY */
+/* Fonts, base styles, hero section, navigation */
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 249, 250, 245;
+  --background-end-rgb: 255, 255, 255;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+}
+
+/* Navigation/Header critical styles */
+nav, header {
+  position: relative;
+  z-index: 50;
+}
+
+/* Hero section critical styles */
+.hero, [class*="hero"] {
+  width: 100%;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Hide non-critical elements on initial load */
+.below-fold {
+  visibility: hidden;
+}

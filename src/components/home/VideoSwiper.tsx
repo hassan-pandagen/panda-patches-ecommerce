@@ -35,7 +35,7 @@ export default function VideoSwiper({ videos }: VideoSwiperProps) {
                 {item.videoUrl ? (
                   <VideoPlayer
                     videoUrl={item.videoUrl}
-                    thumbnail={item.thumbnail ? urlFor(item.thumbnail).width(290).height(410).format('webp').quality(60).url() : undefined}
+                    thumbnail={item.thumbnail ? urlFor(item.thumbnail).width(290).height(410).format('webp').quality(45).url() : undefined}
                     instagramLink={item.link || "https://www.instagram.com/pandapatchesofficial/"}
                   />
                 ) : (
@@ -59,10 +59,10 @@ export default function VideoSwiper({ videos }: VideoSwiperProps) {
           >
             {item.videoUrl ? (
               <VideoPlayer
-                videoUrl={item.videoUrl}
-                thumbnail={item.thumbnail ? urlFor(item.thumbnail).width(260).height(350).format('webp').quality(60).url() : undefined}
-                instagramLink={item.link || "https://www.instagram.com/pandapatchesofficial/"}
-              />
+                 videoUrl={item.videoUrl}
+                 thumbnail={item.thumbnail ? urlFor(item.thumbnail).width(260).height(350).format('webp').quality(45).url() : undefined}
+                 instagramLink={item.link || "https://www.instagram.com/pandapatchesofficial/"}
+               />
             ) : (
               <div className="w-full h-full bg-gray-200 flex items-center justify-center flex-col gap-2">
                 <Play className="text-gray-400" size={32} />
