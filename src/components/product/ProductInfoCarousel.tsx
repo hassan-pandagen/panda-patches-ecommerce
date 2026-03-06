@@ -162,7 +162,7 @@ export default function ProductInfoCarousel({
                    <h4 className="text-[16px] md:text-[18px] font-bold text-panda-dark mb-2 leading-tight">
                      {card.title}
                    </h4>
-                   <p className="text-[13px] md:text-[14px] leading-[18px] md:leading-[20px] font-normal text-gray-600 line-clamp-3">
+                   <p className="text-[13px] md:text-[14px] leading-[18px] md:leading-[20px] font-normal text-gray-600">
                      {card.description}
                    </p>
                 </div>
