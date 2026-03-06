@@ -4,7 +4,7 @@ import { PortableText } from "@portabletext/react";
 async function getContentData() {
   try {
     const query = `*[_type == "content"][0]`;
-    const data = await client.fetch(query);
+    const data = await client.fetch(query, {}, { next: { revalidate: 3600 } });
     return data;
   } catch (error) {
     console.error("Error fetching content data:", error);

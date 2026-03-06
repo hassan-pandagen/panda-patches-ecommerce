@@ -13,7 +13,7 @@ async function getBlogs() {
      image,
      _createdAt
    }`;
-   const data = await client.fetch(query);
+   const data = await client.fetch(query, {}, { next: { revalidate: 3600 } });
    return data;
 }
 

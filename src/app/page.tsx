@@ -19,15 +19,14 @@ const CTASection = dynamic(() => import("@/components/home/CTASection"), { ssr: 
 const Footer = dynamic(() => import("@/components/layout/Footer"), { ssr: true });
 
 // ISR: Revalidate homepage every hour
-// Revalidate every 60 seconds (faster for development, increase for production)
-export const revalidate = 60;
+export const revalidate = 3600;
 
 // SEO Metadata for Homepage — OG image pulled live from Sanity hero image
 export async function generateMetadata(): Promise<Metadata> {
   let ogImageUrl = "https://pandapatches.com/assets/og-image.png"; // fallback
 
   try {
-    const hero = await client.fetch(`*[_type == "hero"][0]{ "imageUrl": heroImage.asset->url }`);
+    const hero = await client.fetch(`*[_type == "hero"][0]{ "imageUrl": heroImage.asset->url }`, {}, { next: { revalidate: 3600 } });
     if (hero?.imageUrl) {
       ogImageUrl = urlFor(hero.imageUrl).width(1200).height(630).quality(85).auto('format').url();
     }

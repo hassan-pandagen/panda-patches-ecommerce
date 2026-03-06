@@ -76,6 +76,13 @@ export default function QuoteModal({
 
       if (response.ok) {
         setQuoteSubmitted(true);
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'conversion', {
+            send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
+            value: 50.0,
+            currency: 'USD',
+          });
+        }
       } else {
         const data = await response.json();
         alert("Failed to send quote: " + (data.error || "Please try again"));

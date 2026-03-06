@@ -4,7 +4,7 @@ import { client, urlFor } from "@/lib/sanity";
 async function getData() {
   try {
     const query = `*[_type == "industry"][0]`;
-    const data = await client.fetch(query);
+    const data = await client.fetch(query, {}, { next: { revalidate: 3600 } });
     return data || null;
   } catch (error) {
     console.error("Error fetching industry data:", error);

@@ -17,7 +17,7 @@ interface TimelineData {
 
 async function getTimelineData(): Promise<TimelineData | null> {
   const query = `*[_type == "timeline"][0]`;
-  const data = await client.fetch(query);
+  const data = await client.fetch(query, {}, { next: { revalidate: 3600 } });
   return data;
 }
 

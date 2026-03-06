@@ -23,7 +23,7 @@ async function getProducts() {
         }
       }
     `;
-    const data = await client.fetch(query);
+    const data = await client.fetch(query, {}, { next: { revalidate: 3600 } });
     return data || { main: [], other: [] };
   } catch (error) {
     console.error("ProductGrid fetch error:", error);
@@ -196,11 +196,12 @@ function ProductCard({ item, showTag }: { item: any; showTag?: boolean }) {
         <div className="relative w-full h-full">
            {item.image ? (
              <Image
-               src={urlFor(item.image).width(500).height(500).quality(65).auto('format').url()}
+               src={urlFor(item.image).width(800).auto('format').url()}
                alt={`${item.title} - Custom patches with low minimums and fast delivery | Panda Patches`}
                fill
                className="object-contain group-hover:scale-110 transition-transform duration-500"
-               sizes="(max-width: 380px) calc(100vw - 32px), 296px"
+               quality={60}
+               sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) calc(50vw - 28px), calc(25vw - 36px)"
              />
            ) : (
              <div className="w-full h-full bg-gray-200/50 animate-pulse rounded-lg" />

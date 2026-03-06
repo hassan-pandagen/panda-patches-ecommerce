@@ -16,7 +16,7 @@ async function getHeroData() {
         "alt": alt
       }
     }`;
-    const data = await client.fetch(query);
+    const data = await client.fetch(query, {}, { next: { revalidate: 3600 } });
     return data;
   } catch (error) {
     console.error("Hero fetch error:", error);
@@ -96,11 +96,12 @@ export default async function Hero() {
           <div className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-8 md:-mt-10 mx-auto md:mx-0">
              {data?.heroImage && (
                <Image
-                 src={urlFor(data.heroImage.url).width(760).height(456).quality(65).auto('format').url()}
+                 src={urlFor(data.heroImage.url).width(1280).auto('format').url()}
                  alt={data.heroImage.alt || "Custom embroidered patches display featuring various designs including military, sports, and corporate patches | Panda Patches"}
                  fill
                  className="object-contain object-center md:object-left hover:scale-[1.02] transition-transform duration-700"
                  priority
+                 quality={55}
                  sizes="(max-width: 768px) 100vw, 630px"
                />
              )}

@@ -3,7 +3,7 @@ import ProcessInteractive from "./ProcessInteractive";
 
 async function getProcessData() {
   const query = `*[_type == "process"][0]`;
-  const data = await client.fetch(query);
+  const data = await client.fetch(query, {}, { next: { revalidate: 3600 } });
   return data;
 }
 
