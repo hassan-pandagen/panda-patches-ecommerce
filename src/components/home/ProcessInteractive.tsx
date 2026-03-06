@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
-import { motion } from "framer-motion";
 
 export default function ProcessInteractive({ data }: { data: any }) {
   const [activeStep, setActiveStep] = useState(0);
@@ -18,7 +17,6 @@ export default function ProcessInteractive({ data }: { data: any }) {
 
   return (
     <div className="relative">
-      
       {/* 
          THE CONNECTING LINE 
          - bg-gray-300: Visible grey track
@@ -29,10 +27,9 @@ export default function ProcessInteractive({ data }: { data: any }) {
            FIX 1: ANIMATED LINE IS NOW BLACK
            - bg-black: Sharp contrast on light grey
         */}
-        <motion.div 
-          className="h-full bg-black origin-left rounded-full"
-          animate={{ width: getLineWidth() }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+        <div 
+          className="process-line h-full bg-black origin-left rounded-full"
+          style={{ width: getLineWidth() }}
         />
       </div>
 

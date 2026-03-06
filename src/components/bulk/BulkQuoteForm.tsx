@@ -196,8 +196,8 @@ export default function BulkQuoteForm() {
         {/* Row 3: Patch Type + Quantity */}
         <div className="grid grid-cols-2 gap-2.5">
           <div className="relative">
-            <select {...register("patchType")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
-              <option value="" disabled>Patch Type</option>
+            <select {...register("patchType")} defaultValue="" className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
+              <option value="" disabled hidden>Patch Type</option>
               <option value="embroidered">Embroidered</option>
               <option value="3d-embroidered">3D Embroidered Transfers</option>
               <option value="chenille">Chenille</option>

@@ -24,13 +24,13 @@ export default function ProductTypesList({ types, heading }: { types: any[], hea
                 <div className="flex-1 w-full relative h-[400px] bg-[#F9FAF5] rounded-[24px] overflow-hidden group border border-gray-100 shadow-sm">
                   {item.image && (
                     <Image
-                      src={urlFor(item.image).url()}
-                      alt={item.title}
-                      fill
-                      className="object-contain p-8 group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                      quality={85}
-                    />
+                        src={urlFor(item.image).width(800).auto('format').url()}
+                        alt={item.title}
+                        fill
+                        className="object-contain p-8 group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                        quality={70}
+                      />
                   )}
                 </div>
 

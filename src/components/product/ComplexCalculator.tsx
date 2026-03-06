@@ -73,16 +73,6 @@ function ShapeIcon({ id, size = 24 }: { id: string; size?: number }) {
   }
 }
 
-const PLACEMENTS = [
-  { label: "Choose Size / Placement", w: 0, h: 0 },
-  { label: "Cap (2.25 - 2.5 inches)", w: 2.5, h: 2.5 },
-  { label: "Left Chest (3 - 4 inches)", w: 3.5, h: 3.5 },
-  { label: "Hat / Beanie (2.5 inches)", w: 2.5, h: 2.5 },
-  { label: "Sleeve (3.5 - 4 inches)", w: 3.5, h: 3.5 },
-  { label: "Across Chest (12 x 12 inches)", w: 12, h: 12 },
-  { label: "Jacket Back (14 x 14 inches)", w: 14, h: 14 },
-  { label: "Custom Size", w: 3, h: 3 },
-];
 
 interface BackingOption {
   title: string;
@@ -153,7 +143,6 @@ export default function ComplexCalculator({
   const [selectedColor, setSelectedColor] = useState("");
   const backingDropdownRef = useRef<HTMLDivElement>(null);
   const shapeDropdownRef = useRef<HTMLDivElement>(null);
-  const [placement, setPlacement] = useState(PLACEMENTS[0].label);
   const [width, setWidth] = useState(3);
   const [height, setHeight] = useState(3);
   const [widthInput, setWidthInput] = useState('3');
@@ -217,7 +206,6 @@ export default function ComplexCalculator({
       if (s.backing) setBacking(s.backing);
       if (s.shape) setShape(s.shape);
       if (s.selectedColor) setSelectedColor(s.selectedColor);
-      if (s.placement) setPlacement(s.placement);
       if (s.width) { const w = Math.ceil(s.width); setWidth(w); setWidthInput(String(w)); }
       if (s.height) { const h = Math.ceil(s.height); setHeight(h); setHeightInput(String(h)); }
       if (s.quantity) { setQuantity(s.quantity); setQuantityInput(String(s.quantity)); }
@@ -242,13 +230,13 @@ export default function ComplexCalculator({
     if (!mounted) return;
     try {
       localStorage.setItem('pp_checkout_state', JSON.stringify({
-        backing, shape, selectedColor, placement, width, height, quantity,
+        backing, shape, selectedColor, width, height, quantity,
         fileUrl, fileName, name, email, phone, address,
         deliveryOption, rushDate, specialInstructions, selectedAddons, paymentMethod, currentStep,
         patchIdea
       }));
     } catch {}
-  }, [mounted, backing, shape, selectedColor, placement, width, height, quantity, fileUrl, fileName, name, email, phone, address, deliveryOption, rushDate, specialInstructions, selectedAddons, paymentMethod, currentStep, patchIdea]);
+  }, [mounted, backing, shape, selectedColor, width, height, quantity, fileUrl, fileName, name, email, phone, address, deliveryOption, rushDate, specialInstructions, selectedAddons, paymentMethod, currentStep, patchIdea]);
 
   // Close backing/shape dropdowns on outside click
   useEffect(() => {
@@ -281,17 +269,6 @@ export default function ComplexCalculator({
     return date.toISOString().split('T')[0];
   };
 
-  useEffect(() => {
-    const selected = PLACEMENTS.find(p => p.label === placement);
-    if (selected && selected.label !== "Custom Size" && selected.label !== "Choose Size / Placement") {
-      const rw = Math.ceil(selected.w);
-      const rh = Math.ceil(selected.h);
-      setWidth(rw);
-      setHeight(rh);
-      setWidthInput(String(rw));
-      setHeightInput(String(rh));
-    }
-  }, [placement]);
 
   // Price calculation (hook)
   const { priceResult, upsellTiers, discount, originalPrice, discountAmount, basePrice, unitPrice, pricePulse } = usePriceCalculation({
@@ -601,25 +578,10 @@ export default function ComplexCalculator({
               </div>
             )}
 
-            {/* 2. PLACEMENT & SIZE */}
+            {/* 2. SIZE */}
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-black text-black uppercase tracking-wide">Size & Placement</label>
-              </div>
-              <div className="relative mb-3">
-                <select
-                  value={placement}
-                  onChange={(e) => setPlacement(e.target.value)}
-                  className="w-full h-[52px] border-2 border-gray-300 rounded-[12px] px-5 font-bold text-base text-black outline-none focus:border-black appearance-none cursor-pointer bg-white"
-                >
-                  {PLACEMENTS
-                    .filter(p => productType.toLowerCase().includes('pvc')
-                      ? p.label !== "Across Chest (12 x 12 inches)" && p.label !== "Jacket Back (14 x 14 inches)"
-                      : true
-                    )
-                    .map((p, i) => <option key={i} value={p.label} disabled={i === 0}>{p.label}</option>)}
-                </select>
-                <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 text-black pointer-events-none" size={20} />
+                <label className="text-sm font-black text-black uppercase tracking-wide">Size (inches)</label>
               </div>
 
               <div className="grid grid-cols-2 gap-3">

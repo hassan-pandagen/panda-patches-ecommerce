@@ -15,8 +15,7 @@ const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC
 
 export default function HeroForm({ productSlug }: { productSlug?: string }) {
   const isKeychains = productSlug === 'keychains';
-  const { register, handleSubmit, reset, watch } = useForm();
-  const selectedSize = watch('size');
+  const { register, handleSubmit, reset } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const partialSaved = useRef(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
@@ -89,12 +88,10 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           },
           details: {
             quantity: sanitizeInteger(data.quantity),
-            width: data.size === 'custom' ? 0 : sanitizeNumber(data.size),
-            height: data.size === 'custom' ? 0 : sanitizeNumber(data.size),
+            width: sanitizeNumber(data.size),
+            height: sanitizeNumber(data.size),
             backing: sanitizeString(data.backing || 'iron'),
-            instructions: data.size === 'custom'
-              ? `Custom Size: ${sanitizeString(data.customSize || '')}. ${sanitizeString(data.instructions || '')}`
-              : sanitizeString(data.instructions || ''),
+            instructions: sanitizeString(data.instructions || ''),
             patchType: sanitizeString(data.type || ''),
           },
           artworkUrl: uploadedFileUrl || null,
@@ -174,15 +171,14 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
                  <option value="double-side">Double Side</option>
                </select>
              ) : (
-               <select {...register("size")} aria-label="Select patch size or placement" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
-                 <option>Size or Placement</option>
+               <select {...register("size")} defaultValue="" aria-label="Select patch size or placement" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+                 <option value="" disabled hidden>Size or Placement</option>
                  <option value="2.5">Cap (2.25 - 2.5 inches)</option>
                  <option value="3.5">Left Chest (3 - 4 inches)</option>
                  <option value="2.5">Hat / Beanie (2.5 inches)</option>
                  <option value="3.5">Sleeve (3.5 - 4 inches)</option>
                  <option value="12">Across Chest (12 x 12 inches)</option>
                  <option value="14">Jacket Back (14 x 14 inches)</option>
-                 <option value="custom">Custom Size</option>
                </select>
              )}
              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
@@ -198,8 +194,8 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
                  <option value="pvc-keychain">PVC Keychain</option>
                </select>
              ) : (
-               <select {...register("type")} aria-label="Select patch type" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
-                 <option value="" disabled>Patch Type</option>
+               <select {...register("type")} defaultValue="" aria-label="Select patch type" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+                 <option value="" disabled hidden>Patch Type</option>
                  <option value="embroidered">Embroidered</option>
                  <option value="3d-embroidered">3D Embroidered Transfers</option>
                  <option value="chenille">Chenille</option>
@@ -216,15 +212,6 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
            </div>
          </div>
-
-        {/* Custom Size Input */}
-        {selectedSize === 'custom' && (
-          <input
-            {...register("customSize")}
-            placeholder="Enter custom size (e.g. 5 x 3 inches)"
-            className="form-input"
-          />
-        )}
 
         {/* Row 4 - Backing */}
         {!isKeychains && (

@@ -23,11 +23,12 @@ const WorkSampleCard = memo(({ img, onClick }: { img: any; onClick: () => void }
       "
     >
       <Image
-        src={urlFor(img.image || img).url()}
-        alt={img.alt || "Custom patch work sample showcasing detailed embroidery craftsmanship | Panda Patches"}
-        fill
-        className="object-cover group-hover/sample:scale-110 transition-transform duration-700"
-      />
+         src={urlFor(img.image || img).width(640).auto('format').url()}
+         alt={img.alt || "Custom patch work sample showcasing detailed embroidery craftsmanship | Panda Patches"}
+         fill
+         className="object-cover group-hover/sample:scale-110 transition-transform duration-700"
+         quality={75}
+       />
       <div className="absolute inset-0 bg-black/0 group-hover/sample:bg-black/20 transition-colors flex items-center justify-center">
         <div className="bg-white/90 px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide opacity-0 group-hover/sample:opacity-100 transition-opacity">
           Click to Zoom
@@ -49,7 +50,7 @@ export default function WorkSamples({ samples }: { samples: any[] }) {
 
   // Prepare slides for lightbox
   const slides = samples.map((img: any, idx: number) => ({
-    src: urlFor(img.image || img).url(),
+    src: urlFor(img.image || img).width(1200).auto('format').url(),
     alt: img.alt || `Custom patch work sample ${idx + 1} | Panda Patches`
   }));
 

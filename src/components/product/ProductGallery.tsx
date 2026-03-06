@@ -63,7 +63,7 @@ export default function ProductGallery({ images }: { images: any[] }) {
 
   // Prepare slides for lightbox - load full resolution without forced dimensions
   const slides = images.map((img: any, idx: number) => ({
-    src: urlFor(img.image || img).width(2000).quality(90).fit('max').url(),
+    src: urlFor(img.image || img).width(1600).quality(80).auto('format').fit('max').url(),
     alt: img.alt || `Custom patch product image ${idx + 1} | Panda Patches`
   }));
 
@@ -113,14 +113,14 @@ export default function ProductGallery({ images }: { images: any[] }) {
               className="relative w-full h-full bg-gradient-to-br from-gray-50 via-white to-gray-50 cursor-zoom-in group"
             >
               <Image
-                src={urlFor(img.image || img).width(1200).quality(95).fit('max').url()}
-                alt={img.alt || `Custom patch product showcase ${idx + 1} | Panda Patches`}
-                fill
-                className="object-contain p-4 md:p-6 group-hover:scale-[1.02] transition-transform duration-500"
-                quality={95}
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 700px"
-                priority={idx === 0}
-              />
+                 src={urlFor(img.image || img).width(1000).quality(75).auto('format').fit('max').url()}
+                 alt={img.alt || `Custom patch product showcase ${idx + 1} | Panda Patches`}
+                 fill
+                 className="object-contain p-4 md:p-6 group-hover:scale-[1.02] transition-transform duration-500"
+                 quality={75}
+                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 700px"
+                 priority={idx === 0}
+               />
             </div>
           </SwiperSlide>
         ))}
@@ -141,8 +141,8 @@ export default function ProductGallery({ images }: { images: any[] }) {
             <SwiperSlide key={idx} className="!w-[90px] md:!w-[120px]">
               <div className="relative w-[90px] h-[90px] md:w-[120px] md:h-[120px] rounded-[12px] md:rounded-[16px] cursor-pointer border-2 border-gray-200 hover:border-gray-300 transition-all duration-200 overflow-hidden bg-gradient-to-br from-gray-50 to-white">
                 <Image
-                  src={urlFor(img.image || img).width(200).quality(85).fit('max').url()}
-                  alt={img.alt || `Patch thumbnail ${idx + 1}`}
+                   src={urlFor(img.image || img).width(200).quality(70).auto('format').fit('max').url()}
+                   alt={img.alt || `Patch thumbnail ${idx + 1}`}
                   fill
                   className="object-contain p-2"
                   quality={85}

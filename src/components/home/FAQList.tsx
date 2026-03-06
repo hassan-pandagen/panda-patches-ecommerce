@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 export default function FAQList({ questions }: { questions: any[] }) {
@@ -44,23 +43,15 @@ export default function FAQList({ questions }: { questions: any[] }) {
               </div>
             </button>
 
-            {/* ANSWER BODY (Animated) */}
-            <AnimatePresence>
-              {isOpen && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="overflow-hidden border-t border-gray-100"
-                >
-                  {/* Mobile-Optimized Typography: 15px mobile, 17px desktop */}
-                  <p className="text-[15px] md:text-[17px] leading-[24px] md:leading-[28px] font-normal text-gray-600 px-6 py-5 md:py-6">
-                    {item.answer}
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* ANSWER BODY (CSS Animation) */}
+            <div className={`faq-answer ${isOpen ? 'open' : ''}`}>
+              <div className="border-t border-gray-100">
+                {/* Mobile-Optimized Typography: 15px mobile, 17px desktop */}
+                <p className="text-[15px] md:text-[17px] leading-[24px] md:leading-[28px] font-normal text-gray-600 px-6 py-5 md:py-6">
+                  {item.answer}
+                </p>
+              </div>
+            </div>
 
           </div>
         );

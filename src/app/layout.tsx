@@ -84,7 +84,7 @@ export default function RootLayout({
 
         {children}
 
-        {/* Google Tag Manager — deferred to lazyOnload (not critical for LCP) */}
+        {/* Google Tag Manager — deferred to lazyOnload (loads after everything else) */}
         <Script id="gtm" strategy="lazyOnload">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

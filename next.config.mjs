@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  swcMinify: true,
   experimental: {
     optimizeCss: true,
+    optimizePackageImports: ['lucide-react', 'swiper'],
   },
   // Tell Next.js NOT to bundle these packages — load them natively via Node.js require().
   // Prevents dev-server worker crashes caused by bundler incompatibilities with the PayPal SDK.
@@ -22,6 +24,10 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000, // 1 year for optimized images
     formats: ['image/avif', 'image/webp'],
+  },
+  webpack: (config, { isServer }) => {
+    // Already configured in earlier section
+    return config;
   },
   async headers() {
     return [
