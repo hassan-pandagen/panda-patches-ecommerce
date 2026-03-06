@@ -80,6 +80,7 @@ export default function BulkQuoteForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          website: data.website || '',
           customer: {
             name: sanitizeString(data.name),
             email: sanitizeEmail(data.email),
@@ -129,6 +130,11 @@ export default function BulkQuoteForm() {
 
   return (
     <div id="bulk-quote" className="bg-white border-[3px] border-gray-200 rounded-[20px] px-6 md:px-8 py-7 md:py-8 shadow-2xl">
+
+      {/* Honeypot — hidden from humans, bots fill it */}
+      <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+        <input type="text" {...register("website")} tabIndex={-1} autoComplete="off" />
+      </div>
 
       {/* Header */}
       <div className="text-center mb-5">

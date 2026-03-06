@@ -5,7 +5,7 @@ import SampleBoxForm from "@/components/samplebox/SampleBoxForm";
 import ProductSwiper from "@/components/samplebox/ProductSwiper";
 import SampleBoxMedia from "@/components/samplebox/SampleBoxMedia";
 import { Check } from "lucide-react";
-import { client } from "@/lib/sanity";
+import { client, urlFor } from "@/lib/sanity";
 
 // ISR: Revalidate every hour
 export const revalidate = 3600;
@@ -51,6 +51,25 @@ const includedCategories = [
   "Custom Silicone Labels",
 ];
 
+// Fetch main category products for the swiper
+async function getSwiperProducts() {
+  try {
+    const query = `*[_type == "product" && category == "main"] | order(_createdAt asc) [0...6] {
+      _id,
+      title,
+      image
+    }`;
+    const data = await client.fetch(query);
+    return (data || []).map((p: any) => ({
+      _id: p._id,
+      title: p.title,
+      imageUrl: p.image ? urlFor(p.image).width(400).height(400).quality(70).auto('format').url() : null,
+    }));
+  } catch {
+    return [];
+  }
+}
+
 // Fetch Sample Box media from Sanity
 async function getSampleBoxMedia() {
   const query = `*[_type == "sampleBox"][0]{
@@ -70,7 +89,10 @@ async function getSampleBoxMedia() {
 }
 
 export default async function SampleBoxPage() {
-  const mediaData = await getSampleBoxMedia();
+  const [mediaData, swiperProducts] = await Promise.all([
+    getSampleBoxMedia(),
+    getSwiperProducts(),
+  ]);
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
@@ -125,7 +147,7 @@ export default async function SampleBoxPage() {
               {/* Product Categories Swiper Below */}
               <div className="mt-8">
                 <h4 className="text-xl font-black text-panda-dark uppercase mb-4">Explore Our Categories</h4>
-                <ProductSwiper />
+                <ProductSwiper products={swiperProducts} />
               </div>
             </div>
 

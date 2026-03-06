@@ -31,6 +31,7 @@ export default function QuoteModal({
   const [quoteMessage, setQuoteMessage] = useState("");
   const [quoteSubmitting, setQuoteSubmitting] = useState(false);
   const [quoteSubmitted, setQuoteSubmitted] = useState(false);
+  const [hp, setHp] = useState("");
 
   // Reset success state each time modal opens so form shows fresh
   useEffect(() => {
@@ -54,6 +55,7 @@ export default function QuoteModal({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          website: hp,
           customer: {
             name: quoteEmail,
             email: quoteEmail,
@@ -127,6 +129,10 @@ export default function QuoteModal({
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="px-6 py-5 space-y-4">
+            {/* Honeypot — hidden from humans, bots fill it */}
+            <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} />
+            </div>
 
             {/* Patch Summary */}
             <div className="bg-gray-50 rounded-[12px] px-4 py-3 flex items-center justify-between">

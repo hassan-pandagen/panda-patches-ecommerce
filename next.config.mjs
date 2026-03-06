@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    optimizeCss: true,
+  },
   // Tell Next.js NOT to bundle these packages — load them natively via Node.js require().
   // Prevents dev-server worker crashes caused by bundler incompatibilities with the PayPal SDK.
   serverExternalPackages: ['@paypal/paypal-server-sdk'],
@@ -116,8 +119,8 @@ const nextConfig = {
     "script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://js.stripe.com https://www.paypalobjects.com https://www.paypal.com https://widget.trustpilot.com https://www.clarity.ms https://scripts.clarity.ms https://*.tawk.to https://va.vercel-scripts.com https://cdn.vercel-insights.com https://googleads.g.doubleclick.net https://connect.facebook.net https://bat.bing.com",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.tawk.to",
     "font-src 'self' https://fonts.gstatic.com https://*.tawk.to",
-    "img-src 'self' data: blob: https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://www.paypalobjects.com https://c.clarity.ms https://googleads.g.doubleclick.net https://www.google.com https://www.facebook.com https://bat.bing.com https://c.bing.com https://*.tawk.to https://widget.trustpilot.com",
-    "connect-src 'self' https://api.sanity.io https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://api.stripe.com https://uxgzlneefybifvccfhwp.supabase.co https://www.clarity.ms https://k.clarity.ms https://h.clarity.ms https://l.clarity.ms https://api.zeptomail.com https://www.google.com https://stats.g.doubleclick.net https://googleleads.g.doubleclick.net https://connect.facebook.net https://www.facebook.com https://*.tawk.to wss://*.tawk.to https://widget.trustpilot.com https://bat.bing.com",
+    "img-src 'self' data: blob: https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://www.paypalobjects.com https://c.clarity.ms https://googleads.g.doubleclick.net https://www.google.com https://www.facebook.com https://bat.bing.com https://c.bing.com https://*.tawk.to https://s3.amazonaws.com https://widget.trustpilot.com",
+    "connect-src 'self' https://api.sanity.io https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://api.stripe.com https://uxgzlneefybifvccfhwp.supabase.co https://www.clarity.ms https://e.clarity.ms https://k.clarity.ms https://h.clarity.ms https://l.clarity.ms https://api.zeptomail.com https://www.google.com https://stats.g.doubleclick.net https://googleleads.g.doubleclick.net https://connect.facebook.net https://www.facebook.com https://*.tawk.to wss://*.tawk.to https://widget.trustpilot.com https://bat.bing.com",
     "media-src 'self' data: https://cdn.sanity.io https://*.tawk.to",
     "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://www.paypal.com https://www.googletagmanager.com https://widget.trustpilot.com https://*.tawk.to",
     "worker-src 'self' blob:",

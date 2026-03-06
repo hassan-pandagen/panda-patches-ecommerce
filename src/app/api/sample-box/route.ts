@@ -27,6 +27,11 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
+    // Honeypot check — bots fill this, real users don't
+    if (body.website) {
+      return NextResponse.json({ success: true, checkoutUrl: null });
+    }
+
     const validationResult = sampleBoxSchema.safeParse(body);
     if (!validationResult.success) {
       return NextResponse.json(

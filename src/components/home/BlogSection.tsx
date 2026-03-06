@@ -113,17 +113,8 @@ function BlogCard({ blog }: { blog: any }) {
            - Default: Black
            - Hover: Yellow (Like Figma middle card)
         */}
-        <Link href={blog.slug ? `/${blog.slug}` : '/blogs'} aria-label={`Read more about ${blog.title}`} className="mt-6">
-          <button className="
-            px-8 py-3
-            bg-black text-white
-            font-bold uppercase tracking-wider text-sm
-            transition-colors duration-300
-            group-hover:bg-panda-yellow group-hover:text-black
-            rounded-[4px]
-          ">
-            Read More
-          </button>
+        <Link href={blog.slug ? `/${blog.slug}` : '/blogs'} aria-label={`Read more about ${blog.title}`} className="mt-6 inline-block px-8 py-3 bg-black text-white font-bold uppercase tracking-wider text-sm transition-colors duration-300 group-hover:bg-panda-yellow group-hover:text-black rounded-[4px]">
+          Read More
         </Link>
 
       </div>

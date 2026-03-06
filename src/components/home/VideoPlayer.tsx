@@ -131,7 +131,7 @@ export default function VideoPlayer({ videoUrl, thumbnail, instagramLink }: Vide
             fill
             className="object-cover"
             sizes="255px"
-            quality={80}
+            quality={70}
           />
           {/* Play button overlay */}
           <div className="absolute inset-0 bg-black/30 flex items-center justify-center">

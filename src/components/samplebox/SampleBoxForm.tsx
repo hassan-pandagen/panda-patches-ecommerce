@@ -18,6 +18,7 @@ export default function SampleBoxForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          website: data.website || '',
           fullName: sanitizeString(data.fullName),
           email: sanitizeEmail(data.email),
           contactNumber: sanitizePhone(data.contactNumber),
@@ -43,6 +44,10 @@ export default function SampleBoxForm() {
 
   return (
     <div className="bg-white border-[3px] border-gray-200 rounded-[20px] px-8 py-8 shadow-2xl">
+      {/* Honeypot — hidden from humans, bots fill it */}
+      <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+        <input type="text" {...register("website")} tabIndex={-1} autoComplete="off" />
+      </div>
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-[24px] font-black text-panda-dark uppercase">Price</h3>

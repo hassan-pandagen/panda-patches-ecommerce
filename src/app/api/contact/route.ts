@@ -11,6 +11,12 @@ const contactSchema = z.object({
 export async function POST(request: Request) {
   try {
     const body = await request.json();
+
+    // Honeypot check — bots fill this, real users don't
+    if (body.website) {
+      return NextResponse.json({ success: true });
+    }
+
     const parsed = contactSchema.safeParse(body);
 
     if (!parsed.success) {

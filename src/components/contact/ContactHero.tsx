@@ -8,6 +8,7 @@ type FormData = {
   name: string;
   email: string;
   message: string;
+  website?: string;
 };
 
 export default function ContactHero() {
@@ -20,7 +21,7 @@ export default function ContactHero() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ name: data.name, email: data.email, message: data.message, website: data.website || '' }),
       });
       if (res.ok) {
         setStatus('success');
@@ -71,6 +72,10 @@ export default function ContactHero() {
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                {/* Honeypot — hidden from humans, bots fill it */}
+                <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+                  <input type="text" {...register("website")} tabIndex={-1} autoComplete="off" />
+                </div>
 
                 {/* Name & Email Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

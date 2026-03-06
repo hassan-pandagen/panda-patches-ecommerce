@@ -14,3 +14,4 @@ Host: https://pandapatches.com
 
 # Sitemaps
 Sitemap: https://pandapatches.com/sitemap.xml
+Sitemap: https://pandapatches.com/server-sitemap.xml

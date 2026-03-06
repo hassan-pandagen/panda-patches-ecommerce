@@ -1,44 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { client, urlFor } from "@/lib/sanity";
 
 interface Product {
   _id: string;
   title: string;
-  image: any;
+  imageUrl: string | null;
 }
-
-// Fallback products if Sanity fetch fails
-const fallbackProducts = [
-  {
-    title: "CHENILLE PATCHES",
-    url: "/custom-patches/chenille",
-  },
-  {
-    title: "PVC PATCHES",
-    url: "/custom-patches/pvc",
-  },
-  {
-    title: "LEATHER PATCHES",
-    url: "/custom-patches/leather",
-  },
-  {
-    title: "EMBROIDERED PATCHES",
-    url: "/custom-patches/embroidered",
-  },
-  {
-    title: "WOVEN PATCHES",
-    url: "/custom-patches/woven",
-  },
-  {
-    title: "PRINTED PATCHES",
-    url: "/custom-patches/printed",
-  },
-];
 
 // Map product titles to URLs
 function getProductUrl(title: string): string {
@@ -55,29 +26,11 @@ function getProductUrl(title: string): string {
   return urlMap[title] || '#';
 }
 
-export default function ProductSwiper() {
+export default function ProductSwiper({ products }: { products: Product[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [products, setProducts] = useState<Product[]>([]);
   const itemsPerView = 3;
 
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const query = `*[_type == "product" && category == "main"] | order(_createdAt asc) [0...6] {
-          _id,
-          title,
-          image
-        }`;
-        const data = await client.fetch(query);
-        setProducts(data || []);
-      } catch (error) {
-        console.error('Failed to fetch products:', error);
-      }
-    }
-    fetchProducts();
-  }, []);
-
-  const displayItems = products.length > 0 ? products : fallbackProducts;
+  const displayItems = products;
   const maxIndex = Math.max(0, displayItems.length - itemsPerView);
 
   const handlePrev = () => {
@@ -113,9 +66,8 @@ export default function ProductSwiper() {
           className="flex gap-4 transition-transform duration-500 ease-out"
           style={{ transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)` }}
         >
-          {displayItems.map((item: any, index: number) => {
-            const url = '_id' in item ? getProductUrl(item.title) : item.url;
-            const hasImage = '_id' in item && item.image;
+          {displayItems.map((item: Product, index: number) => {
+            const url = getProductUrl(item.title);
 
             return (
               <Link
@@ -125,9 +77,9 @@ export default function ProductSwiper() {
               >
                 <div className="bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
                   <div className="relative w-full aspect-square">
-                    {hasImage ? (
+                    {item.imageUrl ? (
                       <Image
-                        src={urlFor(item.image).url()}
+                        src={item.imageUrl}
                         alt={item.title}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-500"

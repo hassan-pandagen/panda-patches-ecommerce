@@ -40,6 +40,11 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
+    // Honeypot check — bots fill this, real users don't
+    if (body.website) {
+      return NextResponse.json({ success: true });
+    }
+
     const validationResult = QuoteSchema.safeParse(body);
 
     if (!validationResult.success) {

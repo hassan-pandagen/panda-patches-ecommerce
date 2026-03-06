@@ -4,12 +4,12 @@ import { generateLocalBusinessSchema, generateSchemaScript } from "@/lib/schemas
 import { client, urlFor } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
-import Craftsmanship from "@/components/home/Craftsmanship";
-import ReviewsSection from "@/components/home/ReviewsSection";
 import Promises from "@/components/home/Promises";
 import ProductGrid from "@/components/home/ProductGrid";
 
 // Lazy load below-fold components to improve initial page load
+const Craftsmanship = dynamic(() => import("@/components/home/Craftsmanship"), { ssr: true });
+const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"), { ssr: true });
 const ProcessSection = dynamic(() => import("@/components/home/ProcessSection"), { ssr: true });
 const TimelineSection = dynamic(() => import("@/components/home/TimelineSection"), { ssr: true });
 const FAQ = dynamic(() => import("@/components/home/FAQ"), { ssr: true });
