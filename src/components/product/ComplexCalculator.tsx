@@ -617,7 +617,7 @@ export default function ComplexCalculator({
                       ? p.label !== "Across Chest (12 x 12 inches)" && p.label !== "Jacket Back (14 x 14 inches)"
                       : true
                     )
-                    .map((p, i) => <option key={i} value={p.label}>{p.label}</option>)}
+                    .map((p, i) => <option key={i} value={p.label} disabled={i === 0}>{p.label}</option>)}
                 </select>
                 <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 text-black pointer-events-none" size={20} />
               </div>

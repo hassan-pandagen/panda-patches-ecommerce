@@ -199,7 +199,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
                </select>
              ) : (
                <select {...register("type")} aria-label="Select patch type" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
-                 <option value="">Patch Type</option>
+                 <option value="" disabled>Patch Type</option>
                  <option value="embroidered">Embroidered</option>
                  <option value="3d-embroidered">3D Embroidered Transfers</option>
                  <option value="chenille">Chenille</option>

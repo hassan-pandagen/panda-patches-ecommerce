@@ -197,7 +197,7 @@ export default function BulkQuoteForm() {
         <div className="grid grid-cols-2 gap-2.5">
           <div className="relative">
             <select {...register("patchType")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
-              <option value="">Patch Type</option>
+              <option value="" disabled>Patch Type</option>
               <option value="embroidered">Embroidered</option>
               <option value="3d-embroidered">3D Embroidered Transfers</option>
               <option value="chenille">Chenille</option>
@@ -215,7 +215,7 @@ export default function BulkQuoteForm() {
 
           <div className="relative">
             <select {...register("quantityRange")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
-              <option value="">Quantity Range</option>
+              <option value="" disabled>Quantity Range</option>
               <option value="50-99">50 - 99 pieces</option>
               <option value="100-299">100 - 299 pieces</option>
               <option value="300-499">300 - 499 pieces</option>
@@ -237,7 +237,7 @@ export default function BulkQuoteForm() {
 
           <div className="relative">
             <select {...register("backing")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
-              <option value="">Backing Type</option>
+              <option value="" disabled>Backing Type</option>
               <option value="iron">Iron-On</option>
               <option value="velcro">Velcro (Hook & Loop)</option>
               <option value="sew">Sew-On</option>
