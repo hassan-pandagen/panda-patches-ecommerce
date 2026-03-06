@@ -26,6 +26,7 @@ export default function Footer() {
                     alt="Panda Patches"
                     fill
                     className="object-contain object-left"
+                    sizes="160px"
                   />
                </Link>
                <p className="text-gray-500 font-medium">Panda Makes Patches Easy!</p>

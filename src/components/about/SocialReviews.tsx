@@ -31,6 +31,7 @@ export default async function SocialReviews() {
             alt="Social Media Reviews"
             fill
             className="object-contain"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 1458px"
           />
         </div>
 

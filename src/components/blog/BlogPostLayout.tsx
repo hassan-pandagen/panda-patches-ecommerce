@@ -23,7 +23,14 @@ export default function BlogPostLayout({ post }: { post: any }) {
         {/* Featured Image */}
         {post.image && (
           <div className="relative w-full h-[400px] md:h-[500px] mb-16 rounded-[20px] overflow-hidden shadow-sm border border-gray-100">
-            <Image src={urlFor(post.image).url()} alt={post.title} fill className="object-cover" priority />
+            <Image 
+              src={urlFor(post.image).url()} 
+              alt={post.title} 
+              fill 
+              className="object-cover" 
+              priority 
+              sizes="(max-width: 768px) 100vw, 800px"
+            />
           </div>
         )}
 

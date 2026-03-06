@@ -456,7 +456,7 @@ export default function ComplexCalculator({
                       <>
                         {sel.icon.startsWith('http') ? (
                           <div className="relative w-7 h-7 flex-shrink-0">
-                            <Image src={sel.icon} alt={sel.name} fill className="object-contain" />
+                            <Image src={sel.icon} alt={sel.name} fill className="object-contain" sizes="28px" />
                           </div>
                         ) : (
                           <span className="text-xl leading-none">{sel.icon}</span>
@@ -488,7 +488,7 @@ export default function ComplexCalculator({
                     >
                       {opt.icon.startsWith('http') ? (
                         <div className="relative w-8 h-8 flex-shrink-0">
-                          <Image src={opt.icon} alt={opt.name} fill className="object-contain" />
+                          <Image src={opt.icon} alt={opt.name} fill className="object-contain" sizes="32px" />
                         </div>
                       ) : (
                         <span className="text-2xl leading-none">{opt.icon}</span>
@@ -577,7 +577,7 @@ export default function ComplexCalculator({
                       >
                         {imgUrl ? (
                           <div className="relative w-10 h-10 rounded-[6px] overflow-hidden flex-shrink-0">
-                            <Image src={imgUrl} alt={opt.title} fill className="object-cover" />
+                            <Image src={imgUrl} alt={opt.title} fill className="object-cover" sizes="40px" />
                           </div>
                         ) : (
                           <div className="w-10 h-10 rounded-[6px] bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-500">
@@ -1090,12 +1090,12 @@ export default function ComplexCalculator({
                         `}
                       >
                         {addon.icon.startsWith('http') ? (
-                          <div className="relative w-8 h-8 flex-shrink-0">
-                            <Image src={addon.icon} alt={addon.name} fill className="object-contain" />
-                          </div>
-                        ) : (
-                          <span className="text-2xl">{addon.icon}</span>
-                        )}
+                            <div className="relative w-8 h-8 flex-shrink-0">
+                              <Image src={addon.icon} alt={addon.name} fill className="object-contain" sizes="32px" />
+                            </div>
+                          ) : (
+                            <span className="text-2xl">{addon.icon}</span>
+                          )}
                         <div className="flex-1">
                           <p className={`text-sm font-bold ${selectedAddons.includes(addon.id) ? 'text-black' : 'text-gray-700'}`}>
                             {addon.name}

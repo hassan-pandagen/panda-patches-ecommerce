@@ -79,6 +79,7 @@ export default async function ProductHero({ productData, isMainPage = false }: P
                              alt="Trust Badge"
                              fill
                              className="object-contain"
+                             sizes="(max-width: 768px) 80px, 96px"
                            />
                          </div>
                        ))}

@@ -51,16 +51,25 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const pathname = usePathname();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [scrolled, setScrolled] = useState(false);
+   const pathname = usePathname();
+   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+   const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+   useEffect(() => {
+     let ticking = false;
+     const handleScroll = () => {
+       if (!ticking) {
+         window.requestAnimationFrame(() => {
+           setScrolled(window.scrollY > 20);
+           ticking = false;
+         });
+         ticking = true;
+       }
+     };
+     window.addEventListener('scroll', handleScroll, { passive: true });
+     return () => window.removeEventListener('scroll', handleScroll);
+   }, []);
 
   return (
     <header className={`
@@ -78,7 +87,8 @@ export default function Navbar() {
               alt="Panda Patches"
               width={160}
               height={50}
-              className="w-[130px] h-[42px] md:w-[160px] md:h-[50px] object-contain transform-gpu"
+              className="w-auto h-auto md:w-[160px] md:h-[50px] object-contain"
+              style={{ width: '130px', height: 'auto', maxHeight: '42px' }}
               priority
             />
           </Link>

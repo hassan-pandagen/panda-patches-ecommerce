@@ -55,6 +55,7 @@ export default function SampleBoxMedia({ images, video }: SampleBoxMediaProps) {
                 fill
                 className="object-cover"
                 priority={selectedImageIndex === 0}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 70vw"
               />
 
               {/* Image Caption */}
@@ -111,6 +112,7 @@ export default function SampleBoxMedia({ images, video }: SampleBoxMediaProps) {
               alt={img.alt}
               fill
               className="object-cover"
+              sizes="96px"
             />
           </button>
         ))}
@@ -130,6 +132,7 @@ export default function SampleBoxMedia({ images, video }: SampleBoxMediaProps) {
               alt={video.title || "Video"}
               fill
               className="object-cover opacity-70"
+              sizes="96px"
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="bg-panda-yellow rounded-full p-2 shadow-lg">

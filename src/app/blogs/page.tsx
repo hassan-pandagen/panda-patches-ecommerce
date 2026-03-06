@@ -119,12 +119,12 @@ export default async function BlogsPage({ searchParams }: { searchParams: { page
                     </p>
                     
                     {post.slug?.current ? (
-                      <Link href={`/${post.slug.current}`} aria-label={`Read more about ${post.title}`} className="inline-block bg-black text-panda-yellow font-black text-xs uppercase px-8 py-3 tracking-widest hover:scale-105 transition-transform">
-                        Read More
+                      <Link href={`/${post.slug.current}`} className="inline-block bg-black text-panda-yellow font-black text-xs uppercase px-8 py-3 tracking-widest hover:scale-105 transition-transform">
+                        Read More: {post.title}
                       </Link>
                     ) : (
-                      <Link href="/blogs" aria-label={`Read more about ${post.title}`} className="inline-block bg-black text-panda-yellow font-black text-xs uppercase px-8 py-3 tracking-widest hover:scale-105 transition-transform">
-                        Read More
+                      <Link href="/blogs" className="inline-block bg-black text-panda-yellow font-black text-xs uppercase px-8 py-3 tracking-widest hover:scale-105 transition-transform">
+                        Read More: {post.title}
                       </Link>
                     )}
                   </div>

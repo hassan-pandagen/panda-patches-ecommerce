@@ -44,6 +44,7 @@ export default async function Hero() {
             fill
             className="object-cover object-left-bottom"
             priority
+            sizes="(min-width: 1024px) 48vw"
          />
       </div>
 
@@ -83,6 +84,7 @@ export default async function Hero() {
                    alt={badge.alt || `Trust badge ${idx + 1} | Panda Patches`}
                    fill
                    className="object-contain object-center"
+                   sizes="96px"
                  />
                </div>
              ))}
@@ -141,16 +143,16 @@ export default async function Hero() {
           {/* Mobile: 2x2 Grid | Desktop: 4 in 1 row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full max-w-5xl mx-auto">
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-google.svg" alt="Google" width={110} height={50} className="object-contain brightness-0" />
+               <Image src="/assets/logo-google.svg" alt="Google" width={110} height={50} className="object-contain brightness-0 w-auto h-auto" />
              </div>
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-microsoft.svg" alt="Microsoft" width={130} height={50} className="object-contain brightness-0" />
+               <Image src="/assets/logo-microsoft.svg" alt="Microsoft" width={130} height={50} className="object-contain brightness-0 w-auto h-auto" />
              </div>
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-cocacola.svg" alt="CocaCola" width={120} height={50} className="object-contain brightness-0" />
+               <Image src="/assets/logo-cocacola.svg" alt="CocaCola" width={120} height={50} className="object-contain brightness-0 w-auto h-auto" />
              </div>
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-nissan.svg" alt="Nissan" width={100} height={50} className="object-contain brightness-0" />
+               <Image src="/assets/logo-nissan.svg" alt="Nissan" width={100} height={50} className="object-contain brightness-0 w-auto h-auto" />
              </div>
           </div>
         </div>

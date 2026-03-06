@@ -2,9 +2,12 @@ import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import dynamic from "next/dynamic";
 import { generateOrganizationSchema, generateWebSiteSchema, generateSchemaScript } from "@/lib/schemas";
-import TawkToWidget from "@/components/TawkToWidget";
-import CallNowPopup from "@/components/CallNowPopup";
+
+// Lazy load non-critical components
+const TawkToWidget = dynamic(() => import("@/components/TawkToWidget"), { ssr: false });
+const CallNowPopup = dynamic(() => import("@/components/CallNowPopup"), { ssr: false });
 
 // Configure Outfit Font
 const outfit = Outfit({
@@ -55,7 +58,6 @@ export default function RootLayout({
       <head>
         {/* Preconnect to image CDN — critical for LCP hero image */}
         <link rel="preconnect" href="https://cdn.sanity.io" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
       </head>
       <body className={`${outfit.variable} font-sans antialiased`}>
 
@@ -82,8 +84,8 @@ export default function RootLayout({
 
         {children}
 
-        {/* Google Tag Manager */}
-        <Script id="gtm" strategy="afterInteractive">
+        {/* Google Tag Manager — deferred to lazyOnload (not critical for LCP) */}
+        <Script id="gtm" strategy="lazyOnload">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -110,13 +112,13 @@ fbq('track', 'PageView');`}
           {`(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97147013"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");`}
         </Script>
 
-        {/* Google Ads Tag */}
+        {/* Google Ads Tag — deferred to lazyOnload (not critical for LCP) */}
         <Script
           id="google-ads-tag"
           src="https://www.googletagmanager.com/gtag/js?id=AW-11221237770"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-ads-init" strategy="afterInteractive">
+        <Script id="google-ads-init" strategy="lazyOnload">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-11221237770');`}
         </Script>
 
