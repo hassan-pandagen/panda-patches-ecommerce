@@ -59,8 +59,39 @@ const ALLOWED_ORIGINS = [
   'https://panda-patches-ecommerce-7w28lefz.vercel.app',
 ];
 
+// ============================================
+// CONTENT SECURITY POLICY (CSP)
+// ============================================
+const cspHeader = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://js.stripe.com https://www.paypalobjects.com https://www.paypal.com https://widget.trustpilot.com https://www.clarity.ms https://scripts.clarity.ms https://embed.tawk.to https://cdn.tawk.to https://va.tawk.to https://cdn.jsdelivr.net https://va.vercel-scripts.com https://cdn.vercel-insights.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://connect.facebook.net https://bat.bing.com",
+  "script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://js.stripe.com https://www.paypalobjects.com https://www.paypal.com https://widget.trustpilot.com https://www.clarity.ms https://scripts.clarity.ms https://embed.tawk.to https://cdn.tawk.to https://va.tawk.to https://cdn.jsdelivr.net https://va.vercel-scripts.com https://cdn.vercel-insights.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://connect.facebook.net https://bat.bing.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://embed.tawk.to https://cdn.tawk.to",
+  "font-src 'self' https://fonts.gstatic.com https://cdn.tawk.to https://embed.tawk.to",
+  "img-src 'self' data: blob: https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://www.paypalobjects.com https://c.clarity.ms https://www.clarity.ms https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.googleadservices.com https://www.google.com https://www.facebook.com https://bat.bing.com https://c.bing.com https://embed.tawk.to https://cdn.tawk.to https://va.tawk.to https://s3.tawk.to https://s3.amazonaws.com https://widget.trustpilot.com",
+  "connect-src 'self' https://api.sanity.io https://cdn.sanity.io https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://api.stripe.com https://uxgzlneefybifvccfhwp.supabase.co https://www.clarity.ms https://k.clarity.ms https://i.clarity.ms https://h.clarity.ms https://api.zeptomail.com https://www.google.com https://stats.g.doubleclick.net https://googleleads.g.doubleclick.net https://connect.facebook.net https://www.facebook.com https://embed.tawk.to https://va.tawk.to https://cdn.tawk.to https://s3.tawk.to wss://*.tawk.to https://widget.trustpilot.com https://bat.bing.com",
+  "media-src 'self' data: https://cdn.sanity.io https://embed.tawk.to https://cdn.tawk.to https://va.tawk.to",
+  "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://www.paypal.com https://www.googletagmanager.com https://widget.trustpilot.com https://tawk.to https://embed.tawk.to https://www.facebook.com https://bid.g.doubleclick.net https://googleads.g.doubleclick.net",
+  "worker-src 'self' blob:",
+  "object-src 'none'",
+].join('; ');
+
+// Sanity Studio permissive CSP
+const sanityCspHeader = "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:";
+
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  
+  // Add CSP header to response
+  const response = NextResponse.next();
+  
+  // Apply different CSP based on route
+  if (pathname.startsWith('/studio')) {
+    response.headers.set('Content-Security-Policy', sanityCspHeader);
+    response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+  } else {
+    response.headers.set('Content-Security-Policy', cspHeader);
+  }
 
   // ============================================
   // RATE LIMITING (UPSTASH REDIS)
@@ -194,7 +225,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {
