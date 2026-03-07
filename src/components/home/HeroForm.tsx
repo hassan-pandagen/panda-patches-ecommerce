@@ -3,15 +3,7 @@
 import { useForm } from "react-hook-form";
 import { UploadCloud, Check } from "lucide-react";
 import { useState, useRef } from "react";
-import { createClient } from "@supabase/supabase-js";
 import { sanitizeString, sanitizeEmail, sanitizePhone, sanitizeInteger, sanitizeNumber } from "@/lib/sanitize";
-
-const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  ? createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-    )
-  : null;
 
 export default function HeroForm({ productSlug }: { productSlug?: string }) {
   const isKeychains = productSlug === 'keychains';
@@ -27,12 +19,19 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file || !supabase) return;
+    if (!file) return;
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) return;
 
     setUploading(true);
     setUploadedFileName(file.name);
 
     try {
+      const { createClient } = await import("@supabase/supabase-js");
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      );
+
       const fileExt = file.name.split('.').pop()?.replace(/[^a-z0-9]/gi, '').toLowerCase() || 'jpg';
       const randomId = Math.random().toString(36).substring(2, 10).toUpperCase();
       const timestamp = Date.now();
@@ -129,7 +128,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
 
   return (
     // Reduced padding slightly to make it fit nicely
-    <div className="bg-[#1E4000]/5 backdrop-blur-md border-[3px] border-[#676767]/30 rounded-[20px] px-8 py-8 shadow-2xl">
+    <div className="bg-white/90 border-[3px] border-[#676767]/30 rounded-[20px] px-8 py-8 shadow-2xl">
 
       <div className="text-center mb-6">
         <h2 className="text-[24px] leading-tight font-black text-panda-dark uppercase tracking-tight">
@@ -296,24 +295,6 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
         </button>
       </form>
 
-      <style jsx global>{`
-        .form-input {
-          width: 100%;
-          background-color: #F2F4EF;
-          padding: 14px 16px; /* Optimized Padding */
-          border-radius: 10px;
-          font-size: 13px;
-          color: #1a1a1a;
-          outline: none;
-          font-weight: 500;
-          border: 1px solid transparent;
-          transition: all 0.2s;
-        }
-        .form-input:focus {
-          background-color: #ffffff;
-          border-color: #3B7E00;
-        }
-      `}</style>
     </div>
   );
 }

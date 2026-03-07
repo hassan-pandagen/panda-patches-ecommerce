@@ -131,24 +131,6 @@ export default function SampleBoxForm() {
         </button>
       </form>
 
-      <style jsx global>{`
-        .form-input {
-          width: 100%;
-          background-color: #F2F4EF;
-          padding: 14px 16px;
-          border-radius: 10px;
-          font-size: 14px;
-          color: #1a1a1a;
-          outline: none;
-          font-weight: 500;
-          border: 1px solid transparent;
-          transition: all 0.2s;
-        }
-        .form-input:focus {
-          background-color: #ffffff;
-          border-color: #3B7E00;
-        }
-      `}</style>
     </div>
   );
 }

@@ -7,12 +7,8 @@ async function getHeroData() {
     const query = `*[_type == "hero"][0] {
       title,
       subtitle,
-      "heroImage": {
-        "url": heroImage.asset->url,
-        "alt": heroImage.alt
-      },
       "trustBadges": trustBadges[] {
-        "url": image.asset->url,
+        "ref": image,
         "alt": alt
       }
     }`;
@@ -40,11 +36,12 @@ export default async function Hero() {
       <div className="hidden lg:block absolute top-0 right-0 h-[88%] w-[48%] z-0 pointer-events-none">
          <Image
             src="/assets/hero-bg.svg"
-            alt="Custom patches background design with green geometric pattern | Panda Patches"
+            alt=""
             fill
             className="object-cover object-left-bottom"
-            priority
+            loading="lazy"
             sizes="(min-width: 1024px) 48vw"
+            aria-hidden="true"
          />
       </div>
 
@@ -77,11 +74,11 @@ export default async function Hero() {
 
           {/* Badges - 2x2 Grid on mobile, Single row on desktop */}
           <div className="grid grid-cols-2 md:flex md:flex-wrap md:items-center md:justify-center lg:justify-start gap-3 md:gap-5 mb-8 md:mb-8 w-full mx-auto md:mx-0 max-w-[280px] md:max-w-full place-items-center">
-             {data?.trustBadges && data.trustBadges.filter((badge: any) => badge?.url).map((badge: any, idx: number) => (
+             {data?.trustBadges && data.trustBadges.filter((badge: any) => badge?.ref).map((badge: any, idx: number) => (
                <div key={idx} className="relative h-12 md:h-8 w-24 md:w-24 flex-shrink-0 flex items-center justify-center">
                  <Image
-                   src={urlFor(badge.url).width(96).height(32).format('webp').quality(80).url()}
-                   alt={badge.alt || `Trust badge ${idx + 1} | Panda Patches`}
+                   src={urlFor(badge.ref).width(96).height(32).format('webp').quality(80).url()}
+                   alt={badge.alt || `Trust badge ${idx + 1}`}
                    fill
                    className="object-contain object-center"
                    sizes="96px"
@@ -96,17 +93,14 @@ export default async function Hero() {
              - Mobile: Responsive with full width
           */}
           <div className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-8 md:-mt-10 mx-auto md:mx-0">
-             {data?.heroImage && (
                <Image
-                 src={urlFor(data.heroImage.url).width(630).quality(50).auto('format').url()}
-                 alt={data.heroImage.alt || "Custom embroidered patches display featuring various designs including military, sports, and corporate patches | Panda Patches"}
+                 src="/assets/hero-product.webp"
+                 alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"
                  fill
                  className="object-contain object-center md:object-left hover:scale-[1.02] transition-transform duration-700"
                  priority
-                 unoptimized
                  sizes="(max-width: 768px) 100vw, 630px"
                />
-             )}
 
              {/* 1 Million Badge - Hidden on mobile */}
              <div className="hidden md:flex absolute bottom-16 right-20 bg-white shadow-xl rounded-xl p-3 items-center gap-3 animate-bounce-slow border border-gray-100">

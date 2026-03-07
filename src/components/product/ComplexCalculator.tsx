@@ -5,7 +5,6 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { UploadCloud, Check, ChevronDown, ShoppingCart, FileText, Lightbulb } from "lucide-react";
-import Modal from "@/components/ui/Modal";
 import HeroForm from "@/components/home/HeroForm";
 import { urlFor } from "@/lib/sanity";
 import TrustBadges from "@/components/shared/TrustBadges";
@@ -171,8 +170,6 @@ export default function ComplexCalculator({
 
   // File Upload (hook)
   const { fileName, setFileName, fileUrl, setFileUrl, uploading, handleFileUpload } = useFileUpload();
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Multi-Step Form State
   const [currentStep, setCurrentStep] = useState(1);

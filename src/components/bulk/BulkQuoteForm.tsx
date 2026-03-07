@@ -3,15 +3,7 @@
 import { useForm } from "react-hook-form";
 import { UploadCloud, CheckCircle, Phone, Clock, ShieldCheck, Check } from "lucide-react";
 import { useState, useRef } from "react";
-import { createClient } from "@supabase/supabase-js";
 import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
-
-const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  ? createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-    )
-  : null;
 
 export default function BulkQuoteForm() {
   const { register, handleSubmit, reset } = useForm();
@@ -26,12 +18,19 @@ export default function BulkQuoteForm() {
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file || !supabase) return;
+    if (!file) return;
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) return;
 
     setUploading(true);
     setUploadedFileName(file.name);
 
     try {
+      const { createClient } = await import("@supabase/supabase-js");
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      );
+
       const fileExt = file.name.split(".").pop()?.replace(/[^a-z0-9]/gi, "").toLowerCase() || "jpg";
       const randomId = Math.random().toString(36).substring(2, 10).toUpperCase();
       const timestamp = Date.now();
@@ -345,27 +344,6 @@ export default function BulkQuoteForm() {
         </div>
       </div>
 
-      <style jsx global>{`
-        .bulk-field {
-          width: 100%;
-          background-color: #F2F4EF;
-          padding: 12px 14px;
-          border-radius: 10px;
-          font-size: 13px;
-          color: #1a1a1a;
-          outline: none;
-          font-weight: 500;
-          border: 1px solid transparent;
-          transition: all 0.2s;
-        }
-        .bulk-field::placeholder {
-          color: #9ca3af;
-        }
-        .bulk-field:focus {
-          background-color: #ffffff;
-          border-color: #3B7E00;
-        }
-      `}</style>
     </div>
   );
 }

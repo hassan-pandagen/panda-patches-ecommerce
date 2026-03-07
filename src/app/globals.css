@@ -5,6 +5,111 @@
 /* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind utilities;
 
+/* Form inputs — moved from styled-jsx to static CSS to eliminate forced reflow */
+.form-input {
+  width: 100%;
+  background-color: #F2F4EF;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #1a1a1a;
+  outline: none;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+.form-input:focus {
+  background-color: #ffffff;
+  border-color: #3B7E00;
+}
+
+.bulk-field {
+  width: 100%;
+  background-color: #F2F4EF;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #1a1a1a;
+  outline: none;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+.bulk-field::placeholder { color: #9ca3af; }
+.bulk-field:focus {
+  background-color: #ffffff;
+  border-color: #3B7E00;
+}
+
+/* Product gallery Swiper + Lightbox */
+.product-gallery-swiper .swiper-button-next,
+.product-gallery-swiper .swiper-button-prev {
+  background: #000 !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #fff !important;
+  overflow: hidden !important;
+}
+.product-gallery-swiper .swiper-button-next:hover,
+.product-gallery-swiper .swiper-button-prev:hover {
+  background: #B4D92D !important;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2) !important;
+  color: #000 !important;
+}
+.product-gallery-swiper .swiper-button-next:after,
+.product-gallery-swiper .swiper-button-prev:after {
+  font-size: 10px !important;
+  color: inherit !important;
+  font-weight: 900 !important;
+  transition: all 0.3s ease !important;
+  position: static !important;
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+.product-gallery-swiper .swiper-button-disabled { opacity: 0.5 !important; }
+.product-gallery-swiper .swiper-pagination-bullet {
+  background: #000;
+  opacity: 0.3;
+  width: 8px;
+  height: 8px;
+  transition: all 0.3s ease;
+}
+.product-gallery-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  width: 24px;
+  border-radius: 4px;
+}
+.product-thumbs-swiper .swiper-slide-thumb-active > div {
+  border-color: #10B981 !important;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+.yarl__navigation_prev,
+.yarl__navigation_next {
+  background: #000 !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+}
+.yarl__navigation_prev:hover,
+.yarl__navigation_next:hover {
+  background: #B4D92D !important;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2) !important;
+}
+.yarl__navigation_prev svg,
+.yarl__navigation_next svg { color: #fff; transition: all 0.3s ease; }
+.yarl__navigation_prev:hover svg,
+.yarl__navigation_next:hover svg { color: #000; }
+
 @keyframes slide-up {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }

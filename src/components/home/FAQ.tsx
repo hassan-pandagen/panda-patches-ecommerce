@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import FAQList from "./FAQList";
-import { generateFAQSchema, generateSchemaScript } from "@/lib/schemas";
 import { genericFaqs } from "@/lib/genericFaqs";
 
 interface FAQData {
@@ -41,16 +40,8 @@ export default function FAQ({ questions: propQuestions, heading: propHeading }: 
     return null;
   }
 
-  // Generate FAQ schema for SEO
-  const faqSchema = generateFAQSchema(questions);
-
   return (
     <section className="w-full py-12 bg-white">
-      {/* FAQ Schema for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={generateSchemaScript(faqSchema)}
-      />
 
       <div className="container mx-auto px-6">
         

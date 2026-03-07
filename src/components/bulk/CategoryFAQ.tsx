@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { generateFAQSchema, generateSchemaScript } from "@/lib/schemas";
-
 interface FAQ {
   question: string;
   answer: string;
@@ -16,15 +14,9 @@ interface CategoryFAQProps {
 
 export default function CategoryFAQ({ title = "Frequently Asked Questions", faqs }: CategoryFAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const faqSchema = generateFAQSchema(faqs);
 
   return (
     <section className="w-full py-8 md:py-14 bg-panda-light">
-      {/* FAQ Schema for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={generateSchemaScript(faqSchema)}
-      />
 
       <div className="container mx-auto px-4 md:px-6 max-w-[800px]">
 

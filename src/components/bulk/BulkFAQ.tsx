@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { generateFAQSchema, generateSchemaScript } from "@/lib/schemas";
-
 const bulkFAQs = [
   {
     question: "What's the minimum order for bulk pricing?",
@@ -41,15 +39,9 @@ const bulkFAQs = [
 
 export default function BulkFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const faqSchema = generateFAQSchema(bulkFAQs);
 
   return (
     <section className="w-full py-8 md:py-14 bg-panda-light">
-      {/* FAQ Schema for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={generateSchemaScript(faqSchema)}
-      />
 
       <div className="container mx-auto px-4 md:px-6 max-w-[800px]">
 

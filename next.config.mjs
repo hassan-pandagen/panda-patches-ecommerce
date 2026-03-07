@@ -8,11 +8,6 @@ const nextConfig = {
   // Tell Next.js NOT to bundle these packages — load them natively via Node.js require().
   // Prevents dev-server worker crashes caused by bundler incompatibilities with the PayPal SDK.
   serverExternalPackages: ['@paypal/paypal-server-sdk'],
-  webpack: (config, { isServer }) => {
-    // Redirect @upstash/redis to its edge-compatible build to avoid Node.js API warnings
-    config.resolve.alias['@upstash/redis'] = '@upstash/redis/cloudflare';
-    return config;
-  },
   images: {
     remotePatterns: [
       {
@@ -25,8 +20,8 @@ const nextConfig = {
     minimumCacheTTL: 31536000, // 1 year for optimized images
     formats: ['image/avif', 'image/webp'],
   },
-  webpack: (config, { isServer }) => {
-    // Already configured in earlier section
+  webpack: (config) => {
+    config.resolve.alias['@upstash/redis'] = '@upstash/redis/cloudflare';
     return config;
   },
   async headers() {

@@ -2,6 +2,7 @@ import Image from "next/image";
 import ProductGallery from "./ProductGallery";
 import ComplexCalculator from "./ComplexCalculator";
 import HeroForm from "@/components/home/HeroForm";
+import AutoLinker from "@/components/seo/AutoLinker";
 import { client } from "@/lib/sanity";
 
 interface Props {
@@ -50,7 +51,7 @@ export default async function ProductHero({ productData, isMainPage = false }: P
 
             {/* Description - Mobile Responsive */}
             <p className="text-[14px] md:text-[16px] text-gray-600 leading-[1.6] md:leading-[1.7] font-medium mb-6 md:mb-10 max-w-[600px] text-center md:text-left mx-auto md:mx-0">
-              {desc}
+              <AutoLinker text={desc} />
             </p>
 
             {/* Gallery */}
