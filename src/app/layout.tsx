@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
 import "./critical.css";
+import "./globals.css";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import { generateOrganizationSchema, generateWebSiteSchema, generateSchemaScript } from "@/lib/schemas";
@@ -56,23 +57,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-         {/* Preconnect to image CDN — critical for LCP hero image */}
-         <link rel="preconnect" href="https://cdn.sanity.io" />
-         
-         {/* Defer non-critical CSS (Tailwind utilities, animations, etc.) */}
-         <link
-           rel="stylesheet"
-           href="./globals.css"
-           media="print"
-           onLoad={(e) => {
-             const target = e.target as HTMLLinkElement;
-             target.media = 'all';
-           }}
-         />
-         {/* Fallback for no-JS */}
-         <noscript>
-           <link rel="stylesheet" href="./globals.css" />
-         </noscript>
+         {/* Preconnect + DNS prefetch to Sanity image CDN — reduces LCP hero image latency */}
+         <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
+         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
        </head>
       <body className={`${outfit.variable} font-sans antialiased`}>
 

@@ -117,24 +117,32 @@ html {
 }
 
 /* =============================================
-   FAQ ACCORDION ANIMATIONS (CSS-only, no Framer Motion)
+   FAQ ACCORDION ANIMATIONS
+   Uses grid-template-rows which is GPU-composited (no layout recalc per frame).
+   max-height and height transitions trigger layout — avoid them.
    ============================================= */
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
+.faq-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease, opacity 0.3s ease;
   opacity: 0;
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-.faq-answer.open {
-  max-height: 500px;
+.faq-wrapper.open {
+  grid-template-rows: 1fr;
   opacity: 1;
 }
 
-/* Process line animation (CSS-only) */
+.faq-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Process line animation — scaleX is GPU-composited (no layout recalc) */
 .process-line {
-  width: 0%;
-  transition: width 0.5s ease-in-out;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease-in-out;
 }
 
 @layer utilities {

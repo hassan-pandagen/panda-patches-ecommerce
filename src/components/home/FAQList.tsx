@@ -44,8 +44,8 @@ export default function FAQList({ questions }: { questions: any[] }) {
             </button>
 
             {/* ANSWER BODY (CSS Animation) */}
-            <div className={`faq-answer ${isOpen ? 'open' : ''}`}>
-              <div className="border-t border-gray-100">
+            <div className={`faq-wrapper ${isOpen ? 'open' : ''}`}>
+              <div className="faq-inner border-t border-gray-100">
                 {/* Mobile-Optimized Typography: 15px mobile, 17px desktop */}
                 <p className="text-[15px] md:text-[17px] leading-[24px] md:leading-[28px] font-normal text-gray-600 px-6 py-5 md:py-6">
                   {item.answer}

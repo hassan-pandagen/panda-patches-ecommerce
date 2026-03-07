@@ -7,12 +7,12 @@ import { urlFor } from "@/lib/sanity";
 export default function ProcessInteractive({ data }: { data: any }) {
   const [activeStep, setActiveStep] = useState(0);
 
-  // Helper to get line width
-  const getLineWidth = () => {
-    if (activeStep === 1) return "33%";
-    if (activeStep === 2) return "66%";
-    if (activeStep === 3) return "100%";
-    return "0%";
+  // Helper to get scaleX value — scaleX is GPU-composited, avoids layout recalc
+  const getLineScale = () => {
+    if (activeStep === 1) return "scaleX(0.33)";
+    if (activeStep === 2) return "scaleX(0.66)";
+    if (activeStep === 3) return "scaleX(1)";
+    return "scaleX(0)";
   };
 
   return (
@@ -29,7 +29,7 @@ export default function ProcessInteractive({ data }: { data: any }) {
         */}
         <div 
           className="process-line h-full bg-black origin-left rounded-full"
-          style={{ width: getLineWidth() }}
+          style={{ transform: getLineScale() }}
         />
       </div>
 
@@ -76,10 +76,11 @@ export default function ProcessInteractive({ data }: { data: any }) {
                 
                 {/* Image */}
                 {step.image && (
-                  <Image 
-                    src={urlFor(step.image).url()} 
+                  <Image
+                    src={urlFor(step.image).width(420).format('webp').quality(70).url()}
                     alt={step.title}
                     fill
+                    loading="lazy"
                     className="object-cover"
                   />
                 )}

@@ -80,7 +80,7 @@ export default async function Hero() {
              {data?.trustBadges && data.trustBadges.filter((badge: any) => badge?.url).map((badge: any, idx: number) => (
                <div key={idx} className="relative h-12 md:h-8 w-24 md:w-24 flex-shrink-0 flex items-center justify-center">
                  <Image
-                   src={urlFor(badge.url).url()}
+                   src={urlFor(badge.url).width(96).height(32).format('webp').quality(80).url()}
                    alt={badge.alt || `Trust badge ${idx + 1} | Panda Patches`}
                    fill
                    className="object-contain object-center"
@@ -103,7 +103,7 @@ export default async function Hero() {
                  fill
                  className="object-contain object-center md:object-left hover:scale-[1.02] transition-transform duration-700"
                  priority
-                 quality={50}
+                 unoptimized
                  sizes="(max-width: 768px) 100vw, 630px"
                />
              )}
