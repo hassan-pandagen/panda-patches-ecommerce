@@ -120,6 +120,19 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // WORDPRESS TAXONOMY PATHS — /category/* and /tag/* never existed in Next.js
+      // Redirect to blogs to preserve crawl budget and avoid 404s Google is tracking
+      {
+        source: '/category/:path*',
+        destination: '/blogs',
+        permanent: true,
+      },
+      {
+        source: '/tag/:path*',
+        destination: '/blogs',
+        permanent: true,
+      },
+
       // OLD BLOG URL → NEW BLOGS URL
       {
         source: '/blog',

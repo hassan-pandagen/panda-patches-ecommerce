@@ -8,7 +8,20 @@ import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
 import RelatedLinks from "@/components/seo/RelatedLinks";
 
+function getReadingTime(content: any[]): number {
+  if (!content) return 3;
+  const text = content
+    .flatMap((block: any) => block.children?.map((c: any) => c.text || '') || [])
+    .join(' ');
+  return Math.max(1, Math.round(text.split(/\s+/).length / 200));
+}
+
 export default function BlogPostLayout({ post }: { post: any }) {
+  const readingTime = getReadingTime(post.content);
+  const publishDate = post._createdAt
+    ? new Date(post._createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    : null;
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
@@ -23,12 +36,13 @@ export default function BlogPostLayout({ post }: { post: any }) {
         {/* Featured Image */}
         {post.image && (
           <div className="relative w-full h-[400px] md:h-[500px] mb-16 rounded-[20px] overflow-hidden shadow-sm border border-gray-100">
-            <Image 
-              src={urlFor(post.image).url()} 
-              alt={post.title} 
-              fill 
-              className="object-cover" 
-              priority 
+            <Image
+              src={urlFor(post.image).width(800).format('webp').quality(75).url()}
+              alt={post.title}
+              fill
+              className="object-cover"
+              priority
+              unoptimized
               sizes="(max-width: 768px) 100vw, 800px"
             />
           </div>
@@ -48,7 +62,11 @@ export default function BlogPostLayout({ post }: { post: any }) {
             >
               Imran Raza
             </a>
-            <p className="text-[13px] text-gray-500">Founder & CEO · 13 years in patch manufacturing</p>
+            <p className="text-[13px] text-gray-500">
+              Founder & CEO · 13 years in patch manufacturing
+              {publishDate && <> · <time dateTime={post._createdAt}>{publishDate}</time></>}
+              {` · ${readingTime} min read`}
+            </p>
           </div>
         </div>
 

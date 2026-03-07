@@ -220,7 +220,12 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM COPYRIGHT */}
-        <div className="pt-6 text-center text-gray-500 font-medium">
+        <div className="pt-6 text-center text-gray-500 font-medium space-y-2">
+          <div className="flex items-center justify-center gap-4 text-sm">
+            <Link href="/privacy-policy" className="hover:text-panda-green transition-colors">Privacy Policy</Link>
+            <span>·</span>
+            <Link href="/terms-of-service" className="hover:text-panda-green transition-colors">Terms of Service</Link>
+          </div>
           <p>Copyright © {new Date().getFullYear()} <span className="text-black font-bold">Panda Patches</span> All rights reserved</p>
         </div>
 
