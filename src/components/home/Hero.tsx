@@ -99,14 +99,15 @@ export default async function Hero() {
                  fill
                  className="object-contain object-center md:object-left hover:scale-[1.02] transition-transform duration-700"
                  priority
-                 sizes="(max-width: 768px) 100vw, 630px"
+                 quality={60}
+                 sizes="(max-width: 768px) calc(100vw - 2rem), 630px"
                />
 
              {/* 1 Million Badge - Hidden on mobile */}
              <div className="hidden md:flex absolute bottom-16 right-20 bg-white shadow-xl rounded-xl p-3 items-center gap-3 animate-bounce-slow border border-gray-100">
                 <div className="bg-[#E4EFE0] rounded-full p-2">✅</div>
                 <div>
-                  <p className="text-[12px] text-gray-400 uppercase font-bold tracking-wider">Patches Delivered</p>
+                  <p className="text-[12px] text-gray-600 uppercase font-bold tracking-wider">Patches Delivered</p>
                   <p className="font-black text-panda-dark text-lg">1 Million +</p>
                 </div>
              </div>

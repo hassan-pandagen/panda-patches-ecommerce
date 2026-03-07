@@ -1,12 +1,12 @@
 # Target modern browsers only — eliminates unnecessary polyfills
-# Covers 95%+ of real traffic (Chrome 88+, Firefox 78+, Safari 14+, Edge 88+)
+# Minimum versions that natively support Array.prototype.at, Object.hasOwn, etc.
 [production]
-chrome >= 88
-firefox >= 78
-safari >= 14
-edge >= 88
-opera >= 74
-samsung >= 14
+chrome >= 92
+firefox >= 92
+safari >= 15.4
+edge >= 92
+opera >= 78
+samsung >= 17
 
 [development]
 last 1 chrome version

@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
-import "./critical.css";
 import "./globals.css";
 import Script from "next/script";
 import dynamic from "next/dynamic";
@@ -57,6 +56,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Inline critical CSS — eliminates one render-blocking network request */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          :root{--foreground-rgb:0,0,0;--background-start-rgb:249,250,245;--background-end-rgb:255,255,255}
+          *{margin:0;padding:0;box-sizing:border-box}
+          html,body{font-family:var(--font-outfit),system-ui,sans-serif;color:rgb(var(--foreground-rgb));background:linear-gradient(to bottom,transparent,rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));overflow-x:hidden}
+          img{display:block}
+          a{text-decoration:none;color:inherit}
+          button{cursor:pointer;border:none;font-family:inherit}
+        ` }} />
          {/* Preconnect + DNS prefetch to Sanity image CDN — reduces LCP hero image latency */}
          <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
          <link rel="dns-prefetch" href="https://cdn.sanity.io" />
