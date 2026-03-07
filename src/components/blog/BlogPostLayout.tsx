@@ -16,7 +16,7 @@ function getReadingTime(content: any[]): number {
   return Math.max(1, Math.round(text.split(/\s+/).length / 200));
 }
 
-export default function BlogPostLayout({ post }: { post: any }) {
+export default function BlogPostLayout({ post, slug }: { post: any; slug?: string }) {
   const readingTime = getReadingTime(post.content);
   const publishDate = post._createdAt
     ? new Date(post._createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
@@ -27,7 +27,18 @@ export default function BlogPostLayout({ post }: { post: any }) {
       <Navbar />
       
       <article className="max-w-[800px] mx-auto py-24 px-6">
-        
+
+        {/* Breadcrumb Navigation */}
+        <nav aria-label="Breadcrumb" className="mb-8">
+          <ol className="flex items-center gap-2 text-[13px] text-gray-500 flex-wrap">
+            <li><Link href="/" className="hover:text-panda-dark transition-colors">Home</Link></li>
+            <li className="select-none">/</li>
+            <li><Link href="/blogs" className="hover:text-panda-dark transition-colors">Blog</Link></li>
+            <li className="select-none">/</li>
+            <li className="text-panda-dark font-medium truncate max-w-[240px]" aria-current="page">{post.title}</li>
+          </ol>
+        </nav>
+
         {/* Main Title (H1) */}
         <h1 className="text-[42px] md:text-[52px] font-black text-panda-dark mb-10 leading-[1.2] tracking-tight">
           {post.title}
@@ -42,7 +53,6 @@ export default function BlogPostLayout({ post }: { post: any }) {
               fill
               className="object-cover"
               priority
-              unoptimized
               sizes="(max-width: 768px) 100vw, 800px"
             />
           </div>
@@ -69,6 +79,13 @@ export default function BlogPostLayout({ post }: { post: any }) {
             </p>
           </div>
         </div>
+
+        {/* Speakable excerpt — referenced by Speakable schema cssSelector */}
+        {post.excerpt && (
+          <p className="speakable-summary text-[18px] leading-[1.8] text-gray-600 font-medium mb-10 border-l-4 border-panda-yellow pl-5 italic">
+            {post.excerpt}
+          </p>
+        )}
 
         {/* Content Body - Custom Styling */}
         <div className="text-gray-800">

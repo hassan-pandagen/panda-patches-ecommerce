@@ -167,6 +167,12 @@ export default async function CatchAllPage({ params }: { params: { slug: string 
       url: `https://pandapatches.com/${params.slug}`,
     });
 
+    const breadcrumbSchema = generateBreadcrumbSchema([
+      { name: "Home", url: "https://pandapatches.com" },
+      { name: "Blog", url: "https://pandapatches.com/blogs" },
+      { name: data.blog.title || "Blog Post", url: `https://pandapatches.com/${params.slug}` },
+    ]);
+
     return (
       <>
         {/* Article Schema for SEO */}
@@ -174,7 +180,12 @@ export default async function CatchAllPage({ params }: { params: { slug: string 
           type="application/ld+json"
           dangerouslySetInnerHTML={generateSchemaScript(articleSchema)}
         />
-        <BlogPostLayout post={data.blog} />
+        {/* BreadcrumbList Schema for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+        />
+        <BlogPostLayout post={data.blog} slug={params.slug} />
       </>
     );
   }

@@ -399,6 +399,10 @@ export function generateArticleSchema(params: ArticleSchemaParams) {
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": url
+    },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", ".speakable-summary"]
     }
   };
 }
