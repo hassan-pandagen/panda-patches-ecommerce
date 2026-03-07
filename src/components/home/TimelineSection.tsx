@@ -53,8 +53,8 @@ export default async function TimelineSection() {
 
   const title = sanityData?.heading || "ORDERING IRON ON PATCHES MADE SIMPLE AND EXCITING!";
   
-  const imgLeft = sanityData?.imageLeft ? urlFor(sanityData.imageLeft).url() : "/assets/timeline-1.png";
-  const imgRight = sanityData?.imageRight ? urlFor(sanityData.imageRight).url() : "/assets/timeline-2.png";
+  const imgLeft = sanityData?.imageLeft ? urlFor(sanityData.imageLeft).width(800).format('webp').quality(65).url() : "/assets/timeline-1.png";
+  const imgRight = sanityData?.imageRight ? urlFor(sanityData.imageRight).width(800).format('webp').quality(65).url() : "/assets/timeline-2.png";
 
   return (
     <section className="w-full pt-0 md:pt-12 pb-6 bg-white overflow-visible font-sans">
@@ -77,7 +77,7 @@ export default async function TimelineSection() {
           <div className="lg:hidden flex flex-col gap-6">
              <div className="flex justify-center mb-2">
                 <div className="relative w-[300px] h-[250px]">
-                   <Image src={imgLeft} alt="Collage 1" fill className="object-contain" sizes="300px" quality={85} priority />
+                   <Image src={imgLeft} alt="Collage 1" fill className="object-contain" loading="lazy" sizes="300px" quality={65} />
                 </div>
              </div>
              {steps.slice(0, 2).map((step: TimelineStep, index: number) => (
@@ -85,7 +85,7 @@ export default async function TimelineSection() {
              ))}
              <div className="flex justify-center my-2">
                 <div className="relative w-[300px] h-[250px]">
-                   <Image src={imgRight} alt="Collage 2" fill className="object-contain" sizes="300px" quality={85} priority />
+                   <Image src={imgRight} alt="Collage 2" fill className="object-contain" loading="lazy" sizes="300px" quality={65} />
                 </div>
              </div>
              {steps.slice(2, 4).map((step: TimelineStep, index: number) => (
@@ -99,7 +99,7 @@ export default async function TimelineSection() {
             {/* STEP 1 */}
             <div className="flex justify-end items-center pr-10 row-span-2">
                <div className="relative w-[480px] h-[380px]">
-                  <Image src={imgLeft} alt="Collage 1" fill className="object-contain" sizes="(max-width: 1024px) 300px, 480px" quality={90} priority />
+                  <Image src={imgLeft} alt="Collage 1" fill className="object-contain" loading="lazy" sizes="(max-width: 1024px) 300px, 480px" quality={65} />
                </div>
             </div>
             <div className="flex justify-center items-start pt-2 z-10 relative">
@@ -129,7 +129,7 @@ export default async function TimelineSection() {
             </div>
             <div className="flex justify-start items-center pl-10 row-span-2 pt-0 -mt-20">
                <div className="relative w-[420px] h-[320px]">
-                  <Image src={imgRight} alt="Collage 2" fill className="object-contain" sizes="(max-width: 1024px) 300px, 420px" quality={90} priority />
+                  <Image src={imgRight} alt="Collage 2" fill className="object-contain" loading="lazy" sizes="(max-width: 1024px) 300px, 420px" quality={65} />
                </div>
             </div>
 

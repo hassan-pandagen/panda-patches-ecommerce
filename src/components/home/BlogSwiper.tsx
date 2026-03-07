@@ -41,7 +41,7 @@ export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
 
   const currentBlog = blogs[currentIndex];
   const imgSrc = currentBlog.image?.asset
-    ? urlFor(currentBlog.image).url()
+    ? urlFor(currentBlog.image).width(400).format('webp').quality(60).url()
     : "/assets/placeholder-blog.png";
 
   return (
@@ -53,10 +53,11 @@ export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
           
           {/* IMAGE AREA */}
           <div className="relative w-full h-[350px] overflow-hidden">
-            <Image 
-              src={imgSrc} 
-              alt={currentBlog.title} 
-              fill 
+            <Image
+              src={imgSrc}
+              alt={currentBlog.title}
+              fill
+              loading="lazy"
               className="object-cover transition-transform duration-700"
             />
           </div>
@@ -125,10 +126,11 @@ export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
               
               {/* IMAGE AREA */}
               <div className="relative w-full h-[350px] overflow-hidden">
-                <Image 
-                  src={blog.image?.asset ? urlFor(blog.image).url() : "/assets/placeholder-blog.png"} 
-                  alt={blog.title} 
-                  fill 
+                <Image
+                  src={blog.image?.asset ? urlFor(blog.image).width(400).format('webp').quality(60).url() : "/assets/placeholder-blog.png"}
+                  alt={blog.title}
+                  fill
+                  loading="lazy"
                   className="object-cover transition-transform duration-700 hover:scale-105"
                 />
               </div>

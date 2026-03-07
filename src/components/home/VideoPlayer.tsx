@@ -129,6 +129,7 @@ export default function VideoPlayer({ videoUrl, thumbnail, instagramLink }: Vide
              src={thumbnail}
              alt="Video thumbnail"
              fill
+             loading="lazy"
              className="object-cover"
              sizes="255px"
              quality={55}
