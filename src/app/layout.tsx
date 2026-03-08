@@ -94,50 +94,27 @@ export default function RootLayout({
 
         {children}
 
-        {/* Google Tag Manager — deferred to lazyOnload (loads after everything else) */}
-        <Script id="gtm" strategy="lazyOnload">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KQQQ674D');`}
+        {/* gtag stub + staggered third-party script loader
+            GTM loads first (2s), then Meta Pixel (4s), Bing UET (6s), Trustpilot (8s).
+            Uses requestIdleCallback where available so scripts load during browser idle time,
+            reducing main-thread contention and TBT. */}
+        <Script id="staggered-loader" strategy="lazyOnload">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+var ric=window.requestIdleCallback||function(cb){setTimeout(cb,1)};
+function loadScript(src,cb){var s=document.createElement('script');s.async=true;s.src=src;if(cb)s.onload=cb;document.head.appendChild(s);}
+setTimeout(function(){ric(function(){
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(w,d,'script','dataLayer','GTM-KQQQ674D');
+});},2000);
+setTimeout(function(){ric(function(){
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1515101469424765');fbq('track','PageView');
+});},4000);
+setTimeout(function(){ric(function(){
+(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97147013"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+});},6000);
+var tpLoaded=false;function loadTP(){if(tpLoaded)return;tpLoaded=true;ric(function(){loadScript('//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js');});}
+var obs=new IntersectionObserver(function(e){if(e[0].isIntersecting){loadTP();obs.disconnect();}},{rootMargin:'400px'});
+var footer=document.querySelector('footer');if(footer)obs.observe(footer);else setTimeout(loadTP,12000);`}
         </Script>
-
-        {/* Meta Pixel */}
-        <Script id="meta-pixel" strategy="lazyOnload">
-          {`!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1515101469424765');
-fbq('track', 'PageView');`}
-        </Script>
-
-        {/* Bing UET */}
-        <Script id="bing-uet" strategy="lazyOnload">
-          {`(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97147013"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");`}
-        </Script>
-
-        {/* Google Ads Tag — deferred to lazyOnload (not critical for LCP) */}
-        <Script
-          id="google-ads-tag"
-          src="https://www.googletagmanager.com/gtag/js?id=AW-11221237770"
-          strategy="lazyOnload"
-        />
-        <Script id="google-ads-init" strategy="lazyOnload">
-          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-11221237770');`}
-        </Script>
-
-        {/* Trustpilot Widget Script */}
-        <Script
-          id="trustpilot"
-          src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
-          strategy="lazyOnload"
-        />
 
         {/* Tawk.to Live Chat with Advanced Tracking */}
         <TawkToWidget />

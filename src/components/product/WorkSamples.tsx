@@ -6,6 +6,7 @@ import { urlFor } from "@/lib/sanity";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
 
 // Memoized image card to prevent unnecessary re-renders
 const WorkSampleCard = memo(({ img, onClick }: { img: any; onClick: () => void }) => {

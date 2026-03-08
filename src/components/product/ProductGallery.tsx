@@ -8,6 +8,7 @@ import { Navigation, Pagination, Thumbs } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

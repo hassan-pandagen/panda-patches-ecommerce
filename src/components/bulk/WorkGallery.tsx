@@ -5,6 +5,7 @@ import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
 
 interface WorkGalleryProps {
   samples: Array<{ image: any; alt: string }>;
