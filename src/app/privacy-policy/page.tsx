@@ -4,14 +4,14 @@ import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
 
 const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "Home", url: "https://pandapatches.com" },
-  { name: "Privacy Policy", url: "https://pandapatches.com/privacy-policy" },
+  { name: "Home", url: "https://www.pandapatches.com" },
+  { name: "Privacy Policy", url: "https://www.pandapatches.com/privacy-policy" },
 ]);
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Panda Patches",
-  description: "Privacy Policy for Panda Patches (MC Patches LLC). Learn how we collect, use, and protect your personal information.",
-  alternates: { canonical: "https://pandapatches.com/privacy-policy" },
+  description: "Privacy Policy for Panda Patches (MC Patches LLC). Learn how we collect, use, and protect your personal information when you order custom patches.",
+  alternates: { canonical: "https://www.pandapatches.com/privacy-policy" },
   robots: { index: true, follow: true },
 };
 

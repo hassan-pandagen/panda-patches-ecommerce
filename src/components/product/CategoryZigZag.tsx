@@ -50,7 +50,7 @@ export default async function CategoryZigZag({ locationName }: CategoryZigZagPro
                 <div className="flex-1 w-full relative h-[450px] bg-white rounded-[24px] overflow-hidden group border border-gray-100 shadow-sm hover:shadow-md transition-all">
                   {product.gallery && product.gallery[0] && (
                     <Image 
-                      src={urlFor(product.gallery[0]).url()} 
+                      src={urlFor(product.gallery[0]).width(800).format('webp').quality(70).url()}
                       alt={displayTitle}
                       fill
                       className="object-contain p-10 group-hover:scale-105 transition-transform duration-500"

@@ -53,7 +53,7 @@ export async function GET() {
 
     // Generate XML feed
     const feedItems: ProductFeedItem[] = products.map((product: any) => {
-      const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pandapatches.com';
+      const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.pandapatches.com';
       const productSlug = product.slug || product._id;
 
       // Determine product URL based on type
@@ -187,7 +187,7 @@ function generateGoogleShoppingXML(items: ProductFeedItem[]): string {
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
   <channel>
     <title>Panda Patches - Custom Patches & Products</title>
-    <link>https://pandapatches.com</link>
+    <link>https://www.pandapatches.com</link>
     <description>Custom embroidered patches, PVC patches, challenge coins, lapel pins, and more</description>
     ${xmlItems}
   </channel>

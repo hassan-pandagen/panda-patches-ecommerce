@@ -8,8 +8,8 @@ import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
 
 const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "Home", url: "https://pandapatches.com" },
-  { name: "Blog", url: "https://pandapatches.com/blogs" },
+  { name: "Home", url: "https://www.pandapatches.com" },
+  { name: "Blog", url: "https://www.pandapatches.com/blogs" },
 ]);
 
 // ISR: Revalidate blog listing every 30 minutes (blogs update frequently)
@@ -18,15 +18,15 @@ export const revalidate = 1800;
 // SEO Metadata for Blogs Page
 export const metadata: Metadata = {
   title: "Custom Patch Blog - Tips, Guides & Industry News | Panda Patches",
-  description: "Read expert guides on custom patches, embroidery tips, design ideas, and industry trends. Learn about patch types, backing options, military patches, and more from Panda Patches.",
+  description: "Read expert guides on custom patches, embroidery tips, design ideas, and industry trends. Learn about patch types, backing options, and more.",
   openGraph: {
     title: "Custom Patch Blog - Tips & Guides | Panda Patches",
     description: "Expert guides on custom patches, embroidery tips, design ideas, and industry trends from Panda Patches.",
     type: "website",
-    url: "https://pandapatches.com/blogs",
+    url: "https://www.pandapatches.com/blogs",
     images: [
       {
-        url: "https://pandapatches.com/assets/og-image.png",
+        url: "https://www.pandapatches.com/assets/og-image.png",
         width: 1200,
         height: 630,
         alt: "Panda Patches Blog"
@@ -37,10 +37,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Custom Patch Blog | Panda Patches",
     description: "Expert guides on custom patches, embroidery tips, and design ideas.",
-    images: ["https://pandapatches.com/assets/og-image.png"]
+    images: ["https://www.pandapatches.com/assets/og-image.png"]
   },
   alternates: {
-    canonical: "https://pandapatches.com/blogs"
+    canonical: "https://www.pandapatches.com/blogs"
   }
 };
 
@@ -99,7 +99,7 @@ export default async function BlogsPage({ searchParams }: { searchParams: { page
                   <div className="relative w-1/2 h-[350px] flex-shrink-0 bg-[#F4F4F4]">
                     {post.image ? (
                       <Image
-                        src={urlFor(post.image).url()}
+                        src={urlFor(post.image).width(600).format('webp').quality(70).url()}
                         alt={post.title}
                         fill
                         className="object-cover"

@@ -12,15 +12,15 @@ export const revalidate = 3600;
 
 export const metadata = {
   title: "Order Sample Box - 9 Patch Samples for $45 | Panda Patches",
-  description: "Get 9 high-quality custom patch samples including embroidered, PVC, chenille, woven, leather & more. Only $45 with free shipping. Experience our quality before ordering.",
+  description: "Get 9 custom patch samples including embroidered, PVC, chenille, woven, and leather for $45 with free shipping. Experience our quality first.",
   openGraph: {
     title: "Order Sample Box - 9 Patch Samples for $45 | Panda Patches",
     description: "Get 9 patch samples for $45. Experience embroidered, PVC, chenille, woven patches & more with free shipping.",
     type: "website",
-    url: "https://pandapatches.com/sample-box",
+    url: "https://www.pandapatches.com/sample-box",
     images: [
       {
-        url: "https://pandapatches.com/assets/og-image.png",
+        url: "https://www.pandapatches.com/assets/og-image.png",
         width: 1200,
         height: 630,
         alt: "Panda Patches Sample Box"
@@ -31,10 +31,10 @@ export const metadata = {
     card: "summary",
     title: "Order Sample Box - 9 Patch Samples for $45",
     description: "Get 9 patch samples including embroidered, PVC, chenille & more for only $45 with free shipping.",
-    images: ["https://pandapatches.com/assets/og-image.png"]
+    images: ["https://www.pandapatches.com/assets/og-image.png"]
   },
   alternates: {
-    canonical: "https://pandapatches.com/sample-box"
+    canonical: "https://www.pandapatches.com/sample-box"
   }
 };
 

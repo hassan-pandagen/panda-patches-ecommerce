@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://pandapatches.com',
+  siteUrl: process.env.SITE_URL || 'https://www.pandapatches.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   exclude: [
@@ -24,7 +24,7 @@ module.exports = {
       },
     ],
     additionalSitemaps: [
-      'https://pandapatches.com/server-sitemap.xml', // For dynamic blog posts
+      'https://www.pandapatches.com/server-sitemap.xml', // For dynamic blog posts
     ],
   },
   changefreq: 'daily',

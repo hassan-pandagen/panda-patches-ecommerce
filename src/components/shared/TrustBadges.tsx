@@ -17,7 +17,7 @@ export default function TrustBadges({ badges, layout = "grid" }: TrustBadgesProp
           className="relative h-8 md:h-10 w-20 md:w-24 flex items-center justify-center"
         >
           <Image
-            src={urlFor(badge).url()}
+            src={urlFor(badge).width(200).format('webp').quality(80).url()}
             alt="Trust Badge"
             fill
             className="object-contain"

@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BlogPostLayout from "@/components/blog/BlogPostLayout";
 import LocationLayout from "@/components/locations/LocationLayout";
-import { generateArticleSchema, generateLocationBusinessSchema, generateSchemaScript } from "@/lib/schemas";
+import { generateArticleSchema, generateBreadcrumbSchema, generateLocationBusinessSchema, generateSchemaScript } from "@/lib/schemas";
 import { getSanityOgImage } from "@/lib/sanityOgImage";
 
 // ISR: Revalidate blog/location/patch-style pages every 1 hour
@@ -22,13 +22,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     return {
       title: `Custom Patches in ${locationName} | Panda Patches`,
       description: `Order custom embroidered patches in ${locationName}. Low minimums, free mockups, fast 7-14 day turnaround. Get a free quote today!`,
-      alternates: { canonical: `https://pandapatches.com/${params.slug}` },
+      alternates: { canonical: `https://www.pandapatches.com/${params.slug}` },
       // Noindex thin pages until unique content is added in Sanity
       ...(!hasContent && { robots: { index: false, follow: false } }),
       openGraph: {
         title: `Custom Patches in ${locationName} | Panda Patches`,
         description: `Custom patches delivered anywhere in ${locationName}. Low minimums, free design, fast shipping.`,
-        url: `https://pandapatches.com/${params.slug}`,
+        url: `https://www.pandapatches.com/${params.slug}`,
         siteName: 'Panda Patches',
         type: 'website',
         images: [{ url: ogImage, width: 1200, height: 630, alt: `Custom Patches in ${locationName} | Panda Patches` }],
@@ -49,11 +49,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     return {
       title: `${styleName} | Custom Patches | Panda Patches`,
       description: `Order custom ${styleName} with low minimums, free design services, and fast 7-14 day delivery. Get a free quote today!`,
-      alternates: { canonical: `https://pandapatches.com/${params.slug}` },
+      alternates: { canonical: `https://www.pandapatches.com/${params.slug}` },
       openGraph: {
         title: `${styleName} | Panda Patches`,
         description: `Custom ${styleName} with free mockups and fast delivery.`,
-        url: `https://pandapatches.com/${params.slug}`,
+        url: `https://www.pandapatches.com/${params.slug}`,
         siteName: 'Panda Patches',
         type: 'website',
         images: [{ url: ogImage, width: 1200, height: 630, alt: `${styleName} | Panda Patches` }],
@@ -73,17 +73,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       ? urlFor(data.blog.mainImage).url()
       : data.blog.image
         ? urlFor(data.blog.image).url()
-        : 'https://pandapatches.com/assets/og-image.png';
+        : 'https://www.pandapatches.com/assets/og-image.png';
     const blogTitle = `${data.blog.title} | Panda Patches Blog`;
     const blogDesc = data.blog.excerpt || data.blog.description || 'Custom patch tips, tutorials, and industry insights from Panda Patches.';
     return {
       title: blogTitle,
       description: blogDesc,
-      alternates: { canonical: `https://pandapatches.com/${params.slug}` },
+      alternates: { canonical: `https://www.pandapatches.com/${params.slug}` },
       openGraph: {
         title: data.blog.title,
         description: blogDesc,
-        url: `https://pandapatches.com/${params.slug}`,
+        url: `https://www.pandapatches.com/${params.slug}`,
         siteName: 'Panda Patches',
         type: 'article',
         images: [{ url: imageUrl, width: 1200, height: 630, alt: data.blog.title }],
@@ -163,14 +163,14 @@ export default async function CatchAllPage({ params }: { params: { slug: string 
         ? urlFor(data.blog.mainImage).url()
         : data.blog.image
           ? urlFor(data.blog.image).url()
-          : 'https://pandapatches.com/assets/logo-panda.svg',
-      url: `https://pandapatches.com/${params.slug}`,
+          : 'https://www.pandapatches.com/assets/logo-panda.svg',
+      url: `https://www.pandapatches.com/${params.slug}`,
     });
 
     const breadcrumbSchema = generateBreadcrumbSchema([
-      { name: "Home", url: "https://pandapatches.com" },
-      { name: "Blog", url: "https://pandapatches.com/blogs" },
-      { name: data.blog.title || "Blog Post", url: `https://pandapatches.com/${params.slug}` },
+      { name: "Home", url: "https://www.pandapatches.com" },
+      { name: "Blog", url: "https://www.pandapatches.com/blogs" },
+      { name: data.blog.title || "Blog Post", url: `https://www.pandapatches.com/${params.slug}` },
     ]);
 
     return (

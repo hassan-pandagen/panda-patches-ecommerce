@@ -12,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: 'https://pandapatches.com/sitemap.xml',
+    sitemap: 'https://www.pandapatches.com/sitemap.xml',
   };
 }

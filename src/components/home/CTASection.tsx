@@ -16,7 +16,7 @@ export default async function CTASection() {
   const sub = data?.subheading || "Why wait? Select your options, share your artwork, and we'll get you started on your custom products.";
 
   // Use Sanity Image or Fallback to local
-  const bgImage = data?.backgroundImage ? urlFor(data.backgroundImage).url() : "/assets/cta-bg.png";
+  const bgImage = data?.backgroundImage ? urlFor(data.backgroundImage).width(1400).format('webp').quality(65).url() : "/assets/cta-bg.png";
 
   return (
     <section className="relative w-full h-[450px] bg-white overflow-hidden flex items-center justify-center">

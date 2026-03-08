@@ -115,7 +115,7 @@ function PatchCardComponent({ patch }: { patch: PatchCard }) {
       <div className="relative w-full h-[200px] flex items-center justify-center">
         {patch.image && (
           <Image
-            src={urlFor(patch.image).url()}
+            src={urlFor(patch.image).width(500).format('webp').quality(70).url()}
             alt={patch.label}
             fill
             className="object-contain group-hover:scale-110 transition-transform duration-500"

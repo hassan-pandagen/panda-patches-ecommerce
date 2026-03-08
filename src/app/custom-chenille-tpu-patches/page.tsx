@@ -95,7 +95,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { heroImage } = await getChenilleTpuPageData();
   const ogImage = heroImage
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
-    : 'https://pandapatches.com/assets/og-image.png';
+    : 'https://www.pandapatches.com/assets/og-image.png';
   return {
     title: "Custom Chenille TPU Patches - Waterproof & Flexible",
     description: "Custom chenille TPU patches with a flexible, water-resistant thermoplastic polyurethane base. Perfect for varsity jackets, hoodies, and athletic gear. No minimum, free mockup, fast delivery.",
@@ -115,11 +115,11 @@ export async function generateMetadata(): Promise<Metadata> {
       "chenille patches for hoodies",
       "custom letterman patches",
     ],
-    alternates: { canonical: "https://pandapatches.com/custom-chenille-tpu-patches" },
+    alternates: { canonical: "https://www.pandapatches.com/custom-chenille-tpu-patches" },
     openGraph: {
       title: "Custom Chenille TPU Patches | Panda Patches",
       description: "Flexible, water-resistant chenille TPU patches for varsity jackets, hoodies, and athletic gear. No minimum, free mockup.",
-      url: "https://pandapatches.com/custom-chenille-tpu-patches",
+      url: "https://www.pandapatches.com/custom-chenille-tpu-patches",
       siteName: "Panda Patches",
       type: "website",
       images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Chenille TPU Patches | Panda Patches" }],
@@ -148,7 +148,6 @@ const productSchema = {
     priceCurrency: "USD",
     lowPrice: "1.50",
     highPrice: "8.00",
-    offerCount: "6",
     availability: "https://schema.org/InStock",
   },
   aggregateRating: {
@@ -168,19 +167,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://pandapatches.com",
+      item: "https://www.pandapatches.com",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Bulk Orders",
-      item: "https://pandapatches.com/bulk-custom-patches",
+      item: "https://www.pandapatches.com/bulk-custom-patches",
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Chenille TPU Patches",
-      item: "https://pandapatches.com/custom-chenille-tpu-patches",
+      item: "https://www.pandapatches.com/custom-chenille-tpu-patches",
     },
   ],
 };

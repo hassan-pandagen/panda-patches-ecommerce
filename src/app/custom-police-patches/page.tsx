@@ -95,7 +95,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { heroImage } = await getPolicePageData();
   const ogImage = heroImage
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
-    : 'https://pandapatches.com/assets/og-image.png';
+    : 'https://www.pandapatches.com/assets/og-image.png';
   return {
     title: "Police & Law Enforcement Patches - Tactical Grade",
     description: "Custom police department patches, sheriff badges, law enforcement patches, and tactical patches. Embroidered, PVC, and woven formats. Trusted by departments nationwide.",
@@ -110,11 +110,11 @@ export async function generateMetadata(): Promise<Metadata> {
       "police uniform patches",
       "custom law enforcement badges",
     ],
-    alternates: { canonical: "https://pandapatches.com/custom-police-patches" },
+    alternates: { canonical: "https://www.pandapatches.com/custom-police-patches" },
     openGraph: {
       title: "Custom Police & Law Enforcement Patches | Panda Patches",
       description: "Custom police department patches and law enforcement badges. Trusted by departments nationwide. Fast turnaround, bulk pricing.",
-      url: "https://pandapatches.com/custom-police-patches",
+      url: "https://www.pandapatches.com/custom-police-patches",
       siteName: "Panda Patches",
       type: "website",
       images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Police & Law Enforcement Patches | Panda Patches" }],
@@ -143,7 +143,6 @@ const productSchema = {
     priceCurrency: "USD",
     lowPrice: "0.85",
     highPrice: "5.50",
-    offerCount: "6",
     availability: "https://schema.org/InStock",
   },
   aggregateRating: {
@@ -163,19 +162,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://pandapatches.com",
+      item: "https://www.pandapatches.com",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Bulk Orders",
-      item: "https://pandapatches.com/bulk-custom-patches",
+      item: "https://www.pandapatches.com/bulk-custom-patches",
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Police & Law Enforcement Patches",
-      item: "https://pandapatches.com/custom-police-patches",
+      item: "https://www.pandapatches.com/custom-police-patches",
     },
   ],
 };

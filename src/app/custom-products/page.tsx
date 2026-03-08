@@ -6,8 +6,8 @@ import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
 
 const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "Home", url: "https://pandapatches.com" },
-  { name: "Custom Products", url: "https://pandapatches.com/custom-products" },
+  { name: "Home", url: "https://www.pandapatches.com" },
+  { name: "Custom Products", url: "https://www.pandapatches.com/custom-products" },
 ]);
 import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
@@ -21,7 +21,7 @@ import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Custom Products - Coins, Pins, Keychains & More | Panda Patches",
-  description: "Custom lapel pins, challenge coins, keychains, stickers, and more. Professional quality with low minimums. Free design services, fast 7-14 day delivery. Perfect for businesses, events, and organizations.",
+  description: "Custom lapel pins, challenge coins, keychains, and stickers with low minimums. Free design services and fast 7-14 day delivery from Panda Patches.",
   keywords: [
     "custom lapel pins",
     "challenge coins",
@@ -34,12 +34,12 @@ export const metadata: Metadata = {
     "custom products",
   ],
   alternates: {
-    canonical: "https://pandapatches.com/custom-products",
+    canonical: "https://www.pandapatches.com/custom-products",
   },
   openGraph: {
     title: "Custom Products - Coins, Pins, Keychains & More | Panda Patches",
     description: "Custom lapel pins, challenge coins, keychains, and promotional products with low minimums and fast delivery.",
-    url: "https://pandapatches.com/custom-products",
+    url: "https://www.pandapatches.com/custom-products",
     siteName: "Panda Patches",
     type: "website",
   },
@@ -102,7 +102,7 @@ export default async function CustomProductsPage() {
                   <div className="flex-1 w-full relative h-[450px] group">
                     {(product.heroImage || (product.gallery && product.gallery.length > 0)) && (
                       <Image
-                        src={urlFor(product.heroImage || product.gallery[0]).url()}
+                        src={urlFor(product.heroImage || product.gallery[0]).width(800).format('webp').quality(70).url()}
                         alt={product.title}
                         fill
                         className="object-contain group-hover:scale-105 transition-transform duration-500"

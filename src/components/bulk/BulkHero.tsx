@@ -73,7 +73,7 @@ export default function BulkHero({
                 {trustBadges.filter((badge) => badge?.url).map((badge, idx) => (
                   <div key={idx} className="relative h-[44px] w-[96px] flex-shrink-0">
                     <Image
-                      src={urlFor(badge.url).url()}
+                      src={urlFor(badge.url).width(200).format('webp').quality(80).url()}
                       alt={badge.alt || "Trust badge | Panda Patches"}
                       fill
                       className="object-contain"

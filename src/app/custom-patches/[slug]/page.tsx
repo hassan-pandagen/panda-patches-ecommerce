@@ -105,7 +105,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   const description = product.description || `High-quality ${product.title.toLowerCase()} with low minimums, fast delivery, and free design services from Panda Patches.`;
-  const imageUrl = product.heroImage ? urlFor(product.heroImage).url() : 'https://pandapatches.com/assets/og-image.png';
+  const imageUrl = product.heroImage ? urlFor(product.heroImage).url() : 'https://www.pandapatches.com/assets/og-image.png';
 
   return {
     title: `${product.title} | Panda Patches`,
@@ -115,7 +115,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: description.substring(0, 160),
       images: [{ url: imageUrl }],
       type: 'website',
-      url: `https://pandapatches.com/custom-patches/${params.slug}`,
+      url: `https://www.pandapatches.com/custom-patches/${params.slug}`,
     },
     twitter: {
       card: 'summary_large_image',
@@ -124,7 +124,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       images: [imageUrl],
     },
     alternates: {
-      canonical: `https://pandapatches.com/custom-patches/${params.slug}`,
+      canonical: `https://www.pandapatches.com/custom-patches/${params.slug}`,
     },
   };
 }
@@ -154,16 +154,16 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
   const productSchema = generateProductSchema({
     name: data.title,
     description: data.description || `High-quality ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
-    image: data.heroImage ? urlFor(data.heroImage).url() : 'https://pandapatches.com/assets/og-image.png',
-    url: `https://pandapatches.com/custom-patches/${params.slug}`,
+    image: data.heroImage ? urlFor(data.heroImage).url() : 'https://www.pandapatches.com/assets/og-image.png',
+    url: `https://www.pandapatches.com/custom-patches/${params.slug}`,
     priceRange: "$50-$500", // Typical price range for custom patches
     includeReviews: true, // Include Trustpilot 4.9 rating
   });
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://pandapatches.com" },
-    { name: "Custom Patches", url: "https://pandapatches.com/custom-patches" },
-    { name: data.title, url: `https://pandapatches.com/custom-patches/${params.slug}` },
+    { name: "Home", url: "https://www.pandapatches.com" },
+    { name: "Custom Patches", url: "https://www.pandapatches.com/custom-patches" },
+    { name: data.title, url: `https://www.pandapatches.com/custom-patches/${params.slug}` },
   ]);
 
   return (

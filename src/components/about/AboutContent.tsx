@@ -59,7 +59,7 @@ export default async function AboutContent() {
            {hero?.trustBadges && hero.trustBadges.map((badge: any, idx: number) => (
              <div key={idx} className="relative h-10 w-28">
                <Image 
-                 src={urlFor(badge).url()} 
+                 src={urlFor(badge).width(200).format('webp').quality(80).url()}
                  alt="Trust Badge" 
                  fill 
                  className="object-contain" 

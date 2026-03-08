@@ -72,7 +72,7 @@ export default async function AssetPage({ params }: { params: { slug: string } }
             <div className="relative w-full max-w-[1323px] shadow-2xl rounded-[30px] overflow-hidden border border-gray-100">
               {data.image ? (
                 <Image
-                  src={urlFor(data.image).url()}
+                  src={urlFor(data.image).width(1200).format('webp').quality(75).url()}
                   alt={data.title}
                   width={1323}
                   height={2560}

@@ -12,7 +12,7 @@ export default async function SocialReviews() {
 
   // 1. Get Image from Sanity OR use Fallback
   const imageSrc = data?.socialImage 
-    ? urlFor(data.socialImage).url() 
+    ? urlFor(data.socialImage).width(1400).format('webp').quality(70).url()
     : "/assets/social-reviews.png"; // Fallback if you haven&apos;t uploaded yet
 
   return (

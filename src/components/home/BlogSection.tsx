@@ -69,7 +69,7 @@ export default async function BlogSection() {
 function BlogCard({ blog }: { blog: any }) {
   // Handle image source (Sanity vs Local Fallback)
   const imgSrc = blog.image?.asset
-    ? urlFor(blog.image).url()
+    ? urlFor(blog.image).width(400).format('webp').quality(70).url()
     : "/assets/placeholder-blog.png";
 
   return (

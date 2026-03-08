@@ -36,7 +36,7 @@ export default function IronOnLayout({ data }: { data: any }) {
                   {item.image && (
                     <div className="relative w-full h-[400px]">
                       <Image 
-                        src={urlFor(item.image).url()} 
+                        src={urlFor(item.image).width(800).format('webp').quality(70).url()}
                         alt={item.patchType} 
                         fill 
                         className="object-contain"

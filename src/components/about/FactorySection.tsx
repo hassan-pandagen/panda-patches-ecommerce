@@ -13,7 +13,7 @@ export default async function FactorySection() {
   const title = data?.factoryHeading || "PANDA PATCHES FACTORY";
   const desc = data?.factoryDescription || "Our Factory in Pakistan isn&apos;t just a production line...";
   // Fallback if no image uploaded
-  const image = data?.factoryImage ? urlFor(data.factoryImage).url() : null;
+  const image = data?.factoryImage ? urlFor(data.factoryImage).width(800).format('webp').quality(70).url() : null;
 
   return (
     <section className="w-full py-10 md:py-16 bg-white">

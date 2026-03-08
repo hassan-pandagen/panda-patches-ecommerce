@@ -23,7 +23,7 @@ export const revalidate = 3600;
 
 // SEO Metadata for Homepage — OG image pulled live from Sanity hero image
 export async function generateMetadata(): Promise<Metadata> {
-  let ogImageUrl = "https://pandapatches.com/assets/og-image.png"; // fallback
+  let ogImageUrl = "https://www.pandapatches.com/assets/og-image.png"; // fallback
 
   try {
     const hero = await client.fetch(`*[_type == "hero"][0]{ "imageUrl": heroImage.asset->url }`, {}, { next: { revalidate: 3600 } });
@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: "Custom Patches, Embroidered Patches - Low Minimums | Panda Patches",
-    description: "Create custom embroidered patches, iron-on patches, woven patches, PVC patches with no minimum orders. Free design, fast 7-14 day delivery, 4.8★ on Trustpilot. Get instant quote!",
+    description: "Custom embroidered patches, iron-on patches, woven and PVC patches with no minimum orders. Free design, fast 7-14 day delivery. Get a free quote!",
     keywords: [
       "custom patches",
       "embroidered patches",
@@ -52,7 +52,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Custom Patches From $0.50/pc. Free Design. Ships in 14 Days.",
       description: "1,000,000+ patches delivered to brands worldwide. Custom embroidered, PVC, chenille & woven patches with free artwork, no setup fees, and a 4.8-star rating on Trustpilot. Get your free quote today.",
       type: "website",
-      url: "https://pandapatches.com",
+      url: "https://www.pandapatches.com",
       images: [
         {
           url: ogImageUrl,
@@ -70,7 +70,7 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [ogImageUrl]
     },
     alternates: {
-      canonical: "https://pandapatches.com"
+      canonical: "https://www.pandapatches.com"
     },
     robots: {
       index: true,

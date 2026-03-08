@@ -8,7 +8,6 @@ import { Navigation, Pagination, Thumbs } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import "yet-another-react-lightbox/styles.css";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -82,11 +81,11 @@ export default function ProductGallery({ images }: { images: any[] }) {
             {images[0] && (
               <div className="relative w-full h-full">
                 <Image
-                  src={urlFor(images[0].image || images[0]).width(1200).quality(95).fit('max').url()}
+                  src={urlFor(images[0].image || images[0]).width(800).quality(75).auto('format').fit('max').url()}
                   alt={images[0].alt || "Custom embroidered patch product display | Panda Patches"}
                   fill
                   className="object-contain"
-                  quality={95}
+                  quality={75}
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 700px"
                   priority
                 />

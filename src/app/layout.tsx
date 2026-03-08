@@ -23,14 +23,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://pandapatches.com'),
+  metadataBase: new URL('https://www.pandapatches.com'),
   title: "Panda Patches | Custom Iron On Patches",
   description: "Order custom embroidered patches, iron-on patches, PVC patches with low minimums. Free design services, 7-14 day delivery. 4.8★ rated on Trustpilot. No setup fees!",
   twitter: {
     card: "summary_large_image",
     title: "Panda Patches | Custom Iron On Patches",
     description: "Order custom embroidered patches, iron-on patches, PVC patches with low minimums. Free design services, 7-14 day delivery. 4.8★ rated on Trustpilot.",
-    images: ["https://pandapatches.com/assets/og-image.png"],
+    images: ["https://www.pandapatches.com/assets/og-image.png"],
   },
   icons: {
     icon: [

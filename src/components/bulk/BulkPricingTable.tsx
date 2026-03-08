@@ -5,7 +5,6 @@ import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import "yet-another-react-lightbox/styles.css";
 
 const patchTypes = ["Embroidered", "PVC", "Woven", "Chenille", "Leather"] as const;
 
@@ -77,7 +76,7 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
   const currentSamples = workSamples[activeType] || [];
 
   const slides = currentSamples.slice(0, 8).map((img: any, idx: number) => ({
-    src: urlFor(img.image || img).url(),
+    src: urlFor(img.image || img).width(1200).format('webp').quality(75).url(),
     alt: img.alt || `${activeType} custom patch work sample ${idx + 1} | Panda Patches`,
   }));
 

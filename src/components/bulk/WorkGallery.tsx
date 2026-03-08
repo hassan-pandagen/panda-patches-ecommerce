@@ -5,7 +5,6 @@ import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import "yet-another-react-lightbox/styles.css";
 
 interface WorkGalleryProps {
   samples: Array<{ image: any; alt: string }>;
@@ -20,7 +19,7 @@ export default function WorkGallery({ samples }: WorkGalleryProps) {
   const validSamples = samples.filter((img: any) => img?.image || img);
 
   const slides = validSamples.map((img: any) => ({
-    src: urlFor(img.image || img).url(),
+    src: urlFor(img.image || img).width(1200).format('webp').quality(75).url(),
     alt: img.alt || "Custom patch work sample | Panda Patches",
   }));
 

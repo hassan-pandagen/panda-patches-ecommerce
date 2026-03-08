@@ -5,6 +5,9 @@
 /* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind utilities;
 
+/* Lightbox CSS — merged here to eliminate a separate render-blocking CSS chunk */
+@import "yet-another-react-lightbox/styles.css";
+
 /* Form inputs — moved from styled-jsx to static CSS to eliminate forced reflow */
 .form-input {
   width: 100%;
