@@ -33,17 +33,15 @@ export default async function Hero() {
          - height: 85% (leaves white space at bottom for brands)
          - Hidden on mobile for cleaner look
       */}
-      <div className="hidden lg:block absolute top-0 right-0 h-[88%] w-[48%] z-0 pointer-events-none">
-         <Image
-            src="/assets/hero-bg.svg"
-            alt=""
-            fill
-            className="object-cover object-left-bottom"
-            loading="lazy"
-            sizes="(min-width: 1024px) 48vw"
-            aria-hidden="true"
-         />
-      </div>
+      <div
+        className="hidden lg:block absolute top-0 right-0 h-[88%] w-[48%] z-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='888' height='843' viewBox='0 0 888 843' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.15'%3E%3Cpath d='M601.312 0.5H887.5V842.5H241.688C108.483 842.5 0.5 734.517 0.5 601.312C0.500051 269.493 269.493 0.500053 601.312 0.5Z' fill='%233B7E00'/%3E%3Cpath d='M601.312 0.5H887.5V842.5H241.688C108.483 842.5 0.5 734.517 0.5 601.312C0.500051 269.493 269.493 0.500053 601.312 0.5Z' stroke='black'/%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'left bottom',
+        }}
+      />
 
       {/* MAIN CONTENT */}
       <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 items-center flex-grow pt-0 md:pt-8 lg:justify-items-start justify-items-center">
@@ -82,6 +80,7 @@ export default async function Hero() {
                    fill
                    className="object-contain object-center"
                    sizes="96px"
+                   loading="eager"
                  />
                </div>
              ))}
@@ -138,16 +137,16 @@ export default async function Hero() {
           {/* Mobile: 2x2 Grid | Desktop: 4 in 1 row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full max-w-5xl mx-auto">
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-google.svg" alt="Google" width={110} height={50} className="object-contain brightness-0 w-auto h-auto" />
+               <Image src="/assets/logo-google.svg" alt="Google" width={110} height={50} className="object-contain brightness-0 w-auto h-auto" loading="eager" />
              </div>
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-microsoft.svg" alt="Microsoft" width={130} height={50} className="object-contain brightness-0 w-auto h-auto" />
+               <Image src="/assets/logo-microsoft.svg" alt="Microsoft" width={130} height={50} className="object-contain brightness-0 w-auto h-auto" loading="eager" />
              </div>
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-cocacola.svg" alt="CocaCola" width={120} height={50} className="object-contain brightness-0 w-auto h-auto" />
+               <Image src="/assets/logo-cocacola.svg" alt="CocaCola" width={120} height={50} className="object-contain brightness-0 w-auto h-auto" loading="eager" />
              </div>
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-nissan.svg" alt="Nissan" width={100} height={50} className="object-contain brightness-0 w-auto h-auto" />
+               <Image src="/assets/logo-nissan.svg" alt="Nissan" width={100} height={50} className="object-contain brightness-0 w-auto h-auto" loading="eager" />
              </div>
           </div>
         </div>

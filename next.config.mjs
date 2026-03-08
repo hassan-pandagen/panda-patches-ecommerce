@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   swcMinify: true,
+  poweredByHeader: false,
+  compress: true,
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['lucide-react', 'swiper'],

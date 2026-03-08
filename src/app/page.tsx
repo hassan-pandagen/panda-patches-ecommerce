@@ -7,13 +7,14 @@ import Hero from "@/components/home/Hero";
 import Promises from "@/components/home/Promises";
 import ProductGrid from "@/components/home/ProductGrid";
 
-// Lazy load below-fold components to improve initial page load
-const Craftsmanship = dynamic(() => import("@/components/home/Craftsmanship"), { ssr: true });
-const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"), { ssr: true });
-const ProcessSection = dynamic(() => import("@/components/home/ProcessSection"), { ssr: true });
+// Lazy load below-fold components to reduce initial JS bundle
+// ssr:false for heavy interactive components (video, carousels) that are far below fold
+const Craftsmanship = dynamic(() => import("@/components/home/Craftsmanship"), { ssr: false });
+const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"), { ssr: false });
+const ProcessSection = dynamic(() => import("@/components/home/ProcessSection"), { ssr: false });
 const TimelineSection = dynamic(() => import("@/components/home/TimelineSection"), { ssr: true });
 const FAQ = dynamic(() => import("@/components/home/FAQ"), { ssr: true });
-const BlogSection = dynamic(() => import("@/components/home/BlogSection"), { ssr: true });
+const BlogSection = dynamic(() => import("@/components/home/BlogSection"), { ssr: false });
 const ContentSection = dynamic(() => import("@/components/home/ContentSection"), { ssr: true });
 const CTASection = dynamic(() => import("@/components/home/CTASection"), { ssr: true });
 const Footer = dynamic(() => import("@/components/layout/Footer"), { ssr: true });
