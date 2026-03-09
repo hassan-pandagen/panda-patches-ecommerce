@@ -21,7 +21,7 @@ export default function ContactHero() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: data.name, email: data.email, message: data.message, website: data.website || '' }),
+        body: JSON.stringify({ name: data.name, email: data.email, message: data.message, website: data.website || '', pageUrl: window.location.href }),
       });
       if (res.ok) {
         setStatus('success');

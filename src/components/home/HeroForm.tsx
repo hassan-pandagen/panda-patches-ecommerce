@@ -94,6 +94,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
             patchType: sanitizeString(data.type || ''),
           },
           artworkUrl: uploadedFileUrl || null,
+          pageUrl: window.location.href,
         }),
       });
 
@@ -127,8 +128,27 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
   };
 
   return (
-    // Reduced padding slightly to make it fit nicely
     <div className="bg-white/90 border-[3px] border-[#676767]/30 rounded-[20px] px-8 py-8 shadow-2xl">
+
+      {message?.type === 'success' ? (
+        <div className="text-center py-6">
+          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Check className="w-8 h-8 text-green-600" strokeWidth={3} />
+          </div>
+          <h3 className="text-[22px] font-black text-panda-dark mb-2">Quote Request Sent!</h3>
+          <p className="text-gray-500 font-medium text-[14px] mb-6">
+            Thank you! Our team will contact you soon with your free design mockup.
+          </p>
+          <button
+            type="button"
+            onClick={() => setMessage(null)}
+            className="bg-panda-dark text-panda-yellow font-bold px-8 py-3 rounded-[10px] hover:scale-105 transition-transform uppercase tracking-wider text-[14px]"
+          >
+            Submit Another Quote
+          </button>
+        </div>
+      ) : (
+      <>
 
       <div className="text-center mb-6">
         <h2 className="text-[24px] leading-tight font-black text-panda-dark uppercase tracking-tight">
@@ -137,13 +157,9 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-        {/* Success/Error Message */}
-        {message && (
-          <div className={`p-4 rounded-lg text-sm font-semibold ${
-            message.type === 'success'
-              ? 'bg-green-100 text-green-800 border border-green-300'
-              : 'bg-red-100 text-red-800 border border-red-300'
-          }`}>
+        {/* Error Message */}
+        {message?.type === 'error' && (
+          <div className="p-4 rounded-lg text-sm font-semibold bg-red-100 text-red-800 border border-red-300">
             {message.text}
           </div>
         )}
@@ -294,6 +310,9 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           {isSubmitting ? 'Submitting...' : 'Get Started'}
         </button>
       </form>
+
+      </>
+      )}
 
     </div>
   );

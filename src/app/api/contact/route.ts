@@ -27,6 +27,7 @@ export async function POST(request: Request) {
     }
 
     const { name, email, message } = parsed.data;
+    const pageUrl = typeof body.pageUrl === 'string' ? body.pageUrl.slice(0, 500) : '';
 
     // Escape HTML to prevent injection in email body
     const esc = (s: string) => s
@@ -84,6 +85,7 @@ export async function POST(request: Request) {
               <td style="padding: 10px 0; font-weight: bold; color: #555; vertical-align: top;">Message:</td>
               <td style="padding: 10px 0; color: #1a1a1a; white-space: pre-wrap;">${safeMessage}</td>
             </tr>
+            ${pageUrl ? `<tr><td style="padding: 10px 0; font-weight: bold; color: #555;">Page:</td><td style="padding: 10px 0;"><a href="${esc(pageUrl)}" style="color: #2563eb;">${esc(pageUrl)}</a></td></tr>` : ''}
           </table>
           <p style="margin-top: 24px; font-size: 12px; color: #999;">
             Sent from pandapatches.com contact form. Reply directly to this email to respond to ${safeName}.

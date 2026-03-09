@@ -25,6 +25,7 @@ const QuoteSchema = z.object({
   }),
   artworkUrl: z.string().url().optional().or(z.null()),
   isBulkOrder: z.boolean().optional(),
+  pageUrl: z.string().max(500).optional().or(z.literal('')),
 });
 
 function esc(s: string) {
@@ -61,7 +62,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const { customer, details, artworkUrl, isBulkOrder } = validationResult.data;
+    const { customer, details, artworkUrl, isBulkOrder, pageUrl } = validationResult.data;
 
     const sizeLabel = details.width > 0 ? `${details.width}" x ${details.height}"` : 'Custom / See instructions';
     const subject = isBulkOrder
@@ -98,6 +99,7 @@ export async function POST(req: Request) {
                 <tr><td style="padding:8px 0; font-weight:bold; color:#555;">Backing:</td><td style="padding:8px 0;">${esc(details.backing)}</td></tr>
                 ${details.instructions ? `<tr><td style="padding:8px 0; font-weight:bold; color:#555; vertical-align:top;">Instructions:</td><td style="padding:8px 0; white-space:pre-wrap;">${esc(details.instructions)}</td></tr>` : ''}
                 ${artworkUrl ? `<tr><td style="padding:8px 0; font-weight:bold; color:#555;">Artwork:</td><td style="padding:8px 0;"><a href="${artworkUrl}">View Uploaded Artwork</a></td></tr>` : ''}
+                ${pageUrl ? `<tr><td style="padding:8px 0; font-weight:bold; color:#555;">Page:</td><td style="padding:8px 0;"><a href="${esc(pageUrl)}">${esc(pageUrl)}</a></td></tr>` : ''}
                 <tr><td style="padding:8px 0; font-weight:bold; color:#555;">Source:</td><td style="padding:8px 0;">${isBulkOrder ? 'Bulk Order Form' : 'Website Quote Form'}</td></tr>
               </table>
             </div>
@@ -124,6 +126,7 @@ export async function POST(req: Request) {
         customer_attachment_urls: artworkUrl ? [artworkUrl] : [],
         sales_agent: 'WEBSITE_BOT',
         lead_source: isBulkOrder ? 'BULK_ORDER_FORM' : 'WEBSITE_FORM',
+        page_url: pageUrl || null,
       });
 
     if (dbError) {

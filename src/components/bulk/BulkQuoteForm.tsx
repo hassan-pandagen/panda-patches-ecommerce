@@ -97,6 +97,7 @@ export default function BulkQuoteForm() {
           },
           artworkUrl: uploadedFileUrl || null,
           isBulkOrder: true,
+          pageUrl: window.location.href,
         }),
       });
 
@@ -130,6 +131,30 @@ export default function BulkQuoteForm() {
   return (
     <div id="bulk-quote" className="bg-white border-[3px] border-gray-200 rounded-[20px] px-6 md:px-8 py-7 md:py-8 shadow-2xl">
 
+      {message?.type === "success" ? (
+        <div className="text-center py-6">
+          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <CheckCircle className="w-8 h-8 text-green-600" />
+          </div>
+          <h3 className="text-[22px] font-black text-panda-dark mb-2">Quote Request Sent!</h3>
+          <p className="text-gray-500 font-medium text-[14px] mb-6">
+            We&apos;ve received your bulk quote request. Our team will respond within 2 business hours with your free mockup.
+          </p>
+          <button
+            type="button"
+            onClick={() => setMessage(null)}
+            className="bg-panda-dark text-panda-yellow font-bold px-8 py-3 rounded-[10px] hover:scale-105 transition-transform uppercase tracking-wider text-[14px]"
+          >
+            Submit Another Quote
+          </button>
+          <div className="flex items-center justify-center gap-2 mt-4">
+            <Phone className="w-3.5 h-3.5 text-panda-green" />
+            <span className="text-[12px] text-gray-500 font-medium">Need it faster? Call (302) 250-4340</span>
+          </div>
+        </div>
+      ) : (
+      <>
+
       {/* Honeypot — hidden from humans, bots fill it */}
       <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
         <input type="text" {...register("website")} tabIndex={-1} autoComplete="off" />
@@ -141,21 +166,16 @@ export default function BulkQuoteForm() {
           Get Your Free Bulk Quote
         </h3>
         <p className="text-[12px] md:text-[13px] text-gray-500 font-medium mt-1.5">
-          Free mockup included — we respond within 2 hours.
+          Free mockup included. We respond within 2 hours.
         </p>
       </div>
 
       {/* Form */}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
 
-        {/* Success/Error */}
-        {message && (
-          <div className={`p-3 rounded-[10px] text-[13px] font-semibold flex items-center gap-2 ${
-            message.type === "success"
-              ? "bg-green-50 text-green-700 border border-green-200"
-              : "bg-red-50 text-red-700 border border-red-200"
-          }`}>
-            {message.type === "success" && <CheckCircle className="w-4 h-4 flex-shrink-0" />}
+        {/* Error */}
+        {message?.type === "error" && (
+          <div className="p-3 rounded-[10px] text-[13px] font-semibold flex items-center gap-2 bg-red-50 text-red-700 border border-red-200">
             {message.text}
           </div>
         )}
@@ -343,6 +363,9 @@ export default function BulkQuoteForm() {
           <span className="text-[11px] text-gray-500 font-medium">(302) 250-4340</span>
         </div>
       </div>
+
+      </>
+      )}
 
     </div>
   );

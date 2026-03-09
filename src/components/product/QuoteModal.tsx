@@ -71,6 +71,7 @@ export default function QuoteModal({
           },
           artworkUrl: null,
           isBulkOrder: false,
+          pageUrl: window.location.href,
         }),
       });
 

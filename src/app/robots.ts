@@ -3,14 +3,58 @@ import { MetadataRoute } from 'next';
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
+      // Search engines: allow everything except admin/api
       {
         userAgent: '*',
         allow: '/',
         disallow: [
-          '/studio/', // Block Sanity CMS admin
-          '/api/',    // Block API routes
+          '/studio/',
+          '/api/',
         ],
       },
+      // Block AI training-only crawlers (scrape content, send zero traffic)
+      {
+        userAgent: 'GPTBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Google-Extended',
+        disallow: '/',
+      },
+      {
+        userAgent: 'CCBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'anthropic-ai',
+        disallow: '/',
+      },
+      {
+        userAgent: 'cohere-ai',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Bytespider',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Amazonbot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'FacebookBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Applebot-Extended',
+        disallow: '/',
+      },
+      {
+        userAgent: 'Meta-ExternalAgent',
+        disallow: '/',
+      },
+      // Allow AI browsing bots (they can recommend your site to users)
+      // ChatGPT-User, Claude-Web, PerplexityBot = allowed via wildcard *
     ],
     sitemap: 'https://www.pandapatches.com/sitemap.xml',
   };
