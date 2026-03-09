@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import Script from 'next/script';
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 function getReferrerSource(): string {
   const referrer = document.referrer.toLowerCase();
@@ -16,6 +15,12 @@ function getReferrerSource(): string {
   if (referrer.includes("you.com")) return "v-YouAI";
   if (referrer.includes("phind.com")) return "v-Phind";
 
+  // Search engines (before social to avoid google.com matching YouTube referrals)
+  if (referrer.includes("google.com")) return "v-Google";
+  if (referrer.includes("bing.com")) return "v-Bing";
+  if (referrer.includes("yahoo.com")) return "v-Yahoo";
+  if (referrer.includes("duckduckgo.com")) return "v-DuckDuckGo";
+
   // Social media
   if (referrer.includes("facebook.com") || referrer.includes("fb.com")) return "v-Facebook";
   if (referrer.includes("instagram.com")) return "v-Instagram";
@@ -24,12 +29,6 @@ function getReferrerSource(): string {
   if (referrer.includes("youtube.com")) return "v-YouTube";
   if (referrer.includes("tiktok.com")) return "v-TikTok";
   if (referrer.includes("pinterest.com")) return "v-Pinterest";
-
-  // Search engines (after AI checks so bing.com/chat is caught first)
-  if (referrer.includes("google.com")) return "v-Google";
-  if (referrer.includes("bing.com")) return "v-Bing";
-  if (referrer.includes("yahoo.com")) return "v-Yahoo";
-  if (referrer.includes("duckduckgo.com")) return "v-DuckDuckGo";
 
   // Fallback
   if (referrer) return "v-Referral";
@@ -41,87 +40,73 @@ export default function TawkToWidget() {
 
   useEffect(() => {
     if (pathname?.startsWith('/studio')) return;
+    if ((window as any).__tawk_loaded) return;
+    (window as any).__tawk_loaded = true;
 
+    // Exactly match the official Tawk.to snippet
+    (window as any).Tawk_API = (window as any).Tawk_API || {};
+    (window as any).Tawk_LoadStart = new Date();
+
+    const s1 = document.createElement("script");
+    const s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = "https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1";
+    s1.charset = "UTF-8";
+    s1.setAttribute("crossorigin", "*");
+    s0.parentNode!.insertBefore(s1, s0);
+
+    // Add customizations after Tawk loads
     const Tawk_API = (window as any).Tawk_API;
+    const source = getReferrerSource();
+    const page = window.location.pathname;
 
-    // Update page attribute on every route change (if Tawk is already loaded)
-    if (Tawk_API && typeof Tawk_API.setAttributes === 'function') {
-      Tawk_API.setAttributes({
-        page: window.location.pathname + window.location.search,
-      }, function(error: any) {
-        if (error) console.error("Tawk setAttributes error:", error);
-      });
-    }
-
-    const setupTawk = () => {
-      const api = (window as any).Tawk_API;
-      if (!api) return;
-
-      // Set referrer as visitor name so it shows in Tawk dashboard
-      const source = getReferrerSource();
-      api.visitor = api.visitor || {};
-      api.visitor.name = source;
-
-      // Set custom attributes for filtering in Tawk
-      if (typeof api.setAttributes === 'function') {
-        api.setAttributes({
-          source: source,
-          page: window.location.pathname + window.location.search,
-        }, function(error: any) {
-          if (error) console.error("Tawk setAttributes error:", error);
-        });
-      }
-
-      // Track chat start as Google Ads conversion
-      api.onChatStarted = function() {
-        if (typeof (window as any).gtag === 'function') {
-          (window as any).gtag('event', 'conversion', {
-            send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
-            value: 10.0,
-            currency: 'USD',
+    Tawk_API.onLoad = function () {
+      try {
+        // Set visitor name for dashboard
+        if (typeof Tawk_API.setAttributes === 'function') {
+          Tawk_API.setAttributes({
+            name: `${source} | ${page}`,
+          }, function (error: any) {
+            if (error) console.error("Tawk setAttributes error:", error);
           });
         }
-      };
+
+        // Track chat start as Google Ads conversion
+        Tawk_API.onChatStarted = function () {
+          if (typeof (window as any).gtag === 'function') {
+            (window as any).gtag('event', 'conversion', {
+              send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
+              value: 10.0,
+              currency: 'USD',
+            });
+          }
+        };
+
+        // Auto-popup once per session
+        const alreadyPopped = sessionStorage.getItem('tawk_popped');
+        if (!alreadyPopped) {
+          setTimeout(() => {
+            try {
+              if (
+                typeof Tawk_API.isChatMinimized === 'function' &&
+                Tawk_API.isChatMinimized() &&
+                typeof Tawk_API.maximize === 'function'
+              ) {
+                Tawk_API.maximize();
+                sessionStorage.setItem('tawk_popped', '1');
+              }
+            } catch (e) {
+              console.error("Error auto-maximizing Tawk.to:", e);
+            }
+          }, 10000);
+        }
+      } catch (e) {
+        console.error("Error in Tawk.to onLoad:", e);
+      }
     };
-
-    // Poll until Tawk_API is available (script loads via lazyOnload)
-    const timer = setTimeout(() => {
-      const check = setInterval(() => {
-        if ((window as any).Tawk_API?.setAttributes) {
-          setupTawk();
-          clearInterval(check);
-        }
-      }, 500);
-      // Stop polling after 15 seconds
-      setTimeout(() => clearInterval(check), 15000);
-    }, 1000);
-
-    // Auto-popup chat after 10 seconds (only once per session)
-    const popupTimer = setTimeout(() => {
-      const alreadyPopped = sessionStorage.getItem('tawk_popped');
-      if (alreadyPopped) return;
-      const check = setInterval(() => {
-        if ((window as any).Tawk_API?.maximize) {
-          (window as any).Tawk_API.maximize();
-          sessionStorage.setItem('tawk_popped', '1');
-          clearInterval(check);
-        }
-      }, 500);
-      setTimeout(() => clearInterval(check), 10000);
-    }, 10000);
-
-    return () => { clearTimeout(timer); clearTimeout(popupTimer); };
   }, [pathname]);
 
   if (pathname?.startsWith('/studio')) return null;
 
-  return (
-    <Script
-      id="tawk-script"
-      src="https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1"
-      strategy="lazyOnload"
-      async
-      defer
-    />
-  );
+  return null;
 }

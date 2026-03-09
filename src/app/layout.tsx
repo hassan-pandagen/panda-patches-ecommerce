@@ -14,6 +14,7 @@ const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
   weight: ["400", "600", "700", "800", "900"],
+  display: "swap",
 });
 
 export const viewport: Viewport = {
@@ -68,8 +69,14 @@ export default function RootLayout({
          {/* Preconnect + DNS prefetch to Sanity image CDN — reduces LCP hero image latency */}
          <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
          <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-         {/* Preload the LCP hero image so the browser fetches it before parsing CSS/JS */}
-         <link rel="preload" href="/assets/hero-product.webp" as="image" type="image/webp" />
+         {/* Preload the actual Next.js optimized LCP hero image URL (mobile w=420, desktop w=750) */}
+         <link
+           rel="preload"
+           as="image"
+           type="image/webp"
+           imageSrcSet="/_next/image?url=%2Fassets%2Fhero-product.webp&w=420&q=60 420w, /_next/image?url=%2Fassets%2Fhero-product.webp&w=750&q=60 750w"
+           imageSizes="(max-width: 768px) calc(100vw - 2rem), 630px"
+         />
        </head>
       <body className={`${outfit.variable} font-sans antialiased`}>
 

@@ -96,10 +96,10 @@ export default async function Hero() {
                  src="/assets/hero-product.webp"
                  alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"
                  fill
-                 className="object-contain object-center md:object-left hover:scale-[1.02] transition-transform duration-700"
+                 className="object-contain object-center md:object-left"
                  priority
                  quality={60}
-                 sizes="(max-width: 768px) calc(100vw - 2rem), 630px"
+                 sizes="(max-width: 768px) 100vw, 630px"
                />
 
              {/* 1 Million Badge - Hidden on mobile */}
@@ -137,16 +137,16 @@ export default async function Hero() {
           {/* Mobile: 2x2 Grid | Desktop: 4 in 1 row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full max-w-5xl mx-auto">
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-google.svg" alt="Google" width={110} height={50} className="object-contain brightness-0 w-auto h-auto" loading="eager" />
+               <Image src="/assets/logo-google.svg" alt="Google" width={110} height={50} className="object-contain brightness-0 w-auto h-auto" loading="lazy" />
              </div>
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-microsoft.svg" alt="Microsoft" width={130} height={50} className="object-contain brightness-0 w-auto h-auto" loading="eager" />
+               <Image src="/assets/logo-microsoft.svg" alt="Microsoft" width={130} height={50} className="object-contain brightness-0 w-auto h-auto" loading="lazy" />
              </div>
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-cocacola.svg" alt="CocaCola" width={120} height={50} className="object-contain brightness-0 w-auto h-auto" loading="eager" />
+               <Image src="/assets/logo-cocacola.svg" alt="CocaCola" width={120} height={50} className="object-contain brightness-0 w-auto h-auto" loading="lazy" />
              </div>
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-nissan.svg" alt="Nissan" width={100} height={50} className="object-contain brightness-0 w-auto h-auto" loading="eager" />
+               <Image src="/assets/logo-nissan.svg" alt="Nissan" width={100} height={50} className="object-contain brightness-0 w-auto h-auto" loading="lazy" />
              </div>
           </div>
         </div>
