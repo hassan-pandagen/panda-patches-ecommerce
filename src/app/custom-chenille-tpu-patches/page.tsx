@@ -148,6 +148,7 @@ const productSchema = {
     priceCurrency: "USD",
     lowPrice: "1.50",
     highPrice: "8.00",
+    offerCount: "1",
     availability: "https://schema.org/InStock",
   },
   aggregateRating: {

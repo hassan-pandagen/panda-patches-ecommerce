@@ -230,6 +230,7 @@ export function generateProductSchema(params: ProductSchemaParams) {
       "priceCurrency": priceCurrency,
       "lowPrice": lowPrice,
       "highPrice": highPrice,
+      "offerCount": pricingTiers && pricingTiers.length > 0 ? pricingTiers.length.toString() : "1",
       "availability": `https://schema.org/${schemaAvailability}`,
       "url": url,
       "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
