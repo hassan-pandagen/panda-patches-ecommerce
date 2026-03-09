@@ -421,7 +421,8 @@ export default function ComplexCalculator({
               <button
                 type="button"
                 onClick={() => setShowBackingDropdown(!showBackingDropdown)}
-                className={`w-full h-[52px] border-2 rounded-[12px] px-4 flex items-center justify-between transition-all ${showBackingDropdown ? 'border-black' : 'border-gray-300 hover:border-gray-400'} bg-white`}
+                style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: showBackingDropdown ? '#000' : '#9ca3af' }}
+                className={`w-full h-[52px] rounded-[12px] px-4 flex items-center justify-between transition-all bg-white`}
               >
                 <div className="flex items-center gap-3">
                   {backing ? (() => {
@@ -484,7 +485,8 @@ export default function ComplexCalculator({
               <button
                 type="button"
                 onClick={() => setShowShapeDropdown(!showShapeDropdown)}
-                className={`w-full h-[52px] border-2 rounded-[12px] px-4 flex items-center justify-between transition-all ${showShapeDropdown ? 'border-black' : 'border-gray-300 hover:border-gray-400'} bg-white`}
+                style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: showShapeDropdown ? '#000' : '#9ca3af' }}
+                className={`w-full h-[52px] rounded-[12px] px-4 flex items-center justify-between transition-all bg-white`}
               >
                 <div className="flex items-center gap-3">
                   {shape ? (() => {
@@ -582,72 +584,75 @@ export default function ComplexCalculator({
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="flex items-center border-2 border-gray-300 rounded-[12px] overflow-hidden h-[52px] focus-within:border-black transition-all">
-                  <button type="button" onClick={() => { const v = Math.max(1, width - 1); setWidth(v); setWidthInput(String(v)); }} className="px-4 hover:bg-gray-100 text-gray-500 font-black text-xl border-r border-gray-300 h-full flex-shrink-0">-</button>
+                <div style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: '#9ca3af' }} className="flex items-center rounded-[12px] overflow-hidden h-[52px] focus-within:border-black transition-all">
+                  <button type="button" onClick={() => { const cur = parseFloat(widthInput) || width; const v = Math.max(1, Math.floor(cur) - 1); setWidth(v); setWidthInput(String(v)); }} className="px-4 hover:bg-gray-100 text-gray-500 font-black text-xl border-r border-gray-400 h-full flex-shrink-0">-</button>
                   <div className="flex-1 flex items-center justify-center gap-1 min-w-0">
                     <input
-                      type="number"
+                      type="text"
                       inputMode="decimal"
-                      step="1"
                       min="1"
                       max={maxSize}
                       value={widthInput}
                       onChange={(e) => {
-                        setWidthInput(e.target.value);
-                        const val = parseFloat(e.target.value);
-                        if (!isNaN(val) && val >= 1) setWidth(Math.min(Math.ceil(val), maxSize));
+                        const raw = e.target.value;
+                        if (/^\d*\.?\d*$/.test(raw)) {
+                          setWidthInput(raw);
+                          const val = parseFloat(raw);
+                          if (!isNaN(val) && val >= 1) setWidth(Math.min(Math.ceil(val), maxSize));
+                        }
                       }}
                       onBlur={(e) => {
                         const val = parseFloat(e.target.value);
                         if (isNaN(val) || val < 1) { setWidth(1); setWidthInput('1'); }
-                        else { const v = Math.min(Math.ceil(val), maxSize); setWidth(v); setWidthInput(String(v)); }
+                        else { const clamped = Math.min(val, maxSize); setWidth(Math.ceil(clamped)); setWidthInput(String(clamped)); }
                       }}
                       className="w-full text-center font-black text-black text-xl outline-none bg-transparent min-w-0"
                     />
                     <span className="text-gray-400 text-sm font-medium flex-shrink-0">W</span>
                   </div>
-                  <button type="button" onClick={() => { const v = Math.min(maxSize, width + 1); setWidth(v); setWidthInput(String(v)); }} className="px-4 hover:bg-black hover:text-white text-gray-500 border-l border-gray-300 transition-colors font-black text-xl h-full flex-shrink-0">+</button>
+                  <button type="button" onClick={() => { const cur = parseFloat(widthInput) || width; const v = Math.min(maxSize, Math.ceil(cur) + 1); setWidth(v); setWidthInput(String(v)); }} className="px-4 hover:bg-black hover:text-white text-gray-500 border-l border-gray-400 transition-colors font-black text-xl h-full flex-shrink-0">+</button>
                 </div>
-                <div className="flex items-center border-2 border-gray-300 rounded-[12px] overflow-hidden h-[52px] focus-within:border-black transition-all">
-                  <button type="button" onClick={() => { const v = Math.max(1, height - 1); setHeight(v); setHeightInput(String(v)); }} className="px-4 hover:bg-gray-100 text-gray-500 font-black text-xl border-r border-gray-300 h-full flex-shrink-0">-</button>
+                <div style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: '#9ca3af' }} className="flex items-center rounded-[12px] overflow-hidden h-[52px] focus-within:border-black transition-all">
+                  <button type="button" onClick={() => { const cur = parseFloat(heightInput) || height; const v = Math.max(1, Math.floor(cur) - 1); setHeight(v); setHeightInput(String(v)); }} className="px-4 hover:bg-gray-100 text-gray-500 font-black text-xl border-r border-gray-400 h-full flex-shrink-0">-</button>
                   <div className="flex-1 flex items-center justify-center gap-1 min-w-0">
                     <input
-                      type="number"
+                      type="text"
                       inputMode="decimal"
-                      step="1"
                       min="1"
                       max={maxSize}
                       value={heightInput}
                       onChange={(e) => {
-                        setHeightInput(e.target.value);
-                        const val = parseFloat(e.target.value);
-                        if (!isNaN(val) && val >= 1) setHeight(Math.min(Math.ceil(val), maxSize));
+                        const raw = e.target.value;
+                        if (/^\d*\.?\d*$/.test(raw)) {
+                          setHeightInput(raw);
+                          const val = parseFloat(raw);
+                          if (!isNaN(val) && val >= 1) setHeight(Math.min(Math.ceil(val), maxSize));
+                        }
                       }}
                       onBlur={(e) => {
                         const val = parseFloat(e.target.value);
                         if (isNaN(val) || val < 1) { setHeight(1); setHeightInput('1'); }
-                        else { const v = Math.min(Math.ceil(val), maxSize); setHeight(v); setHeightInput(String(v)); }
+                        else { const clamped = Math.min(val, maxSize); setHeight(Math.ceil(clamped)); setHeightInput(String(clamped)); }
                       }}
                       className="w-full text-center font-black text-black text-xl outline-none bg-transparent min-w-0"
                     />
                     <span className="text-gray-400 text-sm font-medium flex-shrink-0">H</span>
                   </div>
-                  <button type="button" onClick={() => { const v = Math.min(maxSize, height + 1); setHeight(v); setHeightInput(String(v)); }} className="px-4 hover:bg-black hover:text-white text-gray-500 border-l border-gray-300 transition-colors font-black text-xl h-full flex-shrink-0">+</button>
+                  <button type="button" onClick={() => { const cur = parseFloat(heightInput) || height; const v = Math.min(maxSize, Math.ceil(cur) + 1); setHeight(v); setHeightInput(String(v)); }} className="px-4 hover:bg-black hover:text-white text-gray-500 border-l border-gray-400 transition-colors font-black text-xl h-full flex-shrink-0">+</button>
                 </div>
               </div>
 
               {/* Unsure of size nudge */}
-              <a
-                href="https://wa.me/13022504340"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 flex items-center gap-1.5 text-[12px] text-gray-400 hover:text-panda-green transition-colors group"
+              <button
+                type="button"
+                onClick={() => { if (typeof window !== 'undefined' && (window as any).Tawk_API) { (window as any).Tawk_API.maximize(); } }}
+                className="mt-2 flex items-center gap-1.5 text-[12px] text-gray-400 hover:text-panda-green transition-colors group cursor-pointer"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="flex-shrink-0 group-hover:text-panda-green" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>
                 </svg>
                 Unsure of your size? Chat with us now
-              </a>
+              </button>
             </div>
 
             {/* 3. QUANTITY */}
@@ -673,7 +678,8 @@ export default function ComplexCalculator({
                     setQuantity(num);
                     setQuantityInput(String(num));
                   }}
-                  className="w-full h-[70px] border-2 border-gray-300 rounded-[12px] px-6 font-black text-3xl text-black outline-none focus:border-black transition-all"
+                  style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: '#9ca3af' }}
+                  className="w-full h-[70px] rounded-[12px] px-6 font-black text-3xl text-black outline-none focus:border-black transition-all"
                 />
                 <div className="absolute right-6 top-1/2 -translate-y-1/2 text-sm text-gray-500 font-bold pointer-events-none uppercase tracking-wide">Pieces</div>
               </div>

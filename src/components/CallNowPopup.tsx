@@ -41,6 +41,17 @@ export default function CallNowPopup() {
   if (!visible) return null;
 
   return (
+    <>
+    <style>{`
+@keyframes slide-up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.animate-slide-up{animation:slide-up .35s ease-out forwards}
+@keyframes slide-down{from{opacity:0;transform:translateY(-24px)}to{opacity:1;transform:translateY(0)}}
+.animate-slide-down{animation:slide-down .35s ease-out forwards}
+@keyframes phone-ring{0%,100%{transform:rotate(0)}10%{transform:rotate(-14deg)}20%{transform:rotate(14deg)}30%{transform:rotate(-14deg)}40%{transform:rotate(14deg)}50%{transform:rotate(0)}}
+.animate-phone-ring{animation:phone-ring 3s ease-in-out 1s infinite}
+@keyframes popup-ring{0%,100%{transform:translateX(0)}10%{transform:translateX(-5px)}20%{transform:translateX(5px)}30%{transform:translateX(-5px)}40%{transform:translateX(5px)}50%{transform:translateX(0)}}
+.animate-popup-ring{animation:popup-ring 5s ease-in-out 3s infinite}
+    `}</style>
     <div
       className={`fixed left-6 z-50 animate-popup-ring ${isMobile ? 'top-6 animate-slide-down' : 'bottom-6 animate-slide-up'}`}
       role="dialog"
@@ -96,5 +107,6 @@ export default function CallNowPopup() {
         <p className="text-center text-[10px] text-gray-400 mt-2">Mon–Sun · 11am–7pm ET</p>
       </div>
     </div>
+    </>
   );
 }

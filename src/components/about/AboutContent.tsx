@@ -58,11 +58,12 @@ export default async function AboutContent() {
         <div className="flex flex-wrap items-center justify-center gap-8 mb-20">
            {hero?.trustBadges && hero.trustBadges.map((badge: any, idx: number) => (
              <div key={idx} className="relative h-10 w-28">
-               <Image 
+               <Image
                  src={urlFor(badge).width(200).format('webp').quality(80).url()}
-                 alt="Trust Badge" 
-                 fill 
-                 className="object-contain" 
+                 alt={`Trust badge ${idx + 1}`}
+                 fill
+                 className="object-contain"
+                 sizes="112px"
                />
              </div>
            ))}

@@ -16,6 +16,10 @@ export default function ProcessInteractive({ data }: { data: any }) {
   };
 
   return (
+    <>
+    <style>{`
+.process-line{transform:scaleX(0);transform-origin:left;transition:transform .5s ease-in-out}
+    `}</style>
     <div className="relative">
       {/* 
          THE CONNECTING LINE 
@@ -112,5 +116,6 @@ export default function ProcessInteractive({ data }: { data: any }) {
         })}
       </div>
     </div>
+    </>
   );
 }
