@@ -33,6 +33,32 @@ export default defineType({
       validation: (rule) => rule.max(200),
     }),
     defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Custom Patches', value: 'Custom Patches' },
+          { title: 'Chenille Patches', value: 'Chenille Patches' },
+          { title: 'Custom Military Patches', value: 'Custom Military Patches' },
+          { title: 'Custom Business Patches', value: 'Custom Business Patches' },
+          { title: 'Custom Sublimation Patches', value: 'Custom Sublimation Patches' },
+          { title: 'Custom PVC Patch', value: 'Custom PVC Patch' },
+          { title: 'Embroidery Patch Vs Woven Patch', value: 'Embroidery Patch Vs Woven Patch' },
+          { title: 'Enamel Pins', value: 'Enamel Pins' },
+          { title: 'Challenge Coin', value: 'Challenge Coin' },
+          { title: 'Types Of Backing Options', value: 'Types Of Backing Options' },
+        ],
+      },
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: { layout: 'tags' },
+    }),
+    defineField({
       name: 'content',
       title: 'Full Content',
       type: 'array',
