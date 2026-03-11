@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { client, urlFor } from "@/lib/sanity";
+import { client } from "@/lib/sanity";
 import HeroForm from "./HeroForm";
 
 async function getHeroData() {
@@ -70,21 +70,6 @@ export default async function Hero() {
             {data?.subtitle || "Welcome to Panda Patches, where brand stories are stitched into reality! From company logos to promotional swag, let your brand speak loud and clear with our iron on patches. Crafted with care, delivered with precision."}
           </p>
 
-          {/* Badges - 2x2 Grid on mobile, Single row on desktop */}
-          <div className="grid grid-cols-2 md:flex md:flex-wrap md:items-center md:justify-center lg:justify-start gap-3 md:gap-5 mb-8 md:mb-8 w-full mx-auto md:mx-0 max-w-[280px] md:max-w-full place-items-center">
-             {data?.trustBadges && data.trustBadges.filter((badge: any) => badge?.ref).map((badge: any, idx: number) => (
-               <div key={idx} className="relative h-12 md:h-8 w-24 md:w-24 flex-shrink-0 flex items-center justify-center">
-                 <Image
-                   src={urlFor(badge.ref).width(96).height(32).format('webp').quality(80).url()}
-                   alt={badge.alt || `Trust badge ${idx + 1}`}
-                   fill
-                   className="object-contain object-center"
-                   sizes="96px"
-                   loading="eager"
-                 />
-               </div>
-             ))}
-          </div>
 
           {/*
              FIX 4: IMAGE SIZE
@@ -95,14 +80,25 @@ export default async function Hero() {
             className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-8 md:-mt-10 mx-auto md:mx-0"
             style={{ position: 'relative', width: '100%', minHeight: 250 }}
           >
+               {/* Mobile image */}
+               <Image
+                 src="/assets/hero-product-mobile.webp"
+                 alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"
+                 fill
+                 className="object-contain object-center md:hidden"
+                 priority
+                 quality={75}
+                 sizes="100vw"
+               />
+               {/* Desktop image */}
                <Image
                  src="/assets/hero-product.webp"
                  alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"
                  fill
-                 className="object-contain object-center md:object-left"
+                 className="object-contain object-left hidden md:block"
                  priority
                  quality={60}
-                 sizes="(max-width: 768px) 100vw, 630px"
+                 sizes="630px"
                />
 
              {/* 1 Million Badge - Hidden on mobile */}

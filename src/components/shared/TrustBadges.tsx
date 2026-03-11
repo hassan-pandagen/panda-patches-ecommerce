@@ -14,6 +14,7 @@ function getBadgeSrc(badge: any): string {
   // 3. Sanity image reference (from Hero: {ref, alt})
   if (badge?.ref) return urlFor(badge.ref).width(200).format('webp').quality(80).url();
   // 4. Direct Sanity asset (from AboutContent: raw trustBadges[] items)
+  if (!badge) return '';
   return urlFor(badge).width(200).format('webp').quality(80).url();
 }
 
@@ -24,10 +25,11 @@ function getBadgeAlt(badge: any, idx: number): string {
 
 export default function TrustBadges({ badges, layout = "grid" }: TrustBadgesProps) {
   if (!badges || badges.length === 0) return null;
+  const validBadges = badges.filter(Boolean);
 
   return (
     <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5 place-items-center">
-      {badges.map((badge: any, idx: number) => (
+      {validBadges.map((badge: any, idx: number) => (
         <div
           key={idx}
           className="relative h-8 md:h-10 w-20 md:w-24 flex items-center justify-center"

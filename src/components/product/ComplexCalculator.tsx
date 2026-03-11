@@ -2,7 +2,6 @@
 "use client";
 
 import { useState, useEffect, useMemo, useRef } from "react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { UploadCloud, Check, ChevronDown, ShoppingCart, FileText, Lightbulb } from "lucide-react";
 import HeroForm from "@/components/home/HeroForm";
@@ -11,7 +10,6 @@ import TrustBadges from "@/components/shared/TrustBadges";
 import { useFileUpload } from "@/hooks/useFileUpload";
 import { usePriceCalculation } from "@/hooks/usePriceCalculation";
 
-const QuoteModal = dynamic(() => import("./QuoteModal"), { ssr: false });
 
 // Default backing options if none provided
 const DEFAULT_BACKINGS = [
@@ -140,8 +138,10 @@ export default function ComplexCalculator({
   const [shape, setShape] = useState("");
   const [showShapeDropdown, setShowShapeDropdown] = useState(false);
   const [selectedColor, setSelectedColor] = useState("");
+  const [showBorderDropdown, setShowBorderDropdown] = useState(false);
   const backingDropdownRef = useRef<HTMLDivElement>(null);
   const shapeDropdownRef = useRef<HTMLDivElement>(null);
+  const borderDropdownRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(3);
   const [height, setHeight] = useState(3);
   const [widthInput, setWidthInput] = useState('3');
@@ -176,8 +176,9 @@ export default function ComplexCalculator({
   const totalSteps = 2;
   const [mounted, setMounted] = useState(false);
 
-  // Quote Modal State
-  const [showQuoteModal, setShowQuoteModal] = useState(false);
+  // Direct Quote State
+  const [quoteSending, setQuoteSending] = useState(false);
+  const [quoteSent, setQuoteSent] = useState(false);
 
   // Patch Idea State
   const [patchIdea, setPatchIdea] = useState("");
@@ -200,10 +201,13 @@ export default function ComplexCalculator({
     setMounted(true);
   }, []);
 
+  // Namespaced key keeps each product type's form state separate
+  const storageKey = `pp_checkout_state_${productType.toLowerCase().replace(/\s+/g, '_')}`;
+
   // Restore saved form state from localStorage (survives Stripe redirects / failures)
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('pp_checkout_state');
+      const saved = localStorage.getItem(storageKey);
       if (!saved) return;
       const s = JSON.parse(saved);
       if (s.backing) setBacking(s.backing);
@@ -232,7 +236,7 @@ export default function ComplexCalculator({
   useEffect(() => {
     if (!mounted) return;
     try {
-      localStorage.setItem('pp_checkout_state', JSON.stringify({
+      localStorage.setItem(storageKey, JSON.stringify({
         backing, shape, selectedColor, width, height, quantity,
         fileUrl, fileName, name, email, phone, address,
         deliveryOption, rushDate, specialInstructions, selectedAddons, paymentMethod, currentStep,
@@ -250,20 +254,14 @@ export default function ComplexCalculator({
       if (shapeDropdownRef.current && !shapeDropdownRef.current.contains(e.target as Node)) {
         setShowShapeDropdown(false);
       }
+      if (borderDropdownRef.current && !borderDropdownRef.current.contains(e.target as Node)) {
+        setShowBorderDropdown(false);
+      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Prevent scroll when quote modal is open
-  useEffect(() => {
-    if (showQuoteModal) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
-  }, [showQuoteModal]);
 
   // Calculate minimum date (6 days from now for rush, skip weekends)
   const getMinRushDate = () => {
@@ -311,13 +309,13 @@ export default function ComplexCalculator({
         alert("Please enter a valid email address");
         return false;
       }
+      return true;
+    }
+    if (step === 2) {
       if (!address || address.length < 10) {
         alert("Please enter a complete shipping address");
         return false;
       }
-      return true;
-    }
-    if (step === 2) {
       if (deliveryOption === "rush" && !rushDate) {
         alert("Please select a rush delivery date");
         return false;
@@ -369,6 +367,53 @@ export default function ComplexCalculator({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleDirectQuote = async () => {
+    if (!email) {
+      alert("Please enter your email address first.");
+      setCurrentStep(1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    setQuoteSending(true);
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customer: { name: name || email, email, phone: phone || "" },
+          details: {
+            width,
+            height,
+            quantity,
+            backing: BACKINGS.find(b => b.id === backing)?.name || "Not specified",
+            patchType: productType,
+          },
+          artworkUrl: fileUrl || null,
+          isBulkOrder: false,
+          pageUrl: window.location.href,
+          basePrice: priceResult.error ? undefined : basePrice,
+        }),
+      });
+      if (res.ok) {
+        setQuoteSent(true);
+        setTimeout(() => setQuoteSent(false), 5000);
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'conversion', {
+            send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
+            value: 50.0,
+            currency: 'USD',
+          });
+        }
+      } else {
+        alert("Failed to send quote. Please try again.");
+      }
+    } catch {
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setQuoteSending(false);
+    }
+  };
+
   const handleCheckout = async (e: any) => {
     e.preventDefault();
 
@@ -412,7 +457,7 @@ export default function ComplexCalculator({
         if (data.orderData && data.paypalOrderId) {
           try { localStorage.setItem('pp_paypal_order', JSON.stringify({ paypalOrderId: data.paypalOrderId, orderData: data.orderData })); } catch {}
         }
-        try { localStorage.removeItem('pp_checkout_state'); } catch {}
+        try { localStorage.removeItem(storageKey); } catch {}
         window.location.href = data.url;
       } else {
         setCheckoutLoading(false);
@@ -467,168 +512,194 @@ export default function ComplexCalculator({
         {/* === STEP 1: CONFIGURE PATCH + SEE PRICE === */}
         {mounted && currentStep === 1 && (
           <>
-            {/* 1. BACKING SELECTOR — compact image dropdown */}
-            {BACKINGS.length > 0 && (
-            <div ref={backingDropdownRef} className="relative">
-              <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-black text-black uppercase tracking-wide">Select Backing</label>
-              </div>
-              {/* Trigger button */}
-              <button
-                type="button"
-                onClick={() => setShowBackingDropdown(!showBackingDropdown)}
-                style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: showBackingDropdown ? '#000' : '#9ca3af' }}
-                className={`w-full h-[52px] rounded-[12px] px-4 flex items-center justify-between transition-all bg-white`}
-              >
-                <div className="flex items-center gap-3">
-                  {backing ? (() => {
-                    const sel = BACKINGS.find(b => b.id === backing);
-                    return sel ? (
-                      <>
-                        {sel.icon.startsWith('http') ? (
-                          <div className="relative w-7 h-7 flex-shrink-0">
-                            <Image src={sel.icon} alt={sel.name} fill className="object-contain" sizes="28px" />
+            {/* 1. BACKING + SHAPE — side by side */}
+            <div className="grid grid-cols-2 gap-3">
+
+              {/* BACKING SELECTOR */}
+              {BACKINGS.length > 0 && (
+              <div ref={backingDropdownRef} className="relative">
+                <label className="block text-sm font-black text-black uppercase tracking-wide mb-2">Select Backing</label>
+                <button
+                  type="button"
+                  onClick={() => { setShowBackingDropdown(!showBackingDropdown); setShowShapeDropdown(false); setShowBorderDropdown(false); }}
+                  style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: showBackingDropdown ? '#000' : '#9ca3af' }}
+                  className="w-full h-[52px] rounded-[12px] px-3 flex items-center justify-between transition-all bg-white"
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    {backing ? (() => {
+                      const sel = BACKINGS.find(b => b.id === backing);
+                      return sel ? (
+                        <>
+                          {sel.icon.startsWith('http') ? (
+                            <div className="relative w-6 h-6 flex-shrink-0">
+                              <Image src={sel.icon} alt={sel.name} fill className="object-contain" sizes="24px" />
+                            </div>
+                          ) : (
+                            <span className="text-lg leading-none flex-shrink-0">{sel.icon}</span>
+                          )}
+                          <span className="font-bold text-black text-xs truncate">{sel.name}</span>
+                        </>
+                      ) : null;
+                    })() : (
+                      <span className="text-gray-400 font-medium text-xs truncate">Select Backing</span>
+                    )}
+                  </div>
+                  <ChevronDown size={16} className={`text-gray-500 flex-shrink-0 transition-transform duration-200 ${showBackingDropdown ? 'rotate-180' : ''}`} />
+                </button>
+
+                {showBackingDropdown && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-black rounded-[14px] shadow-2xl z-50 overflow-hidden">
+                    <div
+                      onClick={() => { setBacking(''); setShowBackingDropdown(false); }}
+                      className={`flex items-center gap-3 px-4 py-3 cursor-pointer border-b border-gray-100 hover:bg-gray-50 transition-colors ${!backing ? 'bg-gray-50' : ''}`}
+                    >
+                      <span className="text-gray-400 text-sm font-medium">Skip</span>
+                    </div>
+                    {BACKINGS.map((opt) => (
+                      <div
+                        key={opt.id}
+                        onClick={() => { setBacking(opt.id); setShowBackingDropdown(false); }}
+                        className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-panda-yellow/10 transition-colors ${backing === opt.id ? 'bg-panda-yellow/20' : ''}`}
+                      >
+                        {opt.icon.startsWith('http') ? (
+                          <div className="relative w-8 h-8 flex-shrink-0">
+                            <Image src={opt.icon} alt={opt.name} fill className="object-contain" sizes="32px" />
                           </div>
                         ) : (
-                          <span className="text-xl leading-none">{sel.icon}</span>
+                          <span className="text-2xl leading-none">{opt.icon}</span>
                         )}
-                        <span className="font-bold text-black text-sm">{sel.name}</span>
-                      </>
-                    ) : null;
-                  })() : (
-                    <span className="text-gray-400 font-medium text-sm">Select Backing Type</span>
-                  )}
-                </div>
-                <ChevronDown size={18} className={`text-gray-500 transition-transform duration-200 ${showBackingDropdown ? 'rotate-180' : ''}`} />
-              </button>
-
-              {/* Dropdown panel */}
-              {showBackingDropdown && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-black rounded-[14px] shadow-2xl z-50 overflow-hidden">
-                  <div
-                    onClick={() => { setBacking(''); setShowBackingDropdown(false); }}
-                    className={`flex items-center gap-3 px-4 py-3 cursor-pointer border-b border-gray-100 hover:bg-gray-50 transition-colors ${!backing ? 'bg-gray-50' : ''}`}
-                  >
-                    <span className="text-gray-400 text-sm font-medium">No preference / Skip</span>
+                        <span className={`font-bold text-sm flex-1 ${backing === opt.id ? 'text-black' : 'text-gray-700'}`}>{opt.name}</span>
+                        {backing === opt.id && <Check size={16} className="text-green-600" strokeWidth={3} />}
+                      </div>
+                    ))}
                   </div>
-                  {BACKINGS.map((opt) => (
-                    <div
-                      key={opt.id}
-                      onClick={() => { setBacking(opt.id); setShowBackingDropdown(false); }}
-                      className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-panda-yellow/10 transition-colors ${backing === opt.id ? 'bg-panda-yellow/20' : ''}`}
-                    >
-                      {opt.icon.startsWith('http') ? (
-                        <div className="relative w-8 h-8 flex-shrink-0">
-                          <Image src={opt.icon} alt={opt.name} fill className="object-contain" sizes="32px" />
-                        </div>
-                      ) : (
-                        <span className="text-2xl leading-none">{opt.icon}</span>
-                      )}
-                      <span className={`font-bold text-sm flex-1 ${backing === opt.id ? 'text-black' : 'text-gray-700'}`}>{opt.name}</span>
-                      {backing === opt.id && <Check size={16} className="text-green-600" strokeWidth={3} />}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-            )}
-
-            {/* 1b. SHAPE SELECTOR */}
-            <div ref={shapeDropdownRef} className="relative">
-              <div className="flex justify-between items-center mb-2">
-                <label className="text-sm font-black text-black uppercase tracking-wide">Select Shape</label>
+                )}
               </div>
-              <button
-                type="button"
-                onClick={() => setShowShapeDropdown(!showShapeDropdown)}
-                style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: showShapeDropdown ? '#000' : '#9ca3af' }}
-                className={`w-full h-[52px] rounded-[12px] px-4 flex items-center justify-between transition-all bg-white`}
-              >
-                <div className="flex items-center gap-3">
-                  {shape ? (() => {
-                    const sel = SHAPES.find(s => s.id === shape);
-                    return sel ? (
-                      <>
-                        <ShapeIcon id={shape} size={24} />
-                        <span className="font-bold text-black text-sm">{sel.name}</span>
-                      </>
-                    ) : null;
-                  })() : (
-                    <span className="text-gray-400 font-medium text-sm">Select Patch Shape</span>
-                  )}
-                </div>
-                <ChevronDown size={18} className={`text-gray-500 transition-transform duration-200 ${showShapeDropdown ? 'rotate-180' : ''}`} />
-              </button>
-
-              {showShapeDropdown && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-black rounded-[14px] shadow-2xl z-50 overflow-hidden">
-                  <div
-                    onClick={() => { setShape(''); setShowShapeDropdown(false); }}
-                    className={`flex items-center gap-3 px-4 py-3 cursor-pointer border-b border-gray-100 hover:bg-gray-50 transition-colors ${!shape ? 'bg-gray-50' : ''}`}
-                  >
-                    <span className="text-gray-400 text-sm font-medium">No preference / Skip</span>
-                  </div>
-                  {SHAPES.map((opt) => (
-                    <div
-                      key={opt.id}
-                      onClick={() => { setShape(opt.id); setShowShapeDropdown(false); }}
-                      className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-panda-yellow/10 transition-colors ${shape === opt.id ? 'bg-panda-yellow/20' : ''}`}
-                    >
-                      <span className="text-gray-600"><ShapeIcon id={opt.id} size={24} /></span>
-                      <span className={`font-bold text-sm flex-1 ${shape === opt.id ? 'text-black' : 'text-gray-700'}`}>{opt.name}</span>
-                      {shape === opt.id && <Check size={16} className="text-green-600" strokeWidth={3} />}
-                    </div>
-                  ))}
-                </div>
               )}
+
+              {/* SHAPE SELECTOR */}
+              <div ref={shapeDropdownRef} className="relative">
+                <label className="block text-sm font-black text-black uppercase tracking-wide mb-2">Select Shape</label>
+                <button
+                  type="button"
+                  onClick={() => { setShowShapeDropdown(!showShapeDropdown); setShowBackingDropdown(false); setShowBorderDropdown(false); }}
+                  style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: showShapeDropdown ? '#000' : '#9ca3af' }}
+                  className="w-full h-[52px] rounded-[12px] px-3 flex items-center justify-between transition-all bg-white"
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    {shape ? (() => {
+                      const sel = SHAPES.find(s => s.id === shape);
+                      return sel ? (
+                        <>
+                          <span className="flex-shrink-0"><ShapeIcon id={shape} size={20} /></span>
+                          <span className="font-bold text-black text-xs truncate">{sel.name}</span>
+                        </>
+                      ) : null;
+                    })() : (
+                      <span className="text-gray-400 font-medium text-xs truncate">Select Shape</span>
+                    )}
+                  </div>
+                  <ChevronDown size={16} className={`text-gray-500 flex-shrink-0 transition-transform duration-200 ${showShapeDropdown ? 'rotate-180' : ''}`} />
+                </button>
+
+                {showShapeDropdown && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-black rounded-[14px] shadow-2xl z-50 overflow-hidden">
+                    <div
+                      onClick={() => { setShape(''); setShowShapeDropdown(false); }}
+                      className={`flex items-center gap-3 px-4 py-3 cursor-pointer border-b border-gray-100 hover:bg-gray-50 transition-colors ${!shape ? 'bg-gray-50' : ''}`}
+                    >
+                      <span className="text-gray-400 text-sm font-medium">Skip</span>
+                    </div>
+                    {SHAPES.map((opt) => (
+                      <div
+                        key={opt.id}
+                        onClick={() => { setShape(opt.id); setShowShapeDropdown(false); }}
+                        className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-panda-yellow/10 transition-colors ${shape === opt.id ? 'bg-panda-yellow/20' : ''}`}
+                      >
+                        <span className="text-gray-600"><ShapeIcon id={opt.id} size={24} /></span>
+                        <span className={`font-bold text-sm flex-1 ${shape === opt.id ? 'text-black' : 'text-gray-700'}`}>{opt.name}</span>
+                        {shape === opt.id && <Check size={16} className="text-green-600" strokeWidth={3} />}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
             </div>
 
-            {/* 1c. COLOR / BORDER SELECTOR */}
+            {/* 1c. BORDER SELECTOR — dropdown */}
             {borderOptions.length > 0 && (
-              <div>
+              <div ref={borderDropdownRef} className="relative">
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-sm font-black text-black uppercase tracking-wide">
-                    {borderSectionLabel || "Select Color / Border"}
+                    {borderSectionLabel || "Select Border"}
                   </label>
                   <span className="text-[11px] font-semibold text-gray-400">Optional</span>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {borderOptions.map((opt) => {
-                    const id = opt.title.toLowerCase().replace(/\s+/g, '-');
-                    const imgUrl = opt.image ? urlFor(opt.image).width(80).height(80).url() : null;
-                    const isSelected = selectedColor === id;
-                    return (
-                      <button
-                        key={id}
-                        type="button"
-                        onClick={() => setSelectedColor(isSelected ? "" : id)}
-                        title={opt.title}
-                        className={`flex flex-col items-center gap-1 p-1.5 rounded-[10px] border-2 transition-all
-                          ${isSelected ? 'border-black shadow-md scale-105' : 'border-gray-200 hover:border-gray-400'}
-                        `}
-                      >
-                        {imgUrl ? (
-                          <div className="relative w-10 h-10 rounded-[6px] overflow-hidden flex-shrink-0">
-                            <Image src={imgUrl} alt={opt.title} fill className="object-cover" sizes="40px" />
-                          </div>
-                        ) : (
-                          <div className="w-10 h-10 rounded-[6px] bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-500">
-                            {opt.title.charAt(0)}
-                          </div>
-                        )}
-                        <span className={`text-[10px] font-bold leading-tight text-center max-w-[44px] truncate ${isSelected ? 'text-black' : 'text-gray-600'}`}>
-                          {opt.title}
-                        </span>
-                        {isSelected && <Check size={10} className="text-green-600" strokeWidth={3} />}
-                      </button>
-                    );
-                  })}
-                </div>
-                {selectedColor && (
-                  <p className="text-xs text-gray-500 mt-1.5 font-medium">
-                    Selected: <span className="font-black text-black">{borderOptions.find(o => o.title.toLowerCase().replace(/\s+/g, '-') === selectedColor)?.title}</span>
-                    <button type="button" onClick={() => setSelectedColor("")} className="ml-2 text-gray-400 hover:text-gray-600 underline text-[10px]">clear</button>
-                  </p>
+                <button
+                  type="button"
+                  onClick={() => { setShowBorderDropdown(!showBorderDropdown); setShowBackingDropdown(false); setShowShapeDropdown(false); }}
+                  style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: showBorderDropdown ? '#000' : '#9ca3af' }}
+                  className="w-full h-[52px] rounded-[12px] px-4 flex items-center justify-between transition-all bg-white"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    {selectedColor ? (() => {
+                      const sel = borderOptions.find(o => o.title.toLowerCase().replace(/\s+/g, '-') === selectedColor);
+                      const imgUrl = sel?.image ? urlFor(sel.image).width(60).height(60).url() : null;
+                      return sel ? (
+                        <>
+                          {imgUrl ? (
+                            <div className="relative w-7 h-7 rounded-[5px] overflow-hidden flex-shrink-0">
+                              <Image src={imgUrl} alt={sel.title} fill className="object-cover" sizes="28px" />
+                            </div>
+                          ) : (
+                            <div className="w-7 h-7 rounded-[5px] bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-500 flex-shrink-0">
+                              {sel.title.charAt(0)}
+                            </div>
+                          )}
+                          <span className="font-bold text-black text-sm truncate">{sel.title}</span>
+                        </>
+                      ) : null;
+                    })() : (
+                      <span className="text-gray-400 font-medium text-sm">Select Border / Color</span>
+                    )}
+                  </div>
+                  <ChevronDown size={18} className={`text-gray-500 flex-shrink-0 transition-transform duration-200 ${showBorderDropdown ? 'rotate-180' : ''}`} />
+                </button>
+
+                {showBorderDropdown && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-black rounded-[14px] shadow-2xl z-50 overflow-hidden">
+                    <div
+                      onClick={() => { setSelectedColor(''); setShowBorderDropdown(false); }}
+                      className={`flex items-center gap-3 px-4 py-3 cursor-pointer border-b border-gray-100 hover:bg-gray-50 transition-colors ${!selectedColor ? 'bg-gray-50' : ''}`}
+                    >
+                      <span className="text-gray-400 text-sm font-medium">No preference / Skip</span>
+                    </div>
+                    {borderOptions.map((opt) => {
+                      const id = opt.title.toLowerCase().replace(/\s+/g, '-');
+                      const imgUrl = opt.image ? urlFor(opt.image).width(80).height(80).url() : null;
+                      const isSelected = selectedColor === id;
+                      return (
+                        <div
+                          key={id}
+                          onClick={() => { setSelectedColor(isSelected ? '' : id); setShowBorderDropdown(false); }}
+                          className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-panda-yellow/10 transition-colors ${isSelected ? 'bg-panda-yellow/20' : ''}`}
+                        >
+                          {imgUrl ? (
+                            <div className="relative w-8 h-8 rounded-[6px] overflow-hidden flex-shrink-0">
+                              <Image src={imgUrl} alt={opt.title} fill className="object-cover" sizes="32px" />
+                            </div>
+                          ) : (
+                            <div className="w-8 h-8 rounded-[6px] bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-500 flex-shrink-0">
+                              {opt.title.charAt(0)}
+                            </div>
+                          )}
+                          <span className={`font-bold text-sm flex-1 ${isSelected ? 'text-black' : 'text-gray-700'}`}>{opt.title}</span>
+                          {isSelected && <Check size={16} className="text-green-600" strokeWidth={3} />}
+                        </div>
+                      );
+                    })}
+                  </div>
                 )}
               </div>
             )}
@@ -702,7 +773,7 @@ export default function ComplexCalculator({
               <button
                 type="button"
                 onClick={() => { if (typeof window !== 'undefined' && (window as any).Tawk_API) { (window as any).Tawk_API.maximize(); } }}
-                className="mt-2 flex items-center gap-1.5 text-[12px] text-gray-400 hover:text-panda-green transition-colors group cursor-pointer"
+                className="mt-2 flex items-center gap-1.5 text-[12px] text-gray-600 font-semibold hover:text-panda-green transition-colors group cursor-pointer"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="flex-shrink-0 group-hover:text-panda-green" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>
@@ -735,9 +806,9 @@ export default function ComplexCalculator({
                     setQuantityInput(String(num));
                   }}
                   style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: '#9ca3af' }}
-                  className="w-full h-[70px] rounded-[12px] px-6 font-black text-3xl text-black outline-none focus:border-black transition-all"
+                  className="w-full h-[52px] rounded-[12px] px-6 font-black text-2xl text-black outline-none focus:border-black transition-all"
                 />
-                <div className="absolute right-6 top-1/2 -translate-y-1/2 text-sm text-gray-500 font-bold pointer-events-none uppercase tracking-wide">Pieces</div>
+                <div className="absolute right-5 top-1/2 -translate-y-1/2 text-xs text-gray-500 font-bold pointer-events-none uppercase tracking-wide">Pieces</div>
               </div>
             </div>
 
@@ -760,35 +831,29 @@ export default function ComplexCalculator({
                 htmlFor="artwork-upload"
                 className="
                   border-2 border-dashed border-panda-dark bg-panda-yellow/20
-                  rounded-[14px] h-[130px]
-                  flex flex-col items-center justify-center
+                  rounded-[14px] h-[80px]
+                  flex items-center justify-center gap-3
                   cursor-pointer hover:bg-panda-yellow/30 hover:border-black transition-all group
-                  block
+                  block px-4
                 "
               >
                 {uploading ? (
                   <>
-                    <div className="flex items-center gap-3 text-base font-bold text-blue-600">
-                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-                      <span>Uploading...</span>
-                    </div>
-                    <p className="text-xs text-gray-500 mt-2 font-medium">Please wait</p>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600 flex-shrink-0"></div>
+                    <span className="text-sm font-bold text-blue-600">Uploading...</span>
                   </>
                 ) : fileName ? (
                   <>
-                    <div className="flex items-center gap-3 text-base font-bold text-green-700">
-                      <Check size={24} />
-                      <span>{fileName}</span>
-                    </div>
-                    <p className="text-xs text-gray-500 mt-2 font-medium">Click to change file</p>
+                    <Check size={20} className="text-green-700 flex-shrink-0" />
+                    <span className="text-sm font-bold text-green-700 truncate">{fileName}</span>
                   </>
                 ) : (
                   <>
-                    <div className="flex items-center gap-3 text-base font-black text-panda-dark group-hover:text-black">
-                      <UploadCloud size={26} />
-                      <span>Click to Upload Artwork</span>
+                    <UploadCloud size={22} className="text-panda-dark group-hover:text-black flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-black text-panda-dark group-hover:text-black leading-tight">Click to Upload Artwork</p>
+                      <p className="text-[11px] text-gray-500 font-medium mt-0.5">JPG, PNG, AI, EPS, PDF · No file? We design free!</p>
                     </div>
-                    <p className="text-xs text-gray-600 mt-2 font-medium">JPG, PNG, AI, EPS, PDF · No file? We design for free!</p>
                   </>
                 )}
               </label>
@@ -831,7 +896,7 @@ export default function ComplexCalculator({
                 Contact Information
               </label>
               <div className="space-y-3">
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <input
                     type="text"
                     placeholder="Full Name *"
@@ -849,29 +914,9 @@ export default function ComplexCalculator({
                     required
                   />
                 </div>
-                <input
-                  type="tel"
-                  placeholder="Phone Number (Optional)"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full h-[52px] border-2 border-gray-300 rounded-[12px] px-5 font-bold text-base text-black outline-none focus:border-black transition-all"
-                />
               </div>
             </div>
 
-            {/* 6. SHIPPING ADDRESS — capture on Step 1 */}
-            <div>
-              <label className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
-                Shipping Address
-              </label>
-              <textarea
-                placeholder="Street, City, State/Province, ZIP/Postal Code, Country"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                rows={2}
-                className="w-full border-2 border-gray-300 rounded-[12px] px-5 py-3 font-bold text-base text-black outline-none focus:border-black transition-all resize-none"
-              />
-            </div>
           </>
         )}
 
@@ -967,127 +1012,68 @@ export default function ComplexCalculator({
               <label className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
                 Delivery Options
               </label>
-              <div className="space-y-2">
+              {/* 3 options in one row */}
+              <div className="grid grid-cols-3 gap-2">
                 {/* Rush Delivery */}
                 <div
-                  className={`
-                    relative cursor-pointer p-4 rounded-[12px] border-2 transition-all
-                    ${deliveryOption === "rush"
-                      ? 'border-black bg-gray-50 ring-2 ring-black'
-                      : 'border-gray-300 hover:border-gray-400 bg-white'
-                    }
-                  `}
+                  onClick={() => setDeliveryOption("rush")}
+                  className="cursor-pointer rounded-[12px] transition-all flex flex-col items-center justify-center py-3 px-2 text-center"
+                  style={{ border: deliveryOption === "rush" ? '2px solid #000' : '2px solid #9CA3AF', background: deliveryOption === "rush" ? '#000' : '#fff' }}
                 >
-                  <div
-                    onClick={() => setDeliveryOption("rush")}
-                    className="flex items-start gap-3 mb-4"
-                  >
-                    <div className={`
-                      w-6 h-6 rounded-full border-2 mt-1 flex items-center justify-center
-                      ${deliveryOption === "rush" ? 'border-black bg-black' : 'border-gray-300'}
-                    `}>
-                      {deliveryOption === "rush" && (
-                        <Check className="text-panda-yellow" size={16} strokeWidth={3} />
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-black text-black">Rush Delivery <span className="text-red-600">(+${deliveryOption === "rush" ? rushSurcharge : quantity <= 50 ? 100 : quantity <= 250 ? 150 : quantity <= 1000 ? 200 : 300})</span></h3>
-                      <p className="text-sm text-gray-600 font-medium mt-1">
-                        Select your preferred delivery date (min. 6 days)
-                      </p>
-                    </div>
-                  </div>
-
-                  {deliveryOption === "rush" && (
-                    <div className="mt-4 pl-9">
-                      <label className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 block">
-                        Select Rush Date <span className="normal-case font-medium text-gray-400">(Mon - Fri only)</span>
-                      </label>
-                      <input
-                        type="date"
-                        value={rushDate}
-                        min={getMinRushDate()}
-                        onChange={handleRushDateChange}
-                        className="w-full h-[60px] border-2 border-gray-300 rounded-[12px] px-5 font-bold text-lg text-black outline-none focus:border-black transition-all cursor-pointer"
-                      />
-                      {weekendWarning && (
-                        <div className="mt-2 flex items-center gap-2 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3 font-medium">
-                          <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                          </svg>
-                          Rush delivery is not available on weekends. Please select a weekday (Monday - Friday).
-                        </div>
-                      )}
-                      <p className="mt-3 text-sm text-gray-600 bg-amber-50 border border-amber-200 rounded-lg p-3">
-                        Our representative will get back to you within 4-16 hours with a mockup for approval and will also confirm the rush date.
-                      </p>
-                    </div>
-                  )}
+                  <p className={`text-base font-black leading-tight ${deliveryOption === "rush" ? 'text-white' : 'text-black'}`}>Rush</p>
+                  <p className={`text-xs font-bold mt-1 ${deliveryOption === "rush" ? 'text-panda-yellow' : 'text-red-500'}`}>+${quantity <= 50 ? 100 : quantity <= 250 ? 150 : quantity <= 1000 ? 200 : 300}</p>
                 </div>
 
                 {/* Standard Delivery */}
                 <div
                   onClick={() => setDeliveryOption("standard")}
-                  className={`
-                    relative cursor-pointer p-4 rounded-[12px] border-2 transition-all
-                    ${deliveryOption === "standard"
-                      ? 'border-black bg-gray-50 ring-2 ring-black'
-                      : 'border-gray-300 hover:border-gray-400 bg-white'
-                    }
-                  `}
+                  className="cursor-pointer rounded-[12px] transition-all flex flex-col items-center justify-center py-3 px-2 text-center"
+                  style={{ border: deliveryOption === "standard" ? '2px solid #000' : '2px solid #9CA3AF', background: deliveryOption === "standard" ? '#000' : '#fff' }}
                 >
-                  <div className="flex items-start gap-3">
-                    <div className={`
-                      w-6 h-6 rounded-full border-2 mt-1 flex items-center justify-center
-                      ${deliveryOption === "standard" ? 'border-black bg-black' : 'border-gray-300'}
-                    `}>
-                      {deliveryOption === "standard" && (
-                        <Check className="text-panda-yellow" size={16} strokeWidth={3} />
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-black text-black">Standard Delivery</h3>
-                      <p className="text-sm text-gray-600 font-medium mt-1">
-                        Estimated delivery in 12-14 business days
-                      </p>
-                    </div>
-                  </div>
+                  <p className={`text-base font-black leading-tight ${deliveryOption === "standard" ? 'text-white' : 'text-black'}`}>Standard</p>
+                  <p className={`text-[11px] font-medium mt-1 ${deliveryOption === "standard" ? 'text-gray-300' : 'text-gray-400'}`}>12-14 days</p>
                 </div>
 
                 {/* Economy Delivery */}
                 <div
                   onClick={() => setDeliveryOption("economy")}
-                  className={`
-                    relative cursor-pointer p-4 rounded-[12px] border-2 transition-all
-                    ${deliveryOption === "economy"
-                      ? 'border-black bg-gray-50 ring-2 ring-black'
-                      : 'border-gray-300 hover:border-gray-400 bg-white'
-                    }
-                  `}
+                  className="cursor-pointer rounded-[12px] transition-all flex flex-col items-center justify-center py-3 px-2 text-center"
+                  style={{ border: deliveryOption === "economy" ? '2px solid #000' : '2px solid #9CA3AF', background: deliveryOption === "economy" ? '#000' : '#fff' }}
                 >
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start gap-3">
-                      <div className={`
-                        w-6 h-6 rounded-full border-2 mt-1 flex items-center justify-center
-                        ${deliveryOption === "economy" ? 'border-black bg-black' : 'border-gray-300'}
-                      `}>
-                        {deliveryOption === "economy" && (
-                          <Check className="text-panda-yellow" size={16} strokeWidth={3} />
-                        )}
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-black text-black">Economy Delivery</h3>
-                        <p className="text-sm text-gray-600 font-medium mt-1">
-                          Estimated delivery in 16-18 business days
-                        </p>
-                      </div>
-                    </div>
-                    <span className="bg-panda-yellow text-black text-xs font-black px-3 py-1.5 rounded-full uppercase border border-black">
-                      10% OFF
-                    </span>
-                  </div>
+                  <p className={`text-base font-black leading-tight ${deliveryOption === "economy" ? 'text-white' : 'text-black'}`}>Economy</p>
+                  <span className="inline-block bg-panda-yellow text-black text-[10px] font-black px-2 py-0.5 rounded-full mt-1">10% OFF</span>
+                  <p className={`text-[11px] font-medium mt-0.5 ${deliveryOption === "economy" ? 'text-gray-300' : 'text-gray-400'}`}>16-18 days</p>
                 </div>
               </div>
+
+              {/* Rush date picker — shown below grid when rush is selected */}
+              {deliveryOption === "rush" && (
+                <div className="mt-3">
+                  <label className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 block">
+                    Select Rush Date <span className="normal-case font-medium text-gray-400">(Mon - Fri only)</span>
+                  </label>
+                  <input
+                    type="date"
+                    value={rushDate}
+                    min={getMinRushDate()}
+                    onChange={handleRushDateChange}
+                    className="w-full h-[52px] rounded-[12px] px-5 font-bold text-base text-black outline-none transition-all cursor-pointer"
+                    style={{ border: '2px solid #9CA3AF' }}
+                  />
+                  {weekendWarning && (
+                    <div className="mt-2 flex items-center gap-2 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3 font-medium">
+                      <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                      </svg>
+                      Rush delivery is not available on weekends. Please select a weekday (Monday - Friday).
+                    </div>
+                  )}
+                  <p className="mt-2 text-sm text-gray-600 bg-amber-50 border border-amber-200 rounded-lg p-3">
+                    Our representative will get back to you within 4-16 hours with a mockup for approval and will also confirm the rush date.
+                  </p>
+                </div>
+              )}
+
             </div>
 
             {/* ADD-ONS (OPTIONAL) */}
@@ -1105,26 +1091,22 @@ export default function ComplexCalculator({
               <button
                 type="button"
                 onClick={() => setShowAddons(!showAddons)}
-                className={`
-                  w-full h-[60px] rounded-[12px] border-2 transition-all
-                  flex items-center justify-between px-6
-                  ${showAddons ? 'border-black bg-gray-50' : 'border-gray-300 bg-white hover:border-gray-400'}
-                `}
+                className="w-full rounded-[12px] bg-white transition-all flex items-center justify-between px-5 h-[52px] hover:border-gray-500"
+                style={{ border: '2px solid #9CA3AF' }}
               >
                 <span className="text-base font-bold text-black">
                   {selectedAddons.length > 0
-                    ? `${selectedAddons.length} Add-on${selectedAddons.length > 1 ? 's' : ''} Selected`
+                    ? `${selectedAddons.length} Upgrade${selectedAddons.length > 1 ? 's' : ''} Selected`
                     : 'Click to Add Upgrades'}
                 </span>
                 <ChevronDown
                   size={20}
-                  className={`transition-transform ${showAddons ? 'rotate-180' : ''}`}
+                  className={`transition-transform flex-shrink-0 text-gray-400 ${showAddons ? 'rotate-180' : ''}`}
                 />
               </button>
 
               {showAddons && ADDON_OPTIONS.length > 0 && (
-                <div className="mt-4 p-6 bg-gray-50 rounded-[12px] border border-gray-200">
-                  <div className="grid grid-cols-2 gap-3">
+                <div className="mt-2 grid grid-cols-2 gap-3">
                     {ADDON_OPTIONS.map((addon) => (
                       <div
                         key={addon.id}
@@ -1135,13 +1117,8 @@ export default function ComplexCalculator({
                             setSelectedAddons([...selectedAddons, addon.id]);
                           }
                         }}
-                        className={`
-                          cursor-pointer flex items-center gap-3 p-4 rounded-[10px] border-2 transition-all
-                          ${selectedAddons.includes(addon.id)
-                            ? 'border-black bg-white shadow-md'
-                            : 'border-gray-300 hover:border-gray-400 bg-white'
-                          }
-                        `}
+                        className="cursor-pointer flex items-center gap-3 p-4 rounded-[12px] bg-white transition-all"
+                        style={{ border: selectedAddons.includes(addon.id) ? '2px solid #000' : '2px solid #9CA3AF' }}
                       >
                         {addon.icon.startsWith('http') ? (
                             <div className="relative w-8 h-8 flex-shrink-0">
@@ -1160,11 +1137,40 @@ export default function ComplexCalculator({
                         )}
                       </div>
                     ))}
-                  </div>
                 </div>
               )}
             </div>
             )}
+
+            {/* PHONE NUMBER */}
+            <div>
+              <label className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
+                Phone Number <span className="normal-case font-medium text-gray-400">(Optional)</span>
+              </label>
+              <input
+                type="tel"
+                placeholder="+1 (555) 000-0000"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full h-[52px] rounded-[12px] px-5 font-bold text-base text-black outline-none focus:border-black transition-all"
+                style={{ border: '2px solid #9CA3AF' }}
+              />
+            </div>
+
+            {/* SHIPPING ADDRESS */}
+            <div>
+              <label className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
+                Shipping Address
+              </label>
+              <textarea
+                placeholder="Street, City, State/Province, ZIP/Postal Code, Country"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                rows={2}
+                className="w-full rounded-[12px] px-5 py-3 font-bold text-base text-black outline-none focus:border-black transition-all resize-none"
+                style={{ border: '2px solid #9CA3AF' }}
+              />
+            </div>
 
             {/* SPECIAL INSTRUCTIONS */}
             <div>
@@ -1175,7 +1181,8 @@ export default function ComplexCalculator({
                 value={specialInstructions}
                 onChange={(e) => setSpecialInstructions(e.target.value)}
                 placeholder={'e.g. "Please use metallic gold thread", "Add text on back side", "Match Pantone color 123C"'}
-                className="w-full h-[90px] border-2 border-gray-300 rounded-[12px] px-5 py-3 font-medium text-base text-black outline-none focus:border-black transition-all resize-none"
+                className="w-full h-[90px] rounded-[12px] px-5 py-3 font-medium text-base text-black outline-none focus:border-black transition-all resize-none"
+                style={{ border: '2px solid #9CA3AF' }}
               />
             </div>
 
@@ -1184,74 +1191,56 @@ export default function ComplexCalculator({
 
         {/* === PAYMENT METHOD SELECTOR (Step 2 only) === */}
         {mounted && currentStep === 2 && (
-          <div className="bg-white border border-gray-200 rounded-xl p-5">
+          <div className="bg-white rounded-xl p-5" style={{ border: '2px solid #9CA3AF' }}>
             <label className="text-sm font-bold text-black uppercase tracking-wide mb-4 block">
               Payment Method
             </label>
             <div className="grid grid-cols-3 gap-3">
 
               {/* Credit/Debit Cards */}
-              <button
-                type="button"
-                onClick={() => setPaymentMethod("card")}
-                className={`h-[72px] rounded-xl border-2 transition-all duration-150 flex items-center justify-center px-1 ${
-                  paymentMethod === "card" ? "border-black bg-white shadow-md" : "border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-white hover:shadow-sm"
-                }`}
+              <button type="button" onClick={() => setPaymentMethod("card")}
+                className="h-[72px] rounded-xl transition-all duration-150 flex items-center justify-center px-1"
+                style={{ border: paymentMethod === "card" ? '2px solid #000' : '2px solid #9CA3AF', background: paymentMethod === "card" ? '#fff' : '#F9FAFB' }}
               >
                 <img src="/assets/payments/cards.svg" alt="Visa, Mastercard, Amex" style={{width: '100%', height: 'auto'}} />
               </button>
 
               {/* PayPal */}
-              <button
-                type="button"
-                onClick={() => setPaymentMethod("paypal")}
-                className={`h-[72px] rounded-xl border-2 transition-all duration-150 flex items-center justify-center px-3 ${
-                  paymentMethod === "paypal" ? "border-black bg-white shadow-md" : "border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-white hover:shadow-sm"
-                }`}
+              <button type="button" onClick={() => setPaymentMethod("paypal")}
+                className="h-[72px] rounded-xl transition-all duration-150 flex items-center justify-center px-3"
+                style={{ border: paymentMethod === "paypal" ? '2px solid #000' : '2px solid #9CA3AF', background: paymentMethod === "paypal" ? '#fff' : '#F9FAFB' }}
               >
                 <img src="/assets/payments/paypal.svg" alt="PayPal" style={{height: '52px', width: 'auto'}} />
               </button>
 
               {/* Cash App */}
-              <button
-                type="button"
-                onClick={() => setPaymentMethod("cashapp")}
-                className={`h-[72px] rounded-xl border-2 transition-all duration-150 flex items-center justify-center px-3 ${
-                  paymentMethod === "cashapp" ? "border-black bg-white shadow-md" : "border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-white hover:shadow-sm"
-                }`}
+              <button type="button" onClick={() => setPaymentMethod("cashapp")}
+                className="h-[72px] rounded-xl transition-all duration-150 flex items-center justify-center px-3"
+                style={{ border: paymentMethod === "cashapp" ? '2px solid #000' : '2px solid #9CA3AF', background: paymentMethod === "cashapp" ? '#fff' : '#F9FAFB' }}
               >
                 <img src="/assets/payments/cashapp.svg" alt="Cash App" style={{height: '50px', width: 'auto'}} />
               </button>
 
               {/* Afterpay */}
-              <button
-                type="button"
-                onClick={() => setPaymentMethod("afterpay")}
-                className={`h-[72px] rounded-xl border-2 transition-all duration-150 flex items-center justify-center px-1 ${
-                  paymentMethod === "afterpay" ? "border-black bg-white shadow-md" : "border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-white hover:shadow-sm"
-                }`}
+              <button type="button" onClick={() => setPaymentMethod("afterpay")}
+                className="h-[72px] rounded-xl transition-all duration-150 flex items-center justify-center px-1"
+                style={{ border: paymentMethod === "afterpay" ? '2px solid #000' : '2px solid #9CA3AF', background: paymentMethod === "afterpay" ? '#fff' : '#F9FAFB' }}
               >
                 <img src="/assets/payments/afterpay.svg" alt="Afterpay" style={{width: '100%', height: 'auto'}} />
               </button>
 
               {/* Apple Pay */}
-              <button
-                type="button"
-                onClick={() => setPaymentMethod("applepay")}
-                className={`h-[72px] rounded-xl border-2 transition-all duration-150 flex items-center justify-center px-3 ${
-                  paymentMethod === "applepay" ? "border-black bg-white shadow-md" : "border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-white hover:shadow-sm"
-                }`}
+              <button type="button" onClick={() => setPaymentMethod("applepay")}
+                className="h-[72px] rounded-xl transition-all duration-150 flex items-center justify-center px-3"
+                style={{ border: paymentMethod === "applepay" ? '2px solid #000' : '2px solid #9CA3AF', background: paymentMethod === "applepay" ? '#fff' : '#F9FAFB' }}
               >
                 <img src="/assets/payments/applepay.svg" alt="Apple Pay" style={{height: '50px', width: 'auto'}} />
               </button>
 
               {/* Klarna */}
-              <button
-                type="button"
-                onClick={() => setPaymentMethod("klarna")}
-                className={`h-[72px] rounded-xl border-2 transition-all duration-150 flex items-center justify-center px-1 ${
-                  paymentMethod === "klarna" ? "border-black bg-white shadow-md" : "border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-white hover:shadow-sm"
-                }`}
+              <button type="button" onClick={() => setPaymentMethod("klarna")}
+                className="h-[72px] rounded-xl transition-all duration-150 flex items-center justify-center px-1"
+                style={{ border: paymentMethod === "klarna" ? '2px solid #000' : '2px solid #9CA3AF', background: paymentMethod === "klarna" ? '#fff' : '#F9FAFB' }}
               >
                 <img src="/assets/payments/klarna.svg" alt="Klarna" style={{width: '100%', height: 'auto'}} />
               </button>
@@ -1274,32 +1263,18 @@ export default function ComplexCalculator({
         {mounted && (
         <div className="space-y-3 pt-4 border-t border-gray-200">
           {currentStep === 1 ? (
-            /* STEP 1 BUTTONS: Get Free Quote + Proceed to Order */
+            /* STEP 1 BUTTONS */
             <div className="space-y-3">
-              {/* Primary CTA */}
               <button
                 type="button"
                 onClick={handleNext}
                 className="w-full h-[70px] bg-black text-panda-yellow rounded-[14px] font-black text-[16px] md:text-[18px] uppercase tracking-wide md:tracking-widest hover:scale-[1.01] transition-transform shadow-xl"
               >
-                CHECK PRICES →
+                CHECK BEST PRICES →
               </button>
-
-              {/* Secondary CTA */}
-              <button
-                type="button"
-                onClick={() => setShowQuoteModal(true)}
-                className="w-full h-[60px] bg-white border-2 border-gray-300 text-gray-800 rounded-[14px] font-bold uppercase tracking-widest text-[13px] hover:border-black hover:text-black hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
-              >
-                <FileText size={18} /> GET FREE QUOTE
-              </button>
-
-              <p className="text-center text-xs text-gray-400 font-medium">
-                Not sure? Get a free quote — no commitment required
-              </p>
             </div>
           ) : (
-            /* STEP 2 BUTTONS: Checkout + Back */
+            /* STEP 2 BUTTONS: Checkout + Quote + Back */
             <>
               <button
                 type="submit"
@@ -1323,6 +1298,22 @@ export default function ComplexCalculator({
 
               <button
                 type="button"
+                onClick={handleDirectQuote}
+                disabled={quoteSending || quoteSent}
+                className={`w-full h-[56px] rounded-[14px] font-bold uppercase tracking-widest text-[13px] flex items-center justify-center gap-2 transition-colors disabled:cursor-not-allowed ${quoteSent ? 'bg-green-50 text-green-700' : 'bg-white text-gray-800 hover:border-black hover:text-black hover:bg-gray-50'}`}
+                style={{ border: quoteSent ? '2px solid #16a34a' : '2px solid #9CA3AF' }}
+              >
+                {quoteSending ? (
+                  <><div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600" /> Sending...</>
+                ) : quoteSent ? (
+                  <><Check size={18} /> Quote Sent! Check Your Email</>
+                ) : (
+                  <><FileText size={18} /> GET FREE QUOTE — Email Me The Price</>
+                )}
+              </button>
+
+              <button
+                type="button"
                 onClick={handleBack}
                 className="w-full h-[50px] text-gray-600 font-medium text-sm hover:text-black transition-colors"
               >
@@ -1335,17 +1326,6 @@ export default function ComplexCalculator({
 
       </form>
 
-      <QuoteModal
-        show={showQuoteModal}
-        onClose={() => setShowQuoteModal(false)}
-        productType={productType}
-        width={width}
-        height={height}
-        quantity={quantity}
-        backingName={BACKINGS.find(b => b.id === backing)?.name || ""}
-        basePrice={basePrice}
-        priceError={priceResult.error}
-      />
 
     </div>
   );

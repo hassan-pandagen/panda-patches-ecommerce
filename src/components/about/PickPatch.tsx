@@ -33,7 +33,19 @@ export default function PickPatch() {
   }, []);
 
   if (!mounted || !data) {
-    return null;
+    return (
+      <section className="w-full pb-14 pt-6 bg-white">
+        <div className="container mx-auto px-4 text-center">
+          <div className="h-9 w-64 bg-gray-100 rounded mx-auto mb-12 animate-pulse" />
+          <div className="hidden md:flex flex-wrap justify-center gap-6">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="w-[248px] h-[326px] bg-gray-100 rounded-[16px] animate-pulse" />
+            ))}
+          </div>
+          <div className="block md:hidden h-[326px] bg-gray-100 rounded-[16px] animate-pulse" />
+        </div>
+      </section>
+    );
   }
 
   const title = data?.pickPatchHeading || "PICK YOUR PATCH!";

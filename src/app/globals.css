@@ -5,6 +5,11 @@
 /* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind utilities;
 
+/* FAQ accordion animation */
+.faq-wrapper{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease,opacity .3s ease;opacity:0}
+.faq-wrapper.open{grid-template-rows:1fr;opacity:1}
+.faq-inner{overflow:hidden;min-height:0}
+
 /* Form inputs — moved from styled-jsx to static CSS to eliminate forced reflow */
 .form-input {
   width: 100%;

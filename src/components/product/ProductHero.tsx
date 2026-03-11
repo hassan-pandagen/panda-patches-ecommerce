@@ -31,7 +31,7 @@ export default async function ProductHero({ productData, isMainPage = false }: P
   const trustBadges = await getTrustBadges();
 
   return (
-    <section className="w-full pt-8 md:pt-10 pb-8 md:pb-14 bg-white">
+    <section className="w-full pt-2 md:pt-4 pb-8 md:pb-14 bg-white">
       <div className="container mx-auto px-4 md:px-6 max-w-[1400px]">
 
         <div className="flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-20 items-start">

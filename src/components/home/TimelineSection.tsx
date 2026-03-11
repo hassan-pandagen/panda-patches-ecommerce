@@ -39,14 +39,14 @@ export default async function TimelineSection() {
     },
     { 
       number: "3", 
-      title: "The Production Brings!", 
+      title: "Production Begins!",
       subtitle: "We Turn Ideas into Reality",
       description: "After approval, our skilled team begins production with attention to every detail. In a hurry? We also offer rush orders." 
     },
     { 
       number: "4", 
       title: "Delivery at Your Doorstep", 
-      subtitle: "Ready to Be Impressed with apparel panda patches?",
+      subtitle: "Ready to Be Impressed with Panda Patches?",
       description: "Once our quality control team gives their stamp of approval, your patches ship with full tracking directly to your door. We pride ourselves on delivering the highest quality, on time, every time."
     },
   ];

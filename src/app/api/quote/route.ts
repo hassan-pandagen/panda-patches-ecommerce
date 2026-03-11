@@ -26,6 +26,7 @@ const QuoteSchema = z.object({
   artworkUrl: z.string().url().optional().or(z.null()),
   isBulkOrder: z.boolean().optional(),
   pageUrl: z.string().max(500).optional().or(z.literal('')),
+  basePrice: z.number().min(0).optional(),
 });
 
 function esc(s: string) {
@@ -62,7 +63,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const { customer, details, artworkUrl, isBulkOrder, pageUrl } = validationResult.data;
+    const { customer, details, artworkUrl, isBulkOrder, pageUrl, basePrice } = validationResult.data;
 
     const sizeLabel = details.width > 0 ? `${details.width}" x ${details.height}"` : 'Custom / See instructions';
     const subject = isBulkOrder
@@ -105,6 +106,52 @@ export async function POST(req: Request) {
             </div>
           `,
         });
+        // Customer confirmation email — only send if we have a price (ComplexCalculator quotes)
+        // Home page / bulk form quotes stay in portal for team to price manually before emailing customer
+        if (basePrice != null) try {
+          await mailClient.sendMail({
+            from: { address: 'hello@pandapatches.com', name: 'Panda Patches' },
+            to: [{ email_address: { address: customer.email, name: customer.name } }],
+            subject: 'Your Quote Request - Panda Patches',
+            htmlbody: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #fff;">
+                <div style="background: #000; padding: 28px 32px; text-align: center;">
+                  <h1 style="color: #f5c518; margin: 0; font-size: 24px; letter-spacing: 2px;">PANDA PATCHES</h1>
+                </div>
+                <div style="padding: 32px;">
+                  <h2 style="color: #1a1a1a; margin-top: 0;">We received your quote request!</h2>
+                  <p style="color: #555; font-size: 15px; line-height: 1.6;">
+                    Hi ${esc(customer.name)}, thanks for reaching out. Our team will review your request and get back to you within <strong>2 hours</strong> with the best price.
+                  </p>
+
+                  <div style="background: #f9f9f9; border: 1px solid #eee; border-radius: 12px; padding: 20px; margin: 24px 0;">
+                    <p style="margin: 0 0 12px; font-weight: bold; color: #1a1a1a; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Your Quote Summary</p>
+                    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+                      <tr><td style="padding:6px 0; color:#888; width:130px;">Patch Type:</td><td style="padding:6px 0; font-weight:600; color:#1a1a1a;">${esc(details.patchType || 'Custom Patch')}</td></tr>
+                      <tr><td style="padding:6px 0; color:#888;">Size:</td><td style="padding:6px 0; font-weight:600; color:#1a1a1a;">${esc(sizeLabel)}</td></tr>
+                      <tr><td style="padding:6px 0; color:#888;">Quantity:</td><td style="padding:6px 0; font-weight:600; color:#1a1a1a;">${details.quantity} pcs</td></tr>
+                      <tr><td style="padding:6px 0; color:#888;">Backing:</td><td style="padding:6px 0; font-weight:600; color:#1a1a1a;">${esc(details.backing)}</td></tr>
+                      ${basePrice != null ? `<tr><td style="padding:6px 0; color:#888;">Est. Price:</td><td style="padding:6px 0; font-weight:800; color:#1a1a1a; font-size:16px;">$${basePrice.toFixed(2)}</td></tr>` : ''}
+                    </table>
+                  </div>
+
+                  <p style="color:#555; font-size:14px; line-height:1.6;">
+                    Have a question? Just reply to this email or call us at <a href="tel:+13022504340" style="color:#000; font-weight:bold;">(302) 250-4340</a>.
+                  </p>
+
+                  <div style="text-align:center; margin-top:28px;">
+                    <a href="https://pandapatches.com" style="background:#000; color:#f5c518; text-decoration:none; padding:14px 32px; border-radius:8px; font-weight:bold; font-size:14px; letter-spacing:1px; display:inline-block;">VISIT PANDA PATCHES</a>
+                  </div>
+                </div>
+                <div style="background:#f5f5f5; padding:16px 32px; text-align:center; font-size:12px; color:#aaa;">
+                  Panda Patches | pandapatches.com | (302) 250-4340
+                </div>
+              </div>
+            `,
+          });
+        } catch (custEmailErr) {
+          console.error('Customer confirmation email error:', custEmailErr);
+        }
       } catch (emailErr) {
         console.error('ZeptoMail send error:', emailErr);
         // Fall through — still try Supabase below
@@ -127,6 +174,8 @@ export async function POST(req: Request) {
         sales_agent: 'WEBSITE_BOT',
         lead_source: isBulkOrder ? 'BULK_ORDER_FORM' : 'WEBSITE_FORM',
         page_url: pageUrl || null,
+        quote_amount: basePrice ?? null,
+        email_sent_at: (token && basePrice != null) ? new Date().toISOString() : null,
       });
 
     if (dbError) {

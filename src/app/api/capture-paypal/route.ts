@@ -36,6 +36,18 @@ export async function POST(req: Request) {
       const amountPaid = parseFloat(captureData?.amount?.value ?? '0');
       const captureId = captureData?.id ?? '';
 
+      // If client didn't send orderData (localStorage cleared), retrieve from server-side store
+      if (!orderData) {
+        const { data: pending } = await supabase
+          .from('paypal_pending_orders')
+          .select('order_data')
+          .eq('paypal_order_id', orderId)
+          .single();
+        if (pending?.order_data) orderData = pending.order_data;
+      }
+      // Clean up pending record regardless
+      await supabase.from('paypal_pending_orders').delete().eq('paypal_order_id', orderId);
+
       // Check if order already exists (legacy flow with pre-created orders)
       const { data: existingOrder } = await supabase
         .from('orders')

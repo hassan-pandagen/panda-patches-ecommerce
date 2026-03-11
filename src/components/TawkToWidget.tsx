@@ -54,23 +54,26 @@ export default function TawkToWidget() {
     // Set visitor name before script loads so Tawk picks it up on session start
     Tawk_API.visitor = { name: `${source} | ${page}` };
 
+    // Register onChatStarted BEFORE script loads (Tawk.to requires pre-load registration)
+    Tawk_API.onChatStarted = function () {
+      if (typeof (window as any).gtag === 'function') {
+        (window as any).gtag('event', 'conversion', {
+          send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
+          value: 10.0,
+          currency: 'USD',
+        });
+      }
+    };
+
     // Register onLoad before injecting the script
     Tawk_API.onLoad = function () {
       try {
-        // Track chat start as Google Ads conversion
-        Tawk_API.onChatStarted = function () {
-          if (typeof (window as any).gtag === 'function') {
-            (window as any).gtag('event', 'conversion', {
-              send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
-              value: 10.0,
-              currency: 'USD',
-            });
-          }
-        };
 
-        // Auto-popup once per session
+        // Auto-popup once per session (45s on mobile, 10s on desktop)
         const alreadyPopped = sessionStorage.getItem('tawk_popped');
         if (!alreadyPopped) {
+          const isMobile = window.innerWidth < 768;
+          const delay = isMobile ? 45000 : 10000;
           setTimeout(() => {
             try {
               if (
@@ -84,7 +87,7 @@ export default function TawkToWidget() {
             } catch (e) {
               console.error("Error auto-maximizing Tawk.to:", e);
             }
-          }, 10000);
+          }, delay);
         }
       } catch (e) {
         console.error("Error in Tawk.to onLoad:", e);
@@ -93,10 +96,14 @@ export default function TawkToWidget() {
 
     // Inject script after setting up API (official Tawk.to snippet pattern)
     const s1 = document.createElement("script");
-    const s0 = document.getElementsByTagName("script")[0];
     s1.async = true;
     s1.src = "https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1";
-    s0.parentNode!.insertBefore(s1, s0);
+    const s0 = document.getElementsByTagName("script")[0];
+    if (s0 && s0.parentNode) {
+      s0.parentNode.insertBefore(s1, s0);
+    } else {
+      document.head.appendChild(s1);
+    }
   }, [pathname]);
 
   if (pathname?.startsWith('/studio')) return null;

@@ -140,6 +140,11 @@ export async function POST(req: Request) {
       );
     }
 
+    // Store orderData server-side so capture works even if localStorage is cleared (e.g. mobile Safari, different device)
+    await supabase
+      .from('paypal_pending_orders')
+      .upsert({ paypal_order_id: paypalOrder.id, order_data: orderData }, { onConflict: 'paypal_order_id' });
+
     return NextResponse.json({ url: approvalUrl, paypalOrderId: paypalOrder.id, orderData });
 
   } catch (error: unknown) {

@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema, generateSchemaScript } from "@/lib/schemas";
 import { getSchemaPricingTiers } from "@/lib/pricingCalculator";
 import { genericFaqs } from "@/lib/genericFaqs";
+import { slugFaqMap } from "@/lib/slugFaqs";
 
 // COMPONENTS - Above the fold
 import ProductHero from "@/components/product/ProductHero";
@@ -183,10 +184,10 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
         dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
       />
 
-      {/* FAQ Schema for SEO (server-side so Google sees it on first crawl) */}
+      {/* FAQ Schema for SEO — unique per product slug to avoid duplicate FAQPage errors */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={generateSchemaScript(generateFAQSchema(genericFaqs))}
+        dangerouslySetInnerHTML={generateSchemaScript(generateFAQSchema(slugFaqMap[params.slug] ?? genericFaqs))}
       />
 
       <Navbar />

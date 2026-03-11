@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Check, X } from "lucide-react";
 
 interface QuoteModalProps {
@@ -38,7 +39,10 @@ export default function QuoteModal({
     if (show) setQuoteSubmitted(false);
   }, [show]);
 
-  if (!show) return null;
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
+  if (!show || !mounted) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,6 +76,7 @@ export default function QuoteModal({
           artworkUrl: null,
           isBulkOrder: false,
           pageUrl: window.location.href,
+          basePrice: priceError ? undefined : basePrice,
         }),
       });
 
@@ -96,9 +101,9 @@ export default function QuoteModal({
     }
   };
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] flex items-end sm:items-center justify-center p-0 sm:p-4"
+      className="fixed inset-0 bg-black/90 z-[99999] flex items-end sm:items-center justify-center p-0 sm:p-4"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div className="bg-white w-full sm:max-w-md rounded-t-[24px] sm:rounded-[24px] shadow-2xl overflow-hidden">
@@ -225,6 +230,7 @@ export default function QuoteModal({
           </form>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

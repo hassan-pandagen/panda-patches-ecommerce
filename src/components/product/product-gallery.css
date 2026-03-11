@@ -57,6 +57,11 @@
   box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
 }
 
+/* Keep lightbox below any modal overlays */
+:root {
+  --yarl__portal_zIndex: 9000;
+}
+
 .yarl__navigation_prev,
 .yarl__navigation_next {
   background: #000 !important;

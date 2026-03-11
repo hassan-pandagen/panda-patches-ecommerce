@@ -11,12 +11,6 @@ export default function FAQList({ questions }: { questions: any[] }) {
   };
 
   return (
-    <>
-    <style>{`
-.faq-wrapper{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease,opacity .3s ease;opacity:0}
-.faq-wrapper.open{grid-template-rows:1fr;opacity:1}
-.faq-inner{overflow:hidden;min-height:0}
-    `}</style>
     <div className="max-w-[1200px] mx-auto space-y-4">
       {questions.map((item, index) => {
         const isOpen = openIndex === index;
@@ -63,6 +57,5 @@ export default function FAQList({ questions }: { questions: any[] }) {
         );
       })}
     </div>
-    </>
   );
 }
