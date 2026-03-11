@@ -95,7 +95,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { heroImage } = await getChenilleGlitterPageData();
   const ogImage = heroImage
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
-    : 'https://www.pandapatches.com/assets/og-image.png';
+    : 'https://pandapatches.com/assets/og-image.png';
   return {
     title: "Custom Chenille Glitter Patches - Sparkle & Texture Combined",
     description: "Custom chenille glitter patches with embedded sparkle thread for cheer squads, dance teams, and fashion brands. Bold texture, long-lasting glitter, no minimum, free mockup.",
@@ -117,11 +117,11 @@ export async function generateMetadata(): Promise<Metadata> {
       "holographic patches",
       "sequin patches custom",
     ],
-    alternates: { canonical: "https://www.pandapatches.com/custom-chenille-glitter-patches" },
+    alternates: { canonical: "https://pandapatches.com/custom-chenille-glitter-patches" },
     openGraph: {
       title: "Custom Chenille Glitter Patches | Panda Patches",
       description: "Custom chenille glitter patches with bold sparkle for cheer squads, dance teams, and fashion brands. No minimum, free mockup.",
-      url: "https://www.pandapatches.com/custom-chenille-glitter-patches",
+      url: "https://pandapatches.com/custom-chenille-glitter-patches",
       siteName: "Panda Patches",
       type: "website",
       images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Chenille Glitter Patches | Panda Patches" }],
@@ -171,19 +171,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://www.pandapatches.com",
+      item: "https://pandapatches.com",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Bulk Orders",
-      item: "https://www.pandapatches.com/bulk-custom-patches",
+      item: "https://pandapatches.com/bulk-custom-patches",
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Chenille Glitter Patches",
-      item: "https://www.pandapatches.com/custom-chenille-glitter-patches",
+      item: "https://pandapatches.com/custom-chenille-glitter-patches",
     },
   ],
 };

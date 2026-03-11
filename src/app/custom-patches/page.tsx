@@ -55,12 +55,12 @@ export async function generateMetadata(): Promise<Metadata> {
       "free design patches",
     ],
     alternates: {
-      canonical: "https://www.pandapatches.com/custom-patches",
+      canonical: "https://pandapatches.com/custom-patches",
     },
     openGraph: {
       title: "Custom Patches - All Types | Panda Patches",
       description: "Browse all custom patch types with low minimums and fast delivery. Embroidered, PVC, woven, chenille, and leather patches available.",
-      url: "https://www.pandapatches.com/custom-patches",
+      url: "https://pandapatches.com/custom-patches",
       siteName: "Panda Patches",
       type: "website",
       images: [{ url: ogImage, width: 1200, height: 630, alt: "Panda Patches - Custom Patches" }],
@@ -117,13 +117,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://www.pandapatches.com",
+      item: "https://pandapatches.com",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Custom Patches",
-      item: "https://www.pandapatches.com/custom-patches",
+      item: "https://pandapatches.com/custom-patches",
     },
   ],
 };

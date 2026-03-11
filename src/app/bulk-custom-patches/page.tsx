@@ -52,7 +52,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { heroImage } = await getBulkPageData();
   const ogImage = heroImage
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
-    : 'https://www.pandapatches.com/assets/og-image.png';
+    : 'https://pandapatches.com/assets/og-image.png';
   return {
     title: "Bulk Custom Patches | Wholesale Volume Pricing | Panda Patches",
     description:
@@ -74,13 +74,13 @@ export async function generateMetadata(): Promise<Metadata> {
       "corporate patches bulk",
     ],
     alternates: {
-      canonical: "https://www.pandapatches.com/bulk-custom-patches",
+      canonical: "https://pandapatches.com/bulk-custom-patches",
     },
     openGraph: {
       title: "Bulk Custom Patches | Wholesale Volume Pricing | Panda Patches",
       description:
         "Order bulk custom patches at wholesale prices. Embroidered, PVC, chenille, woven, leather. Free mockup, 2-week delivery, pricing from $0.85/pc.",
-      url: "https://www.pandapatches.com/bulk-custom-patches",
+      url: "https://pandapatches.com/bulk-custom-patches",
       siteName: "Panda Patches",
       type: "website",
       images: [{ url: ogImage, width: 1200, height: 630, alt: "Panda Patches - Bulk Custom Patches" }],
@@ -131,13 +131,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://www.pandapatches.com",
+      item: "https://pandapatches.com",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Bulk Custom Patches",
-      item: "https://www.pandapatches.com/bulk-custom-patches",
+      item: "https://pandapatches.com/bulk-custom-patches",
     },
   ],
 };

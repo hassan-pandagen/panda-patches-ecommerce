@@ -95,7 +95,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { heroImage } = await getFirePageData();
   const ogImage = heroImage
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
-    : 'https://www.pandapatches.com/assets/og-image.png';
+    : 'https://pandapatches.com/assets/og-image.png';
   return {
     title: "Fire Department Patches - Nomex & Heat Resistant",
     description: "Custom fire department patches, firefighter badges, and station patches. Embroidered, PVC, and Nomex options. Trusted by fire departments nationwide. Volume pricing available.",
@@ -110,11 +110,11 @@ export async function generateMetadata(): Promise<Metadata> {
       "fire department badges",
       "nomex fire patches",
     ],
-    alternates: { canonical: "https://www.pandapatches.com/custom-fire-department-patches" },
+    alternates: { canonical: "https://pandapatches.com/custom-fire-department-patches" },
     openGraph: {
       title: "Custom Fire Department Patches | Panda Patches",
       description: "Custom fire department patches and firefighter badges. Trusted by departments nationwide. Fast turnaround, bulk pricing.",
-      url: "https://www.pandapatches.com/custom-fire-department-patches",
+      url: "https://pandapatches.com/custom-fire-department-patches",
       siteName: "Panda Patches",
       type: "website",
       images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Fire Department Patches | Panda Patches" }],
@@ -164,19 +164,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://www.pandapatches.com",
+      item: "https://pandapatches.com",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Bulk Orders",
-      item: "https://www.pandapatches.com/bulk-custom-patches",
+      item: "https://pandapatches.com/bulk-custom-patches",
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Fire Department Patches",
-      item: "https://www.pandapatches.com/custom-fire-department-patches",
+      item: "https://pandapatches.com/custom-fire-department-patches",
     },
   ],
 };

@@ -56,6 +56,6 @@ export default function robots(): MetadataRoute.Robots {
       // Allow AI browsing bots (they can recommend your site to users)
       // ChatGPT-User, Claude-Web, PerplexityBot = allowed via wildcard *
     ],
-    sitemap: 'https://www.pandapatches.com/sitemap.xml',
+    sitemap: 'https://pandapatches.com/sitemap.xml',
   };
 }

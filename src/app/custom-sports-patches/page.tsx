@@ -95,7 +95,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { heroImage } = await getSportsPageData();
   const ogImage = heroImage
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
-    : 'https://www.pandapatches.com/assets/og-image.png';
+    : 'https://pandapatches.com/assets/og-image.png';
   return {
     title: "Sports Team Patches - No Minimum, Fast Turnaround",
     description: "Custom sports patches for teams, leagues, and clubs. Embroidered uniform patches, jersey numbers, varsity letters, and championship patches. No minimum, free mockup.",
@@ -112,11 +112,11 @@ export async function generateMetadata(): Promise<Metadata> {
       "football patches",
       "soccer patches",
     ],
-    alternates: { canonical: "https://www.pandapatches.com/custom-sports-patches" },
+    alternates: { canonical: "https://pandapatches.com/custom-sports-patches" },
     openGraph: {
       title: "Custom Sports Team Patches | Panda Patches",
       description: "Custom embroidered patches for sports teams, leagues, and clubs. No minimum order, free mockup, fast delivery.",
-      url: "https://www.pandapatches.com/custom-sports-patches",
+      url: "https://pandapatches.com/custom-sports-patches",
       siteName: "Panda Patches",
       type: "website",
       images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Sports Team Patches | Panda Patches" }],
@@ -166,19 +166,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://www.pandapatches.com",
+      item: "https://pandapatches.com",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Bulk Orders",
-      item: "https://www.pandapatches.com/bulk-custom-patches",
+      item: "https://pandapatches.com/bulk-custom-patches",
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Sports Team Patches",
-      item: "https://www.pandapatches.com/custom-sports-patches",
+      item: "https://pandapatches.com/custom-sports-patches",
     },
   ],
 };

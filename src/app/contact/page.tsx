@@ -4,8 +4,8 @@ import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
 
 const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "Home", url: "https://www.pandapatches.com" },
-  { name: "Contact", url: "https://www.pandapatches.com/contact" },
+  { name: "Home", url: "https://pandapatches.com" },
+  { name: "Contact", url: "https://pandapatches.com/contact" },
 ]);
 import ContactHero from "@/components/contact/ContactHero";
 import MapSection from "@/components/contact/MapSection";
@@ -20,10 +20,10 @@ export const metadata: Metadata = {
     title: "Contact Us - Get Custom Patch Quote | Panda Patches",
     description: "Get in touch for custom patch quotes. Phone: +1 302 250 4340. Free design consultation available.",
     type: "website",
-    url: "https://www.pandapatches.com/contact",
+    url: "https://pandapatches.com/contact",
     images: [
       {
-        url: "https://www.pandapatches.com/assets/og-image.png",
+        url: "https://pandapatches.com/assets/og-image.png",
         width: 1200,
         height: 630,
         alt: "Contact Panda Patches"
@@ -34,10 +34,10 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Contact Us | Panda Patches",
     description: "Get custom patch quotes. Phone: +1 302 250 4340. Free design consultation.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"]
+    images: ["https://pandapatches.com/assets/og-image.png"]
   },
   alternates: {
-    canonical: "https://www.pandapatches.com/contact"
+    canonical: "https://pandapatches.com/contact"
   }
 };
 

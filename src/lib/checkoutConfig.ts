@@ -4,7 +4,7 @@
 
 export const ALLOWED_ORIGINS = [
   'https://pandapatches.com',
-  'https://www.pandapatches.com',
+  'https://pandapatches.com',
   'https://panda-patches-ecommerce.vercel.app',
   'https://panda-patches-ecommerce-7w28lefz.vercel.app',
 ] as const;
@@ -29,7 +29,7 @@ export function resolveBaseUrl(origin: string | null | undefined): string {
   }
   return (
     ALLOWED_ORIGINS.find((allowed) => origin?.startsWith(allowed)) ??
-    'https://www.pandapatches.com'
+    'https://pandapatches.com'
   );
 }
 

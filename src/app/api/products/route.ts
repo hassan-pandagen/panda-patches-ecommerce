@@ -91,7 +91,7 @@ export async function GET(request: NextRequest) {
 
     // Transform products for UCP/API consumption
     const transformedProducts = products.map((product: any) => {
-      const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.pandapatches.com';
+      const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pandapatches.com';
       const productSlug = product.slug || product._id;
 
       // Determine product URL

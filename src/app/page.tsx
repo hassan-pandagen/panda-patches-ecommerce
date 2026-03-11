@@ -24,7 +24,7 @@ export const revalidate = 3600;
 
 // SEO Metadata for Homepage — OG image pulled live from Sanity hero image
 export async function generateMetadata(): Promise<Metadata> {
-  let ogImageUrl = "https://www.pandapatches.com/assets/og-image.png"; // fallback
+  let ogImageUrl = "https://pandapatches.com/assets/og-image.png"; // fallback
 
   try {
     const hero = await client.fetch(`*[_type == "hero"][0]{ "imageUrl": heroImage.asset->url }`, {}, { next: { revalidate: 3600 } });
@@ -53,7 +53,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Custom Patches From $0.50/pc. Free Design. Ships in 14 Days.",
       description: "1,000,000+ patches delivered to brands worldwide. Custom embroidered, PVC, chenille & woven patches with free artwork, no setup fees, and a 4.8-star rating on Trustpilot. Get your free quote today.",
       type: "website",
-      url: "https://www.pandapatches.com",
+      url: "https://pandapatches.com",
       images: [
         {
           url: ogImageUrl,
@@ -71,7 +71,7 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [ogImageUrl]
     },
     alternates: {
-      canonical: "https://www.pandapatches.com"
+      canonical: "https://pandapatches.com"
     },
     robots: {
       index: true,

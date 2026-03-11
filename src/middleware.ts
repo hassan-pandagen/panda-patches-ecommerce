@@ -54,7 +54,7 @@ const sampleBoxLimiter = redis
 // Allowed origins for API requests
 const ALLOWED_ORIGINS = [
   'https://pandapatches.com',
-  'https://www.pandapatches.com',
+  'https://pandapatches.com',
   'https://panda-patches-ecommerce.vercel.app',
   'https://panda-patches-ecommerce-7w28lefz.vercel.app',
 ];

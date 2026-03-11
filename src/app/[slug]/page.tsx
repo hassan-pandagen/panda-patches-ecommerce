@@ -168,7 +168,7 @@ export default async function CatchAllPage({ params }: { params: { slug: string 
     });
 
     const breadcrumbSchema = generateBreadcrumbSchema([
-      { name: "Home", url: "https://www.pandapatches.com" },
+      { name: "Home", url: "https://pandapatches.com" },
       { name: "Blog", url: "https://pandapatches.com/blogs" },
       { name: data.blog.title || "Blog Post", url: `https://pandapatches.com/${params.slug}` },
     ]);
