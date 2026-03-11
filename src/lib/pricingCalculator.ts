@@ -371,3 +371,20 @@ export function getUpsellTiers(
 
   return upsells;
 }
+
+/**
+ * Get representative pricing tiers for structured data schema (server-side).
+ * Uses a standard 3" patch (size 3) at common quantity breaks.
+ */
+export function getSchemaPricingTiers(productName: string): { minQuantity: number; unitPrice: number }[] {
+  const pricing = getPricingTable(productName);
+  const lookupSize = Math.max(pricing.minSize, Math.min(pricing.maxSize, 3));
+  const schemaQtys = [25, 50, 100, 500, 1000];
+
+  return schemaQtys
+    .filter(qty => pricing.qtyBreaks.includes(qty))
+    .map(qty => {
+      const tierIndex = pricing.qtyBreaks.indexOf(qty);
+      return { minQuantity: qty, unitPrice: pricing.prices[lookupSize][tierIndex] };
+    });
+}

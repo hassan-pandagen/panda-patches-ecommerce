@@ -11,6 +11,13 @@ interface UsePriceCalculationProps {
   deliveryOption: "rush" | "standard" | "economy";
 }
 
+function getRushSurcharge(quantity: number): number {
+  if (quantity <= 50) return 100;
+  if (quantity <= 250) return 150;
+  if (quantity <= 1000) return 200;
+  return 300;
+}
+
 export function usePriceCalculation({
   productType,
   width,
@@ -34,11 +41,12 @@ export function usePriceCalculation({
     return () => clearTimeout(timer);
   }, [width, height, quantity, deliveryOption]);
 
+  const rushSurcharge = deliveryOption === "rush" ? getRushSurcharge(quantity) : 0;
   const discount = deliveryOption === "economy" ? 0.1 : 0;
   const originalPrice = priceResult.totalPrice;
   const discountAmount = originalPrice * discount;
-  const basePrice = originalPrice - discountAmount;
+  const basePrice = originalPrice - discountAmount + rushSurcharge;
   const unitPrice = priceResult.unitPrice;
 
-  return { priceResult, upsellTiers, discount, originalPrice, discountAmount, basePrice, unitPrice, pricePulse };
+  return { priceResult, upsellTiers, discount, originalPrice, discountAmount, basePrice, unitPrice, pricePulse, rushSurcharge };
 }

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ProductGallery from "./ProductGallery";
+import ProductGalleryWrapper from "./ProductGalleryWrapper";
 import ComplexCalculator from "./ComplexCalculator";
 import HeroForm from "@/components/home/HeroForm";
 import AutoLinker from "@/components/seo/AutoLinker";
@@ -37,7 +37,7 @@ export default async function ProductHero({ productData, isMainPage = false }: P
         <div className="flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-20 items-start">
 
           {/* === LEFT COLUMN - Mobile Responsive === */}
-          <div className="flex-1 lg:sticky lg:top-24 lg:h-fit w-full">
+          <div className="flex-1 w-full">
 
             {/*
                TITLE - Mobile Responsive
@@ -55,13 +55,13 @@ export default async function ProductHero({ productData, isMainPage = false }: P
             </p>
 
             {/* Gallery */}
-            <ProductGallery images={gallery} />
+            <ProductGalleryWrapper images={gallery} />
 
           </div>
 
-          {/* === RIGHT COLUMN === */}
+          {/* === RIGHT COLUMN — sticky on desktop so it stays visible while scrolling gallery === */}
           <div className={`
-             w-full max-w-[600px]
+             w-full max-w-[600px] lg:sticky lg:top-24 lg:h-fit
              ${isMainPage ? 'mt-4 md:mt-8 lg:mt-16' : 'mt-0'}
           `}>
              {isMainPage ? (

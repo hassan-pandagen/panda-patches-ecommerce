@@ -31,7 +31,7 @@ const CheckoutSchema = z.object({
   discount: z.string().optional().or(z.null()),
   artworkUrl: z.string().url({ message: 'Invalid URL' }).optional().or(z.null()).or(z.literal('')),
   addons: z.array(z.string()).optional().or(z.null()),
-  specialInstructions: z.string().optional().or(z.null())
+  specialInstructions: z.string().optional().or(z.null()),
 });
 
 export async function POST(req: Request) {
@@ -97,58 +97,34 @@ export async function POST(req: Request) {
       deliveryOption === 'economy' ? 'Economy Delivery (16-18 business days, 10% discount)' : null,
     ].filter(Boolean);
 
-    // Create order in Supabase — mapped to exact portal column names
-    const { data: order, error: dbError } = await supabase
-      .from('orders')
-      .insert({
-        customer_name: customer.name,
-        customer_email: customer.email,
-        customer_phone: customer.phone,
-        shipping_address: shippingAddress,
-        design_name: productName,
-        patches_type: productName,
-        patches_quantity: quantity,
-        design_backing: backing || null,
-        design_size: `${width}" x ${height}"`,
-        customer_attachment_urls: artworkUrl ? [artworkUrl] : null,
-        instructions: instructionsParts.length > 0 ? instructionsParts.join(' | ') : null,
-        delivery_option: deliveryOption,
-        rush_date: rushDate || null,
-        website_addons: addons || null,
-        order_amount: finalPrice,
-        amount_paid: 0,
-        status: 'WEBSITE_CHECKOUT_PAYPAL',
-        payment_status: 'pending',
-        lead_source: 'WEBSITE',
-        sales_agent: 'WEBSITE_BOT'
-      })
-      .select()
-      .single();
+    // Build order data to pass through to capture route (no Supabase insert yet)
+    const orderData = {
+      customer_name: customer.name,
+      customer_email: customer.email,
+      customer_phone: customer.phone || '',
+      shipping_address: shippingAddress || '',
+      product_name: productName,
+      quantity,
+      backing: backing || '',
+      design_size: `${width}" x ${height}"`,
+      artwork_url: artworkUrl || '',
+      instructions: instructionsParts.length > 0 ? instructionsParts.join(' | ') : '',
+      delivery_option: deliveryOption,
+      rush_date: rushDate || '',
+      website_addons: addons || null,
+      order_amount: finalPrice,
+    };
 
-    if (dbError) {
-      console.error("Supabase Error:", dbError);
-      return NextResponse.json(
-        { error: 'Failed to create order. Please try again.' },
-        { status: 500 }
-      );
-    }
-
-    // Create PayPal Order
+    // Create PayPal Order (no Supabase order created yet)
     const paypalClient = new PayPalClient();
     const paypalOrder = await paypalClient.createOrder({
       amount: finalPrice.toFixed(2),
       currency: 'USD',
       description: `${productName} (${width}" x ${height}") - Qty: ${quantity}`,
-      orderId: order.id.toString(),
+      orderId: 'pending',
       returnUrl: `${baseUrl}/success-paypal`,
       cancelUrl: `${baseUrl}/error-payment`
     });
-
-    // Update Supabase with PayPal Order ID
-    await supabase
-      .from('orders')
-      .update({ paypal_order_id: paypalOrder.id })
-      .eq('id', order.id);
 
     // Return approval URL for redirect
     // PayPal returns 'payer-action' (newer paymentSource API) or 'approve' (older applicationContext API)
@@ -164,7 +140,7 @@ export async function POST(req: Request) {
       );
     }
 
-    return NextResponse.json({ url: approvalUrl });
+    return NextResponse.json({ url: approvalUrl, paypalOrderId: paypalOrder.id, orderData });
 
   } catch (error: unknown) {
     console.error('PayPal Checkout Error:', error);

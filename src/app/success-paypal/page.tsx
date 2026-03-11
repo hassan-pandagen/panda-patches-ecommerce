@@ -22,10 +22,23 @@ function PayPalSuccessContent() {
 
     const capturePayment = async () => {
       try {
+        // Retrieve order data stored before PayPal redirect
+        let orderData = null;
+        try {
+          const stored = localStorage.getItem('pp_paypal_order');
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            if (parsed.paypalOrderId === orderId) {
+              orderData = parsed.orderData;
+            }
+            localStorage.removeItem('pp_paypal_order');
+          }
+        } catch {}
+
         const response = await fetch('/api/capture-paypal', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ orderId }),
+          body: JSON.stringify({ orderId, orderData }),
         });
 
         const data = await response.json();

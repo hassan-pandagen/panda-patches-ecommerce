@@ -91,7 +91,10 @@ export default async function Hero() {
              - Desktop: Width 630px, Height 379px
              - Mobile: Responsive with full width
           */}
-          <div className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-8 md:-mt-10 mx-auto md:mx-0">
+          <div
+            className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-8 md:-mt-10 mx-auto md:mx-0"
+            style={{ position: 'relative', width: '100%', minHeight: 250 }}
+          >
                <Image
                  src="/assets/hero-product.webp"
                  alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"

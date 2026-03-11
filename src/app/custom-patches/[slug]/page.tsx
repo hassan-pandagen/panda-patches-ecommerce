@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema, generateSchemaScript } from "@/lib/schemas";
+import { getSchemaPricingTiers } from "@/lib/pricingCalculator";
 import { genericFaqs } from "@/lib/genericFaqs";
 
 // COMPONENTS - Above the fold
@@ -151,13 +152,15 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
   }
 
   // Generate schema markup for SEO
+  const pricingTiers = getSchemaPricingTiers(data.title);
   const productSchema = generateProductSchema({
     name: data.title,
     description: data.description || `High-quality ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
     image: data.heroImage ? urlFor(data.heroImage).url() : 'https://www.pandapatches.com/assets/og-image.png',
     url: `https://www.pandapatches.com/custom-patches/${params.slug}`,
-    priceRange: "$50-$500", // Typical price range for custom patches
-    includeReviews: true, // Include Trustpilot 4.9 rating
+    priceRange: "$0.85-$6.00",
+    includeReviews: true,
+    pricingTiers: pricingTiers.length > 0 ? pricingTiers : undefined,
   });
 
   const breadcrumbSchema = generateBreadcrumbSchema([

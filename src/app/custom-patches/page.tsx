@@ -89,8 +89,16 @@ const productSchema = {
     priceCurrency: "USD",
     lowPrice: "0.85",
     highPrice: "6.00",
-    offerCount: "1",
+    offerCount: "6",
     availability: "https://schema.org/InStock",
+    offers: [
+      { "@type": "Offer", name: "Embroidered Patches", price: "0.85", priceCurrency: "USD", availability: "https://schema.org/InStock" },
+      { "@type": "Offer", name: "PVC Patches", price: "1.20", priceCurrency: "USD", availability: "https://schema.org/InStock" },
+      { "@type": "Offer", name: "Woven Patches", price: "0.95", priceCurrency: "USD", availability: "https://schema.org/InStock" },
+      { "@type": "Offer", name: "Chenille Patches", price: "2.50", priceCurrency: "USD", availability: "https://schema.org/InStock" },
+      { "@type": "Offer", name: "Leather Patches", price: "3.00", priceCurrency: "USD", availability: "https://schema.org/InStock" },
+      { "@type": "Offer", name: "Sequin Patches", price: "6.00", priceCurrency: "USD", availability: "https://schema.org/InStock" },
+    ],
   },
   aggregateRating: {
     "@type": "AggregateRating",

@@ -43,34 +43,20 @@ export default function TawkToWidget() {
     if ((window as any).__tawk_loaded) return;
     (window as any).__tawk_loaded = true;
 
-    // Exactly match the official Tawk.to snippet
-    (window as any).Tawk_API = (window as any).Tawk_API || {};
-    (window as any).Tawk_LoadStart = new Date();
-
-    const s1 = document.createElement("script");
-    const s0 = document.getElementsByTagName("script")[0];
-    s1.async = true;
-    s1.src = "https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1";
-    s1.charset = "UTF-8";
-    s1.setAttribute("crossorigin", "*");
-    s0.parentNode!.insertBefore(s1, s0);
-
-    // Add customizations after Tawk loads
-    const Tawk_API = (window as any).Tawk_API;
     const source = getReferrerSource();
     const page = window.location.pathname;
 
+    // Initialize Tawk API BEFORE script injection
+    const Tawk_API: any = (window as any).Tawk_API || {};
+    (window as any).Tawk_API = Tawk_API;
+    (window as any).Tawk_LoadStart = new Date();
+
+    // Set visitor name before script loads so Tawk picks it up on session start
+    Tawk_API.visitor = { name: `${source} | ${page}` };
+
+    // Register onLoad before injecting the script
     Tawk_API.onLoad = function () {
       try {
-        // Set visitor name for dashboard
-        if (typeof Tawk_API.setAttributes === 'function') {
-          Tawk_API.setAttributes({
-            name: `${source} | ${page}`,
-          }, function (error: any) {
-            if (error) console.error("Tawk setAttributes error:", error);
-          });
-        }
-
         // Track chat start as Google Ads conversion
         Tawk_API.onChatStarted = function () {
           if (typeof (window as any).gtag === 'function') {
@@ -104,6 +90,13 @@ export default function TawkToWidget() {
         console.error("Error in Tawk.to onLoad:", e);
       }
     };
+
+    // Inject script after setting up API (official Tawk.to snippet pattern)
+    const s1 = document.createElement("script");
+    const s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = "https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1";
+    s0.parentNode!.insertBefore(s1, s0);
   }, [pathname]);
 
   if (pathname?.startsWith('/studio')) return null;

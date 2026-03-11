@@ -66,6 +66,7 @@ export function generateOrganizationSchema() {
     "legalName": "MC Patches LLC",
     "url": "https://www.pandapatches.com",
     "logo": "https://www.pandapatches.com/assets/logo-panda.svg",
+    "image": "https://www.pandapatches.com/assets/og-image.png",
     "foundingDate": "2016",
     "description": "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 8+ years of excellence.",
     "email": "admin@pandapatches.com",
@@ -77,8 +78,10 @@ export function generateOrganizationSchema() {
     },
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "1914 Quail Feather Ct",
       "addressLocality": "Missouri City",
       "addressRegion": "TX",
+      "postalCode": "77489",
       "addressCountry": "US"
     },
     "areaServed": [
@@ -225,16 +228,25 @@ export function generateProductSchema(params: ProductSchemaParams) {
       "@type": "Brand",
       "name": brand
     },
-    "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": priceCurrency,
-      "lowPrice": lowPrice,
-      "highPrice": highPrice,
-      "offerCount": pricingTiers && pricingTiers.length > 0 ? pricingTiers.length.toString() : "1",
-      "availability": `https://schema.org/${schemaAvailability}`,
-      "url": url,
-      "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
-    }
+    "offers": pricingTiers && pricingTiers.length > 0
+      ? {
+          "@type": "AggregateOffer",
+          "priceCurrency": priceCurrency,
+          "lowPrice": lowPrice,
+          "highPrice": highPrice,
+          "offerCount": pricingTiers.length.toString(),
+          "availability": `https://schema.org/${schemaAvailability}`,
+          "url": url,
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
+        }
+      : {
+          "@type": "Offer",
+          "priceCurrency": priceCurrency,
+          "price": lowPrice,
+          "availability": `https://schema.org/${schemaAvailability}`,
+          "url": url,
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
+        }
   };
 
   // Add GTIN if available
@@ -539,8 +551,10 @@ export function generateLocalBusinessSchema() {
     "image": "https://www.pandapatches.com/assets/logo-panda.svg",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "1914 Quail Feather Ct",
       "addressLocality": "Missouri City",
       "addressRegion": "TX",
+      "postalCode": "77489",
       "addressCountry": "US"
     },
     "geo": {
@@ -598,8 +612,10 @@ export function generateLocationBusinessSchema(locationName: string, pageSlug?: 
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "1914 Quail Feather Ct",
       "addressLocality": "Missouri City",
       "addressRegion": "TX",
+      "postalCode": "77489",
       "addressCountry": "US"
     },
     "geo": {

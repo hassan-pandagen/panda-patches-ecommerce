@@ -37,7 +37,7 @@ const CheckoutSchema = z.object({
   artworkUrl: z.string().url({ message: 'Invalid URL' }).optional().or(z.null()).or(z.literal('')),
   addons: z.array(z.string()).optional().or(z.null()),
   specialInstructions: z.string().optional().or(z.null()),
-  paymentMethod: z.enum(['card', 'cashapp', 'afterpay', 'applepay', 'klarna']).optional()
+  paymentMethod: z.enum(['card', 'cashapp', 'afterpay', 'applepay', 'klarna']).optional(),
 });
 
 export async function POST(req: Request) {
@@ -104,56 +104,7 @@ export async function POST(req: Request) {
       deliveryOption === 'economy' ? 'Economy Delivery (16-18 business days, 10% discount)' : null,
     ].filter(Boolean);
 
-    // === MATCHING YOUR PORTAL CRM SCHEMA ===
-    const { data: order, error: dbError } = await supabase
-      .from('orders')
-      .insert({
-        // Customer Info
-        customer_name: customer.name,
-        customer_email: customer.email,
-        customer_phone: customer.phone,
-        shipping_address: shippingAddress,
-
-        // Order Details — mapped to exact portal column names
-        design_name: productName,
-        patches_type: productName,
-        patches_quantity: quantity,
-        design_backing: backing || null,
-        design_size: `${width}" x ${height}"`,
-
-        // Customer artwork → portal's customer_attachment_urls (array)
-        customer_attachment_urls: artworkUrl ? [artworkUrl] : null,
-
-        // Instructions = special instructions + addons + color + delivery info
-        instructions: instructionsParts.length > 0 ? instructionsParts.join(' | ') : null,
-
-        // New columns (add via SQL migration below)
-        delivery_option: deliveryOption,
-        rush_date: rushDate || null,
-        website_addons: addons || null,
-
-        // Financials
-        order_amount: finalPrice,
-        amount_paid: 0,
-
-        // Status & tracking
-        status: 'WEBSITE_CHECKOUT',
-        payment_status: 'pending',
-        lead_source: 'WEBSITE',
-        sales_agent: 'WEBSITE_BOT',
-      })
-      .select()
-      .single();
-
-    if (dbError) {
-      console.error("Supabase Error:", dbError);
-      return NextResponse.json(
-        { error: 'Failed to create order. Please try again.' },
-        { status: 500 }
-      );
-    }
-
-    // B. Determine Stripe payment method types based on selection
+    // Determine Stripe payment method types based on selection
     const paymentMethodTypes: Stripe.Checkout.SessionCreateParams.PaymentMethodType[] = [];
     if (paymentMethod === 'card' || paymentMethod === 'applepay') {
       // Apple Pay is automatically offered by Stripe when 'card' is enabled on supported devices
@@ -188,7 +139,20 @@ export async function POST(req: Request) {
       success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/error-payment`,
       metadata: {
-        order_id: order.id,
+        customer_name: customer.name,
+        customer_email: customer.email,
+        customer_phone: customer.phone || '',
+        shipping_address: (shippingAddress || '').substring(0, 500),
+        product_name: productName,
+        quantity: String(quantity),
+        backing: backing || '',
+        design_size: `${width}" x ${height}"`,
+        artwork_url: artworkUrl || '',
+        instructions: (instructionsParts.length > 0 ? instructionsParts.join(' | ') : '').substring(0, 500),
+        delivery_option: deliveryOption,
+        rush_date: rushDate || '',
+        website_addons: addons?.length ? addons.join(', ') : '',
+        order_amount: String(finalPrice),
       },
     };
 
@@ -198,12 +162,6 @@ export async function POST(req: Request) {
     }
 
     const session = await stripe.checkout.sessions.create(sessionConfig);
-
-    // D. Update Supabase with Session ID
-    await supabase
-      .from('orders')
-      .update({ stripe_session_id: session.id })
-      .eq('id', order.id);
 
     return NextResponse.json({ url: session.url });
 

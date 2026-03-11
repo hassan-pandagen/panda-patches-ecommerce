@@ -146,11 +146,9 @@ const productSchema = {
     name: "Panda Patches",
   },
   offers: {
-    "@type": "AggregateOffer",
+    "@type": "Offer",
     priceCurrency: "USD",
-    lowPrice: "1.75",
-    highPrice: "9.00",
-    offerCount: "1",
+    price: "1.75",
     availability: "https://schema.org/InStock",
   },
   aggregateRating: {

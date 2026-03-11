@@ -62,9 +62,12 @@ export default function RootLayout({
           :root{--foreground-rgb:0,0,0;--background-start-rgb:249,250,245;--background-end-rgb:255,255,255}
           *{margin:0;padding:0;box-sizing:border-box}
           html,body{font-family:var(--font-outfit),system-ui,sans-serif;color:rgb(var(--foreground-rgb));background:linear-gradient(to bottom,transparent,rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));overflow-x:hidden}
-          img{display:block}
+          img{display:block;max-width:100%;height:auto}
           a{text-decoration:none;color:inherit}
           button{cursor:pointer;border:none;font-family:inherit}
+          .container{width:100%;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}
+          @media(min-width:768px){.container{padding-left:1.5rem;padding-right:1.5rem}}
+          @media(min-width:1024px){.container{padding-left:3rem;padding-right:3rem}}
         ` }} />
          {/* Preconnect + DNS prefetch to Sanity image CDN — reduces LCP hero image latency */}
          <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
@@ -108,7 +111,11 @@ export default function RootLayout({
             Uses requestIdleCallback where available so scripts load during browser idle time,
             reducing main-thread contention and TBT. */}
         <Script id="staggered-loader" strategy="lazyOnload">
-          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+          {`(function(){var s=document.createElement('style');s.textContent='\\
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#051C05}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#DFFF00,#3B7E00);border-radius:10px}::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#e8ff33,#4a9e00)}html{scrollbar-width:thin;scrollbar-color:#DFFF00 #051C05}\\
+#tawk-bubble-container,.tawk-bubble-container,[id^=tawk-bubble],.tawk-min-container{transform:none!important;transition:none!important;will-change:auto!important}\\
+@media(max-width:768px){#tawk-bubble-container,.tawk-bubble-container,[id^=tawk-bubble],.tawk-min-container,iframe[title*=chat],iframe[src*="tawk.to"]{display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}}';document.head.appendChild(s)})();
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 var ric=window.requestIdleCallback||function(cb){setTimeout(cb,1)};
 function loadScript(src,cb){var s=document.createElement('script');s.async=true;s.src=src;if(cb)s.onload=cb;document.head.appendChild(s);}
 setTimeout(function(){ric(function(){
@@ -120,6 +127,9 @@ setTimeout(function(){ric(function(){
 setTimeout(function(){ric(function(){
 (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97147013"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
 });},8000);
+setTimeout(function(){ric(function(){
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vqmk964gk5");
+});},10000);
 var tpLoaded=false;function loadTP(){if(tpLoaded)return;tpLoaded=true;ric(function(){loadScript('//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js');});}
 var obs=new IntersectionObserver(function(e){if(e[0].isIntersecting){loadTP();obs.disconnect();}},{rootMargin:'400px'});
 var footer=document.querySelector('footer');if(footer)obs.observe(footer);else setTimeout(loadTP,12000);`}

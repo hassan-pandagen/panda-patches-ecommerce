@@ -189,6 +189,12 @@ export default function ComplexCalculator({
   // Checkout Loading State
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
+  // Track if lead was already captured
+  const [leadCaptured, setLeadCaptured] = useState(false);
+
+  // Weekend warning for rush date
+  const [weekendWarning, setWeekendWarning] = useState(false);
+
   // Prevent hydration mismatch
   useEffect(() => {
     setMounted(true);
@@ -259,16 +265,33 @@ export default function ComplexCalculator({
     return () => { document.body.style.overflow = ""; };
   }, [showQuoteModal]);
 
-  // Calculate minimum date (6 days from now for rush)
+  // Calculate minimum date (6 days from now for rush, skip weekends)
   const getMinRushDate = () => {
     const date = new Date();
     date.setDate(date.getDate() + 6);
+    // If min date lands on Saturday or Sunday, push to Monday
+    const day = date.getDay();
+    if (day === 0) date.setDate(date.getDate() + 1); // Sunday → Monday
+    if (day === 6) date.setDate(date.getDate() + 2); // Saturday → Monday
     return date.toISOString().split('T')[0];
+  };
+
+  // Prevent selecting Saturday or Sunday for rush delivery
+  const handleRushDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selected = new Date(e.target.value + 'T00:00:00');
+    const day = selected.getDay();
+    if (day === 0 || day === 6) {
+      setWeekendWarning(true);
+      setTimeout(() => setWeekendWarning(false), 4000);
+      return;
+    }
+    setWeekendWarning(false);
+    setRushDate(e.target.value);
   };
 
 
   // Price calculation (hook)
-  const { priceResult, upsellTiers, discount, originalPrice, discountAmount, basePrice, unitPrice, pricePulse } = usePriceCalculation({
+  const { priceResult, upsellTiers, discount, originalPrice, discountAmount, basePrice, unitPrice, pricePulse, rushSurcharge } = usePriceCalculation({
     productType, width, height, quantity, deliveryOption,
   });
 
@@ -279,9 +302,6 @@ export default function ComplexCalculator({
         alert(priceResult.error);
         return false;
       }
-      return true;
-    }
-    if (step === 2) {
       if (!name || !email) {
         alert("Please enter your name and email to continue");
         return false;
@@ -295,6 +315,9 @@ export default function ComplexCalculator({
         alert("Please enter a complete shipping address");
         return false;
       }
+      return true;
+    }
+    if (step === 2) {
       if (deliveryOption === "rush" && !rushDate) {
         alert("Please select a rush delivery date");
         return false;
@@ -304,11 +327,41 @@ export default function ComplexCalculator({
     return true;
   };
 
-  const handleNext = () => {
-    if (validateStep(currentStep)) {
-      setCurrentStep(currentStep + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleNext = async () => {
+    if (!validateStep(currentStep)) return;
+
+    // On Step 1 → Step 2: capture lead in quotes table
+    if (currentStep === 1 && !leadCaptured) {
+      try {
+        const res = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            productName: productType,
+            quantity,
+            backing,
+            color: selectedColor || null,
+            width,
+            height,
+            shape: shape || null,
+            customer: { name, email, phone },
+            shippingAddress: address,
+            artworkUrl: fileUrl || null,
+            patchIdea: patchIdea || null,
+          }),
+        });
+        if (res.ok) {
+          setLeadCaptured(true);
+        } else {
+          console.error('Lead API error:', await res.text());
+        }
+      } catch (err) {
+        console.error('Lead capture failed:', err);
+      }
     }
+
+    setCurrentStep(currentStep + 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBack = () => {
@@ -355,7 +408,10 @@ export default function ComplexCalculator({
       const data = await response.json();
 
       if (data.url) {
-        // Clear saved state only on successful Stripe redirect
+        // For PayPal: store order data so capture route can create the order on payment
+        if (data.orderData && data.paypalOrderId) {
+          try { localStorage.setItem('pp_paypal_order', JSON.stringify({ paypalOrderId: data.paypalOrderId, orderData: data.orderData })); } catch {}
+        }
         try { localStorage.removeItem('pp_checkout_state'); } catch {}
         window.location.href = data.url;
       } else {
@@ -769,71 +825,7 @@ export default function ComplexCalculator({
               )}
             </div>
 
-            {/* 5. UPSELL TIERS — Moved near price for better visibility */}
-            {upsellTiers.length > 0 && !priceResult.error && (
-              <div className="space-y-3">
-                {upsellTiers.map((tier) => (
-                  <button
-                    key={tier.quantity}
-                    type="button"
-                    onClick={() => {
-                      setQuantity(tier.quantity);
-                      setQuantityInput(String(tier.quantity));
-                    }}
-                    className="w-full flex items-center justify-between px-5 py-4 rounded-[14px] border-2 border-dashed border-green-400 bg-green-50 hover:border-green-600 hover:bg-green-100 transition-all group shadow-sm hover:shadow-md"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="bg-green-600 text-white text-[13px] font-black px-3 py-1.5 rounded-md uppercase tracking-wide">
-                        SAVE {tier.savingsPercent}%
-                      </span>
-                      <span className="text-base font-bold text-gray-800 group-hover:text-black">
-                        Order {tier.quantity} pcs
-                      </span>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-base font-black text-green-700 group-hover:text-green-800">${tier.unitPrice.toFixed(2)}/ea</span>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* 6. PRICE BAR — shown on Step 1 so they see the price before proceeding */}
-            <div className="bg-white border-2 border-black p-5 rounded-[16px] shadow-lg">
-              {priceResult.error ? (
-                <div className="text-center py-2">
-                  <p className="text-red-600 font-bold text-base">{priceResult.error}</p>
-                  <p className="text-sm text-gray-500 mt-1">Please adjust your quantity to see pricing.</p>
-                </div>
-              ) : (
-                <div className="flex justify-between items-center">
-                  <div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Your Price</p>
-                    <div className={`text-4xl font-black text-black tracking-tight transition-transform duration-200 ${pricePulse ? 'scale-105' : ''}`}>
-                      ${basePrice.toFixed(2)}
-                    </div>
-                    <p className="text-sm text-gray-500 mt-1">
-                      <span className="font-semibold">${unitPrice.toFixed(2)}</span> per patch × {quantity}
-                    </p>
-                  </div>
-                  <div className="text-right space-y-1.5">
-                    <span className="bg-black text-panda-yellow text-[11px] font-black px-3 py-1.5 rounded uppercase tracking-wide block">FREE SHIPPING</span>
-                    {discount > 0 && (
-                      <span className="bg-panda-yellow text-black text-[11px] font-black px-3 py-1.5 rounded uppercase tracking-wide block">
-                        {(discount * 100).toFixed(0)}% OFF
-                      </span>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-          </>
-        )}
-
-        {/* === STEP 2: CONTACT + PERSONALIZE + DELIVERY === */}
-        {mounted && currentStep === 2 && (
-          <>
-            {/* CONTACT INFORMATION — now at top of step 2 */}
+            {/* 5. CONTACT INFO — capture lead before showing price */}
             <div>
               <label className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
                 Contact Information
@@ -865,12 +857,9 @@ export default function ComplexCalculator({
                   className="w-full h-[52px] border-2 border-gray-300 rounded-[12px] px-5 font-bold text-base text-black outline-none focus:border-black transition-all"
                 />
               </div>
-              <p className="text-xs text-gray-400 mt-2 font-medium">
-                📧 We&apos;ll send your order confirmation and updates to this email
-              </p>
             </div>
 
-            {/* SHIPPING ADDRESS */}
+            {/* 6. SHIPPING ADDRESS — capture on Step 1 */}
             <div>
               <label className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
                 Shipping Address
@@ -882,6 +871,95 @@ export default function ComplexCalculator({
                 rows={2}
                 className="w-full border-2 border-gray-300 rounded-[12px] px-5 py-3 font-bold text-base text-black outline-none focus:border-black transition-all resize-none"
               />
+            </div>
+          </>
+        )}
+
+        {/* === STEP 2: PRICING + DELIVERY + PAYMENT === */}
+        {mounted && currentStep === 2 && (
+          <>
+            {/* UPSELL TIERS — shown at top of Step 2 */}
+            {upsellTiers.length > 0 && !priceResult.error && (
+              <div className="space-y-3">
+                <label className="text-sm font-black text-black uppercase tracking-wide block">
+                  💰 Save More on Bulk Orders
+                </label>
+                {upsellTiers.map((tier) => (
+                  <button
+                    key={tier.quantity}
+                    type="button"
+                    onClick={() => {
+                      setQuantity(tier.quantity);
+                      setQuantityInput(String(tier.quantity));
+                    }}
+                    className="w-full flex items-center justify-between px-5 py-4 rounded-[14px] border-2 border-dashed border-green-400 bg-green-50 hover:border-green-600 hover:bg-green-100 transition-all group shadow-sm hover:shadow-md"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="bg-green-600 text-white text-[13px] font-black px-3 py-1.5 rounded-md uppercase tracking-wide">
+                        SAVE {tier.savingsPercent}%
+                      </span>
+                      <span className="text-base font-bold text-gray-800 group-hover:text-black">
+                        Order {tier.quantity} pcs
+                      </span>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-base font-black text-green-700 group-hover:text-green-800">${tier.unitPrice.toFixed(2)}/ea</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* PRICE SUMMARY */}
+            <div className="bg-white border-2 border-black p-5 rounded-[16px] shadow-lg">
+              {priceResult.error ? (
+                <div className="text-center py-2">
+                  <p className="text-red-600 font-bold text-base">{priceResult.error}</p>
+                </div>
+              ) : (
+                <>
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Total Cost</p>
+                      {discount > 0 && (
+                        <p className="text-sm font-bold text-gray-400 line-through mt-1">
+                          ${originalPrice.toFixed(2)}
+                        </p>
+                      )}
+                      <div className={`text-4xl font-black text-black tracking-tight transition-transform duration-200 ${pricePulse ? 'scale-105' : ''}`}>
+                        ${basePrice.toFixed(2)}
+                      </div>
+                      <p className="text-sm text-gray-500 mt-2">
+                        <span className="font-semibold">${unitPrice.toFixed(2)}</span> per patch × {quantity} patches
+                      </p>
+                    </div>
+                    <div className="text-right space-y-1.5">
+                      <span className="bg-black text-panda-yellow text-[12px] font-black px-3 py-1.5 rounded uppercase tracking-wide block">FREE SHIPPING</span>
+                      {discount > 0 && (
+                        <span className="bg-panda-yellow text-black text-[12px] font-black px-3 py-1.5 rounded uppercase tracking-wide block">
+                          {(discount * 100).toFixed(0)}% OFF
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  {discount > 0 && (
+                    <div className="pt-3 border-t border-gray-200">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600 font-medium">Economy Delivery Discount (16-18 business days):</span>
+                        <span className="text-green-600 font-black">-${discountAmount.toFixed(2)}</span>
+                      </div>
+                    </div>
+                  )}
+                  {rushSurcharge > 0 && (
+                    <div className="pt-3 border-t border-gray-200">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600 font-medium">Rush Delivery Fee:</span>
+                        <span className="text-red-600 font-black">+${rushSurcharge.toFixed(2)}</span>
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
 
             {/* DELIVERY OPTIONS */}
@@ -913,7 +991,7 @@ export default function ComplexCalculator({
                       )}
                     </div>
                     <div>
-                      <h3 className="text-lg font-black text-black">Rush Delivery</h3>
+                      <h3 className="text-lg font-black text-black">Rush Delivery <span className="text-red-600">(+${deliveryOption === "rush" ? rushSurcharge : quantity <= 50 ? 100 : quantity <= 250 ? 150 : quantity <= 1000 ? 200 : 300})</span></h3>
                       <p className="text-sm text-gray-600 font-medium mt-1">
                         Select your preferred delivery date (min. 6 days)
                       </p>
@@ -923,15 +1001,26 @@ export default function ComplexCalculator({
                   {deliveryOption === "rush" && (
                     <div className="mt-4 pl-9">
                       <label className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 block">
-                        Select Rush Date
+                        Select Rush Date <span className="normal-case font-medium text-gray-400">(Mon - Fri only)</span>
                       </label>
                       <input
                         type="date"
                         value={rushDate}
                         min={getMinRushDate()}
-                        onChange={(e) => setRushDate(e.target.value)}
+                        onChange={handleRushDateChange}
                         className="w-full h-[60px] border-2 border-gray-300 rounded-[12px] px-5 font-bold text-lg text-black outline-none focus:border-black transition-all cursor-pointer"
                       />
+                      {weekendWarning && (
+                        <div className="mt-2 flex items-center gap-2 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3 font-medium">
+                          <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                          </svg>
+                          Rush delivery is not available on weekends. Please select a weekday (Monday - Friday).
+                        </div>
+                      )}
+                      <p className="mt-3 text-sm text-gray-600 bg-amber-50 border border-amber-200 rounded-lg p-3">
+                        Our representative will get back to you within 4-16 hours with a mockup for approval and will also confirm the rush date.
+                      </p>
                     </div>
                   )}
                 </div>
@@ -1090,81 +1179,6 @@ export default function ComplexCalculator({
               />
             </div>
 
-            {/* UPSELL TIERS ON STEP 2 — Moved near price for better visibility */}
-            {upsellTiers.length > 0 && !priceResult.error && (
-              <div className="space-y-3">
-                <label className="text-sm font-black text-black uppercase tracking-wide block">
-                  💰 Save More on Bulk Orders
-                </label>
-                {upsellTiers.map((tier) => (
-                  <button
-                    key={tier.quantity}
-                    type="button"
-                    onClick={() => {
-                      setQuantity(tier.quantity);
-                      setQuantityInput(String(tier.quantity));
-                    }}
-                    className="w-full flex items-center justify-between px-5 py-4 rounded-[14px] border-2 border-dashed border-green-400 bg-green-50 hover:border-green-600 hover:bg-green-100 transition-all group shadow-sm hover:shadow-md"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="bg-green-600 text-white text-[13px] font-black px-3 py-1.5 rounded-md uppercase tracking-wide">
-                        SAVE {tier.savingsPercent}%
-                      </span>
-                      <span className="text-base font-bold text-gray-800 group-hover:text-black">
-                        Order {tier.quantity} pcs
-                      </span>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-base font-black text-green-700 group-hover:text-green-800">${tier.unitPrice.toFixed(2)}/ea</span>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* PRICE SUMMARY (Step 2) */}
-            <div className="bg-white border-2 border-black p-5 rounded-[16px] shadow-lg">
-              {priceResult.error ? (
-                <div className="text-center py-2">
-                  <p className="text-red-600 font-bold text-base">{priceResult.error}</p>
-                </div>
-              ) : (
-                <>
-                  <div className="flex justify-between items-start mb-3">
-                    <div>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Total Cost</p>
-                      {discount > 0 && (
-                        <p className="text-sm font-bold text-gray-400 line-through mt-1">
-                          ${originalPrice.toFixed(2)}
-                        </p>
-                      )}
-                      <div className={`text-4xl font-black text-black tracking-tight transition-transform duration-200 ${pricePulse ? 'scale-105' : ''}`}>
-                        ${basePrice.toFixed(2)}
-                      </div>
-                      <p className="text-sm text-gray-500 mt-2">
-                        <span className="font-semibold">${unitPrice.toFixed(2)}</span> per patch × {quantity} patches
-                      </p>
-                    </div>
-                    <div className="text-right space-y-1.5">
-                      <span className="bg-black text-panda-yellow text-[12px] font-black px-3 py-1.5 rounded uppercase tracking-wide block">FREE SHIPPING</span>
-                      {discount > 0 && (
-                        <span className="bg-panda-yellow text-black text-[12px] font-black px-3 py-1.5 rounded uppercase tracking-wide block">
-                          {(discount * 100).toFixed(0)}% OFF
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  {discount > 0 && (
-                    <div className="pt-3 border-t border-gray-200">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600 font-medium">Economy Delivery Discount (16-18 business days):</span>
-                        <span className="text-green-600 font-black">-${discountAmount.toFixed(2)}</span>
-                      </div>
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
           </>
         )}
 
@@ -1268,7 +1282,7 @@ export default function ComplexCalculator({
                 onClick={handleNext}
                 className="w-full h-[70px] bg-black text-panda-yellow rounded-[14px] font-black text-[16px] md:text-[18px] uppercase tracking-wide md:tracking-widest hover:scale-[1.01] transition-transform shadow-xl"
               >
-                PROCEED TO ORDER →
+                CHECK PRICES →
               </button>
 
               {/* Secondary CTA */}
