@@ -37,6 +37,7 @@ const navLinks = [
       { name: "Custom PVC Shoe Charms", href: "/custom-products/pvc-shoe-charms" },
     ]
   },
+  { name: "OFFERS", href: "/offers", highlight: true } as any,
   { name: "BULK ORDER", href: "/bulk-custom-patches" },
   {
     name: "ASSETS",
@@ -105,16 +106,24 @@ export default function Navbar() {
                 <div key={link.name} className="relative group">
                   <Link
                     href={link.href}
+                    suppressHydrationWarning
                     className={`
                       flex items-center gap-1 whitespace-nowrap
                       text-[12px] font-bold tracking-wide px-4 py-2.5 rounded-full transition-all duration-300
                       ${isActive
                         ? "bg-[#051C05] text-[#DFFF00] shadow-md"
-                        : "text-gray-700 hover:text-black hover:bg-gray-200/50"
+                        : (link as any).highlight
+                          ? "text-orange-500 hover:text-orange-600 hover:bg-orange-50"
+                          : "text-gray-700 hover:text-black hover:bg-gray-200/50"
                       }
                     `}
                   >
-                    {link.name}
+                    {(link as any).highlight ? (
+                      <span className="flex items-center gap-1">
+                        <span aria-hidden="true">🔥</span>
+                        <span>{link.name}</span>
+                      </span>
+                    ) : <span>{link.name}</span>}
                     {hasDropdown && (
                       <ChevronDown
                         size={14}
@@ -239,9 +248,10 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       onClick={() => setIsMobileMenuOpen(false)}
+                      suppressHydrationWarning
                       className="flex-1 py-4 px-3 text-[15px] font-bold text-gray-800 uppercase tracking-wide"
                     >
-                      {link.name}
+                      <span>{link.name}</span>
                     </Link>
                     <button
                       onClick={() => setOpenDropdown(isDropdownOpen ? null : link.name)}
@@ -259,9 +269,10 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
+                    suppressHydrationWarning
                     className="block py-4 px-3 text-[15px] font-bold text-gray-800 uppercase tracking-wide hover:bg-gray-50 transition-colors"
                   >
-                    {link.name}
+                    <span>{link.name}</span>
                   </Link>
                 )}
 

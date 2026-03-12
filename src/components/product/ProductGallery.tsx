@@ -200,18 +200,40 @@ export default function ProductGallery({ images }: { images: any[] }) {
         styles={{
           container: { backgroundColor: "rgba(0, 0, 0, 0.95)" },
           navigationPrev: {
-            backgroundColor: "#000",
+            backgroundColor: "#ffffff",
+            border: "none",
             borderRadius: "50%",
-            width: "40px",
-            height: "40px",
-            transition: "all 0.3s ease"
+            width: "48px",
+            height: "48px",
+            minWidth: "48px",
+            minHeight: "48px",
+            color: "#111111",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.4)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "0",
           },
           navigationNext: {
-            backgroundColor: "#000",
+            backgroundColor: "#ffffff",
+            border: "none",
             borderRadius: "50%",
-            width: "40px",
-            height: "40px",
-            transition: "all 0.3s ease"
+            width: "48px",
+            height: "48px",
+            minWidth: "48px",
+            minHeight: "48px",
+            color: "#111111",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.4)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "0",
+          },
+          icon: {
+            color: "#111111",
+            filter: "none",
+            width: "20px",
+            height: "20px",
           }
         }}
       />

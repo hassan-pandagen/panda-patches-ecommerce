@@ -216,6 +216,26 @@ export function generateProductSchema(params: ProductSchemaParams) {
 
   const schemaAvailability = availabilityMap[availability] || 'InStock';
 
+  const shippingDetails = {
+    "@type": "OfferShippingDetails",
+    "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
+    "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
+    "deliveryTime": {
+      "@type": "ShippingDeliveryTime",
+      "handlingTime": { "@type": "QuantitativeValue", "minValue": 10, "maxValue": 14, "unitCode": "DAY" },
+      "transitTime": { "@type": "QuantitativeValue", "minValue": 3, "maxValue": 5, "unitCode": "DAY" }
+    }
+  };
+
+  const merchantReturnPolicy = {
+    "@type": "MerchantReturnPolicy",
+    "applicableCountry": "US",
+    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+    "merchantReturnDays": 30,
+    "returnMethod": "https://schema.org/ReturnByMail",
+    "returnFees": "https://schema.org/FreeReturn"
+  };
+
   const productSchema: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -228,6 +248,7 @@ export function generateProductSchema(params: ProductSchemaParams) {
       "@type": "Brand",
       "name": brand
     },
+    "hasMerchantReturnPolicy": merchantReturnPolicy,
     "offers": pricingTiers && pricingTiers.length > 0
       ? {
           "@type": "AggregateOffer",
@@ -237,7 +258,8 @@ export function generateProductSchema(params: ProductSchemaParams) {
           "offerCount": pricingTiers.length.toString(),
           "availability": `https://schema.org/${schemaAvailability}`,
           "url": url,
-          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+          "shippingDetails": shippingDetails
         }
       : {
           "@type": "Offer",
@@ -245,7 +267,8 @@ export function generateProductSchema(params: ProductSchemaParams) {
           "price": lowPrice,
           "availability": `https://schema.org/${schemaAvailability}`,
           "url": url,
-          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+          "shippingDetails": shippingDetails
         }
   };
 
@@ -306,6 +329,8 @@ export function generateProductSchema(params: ProductSchemaParams) {
         "price": tier.unitPrice.toFixed(2),
         "priceCurrency": priceCurrency,
         "availability": `https://schema.org/${schemaAvailability}`,
+        "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+        "shippingDetails": shippingDetails,
         "eligibleQuantity": {
           "@type": "QuantitativeValue",
           "minValue": tier.minQuantity,

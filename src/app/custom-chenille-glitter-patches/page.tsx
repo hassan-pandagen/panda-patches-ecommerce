@@ -141,9 +141,18 @@ const productSchema = {
   "@type": "Product",
   name: "Custom Chenille Glitter Patches",
   description: "Custom chenille patches with embedded glitter thread for cheer squads, dance teams, fashion brands, and custom apparel.",
+  image: "https://www.pandapatches.com/assets/og-image.png",
   brand: {
     "@type": "Brand",
     name: "Panda Patches",
+  },
+  hasMerchantReturnPolicy: {
+    "@type": "MerchantReturnPolicy",
+    applicableCountry: "US",
+    returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+    merchantReturnDays: 30,
+    returnMethod: "https://schema.org/ReturnByMail",
+    returnFees: "https://schema.org/FreeReturn",
   },
   offers: {
     "@type": "AggregateOffer",
@@ -153,6 +162,16 @@ const productSchema = {
     offerCount: "3",
     availability: "https://schema.org/InStock",
     priceValidUntil: "2027-01-01",
+    shippingDetails: {
+      "@type": "OfferShippingDetails",
+      shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" },
+      shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" },
+      deliveryTime: {
+        "@type": "ShippingDeliveryTime",
+        handlingTime: { "@type": "QuantitativeValue", minValue: 10, maxValue: 14, unitCode: "DAY" },
+        transitTime: { "@type": "QuantitativeValue", minValue: 3, maxValue: 5, unitCode: "DAY" },
+      },
+    },
   },
   aggregateRating: {
     "@type": "AggregateRating",

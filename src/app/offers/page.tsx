@@ -1,0 +1,130 @@
+import type { Metadata } from 'next';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import OffersClient from '@/components/offers/OffersClient';
+import { generateSchemaScript } from '@/lib/schemas';
+import { OFFER_CATEGORIES } from '@/lib/offerPackages';
+import { client, urlFor } from '@/lib/sanity';
+import { cache } from 'react';
+
+export const metadata: Metadata = {
+  title: 'Custom Patch Packages — Fixed Prices, Free Design | Panda Patches',
+  description: 'Order custom patch packages at fixed prices. Embroidered, woven, PVC, chenille and leather patches with free mockup, free shipping, and 7-14 day delivery.',
+  alternates: {
+    canonical: 'https://pandapatches.com/offers',
+  },
+  openGraph: {
+    title: 'Custom Patch Packages — Fixed Prices | Panda Patches',
+    description: 'Fixed-price patch packages with free mockup, free US shipping, and money-back guarantee. Embroidered, woven, PVC, chenille, leather.',
+    url: 'https://pandapatches.com/offers',
+    type: 'website',
+    images: [{ url: 'https://pandapatches.com/assets/og-image.png', width: 1200, height: 630 }],
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://pandapatches.com' },
+    { '@type': 'ListItem', position: 2, name: 'Offers', item: 'https://pandapatches.com/offers' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What happens after I pay?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Within 24 hours, our design team emails you a digital mockup. You review, request changes, and approve. Production starts only after your sign-off.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What if I don\'t like the mockup?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Request as many changes as needed — all free. If we still can\'t get it right, full refund. Money-back guarantee.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What delivery options are there?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Economy (16-18 days, 10% off) | Standard (7-14 days, free) | Rush (50pcs +$50, 100pcs +$75, 500pcs +$150, 1000pcs +$200). Rush date confirmed by email within 2-6 hours.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What does "under 4 inches" mean?',
+      acceptedAnswer: { '@type': 'Answer', text: 'The longest dimension is 4" or less — covers 90% of hat patches, left-chest and shoulder patches.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What payment methods do you accept?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Visa, Mastercard, Amex, PayPal, Apple Pay, AfterPay, Klarna. All 256-bit SSL encrypted via Stripe.' },
+    },
+  ],
+};
+
+// Product schemas for main offer categories
+const productSchemas = OFFER_CATEGORIES.slice(0, 4).map(cat => ({
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `Custom ${cat.type} — ${cat.subtitle}`,
+  brand: { '@type': 'Brand', name: 'Panda Patches' },
+  offers: cat.packs.map(pack => ({
+    '@type': 'Offer',
+    name: `${pack.name} Pack — ${pack.qty} pieces`,
+    price: pack.price.toFixed(2),
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    seller: { '@type': 'Organization', name: 'Panda Patches' },
+  })),
+}));
+
+const getCtaImage = cache(async (): Promise<string | null> => {
+  try {
+    const data = await client.fetch(`*[_type == "cta"][0]{ backgroundImage }`, {}, { next: { revalidate: 86400 } });
+    if (data?.backgroundImage) {
+      return urlFor(data.backgroundImage).width(1400).quality(80).auto('format').url();
+    }
+    return null;
+  } catch {
+    return null;
+  }
+});
+
+const getCategoryImages = cache(async (): Promise<Record<string, string>> => {
+  try {
+    const slugs = ['embroidered', 'woven', 'pvc', 'chenille', 'leather'];
+    const query = `{
+      ${slugs.map(s => `"${s}": *[_type == "productPage" && slug.current == "${s}"][0].gallery[0]`).join(',\n      ')}
+    }`;
+    const data: Record<string, any> = await client.fetch(query, {}, { next: { revalidate: 86400 } });
+    const result: Record<string, string> = {};
+    for (const [slug, img] of Object.entries(data)) {
+      if (img) {
+        try {
+          result[slug] = urlFor(img.image || img).width(500).height(500).quality(80).auto('format').fit('max').url();
+        } catch { /* skip if urlFor fails */ }
+      }
+    }
+    return result;
+  } catch {
+    return {};
+  }
+});
+
+export default async function OffersPage() {
+  const [categoryImages, ctaImageUrl] = await Promise.all([getCategoryImages(), getCtaImage()]);
+
+  return (
+    <main className="min-h-screen bg-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(faqSchema)} />
+      {productSchemas.map((schema, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(schema)} />
+      ))}
+      <Navbar />
+      <OffersClient categoryImages={categoryImages} ctaImageUrl={ctaImageUrl ?? undefined} />
+      <Footer />
+    </main>
+  );
+}

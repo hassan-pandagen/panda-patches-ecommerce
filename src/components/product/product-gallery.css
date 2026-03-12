@@ -64,26 +64,35 @@
 
 .yarl__navigation_prev,
 .yarl__navigation_next {
-  background: #000 !important;
-  width: 40px !important;
-  height: 40px !important;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
   border-radius: 50% !important;
-  transition: all 0.3s ease !important;
+  border: none !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
 }
 
 .yarl__navigation_prev:hover,
 .yarl__navigation_next:hover {
-  background: #B4D92D !important;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  opacity: 1 !important;
 }
 
 .yarl__navigation_prev svg,
 .yarl__navigation_next svg {
-  color: #fff;
-  transition: all 0.3s ease;
-}
-
-.yarl__navigation_prev:hover svg,
-.yarl__navigation_next:hover svg {
-  color: #000;
+  color: #111111 !important;
+  fill: none !important;
+  stroke: #111111 !important;
+  width: 20px !important;
+  height: 20px !important;
 }
