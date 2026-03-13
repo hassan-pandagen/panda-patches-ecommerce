@@ -18,7 +18,7 @@ const redis = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_RE
 const checkoutLimiter = redis
   ? new Ratelimit({
       redis,
-      limiter: Ratelimit.slidingWindow(5, '1 h'), // 5 checkout attempts per hour (bank-grade security)
+      limiter: Ratelimit.slidingWindow(20, '1 h'), // 20 checkout attempts per hour
       analytics: true,
       prefix: 'ratelimit:checkout',
     })
@@ -27,7 +27,7 @@ const checkoutLimiter = redis
 const quoteLimiter = redis
   ? new Ratelimit({
       redis,
-      limiter: Ratelimit.slidingWindow(10, '1 h'), // 10 requests per hour
+      limiter: Ratelimit.slidingWindow(30, '1 h'), // 30 quote requests per hour
       analytics: true,
       prefix: 'ratelimit:quote',
     })
@@ -36,7 +36,7 @@ const quoteLimiter = redis
 const contactLimiter = redis
   ? new Ratelimit({
       redis,
-      limiter: Ratelimit.slidingWindow(20, '1 h'), // 20 contact form submissions per hour
+      limiter: Ratelimit.slidingWindow(30, '1 h'), // 30 contact form submissions per hour
       analytics: true,
       prefix: 'ratelimit:contact',
     })
@@ -45,7 +45,7 @@ const contactLimiter = redis
 const sampleBoxLimiter = redis
   ? new Ratelimit({
       redis,
-      limiter: Ratelimit.slidingWindow(10, '1 h'), // 10 sample box orders per hour
+      limiter: Ratelimit.slidingWindow(20, '1 h'), // 20 sample box orders per hour
       analytics: true,
       prefix: 'ratelimit:samplebox',
     })
@@ -54,7 +54,7 @@ const sampleBoxLimiter = redis
 // Allowed origins for API requests
 const ALLOWED_ORIGINS = [
   'https://pandapatches.com',
-  'https://pandapatches.com',
+  'https://www.pandapatches.com',
   'https://panda-patches-ecommerce.vercel.app',
   'https://panda-patches-ecommerce-7w28lefz.vercel.app',
 ];

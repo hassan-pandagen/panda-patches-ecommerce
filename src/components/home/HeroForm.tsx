@@ -98,6 +98,12 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
         }),
       });
 
+      if (response.status === 429) {
+        const data = await response.json().catch(() => ({}));
+        const minutes = data.retryAfter ? Math.ceil(data.retryAfter / 60) : 60;
+        throw new Error(`Too many requests. Please try again in ${minutes} minutes.`);
+      }
+
       if (!response.ok) {
         throw new Error('Failed to submit quote');
       }
