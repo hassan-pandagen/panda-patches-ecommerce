@@ -24,6 +24,7 @@ const QuoteSchema = z.object({
     patchType: z.string().max(100).optional().or(z.literal('')),
   }),
   artworkUrl: z.string().url().optional().or(z.null()),
+  artworkUrl2: z.string().url().optional().or(z.null()),
   isBulkOrder: z.boolean().optional(),
   pageUrl: z.string().max(500).optional().or(z.literal('')),
   basePrice: z.number().min(0).optional(),
@@ -63,7 +64,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const { customer, details, artworkUrl, isBulkOrder, pageUrl, basePrice } = validationResult.data;
+    const { customer, details, artworkUrl, artworkUrl2, isBulkOrder, pageUrl, basePrice } = validationResult.data;
 
     const sizeLabel = details.width > 0 ? `${details.width}" x ${details.height}"` : 'Custom / See instructions';
     const subject = isBulkOrder
@@ -112,7 +113,8 @@ export async function POST(req: Request) {
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Quantity</td><td style="padding:9px 14px;font-weight:600;">${details.quantity} pcs</td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Backing</td><td style="padding:9px 14px;">${esc(details.backing)}</td></tr>
       ${details.instructions ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;vertical-align:top;">Instructions</td><td style="padding:9px 14px;white-space:pre-wrap;">${esc(details.instructions)}</td></tr>` : ''}
-      ${artworkUrl ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Artwork</td><td style="padding:9px 14px;"><a href="${artworkUrl}" style="color:#fb6e1d;font-weight:600;">View File</a></td></tr>` : ''}
+      ${artworkUrl ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Artwork 1</td><td style="padding:9px 14px;"><a href="${artworkUrl}" style="color:#fb6e1d;font-weight:600;">View File</a></td></tr>` : ''}
+      ${artworkUrl2 ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Artwork 2</td><td style="padding:9px 14px;"><a href="${artworkUrl2}" style="color:#fb6e1d;font-weight:600;">View File</a></td></tr>` : ''}
       ${pageUrl ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Page</td><td style="padding:9px 14px;"><a href="${esc(pageUrl)}" style="color:#333;">${esc(pageUrl)}</a></td></tr>` : ''}
       ${basePrice != null ? `<tr style="background:#000;"><td style="padding:12px 14px;color:#aaa;font-size:13px;">Est. Price</td><td style="padding:12px 14px;color:#dcff70;font-size:22px;font-weight:900;">$${basePrice.toFixed(2)}</td></tr>` : ''}
     </table>
@@ -130,7 +132,7 @@ export async function POST(req: Request) {
           await mailClient.sendMail({
             from: { address: 'hello@pandapatches.com', name: 'Panda Patches' },
             to: [{ email_address: { address: customer.email, name: customer.name } }],
-            subject: 'We received your quote request - Panda Patches',
+            subject: basePrice != null ? `Your Price Quote — Panda Patches` : 'We received your quote request - Panda Patches',
             htmlbody: `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;padding:0;background:#f4f4f4;">
 <div style="max-width:620px;margin:0 auto;font-family:${FONT};">
   <div style="background:#000000;padding:24px 32px;text-align:center;">
@@ -141,7 +143,10 @@ export async function POST(req: Request) {
       Hello <strong style="color:#fb6e1d;">${esc(customer.name)}</strong>,
     </p>
     <p style="font-size:15px;color:#333333;line-height:1.6;">
-      Thank you for reaching out! We have received your quote request and our team will get back to you within <strong>2 hours</strong> with the best price.
+      ${basePrice != null
+        ? `Here is your price quote for your custom patches order. Ready to place your order? Simply reply to this email or visit our website to complete checkout.`
+        : `Thank you for reaching out! We have received your quote request and our team will get back to you within <strong>2 hours</strong> with the best price.`
+      }
     </p>
 
     <div style="background:#000000;padding:12px 20px;margin-top:28px;border-radius:4px 4px 0 0;">
@@ -158,10 +163,16 @@ export async function POST(req: Request) {
     <div style="margin-top:28px;padding:20px 24px;background:#f9f9f9;border-left:4px solid #fb6e1d;border-radius:0 4px 4px 0;">
       <p style="margin:0 0 10px;font-weight:bold;color:#222222;font-size:14px;">What happens next?</p>
       <p style="margin:0;color:#444444;font-size:14px;line-height:1.8;">
-        1. Our team reviews your request within 2 hours.<br>
+        ${basePrice != null
+          ? `1. Reply to this email or call us to confirm your order.<br>
+        2. Our design team sends your digital mockup within 24 hours.<br>
+        3. You approve it — free unlimited changes until you're happy.<br>
+        4. Your patches ship with full tracking to your door.`
+          : `1. Our team reviews your request within 2 hours.<br>
         2. We send you a detailed quote at <strong>${esc(customer.email)}</strong>.<br>
         3. You approve and we begin production.<br>
-        4. Your patches ship with full tracking to your door.
+        4. Your patches ship with full tracking to your door.`
+        }
       </p>
     </div>
 
@@ -210,7 +221,7 @@ export async function POST(req: Request) {
         patches_quantity: details.quantity,
         design_size: sizeLabel,
         instructions: details.instructions || details.placement || '',
-        customer_attachment_urls: artworkUrl ? [artworkUrl] : [],
+        customer_attachment_urls: [artworkUrl, artworkUrl2].filter(Boolean) as string[],
         sales_agent: 'WEBSITE_BOT',
         lead_source: isBulkOrder ? 'BULK_ORDER_FORM' : 'WEBSITE_FORM',
         page_url: pageUrl || null,

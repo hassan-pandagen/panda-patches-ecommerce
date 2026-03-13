@@ -7,23 +7,22 @@ import { sanitizeString, sanitizeEmail, sanitizePhone, sanitizeInteger, sanitize
 
 export default function HeroForm({ productSlug }: { productSlug?: string }) {
   const isKeychains = productSlug === 'keychains';
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const partialSaved = useRef(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
-  // Artwork upload state (upload immediately on select, like ComplexCalculator)
-  const [uploadedFileName, setUploadedFileName] = useState("");
-  const [uploadedFileUrl, setUploadedFileUrl] = useState("");
+  // Artwork upload state — up to 2 files
+  const [uploadedFiles, setUploadedFiles] = useState<{name: string; url: string}[]>([]);
   const [uploading, setUploading] = useState(false);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    if (uploadedFiles.length >= 2) return;
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) return;
 
     setUploading(true);
-    setUploadedFileName(file.name);
 
     try {
       const { createClient } = await import("@supabase/supabase-js");
@@ -45,17 +44,20 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
         const { data: publicUrlData } = supabase.storage
           .from('order-attachments')
           .getPublicUrl(fileName);
-        setUploadedFileUrl(publicUrlData?.publicUrl || '');
+        setUploadedFiles(prev => [...prev, { name: file.name, url: publicUrlData?.publicUrl || '' }]);
       } else {
         console.error('Artwork upload failed:', uploadError);
-        setUploadedFileName('');
       }
     } catch (uploadErr) {
       console.error('Artwork upload exception:', uploadErr);
-      setUploadedFileName('');
     } finally {
       setUploading(false);
+      e.target.value = "";
     }
+  };
+
+  const removeUploadedFile = (index: number) => {
+    setUploadedFiles(prev => prev.filter((_, i) => i !== index));
   };
 
   const handleEmailBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -93,7 +95,8 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
             instructions: sanitizeString(data.instructions || ''),
             patchType: sanitizeString(data.type || ''),
           },
-          artworkUrl: uploadedFileUrl || null,
+          artworkUrl: uploadedFiles[0]?.url || null,
+          artworkUrl2: uploadedFiles[1]?.url || null,
           pageUrl: window.location.href,
         }),
       });
@@ -102,6 +105,22 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
         const data = await response.json().catch(() => ({}));
         const minutes = data.retryAfter ? Math.ceil(data.retryAfter / 60) : 60;
         throw new Error(`Too many requests. Please try again in ${minutes} minutes.`);
+      }
+
+      if (response.status === 400) {
+        const data = await response.json().catch(() => ({}));
+        const fieldLabels: Record<string, string> = {
+          'customer.name': 'Name',
+          'customer.email': 'Email address',
+          'customer.phone': 'Phone number',
+          'details.quantity': 'Quantity',
+          'details.width': 'Size',
+          'details.height': 'Size',
+          'details.backing': 'Backing type',
+        };
+        const firstIssue = data.details?.[0];
+        const label = firstIssue ? (fieldLabels[firstIssue.field] || firstIssue.field) : null;
+        throw new Error(label ? `Please fill in: ${label}` : 'Please fill in all required fields.');
       }
 
       if (!response.ok) {
@@ -123,11 +142,10 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
 
       setMessage({ type: 'success', text: 'Quote submitted successfully! We\'ll contact you soon.' });
       reset();
-      setUploadedFileName('');
-      setUploadedFileUrl('');
-    } catch (error) {
+      setUploadedFiles([]);
+    } catch (error: any) {
       console.error('Quote submission error:', error);
-      setMessage({ type: 'error', text: 'Failed to submit quote. Please try again.' });
+      setMessage({ type: 'error', text: error.message || 'Failed to submit quote. Please try again.' });
     } finally {
       setIsSubmitting(false);
     }
@@ -162,7 +180,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
         </h2>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3" noValidate>
         {/* Error Message */}
         {message?.type === 'error' && (
           <div className="p-4 rounded-lg text-sm font-semibold bg-red-100 text-red-800 border border-red-300">
@@ -172,28 +190,64 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
 
         {/* Row 1 */}
         <div className="grid grid-cols-2 gap-3">
-          <input {...register("name")} placeholder="Name" className="form-input" />
-          <input {...register("email")} placeholder="Email" className="form-input" onBlur={handleEmailBlur} />
+          <div>
+            <input
+              {...register("name", { required: "Name is required" })}
+              placeholder="Name *"
+              className={`form-input ${errors.name ? 'border-red-400 bg-red-50' : ''}`}
+              autoComplete="name"
+            />
+            {errors.name && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.name.message)}</p>}
+          </div>
+          <div>
+            <input
+              {...register("email", { required: "Email is required" })}
+              placeholder="Email *"
+              type="email"
+              className={`form-input ${errors.email ? 'border-red-400 bg-red-50' : ''}`}
+              autoComplete="email"
+              onBlur={handleEmailBlur}
+            />
+            {errors.email && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
+          </div>
         </div>
 
         {/* Row 2 */}
         <div className="grid grid-cols-2 gap-3">
-          <input {...register("phone")} placeholder="Phone Number" className="form-input" />
-          <input {...register("quantity")} placeholder="Quantity" type="number" className="form-input" />
+          <div>
+            <input
+              {...register("phone", { required: "Phone is required" })}
+              placeholder="Phone Number *"
+              type="tel"
+              className={`form-input ${errors.phone ? 'border-red-400 bg-red-50' : ''}`}
+              autoComplete="tel"
+            />
+            {errors.phone && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.phone.message)}</p>}
+          </div>
+          <div>
+            <input
+              {...register("quantity", { required: "Quantity is required", min: { value: 1, message: "Min 1" } })}
+              placeholder="Quantity *"
+              type="number"
+              min="1"
+              className={`form-input ${errors.quantity ? 'border-red-400 bg-red-50' : ''}`}
+            />
+            {errors.quantity && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.quantity.message)}</p>}
+          </div>
         </div>
 
         {/* Row 3 */}
          <div className="grid grid-cols-2 gap-3">
            <div className="relative">
              {isKeychains ? (
-               <select {...register("size")} defaultValue="" aria-label="Select single or double side" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+               <select {...register("size", { required: "Please select a side" })} defaultValue="" aria-label="Select single or double side" className={`form-input appearance-none text-gray-500 cursor-pointer pr-10 ${errors.size ? 'border-red-400 bg-red-50' : ''}`}>
                  <option value="" disabled hidden>Single or Double Side?</option>
                  <option value="single-side">Single Side</option>
                  <option value="double-side">Double Side</option>
                </select>
              ) : (
-               <select {...register("size")} defaultValue="" aria-label="Select patch size or placement" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
-                 <option value="" disabled hidden>Size or Placement</option>
+               <select {...register("size", { required: "Please select a size" })} defaultValue="" aria-label="Select patch size or placement" className={`form-input appearance-none text-gray-500 cursor-pointer pr-10 ${errors.size ? 'border-red-400 bg-red-50' : ''}`}>
+                 <option value="" disabled hidden>Size or Placement *</option>
                  <option value="2.5">Cap (2.25 - 2.5 inches)</option>
                  <option value="3.5">Left Chest (3 - 4 inches)</option>
                  <option value="2.5">Hat / Beanie (2.5 inches)</option>
@@ -203,6 +257,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
                </select>
              )}
              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
+             {errors.size && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.size.message)}</p>}
            </div>
 
            <div className="relative">
@@ -256,44 +311,61 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           className="form-input h-[80px] resize-none leading-relaxed pt-3"
         />
 
-        {/* File Upload - with immediate upload + visual feedback */}
-        <label htmlFor="file-upload" className="
-          border-2 border-dashed border-[#676767]/30
-          rounded-[12px]
-          h-[100px]
-          flex flex-col items-center justify-center
-          bg-[#F9FAF5]/50 hover:bg-white
-          transition-all duration-300 cursor-pointer
-          group
-        ">
-          {uploading ? (
-            <>
-              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-panda-green mb-2" />
-              <p className="text-[12px] text-gray-500 font-bold">Uploading...</p>
-            </>
-          ) : uploadedFileName ? (
-            <>
-              <Check className="text-green-600 mb-1" size={22} />
-              <p className="text-[12px] text-green-700 font-bold truncate max-w-[200px]">{uploadedFileName}</p>
-              <p className="text-[11px] text-gray-400 mt-0.5">Click to change file</p>
-            </>
-          ) : (
-            <>
-              <UploadCloud className="text-gray-400 group-hover:text-panda-green transition-colors mb-1" size={24} />
-              <p className="text-[12px] text-gray-500 font-bold mb-1">Drop files here or</p>
-              <span className="bg-white border border-gray-200 px-4 py-1.5 rounded-md text-[12px] font-black text-panda-dark shadow-sm">
-                SELECT FILES
-              </span>
-            </>
-          )}
-          <input
-            id="file-upload"
-            type="file"
-            className="hidden"
-            accept="image/*,.pdf"
-            onChange={handleFileChange}
-          />
-        </label>
+        {/* File Upload — up to 2 files with delete */}
+        {uploadedFiles.length > 0 && (
+          <div className="space-y-2">
+            {uploadedFiles.map((f, i) => (
+              <div key={i} className="flex items-center gap-3 px-4 py-2.5 bg-green-50 border border-green-300 rounded-[10px]">
+                <Check className="text-green-600 flex-shrink-0" size={16} strokeWidth={3} />
+                <span className="text-[12px] text-green-700 font-bold truncate flex-1">{f.name}</span>
+                <button
+                  type="button"
+                  onClick={() => removeUploadedFile(i)}
+                  className="flex-shrink-0 w-5 h-5 rounded-full bg-red-100 hover:bg-red-200 text-red-600 flex items-center justify-center transition-colors font-black text-[10px]"
+                  aria-label="Remove file"
+                >✕</button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {uploadedFiles.length < 2 && (
+          <label htmlFor="file-upload" className="
+            border-2 border-dashed border-[#676767]/30
+            rounded-[12px]
+            h-[90px]
+            flex flex-col items-center justify-center
+            bg-[#F9FAF5]/50 hover:bg-white
+            transition-all duration-300 cursor-pointer
+            group
+          ">
+            {uploading ? (
+              <>
+                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-panda-green mb-2" />
+                <p className="text-[12px] text-gray-500 font-bold">Uploading...</p>
+              </>
+            ) : (
+              <>
+                <UploadCloud className="text-gray-400 group-hover:text-panda-green transition-colors mb-1" size={24} />
+                <p className="text-[12px] text-gray-500 font-bold mb-1">
+                  {uploadedFiles.length === 1 ? 'Add a 2nd file (optional)' : 'Drop files here or'}
+                </p>
+                {uploadedFiles.length === 0 && (
+                  <span className="bg-white border border-gray-200 px-4 py-1.5 rounded-md text-[12px] font-black text-panda-dark shadow-sm">
+                    SELECT FILES
+                  </span>
+                )}
+              </>
+            )}
+            <input
+              id="file-upload"
+              type="file"
+              className="hidden"
+              accept="image/*,.pdf"
+              onChange={handleFileChange}
+            />
+          </label>
+        )}
 
         {/* Button */}
         <button

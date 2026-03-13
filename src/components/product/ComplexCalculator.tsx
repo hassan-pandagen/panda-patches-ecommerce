@@ -139,6 +139,7 @@ export default function ComplexCalculator({
   const [showShapeDropdown, setShowShapeDropdown] = useState(false);
   const [selectedColor, setSelectedColor] = useState("");
   const [showBorderDropdown, setShowBorderDropdown] = useState(false);
+  const calcRef = useRef<HTMLDivElement>(null);
   const backingDropdownRef = useRef<HTMLDivElement>(null);
   const shapeDropdownRef = useRef<HTMLDivElement>(null);
   const borderDropdownRef = useRef<HTMLDivElement>(null);
@@ -153,6 +154,7 @@ export default function ComplexCalculator({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<{ name?: string; email?: string; address?: string }>({});
 
   // Shipping Address State (single field for reduced friction)
   const [address, setAddress] = useState("");
@@ -169,7 +171,7 @@ export default function ComplexCalculator({
   const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
 
   // File Upload (hook)
-  const { fileName, setFileName, fileUrl, setFileUrl, uploading, handleFileUpload } = useFileUpload();
+  const { files, setFiles, uploading, handleFileUpload, removeFile } = useFileUpload();
 
   // Multi-Step Form State
   const [currentStep, setCurrentStep] = useState(1);
@@ -179,6 +181,7 @@ export default function ComplexCalculator({
   // Direct Quote State
   const [quoteSending, setQuoteSending] = useState(false);
   const [quoteSent, setQuoteSent] = useState(false);
+  const [quoteError, setQuoteError] = useState("");
 
   // Patch Idea State
   const [patchIdea, setPatchIdea] = useState("");
@@ -189,9 +192,7 @@ export default function ComplexCalculator({
 
   // Checkout Loading State
   const [checkoutLoading, setCheckoutLoading] = useState(false);
-
-  // Track if lead was already captured
-  const [leadCaptured, setLeadCaptured] = useState(false);
+  const [checkoutError, setCheckoutError] = useState("");
 
   // Weekend warning for rush date
   const [weekendWarning, setWeekendWarning] = useState(false);
@@ -216,7 +217,7 @@ export default function ComplexCalculator({
       if (s.width) { const w = Math.ceil(s.width); setWidth(w); setWidthInput(String(w)); }
       if (s.height) { const h = Math.ceil(s.height); setHeight(h); setHeightInput(String(h)); }
       if (s.quantity) { setQuantity(s.quantity); setQuantityInput(String(s.quantity)); }
-      if (s.fileUrl) { setFileUrl(s.fileUrl); setFileName(s.fileName || ''); }
+      if (s.fileUrl) { setFiles([{ url: s.fileUrl, name: s.fileName || '' }]); }
       if (s.name) setName(s.name);
       if (s.email) setEmail(s.email);
       if (s.phone) setPhone(s.phone);
@@ -238,12 +239,13 @@ export default function ComplexCalculator({
     try {
       localStorage.setItem(storageKey, JSON.stringify({
         backing, shape, selectedColor, width, height, quantity,
-        fileUrl, fileName, name, email, phone, address,
+        fileUrl: files[0]?.url || '', fileName: files[0]?.name || '',
+        name, email, phone, address,
         deliveryOption, rushDate, specialInstructions, selectedAddons, paymentMethod, currentStep,
         patchIdea
       }));
     } catch {}
-  }, [mounted, backing, shape, selectedColor, width, height, quantity, fileUrl, fileName, name, email, phone, address, deliveryOption, rushDate, specialInstructions, selectedAddons, paymentMethod, currentStep, patchIdea]);
+  }, [mounted, backing, shape, selectedColor, width, height, quantity, files, name, email, phone, address, deliveryOption, rushDate, specialInstructions, selectedAddons, paymentMethod, currentStep, patchIdea]);
 
   // Close backing/shape dropdowns on outside click
   useEffect(() => {
@@ -297,81 +299,52 @@ export default function ComplexCalculator({
   const validateStep = (step: number): boolean => {
     if (step === 1) {
       if (priceResult.error) {
-        alert(priceResult.error);
+        setFieldErrors({ name: priceResult.error });
         return false;
       }
-      if (!name || !email) {
-        alert("Please enter your name and email to continue");
+      const errs: { name?: string; email?: string } = {};
+      if (!name) errs.name = "Name is required";
+      if (!email) errs.email = "Email is required";
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = "Please enter a valid email";
+      if (Object.keys(errs).length > 0) {
+        setFieldErrors(errs);
         return false;
       }
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        alert("Please enter a valid email address");
-        return false;
-      }
+      setFieldErrors({});
       return true;
     }
     if (step === 2) {
       if (!address || address.length < 10) {
-        alert("Please enter a complete shipping address");
+        setFieldErrors({ address: "Please enter a complete shipping address" });
         return false;
       }
       if (deliveryOption === "rush" && !rushDate) {
-        alert("Please select a rush delivery date");
+        setFieldErrors({ address: "Please select a rush delivery date" });
         return false;
       }
+      setFieldErrors({});
       return true;
     }
     return true;
   };
 
-  const handleNext = async () => {
+  const handleNext = () => {
     if (!validateStep(currentStep)) return;
 
-    // On Step 1 → Step 2: capture lead in quotes table
-    if (currentStep === 1 && !leadCaptured) {
-      try {
-        const res = await fetch('/api/lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            productName: productType,
-            quantity,
-            backing,
-            color: selectedColor || null,
-            width,
-            height,
-            shape: shape || null,
-            customer: { name, email, phone },
-            shippingAddress: address,
-            artworkUrl: fileUrl || null,
-            patchIdea: patchIdea || null,
-          }),
-        });
-        if (res.ok) {
-          setLeadCaptured(true);
-        } else {
-          console.error('Lead API error:', await res.text());
-        }
-      } catch (err) {
-        console.error('Lead capture failed:', err);
-      }
-    }
-
     setCurrentStep(currentStep + 1);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    calcRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const handleBack = () => {
     setCurrentStep(currentStep - 1);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    calcRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const handleDirectQuote = async () => {
     if (!email) {
-      alert("Please enter your email address first.");
+      setFieldErrors({ email: "Email is required" });
       setCurrentStep(1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      calcRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       return;
     }
     setQuoteSending(true);
@@ -382,13 +355,14 @@ export default function ComplexCalculator({
         body: JSON.stringify({
           customer: { name: name || email, email, phone: phone || "" },
           details: {
-            width,
-            height,
+            width: parseFloat(widthInput) || width,
+            height: parseFloat(heightInput) || height,
             quantity,
             backing: BACKINGS.find(b => b.id === backing)?.name || "Not specified",
             patchType: productType,
           },
-          artworkUrl: fileUrl || null,
+          artworkUrl: files[0]?.url || null,
+          artworkUrl2: files[1]?.url || null,
           isBulkOrder: false,
           pageUrl: window.location.href,
           basePrice: priceResult.error ? undefined : basePrice,
@@ -405,10 +379,10 @@ export default function ComplexCalculator({
           });
         }
       } else {
-        alert("Failed to send quote. Please try again.");
+        setQuoteError("Failed to send quote. Please try again.");
       }
     } catch {
-      alert("Something went wrong. Please try again.");
+      setQuoteError("Something went wrong. Please try again.");
     } finally {
       setQuoteSending(false);
     }
@@ -436,14 +410,14 @@ export default function ComplexCalculator({
           quantity: quantity,
           backing: backing,
           color: selectedColor || null,
-          width: width,
-          height: height,
+          width: parseFloat(widthInput) || width,
+          height: parseFloat(heightInput) || height,
           customer: { name, email, phone },
           shippingAddress: address,
           deliveryOption: deliveryOption,
           rushDate: deliveryOption === "rush" ? rushDate : null,
           discount: discount > 0 ? `${(discount * 100).toFixed(0)}% Economy Delivery Discount (16-18 business days)` : null,
-          artworkUrl: fileUrl || null,
+          artworkUrl: files[0]?.url || null,
           addons: selectedAddons.length > 0 ? selectedAddons.map(id => ADDON_OPTIONS.find(opt => opt.id === id)?.name).filter(Boolean) : null,
           specialInstructions: [shape ? `Shape: ${SHAPES.find(s => s.id === shape)?.name}` : null, patchIdea ? `Patch Idea: ${patchIdea}` : null, specialInstructions || null].filter(Boolean).join(' | ') || null,
           paymentMethod: paymentMethod // Pass payment method to backend
@@ -461,13 +435,13 @@ export default function ComplexCalculator({
         window.location.href = data.url;
       } else {
         setCheckoutLoading(false);
-        alert("Payment Error: " + data.error);
+        setCheckoutError("Payment Error: " + data.error);
       }
 
     } catch (err) {
       setCheckoutLoading(false);
       console.error(err);
-      alert("Something went wrong.");
+      setCheckoutError("Something went wrong. Please try again.");
     }
   };
 
@@ -490,7 +464,7 @@ export default function ComplexCalculator({
   const handleDec = (setter: any, val: number) => val > 0.5 && setter(val - 0.5);
 
   return (
-    <div className="w-full bg-white text-left font-sans">
+    <div ref={calcRef} className="w-full bg-white text-left font-sans">
 
       {/* TRUST BADGES */}
       <div className="mb-4 pb-4 border-b border-gray-200">
@@ -769,6 +743,13 @@ export default function ComplexCalculator({
                 </div>
               </div>
 
+              {/* Selected size confirmation */}
+              {(parseFloat(widthInput) > 0 && parseFloat(heightInput) > 0) && (
+                <p className="mt-2 text-[13px] font-bold text-gray-700">
+                  {`📐 Selected Size: ${widthInput}" × ${heightInput}"`}
+                </p>
+              )}
+
               {/* Unsure of size nudge */}
               <button
                 type="button"
@@ -820,43 +801,63 @@ export default function ComplexCalculator({
                 </label>
                 <span className="text-[11px] font-semibold text-gray-400 normal-case">Optional — we design for free</span>
               </div>
-              <input
-                type="file"
-                id="artwork-upload"
-                accept=".jpg,.jpeg,.png,.pdf,.ai,.eps"
-                onChange={handleFileUpload}
-                className="hidden"
-              />
-              <label
-                htmlFor="artwork-upload"
-                className="
-                  border-2 border-dashed border-panda-dark bg-panda-yellow/20
-                  rounded-[14px] h-[80px]
-                  flex items-center justify-center gap-3
-                  cursor-pointer hover:bg-panda-yellow/30 hover:border-black transition-all group
-                  block px-4
-                "
-              >
-                {uploading ? (
-                  <>
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600 flex-shrink-0"></div>
-                    <span className="text-sm font-bold text-blue-600">Uploading...</span>
-                  </>
-                ) : fileName ? (
-                  <>
-                    <Check size={20} className="text-green-700 flex-shrink-0" />
-                    <span className="text-sm font-bold text-green-700 truncate">{fileName}</span>
-                  </>
-                ) : (
-                  <>
-                    <UploadCloud size={22} className="text-panda-dark group-hover:text-black flex-shrink-0" />
-                    <div>
-                      <p className="text-sm font-black text-panda-dark group-hover:text-black leading-tight">Click to Upload Artwork</p>
-                      <p className="text-[11px] text-gray-500 font-medium mt-0.5">JPG, PNG, AI, EPS, PDF · No file? We design free!</p>
+              {/* Uploaded files list */}
+              {files.length > 0 && (
+                <div className="space-y-2 mb-2">
+                  {files.map((f, i) => (
+                    <div key={i} className="flex items-center gap-3 px-4 py-3 bg-green-50 border-2 border-green-400 rounded-[12px]">
+                      <Check size={16} className="text-green-600 flex-shrink-0" strokeWidth={3} />
+                      <span className="text-sm font-bold text-green-700 truncate flex-1">{f.name}</span>
+                      <button
+                        type="button"
+                        onClick={() => removeFile(i)}
+                        className="flex-shrink-0 w-6 h-6 rounded-full bg-red-100 hover:bg-red-200 text-red-600 flex items-center justify-center transition-colors font-black text-xs"
+                        aria-label="Remove file"
+                      >✕</button>
                     </div>
-                  </>
-                )}
-              </label>
+                  ))}
+                </div>
+              )}
+
+              {/* Upload zone — hide when 2 files uploaded */}
+              {files.length < 2 && (
+                <>
+                  <input
+                    type="file"
+                    id="artwork-upload"
+                    accept=".jpg,.jpeg,.png,.pdf,.ai,.eps"
+                    onChange={handleFileUpload}
+                    className="hidden"
+                  />
+                  <label
+                    htmlFor="artwork-upload"
+                    className="
+                      border-2 border-dashed border-panda-dark bg-panda-yellow/20
+                      rounded-[14px] h-[80px]
+                      flex items-center justify-center gap-3
+                      cursor-pointer hover:bg-panda-yellow/30 hover:border-black transition-all group
+                      block px-4
+                    "
+                  >
+                    {uploading ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600 flex-shrink-0"></div>
+                        <span className="text-sm font-bold text-blue-600">Uploading...</span>
+                      </>
+                    ) : (
+                      <>
+                        <UploadCloud size={22} className="text-panda-dark group-hover:text-black flex-shrink-0" />
+                        <div>
+                          <p className="text-sm font-black text-panda-dark group-hover:text-black leading-tight">
+                            {files.length === 1 ? 'Add a 2nd file (optional)' : 'Click to Upload Artwork'}
+                          </p>
+                          <p className="text-[11px] text-gray-500 font-medium mt-0.5">JPG, PNG, AI, EPS, PDF · No file? We design free!</p>
+                        </div>
+                      </>
+                    )}
+                  </label>
+                </>
+              )}
 
               {/* Describe Patch Idea */}
               <button
@@ -897,23 +898,31 @@ export default function ComplexCalculator({
               </label>
               <div className="space-y-3">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <input
-                    type="text"
-                    placeholder="Full Name *"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full h-[52px] border-2 border-gray-300 rounded-[12px] px-4 font-bold text-base text-black outline-none focus:border-black transition-all"
-                    required
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email Address *"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full h-[52px] border-2 border-gray-300 rounded-[12px] px-4 font-bold text-base text-black outline-none focus:border-black transition-all"
-                    required
-                  />
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Full Name *"
+                      value={name}
+                      onChange={(e) => { setName(e.target.value); setFieldErrors(p => ({ ...p, name: undefined })); }}
+                      className={`w-full h-[52px] border-2 rounded-[12px] px-4 font-bold text-base text-black outline-none focus:border-black transition-all ${fieldErrors.name ? 'border-red-400 bg-red-50' : 'border-gray-300'}`}
+                      autoComplete="name"
+                    />
+                    {fieldErrors.name && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {fieldErrors.name}</p>}
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      placeholder="Email Address *"
+                      value={email}
+                      onChange={(e) => { setEmail(e.target.value); setFieldErrors(p => ({ ...p, email: undefined })); }}
+                      className={`w-full h-[52px] border-2 rounded-[12px] px-4 font-bold text-base text-black outline-none focus:border-black transition-all ${fieldErrors.email ? 'border-red-400 bg-red-50' : 'border-gray-300'}`}
+                      autoComplete="email"
+                    />
+                    {fieldErrors.email && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {fieldErrors.email}</p>}
+                  </div>
                 </div>
+                {quoteError && <p className="text-red-500 text-[12px] mt-1 font-semibold">⚠ {quoteError}</p>}
+                {checkoutError && <p className="text-red-500 text-[12px] mt-1 font-semibold">⚠ {checkoutError}</p>}
               </div>
             </div>
 

@@ -92,19 +92,19 @@ function OfferPackCard({ pack, category, onSelect, isSelected }: {
   return (
     <div
       onClick={onSelect}
-      className={`relative cursor-pointer rounded-2xl border-2 p-5 flex flex-col gap-2 transition-all duration-200 bg-white hover:shadow-lg hover:-translate-y-0.5 ${isSelected ? 'border-[#051C05] shadow-xl' : 'border-gray-200 hover:border-gray-400'}`}
+      className={`relative cursor-pointer rounded-2xl border-2 p-3 md:p-5 flex flex-col gap-1.5 md:gap-2 transition-all duration-200 bg-white hover:shadow-lg hover:-translate-y-0.5 ${isSelected ? 'border-[#051C05] shadow-xl' : 'border-gray-200 hover:border-gray-400'}`}
     >
       {pack.badge && (
-        <span className={`absolute -top-2.5 left-4 text-[11px] font-bold px-3 py-0.5 rounded-full ${pack.badge === 'Best Value' ? 'bg-[#DFFF00] text-[#051C05]' : 'bg-[#051C05] text-[#DFFF00]'}`}>
+        <span className={`absolute -top-2.5 left-3 text-[10px] md:text-[11px] font-bold px-2 md:px-3 py-0.5 rounded-full ${pack.badge === 'Best Value' ? 'bg-[#DFFF00] text-[#051C05]' : 'bg-[#051C05] text-[#DFFF00]'}`}>
           {pack.badge}
         </span>
       )}
-      <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">{pack.name}</div>
-      <div className="text-2xl font-black text-[#051C05]">${pack.price.toLocaleString()}</div>
-      <div className="text-sm text-gray-500">{pack.qty} patches</div>
-      <div className="text-sm font-bold text-green-700">${pack.perPiece.toFixed(2)}/pc</div>
+      <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">{pack.name}</div>
+      <div className="text-lg md:text-2xl font-black text-[#051C05]">${pack.price.toLocaleString('en-US')}</div>
+      <div className="text-xs md:text-sm text-gray-500">{pack.qty} patches</div>
+      <div className="text-xs md:text-sm font-bold text-green-700">${pack.perPiece.toFixed(2)}/pc</div>
       <button
-        className={`mt-2 w-full py-2.5 rounded-xl font-bold text-sm transition-all ${isSelected ? 'bg-[#051C05] text-[#DFFF00]' : 'bg-[#DFFF00] text-[#051C05] hover:bg-[#d4f000]'}`}
+        className={`mt-1 md:mt-2 w-full py-2 md:py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all ${isSelected ? 'bg-[#051C05] text-[#DFFF00]' : 'bg-[#DFFF00] text-[#051C05] hover:bg-[#d4f000]'}`}
       >
         {isSelected ? 'Selected' : 'Order Now'}
       </button>
@@ -343,20 +343,20 @@ function Step4({ formData, setFormData, onNext, onBack }: {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="sm:col-span-2">
             <label className="block text-xs font-bold text-gray-600 mb-1">Full Name *</label>
-            <input value={formData.name} onChange={e => upd('name', e.target.value)} className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="Jane Smith" />
+            <input value={formData.name} onChange={e => upd('name', e.target.value)} autoComplete="name" className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="Jane Smith" />
           </div>
           <div>
             <label className="block text-xs font-bold text-gray-600 mb-1">Email Address *</label>
-            <input type="email" value={formData.email} onChange={e => upd('email', e.target.value)} className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="jane@example.com" />
+            <input type="email" value={formData.email} onChange={e => upd('email', e.target.value)} autoComplete="email" className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="jane@example.com" />
             <p className="text-xs text-gray-400 mt-1">We&apos;ll send your mockup here</p>
           </div>
           <div>
             <label className="block text-xs font-bold text-gray-600 mb-1">Phone Number *</label>
-            <input type="tel" value={formData.phone} onChange={e => upd('phone', e.target.value)} className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="(555) 123-4567" />
+            <input type="tel" value={formData.phone} onChange={e => upd('phone', e.target.value)} autoComplete="tel" className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="(555) 123-4567" />
           </div>
           <div className="sm:col-span-2">
             <label className="block text-xs font-bold text-gray-600 mb-1">Company Name <span className="font-normal text-gray-400">(optional)</span></label>
-            <input value={formData.company} onChange={e => upd('company', e.target.value)} className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="Acme Corp" />
+            <input value={formData.company} onChange={e => upd('company', e.target.value)} autoComplete="organization" className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="Acme Corp" />
           </div>
         </div>
         <div className="p-3 bg-blue-50 border border-blue-200 rounded-xl text-xs text-blue-700">
@@ -370,26 +370,26 @@ function Step4({ formData, setFormData, onNext, onBack }: {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="sm:col-span-2">
             <label className="block text-xs font-bold text-gray-600 mb-1">Street Address *</label>
-            <input value={formData.street} onChange={e => upd('street', e.target.value)} className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="123 Main St" />
+            <input value={formData.street} onChange={e => upd('street', e.target.value)} autoComplete="street-address" className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="123 Main St" />
           </div>
           <div className="sm:col-span-2">
             <label className="block text-xs font-bold text-gray-600 mb-1">Apt / Suite <span className="font-normal text-gray-400">(optional)</span></label>
-            <input value={formData.apt} onChange={e => upd('apt', e.target.value)} className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="Suite 200" />
+            <input value={formData.apt} onChange={e => upd('apt', e.target.value)} autoComplete="address-line2" className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="Suite 200" />
           </div>
           <div>
             <label className="block text-xs font-bold text-gray-600 mb-1">City *</label>
-            <input value={formData.city} onChange={e => upd('city', e.target.value)} className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="New York" />
+            <input value={formData.city} onChange={e => upd('city', e.target.value)} autoComplete="address-level2" className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="New York" />
           </div>
           <div>
             <label className="block text-xs font-bold text-gray-600 mb-1">State *</label>
-            <select value={formData.state} onChange={e => upd('state', e.target.value)} className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white">
+            <select value={formData.state} onChange={e => upd('state', e.target.value)} autoComplete="address-level1" className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white">
               <option value="">Select State</option>
               {US_STATES.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
           </div>
           <div>
             <label className="block text-xs font-bold text-gray-600 mb-1">ZIP Code *</label>
-            <input value={formData.zip} onChange={e => upd('zip', e.target.value)} maxLength={5} className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="10001" />
+            <input value={formData.zip} onChange={e => upd('zip', e.target.value)} maxLength={5} autoComplete="postal-code" className="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#051C05] bg-white" placeholder="10001" />
             {formData.zip.length > 0 && !isZipValid && <p className="text-xs text-red-500 mt-1">Please enter a 5-digit ZIP code</p>}
           </div>
         </div>
@@ -638,15 +638,16 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
 
         {/* Stats strip — fused to bottom of hero */}
         <div className="relative z-10 border-t border-white/20">
-          <div className="grid grid-cols-2 sm:grid-cols-5 divide-x divide-white/20">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-px bg-white/10">
             {[
               { stat: '1M+', label: 'Patches Delivered' },
               { stat: '4.8★', label: 'Trustpilot Rating' },
               { stat: '24h', label: 'Free Mockup' },
               { stat: '∞', label: 'Free Revisions' },
               { stat: '100%', label: 'Money-Back Guarantee' },
+              { stat: 'A+', label: 'Top Notch Quality' },
             ].map(item => (
-              <div key={item.label} className="flex flex-col items-center justify-center py-5 px-4 bg-[#051C05]/80 backdrop-blur-sm">
+              <div key={item.label} className="flex flex-col items-center justify-center py-5 px-3 bg-[#051C05]/80 backdrop-blur-sm">
                 <span className="text-xl sm:text-2xl font-black text-[#DFFF00] tracking-tight">{item.stat}</span>
                 <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mt-1 text-center leading-tight">{item.label}</span>
               </div>
@@ -680,12 +681,12 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
                   {/* Product image */}
                   {imgSrc && (
                     <div className="w-full md:w-56 shrink-0">
-                      <div className="relative w-full md:w-56 h-56 rounded-2xl overflow-hidden bg-gray-100 shadow-sm">
+                      <div className="relative w-full md:w-56 h-56 rounded-2xl overflow-hidden bg-gray-50 shadow-sm">
                         <Image
                           src={imgSrc}
                           alt={`${cat.type} sample`}
                           fill
-                          className="object-cover"
+                          className="object-contain"
                           sizes="(max-width: 768px) 100vw, 224px"
                         />
                       </div>
@@ -693,7 +694,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
                   )}
 
                   {/* Pricing cards */}
-                  <div className={`grid grid-cols-2 ${cat.packs.length >= 4 ? 'lg:grid-cols-4' : 'sm:grid-cols-3'} gap-3 md:gap-4 flex-1 w-full`}>
+                  <div className={`grid gap-3 md:gap-4 flex-1 w-full ${cat.packs.length >= 4 ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-3'}`}>
                     {cat.packs.map(pack => (
                       <OfferPackCard
                         key={pack.name}

@@ -50,6 +50,36 @@ body {
   overflow-x: hidden;
 }
 
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #051C05; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #DFFF00, #3B7E00); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #e8ff33, #4a9e00); }
+html { scrollbar-width: thin; scrollbar-color: #DFFF00 #051C05; }
+
+/* Tawk.to bubble — prevent animation jank */
+#tawk-bubble-container,
+.tawk-bubble-container,
+[id^=tawk-bubble],
+.tawk-min-container {
+  transform: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+@media (max-width: 768px) {
+  #tawk-bubble-container,
+  .tawk-bubble-container,
+  [id^=tawk-bubble],
+  .tawk-min-container,
+  iframe[title*=chat],
+  iframe[src*="tawk.to"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
+
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none;

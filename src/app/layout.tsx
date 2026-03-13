@@ -13,7 +13,7 @@ const CallNowPopup = dynamic(() => import("@/components/CallNowPopup"), { ssr: f
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
-  weight: ["400", "600", "700", "800", "900"],
+  weight: ["500", "600", "700", "900"],
   display: "swap",
 });
 
@@ -72,13 +72,27 @@ export default function RootLayout({
          {/* Preconnect + DNS prefetch to Sanity image CDN — reduces LCP hero image latency */}
          <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
          <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-         {/* Preload the actual Next.js optimized LCP hero image URL (mobile w=420, desktop w=750) */}
+         {/* Preconnect to GTM/GA so those requests don't block page */}
+         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+         {/* Mobile LCP hero — preload MOBILE image on small screens */}
          <link
            rel="preload"
            as="image"
            type="image/webp"
-           imageSrcSet="/_next/image?url=%2Fassets%2Fhero-product.webp&w=420&q=60 420w, /_next/image?url=%2Fassets%2Fhero-product.webp&w=750&q=60 750w"
-           imageSizes="(max-width: 768px) calc(100vw - 2rem), 630px"
+           href="/_next/image?url=%2Fassets%2Fhero-product-mobile.webp&w=828&q=75"
+           imageSrcSet="/_next/image?url=%2Fassets%2Fhero-product-mobile.webp&w=640&q=75 640w, /_next/image?url=%2Fassets%2Fhero-product-mobile.webp&w=828&q=75 828w, /_next/image?url=%2Fassets%2Fhero-product-mobile.webp&w=1080&q=75 1080w"
+           imageSizes="100vw"
+           media="(max-width: 767px)"
+         />
+         {/* Desktop LCP hero — preload DESKTOP image on large screens */}
+         <link
+           rel="preload"
+           as="image"
+           type="image/webp"
+           href="/_next/image?url=%2Fassets%2Fhero-product.webp&w=750&q=60"
+           imageSrcSet="/_next/image?url=%2Fassets%2Fhero-product.webp&w=640&q=60 640w, /_next/image?url=%2Fassets%2Fhero-product.webp&w=750&q=60 750w, /_next/image?url=%2Fassets%2Fhero-product.webp&w=1080&q=60 1080w"
+           imageSizes="630px"
+           media="(min-width: 768px)"
          />
        </head>
       <body className={`${outfit.variable} font-sans antialiased`}>
@@ -111,11 +125,7 @@ export default function RootLayout({
             Uses requestIdleCallback where available so scripts load during browser idle time,
             reducing main-thread contention and TBT. */}
         <Script id="staggered-loader" strategy="lazyOnload">
-          {`(function(){var s=document.createElement('style');s.textContent='\\
-::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#051C05}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#DFFF00,#3B7E00);border-radius:10px}::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#e8ff33,#4a9e00)}html{scrollbar-width:thin;scrollbar-color:#DFFF00 #051C05}\\
-#tawk-bubble-container,.tawk-bubble-container,[id^=tawk-bubble],.tawk-min-container{transform:none!important;transition:none!important;will-change:auto!important}\\
-@media(max-width:768px){#tawk-bubble-container,.tawk-bubble-container,[id^=tawk-bubble],.tawk-min-container,iframe[title*=chat],iframe[src*="tawk.to"]{display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}}';document.head.appendChild(s)})();
-window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 var ric=window.requestIdleCallback||function(cb){setTimeout(cb,1)};
 function loadScript(src,cb){var s=document.createElement('script');s.async=true;s.src=src;if(cb)s.onload=cb;document.head.appendChild(s);}
 setTimeout(function(){ric(function(){

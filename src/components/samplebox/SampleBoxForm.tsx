@@ -5,7 +5,7 @@ import { useState } from "react";
 import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
 
 export default function SampleBoxForm() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -58,7 +58,7 @@ export default function SampleBoxForm() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
         {errorMessage && (
           <div className="p-4 rounded-lg text-sm font-semibold bg-red-100 text-red-800 border border-red-300">
             {errorMessage}
@@ -67,29 +67,38 @@ export default function SampleBoxForm() {
 
         {/* Row 1: Full Name & Email */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input
-            {...register("fullName", { required: true })}
-            placeholder="Full Name"
-            className="form-input"
-            required
-          />
-          <input
-            {...register("email", { required: true })}
-            placeholder="Email Address"
-            type="email"
-            className="form-input"
-            required
-          />
+          <div>
+            <input
+              {...register("fullName", { required: "Full name is required" })}
+              placeholder="Full Name *"
+              className={`form-input ${errors.fullName ? 'border-red-400 bg-red-50' : ''}`}
+              autoComplete="name"
+            />
+            {errors.fullName && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.fullName.message)}</p>}
+          </div>
+          <div>
+            <input
+              {...register("email", { required: "Email is required" })}
+              placeholder="Email Address *"
+              type="email"
+              className={`form-input ${errors.email ? 'border-red-400 bg-red-50' : ''}`}
+              autoComplete="email"
+            />
+            {errors.email && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
+          </div>
         </div>
 
         {/* Row 2: Contact Number */}
-        <input
-          {...register("contactNumber", { required: true })}
-          placeholder="Contact Number"
-          type="tel"
-          className="form-input"
-          required
-        />
+        <div>
+          <input
+            {...register("contactNumber", { required: "Contact number is required" })}
+            placeholder="Contact Number *"
+            type="tel"
+            className={`form-input ${errors.contactNumber ? 'border-red-400 bg-red-50' : ''}`}
+            autoComplete="tel"
+          />
+          {errors.contactNumber && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.contactNumber.message)}</p>}
+        </div>
 
         {/* Shipping Address */}
         <textarea

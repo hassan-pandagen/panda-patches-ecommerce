@@ -23,12 +23,12 @@ export default function CallNowPopup() {
     const mobile = window.innerWidth < 768;
     setIsMobile(mobile);
 
+    if (mobile) return;
     if (sessionStorage.getItem('callPopupDismissed')) return;
 
-    const delay = mobile ? MOBILE_DELAY_MS : DESKTOP_DELAY_MS;
     const timer = setTimeout(() => {
       setVisible(true);
-    }, delay);
+    }, DESKTOP_DELAY_MS);
 
     return () => clearTimeout(timer);
   }, []);

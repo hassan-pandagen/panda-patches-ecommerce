@@ -237,6 +237,21 @@ export async function POST(req: Request) {
           break;
         }
 
+        // Sample box — update status to paid and send emails
+        if (meta.orderType === 'sample_box') {
+          const { error: sbErr } = await supabase
+            .from('sample_box_orders')
+            .update({ status: 'paid' })
+            .eq('stripe_session_id', session.id);
+
+          if (sbErr) console.error('Sample box status update error:', sbErr);
+
+          sendOrderEmails(meta, amountPaid, session.id).catch(e =>
+            console.error('Sample box email error:', e)
+          );
+          break;
+        }
+
         // Only create order if it came through our website checkout (has customer metadata)
         if (!meta.customer_name || !meta.customer_email) {
           break;

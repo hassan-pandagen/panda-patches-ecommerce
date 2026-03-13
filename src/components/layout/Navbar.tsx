@@ -265,6 +265,19 @@ export default function Navbar() {
                       />
                     </button>
                   </div>
+                ) : (link as any).highlight ? (
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    suppressHydrationWarning
+                    className="flex items-center justify-between py-4 px-3 hover:bg-orange-50 transition-colors"
+                  >
+                    <span className="flex items-center gap-2 text-[15px] font-black text-orange-500 uppercase tracking-wide">
+                      <span aria-hidden="true">🔥</span>
+                      {link.name}
+                    </span>
+                    <span className="text-[10px] font-black bg-orange-500 text-white px-2 py-0.5 rounded-full animate-pulse">HOT</span>
+                  </Link>
                 ) : (
                   <Link
                     href={link.href}

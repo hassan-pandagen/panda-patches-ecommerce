@@ -6,23 +6,22 @@ import { useState, useRef } from "react";
 import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
 
 export default function BulkQuoteForm() {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const partialSaved = useRef(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
-  // Artwork upload state (upload immediately on select)
-  const [uploadedFileName, setUploadedFileName] = useState("");
-  const [uploadedFileUrl, setUploadedFileUrl] = useState("");
+  // Artwork upload state — up to 2 files
+  const [uploadedFiles, setUploadedFiles] = useState<{name: string; url: string}[]>([]);
   const [uploading, setUploading] = useState(false);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    if (uploadedFiles.length >= 2) return;
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) return;
 
     setUploading(true);
-    setUploadedFileName(file.name);
 
     try {
       const { createClient } = await import("@supabase/supabase-js");
@@ -44,17 +43,20 @@ export default function BulkQuoteForm() {
         const { data: publicUrlData } = supabase.storage
           .from("order-attachments")
           .getPublicUrl(fileName);
-        setUploadedFileUrl(publicUrlData?.publicUrl || "");
+        setUploadedFiles(prev => [...prev, { name: file.name, url: publicUrlData?.publicUrl || "" }]);
       } else {
         console.error("Artwork upload failed:", uploadError);
-        setUploadedFileName("");
       }
     } catch (uploadErr) {
       console.error("Artwork upload exception:", uploadErr);
-      setUploadedFileName("");
     } finally {
       setUploading(false);
+      e.target.value = "";
     }
+  };
+
+  const removeUploadedFile = (index: number) => {
+    setUploadedFiles(prev => prev.filter((_, i) => i !== index));
   };
 
   const handleEmailBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -87,15 +89,16 @@ export default function BulkQuoteForm() {
           },
           details: {
             quantity: parseInt(data.quantityRange?.split("-")[0] || "100"),
-            width: 3,
-            height: 3,
+            width: parseFloat(data.size?.toLowerCase().split(/\s*x\s*/i)[0]) || 3,
+            height: parseFloat(data.size?.toLowerCase().split(/\s*x\s*/i)[1]) || 3,
             backing: sanitizeString(data.backing || "iron"),
             instructions: sanitizeString(
               `[BULK ORDER] Company: ${data.company || "N/A"} | Qty Range: ${data.quantityRange || "N/A"} | Patch Type: ${data.patchType || "N/A"} | Size: ${data.size || "N/A"} | Needed By: ${data.neededBy || "N/A"} | Budget: ${data.budget || "N/A"} | Notes: ${data.notes || "None"}`
             ),
             patchType: sanitizeString(data.patchType || ""),
           },
-          artworkUrl: uploadedFileUrl || null,
+          artworkUrl: uploadedFiles[0]?.url || null,
+          artworkUrl2: uploadedFiles[1]?.url || null,
           isBulkOrder: true,
           pageUrl: window.location.href,
         }),
@@ -110,8 +113,7 @@ export default function BulkQuoteForm() {
       }
 
       setMessage({ type: "success", text: "Quote submitted! We'll respond within 2 business hours with your free mockup." });
-      setUploadedFileName("");
-      setUploadedFileUrl("");
+      setUploadedFiles([]);
       reset();
 
       // Fire Google Ads quote form conversion
@@ -171,7 +173,7 @@ export default function BulkQuoteForm() {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3" noValidate>
 
         {/* Error */}
         {message?.type === "error" && (
@@ -182,34 +184,45 @@ export default function BulkQuoteForm() {
 
         {/* Row 1: Name + Company */}
         <div className="grid grid-cols-2 gap-2.5">
-          <input
-            {...register("name", { required: true })}
-            placeholder="Your Name *"
-            className="bulk-field"
-            required
-          />
+          <div>
+            <input
+              {...register("name", { required: "Name is required" })}
+              placeholder="Your Name *"
+              className={`bulk-field ${errors.name ? 'border-red-400 bg-red-50' : ''}`}
+              autoComplete="name"
+            />
+            {errors.name && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.name.message)}</p>}
+          </div>
           <input
             {...register("company")}
             placeholder="Company Name"
             className="bulk-field"
+            autoComplete="organization"
           />
         </div>
 
         {/* Row 2: Email + Phone */}
         <div className="grid grid-cols-2 gap-2.5">
-          <input
-            {...register("email", { required: true })}
-            type="email"
-            placeholder="Email Address *"
-            className="bulk-field"
-            required
-            onBlur={handleEmailBlur}
-          />
-          <input
-            {...register("phone")}
-            placeholder="Phone Number"
-            className="bulk-field"
-          />
+          <div>
+            <input
+              {...register("email", { required: "Email is required" })}
+              type="email"
+              placeholder="Email Address *"
+              className={`bulk-field ${errors.email ? 'border-red-400 bg-red-50' : ''}`}
+              autoComplete="email"
+              onBlur={handleEmailBlur}
+            />
+            {errors.email && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
+          </div>
+          <div>
+            <input
+              {...register("phone", { required: "Phone is required" })}
+              placeholder="Phone Number *"
+              className={`bulk-field ${errors.phone ? 'border-red-400 bg-red-50' : ''}`}
+              autoComplete="tel"
+            />
+            {errors.phone && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.phone.message)}</p>}
+          </div>
         </div>
 
         {/* Row 3: Patch Type + Quantity */}
@@ -233,8 +246,8 @@ export default function BulkQuoteForm() {
           </div>
 
           <div className="relative">
-            <select {...register("quantityRange")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
-              <option value="" disabled>Quantity Range</option>
+            <select {...register("quantityRange")} defaultValue="" className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
+              <option value="" disabled hidden>Quantity Range</option>
               <option value="50-99">50 - 99 pieces</option>
               <option value="100-299">100 - 299 pieces</option>
               <option value="300-499">300 - 499 pieces</option>
@@ -248,15 +261,18 @@ export default function BulkQuoteForm() {
 
         {/* Row 4: Size + Backing */}
         <div className="grid grid-cols-2 gap-2.5">
-          <input
-            {...register("size")}
-            placeholder="Size (e.g. 4 x 3 inches)"
-            className="bulk-field"
-          />
+          <div>
+            <input
+              {...register("size", { required: "Size is required" })}
+              placeholder="Size (e.g. 4 x 3 inches) *"
+              className={`bulk-field ${errors.size ? 'border-red-400 bg-red-50' : ''}`}
+            />
+            {errors.size && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.size.message)}</p>}
+          </div>
 
           <div className="relative">
-            <select {...register("backing")} className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
-              <option value="" disabled>Backing Type</option>
+            <select {...register("backing")} defaultValue="" className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
+              <option value="" disabled hidden>Backing Type</option>
               <option value="iron">Iron-On</option>
               <option value="velcro">Velcro (Hook & Loop)</option>
               <option value="sew">Sew-On</option>
@@ -294,40 +310,57 @@ export default function BulkQuoteForm() {
           className="bulk-field h-[80px] resize-none pt-3"
         />
 
-        {/* File Upload - immediate upload + visual feedback */}
-        <label htmlFor="bulk-file-upload" className="
-          border-2 border-dashed border-gray-200
-          rounded-[10px] h-[70px]
-          flex items-center justify-center gap-3
-          bg-[#F9FAF5]/50 hover:bg-white hover:border-panda-green/40
-          transition-all duration-300 cursor-pointer group px-4
-        ">
-          {uploading ? (
-            <>
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-panda-green flex-shrink-0" />
-              <p className="text-[12px] text-gray-500 font-bold">Uploading...</p>
-            </>
-          ) : uploadedFileName ? (
-            <>
-              <Check className="text-panda-green flex-shrink-0" size={18} />
-              <p className="text-[12px] text-panda-green font-bold truncate">{uploadedFileName}</p>
-            </>
-          ) : (
-            <>
-              <UploadCloud className="text-gray-400 group-hover:text-panda-green transition-colors flex-shrink-0" size={20} />
-              <p className="text-[12px] text-gray-500 font-bold">
-                Upload artwork <span className="text-gray-400 font-medium">(AI, EPS, PDF, PNG, JPG)</span>
-              </p>
-            </>
-          )}
-          <input
-            id="bulk-file-upload"
-            type="file"
-            className="hidden"
-            accept="image/*,.pdf,.ai,.eps,.svg"
-            onChange={handleFileChange}
-          />
-        </label>
+        {/* File Upload — up to 2 files with delete */}
+        {uploadedFiles.length > 0 && (
+          <div className="space-y-2">
+            {uploadedFiles.map((f, i) => (
+              <div key={i} className="flex items-center gap-3 px-3 py-2.5 bg-green-50 border border-green-300 rounded-[10px]">
+                <Check className="text-green-600 flex-shrink-0" size={15} strokeWidth={3} />
+                <span className="text-[12px] text-green-700 font-bold truncate flex-1">{f.name}</span>
+                <button
+                  type="button"
+                  onClick={() => removeUploadedFile(i)}
+                  className="flex-shrink-0 w-5 h-5 rounded-full bg-red-100 hover:bg-red-200 text-red-600 flex items-center justify-center transition-colors font-black text-[10px]"
+                  aria-label="Remove file"
+                >✕</button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {uploadedFiles.length < 2 && (
+          <label htmlFor="bulk-file-upload" className="
+            border-2 border-dashed border-gray-200
+            rounded-[10px] h-[62px]
+            flex items-center justify-center gap-3
+            bg-[#F9FAF5]/50 hover:bg-white hover:border-panda-green/40
+            transition-all duration-300 cursor-pointer group px-4
+          ">
+            {uploading ? (
+              <>
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-panda-green flex-shrink-0" />
+                <p className="text-[12px] text-gray-500 font-bold">Uploading...</p>
+              </>
+            ) : (
+              <>
+                <UploadCloud className="text-gray-400 group-hover:text-panda-green transition-colors flex-shrink-0" size={20} />
+                <p className="text-[12px] text-gray-500 font-bold">
+                  {uploadedFiles.length === 1
+                    ? 'Add a 2nd file (optional)'
+                    : <><span>Upload artwork </span><span className="text-gray-400 font-medium">(AI, EPS, PDF, PNG, JPG)</span></>
+                  }
+                </p>
+              </>
+            )}
+            <input
+              id="bulk-file-upload"
+              type="file"
+              className="hidden"
+              accept="image/*,.pdf,.ai,.eps,.svg"
+              onChange={handleFileChange}
+            />
+          </label>
+        )}
 
         {/* Submit */}
         <button
