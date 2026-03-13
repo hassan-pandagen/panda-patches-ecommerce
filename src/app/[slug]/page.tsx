@@ -17,14 +17,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   // Location page metadata
   if (data.location) {
     const locationName = data.location.locationName;
-    const hasContent = !!(data.location.seoSection1?.length || data.location.seoSection2?.length);
     const ogImage = await getSanityOgImage();
     return {
       title: `Custom Patches in ${locationName} | Panda Patches`,
       description: `Order custom embroidered patches in ${locationName}. Low minimums, free mockups, fast 7-14 day turnaround. Get a free quote today!`,
       alternates: { canonical: `https://pandapatches.com/${params.slug}` },
-      // Noindex thin pages until unique content is added in Sanity
-      ...(!hasContent && { robots: { index: false, follow: false } }),
+      robots: { index: true, follow: true },
       openGraph: {
         title: `Custom Patches in ${locationName} | Panda Patches`,
         description: `Custom patches delivered anywhere in ${locationName}. Low minimums, free design, fast shipping.`,
@@ -74,8 +72,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       : data.blog.image
         ? urlFor(data.blog.image).url()
         : 'https://pandapatches.com/assets/og-image.png';
-    const blogTitle = `${data.blog.title} | Panda Patches Blog`;
-    const blogDesc = data.blog.excerpt || data.blog.description || 'Custom patch tips, tutorials, and industry insights from Panda Patches.';
+    const blogTitle = data.blog.metaTitle
+      ? `${data.blog.metaTitle} | Panda Patches`
+      : `${data.blog.title} | Panda Patches Blog`;
+    const blogDesc = data.blog.metaDescription || data.blog.excerpt || data.blog.description || 'Custom patch tips, tutorials, and industry insights from Panda Patches.';
     return {
       title: blogTitle,
       description: blogDesc,
@@ -157,8 +157,8 @@ export default async function CatchAllPage({ params }: { params: { slug: string 
     const articleSchema = generateArticleSchema({
       title: data.blog.title || "Blog Post",
       description: data.blog.description || data.blog.excerpt || "Read our latest blog post about custom patches.",
-      datePublished: data.blog._createdAt || new Date().toISOString(),
-      dateModified: data.blog._updatedAt || data.blog._createdAt || new Date().toISOString(),
+      datePublished: data.blog.publishedAt || data.blog._createdAt || new Date().toISOString(),
+      dateModified: data.blog._updatedAt || data.blog.publishedAt || data.blog._createdAt || new Date().toISOString(),
       image: data.blog.mainImage
         ? urlFor(data.blog.mainImage).url()
         : data.blog.image

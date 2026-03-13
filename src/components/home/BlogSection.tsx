@@ -5,12 +5,13 @@ import BlogSwiper from "./BlogSwiper";
 
 async function getBlogs() {
    // Fetch all blogs with only needed fields
-   const query = `*[_type == "blog"] | order(_createdAt desc) {
+   const query = `*[_type == "blog"] | order(coalesce(publishedAt, _createdAt) desc) {
      _id,
      title,
      excerpt,
      "slug": slug.current,
      image,
+     publishedAt,
      _createdAt
    }`;
    const data = await client.fetch(query, {}, { next: { revalidate: 3600 } });

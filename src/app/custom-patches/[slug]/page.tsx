@@ -115,7 +115,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     openGraph: {
       title: product.title,
       description: description.substring(0, 160),
-      images: [{ url: imageUrl }],
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: `${product.title} | Panda Patches` }],
       type: 'website',
       url: `https://pandapatches.com/custom-patches/${params.slug}`,
     },

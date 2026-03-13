@@ -18,15 +18,16 @@ function getReadingTime(content: any[]): number {
 
 export default function BlogPostLayout({ post, slug }: { post: any; slug?: string }) {
   const readingTime = getReadingTime(post.content);
-  const publishDate = post._createdAt
-    ? new Date(post._createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  const dateSource = post.publishedAt || post._createdAt;
+  const publishDate = dateSource
+    ? new Date(dateSource).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
     : null;
 
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
       
-      <article className="max-w-[800px] mx-auto py-24 px-6">
+      <article className="max-w-[800px] mx-auto pt-24 pb-12 px-6">
 
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="mb-8">
@@ -60,8 +61,18 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
 
         {/* Author Byline (before content) */}
         <div className="flex items-center gap-3 mb-10 pb-8 border-b border-gray-100">
-          <div className="w-10 h-10 rounded-full bg-panda-dark flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-black text-sm">IR</span>
+          <div className="w-10 h-10 rounded-full bg-panda-dark flex items-center justify-center flex-shrink-0 overflow-hidden">
+            {post.authorPhoto ? (
+              <Image
+                src={urlFor(post.authorPhoto).width(80).height(80).format('webp').quality(85).url()}
+                alt="Imran Raza"
+                width={40}
+                height={40}
+                className="object-cover w-full h-full"
+              />
+            ) : (
+              <span className="text-white font-black text-sm">IR</span>
+            )}
           </div>
           <div>
             <a
@@ -74,7 +85,7 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
             </a>
             <p className="text-[13px] text-gray-500">
               Founder & CEO · 13 years in patch manufacturing
-              {publishDate && <> · <time dateTime={post._createdAt}>{publishDate}</time></>}
+              {publishDate && <> · <time dateTime={dateSource}>{publishDate}</time></>}
               {` · ${readingTime} min read`}
             </p>
           </div>
@@ -139,7 +150,29 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
                 // Bullet Lists
                 bullet: ({children}) => <ul className="list-disc pl-6 mb-8 space-y-2 text-[18px] text-gray-700">{children}</ul>,
                 number: ({children}) => <ol className="list-decimal pl-6 mb-8 space-y-2 text-[18px] text-gray-700">{children}</ol>,
-              }
+              },
+              types: {
+                image: ({value}: {value: any}) => {
+                  if (!value?.asset) return null;
+                  return (
+                    <figure className="my-10">
+                      <div className="relative w-full rounded-[16px] overflow-hidden">
+                        <Image
+                          src={urlFor(value).width(800).format('webp').quality(80).url()}
+                          alt={value.alt || ''}
+                          width={800}
+                          height={500}
+                          className="w-full h-auto object-cover"
+                          sizes="(max-width: 768px) 100vw, 800px"
+                        />
+                      </div>
+                      {value.caption && (
+                        <figcaption className="text-center text-sm text-gray-400 mt-3 italic">{value.caption}</figcaption>
+                      )}
+                    </figure>
+                  );
+                },
+              },
             }}
           />
         </div>
@@ -147,8 +180,18 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
         {/* Author Bio Card (bottom) */}
         <div className="mt-16 pt-10 border-t border-gray-100">
           <div className="bg-gray-50 rounded-2xl p-8 flex flex-col sm:flex-row items-start gap-6">
-            <div className="w-16 h-16 rounded-full bg-panda-dark flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-black text-2xl">IR</span>
+            <div className="w-16 h-16 rounded-full bg-panda-dark flex items-center justify-center flex-shrink-0 overflow-hidden">
+              {post.authorPhoto ? (
+                <Image
+                  src={urlFor(post.authorPhoto).width(128).height(128).format('webp').quality(85).url()}
+                  alt="Imran Raza - Founder of Panda Patches"
+                  width={64}
+                  height={64}
+                  className="object-cover w-full h-full"
+                />
+              ) : (
+                <span className="text-white font-black text-2xl">IR</span>
+              )}
             </div>
             <div>
               <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-1">Written by</p>

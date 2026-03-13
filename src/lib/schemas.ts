@@ -7,6 +7,8 @@
  * <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(generateOrganizationSchema())} />
  */
 
+import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT_STR, TRUSTPILOT_URL } from './reviewConstants';
+
 // ============================================
 // HELPER FUNCTION
 // ============================================
@@ -103,15 +105,20 @@ export function generateOrganizationSchema() {
       }
     ],
     "sameAs": [
-      "https://www.facebook.com/pandapatches",
-      "https://www.instagram.com/pandapatches",
-      "https://www.linkedin.com/company/pandapatches",
-      "https://www.trustpilot.com/review/pandapatches.com"
+      "https://www.facebook.com/pandapatchesofficial",
+      "https://www.instagram.com/pandapatchesofficial",
+      "https://www.linkedin.com/company/pandapatchesofficial",
+      "https://www.youtube.com/@PandaPatchesOfficial",
+      "https://www.tiktok.com/@pandapatchesofficial",
+      TRUSTPILOT_URL,
+      "https://www.provenexpert.com/en-us/panda-patches/",
+      "https://www.yelp.com/biz/panda-patches",
+      "https://maps.app.goo.gl/i5yZ6n2wUMJVAdUb7"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "57",
+      "ratingValue": TRUSTPILOT_RATING,
+      "reviewCount": TRUSTPILOT_REVIEW_COUNT_STR,
       "bestRating": "5",
       "worstRating": "1"
     },
@@ -367,12 +374,11 @@ export function generateProductSchema(params: ProductSchemaParams) {
     };
   }
 
-  // Add aggregate rating from Trustpilot
   if (includeReviews) {
     productSchema.aggregateRating = {
       "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "57",
+      "ratingValue": TRUSTPILOT_RATING,
+      "reviewCount": TRUSTPILOT_REVIEW_COUNT_STR,
       "bestRating": "5",
       "worstRating": "1"
     };
@@ -598,8 +604,10 @@ export function generateLocalBusinessSchema() {
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "57"
+      "ratingValue": TRUSTPILOT_RATING,
+      "reviewCount": TRUSTPILOT_REVIEW_COUNT_STR,
+      "bestRating": "5",
+      "worstRating": "1"
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -643,17 +651,14 @@ export function generateLocationBusinessSchema(locationName: string, pageSlug?: 
       "postalCode": "77489",
       "addressCountry": "US"
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 29.6188,
-      "longitude": -95.5354
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": locationName
     },
-    "areaServed": [
-      {
-        "@type": "State",
-        "name": locationName
-      }
-    ],
+    "serviceArea": {
+      "@type": "AdministrativeArea",
+      "name": locationName
+    },
     "founder": {
       "@type": "Person",
       "name": "Imran Raza",
@@ -661,8 +666,8 @@ export function generateLocationBusinessSchema(locationName: string, pageSlug?: 
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "57",
+      "ratingValue": TRUSTPILOT_RATING,
+      "reviewCount": TRUSTPILOT_REVIEW_COUNT_STR,
       "bestRating": "5",
       "worstRating": "1"
     }
@@ -776,6 +781,70 @@ export function generateServiceSchema() {
       "serviceUrl": "https://pandapatches.com/custom-patches",
       "servicePhone": "+1-302-250-4340"
     }
+  };
+}
+
+// ============================================
+// 13. VIDEO OBJECT SCHEMA (for homepage reels section)
+// ============================================
+
+interface VideoSchemaItem {
+  name: string;
+  description: string;
+  thumbnailUrl: string;
+  contentUrl: string;
+  uploadDate: string;
+  duration?: string;
+}
+
+export function generateVideoObjectSchema(videos: VideoSchemaItem[]) {
+  return videos.map((v) => ({
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": v.name,
+    "description": v.description,
+    "thumbnailUrl": v.thumbnailUrl,
+    "contentUrl": v.contentUrl,
+    "uploadDate": v.uploadDate,
+    "duration": v.duration || "PT0M30S",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Panda Patches",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://pandapatches.com/assets/logo-panda.svg",
+        "width": 200,
+        "height": 60
+      }
+    }
+  }));
+}
+
+// ============================================
+// 14. COLLECTION PAGE SCHEMA (for blog hub)
+// ============================================
+
+export function generateCollectionPageSchema(posts: { title: string; url: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Custom Patch Blog - Tips, Guides & Industry News",
+    "description": "Expert guides on custom patches, embroidery tips, design ideas, and industry trends from Panda Patches founder Imran Raza.",
+    "url": "https://pandapatches.com/blogs",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Panda Patches",
+      "url": "https://pandapatches.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://pandapatches.com/assets/logo-panda.svg"
+      }
+    },
+    "hasPart": posts.map((post) => ({
+      "@type": "BlogPosting",
+      "name": post.title,
+      "url": post.url
+    }))
   };
 }
 

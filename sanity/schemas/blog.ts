@@ -59,10 +59,58 @@ export default defineType({
       options: { layout: 'tags' },
     }),
     defineField({
+      name: 'publishedAt',
+      title: 'Published Date',
+      type: 'datetime',
+      description: 'The date this post was published. Used in byline, schema markup, and sort order.',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'metaTitle',
+      title: 'SEO Title (optional)',
+      type: 'string',
+      description: 'Overrides the browser tab title. Max 60 characters. Leave blank to use the blog title.',
+      validation: (rule) => rule.max(60),
+    }),
+    defineField({
+      name: 'metaDescription',
+      title: 'SEO Meta Description (optional)',
+      type: 'text',
+      rows: 2,
+      description: 'Overrides the Google snippet description. Max 160 characters. Leave blank to use the excerpt.',
+      validation: (rule) => rule.max(160),
+    }),
+    defineField({
+      name: 'authorPhoto',
+      title: 'Author Photo (Imran Raza)',
+      type: 'image',
+      description: 'Upload a headshot of Imran Raza. Displayed in the author byline and bio card. Recommended: 200x200px square.',
+      options: { hotspot: true },
+    }),
+    defineField({
       name: 'content',
       title: 'Full Content',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [
+        { type: 'block' },
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+              description: 'Describe the image for SEO and accessibility.',
+            },
+            {
+              name: 'caption',
+              title: 'Caption (optional)',
+              type: 'string',
+            },
+          ],
+        },
+      ],
     }),
   ],
 })

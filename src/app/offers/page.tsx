@@ -18,7 +18,13 @@ export const metadata: Metadata = {
     description: 'Fixed-price patch packages with free mockup, free US shipping, and money-back guarantee. Embroidered, woven, PVC, chenille, leather.',
     url: 'https://pandapatches.com/offers',
     type: 'website',
-    images: [{ url: 'https://pandapatches.com/assets/og-image.png', width: 1200, height: 630 }],
+    images: [{ url: 'https://pandapatches.com/assets/og-image.png', width: 1200, height: 630, alt: 'Custom patch packages at fixed prices — Panda Patches' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Custom Patch Packages — Fixed Prices | Panda Patches',
+    description: 'Fixed-price patch packages with free mockup, free US shipping, and money-back guarantee.',
+    images: ['https://pandapatches.com/assets/og-image.png'],
   },
 };
 
@@ -63,21 +69,25 @@ const faqSchema = {
   ],
 };
 
-// Product schemas for main offer categories
-const productSchemas = OFFER_CATEGORIES.slice(0, 4).map(cat => ({
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: `Custom ${cat.type} — ${cat.subtitle}`,
-  brand: { '@type': 'Brand', name: 'Panda Patches' },
-  offers: cat.packs.map(pack => ({
-    '@type': 'Offer',
-    name: `${pack.name} Pack — ${pack.qty} pieces`,
-    price: pack.price.toFixed(2),
-    priceCurrency: 'USD',
-    availability: 'https://schema.org/InStock',
-    seller: { '@type': 'Organization', name: 'Panda Patches' },
-  })),
-}));
+const shippingDetails = {
+  '@type': 'OfferShippingDetails',
+  shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'USD' },
+  shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' },
+  deliveryTime: {
+    '@type': 'ShippingDeliveryTime',
+    handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 2, unitCode: 'DAY' },
+    transitTime: { '@type': 'QuantitativeValue', minValue: 7, maxValue: 14, unitCode: 'DAY' },
+  },
+};
+
+const merchantReturnPolicy = {
+  '@type': 'MerchantReturnPolicy',
+  applicableCountry: 'US',
+  returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+  merchantReturnDays: 30,
+  returnMethod: 'https://schema.org/ReturnByMail',
+  returnFees: 'https://schema.org/FreeReturn',
+};
 
 const getCtaImage = cache(async (): Promise<string | null> => {
   try {
@@ -112,8 +122,38 @@ const getCategoryImages = cache(async (): Promise<Record<string, string>> => {
   }
 });
 
+const CATEGORY_DESCRIPTIONS: Record<string, string> = {
+  'woven-u4': 'Custom woven patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free US shipping, free mockup, and money-back guarantee.',
+  'embroidered-u4': 'Custom embroidered patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free US shipping, free mockup, and money-back guarantee.',
+  'embroidered-12in': 'Custom 12-inch embroidered patches across the chest. Fixed-price packs from 25 to 100 pieces with free US shipping and free mockup.',
+  'pvc-u4': 'Custom PVC patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free US shipping, free mockup, and money-back guarantee.',
+  'chenille-u4': 'Custom chenille patches under 4 inches. Fixed-price packs from 25 to 100 pieces with free US shipping and free mockup.',
+  'chenille-12in': 'Custom 12-inch chenille patches. Fixed-price packs from 25 to 100 pieces with free US shipping and free mockup.',
+  'leather-u4': 'Custom leather patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free US shipping, free mockup, and money-back guarantee.',
+};
+
 export default async function OffersPage() {
   const [categoryImages, ctaImageUrl] = await Promise.all([getCategoryImages(), getCtaImage()]);
+
+  const productSchemas = OFFER_CATEGORIES.map(cat => ({
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: `Custom ${cat.type} - ${cat.subtitle}`,
+    description: CATEGORY_DESCRIPTIONS[cat.id] ?? `Custom ${cat.type} fixed-price packages from Panda Patches.`,
+    image: categoryImages[cat.slug] ?? 'https://pandapatches.com/assets/og-image.png',
+    brand: { '@type': 'Brand', name: 'Panda Patches' },
+    offers: cat.packs.map(pack => ({
+      '@type': 'Offer',
+      name: `${pack.name} Pack - ${pack.qty} pieces`,
+      price: pack.price.toFixed(2),
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      url: 'https://pandapatches.com/offers',
+      seller: { '@type': 'Organization', name: 'Panda Patches' },
+      shippingDetails,
+      hasMerchantReturnPolicy: merchantReturnPolicy,
+    })),
+  }));
 
   return (
     <main className="min-h-screen bg-white">

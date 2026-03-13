@@ -2,14 +2,20 @@ import { client } from "@/lib/sanity";
 import { Instagram } from "lucide-react";
 import Link from "next/link";
 import VideoSwiper from "./VideoSwiper";
+import { generateVideoObjectSchema, generateSchemaScript } from "@/lib/schemas";
 
 async function getData() {
   const query = `*[_type == "craftsmanship"][0] {
     heading,
     videos[] {
       "videoUrl": videoFile.asset->url,
+      "thumbnailUrl": thumbnail.asset->url,
       thumbnail,
-      link
+      link,
+      videoName,
+      videoDescription,
+      uploadDate,
+      duration
     }
   }`;
 
@@ -25,7 +31,31 @@ export default async function Craftsmanship() {
   const heading = data?.heading || "SEE OUR CRAFTSMANSHIP";
   const videos = data?.videos || [];
 
+  // Build Video schema only for videos that have the required SEO fields filled in
+  const videoSchemaItems = videos
+    .filter((v: any) => v.videoName && v.videoDescription && v.uploadDate && v.videoUrl)
+    .map((v: any) => ({
+      name: v.videoName,
+      description: v.videoDescription,
+      thumbnailUrl: v.thumbnailUrl || 'https://pandapatches.com/assets/og-image.png',
+      contentUrl: v.videoUrl,
+      uploadDate: v.uploadDate,
+      duration: v.duration || 'PT0M30S',
+    }));
+
+  const videoSchemas = videoSchemaItems.length > 0
+    ? generateVideoObjectSchema(videoSchemaItems)
+    : null;
+
   return (
+    <>
+      {videoSchemas && videoSchemas.map((schema: any, i: number) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={generateSchemaScript(schema)}
+        />
+      ))}
     <section className="w-full pt-8 pb-6 bg-[#F7F7F7]">
       <div className="container mx-auto px-6 text-center">
         
@@ -60,5 +90,6 @@ export default async function Craftsmanship() {
 
       </div>
     </section>
+    </>
   );
 }

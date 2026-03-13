@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTrustpilot } from '@/lib/useTrustpilot';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import {
   OFFER_CATEGORIES, calculateOfferTotal, getRushFee,
@@ -132,10 +133,11 @@ function OrderSummaryBar({ offer, total }: { offer: SelectedOffer; total: number
 
 function Step1({
   formData, setFormData, onNext, offer,
-  fileName, uploading, handleFileUpload,
+  fileName, uploading, handleFileUpload, clearFile,
 }: {
   formData: FormData; setFormData: (f: FormData) => void; onNext: () => void; offer: SelectedOffer;
   fileName: string; uploading: boolean; handleFileUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  clearFile: () => void;
 }) {
   const isUnder4 = offer.subtitle.includes('Under 4');
   const w = parseFloat(formData.width);
@@ -153,26 +155,37 @@ function Step1({
           Artwork Upload <span className="text-red-500">*</span>
         </label>
         <p className="text-xs text-gray-400 mb-3">JPG, PNG, PDF, AI, EPS, SVG — max 20MB. We accept any format.</p>
-        <label htmlFor="offer-artwork" className={`flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-xl cursor-pointer transition-colors ${formData.artworkUrl ? 'border-green-400 bg-green-50' : 'border-gray-300 bg-white hover:bg-gray-100'}`}>
-          {uploading ? (
-            <span className="text-sm text-gray-500 animate-pulse">Uploading...</span>
-          ) : formData.artworkUrl ? (
-            <div className="text-center">
-              <div className="text-green-600 text-2xl mb-1">✓</div>
-              <span className="text-sm font-bold text-green-700">{fileName}</span>
-              <span className="block text-xs text-gray-400 mt-0.5">Click to replace</span>
+        {formData.artworkUrl ? (
+          <div className="flex items-center justify-between bg-green-50 border border-green-300 rounded-xl px-4 py-3">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-green-600 font-black text-base">✓</span>
+              <span className="text-sm font-bold text-green-700 truncate">{fileName}</span>
             </div>
-          ) : (
-            <div className="text-center px-4">
-              <div className="text-3xl mb-2">📎</div>
-              <span className="text-sm font-semibold text-gray-600">Click to upload your artwork</span>
-            </div>
-          )}
-        </label>
-        <input id="offer-artwork" type="file" accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.svg" className="hidden" onChange={handleFileUpload} />
-        {!formData.artworkUrl && (
-          <p className="text-xs text-amber-600 mt-2 font-medium">No artwork yet? Upload a rough sketch, logo, or reference image — our designers will handle the rest.</p>
+            <button
+              type="button"
+              onClick={clearFile}
+              className="ml-3 w-6 h-6 flex items-center justify-center rounded-full bg-red-100 text-red-500 hover:bg-red-200 transition-colors shrink-0"
+              aria-label="Remove file"
+            >
+              ✕
+            </button>
+          </div>
+        ) : (
+          <>
+            <label htmlFor="offer-artwork" className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer bg-white hover:bg-gray-50 transition-colors">
+              {uploading ? (
+                <span className="text-sm text-gray-500 animate-pulse">Uploading...</span>
+              ) : (
+                <div className="text-center px-4">
+                  <div className="text-3xl mb-2">📎</div>
+                  <span className="text-sm font-semibold text-gray-600">Click to upload your artwork</span>
+                </div>
+              )}
+            </label>
+            <p className="text-xs text-amber-600 mt-2 font-medium">No artwork yet? Upload a rough sketch, logo, or reference image. Our designers will handle the rest.</p>
+          </>
         )}
+        <input id="offer-artwork" type="file" accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.svg" className="hidden" onChange={handleFileUpload} />
       </div>
 
       {/* Design Description */}
@@ -264,19 +277,22 @@ function Step2({ formData, setFormData, onNext, onBack, offer }: {
       <div className="border border-gray-200 rounded-2xl p-5 bg-gray-50">
         <label className="block text-sm font-bold text-[#051C05] mb-3">Delivery Speed</label>
         <div className="space-y-2">
-          {DeliveryOptions.map(d => (
-            <button key={d.value} onClick={() => setFormData({ ...formData, delivery: d.value })}
-              className={`w-full p-4 rounded-xl border-2 text-left transition-all flex items-center justify-between ${formData.delivery === d.value ? 'border-[#051C05] bg-white shadow-sm' : 'border-gray-200 bg-white hover:border-gray-400'}`}>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="font-bold text-sm text-[#051C05]">{d.label}</span>
-                  {d.badge && <span className="text-[10px] font-bold bg-[#DFFF00] text-[#051C05] px-2 py-0.5 rounded-full">{d.badge}</span>}
+          {DeliveryOptions.map(d => {
+            const selected = formData.delivery === d.value;
+            return (
+              <button key={d.value} onClick={() => setFormData({ ...formData, delivery: d.value })}
+                className={`w-full p-4 rounded-xl border-2 text-left transition-all flex items-center justify-between ${selected ? 'border-[#051C05] bg-[#051C05]' : 'border-gray-200 bg-white hover:border-gray-400'}`}>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className={`font-bold text-sm ${selected ? 'text-[#DFFF00]' : 'text-[#051C05]'}`}>{d.label}</span>
+                    {d.badge && <span className="text-[10px] font-bold bg-[#DFFF00] text-[#051C05] px-2 py-0.5 rounded-full">{d.badge}</span>}
+                  </div>
+                  <div className={`text-xs mt-0.5 ${selected ? 'text-gray-300' : 'text-gray-500'}`}>{d.timeline}</div>
                 </div>
-                <div className="text-xs text-gray-500 mt-0.5">{d.timeline}</div>
-              </div>
-              <div className={`text-sm font-black ${d.value === 'economy' ? 'text-green-700' : d.value === 'rush' ? 'text-orange-600' : 'text-gray-600'}`}>{d.note}</div>
-            </button>
-          ))}
+                <div className={`text-sm font-black ${selected ? 'text-[#DFFF00]' : d.value === 'economy' ? 'text-green-700' : d.value === 'rush' ? 'text-orange-600' : 'text-gray-600'}`}>{d.note}</div>
+              </button>
+            );
+          })}
         </div>
         {formData.delivery === 'rush' && (
           <div className="mt-3 p-4 bg-amber-50 border border-amber-200 rounded-xl text-sm text-amber-800">
@@ -505,6 +521,7 @@ function Step5({
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function OffersClient({ categoryImages, ctaImageUrl }: { categoryImages?: Record<string, string>; ctaImageUrl?: string }) {
+  const { rating: TRUSTPILOT_RATING, reviewCount: TRUSTPILOT_REVIEW_COUNT } = useTrustpilot();
   const [selectedOffer, setSelectedOffer] = useState<SelectedOffer | null>(null);
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM);
@@ -630,7 +647,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
           </h1>
           <p className="text-gray-700 text-lg mb-6">No setup fees. No surprise charges. Free design mockup included.<br />Order in minutes, we handle the rest.</p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            {['Free design mockup', '7-14 day delivery', '4.8 stars on Trustpilot', 'Money-back guarantee'].map(t => (
+            {['Free design mockup', '7-14 day delivery', `${TRUSTPILOT_RATING} stars on Trustpilot`, 'Money-back guarantee'].map(t => (
               <span key={t} className="flex items-center gap-1.5 text-[#051C05] font-semibold"><span>✓</span>{t}</span>
             ))}
           </div>
@@ -641,7 +658,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-px bg-white/10">
             {[
               { stat: '1M+', label: 'Patches Delivered' },
-              { stat: '4.8★', label: 'Trustpilot Rating' },
+              { stat: `${TRUSTPILOT_RATING}★`, label: 'Trustpilot Rating' },
               { stat: '24h', label: 'Free Mockup' },
               { stat: '∞', label: 'Free Revisions' },
               { stat: '100%', label: 'Money-Back Guarantee' },
@@ -666,14 +683,9 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
               <div key={cat.id} id={cat.id} className="border-b border-gray-100 pb-14 last:border-0 last:pb-0">
 
                 {/* Category header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div>
+                <div className="mb-6">
                     <h2 className="text-2xl font-black text-[#051C05]">{cat.type}</h2>
                     <p className="text-sm text-gray-500 mt-0.5">{cat.subtitle}</p>
-                  </div>
-                  <Link href={cat.href || '/custom-patches'} className="text-xs text-gray-500 hover:text-[#051C05] hover:underline font-semibold shrink-0 ml-4">
-                    View product page →
-                  </Link>
                 </div>
 
                 {/* Image + Pricing cards */}
@@ -749,6 +761,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
                           offer={selectedOffer}
                           fileName={fileName} uploading={uploading}
                           handleFileUpload={handleFileUpload}
+                          clearFile={() => { setFileName(''); setFileUrl(''); setFormData(prev => ({ ...prev, artworkUrl: '' })); }}
                           onNext={() => setStep(2)}
                         />
                       )}
@@ -790,15 +803,16 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
           <h2 className="text-3xl font-black text-[#051C05] mb-8">What&apos;s Included in Every Offer</h2>
           <div className="grid sm:grid-cols-2 gap-3 text-left">
             {[
-              'Free digital mockup within 24 hours',
-              'Unlimited free revisions — until you approve',
-              'Your approval required before production starts',
-              'Free shipping anywhere in the US',
-              'No setup fees, no hidden charges',
-              'Choice of backing (Velcro +$30)',
-              '7-14 day standard delivery | Rush available',
-              '4.8 rated on Trustpilot — 57 verified reviews',
-              'Money-back guarantee',
+              'Free digital mockup delivered within 24 hours',
+              'Unlimited free revisions until you are 100% happy',
+              'Production starts only after your written approval',
+              'Free shipping on every order anywhere in the US',
+              'Zero setup fees and zero hidden charges',
+              'Choice of backing type. Velcro hook and loop costs $30 extra',
+              '7 to 14 day standard delivery. Rush production available',
+              `Rated ${TRUSTPILOT_RATING} stars on Trustpilot with ${TRUSTPILOT_REVIEW_COUNT} verified customer reviews`,
+              '100% money-back guarantee. No questions asked',
+              'Dedicated support team available 7 days a week',
             ].map(item => (
               <div key={item} className="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
                 <span className="text-green-600 font-black text-lg mt-0.5">✓</span>
@@ -815,55 +829,55 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {[
             {
-              step: '1', text: 'You pay securely',
+              step: '1', text: 'Pay securely with Stripe or PayPal',
               icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
                   <rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>
                 </svg>
               ),
             },
             {
-              step: '2', text: 'Within 24 hours we email your digital mockup',
+              step: '2', text: 'Our designers create your digital mockup within 24 hours',
               icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
-                  <circle cx="13.5" cy="6.5" r="3.5"/><path d="M9.5 10.5c-3 1-5 3.5-5 6.5h18c0-3-2-5.5-5-6.5"/><path d="M8 20l4-4 4 4"/>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
+                  <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
                 </svg>
               ),
             },
             {
-              step: '3', text: 'You review the mockup',
+              step: '3', text: 'Review your mockup. Take your time',
               icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
                   <path d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/>
                 </svg>
               ),
             },
             {
-              step: '4', text: 'Request any changes — colors, size, font — all free',
+              step: '4', text: 'Request changes to colors, size or fonts. All revisions are free',
               icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
+                  <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.83"/>
                 </svg>
               ),
             },
             {
-              step: '5', text: 'You approve — production begins',
+              step: '5', text: 'Give your final approval and production begins immediately',
               icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
                 </svg>
               ),
             },
             {
-              step: '6', text: 'Ships with full tracking to your door',
+              step: '6', text: 'Your custom patches ship with full tracking to your door',
               icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
                   <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
                 </svg>
               ),
             },
           ].map(s => (
-            <div key={s.step} className="flex flex-col items-center text-center p-6 bg-white rounded-2xl gap-4 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+            <div key={s.step} className="flex flex-col items-center text-center p-6 bg-white rounded-2xl gap-4 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
               <div className="relative w-16 h-16">
                 <div className="w-16 h-16 bg-[#051C05] rounded-full flex items-center justify-center text-[#DFFF00]">{s.icon}</div>
                 <div className="absolute -top-1 -right-1 w-6 h-6 bg-[#DFFF00] text-[#051C05] rounded-full flex items-center justify-center font-black text-xs border-2 border-white">{s.step}</div>
@@ -872,7 +886,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
             </div>
           ))}
         </div>
-        <p className="text-center text-gray-500 text-sm mt-8 italic">We&apos;ve delivered 1,000,000+ patches this way. Our customers never get surprises — only patches they love.</p>
+        <p className="text-center text-gray-500 text-sm mt-8 italic">We have delivered 1,000,000+ custom patches this way. Our customers never receive surprises. Only patches they love.</p>
       </section>
 
       {/* FAQ */}
@@ -920,21 +934,23 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
       <section className="bg-[#051C05] py-16 px-4 text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl font-black text-white mb-4">Need a Custom Size or Quantity?</h2>
-          <p className="text-gray-300 text-base mb-8">Our offers cover 90% of orders. For custom sizes, mixed types, or anything else — free quote in 60 seconds.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="px-8 py-4 bg-[#DFFF00] text-[#051C05] font-black rounded-full hover:bg-[#d4f000] transition-colors">
+          <p className="text-gray-300 text-base mb-8">Our offers cover 90% of orders. For custom sizes, mixed types, or anything else. Free quote in 60 seconds.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link href="/contact" className="inline-block px-8 py-3 bg-black text-white font-bold uppercase tracking-wider text-sm transition-colors duration-300 hover:bg-panda-yellow hover:text-black rounded-[4px]">
               Get a Free Quote
             </Link>
-            <button
-              onClick={() => {
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
                 const api = (window as any).Tawk_API;
-                if (api?.toggle) api.toggle();
-                else if (api?.maximize) api.maximize();
+                if (api?.maximize) api.maximize();
+                else if (api?.toggle) api.toggle();
               }}
-              className="px-8 py-4 bg-transparent border-2 border-[#DFFF00] text-[#DFFF00] font-black rounded-full hover:bg-[#DFFF00] hover:text-[#051C05] transition-colors"
+              className="inline-block px-8 py-3 bg-black text-white font-bold uppercase tracking-wider text-sm transition-colors duration-300 hover:bg-panda-yellow hover:text-black rounded-[4px]"
             >
               Chat With Us Now
-            </button>
+            </a>
           </div>
         </div>
       </section>

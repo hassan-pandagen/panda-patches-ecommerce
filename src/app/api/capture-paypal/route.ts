@@ -153,7 +153,7 @@ async function sendOrderEmails(orderData: Record<string, unknown>, amountPaid: n
   </div>
 
   <div style="background:#ffffff;padding:0 32px 24px;">
-    <a href="https://www.instagram.com/pandapatches/" target="_blank">
+    <a href="https://www.instagram.com/pandapatchesofficial/" target="_blank">
       <img src="${IG_BANNER}" alt="Follow Panda Patches on Instagram" width="556" style="display:block;width:100%;border-radius:4px;">
     </a>
   </div>

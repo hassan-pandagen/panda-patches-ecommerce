@@ -13,7 +13,7 @@ import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
-import { generateSchemaScript, generateHowToSchema, generateServiceSchema } from "@/lib/schemas";
+import { generateSchemaScript, generateServiceSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 
 // ISR: Revalidate every 24 hours
@@ -235,10 +235,7 @@ export default async function BulkCustomPatchesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={generateSchemaScript(faqSchema)}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={generateSchemaScript(generateHowToSchema())}
-      />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={generateSchemaScript(generateServiceSchema())}

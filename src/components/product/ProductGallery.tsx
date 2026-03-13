@@ -9,10 +9,6 @@ import type { Swiper as SwiperType } from 'swiper';
 import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/thumbs';
 import './product-gallery.css';
 
 // Memoized thumbnail to prevent unnecessary re-renders - Mobile Responsive
@@ -58,6 +54,14 @@ export default function ProductGallery({ images }: { images: any[] }) {
 
   useEffect(() => {
     setMounted(true);
+    // Load Swiper CSS from CDN after mount so it doesn't block initial render
+    const href = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css';
+    if (!document.querySelector(`link[href="${href}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = href;
+      document.head.appendChild(link);
+    }
   }, []);
 
   if (!images || images.length === 0) return <div className="w-full h-[400px] bg-gray-50 rounded-xl flex items-center justify-center text-gray-400">No Images</div>;

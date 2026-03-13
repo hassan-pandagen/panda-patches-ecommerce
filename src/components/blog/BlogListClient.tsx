@@ -15,6 +15,7 @@ interface Blog {
   image?: any;
   category?: string;
   tags?: string[];
+  publishedAt?: string;
   _createdAt: string;
 }
 

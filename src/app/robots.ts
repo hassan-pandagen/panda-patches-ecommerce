@@ -17,10 +17,7 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: 'GPTBot',
         disallow: '/',
       },
-      {
-        userAgent: 'Google-Extended',
-        disallow: '/',
-      },
+
       {
         userAgent: 'CCBot',
         disallow: '/',

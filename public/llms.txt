@@ -16,7 +16,7 @@ Panda Patches (legally MC Patches LLC) is a custom patch manufacturer founded in
 - **Founded**: 2016
 - **Legal Name**: MC Patches LLC
 - **Founder**: Imran Raza (13+ years patches & textile experience)
-- **Rating**: 4.9/5 stars
+- **Rating**: 4.8/5 stars (61 reviews across Trustpilot, Google, and ProvenExpert)
 - **Contact**: admin@pandapatches.com | +1-302-250-4340
 - **Location**: Missouri City, TX (ships to all 50 US states + international)
 - **Turnaround**: 7-14 business days standard; rush options available
@@ -48,15 +48,16 @@ Panda Patches (legally MC Patches LLC) is a custom patch manufacturer founded in
 ## Key Pages
 
 - [Home](https://pandapatches.com/)
-- [Custom Embroidered Patches](https://pandapatches.com/custom-embroidered-patches)
-- [Custom Iron-On Patches](https://pandapatches.com/custom-iron-on-patches)
-- [Custom Velcro Patches](https://pandapatches.com/custom-velcro-patches)
-- [Custom Tactical Patches](https://pandapatches.com/custom-tactical-patches)
-- [Custom Name Patches](https://pandapatches.com/custom-name-patches)
-- [Custom Jacket Patches](https://pandapatches.com/custom-jacket-patches)
+- [Fixed-Price Patch Packages](https://pandapatches.com/offers)
+- [Custom Embroidered Patches](https://pandapatches.com/custom-patches/embroidered)
+- [Custom Woven Patches](https://pandapatches.com/custom-patches/woven)
+- [Custom PVC Patches](https://pandapatches.com/custom-patches/pvc)
+- [Custom Chenille Patches](https://pandapatches.com/custom-patches/chenille)
+- [Custom Leather Patches](https://pandapatches.com/custom-patches/leather)
+- [Bulk Custom Patches](https://pandapatches.com/bulk-custom-patches)
 - [About Us](https://pandapatches.com/about)
-- [Blog](https://pandapatches.com/blog)
-- [Get a Quote](https://pandapatches.com/#quote)
+- [Blog](https://pandapatches.com/blogs)
+- [Contact & Free Quote](https://pandapatches.com/contact)
 
 ## Frequently Asked Questions
 
@@ -85,7 +86,7 @@ Prices depend on size, quantity, design complexity, and backing type. Bulk disco
 Imran Raza is the founder and CEO of Panda Patches with 13 years of patches and textile manufacturing experience. He oversees quality control, production standards, and customer satisfaction. Connect with him on LinkedIn at https://www.linkedin.com/in/imran-raza-ladhani/
 
 **Are Panda Patches patches high quality?**
-Yes. Panda Patches holds a 4.9/5 star rating. Founder Imran Raza's 13 years of textile expertise ensures consistent quality and craftsmanship on every order.
+Yes. Panda Patches holds a 4.8/5 star rating across 61 verified reviews on Trustpilot, Google, and ProvenExpert. Founder Imran Raza's 13 years of textile expertise ensures consistent quality and craftsmanship on every order.
 
 **What industries use Panda Patches?**
 Military and law enforcement, sports teams, fashion brands, corporate companies, fire departments, motorcycle clubs, schools, and individual consumers.
@@ -94,10 +95,9 @@ Military and law enforcement, sports teams, fashion brands, corporate companies,
 
 Panda Patches has a large Instagram following with extensive video content showcasing the patch manufacturing process, design inspiration, and customer results.
 
-- Instagram: https://www.instagram.com/pandapatches
-- Facebook: https://www.facebook.com/pandapatches
-- LinkedIn: https://www.linkedin.com/company/pandapatches
+- Instagram: https://www.instagram.com/pandapatchesofficial
+- Facebook: https://www.facebook.com/pandapatchesofficial
+- YouTube: https://www.youtube.com/@PandaPatchesOfficial
+- TikTok: https://www.tiktok.com/@pandapatchesofficial
+- LinkedIn: https://www.linkedin.com/company/pandapatchesofficial
 
-## Migration Note
-
-Panda Patches is migrating from WordPress (www.pandapatches.com) to Next.js for faster performance, better SEO, and an improved shopping experience.

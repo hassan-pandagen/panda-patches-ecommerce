@@ -94,7 +94,7 @@ export async function POST(req: Request) {
         quantity: 1,
       }],
       mode: 'payment',
-      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}&value=${finalPrice.toFixed(2)}`,
       cancel_url: `${baseUrl}/offers`,
       customer_email: customer.email,
       metadata: {

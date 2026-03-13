@@ -27,6 +27,13 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://pandapatches.com'),
   title: "Panda Patches | Custom Iron On Patches",
   description: "Order custom embroidered patches, iron-on patches, PVC patches with low minimums. Free design services, 7-14 day delivery. 4.8★ rated on Trustpilot. No setup fees!",
+  alternates: {
+    canonical: 'https://pandapatches.com',
+    languages: {
+      'en': 'https://pandapatches.com',
+      'x-default': 'https://pandapatches.com',
+    },
+  },
   twitter: {
     card: "summary_large_image",
     title: "Panda Patches | Custom Iron On Patches",
@@ -55,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Inline critical CSS — eliminates one render-blocking network request */}
         <style dangerouslySetInnerHTML={{ __html: `
@@ -72,8 +79,7 @@ export default function RootLayout({
          {/* Preconnect + DNS prefetch to Sanity image CDN — reduces LCP hero image latency */}
          <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
          <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-         {/* Preconnect to GTM/GA so those requests don't block page */}
-         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+         {/* GTM loads at 4s delay — preconnect would expire before use, so omitted */}
          {/* Mobile LCP hero — preload MOBILE image on small screens */}
          <link
            rel="preload"
@@ -95,7 +101,7 @@ export default function RootLayout({
            media="(min-width: 768px)"
          />
        </head>
-      <body className={`${outfit.variable} font-sans antialiased`}>
+      <body className={`${outfit.variable} font-sans antialiased`} suppressHydrationWarning>
 
         {/* GTM Noscript Fallback (must be first in body) */}
         <noscript>

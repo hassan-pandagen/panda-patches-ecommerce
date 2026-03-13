@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT } from "@/lib/reviewConstants";
 
 interface SEOSection {
   heading: string;
@@ -1347,12 +1348,67 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
   };
 
   const sections = sectionsBySlug[slug];
-  if (!sections || sections.length === 0) return null;
+
+  // Derive a human-readable location name from the slug for fallback content
+  const locationName = slug
+    .replace(/^custom-patches-in-|^custom-patches-|^custom-|-patches$/g, '')
+    .split('-')
+    .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+
+  const fallbackSections: SEOSection[] = [
+    {
+      heading: `Custom Patches in ${locationName} — Quality You Can Trust`,
+      content: (
+        <p className="text-[17px] leading-[1.8] text-gray-600">
+          Panda Patches is the go-to source for custom patches in {locationName}. Whether you need{' '}
+          <Link href="/custom-patches/embroidered" className="text-purple-600 hover:underline font-medium">custom embroidered patches</Link>
+          ,{' '}
+          <Link href="/custom-patches/woven" className="text-purple-600 hover:underline font-medium">woven patches</Link>
+          ,{' '}
+          <Link href="/custom-patches/pvc" className="text-purple-600 hover:underline font-medium">PVC patches</Link>
+          , or{' '}
+          <Link href="/custom-patches/chenille" className="text-purple-600 hover:underline font-medium">chenille patches</Link>
+          , we deliver directly to {locationName} with fast 7 to 14 day turnaround. Every order includes a free digital mockup within 24 hours and unlimited revisions until you are 100% satisfied. We serve businesses, sports teams, fire departments, military units, and individuals across {locationName} with no minimum order requirement.
+        </p>
+      ),
+    },
+    {
+      heading: `Why ${locationName} Customers Choose Panda Patches`,
+      content: (
+        <p className="text-[17px] leading-[1.8] text-gray-600">
+          With over 1,000,000 custom patches delivered and a {TRUSTPILOT_RATING} star Trustpilot rating ({TRUSTPILOT_REVIEW_COUNT} verified reviews), Panda Patches has earned the trust of customers throughout {locationName} and across all 50 US states. Our founder Imran Raza brings 13 years of hands-on textile and embroidery expertise to every order. We offer{' '}
+          <Link href="/custom-patches/leather" className="text-purple-600 hover:underline font-medium">leather patches</Link>
+          ,{' '}
+          <Link href="/patches-for-hats" className="text-purple-600 hover:underline font-medium">hat patches</Link>
+          ,{' '}
+          <Link href="/custom-jacket-patches" className="text-purple-600 hover:underline font-medium">jacket patches</Link>
+          , and{' '}
+          <Link href="/bulk-custom-patches" className="text-purple-600 hover:underline font-medium">bulk wholesale pricing</Link>
+          {' '}for larger orders. Free shipping to {locationName} on every order with full tracking provided.
+        </p>
+      ),
+    },
+    {
+      heading: `Order Custom Patches Delivered to ${locationName} in Days`,
+      content: (
+        <p className="text-[17px] leading-[1.8] text-gray-600">
+          Getting started is simple. Submit your artwork or describe your idea using our{' '}
+          <Link href="/contact" className="text-purple-600 hover:underline font-medium">free quote form</Link>
+          , and our design team will send a digital mockup within 24 hours. Production begins only after your approval, and your finished patches ship directly to your door in {locationName} with full tracking. Choose from iron-on, sew-on, Velcro, or adhesive backing to suit your needs. For large orders, explore our{' '}
+          <Link href="/bulk-custom-patches" className="text-purple-600 hover:underline font-medium">bulk custom patches</Link>
+          {' '}page for wholesale pricing that scales from 50 to 10,000 pieces. Contact us today and get your custom patches for {locationName} started.
+        </p>
+      ),
+    },
+  ];
+
+  const activeSections = sections && sections.length > 0 ? sections : fallbackSections;
 
   return (
     <section className="py-8 md:py-10 bg-[#F9FAF5] border-t border-gray-100">
       <div className="container mx-auto px-6 max-w-[860px] flex flex-col gap-12">
-        {sections.map((section, idx) => (
+        {activeSections.map((section, idx) => (
           <div key={idx}>
             <div className="w-10 h-1 bg-panda-yellow mb-6 rounded-full" />
             <h2 className="text-3xl font-black text-panda-dark mb-6 leading-tight">{section.heading}</h2>

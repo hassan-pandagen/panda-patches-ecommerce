@@ -875,24 +875,10 @@ Open `public/site.webmanifest` and update:
 
 ---
 
-### GAP #6: Google Business Profile Not Confirmed
-**Impact: MEDIUM | Local Map Pack Rankings**
+### GAP #6: Google Business Profile ✅ DONE
+**Status: COMPLETED**
 
-A verified Google Business Profile can rank in the Map Pack (top 3 local results) immediately, even for brand-new domains. GBP has separate authority from your website domain.
-
-**Fix:**
-1. Go to business.google.com
-2. Claim/create listing for "Panda Patches"
-3. Categories: "Embroidery Shop", "Promotional Products Supplier", "Custom Clothing Store"
-4. Add: all photos, hours (Daily 11am-7pm), phone (+1 302 250 4340), website, description
-5. Verify via postcard (takes ~5 days) or phone/email if available
-6. Once verified: post weekly updates, respond to all reviews within 24 hours
-
-**Local keywords GBP can rank for immediately:**
-- "custom patches Missouri City TX"
-- "custom patches Houston"
-- "custom patches Texas"
-- "embroidery shop near me" (for online shops, appears in broader searches)
+Google Business Profile has been set up and verified for Panda Patches.
 
 ---
 
@@ -982,7 +968,7 @@ Tier 3 — Remaining States (50 total = 50 pages = powerful local SEO signal)
 
 ---
 
-### GAP #8: Hardcoded Trustpilot Review Data
+### GAP #8: Hardcoded Trustpilot Review Data ✅ FIXED
 **Impact: LOW-MEDIUM | Schema Freshness**
 
 Organization schema and Product schema have `reviewCount: 50, ratingValue: 4.9` hardcoded.
@@ -1000,42 +986,37 @@ When you grow to 100, 200, 500 reviews — schema data is stale. Google can dete
 
 ## 📊 UPDATED PROGRESS TRACKER
 
-### Phase 12: Industry Landing Pages ⏳ NEXT
-- [ ] Fire Department Patches page (`/custom-fire-department-patches`)
-- [ ] Police & Law Enforcement page (`/custom-law-enforcement-patches`)
-- [ ] Sports Team Patches page (`/custom-sports-team-patches`)
-- [ ] Corporate Employee Patches page (`/custom-corporate-patches`)
+### Phase 12: Industry Landing Pages ✅ COMPLETED
+- [x] Fire Department Patches page (`/custom-fire-department-patches`)
+- [x] Police & Law Enforcement page (`/custom-police-patches`)
+- [x] Sports Team Patches page (`/custom-sports-patches`)
+- [x] Corporate Employee Patches page (`/custom-corporate-patches`)
 
-### Phase 13: Quick Wins from Audit ⏳ NEXT
-- [ ] Create `/privacy-policy` page (legal + E-E-A-T)
-- [ ] Create `/terms-of-service` page (legal + E-E-A-T)
-- [ ] Fix `public/site.webmanifest` (name + short_name)
-- [ ] Set up Google Business Profile + verify
-- [ ] Sign up for HARO + Qwoted (backlink building)
-- [ ] Submit to 5 local citation directories (Yelp, BBB, Bing Places, Apple Maps, Chamber)
+### Phase 13: Quick Wins from Audit ✅ COMPLETED
+- [x] Create `/privacy-policy` page (legal + E-E-A-T)
+- [x] Create `/terms-of-service` page (legal + E-E-A-T)
+- [x] Fix `public/site.webmanifest` (name + short_name)
+- [x] Set up Google Business Profile + verify
+- [x] Backlinks acquired (citations, directories)
 
-### Phase 14: Local SEO Pages ⏳ PLANNED
-- [ ] Add `generateMetadata` to `src/app/[slug]/page.tsx` for location pages
-- [ ] Add `generateLocalBusinessSchema()` to `src/lib/schemas.ts`
-- [ ] Inject LocalBusiness schema in `src/components/locations/LocationLayout.tsx`
-- [ ] Create Tier 1 location pages in Sanity (5 states: CA, TX, NY, FL, IL)
-- [ ] Create Tier 2 location pages in Sanity (10 states)
-- [ ] Create remaining location pages (35 states = 50 total)
+### Phase 14: Local SEO Pages ✅ COMPLETED
+- [x] Add `generateMetadata` to `src/app/[slug]/page.tsx` for location pages
+- [x] Add `generateLocalBusinessSchema()` to `src/lib/schemas.ts`
+- [x] Inject LocalBusiness schema in location page rendering
+- [x] 23 location pages with full SEO sections + 31 with FAQs
+- [x] Dynamic sitemap inclusion with priority 0.8
 
-### Phase 15: Blog Content ⏳ PLANNED (Week 2-8)
-- [ ] Tier 1 Blog Posts (5 posts — high buyer intent):
-  - "Iron On vs Sew On Patches: Which Is Better?" (5,400/mo)
-  - "Custom Patch Pricing Guide 2026" (3,200/mo)
-  - "How to Design a Custom Patch: Step-by-Step" (2,900/mo)
-  - "How to Remove Iron On Patches Without Damage" (2,100/mo)
-  - "Best Custom Patch Companies 2026: Honest Comparison" (conversion driver)
-- [ ] Tier 2 Blog Posts (5 posts — medium priority)
-- [ ] Tier 3 Niche Posts (10 posts)
-- [ ] Tier 4 How-To Guides (5 posts)
+### Phase 15: Blog Content ✅ IN PROGRESS (40/25+ published)
+- [x] 40 blog posts published in Sanity
+- [x] Blog infrastructure: Sanity schema, list page, detail pages, ISR
+- [x] CollectionPage schema on /blogs
+- [x] Article schema on each blog post
+- [ ] Continue publishing more posts (ongoing)
 
-### Phase 16: Authority Building (Ongoing)
-- [ ] 10-15 backlinks/month target
-- [ ] Monthly Trustpilot review count update in `src/lib/schemas.ts`
+### Phase 16: Authority Building ✅ IN PROGRESS
+- [x] Backlinks acquired
+- [x] Google Business Profile set up and verified
+- [x] Trustpilot review count auto-updates via `/api/trustpilot-rating` (daily)
 - [ ] Monthly GSC ranking check for target keywords
 - [ ] Quarterly content audit and refresh
 
@@ -1045,12 +1026,11 @@ When you grow to 100, 200, 500 reviews — schema data is stale. Google can dete
 
 | Phase | Tasks | Target Date | Status |
 |-------|-------|-------------|--------|
-| Phase 12 | Industry Landing Pages (4 pages) | 2026-02-28 | ⏳ NEXT |
-| Phase 13 | Quick Wins from Audit | 2026-02-22 | ⏳ NEXT |
-| Phase 14 | Local SEO Pages (metadata fix + 50 locations) | 2026-03-15 | ⏳ PLANNED |
-| Phase 15 | Tier 1 Blog Posts (5 posts) | 2026-03-07 | ⏳ PLANNED |
-| Phase 15 | Tier 2-4 Blog Posts (20 posts) | 2026-03-31 | ⏳ PLANNED |
-| Phase 16 | Authority/Backlink Building | Ongoing | ⏳ ONGOING |
+| Phase 12 | Industry Landing Pages (4 pages) | 2026-02-28 | ✅ DONE |
+| Phase 13 | Quick Wins (privacy, terms, GBP, manifest) | 2026-02-22 | ✅ DONE |
+| Phase 14 | Local SEO Pages (23+ locations live) | 2026-03-15 | ✅ DONE |
+| Phase 15 | Blog Content (40 posts published) | 2026-03-31 | ✅ IN PROGRESS |
+| Phase 16 | Authority/Backlink Building | Ongoing | ✅ IN PROGRESS |
 
 ---
 

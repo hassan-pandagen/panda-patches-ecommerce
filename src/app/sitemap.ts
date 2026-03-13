@@ -23,96 +23,110 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const data = await client.fetch(query);
 
   // Static pages with highest priority
+  // Note: lastModified uses fixed dates (not new Date()) so Google doesn't think pages
+  // change on every deploy — only update these when you actually update the page content.
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: new Date('2026-03-01'),
       changeFrequency: 'daily',
       priority: 1.0,
     },
     {
       url: `${baseUrl}/custom-patches`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-02-15'),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/offers`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-03-01'),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/bulk-custom-patches`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-02-15'),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/custom-products`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-02-01'),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/custom-police-patches`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-01-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/custom-sports-patches`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-01-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/custom-corporate-patches`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-01-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/custom-fire-department-patches`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-01-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/custom-chenille-glitter-patches`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-01-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/custom-chenille-tpu-patches`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-01-15'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/blogs`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-03-01'),
       changeFrequency: 'daily',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-01-01'),
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-01-01'),
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
       url: `${baseUrl}/sample-box`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-01-01'),
       changeFrequency: 'monthly',
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified: new Date('2025-01-01'),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/terms-of-service`,
+      lastModified: new Date('2025-01-01'),
+      changeFrequency: 'yearly',
+      priority: 0.3,
     },
   ];
 

@@ -11,6 +11,8 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const partialSaved = useRef(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+  const [isCustomSize, setIsCustomSize] = useState(false);
+  const [customSize, setCustomSize] = useState('');
 
   // Artwork upload state — up to 2 files
   const [uploadedFiles, setUploadedFiles] = useState<{name: string; url: string}[]>([]);
@@ -89,10 +91,10 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           },
           details: {
             quantity: sanitizeInteger(data.quantity),
-            width: sanitizeNumber(data.size),
-            height: sanitizeNumber(data.size),
+            width: isCustomSize ? sanitizeNumber(customSize) || 1 : sanitizeNumber(data.size),
+            height: isCustomSize ? sanitizeNumber(customSize) || 1 : sanitizeNumber(data.size),
             backing: sanitizeString(data.backing || 'iron'),
-            instructions: sanitizeString(data.instructions || ''),
+            instructions: sanitizeString([data.instructions || '', isCustomSize && customSize ? `Custom Size: ${customSize}` : ''].filter(Boolean).join(' | ')),
             patchType: sanitizeString(data.type || ''),
           },
           artworkUrl: uploadedFiles[0]?.url || null,
@@ -143,6 +145,8 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
       setMessage({ type: 'success', text: 'Quote submitted successfully! We\'ll contact you soon.' });
       reset();
       setUploadedFiles([]);
+      setIsCustomSize(false);
+      setCustomSize('');
     } catch (error: any) {
       console.error('Quote submission error:', error);
       setMessage({ type: 'error', text: error.message || 'Failed to submit quote. Please try again.' });
@@ -246,7 +250,13 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
                  <option value="double-side">Double Side</option>
                </select>
              ) : (
-               <select {...register("size", { required: "Please select a size" })} defaultValue="" aria-label="Select patch size or placement" className={`form-input appearance-none text-gray-500 cursor-pointer pr-10 ${errors.size ? 'border-red-400 bg-red-50' : ''}`}>
+               <select
+                 {...register("size", { required: "Please select a size" })}
+                 defaultValue=""
+                 aria-label="Select patch size or placement"
+                 className={`form-input appearance-none text-gray-500 cursor-pointer pr-10 ${errors.size ? 'border-red-400 bg-red-50' : ''}`}
+                 onChange={(e) => setIsCustomSize(e.target.value === 'custom')}
+               >
                  <option value="" disabled hidden>Size or Placement *</option>
                  <option value="2.5">Cap (2.25 - 2.5 inches)</option>
                  <option value="3.5">Left Chest (3 - 4 inches)</option>
@@ -254,6 +264,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
                  <option value="3.5">Sleeve (3.5 - 4 inches)</option>
                  <option value="12">Across Chest (12 x 12 inches)</option>
                  <option value="14">Jacket Back (14 x 14 inches)</option>
+                 <option value="custom">Custom Size</option>
                </select>
              )}
              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
@@ -288,6 +299,17 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
            </div>
          </div>
+
+        {/* Custom Size — full width, shown below Row 3 when selected */}
+        {isCustomSize && (
+          <input
+            type="text"
+            value={customSize}
+            onChange={(e) => setCustomSize(e.target.value)}
+            placeholder='Enter your size e.g. 5" x 3"'
+            className="form-input w-full"
+          />
+        )}
 
         {/* Row 4 - Backing */}
         {!isKeychains && (

@@ -73,7 +73,9 @@ export default function Navbar() {
    }, []);
 
   return (
-    <header className={`
+    <header
+      suppressHydrationWarning
+      className={`
       sticky top-0 z-50 w-full transition-all duration-300
       bg-white border-b border-gray-200
       ${scrolled ? 'shadow-md' : 'shadow-sm'}
@@ -343,11 +345,14 @@ export default function Navbar() {
             <a href="https://www.instagram.com/pandapatchesofficial/" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on Instagram" className="w-[40px] h-[40px] bg-[#051C05] rounded-full flex items-center justify-center hover:scale-110 transition-transform">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] text-[#DFFF00]"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
             </a>
-            <a href="https://www.linkedin.com/company/pandapatches" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on LinkedIn" className="w-[40px] h-[40px] bg-[#051C05] rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+            <a href="https://www.linkedin.com/company/pandapatchesofficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on LinkedIn" className="w-[40px] h-[40px] bg-[#051C05] rounded-full flex items-center justify-center hover:scale-110 transition-transform">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] text-[#DFFF00]"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
             </a>
             <a href="https://www.tiktok.com/@pandapatchesofficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on TikTok" className="w-[40px] h-[40px] bg-[#051C05] rounded-full flex items-center justify-center hover:scale-110 transition-transform">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] text-[#DFFF00]"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg>
+            </a>
+            <a href="https://www.youtube.com/@PandaPatchesOfficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on YouTube" className="w-[40px] h-[40px] bg-[#051C05] rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px] text-[#DFFF00]"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             </a>
           </div>
         </div>

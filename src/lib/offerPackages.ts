@@ -74,9 +74,9 @@ export const OFFER_CATEGORIES: OfferCategory[] = [
     slug: 'chenille',
     href: '/custom-patches/chenille',
     packs: [
-      { name: 'Starter', qty: 25, price: 230, perPiece: 9.20 },
-      { name: 'Team', qty: 50, price: 340, perPiece: 6.80, badge: 'Popular' },
-      { name: 'Club', qty: 100, price: 1400, perPiece: 14.00, badge: 'Best Value' },
+      { name: 'Starter', qty: 25, price: 175, perPiece: 7.00 },
+      { name: 'Team', qty: 50, price: 250, perPiece: 5.00, badge: 'Popular' },
+      { name: 'Club', qty: 100, price: 350, perPiece: 3.50, badge: 'Best Value' },
     ],
   },
   {

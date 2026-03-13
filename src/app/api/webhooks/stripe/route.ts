@@ -162,7 +162,7 @@ async function sendOrderEmails(meta: Record<string, string>, amountPaid: number,
   </div>
 
   <div style="background:#ffffff;padding:0 32px 24px;">
-    <a href="https://www.instagram.com/pandapatches/" target="_blank">
+    <a href="https://www.instagram.com/pandapatchesofficial/" target="_blank">
       <img src="${IG_BANNER}" alt="Follow Panda Patches on Instagram" width="556" style="display:block;width:100%;border-radius:4px;">
     </a>
   </div>
@@ -252,8 +252,15 @@ export async function POST(req: Request) {
           break;
         }
 
-        // Only create order if it came through our website checkout (has customer metadata)
-        if (!meta.customer_name || !meta.customer_email) {
+        // Only create order if it came through our website checkout with valid customer data
+        const validName = meta.customer_name?.trim();
+        const validEmail = meta.customer_email?.trim();
+        if (
+          !validName || !validEmail ||
+          validName.toLowerCase() === 'unknown' ||
+          !validEmail.includes('@')
+        ) {
+          console.log('Webhook: skipping order — missing or invalid customer data', { validName, validEmail });
           break;
         }
 
@@ -263,8 +270,8 @@ export async function POST(req: Request) {
         const { error: insertError } = await supabase
           .from('orders')
           .insert({
-            customer_name: meta.customer_name || 'Unknown',
-            customer_email: meta.customer_email || '',
+            customer_name: validName,
+            customer_email: validEmail,
             customer_phone: meta.customer_phone || '',
             shipping_address: meta.shipping_address || '',
             design_name: meta.product_name || 'Custom Patch',
@@ -284,8 +291,8 @@ export async function POST(req: Request) {
             status: 'PAID',
             payment_status: 'paid',
             paid_at: new Date().toISOString(),
-            lead_source: 'WEBSITE',
-            sales_agent: 'WEBSITE_BOT',
+            lead_source: 'Checkout',
+            sales_agent: 'WEB_CHECKOUT',
           });
 
         if (insertError) {
@@ -302,13 +309,11 @@ export async function POST(req: Request) {
         );
 
         // Clean up the lead quote now that order is created
-        if (meta.customer_email) {
-          await supabase
-            .from('quotes')
-            .delete()
-            .eq('customer_email', meta.customer_email)
-            .eq('lead_source', 'WEBSITE_LEAD');
-        }
+        await supabase
+          .from('quotes')
+          .delete()
+          .eq('customer_email', validEmail)
+          .eq('lead_source', 'WEBSITE_LEAD');
 
         break;
       }

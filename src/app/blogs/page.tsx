@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
 import BlogListClient from "@/components/blog/BlogListClient";
-import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
+import { generateSchemaScript, generateBreadcrumbSchema, generateCollectionPageSchema } from "@/lib/schemas";
 
 const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "Home", url: "https://pandapatches.com" },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 
 // Fetch ALL blogs (sorted by newest) with only needed fields
 async function getBlogs() {
-  const query = `*[_type == "blog"] | order(_createdAt desc) {
+  const query = `*[_type == "blog"] | order(coalesce(publishedAt, _createdAt) desc) {
     _id,
     title,
     excerpt,
@@ -53,6 +53,7 @@ async function getBlogs() {
     image,
     category,
     tags,
+    publishedAt,
     _createdAt
   }`;
   const data = await client.fetch(query);
@@ -62,11 +63,22 @@ async function getBlogs() {
 export default async function BlogsPage() {
   const blogs = await getBlogs();
 
+  const collectionSchema = generateCollectionPageSchema(
+    (blogs || []).map((b: any) => ({
+      title: b.title || 'Blog Post',
+      url: `https://pandapatches.com/${b.slug?.current || b.slug}`,
+    }))
+  );
+
   return (
     <main className="min-h-screen bg-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(collectionSchema)}
       />
       <Navbar />
 
