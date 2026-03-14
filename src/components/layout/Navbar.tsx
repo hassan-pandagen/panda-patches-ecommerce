@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { MessageCircle, ChevronDown, Package, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -85,14 +84,13 @@ export default function Navbar() {
         {/* === 1. LEFT: LOGO === */}
         <div className="flex items-center justify-start flex-shrink-0">
           <Link href="/" className="flex items-center">
-            <Image
+            <img
               src="/assets/logo-panda.svg"
               alt="Panda Patches"
               width={160}
               height={50}
               className="w-auto h-auto md:w-[160px] md:h-[50px] object-contain"
               style={{ width: '130px', height: 'auto', maxHeight: '42px' }}
-              loading="eager"
             />
           </Link>
         </div>

@@ -27,12 +27,13 @@ export default function Footer() {
             {/* LOGO + TAGLINE */}
             <div className="space-y-2">
               <Link href="/" className="block relative w-40 h-12">
-                 <Image
+                 <img
                     src="/assets/logo-panda.svg"
                     alt="Panda Patches"
-                    fill
-                    className="object-contain object-left"
-                    sizes="160px"
+                    className="object-contain object-left w-full h-full"
+                    loading="lazy"
+                    width={160}
+                    height={48}
                   />
                </Link>
                <p className="text-gray-500 font-medium">Panda Makes Patches Easy!</p>

@@ -106,10 +106,9 @@ export default async function Hero() {
           */}
           <div
             className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-8 md:-mt-10 mx-auto md:mx-0"
-            style={{ position: 'relative', width: '100%', minHeight: 250 }}
           >
                {/* Hero image — browser picks mobile or desktop, never downloads both */}
-               <picture style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+               <picture>
                  <source media="(min-width: 768px)" srcSet="/assets/hero-product.webp" />
                  <img
                    src="/assets/hero-product-mobile.webp"
@@ -117,7 +116,7 @@ export default async function Hero() {
                    width={630}
                    height={379}
                    fetchPriority="high"
-                   decoding="sync"
+                   decoding="auto"
                    style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
                  />
                </picture>
