@@ -115,7 +115,7 @@ export default function Navbar() {
                       ${isActive
                         ? "bg-[#051C05] text-[#DFFF00] shadow-md"
                         : (link as any).highlight
-                          ? "text-orange-500 hover:text-orange-600 hover:bg-orange-50"
+                          ? "text-orange-700 hover:text-orange-800 hover:bg-orange-50"
                           : "text-gray-700 hover:text-black hover:bg-gray-200/50"
                       }
                     `}
@@ -274,11 +274,11 @@ export default function Navbar() {
                     suppressHydrationWarning
                     className="flex items-center justify-between py-4 px-3 hover:bg-orange-50 transition-colors"
                   >
-                    <span className="flex items-center gap-2 text-[15px] font-black text-orange-500 uppercase tracking-wide">
+                    <span className="flex items-center gap-2 text-[15px] font-black text-orange-700 uppercase tracking-wide">
                       <span aria-hidden="true">🔥</span>
                       {link.name}
                     </span>
-                    <span className="text-[10px] font-black bg-orange-500 text-white px-2 py-0.5 rounded-full animate-pulse">HOT</span>
+                    <span className="text-[10px] font-black bg-orange-700 text-white px-2 py-0.5 rounded-full animate-pulse">HOT</span>
                   </Link>
                 ) : (
                   <Link
