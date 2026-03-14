@@ -92,7 +92,7 @@ export default function Navbar() {
               height={50}
               className="w-auto h-auto md:w-[160px] md:h-[50px] object-contain"
               style={{ width: '130px', height: 'auto', maxHeight: '42px' }}
-              priority
+              loading="eager"
             />
           </Link>
         </div>

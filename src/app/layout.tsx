@@ -13,7 +13,7 @@ const CallNowPopup = dynamic(() => import("@/components/CallNowPopup"), { ssr: f
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
-  weight: ["500", "600", "700", "900"],
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
@@ -75,30 +75,30 @@ export default function RootLayout({
           .container{width:100%;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}
           @media(min-width:768px){.container{padding-left:1.5rem;padding-right:1.5rem}}
           @media(min-width:1024px){.container{padding-left:3rem;padding-right:3rem}}
+          header{position:sticky;top:0;z-index:50;width:100%;background:#fff;border-bottom:1px solid #e5e7eb}
+          .hero-section{position:relative;width:100%;min-height:100vh;background:#fff;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start}
+          @media(min-width:768px){.hero-section{min-height:850px;justify-content:center}}
         ` }} />
-         {/* Preconnect + DNS prefetch to Sanity image CDN — reduces LCP hero image latency */}
-         <link rel="preconnect" href="https://cdn.sanity.io" crossOrigin="anonymous" />
+         {/* Preconnect + DNS prefetch to Sanity image CDN */}
+         <link rel="preconnect" href="https://cdn.sanity.io" />
          <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-         {/* GTM loads at 4s delay — preconnect would expire before use, so omitted */}
-         {/* Mobile LCP hero — preload MOBILE image on small screens */}
+         {/* Mobile LCP hero — preload matches actual <img src> in Hero.tsx */}
          <link
            rel="preload"
            as="image"
            type="image/webp"
-           href="/_next/image?url=%2Fassets%2Fhero-product-mobile.webp&w=828&q=75"
-           imageSrcSet="/_next/image?url=%2Fassets%2Fhero-product-mobile.webp&w=640&q=75 640w, /_next/image?url=%2Fassets%2Fhero-product-mobile.webp&w=828&q=75 828w, /_next/image?url=%2Fassets%2Fhero-product-mobile.webp&w=1080&q=75 1080w"
-           imageSizes="100vw"
+           href="/assets/hero-product-mobile.webp"
            media="(max-width: 767px)"
+           fetchPriority="high"
          />
-         {/* Desktop LCP hero — preload DESKTOP image on large screens */}
+         {/* Desktop LCP hero — preload matches actual <source srcSet> in Hero.tsx */}
          <link
            rel="preload"
            as="image"
            type="image/webp"
-           href="/_next/image?url=%2Fassets%2Fhero-product.webp&w=750&q=60"
-           imageSrcSet="/_next/image?url=%2Fassets%2Fhero-product.webp&w=640&q=60 640w, /_next/image?url=%2Fassets%2Fhero-product.webp&w=750&q=60 750w, /_next/image?url=%2Fassets%2Fhero-product.webp&w=1080&q=60 1080w"
-           imageSizes="630px"
+           href="/assets/hero-product.webp"
            media="(min-width: 768px)"
+           fetchPriority="high"
          />
        </head>
       <body className={`${outfit.variable} font-sans antialiased`} suppressHydrationWarning>

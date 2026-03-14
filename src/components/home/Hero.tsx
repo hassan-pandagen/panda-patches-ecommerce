@@ -53,7 +53,7 @@ export default async function Hero() {
 
   return (
     // Mobile and desktop responsive heights
-    <section className="relative w-full min-h-screen md:min-h-[850px] bg-white overflow-hidden flex flex-col justify-start md:justify-center">
+    <section className="hero-section relative w-full min-h-screen md:min-h-[850px] bg-white overflow-hidden flex flex-col justify-start md:justify-center">
 
       {/*
          FIX 1: GREEN BLOB (Exact Dimensions Logic)
@@ -114,8 +114,10 @@ export default async function Hero() {
                  <img
                    src="/assets/hero-product-mobile.webp"
                    alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"
+                   width={630}
+                   height={379}
                    fetchPriority="high"
-                   decoding="async"
+                   decoding="sync"
                    style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
                  />
                </picture>

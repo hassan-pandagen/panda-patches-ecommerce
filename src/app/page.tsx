@@ -2,10 +2,13 @@ import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 import { generateLocalBusinessSchema, generateSchemaScript } from "@/lib/schemas";
 import { client, urlFor } from "@/lib/sanity";
-import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/home/Hero";
 import Promises from "@/components/home/Promises";
 import ProductGrid from "@/components/home/ProductGrid";
+
+// Navbar is "use client" — dynamic import defers its JS bundle from critical path
+// SSR: true ensures it still renders in the initial HTML
+const Navbar = dynamic(() => import("@/components/layout/Navbar"), { ssr: true });
 
 // Lazy load below-fold components to reduce initial JS bundle
 // ssr:false for heavy interactive components (video, carousels) that are far below fold

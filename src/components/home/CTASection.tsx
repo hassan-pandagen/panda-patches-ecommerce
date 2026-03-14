@@ -28,7 +28,7 @@ export default async function CTASection() {
           alt="Patches Background"
           fill
           className="object-cover object-center"
-          priority
+          loading="lazy"
         />
       </div>
 
