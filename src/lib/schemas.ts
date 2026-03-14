@@ -266,7 +266,8 @@ export function generateProductSchema(params: ProductSchemaParams) {
           "availability": `https://schema.org/${schemaAvailability}`,
           "url": url,
           "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
-          "shippingDetails": shippingDetails
+          "shippingDetails": shippingDetails,
+          "hasMerchantReturnPolicy": merchantReturnPolicy
         }
       : {
           "@type": "Offer",
@@ -275,7 +276,8 @@ export function generateProductSchema(params: ProductSchemaParams) {
           "availability": `https://schema.org/${schemaAvailability}`,
           "url": url,
           "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
-          "shippingDetails": shippingDetails
+          "shippingDetails": shippingDetails,
+          "hasMerchantReturnPolicy": merchantReturnPolicy
         }
   };
 

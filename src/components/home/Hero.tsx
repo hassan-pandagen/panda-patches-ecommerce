@@ -105,7 +105,7 @@ export default async function Hero() {
              - Mobile: Responsive with full width
           */}
           <div
-            className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-8 md:-mt-10 mx-auto md:mx-0"
+            className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-2 md:-mt-4 mx-auto md:mx-0"
           >
                {/* Hero image — browser picks mobile or desktop, never downloads both */}
                <picture>
