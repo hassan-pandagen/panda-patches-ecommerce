@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 
@@ -14,8 +14,15 @@ type FormData = {
 export default function ContactHero() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const formLoadedAt = useRef(Date.now());
 
   const onSubmit = async (data: FormData) => {
+    // Bot speed check — humans take at least 3 seconds to fill a form
+    if (Date.now() - formLoadedAt.current < 3000) {
+      setStatus('success');
+      return;
+    }
+
     setStatus('loading');
     try {
       const res = await fetch('/api/contact', {

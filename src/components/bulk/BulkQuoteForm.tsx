@@ -2,12 +2,13 @@
 
 import { useForm } from "react-hook-form";
 import { UploadCloud, CheckCircle, Phone, Clock, ShieldCheck, Check } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
 
 export default function BulkQuoteForm() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const partialSaved = useRef(false);
+  const formLoadedAt = useRef(Date.now());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
@@ -73,6 +74,12 @@ export default function BulkQuoteForm() {
   };
 
   const onSubmit = async (data: any) => {
+    // Bot speed check — humans take at least 3 seconds to fill a form
+    if (Date.now() - formLoadedAt.current < 3000) {
+      setMessage({ type: "success", text: "Your quote request has been submitted!" });
+      return;
+    }
+
     setIsSubmitting(true);
     setMessage(null);
 

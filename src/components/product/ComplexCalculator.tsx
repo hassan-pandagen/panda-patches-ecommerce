@@ -143,6 +143,7 @@ export default function ComplexCalculator({
   const backingDropdownRef = useRef<HTMLDivElement>(null);
   const shapeDropdownRef = useRef<HTMLDivElement>(null);
   const borderDropdownRef = useRef<HTMLDivElement>(null);
+  const formLoadedAt = useRef(Date.now());
   const [width, setWidth] = useState(3);
   const [height, setHeight] = useState(3);
   const [widthInput, setWidthInput] = useState('3');
@@ -341,6 +342,13 @@ export default function ComplexCalculator({
   };
 
   const handleDirectQuote = async () => {
+    // Bot speed check — humans take at least 3 seconds to fill a form
+    if (Date.now() - formLoadedAt.current < 3000) {
+      setQuoteSent(true);
+      setTimeout(() => setQuoteSent(false), 5000);
+      return;
+    }
+
     if (!email) {
       setFieldErrors({ email: "Email is required" });
       setCurrentStep(1);

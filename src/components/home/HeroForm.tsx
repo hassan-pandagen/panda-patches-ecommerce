@@ -10,6 +10,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const partialSaved = useRef(false);
+  const formLoadedAt = useRef(Date.now());
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
   const [isCustomSize, setIsCustomSize] = useState(false);
   const [customSize, setCustomSize] = useState('');
@@ -76,6 +77,12 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
   };
 
   const onSubmit = async (data: any) => {
+    // Bot speed check — humans take at least 3 seconds to fill a form
+    if (Date.now() - formLoadedAt.current < 3000) {
+      setMessage({ type: 'success', text: 'Your quote request has been submitted!' });
+      return;
+    }
+
     setIsSubmitting(true);
     setMessage(null);
 

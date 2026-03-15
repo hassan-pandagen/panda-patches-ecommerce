@@ -4,8 +4,7 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import { useTrustpilot } from "@/lib/useTrustpilot";
-import "swiper/css";
-import "swiper/css/pagination";
+import { useEffect } from "react";
 
 const reviews = [
   {
@@ -94,6 +93,25 @@ function ReviewCard({ review }: { review: typeof reviews[0] }) {
 
 export default function ReviewsSection() {
   const { rating: TRUSTPILOT_RATING, reviewCount: TRUSTPILOT_REVIEW_COUNT } = useTrustpilot();
+
+  // Load Swiper CSS dynamically to avoid render-blocking
+  useEffect(() => {
+    const ids = ['swiper-css', 'swiper-pagination-css'];
+    const hrefs = [
+      'https://cdn.jsdelivr.net/npm/swiper@12/swiper.min.css',
+      'https://cdn.jsdelivr.net/npm/swiper@12/modules/pagination.min.css',
+    ];
+    hrefs.forEach((href, i) => {
+      if (!document.getElementById(ids[i])) {
+        const link = document.createElement('link');
+        link.id = ids[i];
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.appendChild(link);
+      }
+    });
+  }, []);
+
   return (
     <section className="w-full py-8 md:py-12 bg-panda-light overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">

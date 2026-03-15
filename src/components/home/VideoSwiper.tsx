@@ -5,16 +5,31 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import { Play } from 'lucide-react';
 import VideoPlayer from './VideoPlayer';
 import { urlFor } from '@/lib/sanity';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { useEffect } from 'react';
 
 interface VideoSwiperProps {
   videos: any[];
 }
 
 export default function VideoSwiper({ videos }: VideoSwiperProps) {
+  // Load Swiper CSS dynamically to avoid render-blocking
+  useEffect(() => {
+    const ids = ['swiper-css', 'swiper-pagination-css'];
+    const hrefs = [
+      'https://cdn.jsdelivr.net/npm/swiper@12/swiper.min.css',
+      'https://cdn.jsdelivr.net/npm/swiper@12/modules/pagination.min.css',
+    ];
+    hrefs.forEach((href, i) => {
+      if (!document.getElementById(ids[i])) {
+        const link = document.createElement('link');
+        link.id = ids[i];
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.appendChild(link);
+      }
+    });
+  }, []);
+
   return (
     <>
       {/* Mobile: Swiper */}
