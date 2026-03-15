@@ -2,33 +2,7 @@ import Image from "next/image";
 import { client } from "@/lib/sanity";
 import dynamic from "next/dynamic";
 
-const HeroForm = dynamic(() => import("./HeroForm"), {
-  ssr: false,
-  loading: () => (
-    <div className="bg-white/90 border-[3px] border-[#676767]/30 rounded-[20px] px-8 py-8 shadow-2xl">
-      <div className="animate-pulse space-y-3">
-        <div className="h-7 bg-gray-200 rounded-lg w-3/4 mx-auto mb-1" />
-        <div className="h-5 bg-gray-100 rounded w-1/2 mx-auto mb-4" />
-        <div className="grid grid-cols-2 gap-3">
-          <div className="h-[50px] bg-gray-200 rounded-[10px]" />
-          <div className="h-[50px] bg-gray-200 rounded-[10px]" />
-        </div>
-        <div className="grid grid-cols-2 gap-3">
-          <div className="h-[50px] bg-gray-200 rounded-[10px]" />
-          <div className="h-[50px] bg-gray-200 rounded-[10px]" />
-        </div>
-        <div className="grid grid-cols-2 gap-3">
-          <div className="h-[50px] bg-gray-200 rounded-[10px]" />
-          <div className="h-[50px] bg-gray-200 rounded-[10px]" />
-        </div>
-        <div className="h-[50px] bg-gray-200 rounded-[10px]" />
-        <div className="h-[80px] bg-gray-200 rounded-[10px]" />
-        <div className="h-[90px] bg-gray-100 rounded-[12px] border-2 border-dashed border-gray-300" />
-        <div className="h-[58px] bg-gray-300 rounded-[12px] mt-4" />
-      </div>
-    </div>
-  ),
-});
+const HeroForm = dynamic(() => import("./HeroForm"), { ssr: true });
 
 async function getHeroData() {
   try {

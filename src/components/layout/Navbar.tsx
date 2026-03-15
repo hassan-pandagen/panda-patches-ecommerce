@@ -276,7 +276,7 @@ export default function Navbar() {
                       <span aria-hidden="true">🔥</span>
                       {link.name}
                     </span>
-                    <span className="text-[10px] font-black bg-red-800 text-white px-2 py-0.5 rounded-full animate-pulse">HOT</span>
+                    <span className="text-[10px] font-black bg-red-800 text-white px-2 py-0.5 rounded-full">HOT</span>
                   </Link>
                 ) : (
                   <Link
