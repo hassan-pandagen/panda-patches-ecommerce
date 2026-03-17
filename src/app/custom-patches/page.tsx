@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { getSanityOgImage } from "@/lib/sanityOgImage";
 import { client } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
@@ -11,14 +12,16 @@ import PickPatch from "@/components/about/PickPatch";
 import Promises from "@/components/home/Promises";
 import CategoryZigZag from "@/components/product/CategoryZigZag";
 import ProductInfoCarousel from "@/components/product/ProductInfoCarousel";
-import ProcessSection from "@/components/home/ProcessSection";
 import IndustrySection from "@/components/home/IndustrySection";
 import FAQ from "@/components/home/FAQ";
 import ContentSection from "@/components/home/ContentSection";
 import TrustStrip from "@/components/products/TrustStrip";
-import Craftsmanship from "@/components/home/Craftsmanship";
-import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
+
+// ssr:false for heavy client components with Swiper/carousels to avoid hydration mismatch
+const Craftsmanship = dynamic(() => import("@/components/home/Craftsmanship"), { ssr: false });
+const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"), { ssr: false });
+const ProcessSection = dynamic(() => import("@/components/home/ProcessSection"), { ssr: false });
 
 export async function generateMetadata(): Promise<Metadata> {
   const ogImage = await getSanityOgImage();
@@ -208,9 +211,13 @@ const faqSchema = {
 export const revalidate = 86400;
 
 async function getMainProductData() {
-  const query = `*[_type == "productPage" && slug.current == "custom-patches"][0]`;
-  const data = await client.fetch(query);
-  return data;
+  try {
+    const query = `*[_type == "productPage" && slug.current == "custom-patches"][0]`;
+    const data = await client.fetch(query);
+    return data;
+  } catch {
+    return null;
+  }
 }
 
 export default async function ProductLandingPage() {

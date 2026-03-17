@@ -81,16 +81,38 @@ const sanityCspHeader = "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  
+  const host = request.headers.get('host') || '';
+
+  // ============================================
+  // WWW + TRAILING SLASH CANONICAL REDIRECT
+  // Combines both into a single 301 so Google never sees a redirect chain.
+  // e.g. www.pandapatches.com/slug/ -> pandapatches.com/slug (1 hop)
+  // ============================================
+  const isLocal = host.startsWith('localhost') || host.startsWith('127.0.0.1');
+  const isWww = host.startsWith('www.');
+  const hasTrailingSlash = pathname.length > 1 && pathname.endsWith('/');
+
+  if (!isLocal && (isWww || hasTrailingSlash)) {
+    const cleanPath = hasTrailingSlash ? (pathname.replace(/\/+$/, '') || '/') : pathname;
+    const targetUrl = new URL(cleanPath, 'https://pandapatches.com');
+    targetUrl.search = request.nextUrl.search;
+    return NextResponse.redirect(targetUrl, 301);
+  }
+
   // Add CSP header to response
   const response = NextResponse.next();
-  
-  // Apply different CSP based on route
-  if (pathname.startsWith('/studio')) {
-    response.headers.set('Content-Security-Policy', sanityCspHeader);
-    response.headers.set('X-Frame-Options', 'SAMEORIGIN');
-  } else {
-    response.headers.set('Content-Security-Policy', cspHeader);
+
+  // Skip CSP on localhost (dev mode)
+  const isLocalhost = host.startsWith('localhost') || host.startsWith('127.0.0.1');
+
+  // Apply different CSP based on route (skip in dev to avoid blocking)
+  if (!isLocalhost) {
+    if (pathname.startsWith('/studio')) {
+      response.headers.set('Content-Security-Policy', sanityCspHeader);
+      response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+    } else {
+      response.headers.set('Content-Security-Policy', cspHeader);
+    }
   }
 
   // ============================================
@@ -229,5 +251,8 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/api/checkout', '/api/quote', '/api/contact', '/api/sample-box'],
+  matcher: [
+    // Match all routes EXCEPT static files, Next.js internals, and Sanity Studio
+    '/((?!_next/static|_next/image|favicon\\.ico|assets/|studio).*)',
+  ],
 };

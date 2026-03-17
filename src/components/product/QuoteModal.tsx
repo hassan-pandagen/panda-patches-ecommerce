@@ -89,6 +89,13 @@ export default function QuoteModal({
             currency: 'USD',
           });
         }
+        // Tawk.to — tag visitor as quote lead
+        if (typeof window !== 'undefined' && (window as any).Tawk_API?.setAttributes) {
+          (window as any).Tawk_API.setAttributes({
+            'lead-status': 'Quote Form Submitted',
+            'form-page': window.location.pathname,
+          }, function() {});
+        }
       } else {
         const data = await response.json();
         alert("Failed to send quote: " + (data.error || "Please try again"));

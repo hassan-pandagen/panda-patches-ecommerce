@@ -48,6 +48,23 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: true });
     }
 
+    // Gibberish detection — catches bot-generated random strings
+    const looksGibberish = (str: string) => {
+      if (!str || str.length < 6) return false;
+      const word = str.trim().split(/\s+/)[0];
+      if (word.length < 6) return false;
+      // Count consonant clusters of 4+ in a row (extremely rare in real names/words)
+      const consonantCluster = /[bcdfghjklmnpqrstvwxyz]{4,}/i;
+      // Mixed case within a single word with no spaces (e.g. "esjkfKEaWfcbywlg")
+      const mixedCaseNoSpace = /^[^\s]+$/.test(word) && /[a-z]/.test(word) && /[A-Z]/.test(word.slice(1));
+      return consonantCluster.test(word) && mixedCaseNoSpace;
+    };
+
+    const name = body.customer?.name || '';
+    if (looksGibberish(name)) {
+      return NextResponse.json({ success: true });
+    }
+
     const validationResult = QuoteSchema.safeParse(body);
 
     if (!validationResult.success) {

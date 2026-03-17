@@ -105,15 +105,18 @@ const getCategoryImages = cache(async (): Promise<Record<string, string>> => {
   try {
     const slugs = ['embroidered', 'woven', 'pvc', 'chenille', 'leather'];
     const query = `{
-      ${slugs.map(s => `"${s}": *[_type == "productPage" && slug.current == "${s}"][0].gallery[0]`).join(',\n      ')}
+      ${slugs.map(s => `"${s}": *[_type == "productPage" && slug.current == "${s}"][0].gallery[0...4]`).join(',\n      ')}
     }`;
-    const data: Record<string, any> = await client.fetch(query, {}, { next: { revalidate: 86400 } });
+    const data: Record<string, any[]> = await client.fetch(query, {}, { next: { revalidate: 86400 } });
     const result: Record<string, string> = {};
-    for (const [slug, img] of Object.entries(data)) {
-      if (img) {
-        try {
-          result[slug] = urlFor(img.image || img).width(500).height(500).quality(80).auto('format').fit('max').url();
-        } catch { /* skip if urlFor fails */ }
+    for (const [slug, imgs] of Object.entries(data)) {
+      if (imgs && imgs.length > 0) {
+        for (let i = 0; i < imgs.length; i++) {
+          const key = i === 0 ? slug : `${slug}_${i}`;
+          try {
+            result[key] = urlFor(imgs[i].image || imgs[i]).width(500).height(500).quality(80).auto('format').fit('max').url();
+          } catch { /* skip if urlFor fails */ }
+        }
       }
     }
     return result;
@@ -135,12 +138,17 @@ const CATEGORY_DESCRIPTIONS: Record<string, string> = {
 export default async function OffersPage() {
   const [categoryImages, ctaImageUrl] = await Promise.all([getCategoryImages(), getCtaImage()]);
 
-  const productSchemas = OFFER_CATEGORIES.map(cat => ({
+  const slugSchemaCount: Record<string, number> = {};
+  const productSchemas = OFFER_CATEGORIES.map(cat => {
+    const count = slugSchemaCount[cat.slug] || 0;
+    slugSchemaCount[cat.slug] = count + 1;
+    const imgKey = count === 0 ? cat.slug : `${cat.slug}_${count}`;
+    return {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: `Custom ${cat.type} - ${cat.subtitle}`,
     description: CATEGORY_DESCRIPTIONS[cat.id] ?? `Custom ${cat.type} fixed-price packages from Panda Patches.`,
-    image: categoryImages[cat.slug] ?? 'https://pandapatches.com/assets/og-image.png',
+    image: categoryImages[imgKey] ?? categoryImages[cat.slug] ?? 'https://pandapatches.com/assets/og-image.png',
     brand: { '@type': 'Brand', name: 'Panda Patches' },
     offers: cat.packs.map(pack => ({
       '@type': 'Offer',
@@ -153,7 +161,8 @@ export default async function OffersPage() {
       shippingDetails,
       hasMerchantReturnPolicy: merchantReturnPolicy,
     })),
-  }));
+  };
+  });
 
   return (
     <main className="min-h-screen bg-white">

@@ -107,18 +107,24 @@ export default function Home() {
       <Hero />
 
       {/* New Sections Added Here */}
-      <Craftsmanship />
+      <div className="min-h-[300px] md:min-h-[400px]">
+        <Craftsmanship />
+      </div>
 
       {/* Customer Reviews — social proof immediately after craftsmanship */}
-      <ReviewsSection />
+      <div className="min-h-[400px] md:min-h-[500px]">
+        <ReviewsSection />
+      </div>
 
       <Promises />
-      
+
       {/* The New Grid */}
       <ProductGrid />
 
       {/* Process Section with Interactive Animation */}
-      <ProcessSection />
+      <div className="min-h-[300px] md:min-h-[400px]">
+        <ProcessSection />
+      </div>
 
       {/* Timeline/Zig-Zag Section */}
       <TimelineSection />
@@ -127,7 +133,9 @@ export default function Home() {
       <FAQ />
 
       {/* Blog Section */}
-      <BlogSection />
+      <div className="min-h-[400px] md:min-h-[550px]">
+        <BlogSection />
+      </div>
 
       {/* SEO Content Section */}
       <ContentSection />

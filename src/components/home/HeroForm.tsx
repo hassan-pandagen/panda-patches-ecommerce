@@ -148,6 +148,13 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
       if (typeof window !== 'undefined' && (window as any).fbq) {
         (window as any).fbq('track', 'Lead', { value: 50.0, currency: 'USD' });
       }
+      // Tawk.to — tag visitor as quote lead
+      if (typeof window !== 'undefined' && (window as any).Tawk_API?.setAttributes) {
+        (window as any).Tawk_API.setAttributes({
+          'lead-status': 'Quote Form Submitted',
+          'form-page': window.location.pathname,
+        }, function() {});
+      }
 
       setMessage({ type: 'success', text: 'Quote submitted successfully! We\'ll contact you soon.' });
       reset();
@@ -163,7 +170,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
   };
 
   return (
-    <div className="bg-white/90 border-[3px] border-[#676767]/30 rounded-[20px] px-8 py-8 shadow-2xl">
+    <div className="bg-white/90 border-[3px] border-[#676767]/30 rounded-[20px] px-4 sm:px-8 py-6 sm:py-8 shadow-2xl">
 
       {message?.type === 'success' ? (
         <div className="text-center py-6">

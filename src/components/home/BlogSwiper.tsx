@@ -49,35 +49,34 @@ export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
       {/* MOBILE: Single Blog Swiper */}
       <div className="md:hidden flex flex-col items-center gap-6">
         {/* Blog Card */}
-        <div className="w-full max-w-[362px] h-[603px] bg-white rounded-[10px] overflow-hidden shadow-sm">
-          
+        <div className="w-full max-w-[340px] bg-white rounded-[10px] overflow-hidden shadow-sm mx-auto">
+
           {/* IMAGE AREA */}
-          <div className="relative w-full h-[350px] overflow-hidden">
+          <div className="relative w-full h-[240px] overflow-hidden">
             <Image
               src={imgSrc}
               alt={currentBlog.title}
               fill
-              loading="lazy"
               className="object-cover transition-transform duration-700"
             />
           </div>
 
           {/* TEXT AREA */}
-          <div className="flex flex-col items-center text-center pt-8 pb-6 px-4 flex-grow h-[253px]">
-            
+          <div className="flex flex-col items-center text-center pt-6 pb-5 px-4 flex-grow">
+
             {/* Title */}
-            <h3 className="text-[22px] leading-[1.3] font-bold text-panda-dark mb-4">
+            <h3 className="text-[18px] leading-[1.3] font-bold text-panda-dark mb-3 line-clamp-2">
               {currentBlog.title}
             </h3>
 
             {/* Excerpt */}
-            <p className="text-[15px] leading-[1.6] text-gray-600 mb-auto line-clamp-3">
+            <p className="text-[14px] leading-[1.5] text-gray-600 mb-auto line-clamp-3">
               {currentBlog.excerpt}
             </p>
 
             {/* Button */}
-            <Link href={currentBlog.slug ? `/${currentBlog.slug}` : '/blogs'} className="mt-6 inline-block px-8 py-3 bg-black text-white font-bold uppercase tracking-wider text-sm transition-colors duration-300 hover:bg-panda-yellow hover:text-black rounded-[4px]">
-              Read More: {currentBlog.title}
+            <Link href={currentBlog.slug ? `/${currentBlog.slug}` : '/blogs'} className="mt-4 inline-block px-6 py-2.5 bg-black text-white font-bold uppercase tracking-wider text-xs transition-colors duration-300 hover:bg-panda-yellow hover:text-black rounded-[4px]">
+              Read More
             </Link>
 
           </div>

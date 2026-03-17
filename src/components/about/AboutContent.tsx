@@ -43,45 +43,40 @@ export default async function AboutContent() {
   ];
 
   return (
-    <section className="w-full pt-8 pb-14 bg-white">
+    <section className="w-full pt-4 pb-8 bg-white">
       <div className="container mx-auto px-4 flex flex-col items-center">
-        
+
         {/* === MAIN PAGE TITLE === */}
-        <h1 className="text-[32px] md:text-[70px] font-semibold text-panda-dark uppercase mb-10 tracking-tight">
+        <h1 className="text-[20px] md:text-[36px] font-black text-panda-dark uppercase mb-1 tracking-tight">
           {title}
         </h1>
 
-        {/* 
-           === TRUST BADGES (REUSED FROM HERO) === 
-           Now automatically pulls what you uploaded for the Home Page
-        */}
-        <div className="flex flex-wrap items-center justify-center gap-8 mb-20">
+        {/* === TRUST BADGES (REUSED FROM HERO) === */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-4">
            {hero?.trustBadges && hero.trustBadges.map((badge: any, idx: number) => (
-             <div key={idx} className="relative h-10 w-28">
+             <div key={idx} className="relative h-7 w-20 md:h-9 md:w-24">
                <Image
                  src={urlFor(badge).width(200).format('webp').quality(80).url()}
                  alt={`Trust badge ${idx + 1}`}
                  fill
                  className="object-contain"
-                 sizes="112px"
+                 sizes="96px"
                />
              </div>
            ))}
         </div>
 
         {/* === CONTENT BOX === */}
-        <div className="flex flex-col gap-[50px] max-w-[1328px] text-center">
-          
+        <div className="flex flex-col gap-5 md:gap-8 max-w-[800px] text-center">
+
           {sections.map((section: any, idx: number) => (
-            <div key={idx} className="space-y-4">
-              
-              {/* HEADING */}
-              <h2 className="text-[24px] md:text-[40px] font-semibold text-panda-dark leading-tight">
+            <div key={idx} className="space-y-1.5">
+
+              <h2 className="text-[15px] md:text-[24px] font-bold text-panda-dark leading-snug">
                 {section.heading}
               </h2>
 
-              {/* DESCRIPTION */}
-              <p className="text-[16px] md:text-[20px] font-normal text-gray-600 leading-[1.4] max-w-[1250px] mx-auto">
+              <p className="text-[13px] md:text-[15px] font-normal text-gray-600 leading-[1.6] mx-auto">
                 {section.description}
               </p>
 

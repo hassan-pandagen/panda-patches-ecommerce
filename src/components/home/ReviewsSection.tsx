@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 import { useTrustpilot } from "@/lib/useTrustpilot";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const reviews = [
   {
@@ -93,23 +95,10 @@ function ReviewCard({ review }: { review: typeof reviews[0] }) {
 
 export default function ReviewsSection() {
   const { rating: TRUSTPILOT_RATING, reviewCount: TRUSTPILOT_REVIEW_COUNT } = useTrustpilot();
+  const [mounted, setMounted] = useState(false);
 
-  // Load Swiper CSS dynamically to avoid render-blocking
   useEffect(() => {
-    const ids = ['swiper-css', 'swiper-pagination-css'];
-    const hrefs = [
-      'https://cdn.jsdelivr.net/npm/swiper@12/swiper.min.css',
-      'https://cdn.jsdelivr.net/npm/swiper@12/modules/pagination.min.css',
-    ];
-    hrefs.forEach((href, i) => {
-      if (!document.getElementById(ids[i])) {
-        const link = document.createElement('link');
-        link.id = ids[i];
-        link.rel = 'stylesheet';
-        link.href = href;
-        document.head.appendChild(link);
-      }
-    });
+    setMounted(true);
   }, []);
 
   return (
@@ -134,23 +123,27 @@ export default function ReviewsSection() {
           </p>
         </div>
 
-        {/* Mobile: Swiper (1 card at a time) */}
+        {/* Mobile: Swiper (1 card at a time) - only after mount to avoid hydration mismatch from loop */}
         <div className="md:hidden">
-          <Swiper
-            modules={[Pagination, Autoplay]}
-            slidesPerView={1}
-            spaceBetween={16}
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 4000, disableOnInteraction: true }}
-            loop={true}
-            className="!pb-10"
-          >
-            {reviews.map((review, idx) => (
-              <SwiperSlide key={idx} className="h-auto">
-                <ReviewCard review={review} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {mounted ? (
+            <Swiper
+              modules={[Pagination, Autoplay]}
+              slidesPerView={1}
+              spaceBetween={16}
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 4000, disableOnInteraction: true }}
+              loop={true}
+              className="!pb-10 [&_.swiper-button-next]:!hidden [&_.swiper-button-prev]:!hidden"
+            >
+              {reviews.map((review, idx) => (
+                <SwiperSlide key={idx} className="h-auto">
+                  <ReviewCard review={review} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <ReviewCard review={reviews[0]} />
+          )}
         </div>
 
         {/* Desktop: all 4 in one row */}

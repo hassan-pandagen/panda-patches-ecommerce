@@ -1,43 +1,45 @@
-.product-gallery-swiper .swiper-button-next,
-.product-gallery-swiper .swiper-button-prev {
-  background: #000 !important;
-  width: 40px !important;
-  height: 40px !important;
-  border-radius: 50% !important;
-  transition: all 0.3s ease !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: #fff !important;
-  overflow: hidden !important;
+/* === GALLERY MAIN WRAPPER === */
+.gallery-main-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
 }
 
-.product-gallery-swiper .swiper-button-next:hover,
-.product-gallery-swiper .swiper-button-prev:hover {
-  background: #B4D92D !important;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
-  color: #000 !important;
+/* Contain Swiper's translate3d stacking contexts inside this box */
+.gallery-swiper-container {
+  position: relative;
+  z-index: 0;
 }
 
-.product-gallery-swiper .swiper-button-next:after,
-.product-gallery-swiper .swiper-button-prev:after {
-  font-size: 10px !important;
-  color: inherit !important;
-  font-weight: 900 !important;
-  transition: all 0.3s ease !important;
-  position: static !important;
-  transform: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 1 !important;
+/* === GALLERY NAV ARROWS === */
+.gallery-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateZ(0);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+  will-change: transform;
 }
 
-.product-gallery-swiper .swiper-button-disabled {
-  opacity: 0.5 !important;
+.gallery-nav-prev {
+  left: 10px;
 }
 
+.gallery-nav-next {
+  right: 10px;
+}
+
+/* === PAGINATION DOTS === */
 .product-gallery-swiper .swiper-pagination-bullet {
   background: #000;
   opacity: 0.3;
@@ -52,12 +54,13 @@
   border-radius: 4px;
 }
 
+/* === THUMBNAILS === */
 .product-thumbs-swiper .swiper-slide-thumb-active > div {
   border-color: #10B981 !important;
   box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
 }
 
-/* Keep lightbox below any modal overlays */
+/* === LIGHTBOX === */
 :root {
   --yarl__portal_zIndex: 9000;
 }
@@ -92,6 +95,36 @@
 .yarl__navigation_next svg {
   color: #111111 !important;
   fill: none !important;
+  stroke: #111111 !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* === LIGHTBOX CLOSE BUTTON === */
+.yarl__button--close {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  position: fixed !important;
+  top: 16px !important;
+  right: 16px !important;
+  z-index: 9999 !important;
+}
+
+.yarl__button--close svg {
+  color: #111111 !important;
   stroke: #111111 !important;
   width: 20px !important;
   height: 20px !important;

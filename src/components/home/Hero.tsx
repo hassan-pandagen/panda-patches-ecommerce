@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { client } from "@/lib/sanity";
-import dynamic from "next/dynamic";
-
-const HeroForm = dynamic(() => import("./HeroForm"), { ssr: true });
+import HeroForm from "./HeroForm";
 
 async function getHeroData() {
   try {
@@ -112,7 +110,7 @@ export default async function Hero() {
            - Responsive padding for mobile
         */}
         <div className="w-full flex justify-center lg:justify-end items-center h-full pl-0 lg:pl-10">
-           <div className="w-full max-w-[620px]">
+           <div className="w-full max-w-[620px] px-2 sm:px-0">
               <HeroForm />
            </div>
         </div>

@@ -46,8 +46,11 @@
   border-color: #3B7E00;
 }
 
-body {
-  overflow-x: hidden;
+html {
+  overflow-x: clip;
+  scrollbar-width: thin;
+  scrollbar-color: #DFFF00 #051C05;
+  scrollbar-gutter: stable;
 }
 
 /* Custom scrollbar */
@@ -55,7 +58,6 @@ body {
 ::-webkit-scrollbar-track { background: #051C05; }
 ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #DFFF00, #3B7E00); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #e8ff33, #4a9e00); }
-html { scrollbar-width: thin; scrollbar-color: #DFFF00 #051C05; }
 
 /* Tawk.to bubble — prevent animation jank */
 #tawk-bubble-container,

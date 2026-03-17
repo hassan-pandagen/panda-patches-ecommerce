@@ -87,7 +87,7 @@ export default function BlogListClient({ blogs }: { blogs: Blog[] }) {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-20 items-start">
+    <div className="flex flex-col lg:flex-row gap-20 lg:items-start">
       {/* === LEFT COLUMN: BLOG LIST === */}
       <div className="flex-1 flex flex-col gap-10">
         {/* Active filter indicator */}
@@ -162,9 +162,10 @@ export default function BlogListClient({ blogs }: { blogs: Blog[] }) {
                 {post.slug?.current ? (
                   <Link
                     href={`/${post.slug.current}`}
-                    className="inline-block bg-black text-panda-yellow font-black text-xs uppercase px-8 py-3 tracking-widest hover:scale-105 transition-transform self-start"
+                    className="inline-block bg-black text-panda-yellow font-black text-xs uppercase px-6 md:px-8 py-3 tracking-widest hover:scale-105 transition-transform self-start"
                   >
-                    Read More: {post.title}
+                    <span className="hidden md:inline">Read More: {post.title}</span>
+                    <span className="md:hidden">Read More</span>
                   </Link>
                 ) : (
                   <span className="inline-block bg-gray-300 text-gray-500 font-black text-xs uppercase px-8 py-3 tracking-widest self-start">

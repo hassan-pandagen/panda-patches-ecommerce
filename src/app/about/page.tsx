@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import dynamic from "next/dynamic";
 import { getSanityOgImage } from "@/lib/sanityOgImage";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -10,6 +11,8 @@ import FactorySection from "@/components/about/FactorySection";
 import PickPatch from "@/components/about/PickPatch";
 import ProcessSection from "@/components/home/ProcessSection";
 import { generatePersonSchema, generateSchemaScript } from "@/lib/schemas";
+
+const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"), { ssr: false });
 
 // SEO Metadata for About Page
 export async function generateMetadata(): Promise<Metadata> {
@@ -66,8 +69,11 @@ export default function AboutPage() {
       
       {/* 1. Main Text & Badges */}
       <AboutContent />
-      
-      {/* 2. Social Reviews (Grey Background) */}
+
+      {/* 2. Trustpilot Reviews */}
+      <ReviewsSection />
+
+      {/* 3. Social Reviews (Grey Background) */}
       <SocialReviews />
       
       {/* 3. Promises (Grey Background - Blends with Reviews) */}

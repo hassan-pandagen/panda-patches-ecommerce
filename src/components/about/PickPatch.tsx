@@ -1,15 +1,7 @@
-'use client'
-
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { client, urlFor } from "@/lib/sanity";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
+import PickPatchSwiper from "./PickPatchSwiper";
 
 interface PatchCard {
   image?: any;
@@ -18,38 +10,47 @@ interface PatchCard {
 }
 
 async function getData() {
-  const query = `*[_type == "about"][0]`;
-  const data = await client.fetch(query);
-  return data;
+  try {
+    const query = `*[_type == "about"][0]{ pickPatchHeading, patchCards }`;
+    const data = await client.fetch(query, {}, { next: { revalidate: 3600 } });
+    return data;
+  } catch {
+    return null;
+  }
 }
 
-export default function PickPatch() {
-  const [data, setData] = useState<any>(null);
-  const [mounted, setMounted] = useState(false);
+// Map patch label keywords to their product page slugs
+const SLUG_KEYWORDS: [string, string][] = [
+  ['embroidered', '/custom-patches/embroidered'],
+  ['chenille', '/custom-patches/chenille'],
+  ['pvc', '/custom-patches/pvc'],
+  ['woven', '/custom-patches/woven'],
+  ['leather', '/custom-patches/leather'],
+  ['printed', '/custom-patches/printed'],
+];
 
-  useEffect(() => {
-    setMounted(true);
-    getData().then(setData);
-  }, []);
+function getAutoLink(label: string): string | null {
+  const normalized = label.toLowerCase().trim();
+  const match = SLUG_KEYWORDS.find(([keyword]) => normalized.includes(keyword));
+  return match ? match[1] : null;
+}
 
-  if (!mounted || !data) {
-    return (
-      <section className="w-full pb-14 pt-6 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="h-9 w-64 bg-gray-100 rounded mx-auto mb-12 animate-pulse" />
-          <div className="hidden md:flex flex-wrap justify-center gap-6">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="w-[248px] h-[326px] bg-gray-100 rounded-[16px] animate-pulse" />
-            ))}
-          </div>
-          <div className="block md:hidden h-[326px] bg-gray-100 rounded-[16px] animate-pulse" />
-        </div>
-      </section>
-    );
-  }
+export default async function PickPatch() {
+  const data = await getData();
+
+  if (!data) return null;
 
   const title = data?.pickPatchHeading || "PICK YOUR PATCH!";
   const patches: PatchCard[] = data?.patchCards || [];
+
+  if (patches.length === 0) return null;
+
+  // Pre-resolve links for client component
+  const patchesWithLinks = patches.map((p) => ({
+    image: p.image,
+    label: p.label,
+    href: p.link || getAutoLink(p.label),
+  }));
 
   return (
     <section className="w-full pb-14 pt-6 bg-white">
@@ -60,58 +61,24 @@ export default function PickPatch() {
           {title}
         </h2>
 
-        {patches.length > 0 ? (
-          <>
-            {/* DESKTOP: Grid Layout (hidden on mobile) */}
-            <div className="hidden md:flex flex-wrap justify-center gap-6">
-              {patches.map((patch, idx) => (
-                <PatchCardComponent key={idx} patch={patch} />
-              ))}
-            </div>
+        {/* DESKTOP: Grid Layout */}
+        <div className="hidden md:flex flex-wrap justify-center gap-6">
+          {patchesWithLinks.map((patch, idx) => (
+            <PatchCardComponent key={idx} patch={patch} />
+          ))}
+        </div>
 
-            {/* MOBILE: Swiper (hidden on desktop) */}
-            <div className="block md:hidden">
-              <Swiper
-                modules={[Pagination, Autoplay]}
-                spaceBetween={20}
-                slidesPerView={1.2}
-                centeredSlides={true}
-                pagination={{ clickable: true }}
-                autoplay={{
-                  delay: 3000,
-                  disableOnInteraction: false,
-                }}
-                breakpoints={{
-                  480: {
-                    slidesPerView: 1.5,
-                  },
-                  640: {
-                    slidesPerView: 2,
-                  },
-                }}
-                className="!pb-12"
-              >
-                {patches.map((patch, idx) => (
-                  <SwiperSlide key={idx}>
-                    <PatchCardComponent patch={patch} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          </>
-        ) : (
-          <p className="text-gray-400">
-            Please add patch cards in Sanity Studio (About → Patch Cards)
-          </p>
-        )}
+        {/* MOBILE: Swiper */}
+        <div className="block md:hidden">
+          <PickPatchSwiper patches={patchesWithLinks} />
+        </div>
 
       </div>
     </section>
   );
 }
 
-// === SINGLE CARD COMPONENT ===
-function PatchCardComponent({ patch }: { patch: PatchCard }) {
+function PatchCardComponent({ patch }: { patch: { image?: any; label: string; href: string | null } }) {
   const cardContent = (
     <div className="
       group
@@ -122,8 +89,6 @@ function PatchCardComponent({ patch }: { patch: PatchCard }) {
       p-6
       hover:shadow-xl transition-all duration-300 cursor-pointer
     ">
-
-      {/* Image Area */}
       <div className="relative w-full h-[200px] flex items-center justify-center">
         {patch.image && (
           <Image
@@ -131,29 +96,20 @@ function PatchCardComponent({ patch }: { patch: PatchCard }) {
             alt={patch.label}
             fill
             className="object-contain group-hover:scale-110 transition-transform duration-500"
+            sizes="248px"
           />
         )}
       </div>
-
-      {/* Label Area */}
       <div className="mt-4 text-center">
         <h3 className="text-[18px] font-bold text-panda-dark leading-tight">
           {patch.label}
         </h3>
       </div>
-
     </div>
   );
 
-  // If link exists, wrap in Link component
-  if (patch.link) {
-    return (
-      <Link href={patch.link} className="inline-block">
-        {cardContent}
-      </Link>
-    );
+  if (patch.href) {
+    return <Link href={patch.href} className="inline-block">{cardContent}</Link>;
   }
-
-  // Otherwise, just return the card
   return cardContent;
 }

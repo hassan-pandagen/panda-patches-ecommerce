@@ -628,27 +628,27 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white" suppressHydrationWarning>
 
       {/* HERO — unified with stats strip at bottom */}
       <section className="relative w-full overflow-hidden bg-[#051C05]">
-        {/* Background image — upper portion only */}
+        {/* Background image — desktop only (hidden on mobile) */}
         {ctaImageUrl && (
-          <div className="absolute inset-0 bottom-[88px]">
+          <div className="absolute inset-0 bottom-[88px] hidden md:block">
             <Image src={ctaImageUrl} alt="Custom patch packages" fill className="object-cover object-center" priority />
           </div>
         )}
 
         {/* Hero text */}
-        <div className="relative z-10 text-center px-6 pt-16 pb-12 max-w-3xl mx-auto">
+        <div className="relative z-10 text-center px-6 pt-12 md:pt-16 pb-12 max-w-3xl mx-auto">
           <div className="inline-block bg-[#DFFF00] text-[#051C05] text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest mb-4">Exclusive Packages</div>
-          <h1 className="text-3xl sm:text-5xl font-black leading-tight mb-4 text-[#051C05]">
+          <h1 className="text-3xl sm:text-5xl font-black leading-tight mb-4 text-white md:text-[#051C05]">
             Custom Patch Packages<br />at Fixed Prices
           </h1>
-          <p className="text-gray-700 text-lg mb-6">No setup fees. No surprise charges. Free design mockup included.<br />Order in minutes, we handle the rest.</p>
+          <p className="text-gray-300 md:text-gray-700 text-lg mb-6">No setup fees. No surprise charges. Free design mockup included.<br />Order in minutes, we handle the rest.</p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
             {['Free design mockup', '7-14 day delivery', `${TRUSTPILOT_RATING} stars on Trustpilot`, 'Money-back guarantee'].map(t => (
-              <span key={t} className="flex items-center gap-1.5 text-[#051C05] font-semibold"><span>✓</span>{t}</span>
+              <span key={t} className="flex items-center gap-1.5 text-[#DFFF00] md:text-[#051C05] font-semibold"><span>✓</span>{t}</span>
             ))}
           </div>
         </div>
@@ -676,8 +676,14 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
       {/* OFFER CARDS */}
       <section className="max-w-6xl mx-auto px-4 py-12 md:py-16">
         <div className="space-y-14 md:space-y-20">
-          {OFFER_CATEGORIES.map(cat => {
-            const imgSrc = categoryImages?.[cat.slug];
+          {(() => {
+            const slugCount: Record<string, number> = {};
+            return OFFER_CATEGORIES.map(cat => {
+            const count = slugCount[cat.slug] || 0;
+            slugCount[cat.slug] = count + 1;
+            const imgSrc = count === 0
+              ? categoryImages?.[cat.slug]
+              : categoryImages?.[`${cat.slug}_${count}`] || categoryImages?.[cat.slug];
             const isThisCatSelected = selectedOffer?.categoryId === cat.id && step > 0;
             return (
               <div key={cat.id} id={cat.id} className="border-b border-gray-100 pb-14 last:border-0 last:pb-0">
@@ -793,7 +799,8 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
 
               </div>
             );
-          })}
+          });
+          })()}
         </div>
       </section>
 

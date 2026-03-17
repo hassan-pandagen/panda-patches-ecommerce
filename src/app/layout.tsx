@@ -13,7 +13,7 @@ const CallNowPopup = dynamic(() => import("@/components/CallNowPopup"), { ssr: f
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
@@ -68,7 +68,7 @@ export default function RootLayout({
         <style dangerouslySetInnerHTML={{ __html: `
           :root{--foreground-rgb:0,0,0;--background-start-rgb:249,250,245;--background-end-rgb:255,255,255}
           *{margin:0;padding:0;box-sizing:border-box}
-          html,body{font-family:var(--font-outfit),system-ui,sans-serif;color:rgb(var(--foreground-rgb));background:linear-gradient(to bottom,transparent,rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));overflow-x:hidden}
+          html{font-family:var(--font-outfit),system-ui,sans-serif;color:rgb(var(--foreground-rgb));background:linear-gradient(to bottom,transparent,rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb))}
           img{display:block;max-width:100%;height:auto}
           a{text-decoration:none;color:inherit}
           button{cursor:pointer;border:none;font-family:inherit}

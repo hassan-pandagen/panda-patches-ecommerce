@@ -119,6 +119,14 @@ export default function BulkQuoteForm() {
         (window as any).fbq("track", "Lead", { value: 50.0, currency: "USD" });
       }
 
+      // Tawk.to — tag visitor as quote lead
+      if (typeof window !== "undefined" && (window as any).Tawk_API?.setAttributes) {
+        (window as any).Tawk_API.setAttributes({
+          "lead-status": "Quote Form Submitted",
+          "form-page": window.location.pathname,
+        }, function() {});
+      }
+
       setMessage({ type: "success", text: "Quote submitted! We'll respond within 2 business hours with your free mockup." });
       setUploadedFiles([]);
       reset();
