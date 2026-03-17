@@ -62,16 +62,37 @@ const ALLOWED_ORIGINS = [
 // ============================================
 // CONTENT SECURITY POLICY (CSP)
 // ============================================
+// Build wildcard domains at runtime to prevent Next.js build from stripping asterisks
+const W = String.fromCharCode(42); // '*' character — assembled at runtime, not compile time
+const w = (domain: string) => `https://${W}.${domain}`;
+const ww = (domain: string) => `wss://${W}.${domain}`;
+
 const cspHeader = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://js.stripe.com https://www.paypalobjects.com https://www.paypal.com https://widget.trustpilot.com https://www.clarity.ms https://scripts.clarity.ms https://embed.tawk.to https://cdn.tawk.to https://va.tawk.to https://cdn.jsdelivr.net https://va.vercel-scripts.com https://cdn.vercel-insights.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://connect.facebook.net https://bat.bing.com",
-  "script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://js.stripe.com https://www.paypalobjects.com https://www.paypal.com https://widget.trustpilot.com https://www.clarity.ms https://scripts.clarity.ms https://embed.tawk.to https://cdn.tawk.to https://va.tawk.to https://cdn.jsdelivr.net https://va.vercel-scripts.com https://cdn.vercel-insights.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://connect.facebook.net https://bat.bing.com",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://embed.tawk.to https://cdn.tawk.to",
-  "font-src 'self' https://fonts.gstatic.com https://cdn.tawk.to https://embed.tawk.to",
-  "img-src 'self' data: blob: https://cdn.sanity.io https://www.google-analytics.com https://www.googletagmanager.com https://www.paypalobjects.com https://c.clarity.ms https://www.clarity.ms https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.googleadservices.com https://www.google.com https://www.facebook.com https://bat.bing.com https://c.bing.com https://embed.tawk.to https://cdn.tawk.to https://va.tawk.to https://s3.tawk.to https://s3.amazonaws.com https://widget.trustpilot.com https://tr.facebook.com",
-  "connect-src 'self' https://api.sanity.io https://cdn.sanity.io https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://api.stripe.com https://uxgzlneefybifvccfhwp.supabase.co https://www.clarity.ms https://n.clarity.ms https://c.clarity.ms https://k.clarity.ms https://i.clarity.ms https://h.clarity.ms https://api.zeptomail.com https://www.google.com https://stats.g.doubleclick.net https://googleleads.g.doubleclick.net https://connect.facebook.net https://www.facebook.com https://embed.tawk.to https://va.tawk.to https://cdn.tawk.to https://s3.tawk.to wss://*.tawk.to https://widget.trustpilot.com https://bat.bing.com",
-  "media-src 'self' data: https://cdn.sanity.io https://embed.tawk.to https://cdn.tawk.to https://va.tawk.to",
-  "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://www.paypal.com https://www.googletagmanager.com https://widget.trustpilot.com https://tawk.to https://embed.tawk.to https://frame.tawk.to https://www.facebook.com https://bid.g.doubleclick.net https://googleads.g.doubleclick.net",
+
+  // Scripts: Google (GTM, GA4, Ads), Stripe, PayPal, Trustpilot, Clarity, Tawk.to, Facebook, Bing, Vercel
+  `script-src 'self' 'unsafe-inline' 'unsafe-eval' ${w('googletagmanager.com')} ${w('google-analytics.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} https://js.stripe.com ${w('paypal.com')} ${w('paypalobjects.com')} ${w('trustpilot.com')} ${w('clarity.ms')} ${w('tawk.to')} https://cdn.jsdelivr.net ${w('vercel-scripts.com')} ${w('vercel-insights.com')} ${w('facebook.net')} ${w('facebook.com')} https://bat.bing.com`,
+
+  `script-src-elem 'self' 'unsafe-inline' ${w('googletagmanager.com')} ${w('google-analytics.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} https://js.stripe.com ${w('paypal.com')} ${w('paypalobjects.com')} ${w('trustpilot.com')} ${w('clarity.ms')} ${w('tawk.to')} https://cdn.jsdelivr.net ${w('vercel-scripts.com')} ${w('vercel-insights.com')} ${w('facebook.net')} ${w('facebook.com')} https://bat.bing.com`,
+
+  // Styles
+  `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${w('tawk.to')}`,
+
+  // Fonts
+  `font-src 'self' https://fonts.gstatic.com ${w('tawk.to')}`,
+
+  // Images: everything that might serve pixels/images
+  `img-src 'self' data: blob: https://cdn.sanity.io ${w('google-analytics.com')} ${w('googletagmanager.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} ${w('google.com')} ${w('paypalobjects.com')} ${w('clarity.ms')} ${w('tawk.to')} ${w('amazonaws.com')} ${w('trustpilot.com')} ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://bat.bing.com ${w('bing.com')}`,
+
+  // Connect: API calls, websockets, beacons
+  `connect-src 'self' ${w('sanity.io')} ${w('google-analytics.com')} ${w('analytics.google.com')} ${w('googletagmanager.com')} ${w('doubleclick.net')} ${w('googleadservices.com')} ${w('google.com')} https://api.stripe.com ${w('supabase.co')} ${w('clarity.ms')} ${w('tawk.to')} ${ww('tawk.to')} https://api.zeptomail.com ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com ${w('trustpilot.com')} https://bat.bing.com ${w('bing.com')} ${w('paypal.com')} ${w('vercel-insights.com')} ${w('vercel-scripts.com')}`,
+
+  // Media
+  `media-src 'self' data: https://cdn.sanity.io ${w('tawk.to')}`,
+
+  // Frames: Stripe, PayPal, GTM, Trustpilot, Tawk.to, Facebook, Google Ads
+  `frame-src 'self' https://js.stripe.com https://hooks.stripe.com ${w('paypal.com')} ${w('googletagmanager.com')} ${w('trustpilot.com')} ${w('tawk.to')} ${w('facebook.com')} ${w('doubleclick.net')} ${w('google.com')}`,
+
   "worker-src 'self' blob:",
   "object-src 'none'",
 ].join('; ');
