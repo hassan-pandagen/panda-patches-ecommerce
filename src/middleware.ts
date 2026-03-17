@@ -82,10 +82,10 @@ const cspHeader = [
   `font-src 'self' https://fonts.gstatic.com ${w('tawk.to')}`,
 
   // Images: everything that might serve pixels/images
-  `img-src 'self' data: blob: https://cdn.sanity.io ${w('google-analytics.com')} ${w('googletagmanager.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} ${w('google.com')} ${w('paypalobjects.com')} ${w('clarity.ms')} ${w('tawk.to')} ${w('amazonaws.com')} ${w('trustpilot.com')} ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://bat.bing.com ${w('bing.com')}`,
+  `img-src 'self' data: blob: https://cdn.sanity.io ${w('google-analytics.com')} ${w('googletagmanager.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} ${w('google.com')} ${w('google.co.uk')} ${w('google.ca')} ${w('google.com.au')} ${w('google.com.pk')} ${w('paypalobjects.com')} ${w('clarity.ms')} ${w('tawk.to')} ${w('amazonaws.com')} ${w('trustpilot.com')} ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://bat.bing.com ${w('bing.com')} ${w('bing.net')} https://bat.bing.net https://cdn.jsdelivr.net`,
 
   // Connect: API calls, websockets, beacons
-  `connect-src 'self' ${w('sanity.io')} ${w('google-analytics.com')} ${w('analytics.google.com')} ${w('googletagmanager.com')} ${w('doubleclick.net')} ${w('googleadservices.com')} ${w('google.com')} https://api.stripe.com ${w('supabase.co')} ${w('clarity.ms')} ${w('tawk.to')} ${ww('tawk.to')} https://api.zeptomail.com ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com ${w('trustpilot.com')} https://bat.bing.com ${w('bing.com')} ${w('paypal.com')} ${w('vercel-insights.com')} ${w('vercel-scripts.com')}`,
+  `connect-src 'self' ${w('sanity.io')} ${w('google-analytics.com')} ${w('analytics.google.com')} ${w('googletagmanager.com')} ${w('doubleclick.net')} ${w('googleadservices.com')} ${w('google.com')} ${w('google.co.uk')} ${w('google.ca')} ${w('google.com.au')} ${w('google.com.pk')} https://api.stripe.com ${w('supabase.co')} ${w('clarity.ms')} ${w('tawk.to')} ${ww('tawk.to')} https://api.zeptomail.com ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com ${w('trustpilot.com')} https://bat.bing.com ${w('bing.com')} ${w('bing.net')} https://bat.bing.net ${w('paypal.com')} ${w('vercel-insights.com')} ${w('vercel-scripts.com')}`,
 
   // Media
   `media-src 'self' data: https://cdn.sanity.io ${w('tawk.to')}`,
