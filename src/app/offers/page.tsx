@@ -5,6 +5,7 @@ import OffersClient from '@/components/offers/OffersClient';
 import { generateSchemaScript } from '@/lib/schemas';
 import { OFFER_CATEGORIES } from '@/lib/offerPackages';
 import { client, urlFor } from '@/lib/sanity';
+import { getTrustpilotData } from '@/lib/reviewConstants';
 import { cache } from 'react';
 
 export const metadata: Metadata = {
@@ -136,7 +137,7 @@ const CATEGORY_DESCRIPTIONS: Record<string, string> = {
 };
 
 export default async function OffersPage() {
-  const [categoryImages, ctaImageUrl] = await Promise.all([getCategoryImages(), getCtaImage()]);
+  const [categoryImages, ctaImageUrl, trustpilot] = await Promise.all([getCategoryImages(), getCtaImage(), getTrustpilotData()]);
 
   const slugSchemaCount: Record<string, number> = {};
   const productSchemas = OFFER_CATEGORIES.map(cat => {
@@ -150,11 +151,42 @@ export default async function OffersPage() {
     description: CATEGORY_DESCRIPTIONS[cat.id] ?? `Custom ${cat.type} fixed-price packages from Panda Patches.`,
     image: categoryImages[imgKey] ?? categoryImages[cat.slug] ?? 'https://pandapatches.com/assets/og-image.png',
     brand: { '@type': 'Brand', name: 'Panda Patches' },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: trustpilot.rating,
+      reviewCount: String(trustpilot.reviewCount),
+      bestRating: '5',
+      worstRating: '1',
+    },
+    review: [
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Billy Bob Jackson' },
+        datePublished: '2026-02-21',
+        reviewBody: "They're legit!!! I saw the reviews and asked ChatGPT before ordering. My patches arrived on time and a few were messed up. I sent 1 email with pictures and they mailed me more than I said were unusable. I'll be back for more! Good quality!",
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Selena Perry' },
+        datePublished: '2026-02-16',
+        reviewBody: 'The quality is outstanding, durable, vibrant, and exactly what I envisioned. From my very first message, the team was friendly, responsive, and incredibly helpful. They checked in to make sure I was satisfied, and their customer service didn\'t stop after delivery. I highly recommend them!',
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+      },
+      {
+        '@type': 'Review',
+        author: { '@type': 'Person', name: 'Taye Sims' },
+        datePublished: '2025-11-28',
+        reviewBody: 'My experience was quite positive. They were impressively on time with both delivery and service. The quality of the material was excellent. It felt sturdy yet flexible, which is essential for long-lasting wear. I would recommend Panda Patches for anyone looking for reliable service.',
+        reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5', worstRating: '1' },
+      },
+    ],
     offers: cat.packs.map(pack => ({
       '@type': 'Offer',
       name: `${pack.name} Pack - ${pack.qty} pieces`,
       price: pack.price.toFixed(2),
       priceCurrency: 'USD',
+      priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
       url: 'https://pandapatches.com/offers',
       seller: { '@type': 'Organization', name: 'Panda Patches' },
