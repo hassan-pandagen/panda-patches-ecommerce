@@ -36,6 +36,7 @@ export default function SampleBoxMedia({ images, video }: SampleBoxMediaProps) {
               poster={video?.thumbnail}
             >
               <source src={video.url} type="video/mp4" />
+              <track kind="captions" default label="No spoken audio" />
               Your browser does not support the video tag.
             </video>
             <button

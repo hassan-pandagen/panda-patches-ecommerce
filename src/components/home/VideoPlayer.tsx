@@ -192,7 +192,9 @@ export default function VideoPlayer({ videoUrl, thumbnail, instagramLink }: Vide
         className={`w-full h-full object-cover transition-opacity duration-500 ${
           (isPlaying || showInstagramPrompt) && !hasError ? 'opacity-100' : 'opacity-0'
         }`}
-      />
+      >
+        <track kind="captions" default label="No spoken audio" />
+      </video>
     </div>
   );
 }

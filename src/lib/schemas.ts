@@ -808,13 +808,14 @@ export function generateVideoObjectSchema(videos: VideoSchemaItem[]) {
     "thumbnailUrl": v.thumbnailUrl,
     "contentUrl": v.contentUrl,
     "uploadDate": (() => {
-      const d = v.uploadDate || new Date().toISOString();
+      const d = (v.uploadDate || '').trim();
+      if (!d) return new Date().toISOString();
       // Already has full ISO format with timezone (Z or +/-HH:MM)
-      if (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}([Zz]|[+-]\d{2}:\d{2})/.test(d)) return d;
+      if (/T\d{2}:\d{2}:\d{2}([Zz]|[+-]\d{2}:\d{2})/.test(d)) return d;
       // Has T but no timezone, append EST
       if (d.includes('T')) return d + '-05:00';
-      // Date-only string (2025-01-15), add time + timezone
-      if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return d + 'T00:00:00-05:00';
+      // Date-only string (2025-01-15 or similar), add time + timezone
+      if (/\d{4}-\d{2}-\d{2}/.test(d)) return d.slice(0, 10) + 'T00:00:00-05:00';
       // Fallback: try to parse, output full ISO
       try { return new Date(d).toISOString(); } catch { return new Date().toISOString(); }
     })(),

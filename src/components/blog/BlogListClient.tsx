@@ -165,7 +165,8 @@ export default function BlogListClient({ blogs }: { blogs: Blog[] }) {
                     className="inline-block bg-black text-panda-yellow font-black text-xs uppercase px-6 md:px-8 py-3 tracking-widest hover:scale-105 transition-transform self-start"
                   >
                     <span className="hidden md:inline">Read More: {post.title}</span>
-                    <span className="md:hidden">Read More</span>
+                    <span className="md:hidden" aria-hidden="true">Read More</span>
+                    <span className="sr-only md:hidden">Read More: {post.title}</span>
                   </Link>
                 ) : (
                   <span className="inline-block bg-gray-300 text-gray-500 font-black text-xs uppercase px-8 py-3 tracking-widest self-start">

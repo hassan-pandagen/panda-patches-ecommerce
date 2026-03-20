@@ -76,7 +76,8 @@ export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
 
             {/* Button */}
             <Link href={currentBlog.slug ? `/${currentBlog.slug}` : '/blogs'} className="mt-4 inline-block px-6 py-2.5 bg-black text-white font-bold uppercase tracking-wider text-xs transition-colors duration-300 hover:bg-panda-yellow hover:text-black rounded-[4px]">
-              Read More
+              <span aria-hidden="true">Read More</span>
+              <span className="sr-only">Read More: {currentBlog.title}</span>
             </Link>
 
           </div>
