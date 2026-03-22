@@ -10,6 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           '/studio/',
           '/api/',
+          '/wp-content/',
         ],
       },
       // Block AI training-only crawlers (scrape content, send zero traffic)

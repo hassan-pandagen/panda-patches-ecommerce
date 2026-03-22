@@ -809,15 +809,17 @@ export function generateVideoObjectSchema(videos: VideoSchemaItem[]) {
     "contentUrl": v.contentUrl,
     "uploadDate": (() => {
       const d = (v.uploadDate || '').trim();
-      if (!d) return new Date().toISOString();
-      // Already has full ISO format with timezone (Z or +/-HH:MM)
-      if (/T\d{2}:\d{2}:\d{2}([Zz]|[+-]\d{2}:\d{2})/.test(d)) return d;
-      // Has T but no timezone, append EST
-      if (d.includes('T')) return d + '-05:00';
-      // Date-only string (2025-01-15 or similar), add time + timezone
-      if (/\d{4}-\d{2}-\d{2}/.test(d)) return d.slice(0, 10) + 'T00:00:00-05:00';
-      // Fallback: try to parse, output full ISO
-      try { return new Date(d).toISOString(); } catch { return new Date().toISOString(); }
+      if (!d) return '2025-01-01T00:00:00Z';
+      // Date-only (YYYY-MM-DD) -> append midnight UTC
+      if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return d + 'T00:00:00Z';
+      // Already full ISO with timezone
+      if (/T\d{2}:\d{2}:\d{2}/.test(d)) {
+        // Ensure it ends with Z or offset
+        if (/[Zz]$/.test(d) || /[+-]\d{2}:\d{2}$/.test(d)) return d;
+        return d + 'Z';
+      }
+      // Fallback
+      try { return new Date(d).toISOString(); } catch { return '2025-01-01T00:00:00Z'; }
     })(),
     "duration": v.duration || "PT0M30S",
     "publisher": {

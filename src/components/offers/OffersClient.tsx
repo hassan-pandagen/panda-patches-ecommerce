@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTrustpilot } from '@/lib/useTrustpilot';
+import ReviewsSection from '@/components/home/ReviewsSection';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import {
   OFFER_CATEGORIES, calculateOfferTotal, getRushFee,
@@ -520,7 +521,7 @@ function Step5({
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
-export default function OffersClient({ categoryImages, ctaImageUrl }: { categoryImages?: Record<string, string>; ctaImageUrl?: string }) {
+export default function OffersClient({ categoryImages, ctaImageUrl, industryImages, craftmanshipSlot }: { categoryImages?: Record<string, string>; ctaImageUrl?: string; industryImages?: Record<string, string>; craftmanshipSlot?: React.ReactNode }) {
   const { rating: TRUSTPILOT_RATING, reviewCount: TRUSTPILOT_REVIEW_COUNT } = useTrustpilot();
   const [selectedOffer, setSelectedOffer] = useState<SelectedOffer | null>(null);
   const [step, setStep] = useState(0);
@@ -672,6 +673,47 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
           </div>
         </div>
       </section>
+
+      {/* WHO ORDERS FROM US */}
+      <section className="bg-white py-14 px-4">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-black text-[#051C05] mb-3">Trusted by Organizations Across the US</h2>
+          <p className="text-gray-500 text-sm mb-10">From first responders to Fortune 500 brands, we make patches for teams that demand quality.</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
+            {[
+              { key: 'fire department', label: 'Fire Departments', href: '/custom-fire-department-patches' },
+              { key: 'sports', label: 'Sports Teams', href: '/custom-sports-patches' },
+              { key: 'corporate', label: 'Corporate Brands', href: '/custom-corporate-patches' },
+              { key: 'police', label: 'Law Enforcement', href: '/custom-police-patches' },
+              { key: 'apparel', label: 'Apparel Brands', href: '/custom-patches/woven' },
+              { key: 'bands', label: 'Band Merchandise', href: '/custom-patches/embroidered' },
+            ].map(item => {
+              const imgUrl = industryImages?.[item.key];
+              return (
+                <Link key={item.label} href={item.href} className="group rounded-2xl overflow-hidden bg-white border border-gray-200 hover:border-[#DFFF00] hover:shadow-md transition-all block">
+                  <div className="relative w-full h-[160px] sm:h-[200px] bg-white flex items-center justify-center overflow-hidden">
+                    {imgUrl ? (
+                      <Image src={imgUrl} alt={`Custom patches for ${item.label}`} fill className="object-contain p-6 group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 640px) 50vw, 33vw" />
+                    ) : (
+                      <div className="w-full h-full bg-gray-50" />
+                    )}
+                  </div>
+                  <div className="py-3 px-4 bg-[#051C05]">
+                    <span className="text-white text-xs sm:text-sm font-bold">{item.label}</span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+          <p className="text-gray-400 text-xs mt-6">Also serving: Military units, motorcycle clubs, schools, universities, bands, and event organizers.</p>
+        </div>
+      </section>
+
+      {/* CUSTOMER REVIEWS */}
+      <ReviewsSection />
+
+      {/* CRAFTSMANSHIP REELS */}
+      {craftmanshipSlot}
 
       {/* OFFER CARDS */}
       <section className="max-w-6xl mx-auto px-4 py-12 md:py-16">
@@ -830,72 +872,6 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
         </div>
       </section>
 
-      {/* APPROVAL MID-SECTION */}
-      <section className="max-w-4xl mx-auto px-4 py-16">
-        <h2 className="text-3xl font-black text-[#051C05] text-center mb-10">Nothing Ships Without Your Approval. Ever.</h2>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {[
-            {
-              step: '1', text: 'Pay securely with Stripe or PayPal',
-              icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
-                  <rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>
-                </svg>
-              ),
-            },
-            {
-              step: '2', text: 'Our designers create your digital mockup within 24 hours',
-              icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
-                  <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-                </svg>
-              ),
-            },
-            {
-              step: '3', text: 'Review your mockup. Take your time',
-              icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
-                  <path d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/>
-                </svg>
-              ),
-            },
-            {
-              step: '4', text: 'Request changes to colors, size or fonts. All revisions are free',
-              icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
-                  <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.83"/>
-                </svg>
-              ),
-            },
-            {
-              step: '5', text: 'Give your final approval and production begins immediately',
-              icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-                </svg>
-              ),
-            },
-            {
-              step: '6', text: 'Your custom patches ship with full tracking to your door',
-              icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 block shrink-0">
-                  <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-                </svg>
-              ),
-            },
-          ].map(s => (
-            <div key={s.step} className="flex flex-col items-center text-center p-6 bg-white rounded-2xl gap-4 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-              <div className="relative w-16 h-16">
-                <div className="w-16 h-16 bg-[#051C05] rounded-full flex items-center justify-center text-[#DFFF00]">{s.icon}</div>
-                <div className="absolute -top-1 -right-1 w-6 h-6 bg-[#DFFF00] text-[#051C05] rounded-full flex items-center justify-center font-black text-xs border-2 border-white">{s.step}</div>
-              </div>
-              <p className="text-sm font-semibold text-[#051C05] leading-snug">{s.text}</p>
-            </div>
-          ))}
-        </div>
-        <p className="text-center text-gray-500 text-sm mt-8 italic">We have delivered 1,000,000+ custom patches this way. Our customers never receive surprises. Only patches they love.</p>
-      </section>
-
       {/* FAQ */}
       <section className="bg-gray-50 py-16 px-4">
         <div className="max-w-3xl mx-auto">
@@ -943,7 +919,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
           <h2 className="text-3xl font-black text-white mb-4">Need a Custom Size or Quantity?</h2>
           <p className="text-gray-300 text-base mb-8">Our offers cover 90% of orders. For custom sizes, mixed types, or anything else. Free quote in 60 seconds.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/contact" className="inline-block px-8 py-3 bg-black text-white font-bold uppercase tracking-wider text-sm transition-colors duration-300 hover:bg-panda-yellow hover:text-black rounded-[4px]">
+            <Link href="/contact" className="inline-block px-8 py-3 bg-black text-white font-bold uppercase tracking-wider text-sm transition-colors duration-300 hover:bg-panda-yellow hover:text-black rounded-[4px] border border-white/40">
               Get a Free Quote
             </Link>
             <a
@@ -954,7 +930,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl }: { category
                 if (api?.maximize) api.maximize();
                 else if (api?.toggle) api.toggle();
               }}
-              className="inline-block px-8 py-3 bg-black text-white font-bold uppercase tracking-wider text-sm transition-colors duration-300 hover:bg-panda-yellow hover:text-black rounded-[4px]"
+              className="inline-block px-8 py-3 bg-black text-white font-bold uppercase tracking-wider text-sm transition-colors duration-300 hover:bg-panda-yellow hover:text-black rounded-[4px] border border-white/40"
             >
               Chat With Us Now
             </a>

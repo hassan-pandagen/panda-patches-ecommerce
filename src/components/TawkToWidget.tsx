@@ -54,8 +54,11 @@ export default function TawkToWidget() {
     // Set visitor name before script loads so Tawk picks it up on session start
     Tawk_API.visitor = { name: `${source} | ${page}` };
 
-    // Register onChatStarted BEFORE script loads (Tawk.to requires pre-load registration)
-    Tawk_API.onChatStarted = function () {
+    // Fire conversion only when visitor actually SENDS a message (not on widget load/auto-popup)
+    // onChatMessageVisitor fires per-message, so we gate it to fire only once per session
+    Tawk_API.onChatMessageVisitor = function () {
+      if (sessionStorage.getItem('tawk_conv_fired')) return;
+      sessionStorage.setItem('tawk_conv_fired', '1');
       if (typeof (window as any).gtag === 'function') {
         (window as any).gtag('event', 'conversion', {
           send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import OffersClient from '@/components/offers/OffersClient';
+import Craftsmanship from '@/components/home/Craftsmanship';
 import { generateSchemaScript } from '@/lib/schemas';
 import { OFFER_CATEGORIES } from '@/lib/offerPackages';
 import { client, urlFor } from '@/lib/sanity';
@@ -126,6 +127,34 @@ const getCategoryImages = cache(async (): Promise<Record<string, string>> => {
   }
 });
 
+const getIndustryImages = cache(async (): Promise<Record<string, string>> => {
+  try {
+    const query = `*[_type == "bulkCaseStudy"] | order(order asc) {
+      title,
+      "image": image.asset->url
+    }`;
+    const data = await client.fetch(query, {}, { next: { revalidate: 86400 } });
+    const result: Record<string, string> = {};
+    const labelMap: Record<string, string> = {
+      'Fire Department Patches': 'fire department',
+      'College Sports Team': 'sports',
+      'Corporate Branding': 'corporate',
+      'Law Enforcement': 'police',
+      'Apparel Brand Launch': 'apparel',
+      'Band Merchandise': 'bands',
+    };
+    for (const item of data || []) {
+      if (item.image && item.title) {
+        const key = labelMap[item.title] || item.title.toLowerCase();
+        result[key] = `${item.image}?w=400&h=400&fit=crop&auto=format`;
+      }
+    }
+    return result;
+  } catch {
+    return {};
+  }
+});
+
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   'woven-u4': 'Custom woven patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free US shipping, free mockup, and money-back guarantee.',
   'embroidered-u4': 'Custom embroidered patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free US shipping, free mockup, and money-back guarantee.',
@@ -137,7 +166,7 @@ const CATEGORY_DESCRIPTIONS: Record<string, string> = {
 };
 
 export default async function OffersPage() {
-  const [categoryImages, ctaImageUrl, trustpilot] = await Promise.all([getCategoryImages(), getCtaImage(), getTrustpilotData()]);
+  const [categoryImages, ctaImageUrl, trustpilot, industryImages] = await Promise.all([getCategoryImages(), getCtaImage(), getTrustpilotData(), getIndustryImages()]);
 
   const slugSchemaCount: Record<string, number> = {};
   const productSchemas = OFFER_CATEGORIES.map(cat => {
@@ -204,7 +233,7 @@ export default async function OffersPage() {
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(schema)} />
       ))}
       <Navbar />
-      <OffersClient categoryImages={categoryImages} ctaImageUrl={ctaImageUrl ?? undefined} />
+      <OffersClient categoryImages={categoryImages} ctaImageUrl={ctaImageUrl ?? undefined} industryImages={industryImages} craftmanshipSlot={<Craftsmanship />} />
       <Footer />
     </main>
   );

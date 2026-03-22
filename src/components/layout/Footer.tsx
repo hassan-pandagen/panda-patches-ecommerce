@@ -137,21 +137,19 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* COLUMN 4: Bulk Orders (Spans 1) */}
-          <div className="lg:col-span-1 space-y-4">
+          {/* COLUMN 4: Bulk Orders (Spans 2) */}
+          <div className="lg:col-span-2 space-y-4">
             <h3 className="font-bold text-lg text-panda-dark text-left">Bulk Orders</h3>
             <ul className="space-y-2 text-gray-700">
               <li><Link href="/bulk-custom-patches">Bulk Custom Patches</Link></li>
-              <li><Link href="/custom-corporate-patches">Custom Corporate Patches</Link></li>
-              <li><Link href="/custom-sports-patches">Custom Sports Patches</Link></li>
-              <li><Link href="/custom-police-patches">Custom Police Patches</Link></li>
-              <li><Link href="/custom-fire-department-patches">Custom Fire Dept Patches</Link></li>
+              <li><Link href="/custom-corporate-patches">Corporate Patches</Link></li>
+              <li><Link href="/custom-sports-patches">Sports Team Patches</Link></li>
+              <li><Link href="/custom-police-patches">Police Patches</Link></li>
+              <li><Link href="/custom-fire-department-patches">Fire Dept Patches</Link></li>
+              <li><Link href="/offers">Patch Packages</Link></li>
             </ul>
-          </div>
 
-          {/* COLUMN 5: Custom Products (Spans 1) */}
-          <div className="lg:col-span-1 space-y-4">
-            <h3 className="font-bold text-lg text-panda-dark text-left">Custom Products</h3>
+            <h3 className="font-bold text-lg text-panda-dark text-left pt-2">Custom Products</h3>
             <ul className="space-y-2 text-gray-700">
               <li><Link href="/custom-products/pvc-shoe-charms">PVC Shoe Charms</Link></li>
               <li><Link href="/custom-products/challenge-coin">Challenge Coins</Link></li>
@@ -164,24 +162,18 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <h3 className="font-bold text-lg text-panda-dark text-left">Patch Style</h3>
             <ul className="space-y-2 text-gray-700">
-              <li><Link href="/custom-anime-patches">Custom Anime Patches</Link></li>
-              <li><Link href="/custom-sports-patches">Custom Baseball Patches</Link></li>
+              <li><Link href="/custom-anime-patches">Anime Patches</Link></li>
               <li><Link href="/christmas-patches">Christmas Patches</Link></li>
               <li><Link href="/valentines-day-patches">Valentine&apos;s Day Patches</Link></li>
-              <li><Link href="/custom-police-patches">Custom Morale Patches</Link></li>
-              <li><Link href="/custom-sports-patches">Custom Soccer Patches</Link></li>
-              <li><Link href="/custom-fire-department-patches">Custom Fire Department Patches</Link></li>
-              <li><Link href="/custom-sports-patches">Custom Hockey Patches</Link></li>
               <li><Link href="/patches-for-hats">Patches For Hats</Link></li>
-              <li><Link href="/custom-jacket-patches">Custom Jacket Patches</Link></li>
-              <li><Link href="/custom-police-patches">Custom Law Enforcement Patches</Link></li>
-              <li><Link href="/custom-logo-patches">Custom Logo Patches</Link></li>
+              <li><Link href="/custom-jacket-patches">Jacket Patches</Link></li>
+              <li><Link href="/custom-logo-patches">Logo Patches</Link></li>
               <li><Link href="/motorcycle-patches">Motorcycle Patches</Link></li>
-              <li><Link href="/custom-name-patches">Custom Name Patches</Link></li>
-              <li><Link href="/custom-rock-band-patches">Custom Rock Band Patches</Link></li>
-              <li><Link href="/custom-sports-patches">Custom Super Bowl Patch</Link></li>
-              <li><Link href="/custom-police-patches">Custom Tactical Patches</Link></li>
-              <li><Link href="/custom-velcro-patches">Custom Velcro Patches</Link></li>
+              <li><Link href="/custom-name-patches">Name Patches</Link></li>
+              <li><Link href="/custom-rock-band-patches">Rock Band Patches</Link></li>
+              <li><Link href="/custom-velcro-patches">Velcro Patches</Link></li>
+              <li><Link href="/custom-police-patches">Tactical Patches</Link></li>
+              <li><Link href="/custom-police-patches">Morale Patches</Link></li>
             </ul>
           </div>
 

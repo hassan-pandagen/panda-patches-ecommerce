@@ -85,10 +85,15 @@ export default function BulkHero({
             )}
 
             {/* Hero Patch Image */}
-            {heroImage && (
+            {(() => {
+              const hasSanityImage = !!heroImage;
+              const imgSrc = hasSanityImage
+                ? urlFor(heroImage).width(1040).height(640).quality(85).auto('format').url()
+                : '/assets/hero-product.webp';
+              return (
               <div className="relative w-full max-w-[520px] h-[200px] md:h-[320px] mx-auto lg:mx-0">
                 <Image
-                  src={urlFor(heroImage).width(1040).height(640).quality(85).auto('format').url()}
+                  src={imgSrc}
                   alt="Custom Patches Bulk Order"
                   fill
                   className="object-contain object-center lg:object-left"
@@ -104,7 +109,8 @@ export default function BulkHero({
                   </div>
                 </div>
               </div>
-            )}
+              );
+            })()}
           </div>
 
           {/* RIGHT - Full Quote Form */}
