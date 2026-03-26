@@ -1222,13 +1222,7 @@ export default function ComplexCalculator({
                 <img src="/assets/payments/cards.svg" alt="Visa, Mastercard, Amex" style={{width: '100%', height: 'auto'}} />
               </button>
 
-              {/* PayPal */}
-              <button type="button" onClick={() => setPaymentMethod("paypal")}
-                className="h-[72px] rounded-xl transition-all duration-150 flex items-center justify-center px-3"
-                style={{ border: paymentMethod === "paypal" ? '2px solid #000' : '2px solid #9CA3AF', background: paymentMethod === "paypal" ? '#fff' : '#F9FAFB' }}
-              >
-                <img src="/assets/payments/paypal.svg" alt="PayPal" style={{height: '52px', width: 'auto'}} />
-              </button>
+              {/* PayPal - temporarily disabled (account blocked) */}
 
               {/* Cash App */}
               <button type="button" onClick={() => setPaymentMethod("cashapp")}
@@ -1270,7 +1264,7 @@ export default function ComplexCalculator({
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
               <span className="font-semibold text-green-700">
-                {paymentMethod === "paypal" ? "Secure PayPal checkout" : "256-bit SSL encrypted payment"}
+                {"256-bit SSL encrypted payment"}
               </span>
             </div>
           </div>

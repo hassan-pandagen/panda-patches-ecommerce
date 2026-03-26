@@ -96,8 +96,8 @@ export default function BulkQuoteForm() {
           },
           details: {
             quantity: parseInt(data.quantityRange?.split("-")[0] || "100"),
-            width: parseFloat(data.size?.toLowerCase().split(/\s*x\s*/i)[0]) || 3,
-            height: parseFloat(data.size?.toLowerCase().split(/\s*x\s*/i)[1]) || 3,
+            width: Math.min(parseFloat(data.size?.toLowerCase().split(/\s*x\s*/i)[0]) || 3, 50),
+            height: Math.min(parseFloat(data.size?.toLowerCase().split(/\s*x\s*/i)[1]) || 3, 50),
             backing: sanitizeString(data.backing || "iron"),
             instructions: sanitizeString(
               `[BULK ORDER] Company: ${data.company || "N/A"} | Qty Range: ${data.quantityRange || "N/A"} | Patch Type: ${data.patchType || "N/A"} | Size: ${data.size || "N/A"} | Needed By: ${data.neededBy || "N/A"} | Budget: ${data.budget || "N/A"} | Notes: ${data.notes || "None"}`

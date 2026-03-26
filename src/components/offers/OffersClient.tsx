@@ -144,7 +144,7 @@ function Step1({
   const w = parseFloat(formData.width);
   const h = parseFloat(formData.height);
   const sizeWarn = isUnder4 && ((w > 4 && !isNaN(w)) || (h > 4 && !isNaN(h)));
-  const canProceed = !!formData.artworkUrl && !uploading;
+  const canProceed = (!!formData.artworkUrl || formData.designDescription.length >= 20) && !uploading;
 
   return (
     <div className="space-y-5">
@@ -220,7 +220,7 @@ function Step1({
       </div>
 
       <button disabled={!canProceed} onClick={onNext} className="w-full py-4 rounded-2xl font-black text-base bg-[#051C05] text-[#DFFF00] disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#0a2e0a] transition-colors">
-        {uploading ? 'Uploading...' : !formData.artworkUrl ? 'Upload Artwork to Continue' : 'Continue to Options'}
+        {uploading ? 'Uploading...' : canProceed ? 'Continue to Options' : 'Upload Artwork or Describe Your Design'}
       </button>
     </div>
   );
@@ -500,19 +500,7 @@ function Step5({
         {!loading && <span>🔒</span>}
       </button>
 
-      <div className="flex items-center gap-3">
-        <div className="flex-1 h-px bg-gray-200" />
-        <span className="text-xs text-gray-400">or pay with</span>
-        <div className="flex-1 h-px bg-gray-200" />
-      </div>
-
-      <button
-        onClick={onPayPal}
-        disabled={loading}
-        className="w-full py-4 rounded-2xl font-black text-base bg-[#FFC439] text-[#003087] hover:bg-[#f0b429] disabled:opacity-50 transition-colors"
-      >
-        Pay with PayPal
-      </button>
+      {/* PayPal - temporarily disabled (account blocked) */}
 
       <button onClick={onBack} className="w-full py-3 text-sm font-bold text-gray-500 hover:text-gray-700">Back to Details</button>
     </div>
@@ -900,7 +888,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
               },
               {
                 q: 'What payment methods do you accept?',
-                a: 'Visa, Mastercard, Amex, PayPal, Apple Pay, AfterPay, Klarna. All 256-bit SSL encrypted via Stripe.',
+                a: 'Visa, Mastercard, Amex, Apple Pay, AfterPay, Klarna, Cash App. All 256-bit SSL encrypted via Stripe.',
               },
               {
                 q: 'Can I order a different quantity?',
