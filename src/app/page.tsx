@@ -13,7 +13,7 @@ const Navbar = dynamic(() => import("@/components/layout/Navbar"), { ssr: true }
 // Lazy load below-fold components to reduce initial JS bundle
 // ssr:false for heavy interactive components (video, carousels) that are far below fold
 const Craftsmanship = dynamic(() => import("@/components/home/Craftsmanship"), { ssr: true });
-const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"), { ssr: true });
+const ReviewsSection = dynamic(() => import("@/components/home/LazyReviewsSection"), { ssr: true });
 const ProcessSection = dynamic(() => import("@/components/home/ProcessSection"), { ssr: true });
 const TimelineSection = dynamic(() => import("@/components/home/TimelineSection"), { ssr: true });
 const FAQ = dynamic(() => import("@/components/home/FAQ"), { ssr: true });

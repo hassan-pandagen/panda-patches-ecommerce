@@ -106,6 +106,7 @@ export default function Navbar() {
                 <div key={link.name} className="relative group">
                   <Link
                     href={link.href}
+                    prefetch={false}
                     suppressHydrationWarning
                     className={`
                       flex items-center gap-1 whitespace-nowrap
@@ -146,6 +147,7 @@ export default function Navbar() {
                           <Link
                             key={idx}
                             href={subItem.href}
+                            prefetch={false}
                             className="
                               px-5 py-3 text-[13px] font-medium text-gray-600
                               hover:bg-[#F9FAF5] hover:text-panda-green hover:pl-7
@@ -199,6 +201,7 @@ export default function Navbar() {
             {/* Sample Box Button */}
             <Link
               href="/sample-box"
+              prefetch={false}
               className="flex items-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[14px] px-5 py-3 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
             >
               <Package size={18} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" />
@@ -247,6 +250,7 @@ export default function Navbar() {
                   <div className="flex items-center hover:bg-gray-50 transition-colors">
                     <Link
                       href={link.href}
+                      prefetch={false}
                       onClick={() => setIsMobileMenuOpen(false)}
                       suppressHydrationWarning
                       className="flex-1 py-4 px-3 text-[15px] font-bold text-gray-800 uppercase tracking-wide"
@@ -268,6 +272,7 @@ export default function Navbar() {
                 ) : (link as any).highlight ? (
                   <Link
                     href={link.href}
+                    prefetch={false}
                     onClick={() => setIsMobileMenuOpen(false)}
                     suppressHydrationWarning
                     className="flex items-center justify-between py-4 px-3 hover:bg-orange-50 transition-colors"
@@ -281,6 +286,7 @@ export default function Navbar() {
                 ) : (
                   <Link
                     href={link.href}
+                    prefetch={false}
                     onClick={() => setIsMobileMenuOpen(false)}
                     suppressHydrationWarning
                     className="block py-4 px-3 text-[15px] font-bold text-gray-800 uppercase tracking-wide hover:bg-gray-50 transition-colors"
@@ -296,6 +302,7 @@ export default function Navbar() {
                       <Link
                         key={idx}
                         href={subItem.href}
+                        prefetch={false}
                         onClick={() => setIsMobileMenuOpen(false)}
                         className="block py-3 px-6 text-[14px] font-medium text-gray-600 hover:text-[#051C05] hover:bg-white transition-colors border-l-2 border-transparent hover:border-[#DFFF00]"
                       >

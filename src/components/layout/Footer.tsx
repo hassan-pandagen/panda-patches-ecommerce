@@ -26,7 +26,7 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-6">
             {/* LOGO + TAGLINE */}
             <div className="space-y-2">
-              <Link href="/" className="block relative w-40 h-12">
+              <Link prefetch={false} href="/" className="block relative w-40 h-12">
                  <img
                     src="/assets/logo-panda.svg"
                     alt="Panda Patches"
@@ -123,17 +123,17 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <h3 className="font-bold text-lg text-panda-dark text-left">Custom Patches</h3>
             <ul className="space-y-2 text-gray-700">
-              <li><Link href="/custom-patches/embroidered">Custom Embroidered Patches</Link></li>
-              <li><Link href="/custom-patches/custom-3d-embroidered-transfers">Custom 3D Embroidered Transfers</Link></li>
-              <li><Link href="/custom-patches/chenille">Custom Chenille Patches</Link></li>
-              <li><Link href="/custom-patches/custom-chenille-tpu-patches">Custom Chenille TPU Patches</Link></li>
-              <li><Link href="/custom-patches/custom-chenille-glitter-patches">Custom Chenille Glitter Patches</Link></li>
-              <li><Link href="/custom-patches/pvc">Custom PVC Patches</Link></li>
-              <li><Link href="/custom-patches/woven">Custom Woven Patches</Link></li>
-              <li><Link href="/custom-patches/printed">Custom Printed Patches</Link></li>
-              <li><Link href="/custom-patches/leather">Custom Leather Patches</Link></li>
-              <li><Link href="/custom-patches/custom-silicone-labels">Custom Silicone Labels</Link></li>
-              <li><Link href="/custom-patches/sequin">Custom Sequin Patch</Link></li>
+              <li><Link prefetch={false} href="/custom-patches/embroidered">Custom Embroidered Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches/custom-3d-embroidered-transfers">Custom 3D Embroidered Transfers</Link></li>
+              <li><Link prefetch={false} href="/custom-patches/chenille">Custom Chenille Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches/custom-chenille-tpu-patches">Custom Chenille TPU Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches/custom-chenille-glitter-patches">Custom Chenille Glitter Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches/pvc">Custom PVC Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches/woven">Custom Woven Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches/printed">Custom Printed Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches/leather">Custom Leather Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches/custom-silicone-labels">Custom Silicone Labels</Link></li>
+              <li><Link prefetch={false} href="/custom-patches/sequin">Custom Sequin Patch</Link></li>
             </ul>
           </div>
 
@@ -141,20 +141,20 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <h3 className="font-bold text-lg text-panda-dark text-left">Bulk Orders</h3>
             <ul className="space-y-2 text-gray-700">
-              <li><Link href="/bulk-custom-patches">Bulk Custom Patches</Link></li>
-              <li><Link href="/custom-corporate-patches">Corporate Patches</Link></li>
-              <li><Link href="/custom-sports-patches">Sports Team Patches</Link></li>
-              <li><Link href="/custom-police-patches">Police Patches</Link></li>
-              <li><Link href="/custom-fire-department-patches">Fire Dept Patches</Link></li>
-              <li><Link href="/offers">Patch Packages</Link></li>
+              <li><Link prefetch={false} href="/bulk-custom-patches">Bulk Custom Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-corporate-patches">Corporate Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-sports-patches">Sports Team Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-police-patches">Police Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-fire-department-patches">Fire Dept Patches</Link></li>
+              <li><Link prefetch={false} href="/offers">Patch Packages</Link></li>
             </ul>
 
             <h3 className="font-bold text-lg text-panda-dark text-left pt-2">Custom Products</h3>
             <ul className="space-y-2 text-gray-700">
-              <li><Link href="/custom-products/pvc-shoe-charms">PVC Shoe Charms</Link></li>
-              <li><Link href="/custom-products/challenge-coin">Challenge Coins</Link></li>
-              <li><Link href="/custom-products/keychains">Keychains</Link></li>
-              <li><Link href="/custom-products/lapel-pins">Lapel Pins</Link></li>
+              <li><Link prefetch={false} href="/custom-products/pvc-shoe-charms">PVC Shoe Charms</Link></li>
+              <li><Link prefetch={false} href="/custom-products/challenge-coin">Challenge Coins</Link></li>
+              <li><Link prefetch={false} href="/custom-products/keychains">Keychains</Link></li>
+              <li><Link prefetch={false} href="/custom-products/lapel-pins">Lapel Pins</Link></li>
             </ul>
           </div>
 
@@ -162,18 +162,18 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <h3 className="font-bold text-lg text-panda-dark text-left">Patch Style</h3>
             <ul className="space-y-2 text-gray-700">
-              <li><Link href="/custom-anime-patches">Anime Patches</Link></li>
-              <li><Link href="/christmas-patches">Christmas Patches</Link></li>
-              <li><Link href="/valentines-day-patches">Valentine&apos;s Day Patches</Link></li>
-              <li><Link href="/patches-for-hats">Patches For Hats</Link></li>
-              <li><Link href="/custom-jacket-patches">Jacket Patches</Link></li>
-              <li><Link href="/custom-logo-patches">Logo Patches</Link></li>
-              <li><Link href="/motorcycle-patches">Motorcycle Patches</Link></li>
-              <li><Link href="/custom-name-patches">Name Patches</Link></li>
-              <li><Link href="/custom-rock-band-patches">Rock Band Patches</Link></li>
-              <li><Link href="/custom-velcro-patches">Velcro Patches</Link></li>
-              <li><Link href="/custom-police-patches">Tactical Patches</Link></li>
-              <li><Link href="/custom-police-patches">Morale Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-anime-patches">Anime Patches</Link></li>
+              <li><Link prefetch={false} href="/christmas-patches">Christmas Patches</Link></li>
+              <li><Link prefetch={false} href="/valentines-day-patches">Valentine&apos;s Day Patches</Link></li>
+              <li><Link prefetch={false} href="/patches-for-hats">Patches For Hats</Link></li>
+              <li><Link prefetch={false} href="/custom-jacket-patches">Jacket Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-logo-patches">Logo Patches</Link></li>
+              <li><Link prefetch={false} href="/motorcycle-patches">Motorcycle Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-name-patches">Name Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-rock-band-patches">Rock Band Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-velcro-patches">Velcro Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-police-patches">Tactical Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-police-patches">Morale Patches</Link></li>
             </ul>
           </div>
 
@@ -181,26 +181,26 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <h3 className="font-bold text-lg text-panda-dark text-left">Custom Patches</h3>
             <ul className="space-y-2 text-gray-700">
-              <li><Link href="/alabama-patches">Alabama Patches</Link></li>
-              <li><Link href="/custom-austin-patches">Custom Austin Patches</Link></li>
-              <li><Link href="/custom-patches-in-boston">Custom Patches in Boston</Link></li>
-              <li><Link href="/custom-california-patches">Custom California Patches</Link></li>
-              <li><Link href="/custom-patches-in-chicago">Custom Patches in Chicago</Link></li>
-              <li><Link href="/custom-patches-colorado">Custom Patches Colorado</Link></li>
-              <li><Link href="/custom-patches-dallas">Custom Patches Dallas</Link></li>
-              <li><Link href="/custom-denver-patches">Custom Denver Patches</Link></li>
-              <li><Link href="/custom-patches-in-florida">Custom Patches in Florida</Link></li>
-              <li><Link href="/custom-patches-houston">Custom Patches Houston</Link></li>
-              <li><Link href="/kentucky-patches">Kentucky Patches</Link></li>
-              <li><Link href="/custom-patches-los-angeles">Custom Patches Los Angeles</Link></li>
-              <li><Link href="/custom-miami-patches">Custom Miami Patches</Link></li>
-              <li><Link href="/custom-patches-in-new-york">Custom Patches in New York</Link></li>
-              <li><Link href="/custom-ohio-state-patches">Custom Ohio State Patches</Link></li>
-              <li><Link href="/custom-patches-portland">Custom Patches Portland</Link></li>
-              <li><Link href="/custom-patches-in-san-francisco">Custom Patches in San Francisco</Link></li>
-              <li><Link href="/custom-patches-in-texas">Custom Patches in Texas</Link></li>
-              <li><Link href="/custom-utah-patches">Custom Utah Patches</Link></li>
-              <li><Link href="/custom-patches-in-washington">Custom Patches in Washington</Link></li>
+              <li><Link prefetch={false} href="/alabama-patches">Alabama Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-austin-patches">Custom Austin Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-in-boston">Custom Patches in Boston</Link></li>
+              <li><Link prefetch={false} href="/custom-california-patches">Custom California Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-in-chicago">Custom Patches in Chicago</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-colorado">Custom Patches Colorado</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-dallas">Custom Patches Dallas</Link></li>
+              <li><Link prefetch={false} href="/custom-denver-patches">Custom Denver Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-in-florida">Custom Patches in Florida</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-houston">Custom Patches Houston</Link></li>
+              <li><Link prefetch={false} href="/kentucky-patches">Kentucky Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-los-angeles">Custom Patches Los Angeles</Link></li>
+              <li><Link prefetch={false} href="/custom-miami-patches">Custom Miami Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-in-new-york">Custom Patches in New York</Link></li>
+              <li><Link prefetch={false} href="/custom-ohio-state-patches">Custom Ohio State Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-portland">Custom Patches Portland</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-in-san-francisco">Custom Patches in San Francisco</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-in-texas">Custom Patches in Texas</Link></li>
+              <li><Link prefetch={false} href="/custom-utah-patches">Custom Utah Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-in-washington">Custom Patches in Washington</Link></li>
             </ul>
           </div>
 
@@ -224,9 +224,9 @@ export default function Footer() {
         {/* BOTTOM COPYRIGHT */}
         <div className="pt-6 text-center text-gray-500 font-medium space-y-2">
           <div className="flex items-center justify-center gap-4 text-sm">
-            <Link href="/privacy-policy" className="hover:text-panda-green transition-colors">Privacy Policy</Link>
+            <Link prefetch={false} href="/privacy-policy" className="hover:text-panda-green transition-colors">Privacy Policy</Link>
             <span>·</span>
-            <Link href="/terms-of-service" className="hover:text-panda-green transition-colors">Terms of Service</Link>
+            <Link prefetch={false} href="/terms-of-service" className="hover:text-panda-green transition-colors">Terms of Service</Link>
           </div>
           <p>Copyright © {new Date().getFullYear()} <span className="text-black font-bold">Panda Patches</span> All rights reserved</p>
         </div>

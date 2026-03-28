@@ -8,7 +8,6 @@ import { generateOrganizationSchema, generateWebSiteSchema, generateSchemaScript
 // Lazy load non-critical components
 const TawkToWidget = dynamic(() => import("@/components/TawkToWidget"), { ssr: true });
 const CallNowPopup = dynamic(() => import("@/components/CallNowPopup"), { ssr: true });
-const NonCriticalCSS = dynamic(() => import("@/components/NonCriticalCSS"), { ssr: true });
 
 // Configure Outfit Font
 const outfit = Outfit({
@@ -128,8 +127,12 @@ export default function RootLayout({
 
         {children}
 
-        {/* Non-critical CSS — loaded after initial render */}
-        <NonCriticalCSS />
+        {/* Non-critical CSS — injected via JS after render to avoid render-blocking <link>.
+            Covers: FAQ accordion, custom scrollbar, Tawk bubble styles, fade-in animation.
+            These styles are all below-fold or for third-party widgets. */}
+        <Script id="non-critical-css" strategy="afterInteractive">
+          {`(function(){var s=document.createElement('style');s.textContent='.faq-wrapper{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease,opacity .3s ease;opacity:0}.faq-wrapper.open{grid-template-rows:1fr;opacity:1}.faq-inner{overflow:hidden;min-height:0}::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#051C05}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#DFFF00,#3B7E00);border-radius:10px}::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#e8ff33,#4a9e00)}#tawk-bubble-container,.tawk-bubble-container,[id^=tawk-bubble],.tawk-min-container{transform:none!important;transition:none!important;will-change:auto!important}@media(max-width:768px){#tawk-bubble-container,.tawk-bubble-container,[id^=tawk-bubble],.tawk-min-container,iframe[title*=chat],iframe[src*="tawk.to"]{display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}}@keyframes fade-in{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.animate-fade-in{animation:fade-in .3s ease-out}';document.head.appendChild(s)})();`}
+        </Script>
 
         {/* Third-party script loader: deferred until user interaction or 16s fallback.
             Loads GTM, Meta Pixel, Bing UET, Clarity, and Trustpilot AFTER the user scrolls,

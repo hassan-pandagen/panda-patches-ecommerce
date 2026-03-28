@@ -1,7 +1,7 @@
 import { client } from "@/lib/sanity";
 import { Instagram } from "lucide-react";
 import Link from "next/link";
-import VideoSwiper from "./VideoSwiper";
+import LazyVideoSwiper from "./LazyVideoSwiper";
 import { generateVideoObjectSchema, generateSchemaScript } from "@/lib/schemas";
 
 async function getData() {
@@ -71,7 +71,7 @@ export default async function Craftsmanship() {
           {videos.length === 0 ? (
             <div className="text-gray-400 py-10 mb-10">Upload MP4 Videos in Sanity Studio</div>
           ) : (
-            <VideoSwiper videos={videos} />
+            <LazyVideoSwiper videos={videos} />
           )}
 
           {/* FOLLOW BUTTON */}
