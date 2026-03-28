@@ -6,7 +6,7 @@ import { lookupOfferPrice, calculateOfferTotal, OFFER_CATEGORIES } from '@/lib/o
 import { resolveBaseUrl } from '@/lib/checkoutConfig';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-01-28.clover',
+  apiVersion: '2026-02-25.clover',
 });
 
 const supabase = createClient(
