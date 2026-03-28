@@ -25,8 +25,9 @@ async function getData(slug: string) {
   return data.chart || data.iron;
 }
 
-export default async function AssetPage({ params }: { params: { slug: string } }) {
-  const data = await getData(params.slug);
+export default async function AssetPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const data = await getData(slug);
 
   // 2. SAFETY CHECK: If nothing found
   if (!data) {
@@ -36,7 +37,7 @@ export default async function AssetPage({ params }: { params: { slug: string } }
         <div className="flex-1 flex flex-col items-center justify-center gap-4 text-center">
           <h1 className="text-3xl font-black text-panda-dark">Asset Not Found</h1>
           <p className="text-gray-500">
-            Looking for slug: <span className="font-mono bg-gray-100 px-2 py-1">{params.slug}</span>
+            Looking for slug: <span className="font-mono bg-gray-100 px-2 py-1">{slug}</span>
           </p>
           <p className="text-sm text-gray-400">
             Make sure the Slug in Sanity matches the URL exactly.

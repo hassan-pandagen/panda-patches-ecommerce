@@ -12,7 +12,7 @@ import PickPatch from "@/components/about/PickPatch";
 import ProcessSection from "@/components/home/ProcessSection";
 import { generatePersonSchema, generateSchemaScript } from "@/lib/schemas";
 
-const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"), { ssr: false });
+const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"), { ssr: true });
 
 // SEO Metadata for About Page
 export async function generateMetadata(): Promise<Metadata> {

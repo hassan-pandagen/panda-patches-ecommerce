@@ -100,7 +100,7 @@ const cspHeader = [
 // Sanity Studio permissive CSP
 const sanityCspHeader = "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const host = request.headers.get('host') || '';
 
@@ -140,7 +140,7 @@ export async function middleware(request: NextRequest) {
   // RATE LIMITING (UPSTASH REDIS)
   // ============================================
   if (pathname === '/api/checkout' && checkoutLimiter) {
-    const ip = request.ip || request.headers.get('x-forwarded-for') || 'anonymous';
+    const ip = request.headers.get('x-forwarded-for') || 'anonymous';
     const { success, limit, reset, remaining } = await checkoutLimiter.limit(ip);
 
     if (!success) {
@@ -167,7 +167,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (pathname === '/api/quote' && quoteLimiter) {
-    const ip = request.ip || request.headers.get('x-forwarded-for') || 'anonymous';
+    const ip = request.headers.get('x-forwarded-for') || 'anonymous';
     const { success, limit, reset, remaining } = await quoteLimiter.limit(ip);
 
     if (!success) {
@@ -194,7 +194,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (pathname === '/api/contact' && contactLimiter) {
-    const ip = request.ip || request.headers.get('x-forwarded-for') || 'anonymous';
+    const ip = request.headers.get('x-forwarded-for') || 'anonymous';
     const { success, limit, reset, remaining } = await contactLimiter.limit(ip);
 
     if (!success) {
@@ -221,7 +221,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (pathname === '/api/sample-box' && sampleBoxLimiter) {
-    const ip = request.ip || request.headers.get('x-forwarded-for') || 'anonymous';
+    const ip = request.headers.get('x-forwarded-for') || 'anonymous';
     const { success, limit, reset, remaining } = await sampleBoxLimiter.limit(ip);
 
     if (!success) {

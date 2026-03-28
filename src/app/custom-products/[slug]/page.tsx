@@ -27,8 +27,9 @@ async function getData(slug: string) {
   return data;
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const data = await getData(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const data = await getData(slug);
   if (!data) return { title: "Product Not Found" };
 
   const imageUrl = data.heroImage
@@ -38,12 +39,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${data.title} | Panda Patches`,
     description: data.description,
-    alternates: { canonical: `https://pandapatches.com/custom-products/${params.slug}` },
+    alternates: { canonical: `https://pandapatches.com/custom-products/${slug}` },
     openGraph: {
       type: "website",
       title: data.title,
       description: data.description,
-      url: `https://pandapatches.com/custom-products/${params.slug}`,
+      url: `https://pandapatches.com/custom-products/${slug}`,
       siteName: "Panda Patches",
       images: [{ url: imageUrl, width: 1200, height: 630, alt: data.title }],
     },
@@ -57,8 +58,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 // 2. Page Layout
-export default async function CustomProductPage({ params }: { params: { slug: string } }) {
-  const data = await getData(params.slug);
+export default async function CustomProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const data = await getData(slug);
 
   if (!data) return (
     <div className="min-h-screen flex items-center justify-center">
@@ -118,7 +120,7 @@ export default async function CustomProductPage({ params }: { params: { slug: st
     name: data.title,
     description: data.description || `Custom ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
     image: data.heroImage ? urlFor(data.heroImage).url() : 'https://pandapatches.com/assets/og-image.png',
-    url: `https://pandapatches.com/custom-products/${params.slug}`,
+    url: `https://pandapatches.com/custom-products/${slug}`,
     priceRange: "$100-$1000", // Typical price range for custom coins/pins/keychains
     includeReviews: true, // Include Trustpilot 4.9 rating
   });
@@ -126,7 +128,7 @@ export default async function CustomProductPage({ params }: { params: { slug: st
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: "https://pandapatches.com" },
     { name: "Custom Products", url: "https://pandapatches.com/custom-products" },
-    { name: data.title, url: `https://pandapatches.com/custom-products/${params.slug}` },
+    { name: data.title, url: `https://pandapatches.com/custom-products/${slug}` },
   ]);
 
   return (

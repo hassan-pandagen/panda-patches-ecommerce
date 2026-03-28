@@ -11,8 +11,9 @@ import { getSanityOgImage } from "@/lib/sanityOgImage";
 export const revalidate = 3600;
 
 // Dynamic metadata for Google/AI search engines
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const data = await getData(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const data = await getData(slug);
 
   // Location page metadata
   if (data.location) {
@@ -21,12 +22,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     return {
       title: `Custom Patches in ${locationName} | Panda Patches`,
       description: `Order custom embroidered patches in ${locationName}. Low minimums, free mockups, fast 7-14 day turnaround. Get a free quote today!`,
-      alternates: { canonical: `https://pandapatches.com/${params.slug}` },
+      alternates: { canonical: `https://pandapatches.com/${slug}` },
       robots: { index: true, follow: true },
       openGraph: {
         title: `Custom Patches in ${locationName} | Panda Patches`,
         description: `Custom patches delivered anywhere in ${locationName}. Low minimums, free design, fast shipping.`,
-        url: `https://pandapatches.com/${params.slug}`,
+        url: `https://pandapatches.com/${slug}`,
         siteName: 'Panda Patches',
         type: 'website',
         images: [{ url: ogImage, width: 1200, height: 630, alt: `Custom Patches in ${locationName} | Panda Patches` }],
@@ -47,11 +48,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     return {
       title: `${styleName} | Custom Patches | Panda Patches`,
       description: `Order custom ${styleName} with low minimums, free design services, and fast 7-14 day delivery. Get a free quote today!`,
-      alternates: { canonical: `https://pandapatches.com/${params.slug}` },
+      alternates: { canonical: `https://pandapatches.com/${slug}` },
       openGraph: {
         title: `${styleName} | Panda Patches`,
         description: `Custom ${styleName} with free mockups and fast delivery.`,
-        url: `https://pandapatches.com/${params.slug}`,
+        url: `https://pandapatches.com/${slug}`,
         siteName: 'Panda Patches',
         type: 'website',
         images: [{ url: ogImage, width: 1200, height: 630, alt: `${styleName} | Panda Patches` }],
@@ -79,11 +80,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     return {
       title: blogTitle,
       description: blogDesc,
-      alternates: { canonical: `https://pandapatches.com/${params.slug}` },
+      alternates: { canonical: `https://pandapatches.com/${slug}` },
       openGraph: {
         title: data.blog.title,
         description: blogDesc,
-        url: `https://pandapatches.com/${params.slug}`,
+        url: `https://pandapatches.com/${slug}`,
         siteName: 'Panda Patches',
         type: 'article',
         images: [{ url: imageUrl, width: 1200, height: 630, alt: data.blog.title }],
@@ -123,8 +124,9 @@ async function getData(slug: string) {
   return data;
 }
 
-export default async function CatchAllPage({ params }: { params: { slug: string } }) {
-  const data = await getData(params.slug);
+export default async function CatchAllPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const data = await getData(slug);
 
   // OPTION A: It's a Patch Style Page (e.g., "custom-anime-patches")
   if (data.patchStyle) {
@@ -134,19 +136,19 @@ export default async function CatchAllPage({ params }: { params: { slug: string 
       seoSection1: data.patchStyle.seoContent1,
       seoSection2: data.patchStyle.seoContent2,
       isPatchStyle: true // Flag to indicate it's a patch style page
-    }} slug={params.slug} />;
+    }} slug={slug} />;
   }
 
   // OPTION B: It's a Location Page (e.g., "custom-patches-in-alabama")
   if (data.location) {
-    const locationSchema = generateLocationBusinessSchema(data.location.locationName, params.slug);
+    const locationSchema = generateLocationBusinessSchema(data.location.locationName, slug);
     return (
       <>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={generateSchemaScript(locationSchema)}
         />
-        <LocationLayout data={data.location} slug={params.slug} />
+        <LocationLayout data={data.location} slug={slug} />
       </>
     );
   }
@@ -164,13 +166,13 @@ export default async function CatchAllPage({ params }: { params: { slug: string 
         : data.blog.image
           ? urlFor(data.blog.image).url()
           : 'https://pandapatches.com/assets/logo-panda.svg',
-      url: `https://pandapatches.com/${params.slug}`,
+      url: `https://pandapatches.com/${slug}`,
     });
 
     const breadcrumbSchema = generateBreadcrumbSchema([
       { name: "Home", url: "https://pandapatches.com" },
       { name: "Blog", url: "https://pandapatches.com/blogs" },
-      { name: data.blog.title || "Blog Post", url: `https://pandapatches.com/${params.slug}` },
+      { name: data.blog.title || "Blog Post", url: `https://pandapatches.com/${slug}` },
     ]);
 
     return (
@@ -185,7 +187,7 @@ export default async function CatchAllPage({ params }: { params: { slug: string 
           type="application/ld+json"
           dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
         />
-        <BlogPostLayout post={data.blog} slug={params.slug} />
+        <BlogPostLayout post={data.blog} slug={slug} />
       </>
     );
   }
@@ -197,7 +199,7 @@ export default async function CatchAllPage({ params }: { params: { slug: string 
       <div className="flex-1 flex flex-col items-center justify-center gap-4 text-center">
         <h1 className="text-4xl font-black text-panda-dark">Page Not Found</h1>
         <p className="text-gray-500">
-          We couldn&apos;t find a page or blog post at <span className="font-mono bg-gray-100 px-2 py-1">{params.slug}</span>
+          We couldn&apos;t find a page or blog post at <span className="font-mono bg-gray-100 px-2 py-1">{slug}</span>
         </p>
       </div>
       <Footer />

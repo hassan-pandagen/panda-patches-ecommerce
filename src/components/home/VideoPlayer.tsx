@@ -18,7 +18,7 @@ export default function VideoPlayer({ videoUrl, thumbnail, instagramLink }: Vide
   const [showInstagramPrompt, setShowInstagramPrompt] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const hoverTimeoutRef = useRef<NodeJS.Timeout>();
+  const hoverTimeoutRef = useRef<NodeJS.Timeout>(undefined);
 
   // Lazy load video when hovered or clicked
   useEffect(() => {

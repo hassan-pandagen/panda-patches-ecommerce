@@ -8,10 +8,10 @@ import { client } from '@/lib/sanity';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     // Query can handle both _id and SKU
     const query = `*[_id == $id || sku == $id][0] {

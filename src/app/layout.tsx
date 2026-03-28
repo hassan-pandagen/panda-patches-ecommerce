@@ -6,8 +6,8 @@ import dynamic from "next/dynamic";
 import { generateOrganizationSchema, generateWebSiteSchema, generateSchemaScript } from "@/lib/schemas";
 
 // Lazy load non-critical components
-const TawkToWidget = dynamic(() => import("@/components/TawkToWidget"), { ssr: false });
-const CallNowPopup = dynamic(() => import("@/components/CallNowPopup"), { ssr: false });
+const TawkToWidget = dynamic(() => import("@/components/TawkToWidget"), { ssr: true });
+const CallNowPopup = dynamic(() => import("@/components/CallNowPopup"), { ssr: true });
 
 // Configure Outfit Font
 const outfit = Outfit({

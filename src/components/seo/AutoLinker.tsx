@@ -12,12 +12,12 @@ interface AutoLinkerProps {
  * Only links the first occurrence of each keyword to avoid over-optimization
  */
 export default function AutoLinker({ text, className = "" }: AutoLinkerProps) {
-  let processedText: (string | JSX.Element)[] = [text];
+  let processedText: (string | React.ReactElement)[] = [text];
   const linkedKeywords = new Set<string>();
 
   // Process each internal link
   for (const link of internalLinks) {
-    const newProcessedText: (string | JSX.Element)[] = [];
+    const newProcessedText: (string | React.ReactElement)[] = [];
 
     for (const segment of processedText) {
       // Skip if already a React element

@@ -99,8 +99,9 @@ async function getProductData(slug: string) {
 }
 
 // Dynamic SEO Metadata
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const product = await getProductData(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const product = await getProductData(slug);
 
   if (!product) {
     return { title: '404 - Product Not Found | Panda Patches' };
@@ -117,7 +118,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       description: description.substring(0, 160),
       images: [{ url: imageUrl, width: 1200, height: 630, alt: `${product.title} | Panda Patches` }],
       type: 'website',
-      url: `https://pandapatches.com/custom-patches/${params.slug}`,
+      url: `https://pandapatches.com/custom-patches/${slug}`,
     },
     twitter: {
       card: 'summary_large_image',
@@ -126,7 +127,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       images: [imageUrl],
     },
     alternates: {
-      canonical: `https://pandapatches.com/custom-patches/${params.slug}`,
+      canonical: `https://pandapatches.com/custom-patches/${slug}`,
     },
   };
 }
@@ -141,8 +142,9 @@ const PATCH_TYPES = [
   { name: "Sequin Patches", slug: "sequin" },
 ];
 
-export default async function DynamicProductPage({ params }: { params: { slug: string } }) {
-  const data = await getProductData(params.slug);
+export default async function DynamicProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const data = await getProductData(slug);
 
   if (!data) {
     return (
@@ -158,7 +160,7 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
     name: data.title,
     description: data.description || `High-quality ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
     image: data.heroImage ? urlFor(data.heroImage).url() : 'https://pandapatches.com/assets/og-image.png',
-    url: `https://pandapatches.com/custom-patches/${params.slug}`,
+    url: `https://pandapatches.com/custom-patches/${slug}`,
     priceRange: "$0.85-$6.00",
     includeReviews: true,
     pricingTiers: pricingTiers.length > 0 ? pricingTiers : undefined,
@@ -167,7 +169,7 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: "https://pandapatches.com" },
     { name: "Custom Patches", url: "https://pandapatches.com/custom-patches" },
-    { name: data.title, url: `https://pandapatches.com/custom-patches/${params.slug}` },
+    { name: data.title, url: `https://pandapatches.com/custom-patches/${slug}` },
   ]);
 
   return (
@@ -187,7 +189,7 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
       {/* FAQ Schema for SEO — unique per product slug to avoid duplicate FAQPage errors */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={generateSchemaScript(generateFAQSchema(slugFaqMap[params.slug] ?? genericFaqs))}
+        dangerouslySetInnerHTML={generateSchemaScript(generateFAQSchema(slugFaqMap[slug] ?? genericFaqs))}
       />
 
       <Navbar />
@@ -305,7 +307,7 @@ export default async function DynamicProductPage({ params }: { params: { slug: s
             >
               Embroidered Patches
             </Link>
-            {PATCH_TYPES.filter((p) => p.slug !== params.slug && p.slug !== "embroidered").map((patch) => (
+            {PATCH_TYPES.filter((p) => p.slug !== slug && p.slug !== "embroidered").map((patch) => (
               <Link
                 key={patch.slug}
                 href={`/custom-patches/${patch.slug}`}

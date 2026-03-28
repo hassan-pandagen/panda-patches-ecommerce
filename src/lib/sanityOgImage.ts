@@ -14,7 +14,7 @@ export async function getSanityOgImage(): Promise<string> {
       { next: { revalidate: 86400 } }
     );
     if (data?.url) {
-      return `${data.url}?w=1200&h=630&fit=crop&auto=format`;
+      return `${data.url}?w=1200&h=630&fit=crop&fm=jpg&q=80`;
     }
   } catch {
     // fall through to fallback

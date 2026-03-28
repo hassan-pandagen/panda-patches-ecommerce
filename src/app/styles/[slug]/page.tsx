@@ -14,13 +14,14 @@ import FAQ from "@/components/home/FAQ";
 import CTASection from "@/components/home/CTASection";
 
 async function getStylePageData(slug: string) {
-  const query = `*[_type == "patchStyle" && slug.current == "${slug}"][0]`;
-  const data = await client.fetch(query);
+  const query = `*[_type == "patchStyle" && slug.current == $slug][0]`;
+  const data = await client.fetch(query, { slug });
   return data;
 }
 
-export default async function PatchStylePage({ params }: { params: { slug: string } }) {
-  const data = await getStylePageData(params.slug);
+export default async function PatchStylePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const data = await getStylePageData(slug);
 
   if (!data) {
     return (

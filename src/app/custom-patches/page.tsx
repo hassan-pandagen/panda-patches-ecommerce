@@ -19,9 +19,9 @@ import TrustStrip from "@/components/products/TrustStrip";
 import CTASection from "@/components/home/CTASection";
 
 // ssr:false for heavy client components with Swiper/carousels to avoid hydration mismatch
-const Craftsmanship = dynamic(() => import("@/components/home/Craftsmanship"), { ssr: false });
-const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"), { ssr: false });
-const ProcessSection = dynamic(() => import("@/components/home/ProcessSection"), { ssr: false });
+const Craftsmanship = dynamic(() => import("@/components/home/Craftsmanship"), { ssr: true });
+const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"), { ssr: true });
+const ProcessSection = dynamic(() => import("@/components/home/ProcessSection"), { ssr: true });
 
 export async function generateMetadata(): Promise<Metadata> {
   const ogImage = await getSanityOgImage();
