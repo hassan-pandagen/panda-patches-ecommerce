@@ -22,6 +22,12 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
   const publishDate = dateSource
     ? new Date(dateSource).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
     : null;
+  const updatedSource = post._updatedAt;
+  const updatedDate = updatedSource
+    ? new Date(updatedSource).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    : null;
+  // Only show "Updated" if it's a different day than published
+  const showUpdated = updatedDate && publishDate && updatedDate !== publishDate;
 
   return (
     <main className="min-h-screen bg-white">
@@ -41,9 +47,24 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
         </nav>
 
         {/* Main Title (H1) */}
-        <h1 className="text-[42px] md:text-[52px] font-black text-panda-dark mb-10 leading-[1.2] tracking-tight">
+        <h1 className="text-[42px] md:text-[52px] font-black text-panda-dark mb-6 leading-[1.2] tracking-tight">
           {post.title}
         </h1>
+
+        {/* Publish + Updated Dates */}
+        {publishDate && (
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[14px] text-gray-500 mb-10">
+            <span>
+              Published <time dateTime={dateSource} className="font-medium text-gray-700">{publishDate}</time>
+            </span>
+            {showUpdated && (
+              <span>
+                · Updated <time dateTime={updatedSource} className="font-medium text-gray-700">{updatedDate}</time>
+              </span>
+            )}
+            <span>· {readingTime} min read</span>
+          </div>
+        )}
 
         {/* Featured Image */}
         {post.image && (
@@ -85,8 +106,6 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
             </a>
             <p className="text-[13px] text-gray-500">
               Founder & CEO · 13 years in patch manufacturing
-              {publishDate && <> · <time dateTime={dateSource}>{publishDate}</time></>}
-              {` · ${readingTime} min read`}
             </p>
           </div>
         </div>

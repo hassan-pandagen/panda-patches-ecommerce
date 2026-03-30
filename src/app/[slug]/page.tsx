@@ -6,6 +6,7 @@ import BlogPostLayout from "@/components/blog/BlogPostLayout";
 import LocationLayout from "@/components/locations/LocationLayout";
 import { generateArticleSchema, generateBreadcrumbSchema, generateLocationBusinessSchema, generateSchemaScript } from "@/lib/schemas";
 import { getSanityOgImage } from "@/lib/sanityOgImage";
+import cityPageMeta from "@/lib/cityPageMeta";
 
 // ISR: Revalidate blog/location/patch-style pages every 1 hour
 export const revalidate = 3600;
@@ -19,23 +20,28 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (data.location) {
     const locationName = data.location.locationName;
     const ogImage = await getSanityOgImage();
+    // Use city-specific meta if available, otherwise fall back to generic
+    const meta = cityPageMeta[slug];
+    const pageTitle = meta?.title || `Custom Patches in ${locationName} | Panda Patches`;
+    const pageDesc = meta?.description || `Order custom embroidered patches in ${locationName}. Low minimums, free mockups, fast 7-14 day turnaround. Get a free quote today!`;
+    const ogDesc = meta?.ogDescription || `Custom patches delivered anywhere in ${locationName}. Low minimums, free design, fast shipping.`;
     return {
-      title: `Custom Patches in ${locationName} | Panda Patches`,
-      description: `Order custom embroidered patches in ${locationName}. Low minimums, free mockups, fast 7-14 day turnaround. Get a free quote today!`,
+      title: pageTitle,
+      description: pageDesc,
       alternates: { canonical: `https://pandapatches.com/${slug}` },
       robots: { index: true, follow: true },
       openGraph: {
-        title: `Custom Patches in ${locationName} | Panda Patches`,
-        description: `Custom patches delivered anywhere in ${locationName}. Low minimums, free design, fast shipping.`,
+        title: pageTitle,
+        description: ogDesc,
         url: `https://pandapatches.com/${slug}`,
         siteName: 'Panda Patches',
         type: 'website',
-        images: [{ url: ogImage, width: 1200, height: 630, alt: `Custom Patches in ${locationName} | Panda Patches` }],
+        images: [{ url: ogImage, width: 1200, height: 630, alt: pageTitle }],
       },
       twitter: {
         card: 'summary_large_image',
-        title: `Custom Patches in ${locationName} | Panda Patches`,
-        description: `Custom patches delivered anywhere in ${locationName}. Low minimums, free design, fast shipping.`,
+        title: pageTitle,
+        description: ogDesc,
         images: [ogImage],
       },
     };

@@ -48,6 +48,29 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* Tawk.to bubble — prevent animation jank */
+#tawk-bubble-container,
+.tawk-bubble-container,
+[id^=tawk-bubble],
+.tawk-min-container {
+  transform: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+@media (max-width: 768px) {
+  #tawk-bubble-container,
+  .tawk-bubble-container,
+  [id^=tawk-bubble],
+  .tawk-min-container,
+  iframe[title*=chat],
+  iframe[src*="tawk.to"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}
+
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none;

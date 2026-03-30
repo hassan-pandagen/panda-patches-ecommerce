@@ -77,21 +77,24 @@ export default function TawkToWidget() {
           const alreadyPopped = sessionStorage.getItem('tawk_popped');
           if (!alreadyPopped) {
             const isMobile = window.innerWidth < 768;
-            const popDelay = isMobile ? 45000 : 10000;
-            setTimeout(() => {
-              try {
-                if (
-                  typeof Tawk_API.isChatMinimized === 'function' &&
-                  Tawk_API.isChatMinimized() &&
-                  typeof Tawk_API.maximize === 'function'
-                ) {
-                  Tawk_API.maximize();
-                  sessionStorage.setItem('tawk_popped', '1');
+            // Skip auto-maximize on mobile to prevent CLS (layout shift from
+            // chat window expanding). Mobile users can tap the bubble instead.
+            if (!isMobile) {
+              setTimeout(() => {
+                try {
+                  if (
+                    typeof Tawk_API.isChatMinimized === 'function' &&
+                    Tawk_API.isChatMinimized() &&
+                    typeof Tawk_API.maximize === 'function'
+                  ) {
+                    Tawk_API.maximize();
+                    sessionStorage.setItem('tawk_popped', '1');
+                  }
+                } catch (e) {
+                  console.error("Error auto-maximizing Tawk.to:", e);
                 }
-              } catch (e) {
-                console.error("Error auto-maximizing Tawk.to:", e);
-              }
-            }, popDelay);
+              }, 10000);
+            }
           }
         } catch (e) {
           console.error("Error in Tawk.to onLoad:", e);
