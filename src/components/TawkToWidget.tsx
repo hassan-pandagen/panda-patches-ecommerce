@@ -1,8 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { MessageCircle } from "lucide-react";
 
 function getReferrerSource(): string {
   const referrer = document.referrer.toLowerCase();
@@ -36,7 +35,7 @@ function getReferrerSource(): string {
   return "v-Direct";
 }
 
-function loadTawkScript(onLoad?: () => void) {
+function loadTawkScript() {
   if ((window as any).__tawk_script_injected) return;
   (window as any).__tawk_script_injected = true;
 
@@ -62,8 +61,12 @@ function loadTawkScript(onLoad?: () => void) {
     }
   };
 
+  // On mobile, keep widget minimized — do not auto-maximize (avoids CLS)
   Tawk_API.onLoad = function () {
-    if (onLoad) onLoad();
+    const isMobile = window.innerWidth < 768;
+    if (isMobile && Tawk_API.minimize) {
+      Tawk_API.minimize();
+    }
   };
 
   const s1 = document.createElement("script");
@@ -79,102 +82,26 @@ function loadTawkScript(onLoad?: () => void) {
 
 export default function TawkToWidget() {
   const pathname = usePathname();
-  const [tawkReady, setTawkReady] = useState(false);
-  const [showButton, setShowButton] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const loadingRef = useRef(false);
 
-  // Show our custom chat button after a short delay (no CLS since it's position:fixed)
   useEffect(() => {
     if (pathname?.startsWith('/studio')) return;
-    const timer = setTimeout(() => setShowButton(true), 3000);
+
+    // Auto-load Tawk after 15 seconds so agents can see all visitors
+    const timer = setTimeout(loadTawkScript, 15000);
     return () => clearTimeout(timer);
   }, [pathname]);
 
-  const handleChatClick = useCallback(() => {
-    // If Tawk is already loaded, just maximize it
-    const api = (window as any).Tawk_API;
-    if (api?.maximize) {
-      api.maximize();
-      setShowButton(false);
-      return;
-    }
-
-    // Prevent double-loading
-    if (loadingRef.current) return;
-    loadingRef.current = true;
-    setLoading(true);
-
-    // Load Tawk for the first time, then maximize
-    loadTawkScript(() => {
-      setTawkReady(true);
-      setLoading(false);
-      setShowButton(false);
-      // Tawk needs time to render its widget after onLoad fires
-      const tryMaximize = (attempts: number) => {
-        const tawk = (window as any).Tawk_API;
-        if (tawk?.maximize) {
-          tawk.maximize();
-        } else if (attempts > 0) {
-          setTimeout(() => tryMaximize(attempts - 1), 500);
-        }
-      };
-      tryMaximize(10);
-    });
-  }, []);
-
-  // Once Tawk takes over, hide our button permanently
-  useEffect(() => {
-    if (!tawkReady) return;
-    setShowButton(false);
-  }, [tawkReady]);
-
-  // Also allow the Navbar "Chat Now" button to trigger Tawk loading
+  // Also allow the Navbar "Chat Now" button to trigger Tawk loading immediately
   useEffect(() => {
     (window as any).__loadTawk = () => {
-      handleChatClick();
+      loadTawkScript();
+      // If already loaded, maximize it
+      const api = (window as any).Tawk_API;
+      if (api?.maximize) {
+        api.maximize();
+      }
     };
-  }, [handleChatClick]);
+  }, []);
 
-  if (pathname?.startsWith('/studio')) return null;
-
-  // Show lightweight placeholder button until user clicks
-  if (!showButton || tawkReady) return null;
-
-  return (
-    <>
-      <style>{`
-        @keyframes chat-slide-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes chat-pulse{0%,100%{box-shadow:0 4px 14px rgba(59,126,0,0.3)}50%{box-shadow:0 4px 24px rgba(59,126,0,0.5)}}
-        @keyframes chat-spin{to{transform:rotate(360deg)}}
-        .chat-btn-enter{animation:chat-slide-in .4s ease-out forwards}
-        .chat-btn-pulse{animation:chat-pulse 2s ease-in-out infinite}
-        .chat-spinner{animation:chat-spin .8s linear infinite}
-      `}</style>
-      <button
-        onClick={handleChatClick}
-        disabled={loading}
-        aria-label="Chat with us"
-        className="fixed bottom-5 right-5 z-50 chat-btn-enter chat-btn-pulse flex items-center gap-2.5 bg-[#051C05] text-white pl-4 pr-5 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 group disabled:opacity-90 disabled:cursor-wait"
-      >
-        {/* Icon or spinner */}
-        <span className="relative flex-shrink-0">
-          {loading ? (
-            <svg className="chat-spinner text-[#DFFF00]" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <path d="M12 2a10 10 0 0 1 10 10" />
-            </svg>
-          ) : (
-            <>
-              <MessageCircle size={22} strokeWidth={2.5} className="text-[#DFFF00] group-hover:scale-110 transition-transform" />
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-green-500 rounded-full border-[1.5px] border-[#051C05]" />
-            </>
-          )}
-        </span>
-        {/* Text */}
-        <span className="text-[14px] font-bold whitespace-nowrap">
-          {loading ? 'Connecting...' : 'Chat With Us'}
-        </span>
-      </button>
-    </>
-  );
+  return null;
 }
