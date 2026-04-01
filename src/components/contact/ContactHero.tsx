@@ -156,16 +156,6 @@ export default function ContactHero() {
           {/* === RIGHT COLUMN: INFO (Spans 5 cols) === */}
           <div className="lg:col-span-5 space-y-10 lg:pl-12 pt-4">
 
-            {/* Address */}
-            <div>
-              <h3 className="text-xl font-bold text-panda-dark mb-2">Address</h3>
-              <p className="text-gray-600 leading-relaxed">
-                1914 Quail Feather Ct,<br />
-                Missouri City, TX 77489,<br />
-                United States
-              </p>
-            </div>
-
             {/* Information */}
             <div>
               <h3 className="text-xl font-bold text-panda-dark mb-2">Information</h3>

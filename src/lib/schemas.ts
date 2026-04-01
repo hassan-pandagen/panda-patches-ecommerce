@@ -80,7 +80,7 @@ export function generateOrganizationSchema() {
     },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "1914 Quail Feather Ct",
+      "streetAddress": "Quail Feather Ct",
       "addressLocality": "Missouri City",
       "addressRegion": "TX",
       "postalCode": "77489",
@@ -584,7 +584,7 @@ export function generateLocalBusinessSchema() {
     "image": "https://pandapatches.com/assets/logo-panda.svg",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "1914 Quail Feather Ct",
+      "streetAddress": "Quail Feather Ct",
       "addressLocality": "Missouri City",
       "addressRegion": "TX",
       "postalCode": "77489",
@@ -647,7 +647,7 @@ export function generateLocationBusinessSchema(locationName: string, pageSlug?: 
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "1914 Quail Feather Ct",
+      "streetAddress": "Quail Feather Ct",
       "addressLocality": "Missouri City",
       "addressRegion": "TX",
       "postalCode": "77489",

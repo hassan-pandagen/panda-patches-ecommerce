@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import { MessageCircle } from "lucide-react";
 
 function getReferrerSource(): string {
   const referrer = document.referrer.toLowerCase();
@@ -35,88 +36,123 @@ function getReferrerSource(): string {
   return "v-Direct";
 }
 
+function loadTawkScript(onLoad?: () => void) {
+  if ((window as any).__tawk_script_injected) return;
+  (window as any).__tawk_script_injected = true;
+
+  const source = getReferrerSource();
+  const page = window.location.pathname;
+
+  const Tawk_API: any = (window as any).Tawk_API || {};
+  (window as any).Tawk_API = Tawk_API;
+  (window as any).Tawk_LoadStart = new Date();
+
+  Tawk_API.visitor = { name: `${source} | ${page}` };
+
+  // Fire conversion only when visitor actually SENDS a message
+  Tawk_API.onChatMessageVisitor = function () {
+    if (sessionStorage.getItem('tawk_conv_fired')) return;
+    sessionStorage.setItem('tawk_conv_fired', '1');
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'conversion', {
+        send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
+        value: 10.0,
+        currency: 'USD',
+      });
+    }
+  };
+
+  Tawk_API.onLoad = function () {
+    if (onLoad) onLoad();
+  };
+
+  const s1 = document.createElement("script");
+  s1.async = true;
+  s1.src = "https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1";
+  const s0 = document.getElementsByTagName("script")[0];
+  if (s0 && s0.parentNode) {
+    s0.parentNode.insertBefore(s1, s0);
+  } else {
+    document.head.appendChild(s1);
+  }
+}
+
 export default function TawkToWidget() {
   const pathname = usePathname();
+  const [tawkReady, setTawkReady] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+  const loadingRef = useRef(false);
 
+  // Show our custom chat button after a short delay (no CLS since it's position:fixed)
   useEffect(() => {
     if (pathname?.startsWith('/studio')) return;
-    if ((window as any).__tawk_loaded) return;
-    (window as any).__tawk_loaded = true;
-
-    // Delay script injection 15s past page load to avoid Lighthouse measurement window
-    const tawkTimer = setTimeout(() => {
-      const source = getReferrerSource();
-      const page = window.location.pathname;
-
-      // Initialize Tawk API BEFORE script injection
-      const Tawk_API: any = (window as any).Tawk_API || {};
-      (window as any).Tawk_API = Tawk_API;
-      (window as any).Tawk_LoadStart = new Date();
-
-      // Set visitor name before script loads so Tawk picks it up on session start
-      Tawk_API.visitor = { name: `${source} | ${page}` };
-
-      // Fire conversion only when visitor actually SENDS a message (not on widget load/auto-popup)
-      // onChatMessageVisitor fires per-message, so we gate it to fire only once per session
-      Tawk_API.onChatMessageVisitor = function () {
-        if (sessionStorage.getItem('tawk_conv_fired')) return;
-        sessionStorage.setItem('tawk_conv_fired', '1');
-        if (typeof (window as any).gtag === 'function') {
-          (window as any).gtag('event', 'conversion', {
-            send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
-            value: 10.0,
-            currency: 'USD',
-          });
-        }
-      };
-
-      // Register onLoad before injecting the script
-      Tawk_API.onLoad = function () {
-        try {
-          // Auto-popup once per session (45s on mobile, 10s on desktop)
-          const alreadyPopped = sessionStorage.getItem('tawk_popped');
-          if (!alreadyPopped) {
-            const isMobile = window.innerWidth < 768;
-            // Skip auto-maximize on mobile to prevent CLS (layout shift from
-            // chat window expanding). Mobile users can tap the bubble instead.
-            if (!isMobile) {
-              setTimeout(() => {
-                try {
-                  if (
-                    typeof Tawk_API.isChatMinimized === 'function' &&
-                    Tawk_API.isChatMinimized() &&
-                    typeof Tawk_API.maximize === 'function'
-                  ) {
-                    Tawk_API.maximize();
-                    sessionStorage.setItem('tawk_popped', '1');
-                  }
-                } catch (e) {
-                  console.error("Error auto-maximizing Tawk.to:", e);
-                }
-              }, 10000);
-            }
-          }
-        } catch (e) {
-          console.error("Error in Tawk.to onLoad:", e);
-        }
-      };
-
-      // Inject script after setting up API (official Tawk.to snippet pattern)
-      const s1 = document.createElement("script");
-      s1.async = true;
-      s1.src = "https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1";
-      const s0 = document.getElementsByTagName("script")[0];
-      if (s0 && s0.parentNode) {
-        s0.parentNode.insertBefore(s1, s0);
-      } else {
-        document.head.appendChild(s1);
-      }
-    }, 15000);
-
-    return () => clearTimeout(tawkTimer);
+    const timer = setTimeout(() => setShowButton(true), 3000);
+    return () => clearTimeout(timer);
   }, [pathname]);
+
+  const handleChatClick = useCallback(() => {
+    if (loadingRef.current) return;
+    loadingRef.current = true;
+
+    // If Tawk is already loaded, just maximize it
+    const api = (window as any).Tawk_API;
+    if (api?.maximize) {
+      api.maximize();
+      setShowButton(false);
+      return;
+    }
+
+    // Load Tawk for the first time, then maximize
+    loadTawkScript(() => {
+      setTawkReady(true);
+      setShowButton(false);
+      // Give Tawk a moment to render, then maximize
+      setTimeout(() => {
+        const tawk = (window as any).Tawk_API;
+        if (tawk?.maximize) tawk.maximize();
+      }, 500);
+    });
+  }, []);
+
+  // Once Tawk takes over, hide our button permanently
+  useEffect(() => {
+    if (!tawkReady) return;
+    setShowButton(false);
+  }, [tawkReady]);
+
+  // Also allow the Navbar "Chat Now" button to trigger Tawk loading
+  useEffect(() => {
+    (window as any).__loadTawk = () => {
+      handleChatClick();
+    };
+  }, [handleChatClick]);
 
   if (pathname?.startsWith('/studio')) return null;
 
-  return null;
+  // Show lightweight placeholder button until user clicks
+  if (!showButton || tawkReady) return null;
+
+  return (
+    <>
+      <style>{`
+        @keyframes chat-slide-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes chat-pulse{0%,100%{box-shadow:0 4px 14px rgba(59,126,0,0.3)}50%{box-shadow:0 4px 24px rgba(59,126,0,0.5)}}
+        .chat-btn-enter{animation:chat-slide-in .4s ease-out forwards}
+        .chat-btn-pulse{animation:chat-pulse 2s ease-in-out infinite}
+      `}</style>
+      <button
+        onClick={handleChatClick}
+        aria-label="Chat with us"
+        className="fixed bottom-5 right-5 z-50 chat-btn-enter chat-btn-pulse flex items-center gap-2.5 bg-[#051C05] text-white pl-4 pr-5 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 group"
+      >
+        {/* Icon with online dot */}
+        <span className="relative flex-shrink-0">
+          <MessageCircle size={22} strokeWidth={2.5} className="text-[#DFFF00] group-hover:scale-110 transition-transform" />
+          <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-green-500 rounded-full border-[1.5px] border-[#051C05]" />
+        </span>
+        {/* Text */}
+        <span className="text-[14px] font-bold whitespace-nowrap">Chat With Us</span>
+      </button>
+    </>
+  );
 }

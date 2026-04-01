@@ -52,20 +52,14 @@ export default function Footer() {
                </a>
              </div>
 
-             {/* ADDRESS */}
+             {/* LOCATION */}
              <div className="space-y-1">
                <h3 className="font-bold text-lg text-panda-dark text-left">Located At</h3>
                <p className="text-gray-600 leading-relaxed">
-                 1914 Quail Feather Ct,<br />
+                 Quail Feather Ct,<br />
                  Missouri City, TX 77489,<br />
                  United States
                </p>
-             </div>
-
-             {/* ALSO */}
-             <div className="space-y-1">
-               <h3 className="font-bold text-lg text-panda-dark text-left">Also</h3>
-               <a href="https://g.page/r/pandapatches" target="_blank" rel="noopener noreferrer" className="underline decoration-1 underline-offset-2">Find Us On Google</a>
              </div>
            </div>
 

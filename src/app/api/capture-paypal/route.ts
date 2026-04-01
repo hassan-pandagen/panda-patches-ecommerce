@@ -82,7 +82,7 @@ async function sendOrderEmails(orderData: Record<string, unknown>, amountPaid: n
   <div style="background:#000;padding:14px 32px;text-align:center;">
     <hr style="border:none;border-top:1px solid #b8975a;margin:0 0 12px;">
     <p style="color:#aaa;font-size:12px;margin:0;">Panda Patches | pandapatches.com | (302) 250-4340</p>
-    <p style="color:#555;font-size:11px;margin:6px 0 0;">1914 Quail Feather Ct, Missouri City, TX 77489</p>
+    <p style="color:#555;font-size:11px;margin:6px 0 0;">Quail Feather Ct, Missouri City, TX 77489</p>
   </div>
 </div>
 </body></html>`,
@@ -161,7 +161,7 @@ async function sendOrderEmails(orderData: Record<string, unknown>, amountPaid: n
   <div style="background:#000000;padding:20px 32px;text-align:center;">
     <hr style="border:none;border-top:1px solid #b8975a;margin:0 0 16px;">
     <p style="color:#ffffff;font-size:12px;margin:0 0 6px;letter-spacing:1px;">PANDA PATCHES</p>
-    <p style="color:#aaaaaa;font-size:11px;margin:0;">1914 Quail Feather Ct, Missouri City, TX 77489</p>
+    <p style="color:#aaaaaa;font-size:11px;margin:0;">Quail Feather Ct, Missouri City, TX 77489</p>
     <p style="color:#aaaaaa;font-size:11px;margin:4px 0 0;">(302) 250-4340 | <a href="https://pandapatches.com" style="color:#aaaaaa;">pandapatches.com</a></p>
     <p style="color:#555555;font-size:10px;margin:12px 0 0;">This is a transactional email confirming your order with Panda Patches.</p>
   </div>

@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!data) return { title: "Product Not Found" };
 
   const imageUrl = data.heroImage
-    ? urlFor(data.heroImage).url()
+    ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
     : 'https://pandapatches.com/assets/og-image.png';
 
   return {
@@ -119,7 +119,7 @@ export default async function CustomProductPage({ params }: { params: Promise<{ 
   const productSchema = generateProductSchema({
     name: data.title,
     description: data.description || `Custom ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
-    image: data.heroImage ? urlFor(data.heroImage).url() : 'https://pandapatches.com/assets/og-image.png',
+    image: data.heroImage ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url() : 'https://pandapatches.com/assets/og-image.png',
     url: `https://pandapatches.com/custom-products/${slug}`,
     priceRange: "$100-$1000", // Typical price range for custom coins/pins/keychains
     includeReviews: true, // Include Trustpilot 4.9 rating

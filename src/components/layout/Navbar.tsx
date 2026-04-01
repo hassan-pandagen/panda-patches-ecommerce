@@ -188,6 +188,8 @@ export default function Navbar() {
             {/* Chat Now Button */}
             <button
               onClick={() => {
+                const loadTawk = (window as any).__loadTawk;
+                if (loadTawk) { loadTawk(); return; }
                 const api = (window as any).Tawk_API;
                 if (api?.toggle) api.toggle();
                 else if (api?.maximize) api.maximize();
@@ -322,6 +324,8 @@ export default function Navbar() {
           <button
             onClick={() => {
               setIsMobileMenuOpen(false);
+              const loadTawk = (window as any).__loadTawk;
+              if (loadTawk) { loadTawk(); return; }
               if (typeof window !== 'undefined' && (window as any).Tawk_API) {
                 (window as any).Tawk_API.toggle();
               }

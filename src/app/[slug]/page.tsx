@@ -75,9 +75,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // Blog post metadata
   if (data.blog) {
     const imageUrl = data.blog.mainImage
-      ? urlFor(data.blog.mainImage).url()
+      ? urlFor(data.blog.mainImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
       : data.blog.image
-        ? urlFor(data.blog.image).url()
+        ? urlFor(data.blog.image).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
         : 'https://pandapatches.com/assets/og-image.png';
     const blogTitle = data.blog.metaTitle
       ? `${data.blog.metaTitle} | Panda Patches`
@@ -168,10 +168,10 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       datePublished: data.blog.publishedAt || data.blog._createdAt || new Date().toISOString(),
       dateModified: data.blog._updatedAt || data.blog.publishedAt || data.blog._createdAt || new Date().toISOString(),
       image: data.blog.mainImage
-        ? urlFor(data.blog.mainImage).url()
+        ? urlFor(data.blog.mainImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
         : data.blog.image
-          ? urlFor(data.blog.image).url()
-          : 'https://pandapatches.com/assets/logo-panda.svg',
+          ? urlFor(data.blog.image).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
+          : 'https://pandapatches.com/assets/og-image.png',
       url: `https://pandapatches.com/${slug}`,
     });
 

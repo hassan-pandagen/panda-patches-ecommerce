@@ -108,7 +108,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   const description = product.description || `High-quality ${product.title.toLowerCase()} with low minimums, fast delivery, and free design services from Panda Patches.`;
-  const imageUrl = product.heroImage ? urlFor(product.heroImage).url() : 'https://pandapatches.com/assets/og-image.png';
+  const imageUrl = product.heroImage
+    ? urlFor(product.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
+    : 'https://pandapatches.com/assets/og-image.png';
 
   return {
     title: `${product.title} | Panda Patches`,
@@ -159,7 +161,7 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
   const productSchema = generateProductSchema({
     name: data.title,
     description: data.description || `High-quality ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
-    image: data.heroImage ? urlFor(data.heroImage).url() : 'https://pandapatches.com/assets/og-image.png',
+    image: data.heroImage ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url() : 'https://pandapatches.com/assets/og-image.png',
     url: `https://pandapatches.com/custom-patches/${slug}`,
     priceRange: "$0.85-$6.00",
     includeReviews: true,
