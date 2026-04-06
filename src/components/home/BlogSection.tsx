@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { client, urlFor } from "@/lib/sanity";
-import BlogSwiper from "./BlogSwiper";
+import LazyBlogSwiper from "./LazyBlogSwiper";
 
 async function getBlogs() {
    // Fetch all blogs with only needed fields
@@ -59,7 +59,7 @@ export default async function BlogSection() {
         </div>
 
         {/* Swiper for both Mobile and Desktop */}
-        <BlogSwiper blogs={displayBlogs} />
+        <LazyBlogSwiper blogs={displayBlogs} />
 
       </div>
     </section>

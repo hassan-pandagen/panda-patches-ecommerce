@@ -80,18 +80,24 @@ export default async function Hero() {
             className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-2 md:-mt-4 mx-auto md:mx-0"
           >
                {/* Hero image — browser picks mobile or desktop, never downloads both */}
-               <picture>
-                 <source media="(min-width: 768px)" srcSet="/assets/hero-product.webp" />
-                 <img
-                   src="/assets/hero-product-mobile.webp"
-                   alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"
-                   width={630}
-                   height={379}
-                   fetchPriority="high"
-                   decoding="auto"
-                   style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
-                 />
-               </picture>
+               {/* Mobile image — hidden on md+ */}
+               <Image
+                 src="/assets/hero-product-mobile.webp"
+                 alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"
+                 fill
+                 priority
+                 sizes="(max-width: 767px) 100vw, 0px"
+                 className="object-contain object-center block md:hidden"
+               />
+               {/* Desktop image — hidden on mobile */}
+               <Image
+                 src="/assets/hero-product.webp"
+                 alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"
+                 fill
+                 priority
+                 sizes="(min-width: 768px) 630px, 0px"
+                 className="object-contain object-center hidden md:block"
+               />
 
              {/* 1 Million Badge - Hidden on mobile */}
              <div className="hidden md:flex absolute bottom-16 right-20 bg-white shadow-xl rounded-xl p-3 items-center gap-3 animate-bounce-slow border border-gray-100">
