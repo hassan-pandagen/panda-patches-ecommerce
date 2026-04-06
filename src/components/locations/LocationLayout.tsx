@@ -11,6 +11,9 @@ import IndustrySection from "@/components/home/IndustrySection";
 import FAQ from "@/components/home/FAQ";
 import CTASection from "@/components/home/CTASection";
 import LocationSEOSections from "@/components/locations/LocationSEOSections";
+import Craftsmanship from "@/components/home/Craftsmanship";
+import ReviewsSection from "@/components/home/ReviewsSection";
+import BulkCaseStudies from "@/components/bulk/BulkCaseStudies";
 import { PortableText } from "@portabletext/react";
 import { convertWordPressUrl } from "@/lib/convertWordPressUrls";
 import { client } from "@/lib/sanity";
@@ -125,53 +128,88 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
       )}
       <Navbar />
 
-      {/* 1. HERO (Quote Form Mode) */}
+      {/* 1. HERO */}
       <ProductHero productData={heroData} isMainPage={true} />
 
-      {/* 2. PANDA IS 5 STAR */}
+      {/* 2. TRUST STRIP */}
       <TrustStrip />
 
-      {/* 3. PICK YOUR PATCH */}
-      <PickPatch />
+      {slug === 'patches-for-hats' ? (
+        <>
+          {/* HAT PAGE ORDER — optimised for conversion */}
 
-      {/* 4. PROMISES */}
-      <Promises bgColor="bg-white" />
+          {/* 3. Craftsmanship gallery — visual proof early */}
+          <Craftsmanship />
 
-      {/* 5. ZIG ZAG LIST (With Location Suffix for location pages only!) */}
-      <CategoryZigZag locationName={data.isPatchStyle ? undefined : data.locationName} />
+          {/* 4. Customer reviews — social proof */}
+          <ReviewsSection />
 
-      {/* 6. GORILLA PROCESS */}
-      <ProcessSection />
+          {/* 5. Promises */}
+          <Promises bgColor="bg-white" />
 
-      {/* 7. SEO TEXT SECTION 1 (Buy [Location] Iron On...) */}
-      {data.seoSection1 && (
-        <section className="py-8 md:py-10 bg-white border-t border-b border-gray-100">
-          <div className="container mx-auto px-6 max-w-[860px]">
-            <div className="w-10 h-1 bg-panda-yellow mb-6 rounded-full" />
-            <SEOText content={data.seoSection1} />
-          </div>
-        </section>
+          {/* 6. Hat-specific content: type grid, size guide, patch types, backing, who orders, pricing, SEO */}
+          <LocationSEOSections slug={slug} />
+
+          {/* 7. Case studies */}
+          <BulkCaseStudies />
+
+          {/* 8. Hat FAQ */}
+          <FAQ questions={locationFaqQuestions} />
+
+          {/* 9. Our process */}
+          <ProcessSection />
+
+          {/* 10. Explore patch types */}
+          <PickPatch />
+
+        </>
+      ) : (
+        <>
+          {/* DEFAULT ORDER — all other location / patch style pages */}
+
+          {/* 3. PICK YOUR PATCH */}
+          <PickPatch />
+
+          {/* 4. PROMISES */}
+          <Promises bgColor="bg-white" />
+
+          {/* 5. ZIG ZAG LIST */}
+          <CategoryZigZag locationName={data.isPatchStyle ? undefined : data.locationName} />
+
+          {/* 6. GORILLA PROCESS */}
+          <ProcessSection />
+
+          {/* 7. SEO TEXT SECTION 1 */}
+          {data.seoSection1 && (
+            <section className="py-8 md:py-10 bg-white border-t border-b border-gray-100">
+              <div className="container mx-auto px-6 max-w-[860px]">
+                <div className="w-10 h-1 bg-panda-yellow mb-6 rounded-full" />
+                <SEOText content={data.seoSection1} />
+              </div>
+            </section>
+          )}
+
+          {/* 8. POPULAR CATEGORIES */}
+          <IndustrySection />
+
+          {/* 9. FAQ */}
+          <FAQ questions={locationFaqQuestions} />
+
+          {/* 10. SEO TEXT SECTION 2 */}
+          {data.seoSection2 && (
+            <section className="py-8 md:py-10 bg-[#F9FAF5] border-t border-gray-100">
+              <div className="container mx-auto px-6 max-w-[860px]">
+                <div className="w-10 h-1 bg-panda-yellow mb-6 rounded-full" />
+                <SEOText content={data.seoSection2} />
+              </div>
+            </section>
+          )}
+
+          {/* 11. HARDCODED SEO SECTIONS */}
+          {slug && <LocationSEOSections slug={slug} />}
+        </>
       )}
 
-      {/* 8. POPULAR CATEGORIES (Industry Section) */}
-      <IndustrySection />
-
-      {/* 9. FAQ — location-specific if available, otherwise generic fallback */}
-      <FAQ questions={locationFaqQuestions} />
-
-      {/* 10. SEO TEXT SECTION 2 — Sanity content (from WordPress migration) */}
-      {data.seoSection2 && (
-        <section className="py-8 md:py-10 bg-[#F9FAF5] border-t border-gray-100">
-          <div className="container mx-auto px-6 max-w-[860px]">
-            <div className="w-10 h-1 bg-panda-yellow mb-6 rounded-full" />
-            <SEOText content={data.seoSection2} />
-          </div>
-        </section>
-      )}
-
-      {/* 11. HARDCODED SEO SECTIONS — location-specific content with interlinks */}
-      {slug && <LocationSEOSections slug={slug} />}
-      
       <CTASection />
       <Footer />
     </main>

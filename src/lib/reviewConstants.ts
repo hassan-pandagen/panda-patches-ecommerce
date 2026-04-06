@@ -6,8 +6,8 @@
 
 // Fallback defaults (updated manually as a safety net)
 export const TRUSTPILOT_RATING = "4.8";
-export const TRUSTPILOT_REVIEW_COUNT = 61;
-export const TRUSTPILOT_REVIEW_COUNT_STR = "61";
+export const TRUSTPILOT_REVIEW_COUNT = 66;
+export const TRUSTPILOT_REVIEW_COUNT_STR = "66";
 export const TRUSTPILOT_URL = "https://www.trustpilot.com/review/pandapatches.com";
 
 interface TrustpilotData {

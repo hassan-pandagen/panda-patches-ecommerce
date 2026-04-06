@@ -538,6 +538,244 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
       }
     ],
 
+    "patches-for-hats": [
+      {
+        heading: "Which Hat Types Work Best with Patches",
+        content: (
+          <div className="space-y-4">
+            <p className="text-[16px] leading-[1.8] text-gray-600 mb-6">Not every hat takes a patch the same way. Here is how each hat style works with custom patches so you order the right backing the first time.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { hat: "Dad Hat", backing: "Iron-on or Sew-on", panel: "Unstructured, curved front panel", best: "Embroidered or Woven" },
+                { hat: "Snapback", backing: "Sew-on recommended", panel: "Structured flat front panel", best: "Embroidered or Leather" },
+                { hat: "Trucker Hat", backing: "Iron-on or Sew-on", panel: "Foam front, flat panel", best: "Embroidered or PVC" },
+                { hat: "Fitted Cap", backing: "Sew-on recommended", panel: "Structured curved panel", best: "Embroidered or Woven" },
+                { hat: "Beanie", backing: "Sew-on only", panel: "Knit fabric, no structure", best: "Woven or small Embroidered" },
+                { hat: "Bucket Hat", backing: "Iron-on or Sew-on", panel: "Soft fabric, front or side", best: "Embroidered or Woven" },
+              ].map((item, i) => (
+                <div key={i} className="border border-gray-200 rounded-[12px] p-4 bg-white">
+                  <p className="font-black text-panda-dark text-[15px] mb-1">{item.hat}</p>
+                  <p className="text-[13px] text-gray-500 mb-1"><span className="font-semibold text-gray-700">Panel:</span> {item.panel}</p>
+                  <p className="text-[13px] text-gray-500 mb-1"><span className="font-semibold text-gray-700">Best backing:</span> {item.backing}</p>
+                  <p className="text-[13px] text-panda-green font-semibold"><span className="text-gray-700 font-semibold">Best patch type:</span> {item.best}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      },
+      {
+        heading: "Hat Patch Size Guide",
+        content: (
+          <div>
+            <p className="text-[16px] leading-[1.8] text-gray-600 mb-6">Size is the most common mistake with hat patches. Too large and the patch overhangs the panel. Too small and it gets lost. Use this guide before you order.</p>
+            <div className="overflow-x-auto rounded-[12px] border border-gray-200">
+              <table className="w-full text-[14px] text-left">
+                <thead className="bg-panda-dark text-white">
+                  <tr>
+                    <th className="px-4 py-3 font-bold">Size</th>
+                    <th className="px-4 py-3 font-bold">Best Placement</th>
+                    <th className="px-4 py-3 font-bold">Works On</th>
+                    <th className="px-4 py-3 font-bold">Notes</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {[
+                    { size: '1.5" x 1.5"', placement: "Side panel", works: "All hat types", notes: "Good for secondary logo or flag" },
+                    { size: '2" x 2"', placement: "Front center", works: "Dad hat, fitted cap", notes: "Most popular hat patch size" },
+                    { size: '2.5" x 2.5"', placement: "Front center", works: "Snapback, trucker", notes: "Fills the front panel cleanly" },
+                    { size: '3" x 2"', placement: "Front center", works: "Trucker, snapback", notes: "Good for horizontal logos" },
+                    { size: '3" x 3"', placement: "Front center", works: "Trucker, large panel hats", notes: "Max size for most hat fronts" },
+                    { size: '4" x 1.5"', placement: "Brim or side", works: "Dad hat, bucket hat", notes: "Text or horizontal logo strips" },
+                  ].map((row, i) => (
+                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                      <td className="px-4 py-3 font-bold text-panda-dark">{row.size}</td>
+                      <td className="px-4 py-3 text-gray-600">{row.placement}</td>
+                      <td className="px-4 py-3 text-gray-600">{row.works}</td>
+                      <td className="px-4 py-3 text-gray-500">{row.notes}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-[13px] text-gray-400 mt-3">Not sure which size fits your hat? Send us your hat and design and we will confirm the right dimensions before production.</p>
+          </div>
+        )
+      },
+      {
+        heading: "Best Patch Types for Hats: Side by Side",
+        content: (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              {
+                type: "Embroidered",
+                best: "Uniforms, sports teams, classic brands",
+                pros: "Raised texture, bold visibility, classic look",
+                cons: "Not ideal for fine text under 8pt",
+                price: "From $1.20/pc",
+                tag: "Most Popular",
+                href: "/custom-patches/embroidered",
+              },
+              {
+                type: "Woven",
+                best: "Streetwear brands, logos with fine detail",
+                pros: "Flat profile, sharp text, lightweight",
+                cons: "No raised texture",
+                price: "From $1.40/pc",
+                tag: "Best for Detail",
+                href: "/custom-patches/woven",
+              },
+              {
+                type: "Leather",
+                best: "Premium hat lines, motorcycle brands",
+                pros: "Luxury feel, debossed or printed logo",
+                cons: "Higher cost per piece",
+                price: "From $1.80/pc",
+                tag: "Premium Look",
+                href: "/custom-patches/leather",
+              },
+              {
+                type: "PVC",
+                best: "Outdoor, tactical, waterproof hats",
+                pros: "100% waterproof, holds shape, vibrant color",
+                cons: "Heavier than embroidered",
+                price: "From $1.50/pc",
+                tag: "Most Durable",
+                href: "/custom-patches/pvc",
+              },
+            ].map((item, i) => (
+              <div key={i} className="border border-gray-200 rounded-[12px] p-5 bg-white hover:border-panda-green transition-colors">
+                <div className="flex items-center justify-between mb-2">
+                  <Link href={item.href} className="font-black text-panda-dark text-[16px] hover:text-panda-green">{item.type}</Link>
+                  <span className="text-[11px] font-bold text-panda-green bg-panda-light px-2.5 py-1 rounded-full">{item.tag}</span>
+                </div>
+                <p className="text-[12px] text-gray-500 mb-2"><span className="font-semibold text-gray-700">Best for:</span> {item.best}</p>
+                <p className="text-[12px] text-gray-500 mb-2"><span className="font-semibold text-gray-700">Pros:</span> {item.pros}</p>
+                <p className="text-[12px] text-gray-500 mb-3"><span className="font-semibold text-gray-700">Cons:</span> {item.cons}</p>
+                <p className="text-[13px] font-black text-panda-dark">{item.price} at 50 pieces</p>
+              </div>
+            ))}
+          </div>
+        )
+      },
+      {
+        heading: "Backing Options for Hat Patches",
+        content: (
+          <div>
+            <p className="text-[16px] leading-[1.8] text-gray-600 mb-6">The backing determines how the patch attaches to your hat. Choose the wrong one and the patch will lift, shift, or not adhere at all.</p>
+            <div className="overflow-x-auto rounded-[12px] border border-gray-200">
+              <table className="w-full text-[14px] text-left">
+                <thead className="bg-panda-dark text-white">
+                  <tr>
+                    <th className="px-4 py-3 font-bold">Backing</th>
+                    <th className="px-4 py-3 font-bold">How It Attaches</th>
+                    <th className="px-4 py-3 font-bold">Best Hat Material</th>
+                    <th className="px-4 py-3 font-bold">Cost</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {[
+                    { backing: "Iron-On", how: "Heat adhesive bonds to fabric", material: "Cotton, canvas, polyester", cost: "FREE" },
+                    { backing: "Sew-On", how: "Thread stitched around patch edge", material: "All hat types including wool", cost: "FREE" },
+                    { backing: "Velcro", how: "Hook attaches to loop panel on hat", material: "Tactical, military, outdoor hats", cost: "+$30" },
+                    { backing: "Sticker / Peel", how: "Peel and stick adhesive", material: "Temporary use, smooth panels only", cost: "FREE" },
+                  ].map((row, i) => (
+                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                      <td className="px-4 py-3 font-bold text-panda-dark">{row.backing}</td>
+                      <td className="px-4 py-3 text-gray-600">{row.how}</td>
+                      <td className="px-4 py-3 text-gray-600">{row.material}</td>
+                      <td className={`px-4 py-3 font-bold ${row.cost === "FREE" ? "text-panda-green" : "text-gray-700"}`}>{row.cost}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-[13px] text-gray-400 mt-3">Not sure which backing to choose? Tell us your hat material when requesting your quote and we will recommend the right option.</p>
+          </div>
+        )
+      },
+      {
+        heading: "Who Orders Custom Hat Patches",
+        content: (
+          <div className="space-y-4">
+            {[
+              {
+                title: "Streetwear and Apparel Brands",
+                body: "Hat patches are a core branding element for streetwear labels. Woven patches and leather patches on structured snapbacks and dad hats give independent brands a premium product identity without expensive embroidery directly on the hat. Low minimums starting at 50 pieces make it practical for small-batch drops and seasonal releases."
+              },
+              {
+                title: "Sports Teams and Athletic Programs",
+                body: "Youth leagues, high school programs, and amateur clubs order embroidered patches for team hats and caps. A standard 2x2 inch embroidered patch with team logo and year is the most common order. We handle orders from 50 to 5,000 pieces with consistent color matching across reorders."
+              },
+              {
+                title: "Breweries, Restaurants, and Hospitality",
+                body: "Branded staff hats with custom patches are standard across the hospitality industry. Breweries in particular use leather and embroidered hat patches as merchandise items sold at taprooms alongside growlers and glassware. We work with breweries across the US on recurring seasonal patch orders."
+              },
+              {
+                title: "Corporate and Promotional Merchandise",
+                body: "Companies order branded hat patches for employee uniforms, trade show giveaways, and client gift kits. A custom hat patch ships flat and can be applied to any hat the recipient already owns, making it a cost-effective branded merchandise item compared to ordering pre-decorated hats."
+              },
+              {
+                title: "Outdoor, Tactical, and Workwear Brands",
+                body: (<>PVC patches with velcro backing are the standard for outdoor and tactical brands. Waterproof, UV-resistant, and built to hold shape in rough conditions. We produce <Link href="/custom-patches/pvc" className="text-purple-600 hover:underline font-medium">custom PVC hat patches</Link> for hunting brands, fishing outfitters, construction companies, and military-adjacent apparel lines.</>)
+              },
+            ].map((item, i) => (
+              <div key={i} className="bg-gray-50 rounded-[12px] p-5 border border-gray-100">
+                <h3 className="font-black text-panda-dark text-[15px] mb-2">{item.title}</h3>
+                <p className="text-[14px] text-gray-600 leading-[1.7]">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        )
+      },
+      {
+        heading: "Hat Patch Pricing",
+        content: (
+          <div>
+            <p className="text-[16px] leading-[1.8] text-gray-600 mb-6">All hat patch orders include a free digital mockup within 24 hours, unlimited revisions, free US shipping, and production only after your approval.</p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+              {[
+                { qty: "50 pcs", from: "From $180", per: "$3.60/pc" },
+                { qty: "100 pcs", from: "From $240", per: "$2.40/pc" },
+                { qty: "500 pcs", from: "From $750", per: "$1.50/pc" },
+                { qty: "1,000 pcs", from: "From $1,200", per: "$1.20/pc" },
+              ].map((tier, i) => (
+                <a
+                  key={i}
+                  href="#quote-form"
+                  className="bg-panda-dark rounded-[12px] p-4 text-center block hover:bg-panda-green transition-colors duration-200 cursor-pointer"
+                >
+                  <p className="text-panda-yellow font-black text-[14px] mb-1">{tier.qty}</p>
+                  <p className="text-white font-black text-[18px] mb-1">{tier.from}</p>
+                  <p className="text-gray-400 text-[12px]">{tier.per}</p>
+                </a>
+              ))}
+            </div>
+            <p className="text-[14px] text-gray-500">Prices shown for embroidered patches under 4 inches. <Link href="/offers" className="text-panda-green font-semibold hover:underline">View all hat patch packages on our Offers page</Link> or <Link href="/contact" className="text-panda-green font-semibold hover:underline">get a free custom quote</Link> for larger quantities or other patch types.</p>
+          </div>
+        )
+      },
+      {
+        heading: "Custom Hat Patches — Everything You Need to Know",
+        content: (
+          <div className="space-y-5 text-[16px] leading-[1.8] text-gray-600">
+            <p>
+              Custom hat patches are one of the most versatile branding tools in the apparel industry. A well-made patch on a structured snapback or classic dad hat communicates brand identity instantly, outlasts direct embroidery in most applications, and can be swapped between hat styles without reprinting an entire inventory. At Panda Patches, we produce <strong>custom patches for hats</strong> in every construction method — embroidered, woven, leather, and PVC — with backing options matched to your specific hat material and use case.
+            </p>
+            <p>
+              The most popular choice for hat front panels is the <Link href="/custom-patches/embroidered" className="text-purple-600 hover:underline font-medium">custom embroidered patch</Link>. The raised thread construction gives a premium, tactile feel that stands out on both structured and unstructured caps. For logos with fine detail, small text, or complex artwork, <Link href="/custom-patches/woven" className="text-purple-600 hover:underline font-medium">woven patches</Link> deliver sharper reproduction at a flatter profile — ideal for dad hats and fitted caps where a low-profile look is preferred. Streetwear brands and premium hat lines frequently use <Link href="/custom-patches/leather" className="text-purple-600 hover:underline font-medium">leather patches</Link> for the label-like aesthetic that positions a hat as a retail product rather than promotional merchandise.
+            </p>
+            <p>
+              Every hat patch order at Panda Patches starts with a <strong>free digital mockup within 24 hours</strong>. Our design team reviews your artwork against the size and hat type you have specified, flags any issues before production, and sends a visual representation of exactly how the patch will look on your hat. You request changes until it is right — no limit on revisions, no charge. Production does not start until you give final approval. Nothing ships without your sign-off.
+            </p>
+            <p>
+              Standard delivery is <strong>7-14 business days</strong> after approval. Rush production is available. All orders ship free to anywhere in the US. For custom quantities, mixed patch types, or patches for a hat collection launch, <Link href="/contact" className="text-purple-600 hover:underline font-medium">contact us directly</Link> or call (302) 250-4340.
+            </p>
+          </div>
+        )
+      },
+    ],
+
     "custom-patches-in-washington": [
       {
         heading: "Washington State Custom Patches",

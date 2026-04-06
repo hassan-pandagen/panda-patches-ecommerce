@@ -944,6 +944,33 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
       question: "Can I order sew-on patches with a backing that makes machine attachment easier?",
       answer: "Yes. We can supply patches with a thin stabilizer backing that makes machine attachment easier by preventing the patch from shifting during sewing and reducing the tendency of thick embroidered patches to distort the garment fabric. Contact us when placing your order to request stabilizer backing — particularly useful for industrial embroidery shops and custom clothing operations attaching patches at scale."
     }
+  ],
+
+  "patches-for-hats": [
+    {
+      question: "What size patch works best on a hat?",
+      answer: "The most common hat patch sizes are 2x2 inches for front placement on fitted caps and dad hats, 2.5x2.5 inches for snapbacks, and 3x3 inches for trucker hats with a larger front panel. For side patches, 1.5x3 inches fits most hat brims. We recommend sending your design and we will advise the exact size that fills the panel without overhanging the edges."
+    },
+    {
+      question: "Will an iron-on patch stay on a hat after washing?",
+      answer: "Iron-on backing works on most cotton and canvas hat panels. However, for long-term durability we recommend sewing around the patch edges after ironing, especially on curved hat panels where the adhesive bond is under constant tension. For structured hats with cardboard or plastic stiffeners in the brim, sew-on or velcro backing is a more reliable choice."
+    },
+    {
+      question: "Can I put a patch on a fitted cap or wool hat?",
+      answer: "Yes. Fitted caps and wool hats both take patches well. For fitted caps, sew-on backing gives the cleanest result since the curved panel makes iron-on application uneven. For wool or knit beanies, sew-on is the only reliable method as iron-on heat can damage wool fibers. We supply patches with whichever backing suits your hat material."
+    },
+    {
+      question: "What patch type looks best on a hat front panel?",
+      answer: "Embroidered patches are the most popular choice for hat front panels because the raised thread gives a clean, premium look from a distance. Woven patches work well for logos with fine detail or small text. Leather patches are popular for hat brands and streetwear lines that want a premium label feel. PVC patches work best on outdoor and tactical hats where waterproofing matters."
+    },
+    {
+      question: "Can I order hat patches with velcro backing?",
+      answer: "Yes. Velcro-backed hat patches are popular for tactical caps and military-style hats where swapping patches is a regular requirement. The hook side is attached to the patch and you sew or glue the loop panel to the hat front. We supply both hook and loop sides with every velcro order. Velcro adds $30 to any order regardless of quantity."
+    },
+    {
+      question: "What is the minimum order for custom hat patches?",
+      answer: "Our minimum order for custom hat patches is 50 pieces. Pricing drops at 100, 500, and 1,000 pieces. For a full price breakdown, see our offers page. Every order includes a free digital mockup within 24 hours, unlimited revisions, and production only starts after you approve the design."
+    }
   ]
 };
 

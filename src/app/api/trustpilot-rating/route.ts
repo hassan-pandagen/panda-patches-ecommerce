@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 const TRUSTPILOT_URL = 'https://www.trustpilot.com/review/pandapatches.com';
 const FALLBACK_RATING = '4.8';
-const FALLBACK_COUNT = 64;
+const FALLBACK_COUNT = 66;
 
 interface TrustpilotData {
   rating: string;
