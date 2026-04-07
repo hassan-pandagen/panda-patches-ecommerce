@@ -54,9 +54,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://pandapatches.com/assets/og-image.png';
   return {
-    title: "Bulk Custom Patches | Wholesale Volume Pricing | Panda Patches",
-    description:
-      "Order bulk custom patches at wholesale prices. Embroidered, PVC, chenille, woven, leather. Free mockup, 2-week delivery, pricing from $0.85/pc. Get your free quote today.",
+    title: "Bulk Custom Patches | Wholesale Pricing from $0.50/pc | Panda Patches",
+    description: "Bulk custom patches at wholesale prices. Volume discounts from $0.50/pc. Embroidered, PVC, woven & more. Free design, no setup fees. 1M+ patches delivered. Get your bulk quote today!",
     keywords: [
       "custom patches bulk order",
       "wholesale custom patches",

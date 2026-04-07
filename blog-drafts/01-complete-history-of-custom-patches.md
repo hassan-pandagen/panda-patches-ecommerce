@@ -47,7 +47,7 @@ Greek and Roman armies followed similar practices. Simple stitched or applied fa
 
 The medieval period tied embroidery closely to heraldry. Symbols stitched onto garments communicated lineage, authority, and loyalty. Coats of arms and crests followed recognized conventions, with specific colors and imagery carrying established meanings.
 
-This was the first era where stitched symbols were governed by formal rules. You could not simply choose your own design. Heraldic emblems were registered, regulated, and inherited. This concept of controlled symbolic identity directly influenced how modern [military patches](https://pandapatches.com/tactical-military-patch-placement-options) and organizational insignia work today.
+This was the first era where stitched symbols were governed by formal rules. You could not simply choose your own design. Heraldic emblems were registered, regulated, and inherited. This concept of controlled symbolic identity directly influenced how modern [military patches](https://pandapatches.com/tactical-and-military-ocp-patch-placement-options) and organizational insignia work today.
 
 ## Toward Standardized Uniforms (c. 1700 to 1800)
 
@@ -67,7 +67,7 @@ Today, computerized descendants of the Schiffli machine can produce over 1,000 c
 
 World War I marked the formal emergence of the modern military patch. In 1918, General John J. Pershing authorized the use of shoulder sleeve insignia (SSI) in the U.S. Army. That same year, official unit patches were issued, including those of the 1st Infantry Division ("The Big Red One") and the 81st Infantry Division ("Wildcats"), as documented by the [U.S. Army Institute of Heraldry](https://tioh.army.mil/).
 
-This authorization formalized patches in a way that had never existed before. Placement, design, size, and meaning were now officially regulated. Every soldier knew exactly where their unit patch belonged on their uniform. This standardization is the direct ancestor of today's [Army OCP patch placement regulations](https://pandapatches.com/tactical-military-patch-placement-options).
+This authorization formalized patches in a way that had never existed before. Placement, design, size, and meaning were now officially regulated. Every soldier knew exactly where their unit patch belonged on their uniform. This standardization is the direct ancestor of today's [Army OCP patch placement regulations](https://pandapatches.com/tactical-and-military-ocp-patch-placement-options).
 
 ## World War II and Global Adoption (1939 to 1945)
 
@@ -89,7 +89,7 @@ In the mid-twentieth century, motorcycle clubs adopted patches as structured ide
 
 Patches also gained prominence in non-military institutions. In 1965, NASA introduced its first crewed mission patch during the Gemini 5 program. Mission patches combined symbolism, documentation, and institutional identity, creating a visual record of spaceflight that continues today with every launch.
 
-Sports teams, [scouting organizations](https://pandapatches.com/boy-scout-patch-placements-a-complete-guide), emergency services, and corporations followed similar paths. Each adopted patches to mark membership, role, or achievement. [Fire departments](https://pandapatches.com/custom-fire-department-patches), [police departments](https://pandapatches.com/custom-police-patches), and [sports teams](https://pandapatches.com/custom-sports-patches) still rely on custom patches as core elements of their visual identity.
+Sports teams, [scouting organizations](https://pandapatches.com/boy-scout-patch-placement-guide), emergency services, and corporations followed similar paths. Each adopted patches to mark membership, role, or achievement. [Fire departments](https://pandapatches.com/custom-fire-department-patches), [police departments](https://pandapatches.com/custom-police-patches), and [sports teams](https://pandapatches.com/custom-sports-patches) still rely on custom patches as core elements of their visual identity.
 
 ## Counterculture and Personal Expression (1970s to 1980s)
 
@@ -135,7 +135,7 @@ Patches evolved from ancient embroidery used for fabric repair and military iden
 Custom patches are purpose-designed stitched or molded insignia created to represent a specific group, organization, event, or message. They are produced using tailored designs, materials (embroidered, woven, PVC, chenille, or leather), and attachment methods (iron-on, sew-on, velcro, or sticker backing). Most custom patches are ordered in quantities of 50 to 5,000 pieces.
 
 ### What is the history of the military patch?
-Military patches developed from stitched rank markers used in ancient Egyptian and Roman armies. They became formally standardized in 1918 when General Pershing authorized shoulder sleeve insignia for the U.S. Army. During World War II, over 300 distinct unit patches were authorized. Today, military patch placement follows strict regulations outlined in [Army OCP guidelines](https://pandapatches.com/tactical-military-patch-placement-options).
+Military patches developed from stitched rank markers used in ancient Egyptian and Roman armies. They became formally standardized in 1918 when General Pershing authorized shoulder sleeve insignia for the U.S. Army. During World War II, over 300 distinct unit patches were authorized. Today, military patch placement follows strict regulations outlined in [Army OCP guidelines](https://pandapatches.com/tactical-and-military-ocp-patch-placement-options).
 
 ### When was the first embroidery machine invented?
 The first embroidery machine was the Schiffli machine, invented by Isaak Groebli in Switzerland in 1863. It allowed identical embroidered designs to be mass-produced for the first time, replacing the need for individual hand-embroiderers. Modern computerized embroidery machines are direct descendants of the Schiffli design.

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import { Shirt, Trophy, Beer, Briefcase, Mountain } from "lucide-react";
 import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT } from "@/lib/reviewConstants";
 
 interface SEOSection {
@@ -565,6 +566,15 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         )
       },
       {
+        heading: "",
+        content: (
+          <div className="bg-panda-green/5 border border-panda-green/20 rounded-[16px] p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <p className="text-[15px] text-gray-700 font-medium leading-[1.6] max-w-[520px]">Not sure which patch type fits your hat? Get a free mockup and see it before you order.</p>
+            <a href="#quote-form" className="flex-shrink-0 bg-panda-green text-white font-black text-[14px] px-6 py-3 rounded-full hover:bg-panda-dark transition-colors whitespace-nowrap">Get Your Free Mockup</a>
+          </div>
+        )
+      },
+      {
         heading: "Hat Patch Size Guide",
         content: (
           <div>
@@ -599,6 +609,15 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
               </table>
             </div>
             <p className="text-[13px] text-gray-400 mt-3">Not sure which size fits your hat? Send us your hat and design and we will confirm the right dimensions before production.</p>
+          </div>
+        )
+      },
+      {
+        heading: "",
+        content: (
+          <div className="bg-blue-50 border border-blue-100 rounded-[16px] p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <p className="text-[15px] text-gray-700 font-medium leading-[1.6] max-w-[520px]">Need help choosing the right size? Our design team will recommend the perfect dimensions for your hat style.</p>
+            <Link href="/contact" className="flex-shrink-0 bg-panda-dark text-white font-black text-[14px] px-6 py-3 rounded-full hover:bg-panda-green transition-colors whitespace-nowrap">Ask Our Design Team</Link>
           </div>
         )
       },
@@ -659,6 +678,15 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         )
       },
       {
+        heading: "",
+        content: (
+          <div className="bg-amber-50 border border-amber-100 rounded-[16px] p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <p className="text-[15px] text-gray-700 font-medium leading-[1.6] max-w-[520px]">Want to see the difference in person? Order a free sample patch before your full order.</p>
+            <Link href="/contact" className="flex-shrink-0 bg-panda-dark text-white font-black text-[14px] px-6 py-3 rounded-full hover:bg-panda-green transition-colors whitespace-nowrap">Request a Free Sample</Link>
+          </div>
+        )
+      },
+      {
         heading: "Backing Options for Hat Patches",
         content: (
           <div>
@@ -697,31 +725,39 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
       {
         heading: "Who Orders Custom Hat Patches",
         content: (
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
               {
+                icon: <Shirt className="text-panda-green" size={28} />,
                 title: "Streetwear and Apparel Brands",
                 body: "Hat patches are a core branding element for streetwear labels. Woven patches and leather patches on structured snapbacks and dad hats give independent brands a premium product identity without expensive embroidery directly on the hat. Low minimums starting at 50 pieces make it practical for small-batch drops and seasonal releases."
               },
               {
+                icon: <Trophy className="text-panda-green" size={28} />,
                 title: "Sports Teams and Athletic Programs",
                 body: "Youth leagues, high school programs, and amateur clubs order embroidered patches for team hats and caps. A standard 2x2 inch embroidered patch with team logo and year is the most common order. We handle orders from 50 to 5,000 pieces with consistent color matching across reorders."
               },
               {
+                icon: <Beer className="text-panda-green" size={28} />,
                 title: "Breweries, Restaurants, and Hospitality",
                 body: "Branded staff hats with custom patches are standard across the hospitality industry. Breweries in particular use leather and embroidered hat patches as merchandise items sold at taprooms alongside growlers and glassware. We work with breweries across the US on recurring seasonal patch orders."
               },
               {
+                icon: <Briefcase className="text-panda-green" size={28} />,
                 title: "Corporate and Promotional Merchandise",
                 body: "Companies order branded hat patches for employee uniforms, trade show giveaways, and client gift kits. A custom hat patch ships flat and can be applied to any hat the recipient already owns, making it a cost-effective branded merchandise item compared to ordering pre-decorated hats."
               },
               {
+                icon: <Mountain className="text-panda-green" size={28} />,
                 title: "Outdoor, Tactical, and Workwear Brands",
                 body: (<>PVC patches with velcro backing are the standard for outdoor and tactical brands. Waterproof, UV-resistant, and built to hold shape in rough conditions. We produce <Link href="/custom-patches/pvc" className="text-purple-600 hover:underline font-medium">custom PVC hat patches</Link> for hunting brands, fishing outfitters, construction companies, and military-adjacent apparel lines.</>)
               },
             ].map((item, i) => (
-              <div key={i} className="bg-gray-50 rounded-[12px] p-5 border border-gray-100">
-                <h3 className="font-black text-panda-dark text-[15px] mb-2">{item.title}</h3>
+              <div key={i} className="bg-white rounded-[16px] p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col gap-3">
+                <div className="w-12 h-12 bg-panda-green/10 rounded-[12px] flex items-center justify-center flex-shrink-0">
+                  {item.icon}
+                </div>
+                <h3 className="font-black text-panda-dark text-[16px]">{item.title}</h3>
                 <p className="text-[14px] text-gray-600 leading-[1.7]">{item.body}</p>
               </div>
             ))}
@@ -752,6 +788,15 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
               ))}
             </div>
             <p className="text-[14px] text-gray-500">Prices shown for embroidered patches under 4 inches. <Link href="/offers" className="text-panda-green font-semibold hover:underline">View all hat patch packages on our Offers page</Link> or <Link href="/contact" className="text-panda-green font-semibold hover:underline">get a free custom quote</Link> for larger quantities or other patch types.</p>
+          </div>
+        )
+      },
+      {
+        heading: "",
+        content: (
+          <div className="bg-panda-dark rounded-[16px] p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <p className="text-[15px] text-white font-medium leading-[1.6] max-w-[520px]">Custom hat patches from $0.71/pc. Get your exact quote in under 24 hours.</p>
+            <Link href="/contact" className="flex-shrink-0 bg-panda-yellow text-panda-dark font-black text-[14px] px-6 py-3 rounded-full hover:opacity-90 transition-opacity whitespace-nowrap">Get Your Free Quote</Link>
           </div>
         )
       },
@@ -797,9 +842,11 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
       <div className="container mx-auto px-6 max-w-[860px] space-y-10">
         {sections.map((section, idx) => (
           <div key={idx}>
-            <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-5 leading-tight">
-              {section.heading}
-            </h2>
+            {section.heading && (
+              <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-5 leading-tight">
+                {section.heading}
+              </h2>
+            )}
             {section.content}
           </div>
         ))}

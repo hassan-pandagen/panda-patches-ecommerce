@@ -970,6 +970,38 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     {
       question: "What is the minimum order for custom hat patches?",
       answer: "Our minimum order for custom hat patches is 50 pieces. Pricing drops at 100, 500, and 1,000 pieces. For a full price breakdown, see our offers page. Every order includes a free digital mockup within 24 hours, unlimited revisions, and production only starts after you approve the design."
+    },
+    {
+      question: "How do I attach a patch to a hat without sewing?",
+      answer: "The easiest way is to use iron-on backing. Place the patch on the hat, cover with a thin cloth, and press with a heat press or iron at 300-320F for 15-20 seconds. For curved surfaces like structured caps, a heat press works best. Alternatively, use adhesive backing for a no-heat option, or velcro backing for patches you want to swap out. We recommend iron-on or velcro for most hat applications."
+    },
+    {
+      question: "What is the best patch type for trucker hats?",
+      answer: "For trucker hats, woven or PVC patches work best. The flat front panel of a trucker hat is ideal for patch placement. Woven patches give a clean, detailed look perfect for brand logos. PVC patches are waterproof and durable, great for outdoor and lifestyle brands. Embroidered patches also work well but choose a flat-stitch style to keep the profile low. We recommend 2.5 to 3 inches wide for the front panel."
+    },
+    {
+      question: "Can I order just one custom hat patch as a sample?",
+      answer: "Yes. At Panda Patches, our minimum order is just 5 patches, one of the lowest in the industry. We also offer a free sample program where we send you a physical sample of your patch before full production. This lets you check the quality, colors, and sizing on your actual hat before committing to a larger order."
+    },
+    {
+      question: "How long do custom hat patches last?",
+      answer: "With proper application, custom hat patches last the lifetime of the hat. Embroidered patches are extremely durable and resist fading from UV exposure and washing. PVC patches are waterproof and virtually indestructible. Leather patches develop a beautiful patina over time. For best longevity, we recommend heat-press application over hand ironing, and washing hats by hand or on a gentle cycle."
+    },
+    {
+      question: "What file format do I need for my hat patch design?",
+      answer: "We accept all common file formats: AI, EPS, PDF, PNG, JPG, and SVG. Vector files (AI, EPS, SVG) give the best results because they scale without losing quality. But do not worry if you only have a low-resolution image or even a sketch on paper. Our design team will recreate your artwork in production-ready format for free as part of our complimentary design service."
+    },
+    {
+      question: "Do you offer custom hat patches with velcro backing?",
+      answer: "Absolutely. Velcro-backed hat patches are one of our most popular options, especially for tactical caps, military-style hats, and brands that want interchangeable patches. We use premium hook-and-loop velcro that holds strong but swaps easily. You can order patches with just the hook side and sew or glue the loop side onto your hats for a clean, swappable system."
+    },
+    {
+      question: "What is the turnaround time for custom hat patches?",
+      answer: "Standard production takes 7-14 business days from design approval. We provide a free digital mockup within 24 hours of receiving your design, so you can approve or request changes quickly. If you need patches faster, ask about our rush production options. Shipping within the US typically adds 2-5 business days depending on your location."
+    },
+    {
+      question: "How much do custom hat patches cost?",
+      answer: "Custom hat patches start from $0.71 per patch, with pricing based on size, patch type, quantity, and complexity. Embroidered patches are the most affordable option. Leather and PVC patches cost slightly more due to materials. Volume discounts apply: the more you order, the lower the per-patch price. We offer free quotes with no obligation, so send us your design and we will provide exact pricing within 24 hours."
     }
   ]
 };

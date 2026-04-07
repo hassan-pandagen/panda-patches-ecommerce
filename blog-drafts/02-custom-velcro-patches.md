@@ -29,7 +29,7 @@ Custom velcro patches serve a wide range of industries and applications. Here ar
 
 The United States military is the largest user of velcro patches globally. Every branch uses hook and loop backing for unit patches, name tapes, rank insignia, flag patches, and morale patches on OCP (Operational Camouflage Pattern) uniforms. Velcro allows soldiers to swap unit patches when reassigned and remove all patches before laundering.
 
-Our [Army OCP patch placement guide](https://pandapatches.com/tactical-military-patch-placement-options) covers exact positioning for every patch on the current U.S. Army uniform.
+Our [Army OCP patch placement guide](https://pandapatches.com/tactical-and-military-ocp-patch-placement-options) covers exact positioning for every patch on the current U.S. Army uniform.
 
 ### Law Enforcement
 
@@ -65,7 +65,7 @@ Choosing the right backing depends on how you plan to use the patch. Here is a s
 
 **When to choose velcro:** If your patches need to come off, velcro is the only option. If your patches are permanent, iron-on or sew-on will cost less (both are free) and provide a flatter profile against the garment.
 
-For a deeper comparison of all backing types, read our [complete guide to patch backing options](https://pandapatches.com/comparing-patch-backings-which-one-is-right-for-you).
+For a deeper comparison of all backing types, read our [complete guide to patch backing options](https://pandapatches.com/patch-backings-iron-on-vs-sew-on-vs-velcro).
 
 ## Custom Velcro Patch Materials
 

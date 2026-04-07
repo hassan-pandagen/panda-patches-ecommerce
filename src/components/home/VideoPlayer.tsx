@@ -181,20 +181,22 @@ export default function VideoPlayer({ videoUrl, thumbnail, instagramLink }: Vide
         </div>
       )}
 
-      {/* Video Element (LAZY LOADED - only loads on hover) */}
-      <video
-        ref={videoRef}
-        src={videoUrl}
-        poster={thumbnail}
-        muted
-        playsInline
-        preload="none"
-        className={`w-full h-full object-cover transition-opacity duration-500 ${
-          (isPlaying || showInstagramPrompt) && !hasError ? 'opacity-100' : 'opacity-0'
-        }`}
-      >
-        <track kind="captions" default label="No spoken audio" />
-      </video>
+      {/* Video Element — only mounted after first hover/click to avoid invisible DOM elements */}
+      {(isHovered || isClicked) && (
+        <video
+          ref={videoRef}
+          src={videoUrl}
+          poster={thumbnail}
+          muted
+          playsInline
+          preload="none"
+          className={`w-full h-full object-cover transition-opacity duration-500 ${
+            (isPlaying || showInstagramPrompt) && !hasError ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <track kind="captions" default label="No spoken audio" />
+        </video>
+      )}
     </div>
   );
 }

@@ -58,7 +58,7 @@ Iron-on backing is not suitable for:
 5. Flip the garment inside out and press from the back for another 10 seconds.
 6. Let it cool completely before handling.
 
-For a more detailed walkthrough, read our [complete guide to iron-on patches](https://pandapatches.com/the-complete-guide-to-iron-on-patches-care-application-longevity).
+For a more detailed walkthrough, read our [complete guide to iron-on patches](https://pandapatches.com/the-complete-guide-to-iron-on-patches-care-application-and-longevity).
 
 **Cost:** Iron-on backing is included free with every order at [Panda Patches](https://pandapatches.com/offers).
 
@@ -99,7 +99,7 @@ Every [velcro patch order](https://pandapatches.com/custom-velcro-patches) from 
 
 Velcro is the industry standard for any application where patches need to be removed, swapped, or replaced. The most common use cases are:
 
-- **Military and tactical:** U.S. Army OCP uniforms require velcro for unit patches, name tapes, and flag patches. Soldiers swap patches when reassigned and remove them before laundering. Read our [Army OCP patch placement guide](https://pandapatches.com/tactical-military-patch-placement-options) for exact positioning.
+- **Military and tactical:** U.S. Army OCP uniforms require velcro for unit patches, name tapes, and flag patches. Soldiers swap patches when reassigned and remove them before laundering. Read our [Army OCP patch placement guide](https://pandapatches.com/tactical-and-military-ocp-patch-placement-options) for exact positioning.
 - **Law enforcement:** [Police departments](https://pandapatches.com/custom-police-patches) use velcro on tactical vests and external carriers to swap between "POLICE," "K-9," and other identifiers.
 - **Fire and EMS:** [Fire departments](https://pandapatches.com/custom-fire-department-patches) use velcro on turnout gear and station uniforms. Hook and loop withstands heat and moisture better than iron-on adhesive.
 - **Medical:** Hospitals use velcro name patches on scrubs that must be removed before high-temperature medical laundering.

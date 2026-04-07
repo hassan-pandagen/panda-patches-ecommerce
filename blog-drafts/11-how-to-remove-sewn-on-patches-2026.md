@@ -7,19 +7,17 @@
 > - Denim and canvas handle removal easily; silk, thin knits, and leather need extra care
 > - After removal, iron the area flat and the fabric is ready for a new patch
 
-Sewn-on patches can add a unique look to clothing, but sometimes you may need to remove them. Whether you're dealing with an old logo, a fading design, or just ready for a fresh start, taking off a sewn-on patch is easier than you might think. In this guide, we'll walk you through how to remove patches from clothes safely, share tips on preserving the fabric, and help you get your garment ready for a new patch or a clean finish.
+Sewn-on patches can add a unique look to clothing, but sometimes you may need to remove them. Whether you're dealing with an old logo, a fading design, or just ready for a fresh start, taking off a sewn-on patch is easier than you might think. In this guide, we'll walk you through how to remove patches from clothes safely, share tips on preserving the fabric, and help you get your garment ready for a new patch or a clean finish. If you're planning to replace it, see our full range of [custom embroidered patches](https://pandapatches.com/custom-patches/embroidered) and [custom PVC patches](https://pandapatches.com/custom-patches/pvc).
 
 ---
 
 ## Tools You Need to Remove a Sewn-On Patch
 
-| Tool | Purpose | Where to Get It |
-|---|---|---|
-| Seam ripper | Cuts stitches cleanly without cutting fabric | Fabric or craft store |
-| Small embroidery scissors | Snips tight stitches in corners | Craft store |
-| Tweezers | Pulls out loose thread fragments | Drugstore or craft store |
-| Lint roller or tape | Picks up tiny thread remnants | Grocery store |
-| Soft cloth + mild soap | Removes adhesive residue if present | At home |
+- **Seam ripper:** Cuts stitches cleanly without cutting fabric. Available at fabric or craft stores.
+- **Small embroidery scissors:** Snips tight stitches in corners. Available at craft stores.
+- **Tweezers:** Pulls out loose thread fragments. Available at drugstores or craft stores.
+- **Lint roller or tape:** Picks up tiny thread remnants. Available at grocery stores.
+- **Soft cloth + mild soap:** Removes adhesive residue if present. Available at home.
 
 ---
 
@@ -60,17 +58,15 @@ With the patch removed, there may still be a few loose threads left on the fabri
 
 ## Patch Removal by Fabric Type
 
-| Fabric | Difficulty | Tips |
-|---|---|---|
-| Denim | Easy | Thick fabric handles ripper well — work confidently |
-| Canvas | Easy | Similar to denim, minimal risk of damage |
-| Cotton | Moderate | Work slowly, fabric can pucker if pulled |
-| Poly-cotton blend | Moderate | Use sharp tools, avoid stretching |
-| Fleece | Moderate | Cut stitches only, never pull — fleece snags |
-| T-shirt / lightweight | Difficult | Use lightest pressure, work in very small sections |
-| Thin knits | Difficult | Risk of laddering — use scissors over seam ripper |
-| Silk | Very difficult | Consider professional removal |
-| Leather | Very difficult | Needle holes are permanent — consult a professional |
+- **Denim:** Easy. Thick fabric handles the ripper well — work confidently.
+- **Canvas:** Easy. Similar to denim, minimal risk of damage.
+- **Cotton:** Moderate. Work slowly — fabric can pucker if pulled.
+- **Poly-cotton blend:** Moderate. Use sharp tools and avoid stretching.
+- **Fleece:** Moderate. Cut stitches only, never pull — fleece snags easily.
+- **T-shirt / lightweight:** Difficult. Use lightest pressure and work in very small sections.
+- **Thin knits:** Difficult. Risk of laddering — use scissors instead of a seam ripper.
+- **Silk:** Very difficult. Consider professional removal.
+- **Leather:** Very difficult. Needle holes are permanent — consult a professional.
 
 ---
 
@@ -88,21 +84,19 @@ With the patch removed, there may still be a few loose threads left on the fabri
 
 Some patches may leave an adhesive residue, especially if they were attached with a bit of glue or adhesive backing. To remove this, use a mild adhesive remover or warm water with soap. Dab the solution onto a cloth and gently rub the affected area until the residue is gone.
 
-For iron-on patches that were also sewn, the heat-activated adhesive may have bonded deeply into the fabric fibers. In that case, place a damp pressing cloth over the area and apply low heat — this softens the glue and makes it easier to lift with a cloth.
+For iron-on patches that were also sewn, the heat-activated adhesive may have bonded deeply into the fabric fibers. In that case, place a damp pressing cloth over the area and apply low heat — this softens the glue and makes it easier to lift with a cloth. For full iron-on application and removal tips, see our [complete iron-on patch guide](https://pandapatches.com/the-complete-guide-to-iron-on-patches-care-application-and-longevity).
 
 ---
 
 ## Removing Sewn-On Patches vs. Iron-On Patches
 
-| Factor | Sewn-On | Iron-On |
-|---|---|---|
-| Residue after removal | Rarely — just threads | Often — adhesive left behind |
-| Tools needed | Seam ripper, tweezers | Seam ripper + adhesive remover or heat |
-| Risk to fabric | Low with care | Low to moderate |
-| Time required | 5 to 20 minutes | 5 to 15 minutes |
-| Can the patch be reused? | Usually yes | Rarely — adhesive is spent |
+- **Residue after removal:** Sewn-on rarely leaves residue — just threads. Iron-on often leaves adhesive behind.
+- **Tools needed:** Sewn-on requires a seam ripper and tweezers. Iron-on needs a seam ripper plus adhesive remover or heat.
+- **Risk to fabric:** Sewn-on is low risk with care. Iron-on is low to moderate risk.
+- **Time required:** Sewn-on takes 5 to 20 minutes. Iron-on takes 5 to 15 minutes.
+- **Can the patch be reused?:** Sewn-on patches can usually be reused. Iron-on patches rarely can — the adhesive is spent.
 
-While sewn-on patches are easier to remove without leaving residue, [custom iron-on patches](/custom-patches/embroidered) may leave some adhesive behind. If you're removing an embroidered logo that was ironed on, apply a low heat setting and peel slowly while lifting any glue or adhesive residue with a cloth.
+While sewn-on patches are easier to remove without leaving residue, [custom iron-on patches](https://pandapatches.com/custom-patches/embroidered) may leave some adhesive behind. If you're removing an embroidered logo that was ironed on, apply a low heat setting and peel slowly while lifting any glue or adhesive residue with a cloth.
 
 ---
 
@@ -118,7 +112,7 @@ With the right tools and a careful approach, it's very possible to remove embroi
 Removing patches from delicate materials, such as silk or thin knits, requires extra care. Work in small sections, use very sharp tools, and avoid pulling on the fabric to prevent any stretching or tearing.
 
 **Will there be holes in the fabric after removing a sewn-on patch?**
-On most fabrics, needle holes close up on their own after removal — especially on cotton and denim. Running a warm iron over the area (with a pressing cloth) helps the fibers relax back together. On leather and some synthetics, holes are permanent.
+On most fabrics, needle holes close up on their own after removal — especially on cotton and denim. Running a warm iron over the area (with a pressing cloth) helps the fibers relax back together. On leather and some synthetics, holes are permanent. For attaching a new patch after removal, [iron-on backing](https://pandapatches.com/the-complete-guide-to-iron-on-patches-care-application-and-longevity) is the quickest option for cotton and denim.
 
 **How long does it take to remove a sewn-on patch?**
 A small patch with a simple border stitch takes 5 to 10 minutes. A large patch with a dense zigzag border can take 20 to 30 minutes. The key is patience — rushing is when fabric damage happens.
@@ -130,7 +124,7 @@ Work from the outside layer inward. Slip the seam ripper blade under the outermo
 
 ## Ready for a New Patch?
 
-After removing an old patch, your clothing is ready for a fresh look. Panda Patches offers a variety of high-quality, durable [custom patches](/custom-patches) — embroidered, woven, PVC, and more — perfect for adding personality to your jeans, jackets, and bags.
+After removing an old patch, your clothing is ready for a fresh look. Panda Patches offers a variety of high-quality, durable [custom patches](https://pandapatches.com/custom-patches) — [embroidered](https://pandapatches.com/custom-patches/embroidered), [woven](https://pandapatches.com/custom-patches/woven), [PVC](https://pandapatches.com/custom-patches/pvc), and more — perfect for adding personality to your jeans, jackets, and [jacket patches](https://pandapatches.com/custom-jacket-patches).
 
 Removing a custom sewn-on patch doesn't have to be difficult or damaging to your clothing. By following these simple steps and taking your time, you'll end up with a clean finish and a fabric that's ready for new designs. For the best results, remember to use quality tools and follow each step carefully.
 

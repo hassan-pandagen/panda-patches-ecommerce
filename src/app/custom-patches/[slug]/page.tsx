@@ -8,6 +8,7 @@ import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema, gen
 import { getSchemaPricingTiers } from "@/lib/pricingCalculator";
 import { genericFaqs } from "@/lib/genericFaqs";
 import { slugFaqMap } from "@/lib/slugFaqs";
+import productPageMeta from "@/lib/productPageMeta";
 
 // COMPONENTS - Above the fold
 import ProductHero from "@/components/product/ProductHero";
@@ -107,25 +108,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: '404 - Product Not Found | Panda Patches' };
   }
 
-  const description = product.description || `High-quality ${product.title.toLowerCase()} with low minimums, fast delivery, and free design services from Panda Patches.`;
+  const meta = productPageMeta[slug];
+  const fallbackDesc = product.description || `High-quality ${product.title.toLowerCase()} with low minimums, fast delivery, and free design services from Panda Patches.`;
+  const pageTitle = meta?.title || `${product.title} | Panda Patches`;
+  const pageDesc = meta?.description || fallbackDesc.substring(0, 160);
+  const ogTitle = meta?.ogTitle || product.title;
+  const ogDesc = meta?.ogDescription || fallbackDesc.substring(0, 160);
   const imageUrl = product.heroImage
     ? urlFor(product.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
     : 'https://pandapatches.com/assets/og-image.png';
 
   return {
-    title: `${product.title} | Panda Patches`,
-    description: description.substring(0, 160),
+    title: pageTitle,
+    description: pageDesc,
     openGraph: {
-      title: product.title,
-      description: description.substring(0, 160),
-      images: [{ url: imageUrl, width: 1200, height: 630, alt: `${product.title} | Panda Patches` }],
+      title: ogTitle,
+      description: ogDesc,
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: pageTitle }],
       type: 'website',
       url: `https://pandapatches.com/custom-patches/${slug}`,
     },
     twitter: {
       card: 'summary_large_image',
-      title: product.title,
-      description: description.substring(0, 160),
+      title: ogTitle,
+      description: ogDesc,
       images: [imageUrl],
     },
     alternates: {

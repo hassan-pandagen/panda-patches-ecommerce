@@ -8,7 +8,7 @@
 
 Choosing between woven patches and embroidered patches is one of the most common questions we get at Panda Patches. Most buyers assume the two are interchangeable. They are not. The construction method is completely different, and choosing the wrong type for your design is the single most common reason orders come back with blurry text, lost detail, or a look that does not match the original artwork. This guide explains both patch types clearly and gives you a direct answer on which one fits your design.
 
-If you already have a logo and want a second opinion before you commit to a patch type, [request a free quote here](/contact) and we will review your artwork at no charge.
+If you already have a logo and want a second opinion before you commit to a patch type, [request a free quote here](https://pandapatches.com/contact) and we will review your artwork at no charge.
 
 ---
 
@@ -20,7 +20,7 @@ The percentage of the patch surface covered by thread is called embroidery cover
 
 Because embroidery relies on thick thread, it performs best on bold, simple designs. Large text, thick outlines, and solid shapes stitch cleanly. Fine detail, thin lines, and small text do not. Thick thread cannot be placed close enough together to accurately reproduce elements below approximately 8-10pt font size or lines thinner than 2mm. Attempting to stitch fine detail results in merged edges, blurred letters, and lost linework.
 
-Embroidered patches are the standard choice for uniforms, team jackets, fire department patches, varsity apparel, and military insignia where bold visibility from a distance matters more than fine detail.
+Embroidered patches are the standard choice for uniforms, team jackets, [fire department patches](https://pandapatches.com/custom-fire-department-patches), varsity apparel, and [military insignia](https://pandapatches.com/tactical-and-military-ocp-patch-placement-options) where bold visibility from a distance matters more than fine detail.
 
 ---
 
@@ -32,7 +32,7 @@ Because the threads are integrated rather than layered, woven patches have a com
 
 The fine thread used in woven construction allows much higher design resolution. Threads can be placed closer together, which means small text, thin lines, and complex artwork remain sharp and legible. Woven patches accurately reproduce text as small as 4pt and lines as thin as 0.5mm.
 
-Woven patches are also lighter and lower-profile than embroidered patches. This makes them well-suited for hat patches, clothing labels, brand patches on lightweight garments, and any application where additional bulk would be noticeable.
+Woven patches are also lighter and lower-profile than embroidered patches. This makes them well-suited for [hat patches](https://pandapatches.com/patches-for-hats), clothing labels, brand patches on lightweight garments, and any application where additional bulk would be noticeable.
 
 A note on terminology: some suppliers use the word "damask" to describe a higher thread-count version of woven patches. Damask patches use an even denser weave for greater detail. If you see "woven," "soft woven," or "damask" used interchangeably on a supplier's site, they are all variations of the same flat-woven construction.
 
@@ -65,7 +65,7 @@ The opposite mistake also happens. A buyer expects the raised, bold, three-dimen
 
 Both mistakes are preventable. Before you order either type, get a free digital mockup from us. We review your artwork, identify whether the design requires woven or embroidered construction, and show you a digital representation of the final result before a single patch is produced. Nothing goes to production without your approval.
 
-[View our custom embroidered patches](/custom-patches/embroidered) and [woven patches](/custom-patches/woven) to see examples of each type.
+[View our custom embroidered patches](https://pandapatches.com/custom-patches/embroidered) and [woven patches](https://pandapatches.com/custom-patches/woven) to see examples of each type.
 
 ---
 
@@ -76,7 +76,7 @@ Both mistakes are preventable. Before you order either type, get a free digital 
 - The design uses large text, bold outlines, or solid shapes
 - You need the classic, raised, textured look of a traditional uniform or team patch
 - The patch will be worn on a jacket, polo shirt, uniform, or other medium-to-heavyweight garment
-- Applications include: fire department patches, police department patches, sports team jerseys, military insignia, varsity jackets, club patches, and corporate uniform patches
+- Applications include: [fire department patches](https://pandapatches.com/custom-fire-department-patches), [police department patches](https://pandapatches.com/custom-police-patches), [sports team patches](https://pandapatches.com/custom-sports-patches), military insignia, varsity jackets, club patches, and corporate uniform patches
 
 **Woven patches** are the right choice when:
 
@@ -85,17 +85,17 @@ Both mistakes are preventable. Before you order either type, get a free digital 
 - Accurate color reproduction and sharp design edges are more important than raised texture
 - Applications include: brand labels on hats and bags, music merchandise with complex illustrations, corporate logo patches with fine typography, resale merchandise where patches serve as brand identifiers, and detailed insignia where embroidery cannot hold the required resolution
 
-Both types are available with identical backing options. Iron-on, sew-on, Velcro (+$30), and adhesive backing are all available regardless of whether the patch is embroidered or woven. The backing determines how the patch attaches to the garment and has no effect on construction type.
+Both types are available with identical backing options. Iron-on, sew-on, [velcro (+$30)](https://pandapatches.com/custom-velcro-patches), and adhesive backing are all available regardless of whether the patch is embroidered or woven. The backing determines how the patch attaches to the garment and has no effect on construction type.
 
 ---
 
 ## Pricing, Minimums, and Production Time
 
-Woven patches cost approximately 15-30% more per piece than embroidered patches at equivalent quantities. The reason is loom setup. Weaving fine threads into fabric requires more complex equipment and longer setup time than embroidery. At higher quantities, the per-piece price difference narrows.
+Woven patches cost approximately 15-30% more per piece than embroidered patches at equivalent quantities. For a full breakdown of pricing by type and quantity, see our [custom patch pricing guide](https://pandapatches.com/how-much-do-custom-patches-cost-full-pricing-breakdown). The reason is loom setup. Weaving fine threads into fabric requires more complex equipment and longer setup time than embroidery. At higher quantities, the per-piece price difference narrows.
 
 Embroidered patch cost increases with stitch count and coverage percentage. A simple 50% coverage patch at 50 pieces costs less per piece than a 100% coverage, high-stitch-count design at the same quantity. The design directly affects the price.
 
-For current fixed-price packages on both embroidered and woven patches starting at 50 pieces, [see our offers page](/offers).
+For current fixed-price packages on both embroidered and woven patches starting at 50 pieces, [see our offers page](https://pandapatches.com/offers).
 
 Production time for standard orders runs 7-14 business days for both types. Rush production is available. For embroidered patches, rush scheduling is generally more flexible. For woven patches, rush requires loom availability confirmation. If you have a hard deadline, tell us when you request your quote and we will confirm the timeline before you pay.
 
@@ -117,11 +117,11 @@ For both types: wash inside-out on a gentle cycle with cold water. Avoid high-he
 
 1. **Choose your patch type.** If you are unsure, send us your artwork and we will recommend the right construction for your design.
 2. **Upload your artwork or describe your design.** We accept AI, EPS, SVG, PDF, PNG, and JPG files. Vector format is preferred for woven patches.
-3. **Select your quantity, backing type, and delivery speed** at checkout on our [offers page](/offers).
+3. **Select your quantity, backing type, and delivery speed** at checkout on our [offers page](https://pandapatches.com/offers).
 4. **Receive a free digital mockup within 24 hours.** Review it, request any changes, and approve. Revisions are unlimited and free.
 5. **Production starts only after your approval.** Nothing is manufactured without your sign-off. Your order ships with full tracking to your door.
 
-Questions before ordering? Call us at (302) 250-4340 or [contact us here](/contact). We typically respond within a few minutes during business hours.
+Questions before ordering? Call us at (302) 250-4340 or [contact us here](https://pandapatches.com/contact). We typically respond within a few minutes during business hours.
 
 ---
 
@@ -143,7 +143,7 @@ Damask is a type of woven patch with a higher thread count, which allows even fi
 Yes. Iron-on, sew-on, Velcro, and adhesive backing are all available for both woven and embroidered patches. The backing is selected independently of the construction method. Velcro backing adds $30 to any order regardless of patch type.
 
 **What is the minimum order quantity for woven patches?**
-Panda Patches offers woven patches starting at 50 pieces. For quantities below that or for a custom quote on any quantity, [contact us](/contact) or call (302) 250-4340.
+Panda Patches offers woven patches starting at 50 pieces. For quantities below that or for a custom quote on any quantity, [contact us](https://pandapatches.com/contact) or call (302) 250-4340.
 
 ---
 
@@ -153,7 +153,7 @@ If your design has fine detail and small text, woven patches will give you the r
 
 Not sure which fits your artwork? Send it to us. Our design team reviews every order before production and will tell you exactly which construction method works for your design. You get a free digital mockup within 24 hours, unlimited revisions at no cost, and production starts only after you approve the result.
 
-[See pricing and packages on our Offers page](/offers) or [get a free quote](/contact). You can also call us directly at (302) 250-4340.
+[See pricing and packages on our Offers page](https://pandapatches.com/offers) or [get a free quote](https://pandapatches.com/contact). You can also call us directly at (302) 250-4340.
 
 ---
 

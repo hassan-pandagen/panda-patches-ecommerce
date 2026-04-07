@@ -7,20 +7,18 @@
 > - Velcro strips work best for merit badges that need to be swapped or moved
 > - Always check if your specific scout uniform fabric is iron-safe before applying heat
 
-Scout patches are an essential part of the scouting journey, showcasing achievements, skills, and milestones. Whether you're a parent, scout leader, or scout yourself, attaching these patches can seem daunting, especially if sewing isn't your strong suit. Thankfully, there are simple methods to attach scout patches — with and without sewing.
+Scout patches are an essential part of the scouting journey, showcasing achievements, skills, and milestones. Whether you're a parent, scout leader, or scout yourself, attaching these patches can seem daunting, especially if sewing isn't your strong suit. Thankfully, there are simple methods to attach scout patches — with and without sewing. For a full guide on where each patch belongs on the uniform before you attach it, see our [boy scout patch placement guide](https://pandapatches.com/boy-scout-patch-placement-guide).
 
 ---
 
 ## Scout Patch Attachment Methods at a Glance
 
-| Method | Difficulty | Permanence | Best For |
-|---|---|---|---|
-| Iron-on (heat adhesive) | Easy | Good | Most uniforms, quick application |
-| Fabric glue | Easy | Good | No-iron fabrics, quick fixes |
-| Sew-on (hand stitch) | Moderate | Excellent | Long-term wear, active scouts |
-| Iron + sew border | Moderate | Best | Uniforms washed frequently |
-| Velcro strips | Easy | Removable | Merit badges, temporary placement |
-| Adhesive peel-and-stick | Very easy | Temporary | Trying position before permanent fix |
+- **Iron-on (heat adhesive):** Easy. Good permanence. Best for most uniforms and quick application.
+- **Fabric glue:** Easy. Good permanence. Best for no-iron fabrics and quick fixes.
+- **Sew-on (hand stitch):** Moderate difficulty. Excellent permanence. Best for long-term wear and active scouts.
+- **Iron + sew border:** Moderate difficulty. Best permanence overall. Best for uniforms washed frequently.
+- **Velcro strips:** Easy. Removable. Best for merit badges and temporary placement.
+- **Adhesive peel-and-stick:** Very easy. Temporary only. Best for testing position before permanent attachment.
 
 ---
 
@@ -34,7 +32,7 @@ One of the easiest methods is using iron-on adhesive. If you're wondering how to
 4. **Iron the Patch:** Set your iron to medium heat without steam and press firmly for 20 to 30 seconds
 5. **Check Adhesion:** Let the patch cool, then check if it's securely attached
 
-This method is quick and works well for most uniforms. For long-lasting results, use high-quality patches with professional-grade heat adhesive backing — lower quality adhesive can loosen after just a few washes.
+This method is quick and works well for most uniforms. For long-lasting results, use high-quality patches with professional-grade heat adhesive backing — lower quality adhesive can loosen after just a few washes. For a deeper look at iron-on adhesive, temperatures, and care, see our [complete iron-on patch guide](https://pandapatches.com/the-complete-guide-to-iron-on-patches-care-application-and-longevity).
 
 ---
 
@@ -42,15 +40,13 @@ This method is quick and works well for most uniforms. For long-lasting results,
 
 Knowing where each patch goes is just as important as how to attach it. Incorrect placement is one of the most common mistakes.
 
-| Patch Type | Correct Location | Notes |
-|---|---|---|
-| Troop number | Right sleeve, below BSA emblem | Numbers face forward |
-| BSA emblem | Left chest pocket flap | Centered |
-| Rank badge | Left chest pocket, centered | Changes as rank advances |
-| Merit badges | Merit badge sash | Not on the uniform shirt |
-| Den/Pack number | Right sleeve | Below council patch |
-| Council patch | Right sleeve, top position | First patch from shoulder seam |
-| Activity patches | Back of sash | When sash front is full |
+- **Troop number:** Right sleeve, below BSA emblem. Numbers face forward.
+- **BSA emblem:** Left chest pocket flap. Centered.
+- **Rank badge:** Left chest pocket, centered. Changes as rank advances.
+- **Merit badges:** Merit badge sash only — not on the uniform shirt.
+- **Den/Pack number:** Right sleeve, below council patch.
+- **Council patch:** Right sleeve, top position — first patch from shoulder seam.
+- **Activity patches:** Back of sash when the front is full.
 
 ---
 
@@ -62,14 +58,12 @@ If you're working with iron on girl scout patches, ensure the adhesive backing i
 
 ### Girl Scout Vest Patch Placement
 
-| Patch Type | Location on Vest |
-|---|---|
-| Troop number | Back of vest, centered |
-| Journey patches | Front left panel |
-| Cookie activity patches | Front right panel |
-| Highest award | Front, above pocket |
-| Council ID set | Right sleeve |
-| Brownie Try-Its / Junior badges | Front panels, any open space |
+- **Troop number:** Back of vest, centered.
+- **Journey patches:** Front left panel.
+- **Cookie activity patches:** Front right panel.
+- **Highest award:** Front of vest, above pocket.
+- **Council ID set:** Right sleeve.
+- **Brownie Try-Its / Junior badges:** Front panels, any open space.
 
 ---
 
@@ -81,7 +75,7 @@ If ironing isn't an option, here are the best no-sew methods:
 
 **Adhesive Sheets:** These peel-and-stick options are excellent for temporary attachments or for holding a patch in position before sewing.
 
-**Velcro Strips:** For patches that need frequent removal, Velcro strips are a practical solution. Sew or glue the loop side to the uniform and the hook side to the patch back.
+**Velcro Strips:** For patches that need frequent removal, [velcro-backed patches](https://pandapatches.com/custom-velcro-patches) are a practical solution. Sew or glue the loop side to the uniform and the hook side to the patch back.
 
 ---
 
@@ -127,7 +121,7 @@ Not always. For casual wear and lower-activity environments, iron-on adhesive is
 Use a seam ripper to cut the border stitches one at a time. Work slowly around the edge, then lift the patch off. Use tweezers to remove any remaining thread. For iron-on patches, apply low heat to soften the adhesive before peeling.
 
 **Where do merit badges go — on the uniform or the sash?**
-Merit badges go on the merit badge sash, not on the uniform shirt. The sash is worn over the right shoulder. Once the sash front is full, additional badges can be placed on the back.
+Merit badges go on the merit badge sash, not on the uniform shirt. The sash is worn over the right shoulder. Once the sash front is full, additional badges can be placed on the back. For full placement rules across the entire uniform, see our [boy scout patch placement guide](https://pandapatches.com/boy-scout-patch-placement-guide).
 
 ---
 
@@ -135,7 +129,7 @@ Merit badges go on the merit badge sash, not on the uniform shirt. The sash is w
 
 Whether you're learning how to iron on girl scout patches or exploring other methods for how to attach scout badges without sewing, these techniques make the process easy and stress-free.
 
-Panda Patches produces [custom embroidered patches](/custom-patches/embroidered) used by scout troops, youth organizations, and community groups across the US. All patches are available with iron-on, sew-on, or velcro backing — free shipping on every order, free mockup within 24 hours.
+Panda Patches produces [custom embroidered patches](https://pandapatches.com/custom-patches/embroidered) and [custom PVC patches](https://pandapatches.com/custom-patches/pvc) used by scout troops, youth organizations, and community groups across the US. For larger troop runs, see our [bulk custom patches](https://pandapatches.com/bulk-custom-patches) pricing. All patches are available with iron-on, sew-on, or velcro backing — free shipping on every order, free mockup within 24 hours.
 
 ---
 

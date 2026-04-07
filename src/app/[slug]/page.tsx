@@ -7,6 +7,8 @@ import LocationLayout from "@/components/locations/LocationLayout";
 import { generateArticleSchema, generateBreadcrumbSchema, generateLocationBusinessSchema, generateSchemaScript } from "@/lib/schemas";
 import { getSanityOgImage } from "@/lib/sanityOgImage";
 import cityPageMeta from "@/lib/cityPageMeta";
+import patchStyleMeta from "@/lib/patchStyleMeta";
+import { getPatchStyleProductSchema } from "@/lib/patchStyleProductSchema";
 
 // ISR: Revalidate blog/location/patch-style pages every 1 hour
 export const revalidate = 3600;
@@ -51,22 +53,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (data.patchStyle) {
     const styleName = data.patchStyle.title;
     const ogImage = await getSanityOgImage();
+    // Use slug-specific meta if available, otherwise use generic template
+    const meta = patchStyleMeta[slug];
+    // Strip leading "Custom " from styleName to avoid "custom Custom X" in descriptions
+    const nameForDesc = styleName.toLowerCase().startsWith('custom ') ? styleName.slice(7) : styleName;
+    const pageTitle = meta?.title || `${styleName} | Panda Patches`;
+    const pageDesc = meta?.description || `Order custom ${nameForDesc} with low minimums, free design services, and fast 7-14 day delivery. Get a free quote today!`;
+    const ogTitle = meta?.ogTitle || pageTitle;
+    const ogDesc = meta?.ogDescription || `Custom ${nameForDesc} with free mockups and fast delivery.`;
     return {
-      title: `${styleName} | Custom Patches | Panda Patches`,
-      description: `Order custom ${styleName} with low minimums, free design services, and fast 7-14 day delivery. Get a free quote today!`,
+      title: pageTitle,
+      description: pageDesc,
       alternates: { canonical: `https://pandapatches.com/${slug}` },
       openGraph: {
-        title: `${styleName} | Panda Patches`,
-        description: `Custom ${styleName} with free mockups and fast delivery.`,
+        title: ogTitle,
+        description: ogDesc,
         url: `https://pandapatches.com/${slug}`,
         siteName: 'Panda Patches',
         type: 'website',
-        images: [{ url: ogImage, width: 1200, height: 630, alt: `${styleName} | Panda Patches` }],
+        images: [{ url: ogImage, width: 1200, height: 630, alt: pageTitle }],
       },
       twitter: {
         card: 'summary_large_image',
-        title: `${styleName} | Panda Patches`,
-        description: `Custom ${styleName} with free mockups and fast delivery.`,
+        title: ogTitle,
+        description: ogDesc,
         images: [ogImage],
       },
     };
@@ -136,13 +146,26 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
 
   // OPTION A: It's a Patch Style Page (e.g., "custom-anime-patches")
   if (data.patchStyle) {
-    return <LocationLayout data={{
-      locationName: data.patchStyle.title,
-      gallery: data.patchStyle.gallery,
-      seoSection1: data.patchStyle.seoContent1,
-      seoSection2: data.patchStyle.seoContent2,
-      isPatchStyle: true // Flag to indicate it's a patch style page
-    }} slug={slug} />;
+    // Product schema for all patchStyle pages
+    const patchStyleProductSchema = getPatchStyleProductSchema(slug, data.patchStyle.title);
+
+    return (
+      <>
+        {patchStyleProductSchema && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={generateSchemaScript(patchStyleProductSchema)}
+          />
+        )}
+        <LocationLayout data={{
+          locationName: data.patchStyle.title,
+          gallery: data.patchStyle.gallery,
+          seoSection1: data.patchStyle.seoContent1,
+          seoSection2: data.patchStyle.seoContent2,
+          isPatchStyle: true
+        }} slug={slug} />
+      </>
+    );
   }
 
   // OPTION B: It's a Location Page (e.g., "custom-patches-in-alabama")

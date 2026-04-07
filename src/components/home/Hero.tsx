@@ -57,7 +57,7 @@ export default async function Hero() {
              - Color: Dark (No Yellow)
           */}
           <h1 className="text-[28px] md:text-[40px] leading-[1.2] font-semibold text-panda-dark tracking-tight mb-2 md:mb-4 max-w-full md:max-w-[550px]">
-            {data?.title || "Custom Iron On Patches: Low Minimums, Quick Delivery!"}
+            {data?.title || "Custom Patches | Embroidered, Woven, PVC & More"}
           </h1>
 
           {/*
@@ -80,24 +80,18 @@ export default async function Hero() {
             className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-2 md:-mt-4 mx-auto md:mx-0"
           >
                {/* Hero image — browser picks mobile or desktop, never downloads both */}
-               {/* Mobile image — hidden on md+ */}
-               <Image
-                 src="/assets/hero-product-mobile.webp"
-                 alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"
-                 fill
-                 priority
-                 sizes="(max-width: 767px) 100vw, 0px"
-                 className="object-contain object-center block md:hidden"
-               />
-               {/* Desktop image — hidden on mobile */}
-               <Image
-                 src="/assets/hero-product.webp"
-                 alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"
-                 fill
-                 priority
-                 sizes="(min-width: 768px) 630px, 0px"
-                 className="object-contain object-center hidden md:block"
-               />
+               <picture>
+                 <source media="(min-width: 768px)" srcSet="/assets/hero-product.webp" />
+                 <img
+                   src="/assets/hero-product-mobile.webp"
+                   alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"
+                   width={630}
+                   height={379}
+                   fetchPriority="high"
+                   decoding="auto"
+                   style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
+                 />
+               </picture>
 
              {/* 1 Million Badge - Hidden on mobile */}
              <div className="hidden md:flex absolute bottom-16 right-20 bg-white shadow-xl rounded-xl p-3 items-center gap-3 animate-bounce-slow border border-gray-100">
@@ -134,16 +128,16 @@ export default async function Hero() {
           {/* Mobile: 2x2 Grid | Desktop: 4 in 1 row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full max-w-5xl mx-auto">
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-google.svg" alt="Google" width={110} height={50} className="object-contain brightness-0 w-auto h-auto" loading="lazy" />
+               <Image src="/assets/logo-google.svg" alt="Google" width={110} height={50} className="object-contain brightness-0 w-auto h-auto" loading="eager" />
              </div>
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-microsoft.svg" alt="Microsoft" width={130} height={50} className="object-contain brightness-0 w-auto h-auto" loading="lazy" />
+               <Image src="/assets/logo-microsoft.svg" alt="Microsoft" width={130} height={50} className="object-contain brightness-0 w-auto h-auto" loading="eager" />
              </div>
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-cocacola.svg" alt="CocaCola" width={120} height={50} className="object-contain brightness-0 w-auto h-auto" loading="lazy" />
+               <Image src="/assets/logo-cocacola.svg" alt="CocaCola" width={120} height={50} className="object-contain brightness-0 w-auto h-auto" loading="eager" />
              </div>
              <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-nissan.svg" alt="Nissan" width={100} height={50} className="object-contain brightness-0 w-auto h-auto" loading="lazy" />
+               <Image src="/assets/logo-nissan.svg" alt="Nissan" width={100} height={50} className="object-contain brightness-0 w-auto h-auto" loading="eager" />
              </div>
           </div>
         </div>

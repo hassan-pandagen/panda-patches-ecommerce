@@ -115,6 +115,53 @@ export default defineType({
             },
           ],
         },
+        {
+          type: 'object',
+          name: 'tableBlock',
+          title: 'Table',
+          fields: [
+            {
+              name: 'caption',
+              title: 'Caption (optional)',
+              type: 'string',
+            },
+            {
+              name: 'headers',
+              title: 'Column Headers',
+              type: 'array',
+              of: [{ type: 'string' }],
+            },
+            {
+              name: 'rows',
+              title: 'Rows',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  name: 'tableRow',
+                  title: 'Row',
+                  fields: [
+                    {
+                      name: 'cells',
+                      title: 'Cells',
+                      type: 'array',
+                      of: [{ type: 'string' }],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+          preview: {
+            select: { caption: 'caption', headers: 'headers' },
+            prepare({ caption, headers }: { caption?: string; headers?: string[] }) {
+              return {
+                title: caption || 'Table',
+                subtitle: headers?.join(' | ') || '',
+              };
+            },
+          },
+        },
       ],
     }),
   ],

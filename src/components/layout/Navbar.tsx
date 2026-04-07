@@ -4,6 +4,10 @@ import Link from "next/link";
 import { MessageCircle, ChevronDown, Package, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import TrustBar from "@/components/layout/TrustBar";
+
+const AnnouncementBar = dynamic(() => import("@/components/layout/AnnouncementBar"), { ssr: false });
 
 // CONFIGURATION: Define your menus here
 const navLinks = [
@@ -79,6 +83,8 @@ export default function Navbar() {
       bg-white border-b border-gray-200
       ${scrolled ? 'shadow-md' : 'shadow-sm'}
     `}>
+      <AnnouncementBar />
+      <TrustBar />
       <div className="w-full max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 xl:px-12 h-[70px] md:h-[100px] flex items-center justify-between">
 
         {/* === 1. LEFT: LOGO === */}
@@ -89,8 +95,7 @@ export default function Navbar() {
               alt="Panda Patches"
               width={160}
               height={50}
-              className="w-auto h-auto md:w-[160px] md:h-[50px] object-contain"
-              style={{ width: '130px', height: 'auto', maxHeight: '42px' }}
+              className="w-[130px] h-auto md:w-[180px] object-contain"
             />
           </Link>
         </div>

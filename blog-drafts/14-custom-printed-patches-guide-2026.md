@@ -15,7 +15,7 @@ If your design has a gradient, a photo, more colors than you can count, or fine 
 
 Custom printed patches are fabric patches where the design is applied through digital printing rather than stitching. The most common production method is dye sublimation, where heat converts ink into a gas that bonds permanently with the polyester fabric fibers. The result is a flat, soft patch with photographic color accuracy and smooth gradients.
 
-Unlike embroidery, which builds a design from colored thread, or PVC, which molds rubber into shape, printed patches reproduce artwork exactly as it appears on screen. Every color, every shade, every fine line transfers at the same quality.
+Unlike [embroidery](https://pandapatches.com/custom-patches/embroidered), which builds a design from colored thread, or [PVC](https://pandapatches.com/custom-patches/pvc), which molds rubber into shape, printed patches reproduce artwork exactly as it appears on screen. Every color, every shade, every fine line transfers at the same quality.
 
 ---
 
@@ -36,19 +36,17 @@ Once the patch cools, the ink is part of the fabric. It does not sit on top of t
 
 This is the question most buyers are trying to answer before they order anything. The short version: embroidery is the traditional standard for bold, simple logos. Printed patches are the correct choice when a design has more complexity than embroidery can handle.
 
-| Feature | Printed (Sublimation) | Embroidered |
-|---|---|---|
-| Color range | Unlimited, photographic | Up to 15 thread colors typically |
-| Gradients and fades | Yes, smooth and accurate | No. Only hard color blocks between threads |
-| Photo or portrait reproduction | Yes | No |
-| Small text readability | Yes, down to 2mm height | Minimum 5mm for readable text |
-| Surface texture | Flat and soft | Raised and textured |
-| Durability | Excellent (ink in fiber) | Excellent (thread does not fade) |
-| Setup cost | None | Digitizing fee ($40 to $100 per design) |
-| Cost per piece | 15 to 25% lower than embroidery | Higher, especially for complex designs |
-| Minimum order | Often 10 to 25 pieces | Often 25 to 100 pieces |
-| Turnaround | Faster | Slower |
-| Best look for | Photography, illustrations, complex brand logos | Classic uniform patches, simple bold logos |
+- **Color range:** Printed patches support unlimited, photographic color. Embroidered patches support up to 15 thread colors.
+- **Gradients and fades:** Printed patches reproduce smooth gradients accurately. Embroidery can only produce hard color blocks between threads.
+- **Photo or portrait reproduction:** Printed patches can reproduce photographs. Embroidery cannot.
+- **Small text readability:** Printed patches are readable down to 2mm text height. Embroidery requires a minimum of 5mm for readable text.
+- **Surface texture:** Printed patches are flat and soft. Embroidered patches are raised and textured.
+- **Durability:** Both are excellent. Printed patches have ink bonded inside the fiber. Embroidered thread does not fade.
+- **Setup cost:** Printed patches have no setup cost. Embroidery requires a digitizing fee of $40 to $100 per design.
+- **Cost per piece:** Printed patches cost 15 to 25% less than embroidery. Embroidered patches cost more, especially for complex designs.
+- **Minimum order:** Printed patches often start at 10 to 25 pieces. Embroidered patches often require 25 to 100 pieces.
+- **Turnaround:** Printed patches are faster to produce. Embroidered patches take longer.
+- **Best look for:** Printed patches suit photography, illustrations, and complex brand logos. Embroidered patches suit classic uniform patches and simple bold logos.
 
 ### Choose printed patches when:
 - Your design contains gradients, color fades, or watercolor style artwork
@@ -69,7 +67,7 @@ This is the question most buyers are trying to answer before they order anything
 ## Who Uses Custom Printed Patches
 
 ### Military and Tactical Units
-Printed morale patches are almost exclusively the printed format. Detailed unit insignia, regimental crests with coat of arms imagery, national flags with accurate color gradients, and humor patches with photographic elements all require printing. Embroidery physically cannot reproduce the detail level that military morale patch culture expects.
+Printed [morale patches](https://pandapatches.com/tactical-and-military-ocp-patch-placement-options) are almost exclusively the printed format. Detailed unit insignia, regimental crests with coat of arms imagery, national flags with accurate color gradients, and humor patches with photographic elements all require printing. Embroidery physically cannot reproduce the detail level that military morale patch culture expects.
 
 ### Musicians and Bands
 Album artwork patches for jackets and merchandise. Printed patches let bands reproduce full album cover art on a patch with photographic accuracy. Tour merch patches with complex illustrations or photography are a growing product category across rock, metal, hip hop, and indie music.
@@ -78,7 +76,7 @@ Album artwork patches for jackets and merchandise. Printed patches let bands rep
 This is one of the fastest growing use cases in the patch market. Customers want a photo of a beloved pet, a family member, or a milestone moment on a wearable patch. Embroidery cannot serve this market at all. Only printed patches can. Pet memorial patches, family portrait patches, and tribute patches for deceased loved ones are ordered in small quantities (often single pieces) and carry high personal value.
 
 ### Sports Teams and Clubs
-Tournament commemorative patches, season patches, and uniform patches for teams whose logos include gradient effects or complex color fields. Youth sports clubs, travel teams, and school organizations benefit from the lower minimum quantities that printed patches allow.
+Tournament commemorative patches, season patches, and uniform patches for teams whose logos include gradient effects or complex color fields. Youth sports clubs, travel teams, and school organizations benefit from the lower minimum quantities that printed patches allow. See our full range of [custom sports patches](https://pandapatches.com/custom-sports-patches) for team ordering options.
 
 ### Fashion Brands and Streetwear Labels
 Complex illustration patches, photographic patches, and collage artwork patches for denim jackets, bags, and seasonal collections. Brands experimenting with limited run designs prefer printed patches for faster turnaround and lower setup cost than embroidery.
@@ -87,7 +85,7 @@ Complex illustration patches, photographic patches, and collage artwork patches 
 Companies with complex logos that include gradients, photography, or more than eight colors get better color accuracy from printed patches than embroidery. Staff uniforms, trade show merchandise, and employee recognition patches.
 
 ### Scout Troops and Youth Organizations
-Event patches, camp commemorative patches, and achievement badges in small quantities. Printed patches allow groups that need 25 to 50 pieces with complex artwork to order without high per unit costs.
+Event patches, camp commemorative patches, and achievement badges in small quantities. Printed patches allow groups that need 25 to 50 pieces with complex artwork to order without high per unit costs. For placement guidance, see our [boy scout patch placement guide](https://pandapatches.com/boy-scout-patch-placement-guide) and [how to attach scout patches](https://pandapatches.com/how-to-attach-scout-patches).
 
 ---
 
@@ -110,15 +108,13 @@ For most designs, this limitation is not an issue. The majority of printed patch
 
 Getting your file right before ordering saves time, avoids delays, and prevents color surprises.
 
-| Requirement | What to Do |
-|---|---|
-| Resolution | 300 DPI minimum at the final printed size of the patch |
-| Color mode | Convert to CMYK before submitting. RGB colors shift when converted during printing |
-| File format | AI, EPS, SVG (best). PNG with transparent background. PDF. JPG at 300 DPI minimum |
-| White elements | White in your design must be white fabric showing through, not a printed color |
-| Text | Minimum 2mm text height for readability. Larger is safer |
-| Design edges | Leave clear space around the design border so the merrow edge does not clip artwork |
-| Dark backgrounds | Flag this to your vendor before ordering so they can advise on the right approach |
+- **Resolution:** 300 DPI minimum at the final printed size of the patch.
+- **Color mode:** Convert to CMYK before submitting. RGB colors shift when converted during printing.
+- **File format:** AI, EPS, SVG (best). PNG with transparent background. PDF. JPG at 300 DPI minimum.
+- **White elements:** White in your design must be the white fabric showing through, not a printed color.
+- **Text:** Minimum 2mm text height for readability. Larger is safer.
+- **Design edges:** Leave clear space around the design border so the merrow edge does not clip artwork.
+- **Dark backgrounds:** Flag this to your vendor before ordering so they can advise on the right approach.
 
 ### The Resolution Rule Explained Simply
 A photo on a website is typically 72 DPI, designed for screen display. At that resolution, a 4 inch patch would have roughly one third the pixel density needed for a sharp print. The image will look blurry and pixelated in the final patch. A 300 DPI image at the same 4 inch size has more than 17 times the information and will print sharply.
@@ -137,25 +133,23 @@ If your logo came from a website, ask for the original high resolution file from
 
 **Skipping the proof review.** A proof is your last chance to catch typos, color issues, sizing errors, and layout problems before production runs. Never skip it. Read every word. Check every number.
 
-**Not measuring where the patch will be used.** A patch that fills a phone screen may look large but turn out tiny on a jacket back. Measure the intended application area before choosing a size. Common reference points: hat front panel fits 2 by 2 inches, left chest placement fits 3 by 3 to 4 by 4 inches, full back patch is typically 10 by 12 inches.
+**Not measuring where the patch will be used.** A patch that fills a phone screen may look large but turn out tiny on a jacket back. Measure the intended application area before choosing a size. Common reference points: [hat front panel](https://pandapatches.com/patches-for-hats) fits 2 by 2 inches, left chest placement fits 3 by 3 to 4 by 4 inches, full back patch is typically 10 by 12 inches.
 
-**Choosing the wrong backing for the garment.** Iron on backing does not bond reliably to nylon, waterproof shells, or synthetic performance fabrics. Use sew on for athletic wear. Use velcro for tactical gear and anything requiring patch swaps. Iron on works well on cotton, denim, canvas, and twill.
+**Choosing the wrong backing for the garment.** [Iron on backing](https://pandapatches.com/the-complete-guide-to-iron-on-patches-care-application-and-longevity) does not bond reliably to nylon, waterproof shells, or synthetic performance fabrics. Use sew on for athletic wear. Use velcro for tactical gear and anything requiring patch swaps. Iron on works well on cotton, denim, canvas, and twill.
 
-**Not checking pricing tiers.** If you need 80 patches, check whether 100 is significantly cheaper per unit before ordering exactly 80. Price breaks at standard quantities (50, 100, 250, 500) are often steep enough that ordering slightly more saves money overall.
+**Not checking pricing tiers.** If you need 80 patches, check whether 100 is significantly cheaper per unit before ordering exactly 80. Price breaks at standard quantities (50, 100, 250, 500) are often steep enough that ordering slightly more saves money overall. See our [current pricing and package offers](https://pandapatches.com/offers) for exact per-unit costs at each quantity tier.
 
 ---
 
 ## Patch Size Guide for Common Applications
 
-| Application | Recommended Size | Notes |
-|---|---|---|
-| Hat front panel | 2" x 2" | Fits most structured cap panels |
-| Hat side panel | 1.5" x 2" | Smaller side panel constraint |
-| Left chest (shirt or jacket) | 3" x 3" to 4" x 4" | Standard chest placement |
-| Shoulder sleeve | 2.5" x 2.5" to 3" x 3" | Military and uniform standard |
-| Bag or backpack | 3" x 4" to 4" x 5" | More visibility on bag face |
-| Jacket back (large) | 10" x 12" | Full back statement patch |
-| Morale patch (vest or helmet) | 2" x 3" or 2" x 2" | Standard morale patch size |
+- **[Hat front panel](https://pandapatches.com/patches-for-hats):** 2" x 2". Fits most structured cap panels.
+- **Hat side panel:** 1.5" x 2". Smaller side panel constraint.
+- **Left chest (shirt or jacket):** 3" x 3" to 4" x 4". Standard chest placement.
+- **Shoulder sleeve:** 2.5" x 2.5" to 3" x 3". Military and uniform standard.
+- **Bag or backpack:** 3" x 4" to 4" x 5". More visibility on bag face.
+- **Jacket back (large):** 10" x 12". Full back statement patch.
+- **Morale patch (vest or helmet):** 2" x 3" or 2" x 2". Standard morale patch size.
 
 ---
 
@@ -165,13 +159,13 @@ If your logo came from a website, ask for the original high resolution file from
 A sublimation patch is a printed patch made using dye sublimation technology. Heat causes dye based ink to transform into gas that bonds permanently inside polyester fabric fibers. The result is a full color, soft, flat patch where the ink cannot peel or crack because it is part of the fabric itself.
 
 **Can you put a photo on a patch?**
-Yes. Printed sublimation patches are the only patch type that can accurately reproduce a photograph, portrait, or photorealistic illustration. Embroidery, PVC, and woven patches cannot reproduce photographic detail. For pet memorial patches, family portrait patches, and tribute patches, printed is the correct format.
+Yes. Printed sublimation patches are the only patch type that can accurately reproduce a photograph, portrait, or photorealistic illustration. [Embroidery](https://pandapatches.com/custom-patches/embroidered), [PVC](https://pandapatches.com/custom-patches/pvc), and [woven patches](https://pandapatches.com/custom-patches/woven) cannot reproduce photographic detail. For pet memorial patches, family portrait patches, and tribute patches, printed is the correct format.
 
 **How durable are printed patches?**
 Dye sublimation printed patches are rated for the life of the garment under normal care. Because the ink bonds inside the polyester fibers rather than sitting on the surface, it does not peel, crack, or flake. Wash in cold water, gentle cycle, garment inside out for best longevity. Avoid bleach and high heat drying.
 
 **Are printed patches cheaper than embroidered?**
-Yes, typically 15 to 25% less at the same quantity. Embroidery also often has a digitizing setup fee ($40 to $100 per design) that printed patches do not. For complex designs with many colors, the savings can be larger because embroidery costs increase with color count while printed patches do not.
+Yes, typically 15 to 25% less at the same quantity. Embroidery also often has a digitizing setup fee ($40 to $100 per design) that printed patches do not. For complex designs with many colors, the savings can be larger because embroidery costs increase with color count while printed patches do not. For large orders, see our [bulk custom patches](https://pandapatches.com/bulk-custom-patches) pricing.
 
 **What file format should I submit for a printed patch?**
 Vector files (AI, EPS, SVG) are ideal. PNG with transparent background works well for designs with irregular shapes. If submitting a JPG or raster image, it must be 300 DPI at the intended final patch size. Convert the file to CMYK color mode before submitting to avoid color shifts.
@@ -185,7 +179,7 @@ Yes. Printed patches are available with iron on heat seal backing, sew on, velcr
 
 Printed patches exist because embroidery has limits. When your design has gradients, photographs, unlimited colors, or fine detail, printing is not just an option, it is the only method that delivers what the artwork actually looks like. With no setup fees, lower per unit cost than embroidery, and faster turnaround, they are also the practical choice for small quantities and complex designs.
 
-At Panda Patches, [custom printed patches](/custom-patches/printed) are produced on professional sublimation equipment with a free digital proof on every order. Free US shipping, no setup fees, mockup within 24 hours. [Request a free quote here](/contact) or call (302) 250-4340.
+At Panda Patches, [custom printed patches](https://pandapatches.com/custom-patches/printed) are produced on professional sublimation equipment with a free digital proof on every order. Free US shipping, no setup fees, mockup within 24 hours. [Request a free quote here](https://pandapatches.com/contact) or call (302) 250-4340.
 
 ---
 

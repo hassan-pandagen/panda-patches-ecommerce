@@ -39,8 +39,8 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: "Custom Patches, Embroidered Patches - Low Minimums | Panda Patches",
-    description: "Custom embroidered patches, iron-on patches, woven and PVC patches with no minimum orders. Free design, fast 7-14 day delivery. Get a free quote!",
+    title: "Custom Patches | Embroidered, PVC & Woven | Free Design | Panda Patches",
+    description: "Custom patches starting at $0.50/pc. Embroidered, PVC, woven, chenille & leather patches. No minimums, free design mockup in 24hrs, ships in 7-14 days. 1M+ delivered. Get your free quote!",
     keywords: [
       "custom patches",
       "embroidered patches",

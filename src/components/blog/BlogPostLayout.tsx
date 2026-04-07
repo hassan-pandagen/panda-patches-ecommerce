@@ -191,6 +191,36 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
                     </figure>
                   );
                 },
+                tableBlock: ({value}: {value: any}) => {
+                  if (!value?.rows?.length) return null;
+                  return (
+                    <div className="overflow-x-auto my-8 rounded-xl border border-gray-200 shadow-sm">
+                      <table className="w-full border-collapse text-[15px]">
+                        {value.headers?.length > 0 && (
+                          <thead>
+                            <tr>
+                              {value.headers.map((h: string, i: number) => (
+                                <th key={i} className="bg-panda-dark text-white px-4 py-3 text-left font-bold text-[14px] whitespace-nowrap">{h}</th>
+                              ))}
+                            </tr>
+                          </thead>
+                        )}
+                        <tbody>
+                          {value.rows.map((row: any, i: number) => (
+                            <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                              {row.cells?.map((cell: string, j: number) => (
+                                <td key={j} className="px-4 py-3 border-b border-gray-100 text-gray-700 align-top">{cell}</td>
+                              ))}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      {value.caption && (
+                        <p className="text-center text-sm text-gray-400 py-2 italic">{value.caption}</p>
+                      )}
+                    </div>
+                  );
+                },
               },
             }}
           />

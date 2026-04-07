@@ -2,6 +2,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ProductHero from "@/components/product/ProductHero";
+import HatPageHero from "@/components/locations/HatPageHero";
 import TrustStrip from "@/components/products/TrustStrip";
 import PickPatch from "@/components/about/PickPatch";
 import Promises from "@/components/home/Promises";
@@ -18,6 +19,8 @@ import { PortableText } from "@portabletext/react";
 import { convertWordPressUrl } from "@/lib/convertWordPressUrls";
 import { client } from "@/lib/sanity";
 import locationFaqs from "@/lib/locationFaqs";
+import StickyMobileCTA from "@/components/locations/StickyMobileCTA";
+import ReviewSnippet from "@/components/layout/ReviewSnippet";
 import locationDescriptions from "@/lib/locationDescriptions";
 import { generateFAQSchema, generateBreadcrumbSchema, generateSchemaScript } from "@/lib/schemas";
 
@@ -128,8 +131,16 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
       )}
       <Navbar />
 
-      {/* 1. HERO */}
-      <ProductHero productData={heroData} isMainPage={true} />
+      {/* 1. HERO — hat page gets BulkQuoteForm hero, all others get standard ProductHero */}
+      {slug === 'patches-for-hats' ? (
+        <HatPageHero
+          title={heroData.title}
+          description={heroData.description}
+          gallery={heroData.gallery}
+        />
+      ) : (
+        <ProductHero productData={heroData} isMainPage={true} />
+      )}
 
       {/* 2. TRUST STRIP */}
       <TrustStrip />
@@ -138,7 +149,10 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
         <>
           {/* HAT PAGE ORDER — optimised for conversion */}
 
-          {/* 3. Craftsmanship gallery — visual proof early */}
+          {/* 3. Review snippet — social proof immediately below hero */}
+          <ReviewSnippet />
+
+          {/* 4. Craftsmanship gallery — visual proof early */}
           <Craftsmanship />
 
           {/* 4. Customer reviews — social proof */}
@@ -156,11 +170,23 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
           {/* 8. Hat FAQ */}
           <FAQ questions={locationFaqQuestions} />
 
+          {/* After-FAQ CTA */}
+          <div className="py-10 bg-white border-t border-gray-100">
+            <div className="container mx-auto px-6 max-w-[860px] text-center">
+              <p className="text-[18px] md:text-[22px] font-black text-panda-dark mb-2">Ready to create your custom hat patches?</p>
+              <p className="text-[15px] text-gray-500 mb-6">Upload your design and get a free mockup in 24 hours.</p>
+              <a href="#quote-form" className="inline-block bg-panda-green text-white font-black text-[16px] px-10 py-4 rounded-full hover:bg-panda-dark transition-colors shadow-lg">Start Your Order</a>
+            </div>
+          </div>
+
           {/* 9. Our process */}
           <ProcessSection />
 
           {/* 10. Explore patch types */}
           <PickPatch />
+
+          {/* Sticky mobile CTA — appears after scrolling past hero */}
+          <StickyMobileCTA />
 
         </>
       ) : (

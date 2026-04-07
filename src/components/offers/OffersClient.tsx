@@ -892,7 +892,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
               },
               {
                 q: 'Can I order a different quantity?',
-                a: 'These offers cover 90% of orders. For custom sizes, mixed types, or anything else — free quote in 60 seconds.',
+                a: 'These offers cover 90% of orders. For custom sizes, mixed types, or anything else — free quote in minutes.',
               },
             ].map((faq, i) => (
               <FAQItem key={i} q={faq.q} a={faq.a} />
@@ -905,7 +905,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
       <section className="bg-[#051C05] py-16 px-4 text-center">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl font-black text-white mb-4">Need a Custom Size or Quantity?</h2>
-          <p className="text-gray-300 text-base mb-8">Our offers cover 90% of orders. For custom sizes, mixed types, or anything else. Free quote in 60 seconds.</p>
+          <p className="text-gray-300 text-base mb-8">Our offers cover 90% of orders. For custom sizes, mixed types, or anything else. Free quote in minutes.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/contact" className="inline-block px-8 py-3 bg-black text-white font-bold uppercase tracking-wider text-sm transition-colors duration-300 hover:bg-panda-yellow hover:text-black rounded-[4px] border border-white/40">
               Get a Free Quote

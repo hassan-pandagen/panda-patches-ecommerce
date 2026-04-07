@@ -26,8 +26,8 @@ const ProcessSection = dynamic(() => import("@/components/home/ProcessSection"),
 export async function generateMetadata(): Promise<Metadata> {
   const ogImage = await getSanityOgImage();
   return {
-    title: "Custom Patches - Embroidered, PVC, Woven & More | Panda Patches",
-    description: "Custom embroidered, PVC, woven, chenille and leather patches. Low minimums, free design, 7-14 day delivery. No setup fees. Order from $0.71/pc.",
+    title: "Custom Patches | All Types from $0.71/pc | Free Design | Panda Patches",
+    description: "Order custom patches in any style: embroidered, PVC, woven, chenille & leather. As low as 5 patches. Free artwork & mockup in 24hrs. Ships in 7-14 days. Trusted by 10,000+ brands. Get a free quote!",
     keywords: [
       "custom patches",
       "embroidered patches",
@@ -296,7 +296,91 @@ export default async function ProductLandingPage() {
       <FAQ />
       <ContentSection />
 
-      {/* 9. REELS & CTA */}
+      {/* 9. EXPANDED SEO CONTENT — custom patches guide */}
+      <section className="w-full py-12 md:py-16 bg-[#F9FAF5] border-t border-gray-100">
+        <div className="container mx-auto px-6 max-w-[860px]">
+
+          <div className="w-10 h-1 bg-panda-yellow mb-8 rounded-full" />
+
+          <h2 className="text-[26px] md:text-[32px] font-black text-panda-dark mb-4 leading-tight">
+            5 Types of Custom Patches: Which Is Right for You?
+          </h2>
+          <p className="text-[17px] leading-[1.8] text-gray-600 mb-4">
+            Not every patch is made the same way. The right type depends on your design, application, and budget. Here is a quick breakdown of all five custom patch types we produce.
+          </p>
+          <ul className="space-y-4 mb-8 text-[17px] leading-[1.8] text-gray-600">
+            <li><strong className="text-panda-dark">Embroidered patches</strong> are the most popular choice. Thread is stitched directly onto a twill backing, creating a textured, premium look. Best for logos, text, and bold designs with solid colors. Starting from $0.71/pc at volume.</li>
+            <li><strong className="text-panda-dark">Woven patches</strong> use thinner thread for a flatter, more detailed result. Ideal when your design has fine lines, small text, or gradient shading that embroidery cannot replicate cleanly.</li>
+            <li><strong className="text-panda-dark">PVC patches</strong> are made from soft rubber and are fully waterproof. The best option for tactical gear, outdoor equipment, bags, and anything exposed to weather or heavy wear.</li>
+            <li><strong className="text-panda-dark">Chenille patches</strong> deliver the classic varsity look. A raised, fuzzy pile surface with a felt backing. Standard for letterman jackets, sports teams, and award patches.</li>
+            <li><strong className="text-panda-dark">Leather patches</strong> give a premium, heritage finish. Laser-engraved or debossed. Popular for denim jackets, hats, bags, and brand merchandise that needs to stand out.</li>
+          </ul>
+
+          <h2 className="text-[26px] md:text-[32px] font-black text-panda-dark mb-4 leading-tight">
+            Backing Options: Iron-On, Sew-On, Velcro, and More
+          </h2>
+          <p className="text-[17px] leading-[1.8] text-gray-600 mb-4">
+            Every custom patch can be made with your choice of backing. The backing determines how the patch attaches to fabric or gear.
+          </p>
+          <ul className="space-y-3 mb-8 text-[17px] leading-[1.8] text-gray-600">
+            <li><strong className="text-panda-dark">Iron-on (heat seal):</strong> A thermoplastic adhesive backing that bonds to fabric with a household iron or heat press. Quick to apply, permanent, and included free on all orders.</li>
+            <li><strong className="text-panda-dark">Sew-on:</strong> No adhesive. The patch is stitched directly onto fabric for the most secure, long-lasting attachment. Required for performance wear and technical fabrics.</li>
+            <li><strong className="text-panda-dark">Velcro (hook and loop):</strong> Both hook and loop sides included. Allows the patch to be removed and repositioned. Standard for military, law enforcement, and tactical vests. Velcro backing adds $30 to any order.</li>
+            <li><strong className="text-panda-dark">Sticker (self-adhesive):</strong> Peel-and-stick for temporary applications, helmets, notebooks, and promotional use.</li>
+          </ul>
+
+          <h2 className="text-[26px] md:text-[32px] font-black text-panda-dark mb-4 leading-tight">
+            Who Orders Custom Patches?
+          </h2>
+          <p className="text-[17px] leading-[1.8] text-gray-600 mb-4">
+            Custom patches serve a wide range of industries and communities. Our customers include:
+          </p>
+          <ul className="space-y-3 mb-8 text-[17px] leading-[1.8] text-gray-600">
+            <li><strong className="text-panda-dark">Sports teams and leagues</strong> ordering jersey patches, championship patches, and award patches for players, coaches, and staff.</li>
+            <li><strong className="text-panda-dark">Businesses and brands</strong> using logo patches on uniforms, merchandise, corporate gifts, and promotional items.</li>
+            <li><strong className="text-panda-dark">Military and law enforcement</strong> ordering morale patches, unit identification patches, and tactical Velcro patches for vests and bags.</li>
+            <li><strong className="text-panda-dark">Schools and universities</strong> commissioning chenille varsity patches, club patches, and spirit wear embellishments.</li>
+            <li><strong className="text-panda-dark">Motorcycle clubs and organizations</strong> creating MC back patches, center patches, and rocker patches for vests and jackets.</li>
+            <li><strong className="text-panda-dark">Streetwear and fashion brands</strong> adding woven labels, leather patches, and PVC badges to caps, hoodies, and bags.</li>
+            <li><strong className="text-panda-dark">Scouts and youth groups</strong> ordering merit badge-style patches and event commemoratives for uniforms and sashes.</li>
+          </ul>
+
+          <h2 className="text-[26px] md:text-[32px] font-black text-panda-dark mb-4 leading-tight">
+            How to Order Custom Patches: 4 Simple Steps
+          </h2>
+          <p className="text-[17px] leading-[1.8] text-gray-600 mb-4">
+            Ordering custom patches from Panda Patches takes minutes. Here is what the process looks like from quote to delivery:
+          </p>
+          <ol className="space-y-3 mb-8 text-[17px] leading-[1.8] text-gray-600 list-decimal list-inside">
+            <li><strong className="text-panda-dark">Submit your quote.</strong> Upload your artwork or describe your idea using our quote form. Include patch type, size, quantity, and backing preference.</li>
+            <li><strong className="text-panda-dark">Receive your free mockup within 24 hours.</strong> Our design team creates a digital proof showing exactly what your patch will look like. Review it and request any changes, free of charge.</li>
+            <li><strong className="text-panda-dark">Approve and pay.</strong> Once you are happy with the mockup, confirm your order. Production begins immediately after approval.</li>
+            <li><strong className="text-panda-dark">Receive your patches in 7-14 days.</strong> Standard production ships in 7-14 business days. Rush production is available if you need them sooner.</li>
+          </ol>
+
+          <h2 className="text-[26px] md:text-[32px] font-black text-panda-dark mb-4 leading-tight">
+            Custom Patch Pricing: What to Expect
+          </h2>
+          <p className="text-[17px] leading-[1.8] text-gray-600 mb-4">
+            Patch pricing depends on three main factors: patch type, size, and quantity. The more you order, the lower the per-piece cost. Here is a general pricing guide for embroidered patches under 4 inches:
+          </p>
+          <ul className="space-y-2 mb-6 text-[17px] leading-[1.8] text-gray-600">
+            <li><strong className="text-panda-dark">50 pieces:</strong> $180 total ($3.60/pc)</li>
+            <li><strong className="text-panda-dark">100 pieces:</strong> $240 total ($2.40/pc)</li>
+            <li><strong className="text-panda-dark">500 pieces:</strong> $750 total ($1.50/pc)</li>
+            <li><strong className="text-panda-dark">1,000 pieces:</strong> $1,200 total ($1.20/pc)</li>
+          </ul>
+          <p className="text-[17px] leading-[1.8] text-gray-600 mb-4">
+            PVC, chenille, and leather patches carry slightly higher base prices due to materials and production complexity. Woven patches are comparable to embroidered. All prices include free shipping within the US and a free digital mockup. There are no setup fees and no hidden charges.
+          </p>
+          <p className="text-[17px] leading-[1.8] text-gray-600">
+            Need a precise quote? Use our free quote form above, upload your design, and receive a detailed price breakdown within 24 hours.
+          </p>
+
+        </div>
+      </section>
+
+      {/* 10. REELS & CTA */}
       <CTASection />
       
       <Footer />
