@@ -97,6 +97,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: blogTitle,
       description: blogDesc,
       alternates: { canonical: `https://pandapatches.com/${slug}` },
+      robots: { index: true, follow: true },
       openGraph: {
         title: data.blog.title,
         description: blogDesc,
@@ -204,6 +205,19 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       { name: data.blog.title || "Blog Post", url: `https://pandapatches.com/${slug}` },
     ]);
 
+    const faqSchema = data.blog.faqItems?.length > 0 ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": data.blog.faqItems.map((item: { question: string; answer: string }) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer,
+        },
+      })),
+    } : null;
+
     return (
       <>
         {/* Article Schema for SEO */}
@@ -216,6 +230,13 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
           type="application/ld+json"
           dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
         />
+        {/* FAQPage Schema for rich results */}
+        {faqSchema && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={generateSchemaScript(faqSchema)}
+          />
+        )}
         <BlogPostLayout post={data.blog} slug={slug} />
       </>
     );

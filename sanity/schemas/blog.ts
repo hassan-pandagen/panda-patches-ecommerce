@@ -93,6 +93,40 @@ export default defineType({
       options: { hotspot: true },
     }),
     defineField({
+      name: 'faqItems',
+      title: 'FAQ Items (FAQPage Schema)',
+      type: 'array',
+      description: 'Add Q&A pairs to generate FAQPage schema for rich results in Google. Copy the FAQ section from your blog post here.',
+      of: [
+        {
+          type: 'object',
+          name: 'faqItem',
+          title: 'FAQ Item',
+          fields: [
+            {
+              name: 'question',
+              title: 'Question',
+              type: 'string',
+              validation: (rule: any) => rule.required(),
+            },
+            {
+              name: 'answer',
+              title: 'Answer',
+              type: 'text',
+              rows: 3,
+              validation: (rule: any) => rule.required(),
+            },
+          ],
+          preview: {
+            select: { question: 'question' },
+            prepare({ question }: { question?: string }) {
+              return { title: question || 'FAQ Item' };
+            },
+          },
+        },
+      ],
+    }),
+    defineField({
       name: 'content',
       title: 'Full Content',
       type: 'array',

@@ -95,7 +95,7 @@ export default function Navbar() {
               alt="Panda Patches"
               width={160}
               height={50}
-              className="w-[130px] h-auto md:w-[180px] object-contain"
+              className="w-[130px] h-auto md:w-[160px] object-contain"
             />
           </Link>
         </div>

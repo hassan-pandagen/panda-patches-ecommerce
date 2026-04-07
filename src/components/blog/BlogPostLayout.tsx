@@ -8,6 +8,15 @@ import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
 import RelatedLinks from "@/components/seo/RelatedLinks";
 
+function slugifyBlock(value: any): string {
+  const text = (value?.children || []).map((c: any) => c.text || '').join('');
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+}
+
 function getReadingTime(content: any[]): number {
   if (!content) return 3;
   const text = content
@@ -124,13 +133,13 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
             components={{
               block: {
                 // H1 converted to H2 for SEO (only one H1 per page - the post title)
-                h1: ({children}) => <h2 className="text-4xl font-black text-panda-dark mt-12 mb-6">{children}</h2>,
+                h1: ({children, value}) => <h2 id={slugifyBlock(value)} className="text-4xl font-black text-panda-dark mt-12 mb-6">{children}</h2>,
 
                 // H2 in Body (Like "Conclusion")
-                h2: ({children}) => <h2 className="text-3xl font-bold text-panda-dark mt-12 mb-6">{children}</h2>,
+                h2: ({children, value}) => <h2 id={slugifyBlock(value)} className="text-3xl font-bold text-panda-dark mt-12 mb-6">{children}</h2>,
 
                 // H3 in Body
-                h3: ({children}) => <h3 className="text-2xl font-bold text-panda-dark mt-10 mb-4">{children}</h3>,
+                h3: ({children, value}) => <h3 id={slugifyBlock(value)} className="text-2xl font-bold text-panda-dark mt-10 mb-4">{children}</h3>,
                 
                 // Standard Paragraph
                 normal: ({children}) => <p className="text-[18px] leading-[1.8] text-gray-700 mb-6 font-normal">{children}</p>,
