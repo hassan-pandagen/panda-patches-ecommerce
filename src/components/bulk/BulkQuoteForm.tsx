@@ -15,6 +15,11 @@ export default function BulkQuoteForm() {
   // Artwork upload state — up to 2 files
   const [uploadedFiles, setUploadedFiles] = useState<{name: string; url: string}[]>([]);
   const [uploading, setUploading] = useState(false);
+  const [minDate, setMinDate] = useState("");
+
+  useEffect(() => {
+    setMinDate(new Date().toISOString().split('T')[0]);
+  }, []);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -305,6 +310,7 @@ export default function BulkQuoteForm() {
             <input
               {...register("neededBy")}
               type="date"
+              min={minDate || undefined}
               className="bulk-field"
             />
           </div>
@@ -371,7 +377,7 @@ export default function BulkQuoteForm() {
               id="bulk-file-upload"
               type="file"
               className="hidden"
-              accept="image/*,.pdf,.ai,.eps,.svg"
+              accept="image/*,.pdf,.ai,.eps,.svg,.xls,.xlsx,.csv"
               onChange={handleFileChange}
             />
           </label>

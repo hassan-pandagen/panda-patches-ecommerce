@@ -24,7 +24,7 @@ export default function AnnouncementBar() {
   return (
     <div className="w-full bg-panda-dark text-white text-[13px] font-semibold py-2 px-4 flex items-center justify-center gap-3 relative">
       <span className="text-panda-yellow font-black">🛡 Money-Back Guarantee.</span>
-      <span className="hidden sm:inline">Not happy? Full refund. Zero risk.</span>
+      <span className="hidden sm:inline">Save More on Bulk Orders. Free Shipping.</span>
       <Link href="/offers" className="underline font-black text-panda-yellow hover:opacity-80 whitespace-nowrap">
         Get a Free Quote
       </Link>

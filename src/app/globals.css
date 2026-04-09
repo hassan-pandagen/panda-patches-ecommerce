@@ -40,6 +40,17 @@
   background-color: #ffffff;
   border-color: #3B7E00;
 }
+/* Date input fix for iOS/mobile */
+input[type="date"].bulk-field {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  min-height: 44px;
+  color: #1a1a1a;
+}
+input[type="date"].bulk-field::-webkit-date-and-time-value {
+  text-align: left;
+}
 
 html {
   overflow-x: clip;

@@ -173,7 +173,7 @@ function ProductCard({ item, showTag }: { item: any; showTag?: boolean }) {
   return (
     <Link href={href} className="
       group relative
-      w-[296px] h-full min-h-[484px]
+      w-full sm:w-[296px] h-full min-h-[484px]
       bg-white
       shadow-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)]
       transition-all duration-500

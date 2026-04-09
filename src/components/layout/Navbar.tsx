@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { MessageCircle, ChevronDown, Package, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -88,14 +89,15 @@ export default function Navbar() {
       <div className="w-full max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 xl:px-12 h-[70px] md:h-[100px] flex items-center justify-between">
 
         {/* === 1. LEFT: LOGO === */}
-        <div className="flex items-center justify-start flex-shrink-0">
+        <div className="flex items-center justify-start flex-shrink-0 mr-3">
           <Link href="/" className="flex items-center">
-            <img
-              src="/assets/logo-panda.svg"
+            <Image
+              src="/assets/logo-panda.webp"
               alt="Panda Patches"
-              width={160}
-              height={50}
-              className="w-[130px] h-auto md:w-[160px] object-contain"
+              width={130}
+              height={130}
+              priority
+              className="w-[130px] h-auto md:w-[120px] object-contain"
             />
           </Link>
         </div>
@@ -188,7 +190,7 @@ export default function Navbar() {
           </button>
 
           {/* DESKTOP ACTION BUTTONS */}
-          <div className="hidden xl:flex items-center gap-3 lg:gap-4">
+          <div className="hidden xl:flex items-center gap-3 lg:gap-4 ml-3">
 
             {/* Chat Now Button */}
             <button

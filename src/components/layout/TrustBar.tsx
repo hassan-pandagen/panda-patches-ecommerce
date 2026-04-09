@@ -1,9 +1,11 @@
+import { Star, CheckCircle } from "lucide-react";
+
 export default function TrustBar() {
   const items = [
-    { label: "4.8/5 on Trustpilot", icon: "★" },
-    { label: "1,000,000+ Patches Delivered", icon: "✓" },
-    { label: "Free Mockup in 24 Hours", icon: "✓" },
-    { label: "No Minimum Orders", icon: "✓" },
+    { label: "4.8/5 on Trustpilot", Icon: Star },
+    { label: "1,000,000+ Patches Delivered", Icon: CheckCircle },
+    { label: "Free Mockup in 24 Hours", Icon: CheckCircle },
+    { label: "No Minimum Orders", Icon: CheckCircle },
   ];
 
   return (
@@ -11,7 +13,7 @@ export default function TrustBar() {
       <div className="container mx-auto flex items-center justify-center flex-wrap gap-x-6 gap-y-1">
         {items.map((item, i) => (
           <span key={i} className="flex items-center gap-1.5 text-[12px] font-semibold text-panda-dark whitespace-nowrap">
-            <span className="text-panda-green text-[13px]">{item.icon}</span>
+            <item.Icon className="text-panda-green w-[13px] h-[13px]" fill="currentColor" stroke="none" />
             {item.label}
           </span>
         ))}
