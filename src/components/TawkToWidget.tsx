@@ -61,12 +61,12 @@ function loadTawkScript() {
     }
   };
 
-  // Auto-maximize 2 seconds after script loads (5s total from page load)
-  // Applies to both desktop and mobile per CEO request
+  // On mobile, keep widget minimized — do not auto-maximize (avoids CLS)
   Tawk_API.onLoad = function () {
-    setTimeout(() => {
-      if (Tawk_API.maximize) Tawk_API.maximize();
-    }, 2000);
+    const isMobile = window.innerWidth < 768;
+    if (isMobile && Tawk_API.minimize) {
+      Tawk_API.minimize();
+    }
   };
 
   const s1 = document.createElement("script");
@@ -86,8 +86,8 @@ export default function TawkToWidget() {
   useEffect(() => {
     if (pathname?.startsWith('/studio')) return;
 
-    // Auto-load Tawk after 3 seconds so agents can see all visitors
-    const timer = setTimeout(loadTawkScript, 3000);
+    // Auto-load Tawk after 15 seconds so agents can see all visitors
+    const timer = setTimeout(loadTawkScript, 15000);
     return () => clearTimeout(timer);
   }, [pathname]);
 
