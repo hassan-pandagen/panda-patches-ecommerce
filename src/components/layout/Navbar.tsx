@@ -237,7 +237,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Header */}
         <div className="sticky top-0 bg-[#051C05] p-6 flex items-center justify-between">
-          <h2 className="text-[#DFFF00] font-bold text-lg uppercase tracking-wide">Menu</h2>
+          <span className="text-[#DFFF00] font-bold text-lg uppercase tracking-wide">Menu</span>
           <button
             onClick={() => setIsMobileMenuOpen(false)}
             className="w-[40px] h-[40px] bg-[#DFFF00] rounded-full flex items-center justify-center hover:scale-110 transition-transform"

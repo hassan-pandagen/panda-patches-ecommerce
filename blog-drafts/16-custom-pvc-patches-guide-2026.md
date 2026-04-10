@@ -11,7 +11,7 @@
 
 Custom PVC patches are the go-to choice for military units, outdoor brands, law enforcement agencies, and streetwear labels that need patches to survive rain, mud, sweat, and years of daily wear. Unlike [embroidered patches](https://pandapatches.com/custom-patches/embroidered) that use thread stitched into fabric, PVC patches are molded from flexible rubber-like plastic. The result is a patch that will never fray, fade, or unravel.
 
-At Panda Patches, we produce custom PVC patches from 50 to 10,000+ pieces with no setup fees, no mold fees, and a free digital mockup within 24 hours. Standard delivery runs 7 to 14 business days, and production starts only after your approval.
+At Panda Patches, we produce [custom PVC patches](https://pandapatches.com/custom-patches/pvc) from 50 to 10,000+ pieces with no minimum order requirements, no setup fees, no mold fees, and a free digital mockup within 24 hours. Standard delivery runs 7 to 14 business days, and production starts only after your approval.
 
 ## What Are Custom PVC Patches?
 
@@ -156,6 +156,10 @@ Police departments, SWAT teams, and [fire departments](https://pandapatches.com/
 
 Hiking gear, camping equipment, backpacks, and outdoor apparel brands choose PVC for its ability to handle rain, UV exposure, and rough handling without deterioration.
 
+### Hats and Caps
+
+[PVC patches for hats](https://pandapatches.com/patches-for-hats) are one of the fastest-growing applications. The waterproof material holds up on trucker hats, snapbacks, and beanies without fading from sweat or rain. Most hat patches are 2 to 3 inches with sew-on or velcro backing.
+
 ### Streetwear and Fashion
 
 PVC patches deliver a clean, modern, premium look that sets merchandise apart. Streetwear brands, sneaker labels, and fashion designers use custom-shaped PVC patches on jackets, caps, and bags for a tactile branding element.
@@ -222,7 +226,7 @@ Ready to order custom PVC patches? [Send us your design](https://pandapatches.co
 **Sanity Fields:**
 - **Blog Title:** Custom PVC Patches: Benefits, Design Options, Pricing and Ordering Guide
 - **SEO Title:** Custom PVC Patches: Benefits, Design and Pricing Guide
-- **Slug:** custom-pvc-patches-benefits-design-pricing-guide
+- **Slug:** custom-pvc-patches-guide
 - **Meta Description:** Custom PVC patches from $2.20/pc. Waterproof, fade-resistant, no fray. 2D and 3D options. Free mockup in 24 hours. No mold fees. Order from Panda Patches.
 - **Category:** Custom Patches
 - **Tags:** custom PVC patches, PVC patches, rubber patches custom, PVC patch design, PVC vs embroidered patches, tactical PVC patches
