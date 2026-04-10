@@ -71,6 +71,7 @@ function loadTawkScript() {
 
   const s1 = document.createElement("script");
   s1.async = true;
+  (s1 as any).fetchPriority = 'low';
   s1.src = "https://embed.tawk.to/64b56d7d94cf5d49dc6422c0/1h5ib7cm1";
   const s0 = document.getElementsByTagName("script")[0];
   if (s0 && s0.parentNode) {
@@ -86,8 +87,8 @@ export default function TawkToWidget() {
   useEffect(() => {
     if (pathname?.startsWith('/studio')) return;
 
-    // Auto-load Tawk after 15 seconds so agents can see all visitors
-    const timer = setTimeout(loadTawkScript, 15000);
+    // Auto-load Tawk after 2 seconds — fast enough for ads, safe for session/start
+    const timer = setTimeout(loadTawkScript, 2000);
     return () => clearTimeout(timer);
   }, [pathname]);
 

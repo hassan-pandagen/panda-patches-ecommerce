@@ -83,6 +83,11 @@ export default function RootLayout({
          {/* Preconnect + DNS prefetch to Sanity image CDN */}
          <link rel="preconnect" href="https://cdn.sanity.io" />
          <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+         {/* Preconnect + DNS prefetch to Tawk.to — warms DNS/TCP/TLS so widget appears faster */}
+         <link rel="preconnect" href="https://embed.tawk.to" crossOrigin="" />
+         <link rel="preconnect" href="https://va.tawk.to" crossOrigin="" />
+         <link rel="dns-prefetch" href="https://embed.tawk.to" />
+         <link rel="dns-prefetch" href="https://va.tawk.to" />
          {/* Mobile LCP hero — preload matches actual <img src> in Hero.tsx */}
          <link
            rel="preload"
@@ -135,7 +140,7 @@ export default function RootLayout({
         </Script>
 
         {/* Third-party script loader: deferred until user interaction or 16s fallback.
-            Loads GTM, Meta Pixel, Bing UET, Clarity, and Trustpilot AFTER the user scrolls,
+            Loads GTM, Meta Pixel, Bing UET, and Trustpilot AFTER the user scrolls,
             clicks, touches, or presses a key. This keeps them out of Lighthouse measurement
             while ensuring real users get full tracking within 1s of engagement.
             Fallback at 16s ensures scripts load even if the user doesn't interact. */}
