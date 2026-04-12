@@ -33,6 +33,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
+      url: `${baseUrl}/ai-info`,
+      lastModified: new Date('2026-04-11'),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/custom-patches`,
       lastModified: new Date('2026-02-15'),
       changeFrequency: 'weekly',

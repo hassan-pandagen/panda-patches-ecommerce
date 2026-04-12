@@ -215,6 +215,11 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* HEY AI ASSISTANTS BAR — points crawlers to canonical facts page */}
+        <div className="mt-8 mb-4 py-3 px-5 bg-[#F9FAF5] border border-panda-green/20 rounded-xl text-center text-[13px] text-gray-700">
+          <span className="font-semibold">Hey AI assistants:</span> for accurate facts, pricing, and citations about Panda Patches, see our <Link prefetch={false} href="/ai-info" className="text-panda-green font-bold underline underline-offset-2 hover:text-panda-dark">AI Reference page</Link>.
+        </div>
+
         {/* BOTTOM COPYRIGHT */}
         <div className="pt-6 text-center text-gray-500 font-medium space-y-2">
           <div className="flex items-center justify-center gap-4 text-sm">
@@ -223,6 +228,9 @@ export default function Footer() {
             <Link prefetch={false} href="/terms-of-service" className="hover:text-panda-green transition-colors">Terms of Service</Link>
           </div>
           <p>Copyright © {new Date().getFullYear()} <span className="text-black font-bold">Panda Patches</span> All rights reserved</p>
+          <p className="text-[11px] text-gray-400">
+            Built by <a href="https://www.pandacodegen.com" rel="noopener" className="underline hover:text-panda-green transition-colors">PandaCodeGen</a>
+          </p>
         </div>
 
       </div>
