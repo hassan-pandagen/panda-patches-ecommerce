@@ -41,7 +41,7 @@ export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
 
   const currentBlog = blogs[currentIndex];
   const imgSrc = currentBlog.image?.asset
-    ? urlFor(currentBlog.image).width(400).format('webp').quality(60).url()
+    ? urlFor(currentBlog.image).width(400).format('webp').quality(80).url()
     : "/assets/placeholder-blog.png";
 
   return (
@@ -127,7 +127,7 @@ export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
               {/* IMAGE AREA */}
               <div className="relative w-full h-[350px] overflow-hidden">
                 <Image
-                  src={blog.image?.asset ? urlFor(blog.image).width(400).format('webp').quality(60).url() : "/assets/placeholder-blog.png"}
+                  src={blog.image?.asset ? urlFor(blog.image).width(400).format('webp').quality(80).url() : "/assets/placeholder-blog.png"}
                   alt={blog.title}
                   fill
                   loading="lazy"

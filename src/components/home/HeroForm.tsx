@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { UploadCloud, Check } from "lucide-react";
 import { useState, useRef } from "react";
 import { sanitizeString, sanitizeEmail, sanitizePhone, sanitizeInteger, sanitizeNumber } from "@/lib/sanitize";
+import FormFeedback from "@/components/feedback/FormFeedback";
 
 export default function HeroForm({ productSlug }: { productSlug?: string }) {
   const isKeychains = productSlug === 'keychains';
@@ -188,6 +189,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           >
             Submit Another Quote
           </button>
+          <FormFeedback formType="hero_quote" />
         </div>
       ) : (
       <>

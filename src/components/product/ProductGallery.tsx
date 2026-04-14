@@ -123,7 +123,7 @@ export default function ProductGallery({ images }: { images: any[] }) {
             <SwiperSlide key={idx} className="!w-[90px] md:!w-[120px]">
               <div className="relative w-[90px] h-[90px] md:w-[120px] md:h-[120px] rounded-[12px] md:rounded-[16px] cursor-pointer border-2 border-gray-200 hover:border-gray-300 transition-all duration-200 overflow-hidden bg-gradient-to-br from-gray-50 to-white">
                 <Image
-                   src={urlFor(img.image || img).width(200).quality(70).auto('format').fit('max').url()}
+                   src={urlFor(img.image || img).width(240).quality(80).auto('format').fit('max').url()}
                    alt={img.alt || `Patch thumbnail ${idx + 1}`}
                   fill
                   className="object-contain p-2"

@@ -51,7 +51,7 @@ export default async function CategoryZigZag({ locationName }: CategoryZigZagPro
                   <div className="relative w-[100px] h-[100px] flex-shrink-0 bg-[#F9FAF5] rounded-[12px] overflow-hidden">
                     {product.gallery && product.gallery[0] && (
                       <Image
-                        src={urlFor(product.gallery[0]).width(300).format('webp').quality(70).url()}
+                        src={urlFor(product.gallery[0]).width(400).format('webp').quality(80).url()}
                         alt={displayTitle}
                         fill
                         className="object-contain p-2"

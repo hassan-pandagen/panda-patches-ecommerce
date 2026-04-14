@@ -19,7 +19,7 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000, // 1 year for optimized images
     formats: ['image/avif', 'image/webp'],
-    qualities: [55, 60, 65, 75, 85, 90],
+    qualities: [55, 60, 65, 75, 80, 85, 90],
   },
   turbopack: {
     resolveAlias: {

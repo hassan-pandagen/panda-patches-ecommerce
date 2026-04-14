@@ -37,8 +37,9 @@ function getReferrerSource(): string {
 
 function loadTawkScript() {
   if ((window as any).__tawk_script_injected) return;
-  // Skip Tawk for Lighthouse/PageSpeed bots (they get 403 from Tawk, hurting Best Practices score)
-  if (navigator.userAgent.includes('Lighthouse') || navigator.userAgent.includes('PageSpeed')) return;
+  // Skip Tawk for bots (Lighthouse, PageSpeed, GTmetrix — they get 403 from Tawk, hurting scores)
+  const ua = navigator.userAgent;
+  if (ua.includes('Lighthouse') || ua.includes('PageSpeed') || ua.includes('PTST') || ua.includes('GTmetrix') || ua.includes('HeadlessChrome')) return;
   (window as any).__tawk_script_injected = true;
 
   const source = getReferrerSource();

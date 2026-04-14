@@ -15,7 +15,7 @@ At [Panda Patches](https://pandapatches.com/custom-sports-patches), we produce c
 
 ## What Are Custom Soccer Patches?
 
-Custom soccer patches are embroidered, woven, PVC, or printed emblems designed to represent soccer teams, clubs, leagues, and organizations. They serve both functional (identification, rank, affiliation) and decorative (fan merchandise, collectibles, branding) purposes.
+Custom soccer patches (also known as football patches outside the United States) are embroidered, woven, PVC, or printed emblems designed to represent soccer teams, clubs, leagues, and organizations. They serve both functional (identification, rank, affiliation) and decorative (fan merchandise, collectibles, branding) purposes.
 
 The most common types of soccer patches include:
 
@@ -170,6 +170,6 @@ Ready to order custom soccer patches? [Send us your design](https://pandapatches
 - **Slug:** custom-soccer-patches-guide
 - **Meta Description:** Custom soccer patches for teams, clubs, and the 2026 tournament season. Woven crests, embroidered badges, PVC supporter patches. Free mockup from Panda Patches.
 - **Category:** Custom Sports Patches
-- **Tags:** custom soccer patches, soccer crest patches, soccer team badges, soccer club patches, 2026 soccer patches, youth soccer patches
+- **Tags:** custom soccer patches, soccer crest patches, soccer team badges, soccer club patches, 2026 soccer patches, youth soccer patches, custom football patches, futbol patches
 - **Published Date:** 2026-04-13
 - **Excerpt:** Custom soccer patches for teams, clubs, supporter groups, and the 2026 international soccer tournament. Woven crests, embroidered badges, and PVC patches from 5 pieces.

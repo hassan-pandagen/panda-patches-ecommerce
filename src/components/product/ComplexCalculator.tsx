@@ -9,6 +9,7 @@ import { urlFor } from "@/lib/sanity";
 import TrustBadges from "@/components/shared/TrustBadges";
 import { useFileUpload } from "@/hooks/useFileUpload";
 import { usePriceCalculation } from "@/hooks/usePriceCalculation";
+import FormFeedback from "@/components/feedback/FormFeedback";
 
 
 // Default backing options if none provided
@@ -378,7 +379,7 @@ export default function ComplexCalculator({
       });
       if (res.ok) {
         setQuoteSent(true);
-        setTimeout(() => setQuoteSent(false), 5000);
+        setTimeout(() => setQuoteSent(false), 15000);
         if (typeof window !== 'undefined' && (window as any).gtag) {
           (window as any).gtag('event', 'conversion', {
             send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
@@ -1322,6 +1323,8 @@ export default function ComplexCalculator({
                   <><FileText size={18} /> GET FREE QUOTE — Email Me The Price</>
                 )}
               </button>
+
+              {quoteSent && <FormFeedback formType="calculator_quote" />}
 
               <button
                 type="button"

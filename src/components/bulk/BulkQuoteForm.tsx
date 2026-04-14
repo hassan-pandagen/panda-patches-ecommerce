@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { UploadCloud, CheckCircle, Phone, Clock, ShieldCheck, Check } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
+import FormFeedback from "@/components/feedback/FormFeedback";
 
 export default function BulkQuoteForm() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -173,6 +174,7 @@ export default function BulkQuoteForm() {
             <Phone className="w-3.5 h-3.5 text-panda-green" />
             <span className="text-[12px] text-gray-500 font-medium">Need it faster? Call (302) 250-4340</span>
           </div>
+          <FormFeedback formType="bulk_quote" />
         </div>
       ) : (
       <>
