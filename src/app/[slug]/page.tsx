@@ -218,6 +218,41 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       })),
     } : null;
 
+    const howToSchema = data.blog.howToSteps?.length > 0 ? {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": `How to Order ${data.blog.title?.replace(/:.*/,'')} from Panda Patches`,
+      "description": "Order custom patches in 5 simple steps. Free mockup within 24 hours, free US shipping, no setup fees.",
+      "totalTime": "PT5M",
+      "supply": [
+        { "@type": "HowToSupply", "name": "Artwork file or design idea" },
+      ],
+      "step": data.blog.howToSteps.map((step: { name: string; text: string }, i: number) => ({
+        "@type": "HowToStep",
+        "position": i + 1,
+        "name": step.name,
+        "text": step.text,
+        "url": `https://pandapatches.com/${slug}#how-to-order`,
+      })),
+    } : null;
+
+    const productSchema = data.blog.productOffers?.length > 0 ? {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": data.blog.title,
+      "brand": { "@type": "Brand", "name": "Panda Patches" },
+      "description": data.blog.metaDescription || data.blog.excerpt || "",
+      "offers": data.blog.productOffers.map((offer: { name: string; price: number; description?: string }) => ({
+        "@type": "Offer",
+        "name": offer.name,
+        "price": offer.price.toFixed(2),
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "seller": { "@type": "Organization", "name": "Panda Patches" },
+        ...(offer.description ? { "description": offer.description } : {}),
+      })),
+    } : null;
+
     return (
       <>
         {/* Article Schema for SEO */}
@@ -235,6 +270,20 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={generateSchemaScript(faqSchema)}
+          />
+        )}
+        {/* HowTo Schema for "How to Order" rich results */}
+        {howToSchema && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={generateSchemaScript(howToSchema)}
+          />
+        )}
+        {/* Product Schema for price rich snippets */}
+        {productSchema && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={generateSchemaScript(productSchema)}
           />
         )}
         <BlogPostLayout post={data.blog} slug={slug} />

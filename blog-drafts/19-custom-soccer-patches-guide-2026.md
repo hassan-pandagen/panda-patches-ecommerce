@@ -166,7 +166,7 @@ Ready to order custom soccer patches? [Send us your design](https://pandapatches
 
 **Sanity Fields:**
 - **Blog Title:** Custom Soccer Patches: Team Crests, Club Badges, and Patches for the 2026 Tournament Season
-- **SEO Title:** Custom Soccer Patches: Crests, Badges and 2026 Guide
+- **SEO Title:** Custom Soccer Patches: Crests, Badges & 2026 Guide
 - **Slug:** custom-soccer-patches-guide
 - **Meta Description:** Custom soccer patches for teams, clubs, and the 2026 tournament season. Woven crests, embroidered badges, PVC supporter patches. Free mockup from Panda Patches.
 - **Category:** Custom Sports Patches

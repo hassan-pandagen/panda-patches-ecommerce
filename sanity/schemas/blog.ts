@@ -127,6 +127,83 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'howToSteps',
+      title: 'HowTo Steps (HowTo Schema)',
+      type: 'array',
+      description: 'Add steps for the "How to Order" section. Generates HowTo schema for rich results in Google. Leave empty if the blog has no ordering steps.',
+      of: [
+        {
+          type: 'object',
+          name: 'howToStep',
+          title: 'Step',
+          fields: [
+            {
+              name: 'name',
+              title: 'Step Name',
+              type: 'string',
+              description: 'e.g. "Submit your design"',
+              validation: (rule: any) => rule.required(),
+            },
+            {
+              name: 'text',
+              title: 'Step Description',
+              type: 'text',
+              rows: 2,
+              description: 'e.g. "Upload artwork or describe your idea. No artwork? Our design team creates it at no charge."',
+              validation: (rule: any) => rule.required(),
+            },
+          ],
+          preview: {
+            select: { name: 'name' },
+            prepare({ name }: { name?: string }) {
+              return { title: name || 'Step' };
+            },
+          },
+        },
+      ],
+    }),
+    defineField({
+      name: 'productOffers',
+      title: 'Product Offers (Product Schema)',
+      type: 'array',
+      description: 'Add product offers from the pricing table. Generates Product schema for price rich snippets in Google. Leave empty if the blog has no pricing.',
+      of: [
+        {
+          type: 'object',
+          name: 'productOffer',
+          title: 'Product Offer',
+          fields: [
+            {
+              name: 'name',
+              title: 'Product Name',
+              type: 'string',
+              description: 'e.g. "Custom Embroidered Patches 100 Pack"',
+              validation: (rule: any) => rule.required(),
+            },
+            {
+              name: 'price',
+              title: 'Price (USD)',
+              type: 'number',
+              description: 'e.g. 240.00',
+              validation: (rule: any) => rule.required().min(0),
+            },
+            {
+              name: 'description',
+              title: 'Short Description (optional)',
+              type: 'string',
+              description: 'e.g. "100 embroidered patches under 4 inches with free shipping"',
+            },
+          ],
+          preview: {
+            select: { name: 'name', price: 'price' },
+            prepare({ name, price }: { name?: string; price?: number }) {
+              return { title: name || 'Offer', subtitle: price ? `$${price}` : '' };
+            },
+          },
+        },
+      ],
+    }),
+    defineField({
       name: 'content',
       title: 'Full Content',
       type: 'array',

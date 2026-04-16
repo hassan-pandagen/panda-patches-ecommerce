@@ -179,6 +179,39 @@ Every blog must have at least one table. Tables are:
 
 ---
 
+## HOWTO SCHEMA (Required in Every Post with "How to Order" Section)
+
+Every blog with a "How to Order from Panda Patches" section must have HowTo schema.
+Fill in the `howToSteps` field in Sanity with each step. The schema is auto-generated.
+
+### Standard 5-Step Order Process (copy for every blog)
+```
+Step 1: Submit your design — Upload artwork or describe your idea
+Step 2: Receive your free mockup — Digital mockup within 24 hours
+Step 3: Request changes — Unlimited free revisions until approval
+Step 4: Approve and we produce — Production starts after your sign-off
+Step 5: Receive your patches — Ships with tracking, free US shipping
+```
+
+---
+
+## PRODUCT SCHEMA (Required in Every Post with Pricing Table)
+
+Every blog with a pricing table must have Product schema.
+Fill in the `productOffers` field in Sanity with product name, price, and currency.
+
+### Example Product Offer Entry
+```
+Name: Custom Embroidered Patches 100 Pack
+Price: 240.00
+Currency: USD
+Availability: InStock
+```
+
+Add one product offer per row in your pricing table. The schema is auto-generated.
+
+---
+
 ## FAQ SECTION (Required in Every Post)
 
 ### Rules
@@ -340,7 +373,7 @@ To get cited in Google AI Overviews, Perplexity, and ChatGPT:
 - [ ] Specific numbers, prices, and timelines (not vague qualifiers)
 - [ ] FAQ section with structured Q&A
 - [ ] H2 headings phrased as questions matching "People Also Ask"
-- [ ] FAQPage + Article schema with author and dates
+- [ ] FAQPage + Article + HowTo + Product schema with author and dates
 - [ ] Page loads under 2.5 seconds
 - [ ] Mobile-responsive layout
 
@@ -389,6 +422,8 @@ Use this for every blog before publishing:
 ### Schema
 - [ ] Article schema with author, datePublished, dateModified
 - [ ] FAQPage schema for FAQ section
+- [ ] HowTo schema for "How to Order" section (fill howToSteps in Sanity)
+- [ ] Product schema for pricing tables (fill productOffers in Sanity)
 
 ### Sanity Fields
 - [ ] Blog Title filled

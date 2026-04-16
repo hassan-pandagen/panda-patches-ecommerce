@@ -7,6 +7,10 @@
 > - Velcro-backed patches are the standard for OCP uniforms. They allow quick swaps between assignments without damaging the fabric
 > - Morale patches are authorized in certain environments and worn on the chest pocket flap or helmet
 
+**Need custom OCP patches?** Panda Patches produces unit patches, flag patches, name tapes, morale patches, and rank patches with velcro backing from 5 pieces. PVC tactical patches from $4.60/piece. Embroidered from $3.60/piece. Free mockup in 24 hours, free US shipping, no setup fees. [Order now](https://pandapatches.com/offers) | [Get a free quote](https://pandapatches.com/contact) | [Call (302) 250-4340](tel:+13022504340)
+
+---
+
 In the military, patch placement is more than just a decorative choice. It serves to identify rank, unit, division, and personal achievements. Understanding the proper placement of these patches is crucial for ensuring uniformity and respect for military traditions. This guide will explore the correct placement of patches on Operational Camouflage Pattern (OCP) uniforms for both the Army and Air Force. Whether you're new to military regulations or just want to ensure you're following the latest guidelines, this comprehensive guide will help you place your patches with accuracy and pride. For ordering, see our full range of [custom military patches](https://pandapatches.com/custom-patches/embroidered) and [custom PVC patches](https://pandapatches.com/custom-patches/pvc) with velcro backing.
 
 ---
