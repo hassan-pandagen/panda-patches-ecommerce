@@ -107,41 +107,53 @@ export default function Home() {
       <Hero />
 
       {/* New Sections Added Here */}
-      <div className="min-h-[300px] md:min-h-[400px]">
+      <div className="min-h-[300px] md:min-h-[400px] cv-auto">
         <Craftsmanship />
       </div>
 
       {/* Customer Reviews — social proof immediately after craftsmanship */}
-      <div className="min-h-[400px] md:min-h-[500px]">
+      <div className="min-h-[400px] md:min-h-[500px] cv-auto">
         <ReviewsSection />
       </div>
 
-      <Promises />
+      <div className="cv-auto">
+        <Promises />
+      </div>
 
       {/* The New Grid */}
-      <ProductGrid />
+      <div className="cv-auto">
+        <ProductGrid />
+      </div>
 
       {/* Process Section with Interactive Animation */}
-      <div className="min-h-[300px] md:min-h-[400px]">
+      <div className="min-h-[300px] md:min-h-[400px] cv-auto">
         <ProcessSection />
       </div>
 
       {/* Timeline/Zig-Zag Section */}
-      <TimelineSection />
+      <div className="cv-auto">
+        <TimelineSection />
+      </div>
 
       {/* FAQ Section with Accordion */}
-      <FAQ />
+      <div className="cv-auto">
+        <FAQ />
+      </div>
 
       {/* Blog Section */}
-      <div className="min-h-[400px] md:min-h-[550px]">
+      <div className="min-h-[400px] md:min-h-[550px] cv-auto">
         <BlogSection />
       </div>
 
       {/* SEO Content Section */}
-      <ContentSection />
+      <div className="cv-auto">
+        <ContentSection />
+      </div>
 
       {/* CTA Section */}
-      <CTASection />
+      <div className="cv-auto">
+        <CTASection />
+      </div>
 
       {/* Footer */}
       <Footer />

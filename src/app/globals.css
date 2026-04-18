@@ -5,6 +5,14 @@
 /* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind utilities;
 
+/* Below-fold sections skip layout/paint work until near viewport.
+   contain-intrinsic-size reserves space so CLS stays clean on unrendered content.
+   Browsers without support ignore both props and render normally. */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+
 /* Form inputs — moved from styled-jsx to static CSS to eliminate forced reflow */
 .form-input {
   width: 100%;

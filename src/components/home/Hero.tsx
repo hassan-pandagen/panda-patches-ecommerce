@@ -1,6 +1,10 @@
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { client } from "@/lib/sanity";
-import HeroForm from "./HeroForm";
+
+// Defer HeroForm's JS chunk out of the critical path. ssr:true keeps SSR markup
+// so the form is visible immediately (LCP unaffected); only hydration is delayed.
+const HeroForm = dynamic(() => import("./HeroForm"), { ssr: true });
 
 async function getHeroData() {
   try {

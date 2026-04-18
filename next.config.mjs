@@ -4,6 +4,9 @@ const nextConfig = {
   compress: true,
   experimental: {
     optimizePackageImports: ['lucide-react', 'swiper'],
+    // Inline route CSS into <head> instead of shipping a render-blocking <link>.
+    // Eliminates the ~12.6 KiB / 150 ms blocking CSS chunk flagged by PageSpeed.
+    inlineCss: true,
   },
   // Tell Next.js NOT to bundle these packages — load them natively via Node.js require().
   // Prevents dev-server worker crashes caused by bundler incompatibilities with the PayPal SDK.
