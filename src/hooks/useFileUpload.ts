@@ -1,12 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+// Supabase client loaded lazily on first upload so the ~190 KiB SDK stays out of
+// the shared chunk. Before this, a top-level import leaked Supabase onto every
+// route (including the home page), wasting ~49 KiB gzipped of parse time.
+type SupabaseClient = Awaited<ReturnType<typeof loadSupabase>>;
+let supabasePromise: Promise<SupabaseClient> | null = null;
+async function loadSupabase() {
+  const { createClient } = await import("@supabase/supabase-js");
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
+function getSupabase() {
+  supabasePromise ??= loadSupabase();
+  return supabasePromise;
+}
 
 export interface UploadedFile {
   name: string;
@@ -41,6 +52,7 @@ export function useFileUpload() {
     setUploading(true);
 
     try {
+      const supabase = await getSupabase();
       const timestamp = Date.now();
       const fileExt = file.name.split(".").pop()?.replace(/[^a-z0-9]/gi, "").toLowerCase() || "jpg";
       const randomId = Math.random().toString(36).substring(2, 10).toUpperCase();
