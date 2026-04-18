@@ -80,12 +80,10 @@ export default function RootLayout({
           .hero-section{position:relative;width:100%;min-height:100vh;background:#fff;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start}
           @media(min-width:768px){.hero-section{min-height:850px;justify-content:center}}
         ` }} />
-         {/* Preconnect + DNS prefetch to Sanity image CDN */}
-         <link rel="preconnect" href="https://cdn.sanity.io" />
+         {/* DNS prefetch to Sanity image CDN (preconnect dropped, unused on home) */}
          <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-         {/* Preconnect + DNS prefetch to Tawk.to — warms DNS/TCP/TLS so widget appears faster */}
+         {/* Preconnect to Tawk.to embed (va.tawk.to preconnect dropped, unused on home) */}
          <link rel="preconnect" href="https://embed.tawk.to" crossOrigin="" />
-         <link rel="preconnect" href="https://va.tawk.to" crossOrigin="" />
          <link rel="dns-prefetch" href="https://embed.tawk.to" />
          <link rel="dns-prefetch" href="https://va.tawk.to" />
          {/* Mobile LCP hero — preload matches actual <img src> in Hero.tsx */}

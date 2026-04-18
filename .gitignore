@@ -27,3 +27,6 @@ Thumbs.db
 
 .vercel
 .env*.local
+
+# Email campaign (local-only: contacts, state, API keys, CSV imports)
+email-campaign/

@@ -118,8 +118,8 @@ export default async function ProductGrid() {
 
         {/* TOP GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 justify-items-center mb-28">
-          {main.map((item: any) => (
-            <ProductCard key={item._id} item={item} showTag={true} />
+          {main.map((item: any, idx: number) => (
+            <ProductCard key={item._id} item={item} showTag={true} priority={idx < 3} />
           ))}
         </div>
 
@@ -165,7 +165,7 @@ function CustomGridPlusIcon({ className }: { className?: string }) {
 }
 
 // === PRODUCT CARD ===
-function ProductCard({ item, showTag }: { item: any; showTag?: boolean }) {
+function ProductCard({ item, showTag, priority }: { item: any; showTag?: boolean; priority?: boolean }) {
   const href = getProductUrl(item.title);
   const price = getProductPrice(item.title);
   const description = getProductDescription(item.title, item.description);
@@ -202,6 +202,8 @@ function ProductCard({ item, showTag }: { item: any; showTag?: boolean }) {
                className="object-contain group-hover:scale-110 transition-transform duration-500"
                quality={80}
                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 248px"
+               priority={priority}
+               loading={priority ? "eager" : "lazy"}
              />
            ) : (
              <div className="w-full h-full bg-gray-200/50 animate-pulse rounded-lg" />
