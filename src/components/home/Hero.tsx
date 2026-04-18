@@ -60,7 +60,7 @@ export default async function Hero() {
              - Weight: SemiBold (600)
              - Color: Dark (No Yellow)
           */}
-          <h1 className="text-[28px] md:text-[40px] leading-[1.2] font-semibold text-panda-dark tracking-tight mb-2 md:mb-4 max-w-full md:max-w-[550px]">
+          <h1 className="text-[28px] md:text-[40px] leading-[1.2] font-semibold text-panda-dark tracking-tight mb-2 md:mb-4 max-w-full md:max-w-[550px] min-h-[135px] md:min-h-[100px]">
             {data?.title || "Custom Patches | Embroidered, Woven, PVC & More"}
           </h1>
 
