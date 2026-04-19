@@ -116,7 +116,7 @@ export default function Footer() {
           {/* COLUMN 3: Custom Patches (Spans 2) */}
           <div className="lg:col-span-2 space-y-4">
             <h3 className="font-bold text-lg text-panda-dark text-left">Custom Patches</h3>
-            <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-1.5">
+            <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-2.5">
               <li><Link prefetch={false} href="/custom-patches/embroidered">Custom Embroidered Patches</Link></li>
               <li><Link prefetch={false} href="/custom-patches/custom-3d-embroidered-transfers">Custom 3D Embroidered Transfers</Link></li>
               <li><Link prefetch={false} href="/custom-patches/chenille">Custom Chenille Patches</Link></li>
@@ -134,7 +134,7 @@ export default function Footer() {
           {/* COLUMN 4: Bulk Orders (Spans 2) */}
           <div className="lg:col-span-2 space-y-4">
             <h3 className="font-bold text-lg text-panda-dark text-left">Bulk Orders</h3>
-            <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-1.5">
+            <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-2.5">
               <li><Link prefetch={false} href="/bulk-custom-patches">Bulk Custom Patches</Link></li>
               <li><Link prefetch={false} href="/custom-corporate-patches">Corporate Patches</Link></li>
               <li><Link prefetch={false} href="/custom-sports-patches">Sports Team Patches</Link></li>
@@ -144,7 +144,7 @@ export default function Footer() {
             </ul>
 
             <h3 className="font-bold text-lg text-panda-dark text-left pt-2">Custom Products</h3>
-            <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-1.5">
+            <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-2.5">
               <li><Link prefetch={false} href="/custom-products/pvc-shoe-charms">PVC Shoe Charms</Link></li>
               <li><Link prefetch={false} href="/custom-products/challenge-coin">Challenge Coins</Link></li>
               <li><Link prefetch={false} href="/custom-products/keychains">Keychains</Link></li>
@@ -155,7 +155,7 @@ export default function Footer() {
           {/* COLUMN 6: Patch Style (Spans 2) */}
           <div className="lg:col-span-2 space-y-4">
             <h3 className="font-bold text-lg text-panda-dark text-left">Patch Style</h3>
-            <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-1.5">
+            <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-2.5">
               <li><Link prefetch={false} href="/custom-anime-patches">Anime Patches</Link></li>
               <li><Link prefetch={false} href="/christmas-patches">Christmas Patches</Link></li>
               <li><Link prefetch={false} href="/valentines-day-patches">Valentine&apos;s Day Patches</Link></li>
@@ -174,7 +174,7 @@ export default function Footer() {
           {/* COLUMN 7: Locations (Spans 2) */}
           <div className="lg:col-span-2 space-y-4">
             <h3 className="font-bold text-lg text-panda-dark text-left">Custom Patches</h3>
-            <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-1.5">
+            <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-2.5">
               <li><Link prefetch={false} href="/alabama-patches">Alabama Patches</Link></li>
               <li><Link prefetch={false} href="/custom-austin-patches">Custom Austin Patches</Link></li>
               <li><Link prefetch={false} href="/custom-patches-in-boston">Custom Patches in Boston</Link></li>
