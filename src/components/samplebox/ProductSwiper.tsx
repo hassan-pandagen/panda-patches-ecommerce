@@ -82,6 +82,7 @@ export default function ProductSwiper({ products }: { products: Product[] }) {
                         src={item.imageUrl}
                         alt={item.title}
                         fill
+                        sizes="(max-width: 768px) 33vw, 240px"
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     ) : (

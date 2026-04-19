@@ -4,6 +4,9 @@ const nextConfig = {
   compress: true,
   experimental: {
     optimizePackageImports: ['lucide-react', 'swiper'],
+    // Split CSS per-route so home page doesn't download Tailwind utilities only
+    // used by /studio, /offers, etc. Shrinks the render-blocking CSS chunk.
+    cssChunking: 'strict',
   },
   // Tell Next.js NOT to bundle these packages — load them natively via Node.js require().
   // Prevents dev-server worker crashes caused by bundler incompatibilities with the PayPal SDK.

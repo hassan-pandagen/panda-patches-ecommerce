@@ -20,6 +20,7 @@ export default async function SampleBoxHero() {
           src={ctaImageUrl}
           alt="Custom patches collection"
           fill
+          sizes="100vw"
           className="object-cover object-center"
           priority
         />

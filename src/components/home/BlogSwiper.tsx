@@ -57,6 +57,7 @@ export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
               src={imgSrc}
               alt={currentBlog.title}
               fill
+              sizes="(max-width: 768px) 340px, 0px"
               className="object-cover transition-transform duration-700"
             />
           </div>
@@ -130,6 +131,7 @@ export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
                   src={blog.image?.asset ? urlFor(blog.image).width(400).format('webp').quality(80).url() : "/assets/placeholder-blog.png"}
                   alt={blog.title}
                   fill
+                  sizes="362px"
                   loading="lazy"
                   className="object-cover transition-transform duration-700 hover:scale-105"
                 />

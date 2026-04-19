@@ -84,6 +84,7 @@ export default function ProcessInteractive({ data }: { data: any }) {
                     src={urlFor(step.image).width(420).format('webp').quality(70).url()}
                     alt={step.title}
                     fill
+                    sizes="(max-width: 1024px) 350px, 416px"
                     loading="lazy"
                     className="object-cover"
                   />

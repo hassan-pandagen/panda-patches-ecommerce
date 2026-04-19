@@ -35,10 +35,11 @@ export default function IronOnLayout({ data }: { data: any }) {
                 <div className="w-full lg:w-[600px] xl:w-[660px] flex-shrink-0">
                   {item.image && (
                     <div className="relative w-full h-[400px]">
-                      <Image 
+                      <Image
                         src={urlFor(item.image).width(800).format('webp').quality(70).url()}
-                        alt={item.patchType} 
-                        fill 
+                        alt={item.patchType}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 600px, 660px"
                         className="object-contain"
                       />
                     </div>

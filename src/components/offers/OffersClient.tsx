@@ -624,7 +624,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
         {/* Background image — desktop only (hidden on mobile) */}
         {ctaImageUrl && (
           <div className="absolute inset-0 bottom-[88px] hidden md:block">
-            <Image src={ctaImageUrl} alt="Custom patch packages" fill className="object-cover object-center" priority />
+            <Image src={ctaImageUrl} alt="Custom patch packages" fill sizes="100vw" className="object-cover object-center" priority />
           </div>
         )}
 

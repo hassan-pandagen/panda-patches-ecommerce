@@ -32,11 +32,12 @@ export default async function FactorySection() {
         {/* RIGHT: IMAGE (Exact Dimensions from Figma) */}
         <div className="relative w-full max-w-[590px] h-[275px] rounded-[20px] overflow-hidden shadow-lg">
           {image ? (
-            <Image 
-              src={image} 
-              alt="Factory" 
-              fill 
-              className="object-cover" 
+            <Image
+              src={image}
+              alt="Factory"
+              fill
+              sizes="(max-width: 1024px) 100vw, 590px"
+              className="object-cover"
             />
           ) : (
             <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">

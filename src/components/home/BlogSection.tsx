@@ -88,10 +88,11 @@ function BlogCard({ blog }: { blog: any }) {
       
       {/* IMAGE AREA (Top) */}
       <div className="relative w-full h-[350px] overflow-hidden">
-        <Image 
-          src={imgSrc} 
-          alt={blog.title} 
-          fill 
+        <Image
+          src={imgSrc}
+          alt={blog.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
       </div>

@@ -27,6 +27,7 @@ export default async function CTASection() {
           src={bgImage}
           alt="Patches Background"
           fill
+          sizes="100vw"
           className="object-cover object-center"
           loading="lazy"
         />

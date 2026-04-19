@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
+import ReactDOM from "react-dom";
 import "./globals.css";
 import Script from "next/script";
 import dynamic from "next/dynamic";
@@ -65,6 +66,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Use React 19's resource API — writes into the same float-cache as React's
+  // automatic preload pass, so these get deduped instead of emitted twice.
+  ReactDOM.preload("/assets/hero-product-mobile.webp", {
+    as: "image",
+    type: "image/webp",
+    fetchPriority: "high",
+    media: "(max-width: 767px)",
+  });
+  ReactDOM.preload("/assets/hero-product.webp", {
+    as: "image",
+    type: "image/webp",
+    fetchPriority: "high",
+    media: "(min-width: 768px)",
+  });
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -89,24 +105,8 @@ export default function RootLayout({
          <link rel="preconnect" href="https://embed.tawk.to" crossOrigin="" />
          <link rel="dns-prefetch" href="https://embed.tawk.to" />
          <link rel="dns-prefetch" href="https://va.tawk.to" />
-         {/* Mobile LCP hero — preload matches actual <img src> in Hero.tsx */}
-         <link
-           rel="preload"
-           as="image"
-           type="image/webp"
-           href="/assets/hero-product-mobile.webp"
-           media="(max-width: 767px)"
-           fetchPriority="high"
-         />
-         {/* Desktop LCP hero — preload matches actual <source srcSet> in Hero.tsx */}
-         <link
-           rel="preload"
-           as="image"
-           type="image/webp"
-           href="/assets/hero-product.webp"
-           media="(min-width: 768px)"
-           fetchPriority="high"
-         />
+         {/* Hero image preloads are now emitted via ReactDOM.preload() above so they
+             dedupe against React 19's automatic preload pass from fetchPriority="high". */}
        </head>
       <body className={`${outfit.variable} font-sans antialiased`} suppressHydrationWarning>
 

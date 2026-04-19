@@ -26,6 +26,7 @@ const WorkSampleCard = memo(({ img, onClick }: { img: any; onClick: () => void }
          src={urlFor(img.image || img).width(640).auto('format').url()}
          alt={img.alt || "Custom patch work sample showcasing detailed embroidery craftsmanship | Panda Patches"}
          fill
+         sizes="(max-width: 768px) 50vw, 320px"
          className="object-cover group-hover/sample:scale-110 transition-transform duration-700"
          quality={75}
        />

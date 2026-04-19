@@ -138,6 +138,7 @@ export default function BlogListClient({ blogs }: { blogs: Blog[] }) {
                     src={urlFor(post.image).width(600).format("webp").quality(70).url()}
                     alt={post.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                   />
                 ) : (
