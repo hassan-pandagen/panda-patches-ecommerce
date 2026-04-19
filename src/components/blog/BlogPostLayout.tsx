@@ -55,8 +55,7 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
           </ol>
         </nav>
 
-        {/* Main Title (H1) */}
-        <h1 className="text-[42px] md:text-[52px] font-black text-panda-dark mb-6 leading-[1.2] tracking-tight">
+        <h1 className="text-[42px] md:text-[52px] font-black text-panda-dark mb-6 leading-[1.2] tracking-tight [text-wrap:balance]">
           {post.title}
         </h1>
 
@@ -236,7 +235,7 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
         </div>
 
         {/* Author Bio Card (bottom) */}
-        <div className="mt-16 pt-10 border-t border-gray-100">
+        <div className="mt-16 pt-10 border-t border-gray-100 cv-auto">
           <div className="bg-gray-50 rounded-2xl p-8 flex flex-col sm:flex-row items-start gap-6">
             <div className="w-16 h-16 rounded-full bg-panda-dark flex items-center justify-center flex-shrink-0 overflow-hidden">
               {post.authorPhoto ? (
@@ -275,13 +274,17 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
       </article>
 
       {/* Related Internal Links for SEO */}
-      <RelatedLinks
-        content={post.title + " " + (post.excerpt || "")}
-        title="Related Pages You Might Like"
-        maxLinks={4}
-      />
+      <div className="cv-auto">
+        <RelatedLinks
+          content={post.title + " " + (post.excerpt || "")}
+          title="Related Pages You Might Like"
+          maxLinks={4}
+        />
+      </div>
 
-      <CTASection />
+      <div className="cv-auto">
+        <CTASection />
+      </div>
       <Footer />
     </main>
   );

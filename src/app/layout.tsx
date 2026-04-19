@@ -9,12 +9,15 @@ import { generateOrganizationSchema, generateWebSiteSchema, generateSchemaScript
 const TawkToWidget = dynamic(() => import("@/components/TawkToWidget"), { ssr: true });
 const CallNowPopup = dynamic(() => import("@/components/CallNowPopup"), { ssr: true });
 
-// Configure Outfit Font
+// Configure Outfit Font — display:"optional" prevents font-swap CLS across the
+// whole site. Browser waits ~100ms for Outfit; if it arrives, use it, otherwise
+// keep the size-adjusted Arial fallback permanently for that pageview. Eliminates
+// all font-swap layout shifts (the main cause of our 0.35+ mobile CLS).
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
   weight: ["400", "500", "600", "700", "800", "900"],
-  display: "swap",
+  display: "optional",
 });
 
 export const viewport: Viewport = {

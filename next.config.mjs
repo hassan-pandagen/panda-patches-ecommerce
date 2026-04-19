@@ -251,6 +251,29 @@ const nextConfig = {
         permanent: true,
       },
 
+      // ORPHAN CONSOLIDATION - top-level chenille variants replaced by nested
+      // /custom-patches/* canonical URLs. 301 preserves backlink equity.
+      {
+        source: '/custom-chenille-glitter-patches',
+        destination: '/custom-patches/custom-chenille-glitter-patches',
+        permanent: true,
+      },
+      {
+        source: '/custom-chenille-glitter-patches/',
+        destination: '/custom-patches/custom-chenille-glitter-patches',
+        permanent: true,
+      },
+      {
+        source: '/custom-chenille-tpu-patches',
+        destination: '/custom-patches/custom-chenille-tpu-patches',
+        permanent: true,
+      },
+      {
+        source: '/custom-chenille-tpu-patches/',
+        destination: '/custom-patches/custom-chenille-tpu-patches',
+        permanent: true,
+      },
+
       // WORDPRESS SYSTEM PATHS - Protect crawl budget, block bots hitting 404s
       {
         source: '/wp-admin',
