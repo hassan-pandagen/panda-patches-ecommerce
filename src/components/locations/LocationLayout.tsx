@@ -104,13 +104,13 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
   // Generate breadcrumb schema
   const breadcrumbItems = data.isPatchStyle
     ? [
-        { name: "Home", url: "https://pandapatches.com" },
-        { name: "Custom Patches", url: "https://pandapatches.com/custom-patches" },
-        { name: data.locationName, url: `https://pandapatches.com/${slug}` },
+        { name: "Home", url: "https://www.pandapatches.com" },
+        { name: "Custom Patches", url: "https://www.pandapatches.com/custom-patches" },
+        { name: data.locationName, url: `https://www.pandapatches.com/${slug}` },
       ]
     : [
-        { name: "Home", url: "https://pandapatches.com" },
-        { name: `Custom Patches in ${data.locationName}`, url: `https://pandapatches.com/${slug}` },
+        { name: "Home", url: "https://www.pandapatches.com" },
+        { name: `Custom Patches in ${data.locationName}`, url: `https://www.pandapatches.com/${slug}` },
       ];
   const breadcrumbSchema = slug ? generateBreadcrumbSchema(breadcrumbItems) : null;
   const faqSchema = locationFaqQuestions ? generateFAQSchema(locationFaqQuestions) : null;

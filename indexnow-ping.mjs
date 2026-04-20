@@ -4,7 +4,7 @@
 // Rule: add new URLs here, ping once after deployment, done.
 
 const KEY  = "691f8f86a172454aa3696b3d2407ff46";
-const HOST = "pandapatches.com";
+const HOST = "www.pandapatches.com";
 const BASE = `https://${HOST}`;
 
 const urls = [

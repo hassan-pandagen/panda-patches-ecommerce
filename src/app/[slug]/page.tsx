@@ -30,12 +30,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: pageTitle,
       description: pageDesc,
-      alternates: { canonical: `https://pandapatches.com/${slug}` },
+      alternates: { canonical: `https://www.pandapatches.com/${slug}` },
       robots: { index: true, follow: true },
       openGraph: {
         title: pageTitle,
         description: ogDesc,
-        url: `https://pandapatches.com/${slug}`,
+        url: `https://www.pandapatches.com/${slug}`,
         siteName: 'Panda Patches',
         type: 'website',
         images: [{ url: ogImage, width: 1200, height: 630, alt: pageTitle }],
@@ -64,11 +64,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: pageTitle,
       description: pageDesc,
-      alternates: { canonical: `https://pandapatches.com/${slug}` },
+      alternates: { canonical: `https://www.pandapatches.com/${slug}` },
       openGraph: {
         title: ogTitle,
         description: ogDesc,
-        url: `https://pandapatches.com/${slug}`,
+        url: `https://www.pandapatches.com/${slug}`,
         siteName: 'Panda Patches',
         type: 'website',
         images: [{ url: ogImage, width: 1200, height: 630, alt: pageTitle }],
@@ -88,7 +88,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       ? urlFor(data.blog.mainImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
       : data.blog.image
         ? urlFor(data.blog.image).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
-        : 'https://pandapatches.com/assets/og-image.png';
+        : 'https://www.pandapatches.com/assets/og-image.png';
     const blogTitle = data.blog.metaTitle
       ? `${data.blog.metaTitle} | Panda Patches`
       : `${data.blog.title} | Panda Patches Blog`;
@@ -96,12 +96,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: blogTitle,
       description: blogDesc,
-      alternates: { canonical: `https://pandapatches.com/${slug}` },
+      alternates: { canonical: `https://www.pandapatches.com/${slug}` },
       robots: { index: true, follow: true },
       openGraph: {
         title: data.blog.title,
         description: blogDesc,
-        url: `https://pandapatches.com/${slug}`,
+        url: `https://www.pandapatches.com/${slug}`,
         siteName: 'Panda Patches',
         type: 'article',
         images: [{ url: imageUrl, width: 1200, height: 630, alt: data.blog.title }],
@@ -195,14 +195,14 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
         ? urlFor(data.blog.mainImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
         : data.blog.image
           ? urlFor(data.blog.image).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
-          : 'https://pandapatches.com/assets/og-image.png',
-      url: `https://pandapatches.com/${slug}`,
+          : 'https://www.pandapatches.com/assets/og-image.png',
+      url: `https://www.pandapatches.com/${slug}`,
     });
 
     const breadcrumbSchema = generateBreadcrumbSchema([
-      { name: "Home", url: "https://pandapatches.com" },
-      { name: "Blog", url: "https://pandapatches.com/blogs" },
-      { name: data.blog.title || "Blog Post", url: `https://pandapatches.com/${slug}` },
+      { name: "Home", url: "https://www.pandapatches.com" },
+      { name: "Blog", url: "https://www.pandapatches.com/blogs" },
+      { name: data.blog.title || "Blog Post", url: `https://www.pandapatches.com/${slug}` },
     ]);
 
     const faqSchema = data.blog.faqItems?.length > 0 ? {
@@ -232,7 +232,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
         "position": i + 1,
         "name": step.name,
         "text": step.text,
-        "url": `https://pandapatches.com/${slug}#how-to-order`,
+        "url": `https://www.pandapatches.com/${slug}#how-to-order`,
       })),
     } : null;
 

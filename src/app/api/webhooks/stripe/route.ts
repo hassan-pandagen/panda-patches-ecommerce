@@ -171,7 +171,7 @@ async function sendOrderEmails(meta: Record<string, string>, amountPaid: number,
     <hr style="border:none;border-top:1px solid #b8975a;margin:0 0 16px;">
     <p style="color:#ffffff;font-size:12px;margin:0 0 6px;letter-spacing:1px;">PANDA PATCHES</p>
     <p style="color:#aaaaaa;font-size:11px;margin:0;">Quail Feather Ct, Missouri City, TX 77489</p>
-    <p style="color:#aaaaaa;font-size:11px;margin:4px 0 0;">(302) 250-4340 | <a href="https://pandapatches.com" style="color:#aaaaaa;">pandapatches.com</a></p>
+    <p style="color:#aaaaaa;font-size:11px;margin:4px 0 0;">(302) 250-4340 | <a href="https://www.pandapatches.com" style="color:#aaaaaa;">pandapatches.com</a></p>
     <p style="color:#555555;font-size:10px;margin:12px 0 0;">This is a transactional email confirming your order with Panda Patches.</p>
   </div>
 </div>

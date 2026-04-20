@@ -7,8 +7,8 @@ import BlogListClient from "@/components/blog/BlogListClient";
 import { generateSchemaScript, generateBreadcrumbSchema, generateCollectionPageSchema } from "@/lib/schemas";
 
 const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "Home", url: "https://pandapatches.com" },
-  { name: "Blog", url: "https://pandapatches.com/blogs" },
+  { name: "Home", url: "https://www.pandapatches.com" },
+  { name: "Blog", url: "https://www.pandapatches.com/blogs" },
 ]);
 
 // ISR: Revalidate blog listing every 30 minutes (blogs update frequently)
@@ -22,10 +22,10 @@ export const metadata: Metadata = {
     title: "Custom Patch Blog - Tips & Guides | Panda Patches",
     description: "Expert guides on custom patches, embroidery tips, design ideas, and industry trends from Panda Patches.",
     type: "website",
-    url: "https://pandapatches.com/blogs",
+    url: "https://www.pandapatches.com/blogs",
     images: [
       {
-        url: "https://pandapatches.com/assets/og-image.png",
+        url: "https://www.pandapatches.com/assets/og-image.png",
         width: 1200,
         height: 630,
         alt: "Panda Patches Blog"
@@ -36,10 +36,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Custom Patch Blog | Panda Patches",
     description: "Expert guides on custom patches, embroidery tips, and design ideas.",
-    images: ["https://pandapatches.com/assets/og-image.png"]
+    images: ["https://www.pandapatches.com/assets/og-image.png"]
   },
   alternates: {
-    canonical: "https://pandapatches.com/blogs"
+    canonical: "https://www.pandapatches.com/blogs"
   }
 };
 
@@ -66,7 +66,7 @@ export default async function BlogsPage() {
   const collectionSchema = generateCollectionPageSchema(
     (blogs || []).map((b: any) => ({
       title: b.title || 'Blog Post',
-      url: `https://pandapatches.com/${b.slug?.current || b.slug}`,
+      url: `https://www.pandapatches.com/${b.slug?.current || b.slug}`,
     }))
   );
 

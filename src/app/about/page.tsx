@@ -41,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "About Panda Patches | 8+ Years Custom Patch Experts",
       description: "Family-owned custom patch manufacturer with 8+ years experience. Low minimums, free design services, 4.8★ rated.",
       type: "website",
-      url: "https://pandapatches.com/about",
+      url: "https://www.pandapatches.com/about",
       images: [{ url: ogImage, width: 1200, height: 630, alt: "About Panda Patches" }],
     },
     twitter: {
@@ -51,7 +51,7 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [ogImage],
     },
     alternates: {
-      canonical: "https://pandapatches.com/about",
+      canonical: "https://www.pandapatches.com/about",
     },
   };
 }

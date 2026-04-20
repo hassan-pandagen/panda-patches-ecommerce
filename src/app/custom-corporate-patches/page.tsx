@@ -95,7 +95,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { heroImage } = await getCorporatePageData();
   const ogImage = heroImage
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
-    : 'https://pandapatches.com/assets/og-image.png';
+    : 'https://www.pandapatches.com/assets/og-image.png';
   return {
     title: "Corporate Logo Patches - Bulk Pricing Available",
     description: "Custom corporate logo patches for businesses, brands, and employee uniforms. Embroidered company patches with no minimum order, free mockup, and 7-14 day turnaround.",
@@ -110,11 +110,11 @@ export async function generateMetadata(): Promise<Metadata> {
       "corporate embroidered patches",
       "wholesale company patches",
     ],
-    alternates: { canonical: "https://pandapatches.com/custom-corporate-patches" },
+    alternates: { canonical: "https://www.pandapatches.com/custom-corporate-patches" },
     openGraph: {
       title: "Custom Corporate & Company Logo Patches | Panda Patches",
       description: "Custom embroidered patches for businesses and brands. No minimum, free mockup, fast delivery. Trusted by Fortune 500 companies.",
-      url: "https://pandapatches.com/custom-corporate-patches",
+      url: "https://www.pandapatches.com/custom-corporate-patches",
       siteName: "Panda Patches",
       type: "website",
       images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Corporate & Company Logo Patches | Panda Patches" }],
@@ -183,19 +183,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://pandapatches.com",
+      item: "https://www.pandapatches.com",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Bulk Orders",
-      item: "https://pandapatches.com/bulk-custom-patches",
+      item: "https://www.pandapatches.com/bulk-custom-patches",
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Corporate & Business Patches",
-      item: "https://pandapatches.com/custom-corporate-patches",
+      item: "https://www.pandapatches.com/custom-corporate-patches",
     },
   ],
 };

@@ -7,7 +7,7 @@ interface SanitySlugItem {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://pandapatches.com';
+  const baseUrl = 'https://www.pandapatches.com';
 
   // Fetch all dynamic content from Sanity
   const query = `{

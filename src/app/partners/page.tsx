@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Panda Patches Agency Partner Program",
     description: "Become a Panda Patches partner. Wholesale pricing for agencies, white-label fulfillment, preferred vendor status.",
     type: "article",
-    url: "https://pandapatches.com/partners",
+    url: "https://www.pandapatches.com/partners",
   },
   robots: { index: true, follow: true },
 };

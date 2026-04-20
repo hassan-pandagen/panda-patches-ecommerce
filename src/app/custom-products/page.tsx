@@ -6,8 +6,8 @@ import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
 
 const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: "Home", url: "https://pandapatches.com" },
-  { name: "Custom Products", url: "https://pandapatches.com/custom-products" },
+  { name: "Home", url: "https://www.pandapatches.com" },
+  { name: "Custom Products", url: "https://www.pandapatches.com/custom-products" },
 ]);
 import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
@@ -34,12 +34,12 @@ export const metadata: Metadata = {
     "custom products",
   ],
   alternates: {
-    canonical: "https://pandapatches.com/custom-products",
+    canonical: "https://www.pandapatches.com/custom-products",
   },
   openGraph: {
     title: "Custom Products - Coins, Pins, Keychains & More | Panda Patches",
     description: "Custom lapel pins, challenge coins, keychains, and promotional products with low minimums and fast delivery.",
-    url: "https://pandapatches.com/custom-products",
+    url: "https://www.pandapatches.com/custom-products",
     siteName: "Panda Patches",
     type: "website",
   },

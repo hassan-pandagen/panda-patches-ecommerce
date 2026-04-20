@@ -37,7 +37,7 @@ export default async function Craftsmanship() {
     .map((v: any) => ({
       name: v.videoName,
       description: v.videoDescription,
-      thumbnailUrl: v.thumbnailUrl || 'https://pandapatches.com/assets/og-image.png',
+      thumbnailUrl: v.thumbnailUrl || 'https://www.pandapatches.com/assets/og-image.png',
       contentUrl: v.videoUrl,
       uploadDate: v.uploadDate,
       duration: v.duration || 'PT0M30S',

@@ -1,6 +1,6 @@
 import { client } from './sanity';
 
-const OG_FALLBACK = 'https://pandapatches.com/assets/og-image.png';
+const OG_FALLBACK = 'https://www.pandapatches.com/assets/og-image.png';
 
 /**
  * Fetches the hero image from Sanity to use as the default OG image.

@@ -34,17 +34,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const imageUrl = data.heroImage
     ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
-    : 'https://pandapatches.com/assets/og-image.png';
+    : 'https://www.pandapatches.com/assets/og-image.png';
 
   return {
     title: `${data.title} | Panda Patches`,
     description: data.description,
-    alternates: { canonical: `https://pandapatches.com/custom-products/${slug}` },
+    alternates: { canonical: `https://www.pandapatches.com/custom-products/${slug}` },
     openGraph: {
       type: "website",
       title: data.title,
       description: data.description,
-      url: `https://pandapatches.com/custom-products/${slug}`,
+      url: `https://www.pandapatches.com/custom-products/${slug}`,
       siteName: "Panda Patches",
       images: [{ url: imageUrl, width: 1200, height: 630, alt: data.title }],
     },
@@ -119,16 +119,16 @@ export default async function CustomProductPage({ params }: { params: Promise<{ 
   const productSchema = generateProductSchema({
     name: data.title,
     description: data.description || `Custom ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
-    image: data.heroImage ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url() : 'https://pandapatches.com/assets/og-image.png',
-    url: `https://pandapatches.com/custom-products/${slug}`,
+    image: data.heroImage ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url() : 'https://www.pandapatches.com/assets/og-image.png',
+    url: `https://www.pandapatches.com/custom-products/${slug}`,
     priceRange: "$100-$1000", // Typical price range for custom coins/pins/keychains
     includeReviews: true, // Include Trustpilot 4.9 rating
   });
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://pandapatches.com" },
-    { name: "Custom Products", url: "https://pandapatches.com/custom-products" },
-    { name: data.title, url: `https://pandapatches.com/custom-products/${slug}` },
+    { name: "Home", url: "https://www.pandapatches.com" },
+    { name: "Custom Products", url: "https://www.pandapatches.com/custom-products" },
+    { name: data.title, url: `https://www.pandapatches.com/custom-products/${slug}` },
   ]);
 
   return (

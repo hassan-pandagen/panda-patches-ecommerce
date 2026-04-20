@@ -116,7 +116,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const ogDesc = meta?.ogDescription || fallbackDesc.substring(0, 160);
   const imageUrl = product.heroImage
     ? urlFor(product.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
-    : 'https://pandapatches.com/assets/og-image.png';
+    : 'https://www.pandapatches.com/assets/og-image.png';
 
   return {
     title: pageTitle,
@@ -126,7 +126,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: ogDesc,
       images: [{ url: imageUrl, width: 1200, height: 630, alt: pageTitle }],
       type: 'website',
-      url: `https://pandapatches.com/custom-patches/${slug}`,
+      url: `https://www.pandapatches.com/custom-patches/${slug}`,
     },
     twitter: {
       card: 'summary_large_image',
@@ -135,7 +135,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       images: [imageUrl],
     },
     alternates: {
-      canonical: `https://pandapatches.com/custom-patches/${slug}`,
+      canonical: `https://www.pandapatches.com/custom-patches/${slug}`,
     },
   };
 }
@@ -167,17 +167,17 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
   const productSchema = generateProductSchema({
     name: data.title,
     description: data.description || `High-quality ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
-    image: data.heroImage ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url() : 'https://pandapatches.com/assets/og-image.png',
-    url: `https://pandapatches.com/custom-patches/${slug}`,
+    image: data.heroImage ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url() : 'https://www.pandapatches.com/assets/og-image.png',
+    url: `https://www.pandapatches.com/custom-patches/${slug}`,
     priceRange: "$0.85-$6.00",
     includeReviews: true,
     pricingTiers: pricingTiers.length > 0 ? pricingTiers : undefined,
   });
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "https://pandapatches.com" },
-    { name: "Custom Patches", url: "https://pandapatches.com/custom-patches" },
-    { name: data.title, url: `https://pandapatches.com/custom-patches/${slug}` },
+    { name: "Home", url: "https://www.pandapatches.com" },
+    { name: "Custom Patches", url: "https://www.pandapatches.com/custom-patches" },
+    { name: data.title, url: `https://www.pandapatches.com/custom-patches/${slug}` },
   ]);
 
   return (

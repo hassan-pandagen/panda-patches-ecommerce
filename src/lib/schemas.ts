@@ -33,14 +33,14 @@ export function generatePersonSchema() {
     "name": "Imran Raza",
     "jobTitle": "Founder & CEO",
     "description": "Founder of Panda Patches with 13 years of hands-on experience in embroidered patches and textile manufacturing. Expert in custom patch production, quality control, and textile industry standards.",
-    "url": "https://pandapatches.com/about",
+    "url": "https://www.pandapatches.com/about",
     "sameAs": [
       "https://www.linkedin.com/in/imran-raza-ladhani/"
     ],
     "worksFor": {
       "@type": "Organization",
       "name": "Panda Patches",
-      "url": "https://pandapatches.com"
+      "url": "https://www.pandapatches.com"
     },
     "knowsAbout": [
       "Custom Embroidered Patches",
@@ -66,9 +66,9 @@ export function generateOrganizationSchema() {
     "name": "Panda Patches",
     "alternateName": "Panda Patches - Custom Embroidered Patches",
     "legalName": "MC Patches LLC",
-    "url": "https://pandapatches.com",
-    "logo": "https://pandapatches.com/assets/logo-panda.svg",
-    "image": "https://pandapatches.com/assets/og-image.png",
+    "url": "https://www.pandapatches.com",
+    "logo": "https://www.pandapatches.com/assets/logo-panda.svg",
+    "image": "https://www.pandapatches.com/assets/og-image.png",
     "foundingDate": "2016",
     "description": "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 8+ years of excellence.",
     "email": "admin@pandapatches.com",
@@ -437,7 +437,7 @@ export function generateArticleSchema(params: ArticleSchemaParams) {
       "name": "Panda Patches",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://pandapatches.com/assets/logo-panda.svg"
+        "url": "https://www.pandapatches.com/assets/logo-panda.svg"
       }
     },
     "inLanguage": "en",
@@ -581,7 +581,7 @@ export function generateLocalBusinessSchema() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Panda Patches",
-    "image": "https://pandapatches.com/assets/logo-panda.svg",
+    "image": "https://www.pandapatches.com/assets/logo-panda.svg",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Quail Feather Ct",
@@ -597,7 +597,7 @@ export function generateLocalBusinessSchema() {
     },
     "telephone": "+1-302-250-4340",
     "email": "admin@pandapatches.com",
-    "url": "https://pandapatches.com",
+    "url": "https://www.pandapatches.com",
     "priceRange": "$$",
     "founder": {
       "@type": "Person",
@@ -642,8 +642,8 @@ export function generateLocationBusinessSchema(locationName: string, pageSlug?: 
     "description": `Order custom embroidered patches delivered to ${locationName}. Low minimums, free mockups, fast 7-14 day turnaround. Founded by Imran Raza with 13 years of patch manufacturing expertise.`,
     "telephone": "+1-302-250-4340",
     "email": "admin@pandapatches.com",
-    "url": `https://pandapatches.com/${urlSlug}`,
-    "image": "https://pandapatches.com/assets/logo-panda.svg",
+    "url": `https://www.pandapatches.com/${urlSlug}`,
+    "image": "https://www.pandapatches.com/assets/logo-panda.svg",
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
@@ -731,13 +731,13 @@ export function generateWebSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Panda Patches",
-    "url": "https://pandapatches.com",
+    "url": "https://www.pandapatches.com",
     "description": "Custom embroidered patches, iron-on patches, PVC patches with low minimums, free design services, and fast 7-14 day delivery.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://pandapatches.com/custom-patches?search={search_term_string}"
+        "urlTemplate": "https://www.pandapatches.com/custom-patches?search={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     },
@@ -746,7 +746,7 @@ export function generateWebSiteSchema() {
       "name": "Panda Patches",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://pandapatches.com/assets/logo-panda.svg"
+        "url": "https://www.pandapatches.com/assets/logo-panda.svg"
       }
     }
   };
@@ -766,7 +766,7 @@ export function generateServiceSchema() {
     "provider": {
       "@type": "Organization",
       "name": "Panda Patches",
-      "url": "https://pandapatches.com"
+      "url": "https://www.pandapatches.com"
     },
     "offers": {
       "@type": "Offer",
@@ -780,7 +780,7 @@ export function generateServiceSchema() {
     },
     "availableChannel": {
       "@type": "ServiceChannel",
-      "serviceUrl": "https://pandapatches.com/custom-patches",
+      "serviceUrl": "https://www.pandapatches.com/custom-patches",
       "servicePhone": "+1-302-250-4340"
     }
   };
@@ -827,7 +827,7 @@ export function generateVideoObjectSchema(videos: VideoSchemaItem[]) {
       "name": "Panda Patches",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://pandapatches.com/assets/logo-panda.svg",
+        "url": "https://www.pandapatches.com/assets/logo-panda.svg",
         "width": 200,
         "height": 60
       }
@@ -845,14 +845,14 @@ export function generateCollectionPageSchema(posts: { title: string; url: string
     "@type": "CollectionPage",
     "name": "Custom Patch Blog - Tips, Guides & Industry News",
     "description": "Expert guides on custom patches, embroidery tips, design ideas, and industry trends from Panda Patches founder Imran Raza.",
-    "url": "https://pandapatches.com/blogs",
+    "url": "https://www.pandapatches.com/blogs",
     "publisher": {
       "@type": "Organization",
       "name": "Panda Patches",
-      "url": "https://pandapatches.com",
+      "url": "https://www.pandapatches.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://pandapatches.com/assets/logo-panda.svg"
+        "url": "https://www.pandapatches.com/assets/logo-panda.svg"
       }
     },
     "hasPart": posts.map((post) => ({
@@ -882,8 +882,8 @@ import { generateProductSchema, generateSchemaScript } from '@/lib/schemas';
 const productSchema = generateProductSchema({
   name: "Custom Embroidered Patches",
   description: "High-quality custom patches with low minimums",
-  image: "https://pandapatches.com/patch-image.jpg",
-  url: "https://pandapatches.com/custom-patches/embroidered-patches",
+  image: "https://www.pandapatches.com/patch-image.jpg",
+  url: "https://www.pandapatches.com/custom-patches/embroidered-patches",
   priceRange: "$50-$500"
 });
 

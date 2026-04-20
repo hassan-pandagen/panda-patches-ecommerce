@@ -13,20 +13,20 @@ export const metadata: Metadata = {
   title: 'Custom Patch Packages — Fixed Prices, Free Design | Panda Patches',
   description: 'Order custom patch packages at fixed prices. Embroidered, woven, PVC, chenille and leather patches with free mockup, free shipping, and 7-14 day delivery.',
   alternates: {
-    canonical: 'https://pandapatches.com/offers',
+    canonical: 'https://www.pandapatches.com/offers',
   },
   openGraph: {
     title: 'Custom Patch Packages — Fixed Prices | Panda Patches',
     description: 'Fixed-price patch packages with free mockup, free US shipping, and money-back guarantee. Embroidered, woven, PVC, chenille, leather.',
-    url: 'https://pandapatches.com/offers',
+    url: 'https://www.pandapatches.com/offers',
     type: 'website',
-    images: [{ url: 'https://pandapatches.com/assets/og-image.png', width: 1200, height: 630, alt: 'Custom patch packages at fixed prices — Panda Patches' }],
+    images: [{ url: 'https://www.pandapatches.com/assets/og-image.png', width: 1200, height: 630, alt: 'Custom patch packages at fixed prices — Panda Patches' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Custom Patch Packages — Fixed Prices | Panda Patches',
     description: 'Fixed-price patch packages with free mockup, free US shipping, and money-back guarantee.',
-    images: ['https://pandapatches.com/assets/og-image.png'],
+    images: ['https://www.pandapatches.com/assets/og-image.png'],
   },
 };
 
@@ -34,8 +34,8 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://pandapatches.com' },
-    { '@type': 'ListItem', position: 2, name: 'Offers', item: 'https://pandapatches.com/offers' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.pandapatches.com' },
+    { '@type': 'ListItem', position: 2, name: 'Offers', item: 'https://www.pandapatches.com/offers' },
   ],
 };
 
@@ -178,7 +178,7 @@ export default async function OffersPage() {
     '@type': 'Product',
     name: `Custom ${cat.type} - ${cat.subtitle}`,
     description: CATEGORY_DESCRIPTIONS[cat.id] ?? `Custom ${cat.type} fixed-price packages from Panda Patches.`,
-    image: categoryImages[imgKey] ?? categoryImages[cat.slug] ?? 'https://pandapatches.com/assets/og-image.png',
+    image: categoryImages[imgKey] ?? categoryImages[cat.slug] ?? 'https://www.pandapatches.com/assets/og-image.png',
     brand: { '@type': 'Brand', name: 'Panda Patches' },
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -217,7 +217,7 @@ export default async function OffersPage() {
       priceCurrency: 'USD',
       priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
-      url: 'https://pandapatches.com/offers',
+      url: 'https://www.pandapatches.com/offers',
       seller: { '@type': 'Organization', name: 'Panda Patches' },
       shippingDetails,
       hasMerchantReturnPolicy: merchantReturnPolicy,

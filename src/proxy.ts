@@ -53,8 +53,8 @@ const sampleBoxLimiter = redis
 
 // Allowed origins for API requests
 const ALLOWED_ORIGINS = [
-  'https://pandapatches.com',
   'https://www.pandapatches.com',
+  'https://pandapatches.com',
   'https://panda-patches-ecommerce.vercel.app',
   'https://panda-patches-ecommerce-7w28lefz.vercel.app',
 ];
@@ -105,17 +105,17 @@ export async function proxy(request: NextRequest) {
   const host = request.headers.get('host') || '';
 
   // ============================================
-  // WWW + TRAILING SLASH CANONICAL REDIRECT
-  // Combines both into a single 301 so Google never sees a redirect chain.
-  // e.g. www.pandapatches.com/slug/ -> pandapatches.com/slug (1 hop)
+  // TRAILING SLASH CANONICAL REDIRECT
+  // Apex -> www is handled by Vercel's domain config at the edge, so we only
+  // need to strip trailing slashes here. Preserves the www host on redirect
+  // so we don't bounce through apex and re-trigger Vercel's 308.
   // ============================================
   const isLocal = host.startsWith('localhost') || host.startsWith('127.0.0.1');
-  const isWww = host.startsWith('www.');
   const hasTrailingSlash = pathname.length > 1 && pathname.endsWith('/');
 
-  if (!isLocal && (isWww || hasTrailingSlash)) {
-    const cleanPath = hasTrailingSlash ? (pathname.replace(/\/+$/, '') || '/') : pathname;
-    const targetUrl = new URL(cleanPath, 'https://pandapatches.com');
+  if (!isLocal && hasTrailingSlash) {
+    const cleanPath = pathname.replace(/\/+$/, '') || '/';
+    const targetUrl = new URL(cleanPath, `https://${host}`);
     targetUrl.search = request.nextUrl.search;
     return NextResponse.redirect(targetUrl, 301);
   }

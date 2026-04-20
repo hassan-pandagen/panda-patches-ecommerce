@@ -2,8 +2,13 @@
  * Shared checkout configuration used by both Stripe and PayPal routes.
  */
 
+/** Canonical customer-facing URL. All checkout redirects must land here. */
+export const CANONICAL_BASE_URL = 'https://www.pandapatches.com';
+
+/** Origins allowed for CORS on checkout API routes. Includes preview URLs
+ *  so internal testing on Vercel branches still works without breaking CORS. */
 export const ALLOWED_ORIGINS = [
-  'https://pandapatches.com',
+  'https://www.pandapatches.com',
   'https://pandapatches.com',
   'https://panda-patches-ecommerce.vercel.app',
   'https://panda-patches-ecommerce-7w28lefz.vercel.app',
@@ -13,24 +18,24 @@ export const ALLOWED_ORIGINS = [
 export const ECONOMY_DISCOUNT_RATE = 0.9;
 
 /**
- * Returns the base URL to use for Stripe/PayPal success and cancel redirects.
+ * Returns the base URL for Stripe/PayPal success and cancel redirects.
  *
- * Priority:
- *  1. APP_URL env var — set this in Vercel to your Next.js deployment URL
- *     e.g. https://panda-patches-ecommerce.vercel.app  or  https://app.pandapatches.com
- *  2. Validated request origin (must be in ALLOWED_ORIGINS)
- *  3. Fallback: pandapatches.com (WordPress site — avoid relying on this)
+ * Customers must always land on pandapatches.com after checkout, even if
+ * they started the flow from a Vercel preview URL. This prevents the leak
+ * that sent users to https://panda-patches-ecommerce.vercel.app/error-payment
+ * when a branch deploy was accidentally surfaced.
+ *
+ * In non-production environments (dev/preview), APP_URL can override for
+ * local testing; otherwise we fall through to the canonical domain.
  */
-export function resolveBaseUrl(origin: string | null | undefined): string {
-  // Always prefer the explicitly configured app URL so redirects land on
-  // the Next.js app, not the WordPress site at pandapatches.com.
-  if (process.env.APP_URL) {
-    return process.env.APP_URL.replace(/\/$/, ''); // strip trailing slash
+export function resolveBaseUrl(_origin?: string | null): string {
+  if (process.env.NODE_ENV === 'production') {
+    return CANONICAL_BASE_URL;
   }
-  return (
-    ALLOWED_ORIGINS.find((allowed) => origin?.startsWith(allowed)) ??
-    'https://pandapatches.com'
-  );
+  if (process.env.APP_URL) {
+    return process.env.APP_URL.replace(/\/$/, '');
+  }
+  return CANONICAL_BASE_URL;
 }
 
 /**
