@@ -171,8 +171,6 @@ SAR teams order custom identification patches for field operations. Reflective a
 
 **Test readability at arm's length.** Tactical patches need to be readable at 3 to 5 feet for identification purposes. If text is too small to read at arm's length, increase the font size or reduce the word count.
 
-**Know the design restrictions.** Custom tactical patches for recreational use (airsoft, milsim, civilian morale patches) have no design restrictions. However, patches that impersonate active military units, law enforcement agencies, or display official rank insignia without authorization should not be produced. At Panda Patches, we review all tactical patch designs for compliance before production.
-
 ## How to Order Custom Tactical Patches from Panda Patches
 
 1. **Submit your design.** Upload your artwork (AI, EPS, PDF, PNG, SVG, or JPG) or describe your idea in detail. Include the patch type (PVC or embroidered), size, colors, and whether you need subdued/OCP-compliant colors. No artwork? Our design team creates it from your description at no charge.

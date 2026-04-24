@@ -51,7 +51,7 @@ export default async function TimelineSection() {
     },
   ];
 
-  const title = sanityData?.heading || "ORDERING IRON ON PATCHES MADE SIMPLE AND EXCITING!";
+  const title = sanityData?.heading || "HOW IRON-ON PATCHES WORK. APPLY IN 20 SECONDS.";
   
   const imgLeft = sanityData?.imageLeft ? urlFor(sanityData.imageLeft).width(800).format('webp').quality(65).url() : "/assets/timeline-1.png";
   const imgRight = sanityData?.imageRight ? urlFor(sanityData.imageRight).width(800).format('webp').quality(65).url() : "/assets/timeline-2.png";

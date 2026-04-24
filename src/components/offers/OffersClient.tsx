@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useTrustpilot } from '@/lib/useTrustpilot';
 import ReviewsSection from '@/components/home/ReviewsSection';
 import { useFileUpload } from '@/hooks/useFileUpload';
+import { getStoredAttribution } from '@/lib/clientAttribution';
 import {
   OFFER_CATEGORIES, calculateOfferTotal, getRushFee,
   VELCRO_FEE, METALLIC_FEE, GLOW_FEE, PUFF_FEE,
@@ -542,7 +543,16 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
     if (!selectedOffer) return;
     setLoading(true);
     setError(null);
+    const attribution = getStoredAttribution();
     try {
+      try {
+        if (typeof (window as any).fbq === 'function') {
+          (window as any).fbq('track', 'InitiateCheckout', {
+            content_name: selectedOffer.packName,
+            content_category: selectedOffer.categoryId,
+          });
+        }
+      } catch { /* noop */ }
       const res = await fetch('/api/checkout-offers', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -560,6 +570,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
           designDescription: formData.designDescription,
           specialInstructions: formData.specialInstructions,
           company: formData.company,
+          attribution,
         }),
       });
       const data = await res.json();
@@ -579,7 +590,16 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
     if (!selectedOffer) return;
     setLoading(true);
     setError(null);
+    const attribution = getStoredAttribution();
     try {
+      try {
+        if (typeof (window as any).fbq === 'function') {
+          (window as any).fbq('track', 'InitiateCheckout', {
+            content_name: selectedOffer.packName,
+            content_category: selectedOffer.categoryId,
+          });
+        }
+      } catch { /* noop */ }
       const res = await fetch('/api/checkout-offers-paypal', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -597,6 +617,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
           designDescription: formData.designDescription,
           specialInstructions: formData.specialInstructions,
           company: formData.company,
+          attribution,
         }),
       });
       const data = await res.json();

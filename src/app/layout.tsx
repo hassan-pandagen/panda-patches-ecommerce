@@ -5,6 +5,7 @@ import "./globals.css";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import { generateOrganizationSchema, generateWebSiteSchema, generateSchemaScript } from "@/lib/schemas";
+import AttributionCapture from "@/components/AttributionCapture";
 
 // Lazy load non-critical components
 const TawkToWidget = dynamic(() => import("@/components/TawkToWidget"), { ssr: true });
@@ -169,6 +170,9 @@ var footer=document.querySelector('footer');if(footer)obs.observe(footer);else s
 ['scroll','click','touchstart','keydown'].forEach(function(e){document.addEventListener(e,load3p,{capture:true,once:true,passive:true});});
 setTimeout(load3p,16000);`}
         </Script>
+
+        {/* Captures Meta/Google attribution (fbp, fbc, gclid, utm_*) on every page load */}
+        <AttributionCapture />
 
         {/* Tawk.to Live Chat with Advanced Tracking */}
         <TawkToWidget />

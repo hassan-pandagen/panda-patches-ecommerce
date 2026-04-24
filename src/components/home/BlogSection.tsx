@@ -54,7 +54,7 @@ export default async function BlogSection() {
         {/* HEADING */}
         <div className="text-center mb-16">
           <h2 className="text-[24px] md:text-[40px] font-black text-panda-dark uppercase tracking-tight">
-            OUR BLOGS
+            GUIDES &amp; TIPS FOR CUSTOM PATCHES
           </h2>
         </div>
 

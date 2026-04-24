@@ -38,6 +38,7 @@ const CheckoutSchema = z.object({
   addons: z.array(z.string()).optional().or(z.null()),
   specialInstructions: z.string().optional().or(z.null()),
   paymentMethod: z.enum(['card', 'cashapp', 'afterpay', 'applepay', 'klarna']).optional(),
+  attribution: z.record(z.string(), z.string()).optional(),
 });
 
 export async function POST(req: Request) {
@@ -75,7 +76,8 @@ export async function POST(req: Request) {
       artworkUrl,
       addons,
       specialInstructions,
-      paymentMethod = 'card'
+      paymentMethod = 'card',
+      attribution,
     } = validationResult.data;
 
     // SECURITY: Calculate price server-side to prevent manipulation
@@ -153,6 +155,8 @@ export async function POST(req: Request) {
         rush_date: rushDate || '',
         website_addons: addons?.length ? addons.join(', ') : '',
         order_amount: String(finalPrice),
+        // Attribution for Meta CAPI (serialized — trimmed to fit Stripe's 500 char metadata limit)
+        attribution: attribution ? JSON.stringify(attribution).substring(0, 500) : '',
       },
     };
 

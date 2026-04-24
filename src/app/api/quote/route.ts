@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { SendMailClient } from 'zeptomail';
+import { sendMetaEvent } from '@/lib/metaCapi';
+import { getAttributionFromRequest } from '@/lib/attribution';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -28,6 +30,19 @@ const QuoteSchema = z.object({
   isBulkOrder: z.boolean().optional(),
   pageUrl: z.string().max(500).optional().or(z.literal('')),
   basePrice: z.number().min(0).optional(),
+  attribution: z.object({
+    fbp: z.string().optional(),
+    fbc: z.string().optional(),
+    gclid: z.string().optional(),
+    fbclid: z.string().optional(),
+    utm_source: z.string().optional(),
+    utm_medium: z.string().optional(),
+    utm_campaign: z.string().optional(),
+    page_url: z.string().optional(),
+    referrer: z.string().optional(),
+    first_seen_at: z.string().optional(),
+  }).optional(),
+  eventId: z.string().max(100).optional(),
 });
 
 function esc(s: string) {
@@ -81,7 +96,9 @@ export async function POST(req: Request) {
       );
     }
 
-    const { customer, details, artworkUrl, artworkUrl2, isBulkOrder, pageUrl, basePrice } = validationResult.data;
+    const { customer, details, artworkUrl, artworkUrl2, isBulkOrder, pageUrl, basePrice, attribution: bodyAttribution, eventId: clientEventId } = validationResult.data;
+
+    const attribution = getAttributionFromRequest(req, bodyAttribution);
 
     const sizeLabel = details.width > 0 ? `${details.width}" x ${details.height}"` : 'Custom / See instructions';
     const subject = isBulkOrder
@@ -276,11 +293,34 @@ export async function POST(req: Request) {
         page_url: pageUrl || null,
         quote_amount: basePrice ?? null,
         email_sent_at: (token && basePrice != null) ? new Date().toISOString() : null,
+        attribution,
       });
 
     if (dbError) {
       console.error('Supabase quotes insert error (non-blocking):', dbError);
     }
+
+    // Fire Meta CAPI Lead event (non-blocking).
+    // Uses the client-supplied event_id if present so browser pixel + server dedupe.
+    const leadEventId = clientEventId || `lead_${Date.now()}_${customer.email.slice(0, 8)}`;
+    const [firstName, ...lastParts] = customer.name.trim().split(/\s+/);
+    const lastName = lastParts.join(' ') || undefined;
+    sendMetaEvent({
+      eventName: 'Lead',
+      eventId: leadEventId,
+      actionSource: 'website',
+      email: customer.email,
+      phone: customer.phone || null,
+      firstName,
+      lastName,
+      attribution,
+      eventSourceUrl: pageUrl || attribution.page_url,
+      value: basePrice,
+      currency: basePrice ? 'USD' : undefined,
+      numItems: details.quantity,
+      contentName: isBulkOrder ? 'Bulk Quote Request' : 'Quote Request',
+      contentCategory: details.patchType || 'Custom Patches',
+    }).catch((err) => console.error('[META CAPI] Lead send failed (non-blocking):', err));
 
     return NextResponse.json({ success: true });
 

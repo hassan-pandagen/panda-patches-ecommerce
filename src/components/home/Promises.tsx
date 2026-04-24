@@ -20,7 +20,7 @@ export default function Promises({ bgColor = "bg-[#F7F7F7]", items }: { bgColor?
       <div className="container mx-auto px-6 flex flex-col items-center">
         
         <h2 className="text-[24px] md:text-[28px] lg:text-[32px] font-black text-center text-panda-dark uppercase tracking-wide mb-8 md:mb-12 lg:mb-16">
-          Panda Promises
+          4 Things Every Order Gets. All Free.
         </h2>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-[50px] max-w-[1055px] w-full">

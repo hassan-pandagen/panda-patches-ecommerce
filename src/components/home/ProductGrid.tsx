@@ -106,8 +106,8 @@ export default async function ProductGrid() {
         {/* HEADER TEXT */}
         <div className="text-center mb-16 space-y-6">
           <h2 className="text-[26px] md:text-[40px] font-semibold text-panda-dark uppercase leading-tight tracking-tight">
-            INFUSE YOUR STYLE WITH <br />
-            EXCLUSIVE BESPOKE PATCH DESIGNS
+            PICK YOUR PATCH TYPE. <br />
+            FROM $1.20/PIECE
           </h2>
           <p className="text-[14px] md:text-[17px] text-gray-800 leading-[1.8] max-w-[1020px] mx-auto font-medium">
             From personalized logo patches, to <Link href="/custom-name-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">personalized name patch</Link>, from <Link href="/custom-tactical-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">military patches</Link>, to <Link href="/custom-jacket-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">personalized patches for jackets</Link>, and custom <Link href="/custom-velcro-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">Velcro patches</Link>,
@@ -117,7 +117,7 @@ export default async function ProductGrid() {
         </div>
 
         {/* TOP GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 justify-items-center mb-28">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 justify-items-center mb-28">
           {main.map((item: any, idx: number) => (
             <ProductCard key={item._id} item={item} showTag={true} priority={idx < 3} />
           ))}
@@ -126,12 +126,12 @@ export default async function ProductGrid() {
         {/* OTHER PRODUCTS HEADING */}
         <div className="text-center mb-16">
            <h3 className="text-[24px] md:text-[28px] lg:text-[32px] font-bold text-gray-800 uppercase tracking-wide">
-             OTHER CUSTOM PRODUCTS THAT WILL AMAZE YOU!
+             BEYOND PATCHES: COINS, PINS, KEYCHAINS & PVC CHARMS
            </h3>
         </div>
 
         {/* BOTTOM GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 justify-items-center">
           {other.map((item: any) => (
             <ProductCard key={item._id} item={item} showTag={false} />
           ))}
@@ -245,7 +245,7 @@ function ProductCard({ item, showTag, priority }: { item: any; showTag?: boolean
         {/* 2. CENTER TEXT (Absolute Center) */}
         <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
           <span className="text-[14px] font-black uppercase tracking-[0.15em] group-hover:text-black text-white transition-colors duration-500">
-            Learn More
+            See {item.title}
           </span>
         </div>
         

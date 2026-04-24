@@ -254,6 +254,127 @@ const nextConfig = {
         permanent: true,
       },
 
+      // OLD BLOG SLUG FIXES — GSC discovered historical URLs missing "and" or
+      // other connecting words compared to the current Sanity slugs. 301 consolidates.
+      {
+        source: '/the-complete-guide-to-iron-on-patches-care-application-longevity',
+        destination: '/the-complete-guide-to-iron-on-patches-care-application-and-longevity',
+        permanent: true,
+      },
+      {
+        source: '/the-complete-guide-to-iron-on-patches-care-application-longevity/',
+        destination: '/the-complete-guide-to-iron-on-patches-care-application-and-longevity',
+        permanent: true,
+      },
+      {
+        source: '/tactical-military-patch-placement-options',
+        destination: '/tactical-and-military-ocp-patch-placement-options',
+        permanent: true,
+      },
+      {
+        source: '/tactical-military-patch-placement-options/',
+        destination: '/tactical-and-military-ocp-patch-placement-options',
+        permanent: true,
+      },
+      {
+        source: '/how-custom-pvc-patches-are-made',
+        destination: '/pvc-patches-how-it-s-made-and-what-to-consider-when-ordering',
+        permanent: true,
+      },
+      {
+        source: '/how-custom-pvc-patches-are-made/',
+        destination: '/pvc-patches-how-it-s-made-and-what-to-consider-when-ordering',
+        permanent: true,
+      },
+      {
+        source: '/15-great-quotes-about-sewing-quilting-crafts',
+        destination: '/15-great-quotes-about-sewing-quilting-and-crafts',
+        permanent: true,
+      },
+      {
+        source: '/15-great-quotes-about-sewing-quilting-crafts/',
+        destination: '/15-great-quotes-about-sewing-quilting-and-crafts',
+        permanent: true,
+      },
+      {
+        source: '/custom-chenille-patches-varsity-jacket-patches-winter-trend',
+        destination: '/varsity-jacket-patches-or-what-can-be-done',
+        permanent: true,
+      },
+      {
+        source: '/custom-chenille-patches-varsity-jacket-patches-winter-trend/',
+        destination: '/varsity-jacket-patches-or-what-can-be-done',
+        permanent: true,
+      },
+
+      // MISSING CITY PAGES — Google discovered these from old backlinks but we
+      // have not built them yet. 301 to main products page until location added.
+      { source: '/custom-patches-atlanta', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-atlanta/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-in-las-vegas', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-in-las-vegas/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-seattle-patches', destination: '/custom-patches', permanent: true },
+      { source: '/custom-seattle-patches/', destination: '/custom-patches', permanent: true },
+
+      // WRONG PRODUCT PATHS caught in GSC
+      {
+        source: '/custom-patches/no-background-pvc',
+        destination: '/custom-patches/pvc',
+        permanent: true,
+      },
+      {
+        source: '/custom-patches/no-background-pvc/',
+        destination: '/custom-patches/pvc',
+        permanent: true,
+      },
+      {
+        source: '/custom-patches/custom-morale-patches',
+        destination: '/custom-morale-patches',
+        permanent: true,
+      },
+      {
+        source: '/custom-patches/custom-morale-patches/',
+        destination: '/custom-morale-patches',
+        permanent: true,
+      },
+
+      // WORDPRESS AUTHOR PAGES — never existed in Next.js
+      { source: '/author', destination: '/blogs', permanent: true },
+      { source: '/author/', destination: '/blogs', permanent: true },
+      { source: '/author/:path*', destination: '/blogs', permanent: true },
+
+      // WORDPRESS COOKIE POLICY — consolidate into privacy policy
+      { source: '/cookie-policy', destination: '/privacy-policy', permanent: true },
+      { source: '/cookie-policy/', destination: '/privacy-policy', permanent: true },
+
+      // OLD WP "/old/*" NAMESPACE
+      { source: '/old/contact-us', destination: '/contact', permanent: true },
+      { source: '/old/:path*', destination: '/', permanent: true },
+
+      // WP COMMENT FEEDS — explicit redirects alongside the generic /:path*/feed catch
+      { source: '/comments/feed', destination: '/blogs', permanent: true },
+      { source: '/comments/feed/', destination: '/blogs', permanent: true },
+
+      // OLD WP FACETED FILTER URLS (backing-options, border-options from WooCommerce)
+      // Enumerated explicitly because Next.js path-to-regexp does not accept
+      // hyphenated wildcards like /backing-options-:path*
+      { source: '/backing-options-chen/iron-on', destination: '/custom-patches/chenille', permanent: true },
+      { source: '/backing-options-chen/iron-on/', destination: '/custom-patches/chenille', permanent: true },
+      { source: '/backing-options-leat/iron-on', destination: '/custom-patches/leather', permanent: true },
+      { source: '/backing-options-leat/iron-on/', destination: '/custom-patches/leather', permanent: true },
+      { source: '/backing-options-pvc/iron-on', destination: '/custom-patches/pvc', permanent: true },
+      { source: '/backing-options-pvc/iron-on/', destination: '/custom-patches/pvc', permanent: true },
+      { source: '/backing-options-wove/iron-on', destination: '/custom-patches/woven', permanent: true },
+      { source: '/backing-options-wove/iron-on/', destination: '/custom-patches/woven', permanent: true },
+      { source: '/border-options-embro/embroidered', destination: '/custom-patches/embroidered', permanent: true },
+      { source: '/border-options-embro/embroidered/', destination: '/custom-patches/embroidered', permanent: true },
+
+      // MALFORMED OLD URLS discovered in GSC — bare words, title-case typos,
+      // and a mailto parsed as a link.
+      { source: '/piece', destination: '/offers', permanent: true },
+      { source: '/Iron', destination: '/custom-patches', permanent: true },
+      { source: '/design@pandapatches.com', destination: '/contact', permanent: true },
+
       // ORPHAN CONSOLIDATION - top-level chenille variants replaced by nested
       // /custom-patches/* canonical URLs. 301 preserves backlink equity.
       {

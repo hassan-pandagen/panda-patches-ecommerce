@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Check, X } from "lucide-react";
+import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 
 interface QuoteModalProps {
   show: boolean;
@@ -54,6 +55,20 @@ export default function QuoteModal({
 
     setQuoteSubmitting(true);
 
+    const attribution = getStoredAttribution();
+    const eventId = generateEventId('lead');
+
+    try {
+      if (typeof (window as any).fbq === 'function') {
+        (window as any).fbq('track', 'Lead', {
+          content_name: 'Quote Modal',
+          content_category: productType,
+          value: priceError ? undefined : basePrice,
+          currency: priceError ? undefined : 'USD',
+        }, { eventID: eventId });
+      }
+    } catch { /* noop */ }
+
     try {
       const response = await fetch("/api/quote", {
         method: "POST",
@@ -77,6 +92,8 @@ export default function QuoteModal({
           isBulkOrder: false,
           pageUrl: window.location.href,
           basePrice: priceError ? undefined : basePrice,
+          attribution,
+          eventId,
         }),
       });
 

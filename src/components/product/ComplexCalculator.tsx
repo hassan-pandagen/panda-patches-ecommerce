@@ -10,6 +10,7 @@ import TrustBadges from "@/components/shared/TrustBadges";
 import { useFileUpload } from "@/hooks/useFileUpload";
 import { usePriceCalculation } from "@/hooks/usePriceCalculation";
 import FormFeedback from "@/components/feedback/FormFeedback";
+import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 
 
 // Default backing options if none provided
@@ -357,6 +358,20 @@ export default function ComplexCalculator({
       return;
     }
     setQuoteSending(true);
+    const attribution = getStoredAttribution();
+    const eventId = generateEventId('lead');
+
+    try {
+      if (typeof (window as any).fbq === 'function') {
+        (window as any).fbq('track', 'Lead', {
+          content_name: 'Calculator Quote',
+          content_category: productType,
+          value: priceResult.error ? undefined : basePrice,
+          currency: priceResult.error ? undefined : 'USD',
+        }, { eventID: eventId });
+      }
+    } catch { /* noop */ }
+
     try {
       const res = await fetch("/api/quote", {
         method: "POST",
@@ -375,6 +390,8 @@ export default function ComplexCalculator({
           isBulkOrder: false,
           pageUrl: window.location.href,
           basePrice: priceResult.error ? undefined : basePrice,
+          attribution,
+          eventId,
         }),
       });
       if (res.ok) {
@@ -406,7 +423,22 @@ export default function ComplexCalculator({
 
     setCheckoutLoading(true);
 
+    const checkoutAttribution = getStoredAttribution();
+
     try {
+      // Fire browser pixel InitiateCheckout (pairs with server CAPI Purchase later via order_id)
+      try {
+        if (typeof (window as any).fbq === 'function') {
+          (window as any).fbq('track', 'InitiateCheckout', {
+            content_name: productType,
+            content_category: 'Custom Patches',
+            value: basePrice,
+            currency: 'USD',
+            num_items: quantity,
+          });
+        }
+      } catch { /* noop */ }
+
       // Choose API endpoint based on payment method
       const endpoint = paymentMethod === 'paypal' ? '/api/checkout-paypal' : '/api/checkout';
 
@@ -429,7 +461,8 @@ export default function ComplexCalculator({
           artworkUrl: files[0]?.url || null,
           addons: selectedAddons.length > 0 ? selectedAddons.map(id => ADDON_OPTIONS.find(opt => opt.id === id)?.name).filter(Boolean) : null,
           specialInstructions: [shape ? `Shape: ${SHAPES.find(s => s.id === shape)?.name}` : null, patchIdea ? `Patch Idea: ${patchIdea}` : null, specialInstructions || null].filter(Boolean).join(' | ') || null,
-          paymentMethod: paymentMethod // Pass payment method to backend
+          paymentMethod: paymentMethod, // Pass payment method to backend
+          attribution: checkoutAttribution,
         }),
       });
 

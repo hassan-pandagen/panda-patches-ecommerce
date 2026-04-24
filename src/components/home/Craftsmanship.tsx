@@ -28,7 +28,7 @@ async function getData() {
 
 export default async function Craftsmanship() {
   const data = await getData();
-  const heading = data?.heading || "SEE OUR CRAFTSMANSHIP";
+  const heading = data?.heading || "REAL ORDERS FROM REAL CUSTOMERS";
   const videos = data?.videos || [];
 
   // Build Video schema only for videos that have the required SEO fields filled in

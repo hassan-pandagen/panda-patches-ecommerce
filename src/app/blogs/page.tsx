@@ -87,7 +87,7 @@ export default async function BlogsPage() {
 
           {/* PAGE TITLE */}
           <h1 className="text-[24px] md:text-[50px] font-black text-center text-panda-dark uppercase mb-20 tracking-tight">
-            Our Blogs
+            Guides &amp; Tips for Custom Patches
           </h1>
 
           <BlogListClient blogs={blogs} />

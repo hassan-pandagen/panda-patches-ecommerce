@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 import { SendMailClient } from 'zeptomail';
+import { sendMetaEvent, type Attribution } from '@/lib/metaCapi';
 
 // Initialize Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -267,7 +268,14 @@ export async function POST(req: Request) {
         // New flow: create order only on successful payment
         const addonsArray = meta.website_addons ? meta.website_addons.split(', ').filter(Boolean) : null;
 
-        const { error: insertError } = await supabase
+        // Parse attribution from Stripe metadata (serialized JSON, may be empty)
+        let attribution: Attribution | null = null;
+        if (meta.attribution) {
+          try { attribution = JSON.parse(meta.attribution) as Attribution; } catch { attribution = null; }
+        }
+
+        const paidAtIso = new Date().toISOString();
+        const { data: inserted, error: insertError } = await supabase
           .from('orders')
           .insert({
             customer_name: validName,
@@ -290,10 +298,14 @@ export async function POST(req: Request) {
             stripe_payment_intent_id: session.payment_intent as string | null,
             status: 'PAID',
             payment_status: 'paid',
-            paid_at: new Date().toISOString(),
+            paid_at: paidAtIso,
             lead_source: 'Checkout',
             sales_agent: 'WEB_CHECKOUT',
-          });
+            attribution,
+            meta_capi_sent_at: paidAtIso,
+          })
+          .select('id, order_number, patches_quantity')
+          .single();
 
         if (insertError) {
           console.error('Error creating order from webhook:', insertError);
@@ -302,6 +314,29 @@ export async function POST(req: Request) {
             { status: 500 }
           );
         }
+
+        // Fire Meta CAPI Purchase (non-blocking). Direct-Stripe orders are inserted
+        // already PAID so the Supabase UPDATE webhook never sees the transition — we
+        // fire here instead. meta_capi_sent_at above prevents Supabase webhook from
+        // double-firing if any future UPDATE touches the row.
+        const orderIdBase = inserted?.order_number || `order_${inserted?.id}` || session.id;
+        const [firstName, ...lastParts] = validName.trim().split(/\s+/);
+        sendMetaEvent({
+          eventName: 'Purchase',
+          eventId: `${orderIdBase}_purchase`,
+          actionSource: 'website',
+          email: validEmail,
+          phone: meta.customer_phone || null,
+          firstName,
+          lastName: lastParts.join(' ') || undefined,
+          attribution: attribution || undefined,
+          value: amountPaid,
+          currency: 'USD',
+          orderId: orderIdBase,
+          numItems: inserted?.patches_quantity || undefined,
+          contentName: meta.product_name || 'Custom Patches Order',
+          contentCategory: 'Custom Patches',
+        }).catch((err) => console.error('[META CAPI] Purchase send failed (non-blocking):', err));
 
         // Send email notifications (non-blocking)
         sendOrderEmails(meta, amountPaid, session.id).catch(e =>

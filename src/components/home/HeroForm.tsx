@@ -5,6 +5,7 @@ import { UploadCloud, Check } from "lucide-react";
 import { useState, useRef } from "react";
 import { sanitizeString, sanitizeEmail, sanitizePhone, sanitizeInteger, sanitizeNumber } from "@/lib/sanitize";
 import FormFeedback from "@/components/feedback/FormFeedback";
+import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 
 export default function HeroForm({ productSlug }: { productSlug?: string }) {
   const isKeychains = productSlug === 'keychains';
@@ -87,6 +88,19 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
     setIsSubmitting(true);
     setMessage(null);
 
+    const attribution = getStoredAttribution();
+    const eventId = generateEventId('lead');
+
+    // Fire browser-side Meta Pixel Lead event (pairs with CAPI via eventID)
+    try {
+      if (typeof (window as any).fbq === 'function') {
+        (window as any).fbq('track', 'Lead', {
+          content_name: 'Quote Request',
+          content_category: 'Custom Patches',
+        }, { eventID: eventId });
+      }
+    } catch { /* noop */ }
+
     try {
       const response = await fetch('/api/quote', {
         method: 'POST',
@@ -108,6 +122,8 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           artworkUrl: uploadedFiles[0]?.url || null,
           artworkUrl2: uploadedFiles[1]?.url || null,
           pageUrl: window.location.href,
+          attribution,
+          eventId,
         }),
       });
 
@@ -423,7 +439,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
             disabled:opacity-50 disabled:cursor-not-allowed
           "
         >
-          {isSubmitting ? 'Submitting...' : 'Get Started'}
+          {isSubmitting ? 'Submitting...' : 'Get My Free Mockup'}
         </button>
       </form>
 

@@ -5,6 +5,7 @@ import { UploadCloud, CheckCircle, Phone, Clock, ShieldCheck, Check } from "luci
 import { useState, useRef, useEffect } from "react";
 import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
 import FormFeedback from "@/components/feedback/FormFeedback";
+import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 
 export default function BulkQuoteForm() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -89,6 +90,18 @@ export default function BulkQuoteForm() {
     setIsSubmitting(true);
     setMessage(null);
 
+    const attribution = getStoredAttribution();
+    const eventId = generateEventId('lead');
+
+    try {
+      if (typeof (window as any).fbq === 'function') {
+        (window as any).fbq('track', 'Lead', {
+          content_name: 'Bulk Quote Request',
+          content_category: 'Custom Patches',
+        }, { eventID: eventId });
+      }
+    } catch { /* noop */ }
+
     try {
       const response = await fetch("/api/quote", {
         method: "POST",
@@ -114,6 +127,8 @@ export default function BulkQuoteForm() {
           artworkUrl2: uploadedFiles[1]?.url || null,
           isBulkOrder: true,
           pageUrl: window.location.href,
+          attribution,
+          eventId,
         }),
       });
 

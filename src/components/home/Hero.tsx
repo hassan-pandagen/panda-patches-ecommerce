@@ -126,7 +126,7 @@ export default async function Hero() {
         <div className="container mx-auto px-4 md:px-6 text-center">
 
           <p className="text-[11px] md:text-[13px] font-black text-black text-center uppercase tracking-[0.15em] md:tracking-[0.2em] mb-5 md:mb-7 opacity-100">
-            Patches Made For Teams At
+            Trusted by Teams At
           </p>
 
           {/* Mobile: 2x2 Grid | Desktop: 4 in 1 row */}
