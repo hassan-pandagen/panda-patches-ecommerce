@@ -236,10 +236,40 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       })),
     } : null;
 
+    // Image source for Product schema (mainImage preferred, fallback to image, then OG default)
+    const productImage = data.blog.mainImage
+      ? urlFor(data.blog.mainImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
+      : data.blog.image
+        ? urlFor(data.blog.image).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
+        : 'https://www.pandapatches.com/assets/og-image.png';
+
+    // Shared shipping details for every Offer — free US shipping, 1-2 day handling, 7-14 day transit
+    const productShippingDetails = {
+      "@type": "OfferShippingDetails",
+      "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
+      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 2, "unitCode": "DAY" },
+        "transitTime": { "@type": "QuantitativeValue", "minValue": 7, "maxValue": 14, "unitCode": "DAY" },
+      },
+    };
+
+    // Shared return policy — money-back guarantee, 30-day window, free return
+    const productReturnPolicy = {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "US",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 30,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn",
+    };
+
     const productSchema = data.blog.productOffers?.length > 0 ? {
       "@context": "https://schema.org",
       "@type": "Product",
       "name": data.blog.title,
+      "image": productImage,
       "brand": { "@type": "Brand", "name": "Panda Patches" },
       "description": data.blog.metaDescription || data.blog.excerpt || "",
       "offers": data.blog.productOffers.map((offer: { name: string; price: number; description?: string }) => ({
@@ -249,6 +279,8 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
         "seller": { "@type": "Organization", "name": "Panda Patches" },
+        "shippingDetails": productShippingDetails,
+        "hasMerchantReturnPolicy": productReturnPolicy,
         ...(offer.description ? { "description": offer.description } : {}),
       })),
     } : null;
