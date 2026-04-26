@@ -272,6 +272,12 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       "image": productImage,
       "brand": { "@type": "Brand", "name": "Panda Patches" },
       "description": data.blog.metaDescription || data.blog.excerpt || "",
+      // aggregateRating / review intentionally omitted on blog product schemas.
+      // Per Google 2026 guidance they must match visible page content exactly
+      // and be specific to the item on the page. Panda Patches' Trustpilot
+      // rating is company-wide, not specific to any one blog offering. Using
+      // it here triggers review-snippet mismatch risk. Those ratings belong
+      // on actual product pages where the product is the page subject.
       "offers": data.blog.productOffers.map((offer: { name: string; price: number; description?: string }) => ({
         "@type": "Offer",
         "name": offer.name,

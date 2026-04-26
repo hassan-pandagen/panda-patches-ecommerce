@@ -73,10 +73,12 @@ export default function BulkQuoteForm() {
     partialSaved.current = true;
     const name = (document.querySelector('input[name="name"]') as HTMLInputElement)?.value || '';
     const phone = (document.querySelector('input[name="phone"]') as HTMLInputElement)?.value || '';
+    const attribution = getStoredAttribution();
+    const eventId = generateEventId('contact');
     fetch('/api/partial-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, phone, name, source: 'BULK_FORM_PARTIAL' }),
+      body: JSON.stringify({ email, phone, name, source: 'BULK_FORM_PARTIAL', attribution, eventId }),
     }).catch(() => {});
   };
 

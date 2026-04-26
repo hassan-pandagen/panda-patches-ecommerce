@@ -5,9 +5,12 @@
  */
 
 // Fallback defaults (updated manually as a safety net)
+// Verified against the Trustpilot widget on 2026-04-24: 4.8 rating, 65 reviews.
+// Schema must match the widget exactly — Google cross-checks via sameAs URL.
+// When new reviews arrive, update the count here AND the archive in TRUSTPILOT_REVIEWS.md.
 export const TRUSTPILOT_RATING = "4.8";
-export const TRUSTPILOT_REVIEW_COUNT = 66;
-export const TRUSTPILOT_REVIEW_COUNT_STR = "66";
+export const TRUSTPILOT_REVIEW_COUNT = 65;
+export const TRUSTPILOT_REVIEW_COUNT_STR = "65";
 export const TRUSTPILOT_URL = "https://www.trustpilot.com/review/pandapatches.com";
 
 interface TrustpilotData {

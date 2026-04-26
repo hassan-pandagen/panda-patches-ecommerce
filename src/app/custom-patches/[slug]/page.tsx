@@ -170,7 +170,12 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
     image: data.heroImage ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url() : 'https://www.pandapatches.com/assets/og-image.png',
     url: `https://www.pandapatches.com/custom-patches/${slug}`,
     priceRange: "$0.85-$6.00",
-    includeReviews: true,
+    // Company-wide Trustpilot rating stays on Organization schema only, not
+    // on individual Product pages. Per Google 2026 guidance: aggregateRating
+    // must be specific to the item on the page. Our 4.8/57 is company-wide,
+    // not embroidered/PVC/chenille-specific — keeping it on per-product
+    // schemas risks a review-snippet manual action.
+    includeReviews: false,
     pricingTiers: pricingTiers.length > 0 ? pricingTiers : undefined,
   });
 
