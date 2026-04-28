@@ -320,11 +320,17 @@ export default function ComplexCalculator({
     }
     if (step === 2) {
       if (!address || address.length < 10) {
-        setFieldErrors({ address: "Please enter a complete shipping address" });
+        setFieldErrors({ address: "Please enter a complete shipping address (at least 10 characters)" });
+        if (typeof window !== 'undefined') {
+          setTimeout(() => calcRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+        }
         return false;
       }
       if (deliveryOption === "rush" && !rushDate) {
-        setFieldErrors({ address: "Please select a rush delivery date" });
+        setFieldErrors({ address: "Please select a rush delivery date above" });
+        if (typeof window !== 'undefined') {
+          setTimeout(() => calcRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+        }
         return false;
       }
       setFieldErrors({});
@@ -1250,8 +1256,11 @@ export default function ComplexCalculator({
                 onChange={(e) => setAddress(e.target.value)}
                 rows={2}
                 className="w-full rounded-[12px] px-5 py-3 font-bold text-base text-black outline-none focus:border-black transition-all resize-none"
-                style={{ border: '2px solid #9CA3AF' }}
+                style={{ border: fieldErrors.address ? '2px solid #f87171' : '2px solid #9CA3AF', background: fieldErrors.address ? '#fef2f2' : '#fff' }}
               />
+              {fieldErrors.address && (
+                <p className="text-red-500 text-[12px] mt-2 font-semibold">⚠ {fieldErrors.address}</p>
+              )}
             </div>
 
             {/* SPECIAL INSTRUCTIONS */}
