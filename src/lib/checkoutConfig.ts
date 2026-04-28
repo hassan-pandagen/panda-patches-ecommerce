@@ -14,8 +14,19 @@ export const ALLOWED_ORIGINS = [
   'https://panda-patches-ecommerce-7w28lefz.vercel.app',
 ] as const;
 
-/** Economy delivery gives a 10% discount. */
-export const ECONOMY_DISCOUNT_RATE = 0.9;
+/** Economy delivery gives a 5% discount. */
+export const ECONOMY_DISCOUNT_RATE = 0.95;
+
+/** Velcro backing: +$0.25 per piece. */
+export const VELCRO_PER_PIECE_FEE = 0.25;
+
+/** Rush surcharge bands (mirrored from usePriceCalculation hook). */
+export function getRushSurcharge(quantity: number): number {
+  if (quantity <= 50) return 100;
+  if (quantity <= 250) return 150;
+  if (quantity <= 1000) return 200;
+  return 300;
+}
 
 /**
  * Returns the base URL for Stripe/PayPal success and cancel redirects.
@@ -46,4 +57,14 @@ export function applyEconomyDiscount(price: number, deliveryOption: string): num
     return Math.round(price * ECONOMY_DISCOUNT_RATE * 100) / 100;
   }
   return price;
+}
+
+/**
+ * Applies velcro backing pricing: adds a per-piece fee on top of the
+ * base patch price. No-op for any other backing.
+ */
+export function applyVelcroPricing(price: number, backing: string | undefined, quantity: number): number {
+  if (backing !== 'velcro' || price <= 0 || quantity <= 0) return price;
+  const adjusted = price + VELCRO_PER_PIECE_FEE * quantity;
+  return Math.round(adjusted * 100) / 100;
 }

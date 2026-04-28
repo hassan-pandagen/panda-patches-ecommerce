@@ -43,6 +43,7 @@ const QuoteSchema = z.object({
     first_seen_at: z.string().optional(),
   }).optional(),
   eventId: z.string().max(100).optional(),
+  internalOnly: z.boolean().optional(),
 });
 
 function esc(s: string) {
@@ -96,7 +97,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const { customer, details, artworkUrl, artworkUrl2, isBulkOrder, pageUrl, basePrice, attribution: bodyAttribution, eventId: clientEventId } = validationResult.data;
+    const { customer, details, artworkUrl, artworkUrl2, isBulkOrder, pageUrl, basePrice, attribution: bodyAttribution, eventId: clientEventId, internalOnly } = validationResult.data;
 
     const attribution = getAttributionFromRequest(req, bodyAttribution);
 
@@ -161,8 +162,12 @@ export async function POST(req: Request) {
 </body></html>`,
         });
 
-        // Customer email: different behavior based on quote type
-        if (basePrice != null) {
+        // Customer email: skipped entirely if internalOnly flag set
+        // (used by ComplexCalculator's "Check Best Prices" auto-capture
+        // to record the lead without prematurely emailing the price).
+        if (internalOnly) {
+          // skip customer email
+        } else if (basePrice != null) {
           // ComplexCalculator quote (has price) — send full branded quote with price
           try {
             await mailClient.sendMail({
@@ -292,7 +297,7 @@ export async function POST(req: Request) {
         lead_source: isBulkOrder ? 'BULK_ORDER_FORM' : 'WEBSITE_FORM',
         page_url: pageUrl || null,
         quote_amount: basePrice ?? null,
-        email_sent_at: (token && basePrice != null) ? new Date().toISOString() : null,
+        email_sent_at: (token && basePrice != null && !internalOnly) ? new Date().toISOString() : null,
         attribution,
       });
 

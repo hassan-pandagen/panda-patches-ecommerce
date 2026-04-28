@@ -3,7 +3,7 @@ import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { calculatePatchPrice } from '@/lib/pricingCalculator';
-import { resolveBaseUrl, applyEconomyDiscount } from '@/lib/checkoutConfig';
+import { resolveBaseUrl, applyEconomyDiscount, applyVelcroPricing, getRushSurcharge } from '@/lib/checkoutConfig';
 
 // 1. Init Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -90,8 +90,12 @@ export async function POST(req: Request) {
       );
     }
 
-    // Apply economy discount if applicable (10% off)
-    const finalPrice = applyEconomyDiscount(priceResult.totalPrice, deliveryOption);
+    // Apply velcro pricing ($0.25/pc), then economy discount (5% off),
+    // then add rush surcharge as a separate line item below.
+    const velcroAdjusted = applyVelcroPricing(priceResult.totalPrice, backing, quantity);
+    const patchSubtotal = applyEconomyDiscount(velcroAdjusted, deliveryOption);
+    const rushSurcharge = deliveryOption === 'rush' ? getRushSurcharge(quantity) : 0;
+    const finalPrice = Math.round((patchSubtotal + rushSurcharge) * 100) / 100;
 
     // Validate origin to prevent open redirect attacks
     const origin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/');
@@ -103,7 +107,7 @@ export async function POST(req: Request) {
       addons?.length ? `Add-ons: ${addons.join(', ')}` : null,
       color ? `Color/Border: ${color}` : null,
       deliveryOption === 'rush' && rushDate ? `Rush Date: ${rushDate}` : null,
-      deliveryOption === 'economy' ? 'Economy Delivery (16-18 business days, 10% discount)' : null,
+      deliveryOption === 'economy' ? 'Economy Delivery (16-18 business days, 5% discount)' : null,
     ].filter(Boolean);
 
     // Determine Stripe payment method types based on selection
@@ -122,21 +126,37 @@ export async function POST(req: Request) {
     }
 
     // C. Create Stripe Checkout Session
+    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: `${productName} (${width}" x ${height}")`,
+            description: `${backing ? `Backing: ${backing} | ` : ''}Qty: ${quantity}`,
+          },
+          unit_amount: Math.round((patchSubtotal / quantity) * 100),
+        },
+        quantity: quantity,
+      },
+    ];
+
+    if (rushSurcharge > 0) {
+      lineItems.push({
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'Rush Production',
+            description: rushDate ? `Requested by ${rushDate}` : 'Expedited turnaround',
+          },
+          unit_amount: Math.round(rushSurcharge * 100),
+        },
+        quantity: 1,
+      });
+    }
+
     const sessionConfig: Stripe.Checkout.SessionCreateParams = {
       payment_method_types: paymentMethodTypes,
-      line_items: [
-        {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: `${productName} (${width}" x ${height}")`,
-              description: `${backing ? `Backing: ${backing} | ` : ''}Qty: ${quantity}`,
-            },
-            unit_amount: Math.round((finalPrice / quantity) * 100),
-          },
-          quantity: quantity,
-        },
-      ],
+      line_items: lineItems,
       mode: 'payment',
       success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/error-payment`,

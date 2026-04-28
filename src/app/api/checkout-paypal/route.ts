@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { calculatePatchPrice } from '@/lib/pricingCalculator';
 import { PayPalClient } from '@/lib/paypal';
-import { resolveBaseUrl, applyEconomyDiscount } from '@/lib/checkoutConfig';
+import { resolveBaseUrl, applyEconomyDiscount, applyVelcroPricing, getRushSurcharge } from '@/lib/checkoutConfig';
 
 // Init Supabase — use service role key server-side to bypass RLS
 const supabase = createClient(
@@ -81,8 +81,12 @@ export async function POST(req: Request) {
       );
     }
 
-    // Apply economy discount if applicable (10% off)
-    const finalPrice = applyEconomyDiscount(priceResult.totalPrice, deliveryOption);
+    // Apply velcro pricing ($0.25/pc), then economy discount (5% off),
+    // then add rush surcharge.
+    const velcroAdjusted = applyVelcroPricing(priceResult.totalPrice, backing, quantity);
+    const patchSubtotal = applyEconomyDiscount(velcroAdjusted, deliveryOption);
+    const rushSurcharge = deliveryOption === 'rush' ? getRushSurcharge(quantity) : 0;
+    const finalPrice = Math.round((patchSubtotal + rushSurcharge) * 100) / 100;
 
     // Validate origin to prevent open redirect attacks
     const origin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/');
@@ -94,7 +98,7 @@ export async function POST(req: Request) {
       addons?.length ? `Add-ons: ${addons.join(', ')}` : null,
       color ? `Color/Border: ${color}` : null,
       deliveryOption === 'rush' && rushDate ? `Rush Date: ${rushDate}` : null,
-      deliveryOption === 'economy' ? 'Economy Delivery (16-18 business days, 10% discount)' : null,
+      deliveryOption === 'economy' ? 'Economy Delivery (16-18 business days, 5% discount)' : null,
     ].filter(Boolean);
 
     // Build order data to pass through to capture route (no Supabase insert yet)

@@ -146,6 +146,8 @@ export default function ComplexCalculator({
   const shapeDropdownRef = useRef<HTMLDivElement>(null);
   const borderDropdownRef = useRef<HTMLDivElement>(null);
   const formLoadedAt = useRef(Date.now());
+  const leadFired = useRef(false);
+  const leadEventIdRef = useRef<string | null>(null);
   const [width, setWidth] = useState(3);
   const [height, setHeight] = useState(3);
   const [widthInput, setWidthInput] = useState('3');
@@ -294,8 +296,8 @@ export default function ComplexCalculator({
 
 
   // Price calculation (hook)
-  const { priceResult, upsellTiers, discount, originalPrice, discountAmount, basePrice, unitPrice, pricePulse, rushSurcharge } = usePriceCalculation({
-    productType, width, height, quantity, deliveryOption,
+  const { priceResult, upsellTiers, discount, originalPrice, discountAmount, basePrice, unitPrice, pricePulse, rushSurcharge, velcroFee } = usePriceCalculation({
+    productType, width, height, quantity, deliveryOption, backing,
   });
 
   // Step validation
@@ -331,35 +333,19 @@ export default function ComplexCalculator({
     return true;
   };
 
-  const handleNext = () => {
-    if (!validateStep(currentStep)) return;
+  const submitLead = async (opts: { internalOnly: boolean }): Promise<boolean> => {
+    if (!email || !name) return false;
+    // Silent auto-fire only runs once; the explicit "GET FREE QUOTE" click
+    // bypasses this guard so the customer can still receive the email even
+    // after the silent capture happened.
+    if (opts.internalOnly && leadFired.current) return true;
+    leadFired.current = true;
 
-    setCurrentStep(currentStep + 1);
-    calcRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
-  const handleBack = () => {
-    setCurrentStep(currentStep - 1);
-    calcRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
-  const handleDirectQuote = async () => {
-    // Bot speed check — humans take at least 3 seconds to fill a form
-    if (Date.now() - formLoadedAt.current < 3000) {
-      setQuoteSent(true);
-      setTimeout(() => setQuoteSent(false), 5000);
-      return;
-    }
-
-    if (!email) {
-      setFieldErrors({ email: "Email is required" });
-      setCurrentStep(1);
-      calcRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      return;
-    }
-    setQuoteSending(true);
     const attribution = getStoredAttribution();
-    const eventId = generateEventId('lead');
+    if (!leadEventIdRef.current) {
+      leadEventIdRef.current = generateEventId('lead');
+    }
+    const eventId = leadEventIdRef.current;
 
     try {
       if (typeof (window as any).fbq === 'function') {
@@ -392,26 +378,63 @@ export default function ComplexCalculator({
           basePrice: priceResult.error ? undefined : basePrice,
           attribution,
           eventId,
+          internalOnly: opts.internalOnly,
         }),
       });
-      if (res.ok) {
-        setQuoteSent(true);
-        setTimeout(() => setQuoteSent(false), 15000);
-        if (typeof window !== 'undefined' && (window as any).gtag) {
-          (window as any).gtag('event', 'conversion', {
-            send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
-            value: 50.0,
-            currency: 'USD',
-          });
-        }
-      } else {
-        setQuoteError("Failed to send quote. Please try again.");
-      }
+      return res.ok;
     } catch {
-      setQuoteError("Something went wrong. Please try again.");
-    } finally {
-      setQuoteSending(false);
+      return false;
     }
+  };
+
+  const handleNext = () => {
+    if (!validateStep(currentStep)) return;
+
+    if (currentStep === 1 && Date.now() - formLoadedAt.current >= 3000) {
+      submitLead({ internalOnly: true }).catch(() => {});
+    }
+
+    setCurrentStep(currentStep + 1);
+    calcRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const handleBack = () => {
+    setCurrentStep(currentStep - 1);
+    calcRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const handleDirectQuote = async () => {
+    // Bot speed check — humans take at least 3 seconds to fill a form
+    if (Date.now() - formLoadedAt.current < 3000) {
+      setQuoteSent(true);
+      setTimeout(() => setQuoteSent(false), 5000);
+      return;
+    }
+
+    if (!email) {
+      setFieldErrors({ email: "Email is required" });
+      setCurrentStep(1);
+      calcRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    setQuoteSending(true);
+
+    const ok = await submitLead({ internalOnly: false });
+
+    if (ok) {
+      setQuoteSent(true);
+      setTimeout(() => setQuoteSent(false), 15000);
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'conversion', {
+          send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
+          value: 50.0,
+          currency: 'USD',
+        });
+      }
+    } else {
+      setQuoteError("Failed to send quote. Please try again.");
+    }
+    setQuoteSending(false);
   };
 
   const handleCheckout = async (e: any) => {
@@ -1038,6 +1061,14 @@ export default function ComplexCalculator({
                       )}
                     </div>
                   </div>
+                  {velcroFee > 0 && (
+                    <div className="pt-3 border-t border-gray-200">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600 font-medium">Velcro Backing (+$0.25/pc):</span>
+                        <span className="text-red-600 font-black">+${velcroFee.toFixed(2)}</span>
+                      </div>
+                    </div>
+                  )}
                   {discount > 0 && (
                     <div className="pt-3 border-t border-gray-200">
                       <div className="flex justify-between text-sm">
@@ -1092,7 +1123,7 @@ export default function ComplexCalculator({
                   style={{ border: deliveryOption === "economy" ? '2px solid #000' : '2px solid #9CA3AF', background: deliveryOption === "economy" ? '#000' : '#fff' }}
                 >
                   <p className={`text-base font-black leading-tight ${deliveryOption === "economy" ? 'text-white' : 'text-black'}`}>Economy</p>
-                  <span className="inline-block bg-panda-yellow text-black text-[10px] font-black px-2 py-0.5 rounded-full mt-1">10% OFF</span>
+                  <span className="inline-block bg-panda-yellow text-black text-[10px] font-black px-2 py-0.5 rounded-full mt-1">5% OFF</span>
                   <p className={`text-[11px] font-medium mt-0.5 ${deliveryOption === "economy" ? 'text-gray-300' : 'text-gray-400'}`}>16-18 days</p>
                 </div>
               </div>

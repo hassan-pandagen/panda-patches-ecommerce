@@ -3,6 +3,10 @@
  * NOW STARTING FROM 1 PATCH!
  */
 
+// Global 10% price uplift applied to every unit price returned by this module.
+// Set to 1.0 to revert to the raw table values.
+const PRICE_MULTIPLIER = 1.10;
+
 // Embroidery Pricing
 // Qty breaks: 1-9 (graduated: $80 flat at 1pc, $100 total at 2pc, then linear toward 10pc total),
 //             then 10, 25, 50, 100, 200, 500, 1000, 2500, 5000
@@ -284,8 +288,9 @@ export function calculatePatchPrice(
 ): PriceResult {
   const pricing = getPricingTable(productName);
 
-  // Calculate average size (round down to match industry standard for non-square patches)
-  const avgSize = Math.floor((width + height) / 2);
+  // Calculate average size — round UP so partial-inch dimensions
+  // (e.g. 3.5") are billed at the next tier (size 4).
+  const avgSize = Math.ceil((width + height) / 2);
 
   // Bound size to available range
   const lookupSize = Math.max(pricing.minSize, Math.min(pricing.maxSize, avgSize));
@@ -309,8 +314,8 @@ export function calculatePatchPrice(
     }
   }
 
-  // Get unit price
-  const unitPrice = pricing.prices[lookupSize][tierIndex];
+  // Get unit price (apply global 10% uplift)
+  const unitPrice = pricing.prices[lookupSize][tierIndex] * PRICE_MULTIPLIER;
   const totalPrice = unitPrice * quantity;
 
   return {
@@ -337,7 +342,7 @@ export function getUpsellTiers(
   currentQuantity: number
 ): UpsellTier[] {
   const pricing = getPricingTable(productName);
-  const avgSize = Math.floor((width + height) / 2);
+  const avgSize = Math.ceil((width + height) / 2);
   const lookupSize = Math.max(pricing.minSize, Math.min(pricing.maxSize, avgSize));
 
   // Find current tier index
@@ -350,13 +355,13 @@ export function getUpsellTiers(
 
   if (currentTierIndex < 0) return [];
 
-  const currentUnitPrice = pricing.prices[lookupSize][currentTierIndex];
+  const currentUnitPrice = pricing.prices[lookupSize][currentTierIndex] * PRICE_MULTIPLIER;
 
   // Get next 2 tiers
   const upsells: UpsellTier[] = [];
   for (let i = currentTierIndex + 1; i < pricing.qtyBreaks.length && upsells.length < 2; i++) {
     const nextQty = pricing.qtyBreaks[i];
-    const nextUnitPrice = pricing.prices[lookupSize][i];
+    const nextUnitPrice = pricing.prices[lookupSize][i] * PRICE_MULTIPLIER;
     const savingsPercent = Math.round(((currentUnitPrice - nextUnitPrice) / currentUnitPrice) * 100);
 
     if (savingsPercent > 0) {
@@ -385,6 +390,6 @@ export function getSchemaPricingTiers(productName: string): { minQuantity: numbe
     .filter(qty => pricing.qtyBreaks.includes(qty))
     .map(qty => {
       const tierIndex = pricing.qtyBreaks.indexOf(qty);
-      return { minQuantity: qty, unitPrice: pricing.prices[lookupSize][tierIndex] };
+      return { minQuantity: qty, unitPrice: pricing.prices[lookupSize][tierIndex] * PRICE_MULTIPLIER };
     });
 }

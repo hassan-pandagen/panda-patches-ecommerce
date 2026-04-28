@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { calculatePatchPrice, getUpsellTiers } from "@/lib/pricingCalculator";
+import { applyVelcroPricing, getRushSurcharge } from "@/lib/checkoutConfig";
 
 interface UsePriceCalculationProps {
   productType: string;
@@ -9,13 +10,7 @@ interface UsePriceCalculationProps {
   height: number;
   quantity: number;
   deliveryOption: "rush" | "standard" | "economy";
-}
-
-function getRushSurcharge(quantity: number): number {
-  if (quantity <= 50) return 100;
-  if (quantity <= 250) return 150;
-  if (quantity <= 1000) return 200;
-  return 300;
+  backing?: string;
 }
 
 export function usePriceCalculation({
@@ -24,6 +19,7 @@ export function usePriceCalculation({
   height,
   quantity,
   deliveryOption,
+  backing,
 }: UsePriceCalculationProps) {
   const [pricePulse, setPricePulse] = useState(false);
 
@@ -39,14 +35,17 @@ export function usePriceCalculation({
     setPricePulse(true);
     const timer = setTimeout(() => setPricePulse(false), 300);
     return () => clearTimeout(timer);
-  }, [width, height, quantity, deliveryOption]);
+  }, [width, height, quantity, deliveryOption, backing]);
 
   const rushSurcharge = deliveryOption === "rush" ? getRushSurcharge(quantity) : 0;
-  const discount = deliveryOption === "economy" ? 0.1 : 0;
-  const originalPrice = priceResult.totalPrice;
-  const discountAmount = originalPrice * discount;
-  const basePrice = originalPrice - discountAmount + rushSurcharge;
-  const unitPrice = priceResult.unitPrice;
+  const discount = deliveryOption === "economy" ? 0.05 : 0;
 
-  return { priceResult, upsellTiers, discount, originalPrice, discountAmount, basePrice, unitPrice, pricePulse, rushSurcharge };
+  const baseFromCalculator = priceResult.totalPrice;
+  const originalPrice = applyVelcroPricing(baseFromCalculator, backing, quantity);
+  const velcroFee = Math.round((originalPrice - baseFromCalculator) * 100) / 100;
+  const discountAmount = Math.round(originalPrice * discount * 100) / 100;
+  const basePrice = Math.round((originalPrice - discountAmount + rushSurcharge) * 100) / 100;
+  const unitPrice = quantity > 0 ? originalPrice / quantity : priceResult.unitPrice;
+
+  return { priceResult, upsellTiers, discount, originalPrice, discountAmount, basePrice, unitPrice, pricePulse, rushSurcharge, velcroFee };
 }
