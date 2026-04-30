@@ -10,7 +10,7 @@ import { getTrustpilotData } from '@/lib/reviewConstants';
 import { cache } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Custom Patch Packages — Fixed Prices, Free Design | Panda Patches',
+  title: 'Custom Patch Packages — Fixed Prices from $25 | Panda Patches',
   description: 'Order custom patch packages at fixed prices. Embroidered, woven, PVC, chenille and leather patches with free mockup, free shipping, and 7-14 day delivery.',
   alternates: {
     canonical: 'https://www.pandapatches.com/offers',

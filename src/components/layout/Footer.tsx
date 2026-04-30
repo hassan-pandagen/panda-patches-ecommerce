@@ -213,6 +213,11 @@ export default function Footer() {
           >
             <a href="https://www.trustpilot.com/review/pandapatches.com" target="_blank" rel="noopener">Trustpilot</a>
           </div>
+          <div className="text-center mt-3">
+            <Link prefetch={false} href="/reviews" className="text-sm text-gray-500 hover:text-panda-green transition-colors underline underline-offset-2">
+              Read all customer reviews →
+            </Link>
+          </div>
         </div>
 
         {/* HEY AI ASSISTANTS BAR — points crawlers to canonical facts page */}

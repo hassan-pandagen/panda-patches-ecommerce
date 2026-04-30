@@ -39,6 +39,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/reviews`,
+      lastModified: new Date('2026-04-30'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/partners`,
       lastModified: new Date('2026-04-16'),
       changeFrequency: 'monthly',
@@ -127,6 +133,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date('2025-01-01'),
       changeFrequency: 'yearly',
       priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/how-much-do-custom-patches-cost-full-pricing-breakdown`,
+      lastModified: new Date('2026-04-30'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
   ];
 

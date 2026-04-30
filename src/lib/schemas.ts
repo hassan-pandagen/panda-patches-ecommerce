@@ -580,8 +580,11 @@ export function generateLocalBusinessSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": "https://www.pandapatches.com/#localbusiness",
     "name": "Panda Patches",
-    "image": "https://www.pandapatches.com/assets/logo-panda.svg",
+    "legalName": "MC Patches LLC",
+    "image": "https://www.pandapatches.com/assets/og-image.png",
+    "logo": "https://www.pandapatches.com/assets/logo-panda.svg",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Quail Feather Ct",
@@ -592,8 +595,8 @@ export function generateLocalBusinessSchema() {
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 29.6188,
-      "longitude": -95.5354
+      "latitude": 29.6186,
+      "longitude": -95.5377
     },
     "telephone": "+1-302-250-4340",
     "email": "admin@pandapatches.com",
@@ -604,6 +607,11 @@ export function generateLocalBusinessSchema() {
       "name": "Imran Raza",
       "sameAs": "https://www.linkedin.com/in/imran-raza-ladhani/"
     },
+    "sameAs": [
+      "https://www.trustpilot.com/review/pandapatches.com",
+      "https://www.instagram.com/pandapatchesofficial/",
+      "https://www.linkedin.com/in/imran-raza-ladhani/"
+    ],
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": TRUSTPILOT_RATING,
@@ -611,20 +619,14 @@ export function generateLocalBusinessSchema() {
       "bestRating": "5",
       "worstRating": "1"
     },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-      ],
-      "opens": "11:00",
-      "closes": "19:00"
-    }
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    ]
   };
 }
 

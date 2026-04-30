@@ -47,7 +47,7 @@ function PayPalSuccessContent() {
           setStatus('success');
           setMessage('Payment successful! Your order has been confirmed.');
           setTimeout(() => {
-            router.push('/success');
+            router.push(`/success?paypal_order_id=${orderId}`);
           }, 2000);
         } else {
           setStatus('error');

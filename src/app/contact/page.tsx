@@ -1,12 +1,13 @@
 import { Metadata } from 'next';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
+import { generateSchemaScript, generateBreadcrumbSchema, generateLocalBusinessSchema } from "@/lib/schemas";
 
 const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "Home", url: "https://www.pandapatches.com" },
   { name: "Contact", url: "https://www.pandapatches.com/contact" },
 ]);
+const localBusinessSchema = generateLocalBusinessSchema();
 import ContactHero from "@/components/contact/ContactHero";
 import MapSection from "@/components/contact/MapSection";
 import Promises from "@/components/home/Promises";
@@ -47,6 +48,10 @@ export default function ContactPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(localBusinessSchema)}
       />
       <Navbar />
       

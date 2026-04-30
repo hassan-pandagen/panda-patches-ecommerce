@@ -323,7 +323,7 @@ export async function POST(req: Request) {
         const [firstName, ...lastParts] = validName.trim().split(/\s+/);
         sendMetaEvent({
           eventName: 'Purchase',
-          eventId: `${orderIdBase}_purchase`,
+          eventId: `${session.id}_purchase`,
           actionSource: 'website',
           email: validEmail,
           phone: meta.customer_phone || null,

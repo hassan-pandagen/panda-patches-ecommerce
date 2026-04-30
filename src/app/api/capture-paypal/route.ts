@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { PayPalClient } from '@/lib/paypal';
 import { SendMailClient } from 'zeptomail';
+import { sendMetaEvent } from '@/lib/metaCapi';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -306,6 +307,26 @@ export async function POST(req: Request) {
           .delete()
           .eq('customer_email', customerEmail)
           .eq('lead_source', 'WEBSITE_LEAD');
+      }
+
+      // Fire Meta CAPI Purchase event for PayPal orders (non-blocking)
+      if (orderData?.customer_email) {
+        const [firstName, ...lastParts] = String(orderData.customer_name || '').trim().split(/\s+/);
+        sendMetaEvent({
+          eventName: 'Purchase',
+          eventId: `${orderId}_purchase`,
+          actionSource: 'website',
+          email: orderData.customer_email,
+          phone: orderData.customer_phone || null,
+          firstName,
+          lastName: lastParts.join(' ') || undefined,
+          value: amountPaid,
+          currency: 'USD',
+          orderId,
+          numItems: orderData.quantity || undefined,
+          contentName: orderData.product_name || 'Custom Patches Order',
+          contentCategory: 'Custom Patches',
+        }).catch((err) => console.error('[META CAPI] PayPal Purchase send failed:', err));
       }
 
       return NextResponse.json({
