@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { calculatePatchPrice } from '@/lib/pricingCalculator';
 import { resolveBaseUrl, applyEconomyDiscount, applyVelcroPricing, getRushSurcharge } from '@/lib/checkoutConfig';
+import { sendMetaEvent } from '@/lib/metaCapi';
 
 // 1. Init Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -39,6 +40,7 @@ const CheckoutSchema = z.object({
   specialInstructions: z.string().optional().or(z.null()),
   paymentMethod: z.enum(['card', 'cashapp', 'afterpay', 'applepay', 'klarna']).optional(),
   attribution: z.record(z.string(), z.string()).optional(),
+  initiateCheckoutEventId: z.string().max(120).optional(),
 });
 
 export async function POST(req: Request) {
@@ -78,6 +80,7 @@ export async function POST(req: Request) {
       specialInstructions,
       paymentMethod = 'card',
       attribution,
+      initiateCheckoutEventId,
     } = validationResult.data;
 
     // SECURITY: Calculate price server-side to prevent manipulation
@@ -158,7 +161,7 @@ export async function POST(req: Request) {
       payment_method_types: paymentMethodTypes,
       line_items: lineItems,
       mode: 'payment',
-      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}&value=${finalPrice}`,
       cancel_url: `${baseUrl}/error-payment`,
       metadata: {
         customer_name: customer.name,
@@ -186,6 +189,64 @@ export async function POST(req: Request) {
     }
 
     const session = await stripe.checkout.sessions.create(sessionConfig);
+
+    // Track abandoned cart — upsert checkout_attempts row so the cron can email
+    // the customer if no Purchase webhook arrives within 30 minutes.
+    await supabase
+      .from('checkout_attempts')
+      .upsert({
+        customer_email: customer.email,
+        customer_name: customer.name,
+        customer_phone: customer.phone || null,
+        product_name: productName,
+        quantity,
+        design_size: `${width}" x ${height}"`,
+        backing: backing || null,
+        delivery_option: deliveryOption,
+        cart_value: finalPrice,
+        artwork_url: artworkUrl || null,
+        payment_provider: 'stripe',
+        provider_session_id: session.id,
+        return_url: `${baseUrl}/custom-patches`,
+        fbp: attribution?.fbp || null,
+        fbc: attribution?.fbc || null,
+        attribution: attribution || null,
+        status: 'PENDING',
+        initiated_at: new Date().toISOString(),
+      }, { onConflict: 'provider_session_id' })
+      .then(({ error }) => {
+        if (error) console.error('checkout_attempts upsert (stripe):', error);
+      });
+
+    // Fire server CAPI InitiateCheckout (mirrors browser fbq with same eventId for dedup)
+    if (initiateCheckoutEventId) {
+      const ipHeader = (req.headers.get('x-forwarded-for') || '').split(',')[0].trim() || undefined;
+      const ua = req.headers.get('user-agent') || undefined;
+      const refererUrl = req.headers.get('referer') || undefined;
+      const [icFirstName, ...icLastParts] = (customer.name || '').trim().split(/\s+/);
+
+      sendMetaEvent({
+        eventName: 'InitiateCheckout',
+        eventId: initiateCheckoutEventId,
+        actionSource: 'website',
+        eventSourceUrl: refererUrl,
+        email: customer.email,
+        phone: customer.phone || null,
+        firstName: icFirstName,
+        lastName: icLastParts.join(' ') || null,
+        attribution: {
+          ...(attribution || {}),
+          client_ip: ipHeader,
+          client_ua: ua,
+        },
+        value: finalPrice,
+        currency: 'USD',
+        contentName: productName,
+        contentCategory: 'Custom Patches',
+        numItems: quantity,
+        orderId: session.id,
+      }).catch((err) => console.error('[META CAPI] InitiateCheckout (Stripe) send failed:', err));
+    }
 
     return NextResponse.json({ url: session.url });
 

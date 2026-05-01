@@ -338,6 +338,18 @@ export async function POST(req: Request) {
           contentCategory: 'Custom Patches',
         }).catch((err) => console.error('[META CAPI] Purchase send failed (non-blocking):', err));
 
+        // Mark abandoned-cart row as purchased so the cron skips it
+        await supabase
+          .from('checkout_attempts')
+          .update({
+            status: 'PURCHASED',
+            purchased_at: paidAtIso,
+          })
+          .eq('provider_session_id', session.id)
+          .then(({ error }) => {
+            if (error) console.error('checkout_attempts mark purchased (stripe):', error);
+          });
+
         // Send email notifications (non-blocking)
         sendOrderEmails(meta, amountPaid, session.id).catch(e =>
           console.error('Order email send error:', e)

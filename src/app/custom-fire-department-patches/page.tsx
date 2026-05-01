@@ -18,36 +18,32 @@ import { client } from "@/lib/sanity";
 // Fire Department-specific FAQs
 const fireFAQs = [
   {
-    question: "What types of custom fire department patches do you make?",
-    answer: "We produce all types of fire department patches: station patches, department badges, rank insignia, memorial patches, EMS patches, ladder company patches, and custom morale patches. Available in embroidered, PVC, and woven formats to match your department's specific requirements."
+    question: "Can you rush memorial patches for a line-of-duty death?",
+    answer: "Yes, and we treat LODD memorial patches as our absolute highest priority. Send us the firefighter's name, badge number, station, and any design references and we start your mockup within hours. Rush production fulfills in 4-7 business days. We understand what these patches mean to a department and treat every detail accordingly."
   },
   {
-    question: "What materials are used for firefighter patches?",
-    answer: "Our fire department patches are made from military-grade embroidery thread on twill or canvas backing, durable PVC rubber, or tight-woven polyester. All materials are selected for heat resistance, colorfastness, and long-term durability through repeated washing and heavy field use."
+    question: "Do your patches survive fire station industrial washers?",
+    answer: "Yes. We use 100% polyester embroidery thread, which is rated for industrial wash temperatures (160-180 degrees Fahrenheit) and repeated high-heat cycles. Rayon thread, used by cheaper suppliers, degrades and fades under those conditions. We do not use rayon. Stitched Velcro (not glued) also survives repeated gear swaps without adhesive failure."
   },
   {
-    question: "Can you replicate our exact department badge or insignia?",
-    answer: "Yes. We specialize in precise replication of fire department badges, shields, and insignia. Send us your badge artwork, a high-resolution photo, or vector file, and our design team will create a free digital mockup for your approval before production begins."
+    question: "What backing works for station uniforms vs. turnout gear bags?",
+    answer: "Sew-on for Class A and Class B station uniforms — permanent, professional finish for dress wear. Velcro for gear bags, tactical vests, and turnout gear where patches need to be swapped or removed. Iron-on is appropriate for station t-shirts and casual training apparel, but not for active firefighting gear or structural turnout coats."
   },
   {
-    question: "What backing options work best for fire department uniforms?",
-    answer: "For Class A and Class B uniforms, sew-on backing provides the most professional, permanent finish. Velcro backing is ideal for turnout gear and tactical vests where patches need to be swapped. Iron-on backing works well for casual uniform shirts and training apparel."
+    question: "Can you replicate our department seal and Maltese cross exactly?",
+    answer: "Yes. Fire department seals, Maltese crosses, and bugle rank insignia require precise reproduction that most general patch suppliers get wrong. Send us your official artwork, a vector file, or a high-resolution photo of your badge and our design team matches every detail. You review a free digital mockup before production starts, with unlimited revisions."
   },
   {
-    question: "Is there a minimum order for fire department patches?",
-    answer: "No minimum order required. We accommodate small station orders of 10-25 patches and large department-wide orders of 5,000+ pieces with the same professional quality. Volume pricing applies at 100+, 500+, and 1,000+ pieces."
+    question: "Do you work with IAFF local union chapter orders?",
+    answer: "Yes. We work with IAFF locals for union jacket patches, event patches, chapter identification, and charity fundraiser runs. Union orders typically run 50-200 pieces and we price them competitively. We can also provide formal invoicing for union treasurers."
   },
   {
-    question: "Do you offer bulk pricing for department-wide orders?",
-    answer: "Yes. We provide volume pricing for orders of 100+ pieces with additional discounts at 500+ and 1,000+. County-wide rollouts covering multiple stations receive bulk pricing across the entire order even when each station has a different design."
+    question: "How do I order rank patches with the right number of bugles?",
+    answer: "Just specify your rank in the design notes: one bugle for lieutenant, two for captain, three for battalion chief, four for deputy chief, five for fire chief. Gold vs. silver bugle color also differs by department, so include your department standard and we match it exactly in the mockup. We have produced rank patches for every rank in the fire service."
   },
   {
-    question: "What is your turnaround time for fire department patches?",
-    answer: "Standard production is 10-14 business days after design approval. Rush production (7 business days) is available for urgent departmental needs. All orders include a free digital mockup reviewed and approved before production starts."
-  },
-  {
-    question: "Can you create memorial or commemorative patches for our department?",
-    answer: "Absolutely. We regularly produce Line of Duty memorial patches, anniversary patches, retirement patches, and special event commemorative patches. We treat these orders with the highest level of care and priority, understanding the significance they carry for your department."
+    question: "Can you match our existing patches for a reorder?",
+    answer: "Yes. Bring a sample of your current patch or your previous order number and we reproduce thread colors from the same palette. Consistency matters when new patches sit next to existing ones on a uniform, and we archive your color specs for 12 months. Reorders typically ship within 10-14 business days."
   },
 ];
 
@@ -97,8 +93,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
   return {
-    title: "Fire Department Patches - Nomex & Heat Resistant",
-    description: "Custom fire department patches, firefighter badges, and station patches. Embroidered, PVC, and Nomex options. Trusted by fire departments nationwide. Volume pricing available.",
+    title: "Custom Fire Department Patches | Memorial, Station & Rank | Panda Patches",
+    description: "Custom fire department patches that survive industrial washing. Maltese cross, rank insignia, LODD memorial rush in 72 hrs, IAFF union orders. No minimum. Free mockup.",
     keywords: [
       "custom fire department patches",
       "firefighter patches",

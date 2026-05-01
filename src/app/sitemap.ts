@@ -17,7 +17,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "locations": *[_type == "locationPage" && !(_id in path("drafts.**"))]{ "slug": slug.current, _updatedAt },
     "patchStyles": *[_type == "patchStyle" && !(_id in path("drafts.**"))]{ "slug": slug.current, _updatedAt },
     "assets": *[_type == "assetResource" && !(_id in path("drafts.**"))]{ "slug": slug.current, _updatedAt },
-    "ironOn": *[_type == "ironOn" && !(_id in path("drafts.**"))]{ "slug": slug.current, _updatedAt }
+    "ironOn": *[_type == "ironOn" && !(_id in path("drafts.**"))]{ "slug": slug.current, _updatedAt },
+    "categoryPages": *[_type == "categoryPage" && !(_id in path("drafts.**"))]{ "slug": slug.current, _updatedAt }
   }`;
 
   const data = await client.fetch(query);
@@ -197,6 +198,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
+  const categoryPages: MetadataRoute.Sitemap = (data.categoryPages || []).map((cat: SanitySlugItem) => ({
+    url: `${baseUrl}/${cat.slug}`,
+    lastModified: new Date(cat._updatedAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
+
   // Combine all pages
   return [
     ...staticPages,
@@ -207,5 +215,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...patchStylePages,
     ...assetPages,
     ...ironOnPages,
+    ...categoryPages,
   ];
 }

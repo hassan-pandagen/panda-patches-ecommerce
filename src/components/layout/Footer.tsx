@@ -100,14 +100,28 @@ export default function Footer() {
              <div className="space-y-2">
                <h3 className="font-bold text-lg text-panda-dark text-left">Our Payment modes:</h3>
                <div className="relative w-full h-8">
-                  <Image 
-                    src="/assets/payment-methods.png" 
-                    alt="Visa Mastercard Paypal" 
-                    width={250} 
-                    height={30} 
-                    className="object-contain object-left" 
+                  <Image
+                    src="/assets/payment-methods.png"
+                    alt="Visa Mastercard Paypal"
+                    width={250}
+                    height={30}
+                    className="object-contain object-left"
                   />
                </div>
+             </div>
+
+             {/* COMPANY / QUICK LINKS */}
+             <div className="space-y-2">
+               <h3 className="font-bold text-lg text-panda-dark text-left">Company</h3>
+               <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-2">
+                 <li><Link prefetch={false} href="/about">About Us</Link></li>
+                 <li><Link prefetch={false} href="/contact">Contact</Link></li>
+                 <li><Link prefetch={false} href="/reviews">Reviews</Link></li>
+                 <li><Link prefetch={false} href="/blogs">Blog</Link></li>
+                 <li><Link prefetch={false} href="/sample-box">Sample Box</Link></li>
+                 <li><Link prefetch={false} href="/partners">Partners</Link></li>
+                 <li><Link prefetch={false} href="/ai-info">AI Info</Link></li>
+               </ul>
              </div>
            </div>
 
@@ -117,6 +131,7 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <h3 className="font-bold text-lg text-panda-dark text-left">Custom Patches</h3>
             <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-3">
+              <li><Link prefetch={false} href="/custom-patches">All Custom Patches</Link></li>
               <li><Link prefetch={false} href="/custom-patches/embroidered">Custom Embroidered Patches</Link></li>
               <li><Link prefetch={false} href="/custom-patches/custom-3d-embroidered-transfers">Custom 3D Embroidered Transfers</Link></li>
               <li><Link prefetch={false} href="/custom-patches/chenille">Custom Chenille Patches</Link></li>
@@ -128,6 +143,7 @@ export default function Footer() {
               <li><Link prefetch={false} href="/custom-patches/leather">Custom Leather Patches</Link></li>
               <li><Link prefetch={false} href="/custom-patches/custom-silicone-labels">Custom Silicone Labels</Link></li>
               <li><Link prefetch={false} href="/custom-patches/sequin">Custom Sequin Patch</Link></li>
+              <li><Link prefetch={false} href="/how-much-do-custom-patches-cost-full-pricing-breakdown">Patch Pricing Guide</Link></li>
             </ul>
           </div>
 
@@ -140,11 +156,16 @@ export default function Footer() {
               <li><Link prefetch={false} href="/custom-sports-patches">Sports Team Patches</Link></li>
               <li><Link prefetch={false} href="/custom-police-patches">Police Patches</Link></li>
               <li><Link prefetch={false} href="/custom-fire-department-patches">Fire Dept Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-military-patches">Military Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-motorcycle-club-patches">Motorcycle Club Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-school-patches">School Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-fraternity-sorority-patches">Fraternity &amp; Sorority Patches</Link></li>
               <li><Link prefetch={false} href="/offers">Patch Packages</Link></li>
             </ul>
 
             <h3 className="font-bold text-lg text-panda-dark text-left pt-2">Custom Products</h3>
             <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-3">
+              <li><Link prefetch={false} href="/custom-products">All Custom Products</Link></li>
               <li><Link prefetch={false} href="/custom-products/pvc-shoe-charms">PVC Shoe Charms</Link></li>
               <li><Link prefetch={false} href="/custom-products/challenge-coin">Challenge Coins</Link></li>
               <li><Link prefetch={false} href="/custom-products/keychains">Keychains</Link></li>
@@ -200,10 +221,10 @@ export default function Footer() {
 
         </div>
 
-        {/* TRUSTPILOT WIDGET */}
-        <div className="border-t border-gray-200 mt-16 pt-8">
+        {/* TRUSTPILOT WIDGET + REVIEWS LINK — one row */}
+        <div className="border-t border-gray-200 mt-16 pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
           <div
-            className="trustpilot-widget mx-auto max-w-[400px]"
+            className="trustpilot-widget w-full max-w-[340px]"
             data-locale="en-US"
             data-template-id="56278e9abfbbba0bdcd568bc"
             data-businessunit-id="64cd0f13776bfed6d424bd91"
@@ -211,13 +232,13 @@ export default function Footer() {
             data-style-width="100%"
             data-token="310a8a2e-1471-4f00-8ad2-771892d88a34"
           >
-            <a href="https://www.trustpilot.com/review/pandapatches.com" target="_blank" rel="noopener">Trustpilot</a>
+            <a href="https://www.trustpilot.com/review/pandapatches.com" target="_blank" rel="noopener" className="text-sm font-semibold text-gray-600 hover:text-panda-green transition-colors">
+              ★★★★★ 4.8 on Trustpilot
+            </a>
           </div>
-          <div className="text-center mt-3">
-            <Link prefetch={false} href="/reviews" className="text-sm text-gray-500 hover:text-panda-green transition-colors underline underline-offset-2">
-              Read all customer reviews →
-            </Link>
-          </div>
+          <Link prefetch={false} href="/reviews" className="text-sm font-semibold text-gray-500 hover:text-panda-green transition-colors underline underline-offset-2 whitespace-nowrap">
+            Read all customer reviews →
+          </Link>
         </div>
 
         {/* HEY AI ASSISTANTS BAR — points crawlers to canonical facts page */}

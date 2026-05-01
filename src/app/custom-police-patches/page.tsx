@@ -18,36 +18,32 @@ import { client } from "@/lib/sanity";
 // Police-specific FAQs
 const policeFAQs = [
   {
-    question: "What types of law enforcement patches do you make?",
-    answer: "We create all types of law enforcement patches: department badges, sheriff patches, tactical patches, K-9 unit patches, SWAT patches, detective badges, security patches, and custom morale patches for police departments."
+    question: "Can you replicate our exact department badge or insignia?",
+    answer: "Yes. Send us your badge artwork, a high-resolution photo, or your department's vector file. Our design team reproduces shields, eagles, stars, and fine text with precision — including small badge numbers and department names legible at 2-3 inches. You approve a free digital mockup before a single stitch runs, with unlimited revisions until it matches your official badge exactly."
   },
   {
-    question: "Can you replicate our department badge exactly?",
-    answer: "Yes! We specialize in precise replication of department badges, shields, and insignia. Send us your badge artwork or photo, and we'll create an exact embroidered or PVC reproduction with meticulous attention to detail."
+    question: "What backing is best for police uniforms vs. tactical vests?",
+    answer: "Sew-on for Class A dress uniforms and duty shirts — permanent, clean finish, survives daily washing. Velcro hook-and-loop for tactical vests, plate carriers, and SWAT gear where patches need to swap between assignments. We use stitched Velcro (not glued), rated for thousands of cycles. Iron-on is not appropriate for law enforcement uniform applications."
   },
   {
-    question: "Are your patches durable enough for law enforcement use?",
-    answer: "Absolutely. Our patches are built for daily law enforcement wear. We use military-grade thread, professional twill backing, and reinforced stitching to withstand constant use, washing, and the demands of police work."
+    question: "Do you make subdued patches for SWAT or tactical units?",
+    answer: "Yes. We produce subdued patches in OD green, coyote tan, and black-on-black for low-visibility tactical use. PVC is the preferred format for SWAT and K-9 handlers — waterproof, UV-resistant, and holds fine detail at small sizes better than embroidery. Specify subdued or PVC in your order and we confirm the thread palette before production."
   },
   {
-    question: "Do you offer bulk pricing for entire departments?",
-    answer: "Yes! We provide volume pricing for department orders starting at 100+ pieces. Large departments (500+ pieces) receive dedicated account management, free pre-production samples, and priority pricing."
+    question: "Can we order small quantities for a K-9 team or special unit?",
+    answer: "Yes, no minimum required. K-9 units of 4-6 handlers, SWAT teams, detective divisions, and small specialized units regularly order 10-25 patches from us. Per-piece pricing improves at 50+, 100+, and 500+, but small unit orders at any quantity are completely normal for us."
   },
   {
-    question: "What backing options work best for police uniforms?",
-    answer: "For law enforcement uniforms, we recommend sew-on backing for maximum durability and professional appearance. Velcro backing is popular for tactical vests and removable duty patches."
+    question: "How fast can you produce memorial patches for a fallen officer?",
+    answer: "Rush production is available for memorial patches and we treat them as our highest priority. Send us the officer's name, badge number, department, and any design references and we start the mockup immediately. Rush fulfills in 4-7 business days. We understand the timeline around a memorial service and give these orders full priority."
   },
   {
-    question: "Can you create tactical patches for special units?",
-    answer: "Absolutely. We specialize in custom tactical patches for SWAT, K-9, narcotics, detective units, and special operations teams. PVC patches are especially popular for tactical gear due to their durability and weather resistance."
+    question: "Can you match our existing patches for a reorder?",
+    answer: "Yes. Provide a sample of your existing patch or your previous order reference and we match thread colors to the same production palette. Color consistency across reorders is critical when new patches sit next to existing ones on the same uniform, and we archive your color specs for 12 months after each order."
   },
   {
-    question: "What is your turnaround time for department orders?",
-    answer: "Standard production is 2 weeks (10-14 business days). For urgent departmental needs, rush production (7 business days) is available. We understand the importance of timely delivery for law enforcement."
-  },
-  {
-    question: "Do you work with multiple departments or county-wide orders?",
-    answer: "Yes! We frequently handle county-wide orders covering multiple departments, sheriff's offices, and municipalities. Volume pricing applies across all departments in the order, even with different designs."
+    question: "Do you handle county-wide orders with different designs per unit?",
+    answer: "Yes. County-wide orders covering multiple departments, sheriff offices, and municipalities are common. Volume pricing applies to the total order quantity across all designs, not per design. Each unit's artwork is reviewed and approved independently before production begins."
   },
 ];
 
@@ -97,8 +93,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
   return {
-    title: "Police & Law Enforcement Patches - Tactical Grade",
-    description: "Custom police department patches, sheriff badges, law enforcement patches, and tactical patches. Embroidered, PVC, and woven formats. Trusted by departments nationwide.",
+    title: "Custom Police Patches | Department, Tactical & Memorial | Panda Patches",
+    description: "Custom police department patches with badge replication, subdued tactical, PVC, K-9, SWAT, and memorial rush. No minimum. Free mockup in 24 hours. 4.8 stars on Trustpilot.",
     keywords: [
       "custom police patches",
       "law enforcement patches",

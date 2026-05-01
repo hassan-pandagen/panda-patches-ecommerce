@@ -4,11 +4,22 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BlogPostLayout from "@/components/blog/BlogPostLayout";
 import LocationLayout from "@/components/locations/LocationLayout";
-import { generateArticleSchema, generateBreadcrumbSchema, generateLocationBusinessSchema, generateSchemaScript } from "@/lib/schemas";
+import { generateArticleSchema, generateBreadcrumbSchema, generateLocationBusinessSchema, generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { getSanityOgImage } from "@/lib/sanityOgImage";
 import cityPageMeta from "@/lib/cityPageMeta";
 import patchStyleMeta from "@/lib/patchStyleMeta";
 import { getPatchStyleProductSchema } from "@/lib/patchStyleProductSchema";
+import BulkHero from "@/components/bulk/BulkHero";
+import WorkGallery from "@/components/bulk/WorkGallery";
+import CategoryFAQ from "@/components/bulk/CategoryFAQ";
+import TrustStrip from "@/components/products/TrustStrip";
+import Craftsmanship from "@/components/home/Craftsmanship";
+import ReviewsSection from "@/components/home/ReviewsSection";
+import Promises from "@/components/home/Promises";
+import ProcessSection from "@/components/home/ProcessSection";
+import CTASection from "@/components/home/CTASection";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import { PortableText } from "@portabletext/react";
 
 // ISR: Revalidate blog/location/patch-style pages every 1 hour
 export const revalidate = 3600;
@@ -82,6 +93,32 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  // Category page metadata (military, motorcycle club, school, fraternity, etc.)
+  if (data.categoryPage) {
+    const pageTitle = data.categoryPage.title || "Custom Patches";
+    const ogImage = await getSanityOgImage();
+    return {
+      title: `${pageTitle} | No Minimum, Free Mockup | Panda Patches`,
+      description: `Order ${pageTitle.toLowerCase()} with no minimum, free digital mockup in 24 hours, and 7-14 day delivery. 4.8 stars on Trustpilot. Money-back guarantee.`,
+      alternates: { canonical: `https://www.pandapatches.com/${slug}` },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: `${pageTitle} | Panda Patches`,
+        description: `${pageTitle} with free mockup, no minimum, and 7-14 day delivery.`,
+        url: `https://www.pandapatches.com/${slug}`,
+        siteName: 'Panda Patches',
+        type: 'website',
+        images: [{ url: ogImage, width: 1200, height: 630, alt: pageTitle }],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: `${pageTitle} | Panda Patches`,
+        description: `${pageTitle} with free mockup, no minimum, and 7-14 day delivery.`,
+        images: [ogImage],
+      },
+    };
+  }
+
   // Blog post metadata
   if (data.blog) {
     const imageUrl = data.blog.mainImage
@@ -134,7 +171,19 @@ async function getData(slug: string) {
     {
       "blog": *[_type == "blog" && slug.current == $slug && !(_id in path("drafts.**"))][0],
       "location": *[_type == "locationPage" && slug.current == $slug && !(_id in path("drafts.**"))][0],
-      "patchStyle": *[_type == "patchStyle" && slug.current == $slug && !(_id in path("drafts.**"))][0]
+      "patchStyle": *[_type == "patchStyle" && slug.current == $slug && !(_id in path("drafts.**"))][0],
+      "categoryPage": *[_type == "categoryPage" && slug.current == $slug && !(_id in path("drafts.**"))][0] {
+        title,
+        "heroImage": {
+          "url": heroImage.asset->url,
+          "alt": heroImage.alt
+        },
+        "workSamples": workSamples[]{ "image": @, "alt": alt },
+        seoHeading,
+        seoContent,
+        "faqItems": faqItems[]{ question, answer }
+      },
+      "trustBadges": *[_type == "hero"][0].trustBadges[]{ "url": image.asset->url, "alt": alt }
     }
   `;
   const data = await client.fetch(query, { slug });
@@ -329,7 +378,124 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
     );
   }
 
-  // OPTION D: 404 Not Found
+  // OPTION D: Sanity-driven Category Page (military, motorcycle club, school, fraternity, etc.)
+  if (data.categoryPage) {
+    const cp = data.categoryPage;
+    const pageTitle = cp.title || "Custom Patches";
+
+    const categoryProductSchema = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: pageTitle,
+      description: `${pageTitle} with no minimum order, free digital mockup in 24 hours, and 7-14 day delivery. 4.8 stars on Trustpilot.`,
+      image: "https://www.pandapatches.com/assets/og-image.png",
+      brand: { "@type": "Brand", name: "Panda Patches" },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "US",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 30,
+        returnMethod: "https://schema.org/ReturnByMail",
+        returnFees: "https://schema.org/FreeReturn",
+      },
+      offers: {
+        "@type": "AggregateOffer",
+        priceCurrency: "USD",
+        lowPrice: "0.85",
+        highPrice: "4.50",
+        offerCount: "3",
+        availability: "https://schema.org/InStock",
+        priceValidUntil: "2027-01-01",
+        shippingDetails: {
+          "@type": "OfferShippingDetails",
+          shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" },
+          shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" },
+          deliveryTime: {
+            "@type": "ShippingDeliveryTime",
+            handlingTime: { "@type": "QuantitativeValue", minValue: 10, maxValue: 14, unitCode: "DAY" },
+            transitTime: { "@type": "QuantitativeValue", minValue: 3, maxValue: 5, unitCode: "DAY" },
+          },
+        },
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.8",
+        reviewCount: "57",
+        bestRating: "5",
+      },
+    };
+
+    const categoryBreadcrumbSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.pandapatches.com" },
+        { "@type": "ListItem", position: 2, name: "Bulk Orders", item: "https://www.pandapatches.com/bulk-custom-patches" },
+        { "@type": "ListItem", position: 3, name: pageTitle, item: `https://www.pandapatches.com/${slug}` },
+      ],
+    };
+
+    const categoryFaqSchema = cp.faqItems?.length > 0 ? generateFAQSchema(cp.faqItems) : null;
+
+    return (
+      <main className="min-h-screen bg-white">
+        <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(categoryProductSchema)} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(categoryBreadcrumbSchema)} />
+        {categoryFaqSchema && (
+          <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(categoryFaqSchema)} />
+        )}
+
+        <Navbar />
+
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Bulk Orders", href: "/bulk-custom-patches" },
+          ]}
+          currentPage={pageTitle}
+        />
+
+        <BulkHero
+          heroImage={cp.heroImage?.url || null}
+          trustBadges={data.trustBadges || []}
+          customHeading={pageTitle}
+          customSubheading="No Minimum Order. Free Digital Mockup. 7-14 Day Delivery."
+          customDescription="Professional patches with free design service, unlimited revisions, and money-back guarantee. Trusted by 4,000+ bulk customers nationwide."
+        />
+
+        <WorkGallery samples={cp.workSamples || []} />
+        <TrustStrip />
+        <Craftsmanship />
+        <ReviewsSection />
+        <Promises bgColor="bg-white" />
+        <ProcessSection />
+
+        {cp.faqItems && cp.faqItems.length > 0 && (
+          <CategoryFAQ title={`${pageTitle} — FAQ`} faqs={cp.faqItems} />
+        )}
+
+        {cp.seoContent && cp.seoContent.length > 0 && (
+          <section className="w-full py-8 md:py-12 bg-white">
+            <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+              {cp.seoHeading && (
+                <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+                  {cp.seoHeading}
+                </h2>
+              )}
+              <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4 prose prose-sm max-w-none">
+                <PortableText value={cp.seoContent} />
+              </div>
+            </div>
+          </section>
+        )}
+
+        <CTASection />
+        <Footer />
+      </main>
+    );
+  }
+
+  // OPTION E: 404 Not Found
   return (
     <div className="min-h-screen bg-white flex flex-col justify-between">
       <Navbar />

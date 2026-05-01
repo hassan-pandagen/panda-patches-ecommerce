@@ -99,6 +99,36 @@ export default defineType({
       of: [{ type: 'block' }],
       description: '3-4 paragraphs of SEO-optimized content about this category',
     }),
+
+    // === FAQ ITEMS (for FAQPage schema + on-page accordion) ===
+    defineField({
+      name: 'faqItems',
+      title: 'FAQ Items (7 questions for schema + page accordion)',
+      type: 'array',
+      of: [{
+        type: 'object',
+        name: 'faqItem',
+        fields: [
+          defineField({
+            name: 'question',
+            title: 'Question',
+            type: 'string',
+            validation: (rule) => rule.required(),
+          }),
+          defineField({
+            name: 'answer',
+            title: 'Answer',
+            type: 'text',
+            rows: 4,
+            validation: (rule) => rule.required(),
+          }),
+        ],
+        preview: {
+          select: { title: 'question' },
+        },
+      }],
+      description: 'Add 7 buyer-intent FAQ questions. Used for FAQPage schema and the on-page accordion.',
+    }),
   ],
   preview: {
     select: {

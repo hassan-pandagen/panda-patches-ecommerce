@@ -18,36 +18,32 @@ import { client } from "@/lib/sanity";
 // Corporate-specific FAQs
 const corporateFAQs = [
   {
-    question: "Can you match our exact Pantone brand colors?",
-    answer: "Yes! We use Pantone color-matching to replicate your brand colors precisely across all embroidery and PVC patches. Send us your brand guidelines or Pantone codes, and we'll match them exactly."
+    question: "Can you Pantone match our exact brand colors?",
+    answer: "Yes. We use Pantone thread matching across all embroidery and woven patch production. Provide your Pantone codes or brand guidelines and we confirm the closest available thread match before production. For orders of 500 or more pieces, we send a physical pre-production sample for color approval before the full run."
   },
   {
-    question: "Do you handle large corporate bulk orders?",
-    answer: "Absolutely. We handle orders from 50 to 50,000+ pieces with volume pricing for 100+ pieces. Large corporate accounts get dedicated account management, priority pricing, and free pre-production samples for orders of 500+."
+    question: "Do you provide physical samples before a large production run?",
+    answer: "Yes, for orders of 500 or more pieces we produce a physical pre-production sample at no charge. Production does not begin until you approve the sample. For smaller orders, a free digital mockup is provided within 24 hours with unlimited revisions before anything is made."
   },
   {
-    question: "What file formats do you accept for company logos?",
-    answer: "We accept AI, EPS, PDF, PSD, PNG, and JPG files. Vector files (AI, EPS, PDF) produce the best results. We also offer free design services if you need help optimizing your logo for patches."
+    question: "Can you handle variable patches where each has a different name or location?",
+    answer: "Yes. We support variable name, location, and department patches within a single order. Submit your data as a spreadsheet with each variation and we quote based on total quantity. This is common for franchise uniforms, hotel staff name patches, and employee onboarding programs with multiple locations."
   },
   {
-    question: "Do you offer sample patches before the full production run?",
-    answer: "Yes! For orders of 500+ pieces, we provide a free physical sample for approval before full production. This ensures colors, sizing, and quality meet your brand standards before we run the entire order."
+    question: "Do you work with ASI promotional distributors and resellers?",
+    answer: "Yes. We work with ASI members, PPAI distributors, and independent promotional product resellers. We offer wholesale pricing, blind shipping with your branding, and white-label invoicing. Email lance@pandapatches.com for distributor terms and pricing."
   },
   {
-    question: "What is your turnaround time for corporate orders?",
-    answer: "Standard production is 2 weeks (10-14 business days). Large orders (1,000+) may take 2-3 weeks. Rush production (7 business days) is available for an additional fee."
+    question: "What file format works best for our company logo?",
+    answer: "Vector files — AI, EPS, or PDF with fonts outlined — produce the cleanest embroidery for complex logos with fine detail, gradients, or small text. If you only have a high-resolution PNG or JPG, our digitizing team will optimize it at no charge and show you a stitch preview for approval before production."
   },
   {
-    question: "Can you create patches for employee uniforms?",
-    answer: "Yes! We specialize in employee uniform patches with iron-on or sew-on backing options. We can create name patches, department patches, and logo patches for any size workforce."
+    question: "Can you issue a formal invoice and accept a purchase order?",
+    answer: "Yes. We issue formal invoices with PO number reference and accommodate Net-15 and Net-30 payment terms for established corporate accounts. We also accept ACH bank transfer, Visa, Mastercard, Amex, and PayPal. Email lance@pandapatches.com with your procurement requirements before ordering."
   },
   {
-    question: "Do you work with promotional products distributors?",
-    answer: "Absolutely. We work with ASI members, promotional distributors, and resellers. Contact us for special distributor rates, white-label options, and Net 15/30 payment terms."
-  },
-  {
-    question: "What backing options are best for corporate apparel?",
-    answer: "For uniforms and corporate apparel, we recommend iron-on backing (heat-seal) for easy application or sew-on backing for maximum durability. Velcro backing is also popular for removable uniform patches."
+    question: "How do you ensure color consistency when we reorder months later?",
+    answer: "We archive your digitized artwork file and document your approved thread color codes after the first production run. Reorders reference the same archived file and color specs to ensure consistent output over time. This matters most for companies outfitting new employees alongside existing staff — they need to match exactly."
   },
 ];
 
@@ -97,8 +93,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
   return {
-    title: "Corporate Logo Patches - Bulk Pricing Available",
-    description: "Custom corporate logo patches for businesses, brands, and employee uniforms. Embroidered company patches with no minimum order, free mockup, and 7-14 day turnaround.",
+    title: "Custom Corporate Patches | Pantone-Matched Uniform & Employee Patches",
+    description: "Custom corporate uniform patches with Pantone color matching, variable name patches, ASI reseller pricing, and formal PO invoicing. Pre-production sample at 500+. Free mockup.",
     keywords: [
       "custom corporate patches",
       "company logo patches",

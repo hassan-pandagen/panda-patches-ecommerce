@@ -455,7 +455,10 @@ export default function ComplexCalculator({
     const checkoutAttribution = getStoredAttribution();
 
     try {
-      // Fire browser pixel InitiateCheckout (pairs with server CAPI Purchase later via order_id)
+      // Generate shared eventId so browser pixel + server CAPI dedupe
+      const initiateCheckoutEventId = generateEventId('initcheckout');
+
+      // Fire browser pixel InitiateCheckout (server fires the same event with same ID for dedup)
       try {
         if (typeof (window as any).fbq === 'function') {
           (window as any).fbq('track', 'InitiateCheckout', {
@@ -464,7 +467,7 @@ export default function ComplexCalculator({
             value: basePrice,
             currency: 'USD',
             num_items: quantity,
-          });
+          }, { eventID: initiateCheckoutEventId });
         }
       } catch { /* noop */ }
 
@@ -492,6 +495,7 @@ export default function ComplexCalculator({
           specialInstructions: [shape ? `Shape: ${SHAPES.find(s => s.id === shape)?.name}` : null, patchIdea ? `Patch Idea: ${patchIdea}` : null, specialInstructions || null].filter(Boolean).join(' | ') || null,
           paymentMethod: paymentMethod, // Pass payment method to backend
           attribution: checkoutAttribution,
+          initiateCheckoutEventId,
         }),
       });
 

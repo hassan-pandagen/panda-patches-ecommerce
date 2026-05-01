@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { calculatePatchPrice } from '@/lib/pricingCalculator';
 import { PayPalClient } from '@/lib/paypal';
 import { resolveBaseUrl, applyEconomyDiscount, applyVelcroPricing, getRushSurcharge } from '@/lib/checkoutConfig';
+import { sendMetaEvent } from '@/lib/metaCapi';
 
 // Init Supabase — use service role key server-side to bypass RLS
 const supabase = createClient(
@@ -32,6 +33,9 @@ const CheckoutSchema = z.object({
   artworkUrl: z.string().url({ message: 'Invalid URL' }).optional().or(z.null()).or(z.literal('')),
   addons: z.array(z.string()).optional().or(z.null()),
   specialInstructions: z.string().optional().or(z.null()),
+  paymentMethod: z.string().optional(),
+  attribution: z.record(z.string(), z.string()).optional(),
+  initiateCheckoutEventId: z.string().max(120).optional(),
 });
 
 export async function POST(req: Request) {
@@ -68,7 +72,9 @@ export async function POST(req: Request) {
       rushDate,
       artworkUrl,
       addons,
-      specialInstructions
+      specialInstructions,
+      attribution,
+      initiateCheckoutEventId,
     } = validationResult.data;
 
     // SECURITY: Calculate price server-side to prevent manipulation
@@ -145,9 +151,71 @@ export async function POST(req: Request) {
     }
 
     // Store orderData server-side so capture works even if localStorage is cleared (e.g. mobile Safari, different device)
+    // Persist attribution alongside orderData so capture-paypal/webhook can enrich the Purchase event
     await supabase
       .from('paypal_pending_orders')
-      .upsert({ paypal_order_id: paypalOrder.id, order_data: orderData }, { onConflict: 'paypal_order_id' });
+      .upsert({
+        paypal_order_id: paypalOrder.id,
+        order_data: { ...orderData, attribution: attribution || null },
+      }, { onConflict: 'paypal_order_id' });
+
+    // Track abandoned cart — upsert checkout_attempts row so the cron can email
+    // the customer if no Purchase capture arrives within 30 minutes.
+    await supabase
+      .from('checkout_attempts')
+      .upsert({
+        customer_email: customer.email,
+        customer_name: customer.name,
+        customer_phone: customer.phone || null,
+        product_name: productName,
+        quantity,
+        design_size: `${width}" x ${height}"`,
+        backing: backing || null,
+        delivery_option: deliveryOption,
+        cart_value: finalPrice,
+        artwork_url: artworkUrl || null,
+        payment_provider: 'paypal',
+        provider_session_id: paypalOrder.id,
+        return_url: `${baseUrl}/custom-patches`,
+        fbp: attribution?.fbp || null,
+        fbc: attribution?.fbc || null,
+        attribution: attribution || null,
+        status: 'PENDING',
+        initiated_at: new Date().toISOString(),
+      }, { onConflict: 'provider_session_id' })
+      .then(({ error }) => {
+        if (error) console.error('checkout_attempts upsert (paypal):', error);
+      });
+
+    // Fire server CAPI InitiateCheckout (mirrors browser fbq with same eventId for dedup)
+    if (initiateCheckoutEventId) {
+      const ipHeader = (req.headers.get('x-forwarded-for') || '').split(',')[0].trim() || undefined;
+      const ua = req.headers.get('user-agent') || undefined;
+      const refererUrl = req.headers.get('referer') || undefined;
+      const [icFirstName, ...icLastParts] = (customer.name || '').trim().split(/\s+/);
+
+      sendMetaEvent({
+        eventName: 'InitiateCheckout',
+        eventId: initiateCheckoutEventId,
+        actionSource: 'website',
+        eventSourceUrl: refererUrl,
+        email: customer.email,
+        phone: customer.phone || null,
+        firstName: icFirstName,
+        lastName: icLastParts.join(' ') || null,
+        attribution: {
+          ...(attribution || {}),
+          client_ip: ipHeader,
+          client_ua: ua,
+        },
+        value: finalPrice,
+        currency: 'USD',
+        contentName: productName,
+        contentCategory: 'Custom Patches',
+        numItems: quantity,
+        orderId: paypalOrder.id,
+      }).catch((err) => console.error('[META CAPI] InitiateCheckout (PayPal) send failed:', err));
+    }
 
     return NextResponse.json({ url: approvalUrl, paypalOrderId: paypalOrder.id, orderData });
 

@@ -52,6 +52,7 @@ const navLinks = [
     ]
   },
   { name: "BLOGS", href: "/blogs" },
+  { name: "PARTNERS", href: "/partners" },
   { name: "CONTACT US", href: "/contact" },
 ];
 

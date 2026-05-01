@@ -18,36 +18,32 @@ import { client } from "@/lib/sanity";
 // Sports-specific FAQs
 const sportsFAQs = [
   {
-    question: "What sports team patches do you make?",
-    answer: "We make patches for all sports: football, baseball, basketball, soccer, hockey, wrestling, swimming, tennis, volleyball, lacrosse, and more. We create team logo patches, jersey number patches, varsity letters, championship patches, and custom uniform patches."
+    question: "What is the difference between chenille and embroidered patches?",
+    answer: "Chenille patches have a soft, raised, fuzzy texture — the traditional varsity jacket letter. Standard letter height runs 6-8 inches for jacket fronts. Embroidered patches are flat, durable, and detailed, right for jerseys, bags, hats, and uniform patches. For letterman jackets, order chenille. For game jerseys and uniforms, order embroidered. Ordering the wrong one is the most common sports patch mistake."
   },
   {
-    question: "Can you match our exact team colors?",
-    answer: "Absolutely! We use Pantone color-matching to replicate your team colors precisely. Send us your team colors (Pantone codes, hex codes, or color swatches), and we'll match them exactly across all patch types."
+    question: "Will iron-on patches survive washing on our game jerseys?",
+    answer: "Not reliably. For game jerseys washed 30-40 times per season, sew-on backing is the only durable option. Iron-on adhesive degrades on polyester and spandex jersey fabric with repeated high-heat washing. The edges peel by mid-season. We recommend sew-on for any patch that goes on a game uniform, and will flag it if you try to select iron-on for jersey use."
   },
   {
-    question: "Can you make patches for youth sports leagues?",
-    answer: "Yes! We work with youth leagues, high school teams, college athletics, and professional sports organizations. No minimum order required — perfect for small recreational leagues to large conference-wide orders."
+    question: "Can you hit our tournament or season-start deadline?",
+    answer: "Standard production is 10-14 business days after you approve your mockup. Rush production cuts that to 4-7 business days. If you have a hard date — tournament day, picture day, first game — add it in the order notes and we confirm whether we can hit it within 6 hours, before any payment processes. Post-season championship patches ship within 10 business days on standard."
   },
   {
-    question: "What's the turnaround time for team orders?",
-    answer: "Standard production is 2 weeks (10-14 business days). Rush production (7 business days) is available for urgent season needs. We understand game schedules and can accommodate tight deadlines."
+    question: "We have a youth team of 14 players. Is there a minimum order?",
+    answer: "No minimum. We regularly produce 10-25 piece runs for youth teams, small clubs, and coach gift orders at the same quality as large league orders. The 50-piece Starter tier on our Offers page gives the best per-piece price, but a 14-patch team run is completely normal and we handle it with the same care."
   },
   {
-    question: "Do you offer bulk pricing for entire leagues?",
-    answer: "Absolutely! Volume pricing starts at 100+ pieces with additional discounts at 500+ and 1,000+. League-wide orders get bulk pricing across all teams, even if each team has different designs."
+    question: "We run a whole league with 8 different team designs. Do we get bulk pricing?",
+    answer: "Yes. Bulk pricing applies to your total order quantity, not per design. If your league orders 500 patches across 8 different team logos, every patch is priced at the 500-piece tier. League coordinators who consolidate ordering save significantly compared to each team ordering independently."
   },
   {
-    question: "Can you create jersey number patches?",
-    answer: "Yes! We create custom jersey number patches in any font, color, and size. Perfect for uniforms, practice jerseys, and fan merchandise. Available in iron-on or sew-on backing."
+    question: "Can we get championship patches the week after our season ends?",
+    answer: "Yes, this is one of our most common rush requests. Post-season championship and tournament patches land in your hands within 10 business days standard, or 4-7 days with rush. Order as soon as the season ends while the momentum is still there — most teams delay and lose the moment."
   },
   {
-    question: "What backing is best for sports uniforms?",
-    answer: "For jerseys and uniforms, we recommend sew-on backing for maximum durability through repeated washing and game wear. Iron-on backing works well for practice gear and fan apparel."
-  },
-  {
-    question: "Can you make championship or tournament patches?",
-    answer: "Absolutely! We specialize in custom championship patches, tournament patches, all-star patches, and MVP awards. Rush production available for post-season orders."
+    question: "What backing is right for varsity jackets vs. game jerseys?",
+    answer: "Varsity jackets with leather sleeves need sew-on backing — iron-on damages leather and does not bond properly. Wool body sections can take iron-on but sew-on lasts longer. For game jerseys and polyester uniforms, sew-on is required for durability through the season. For casual apparel, equipment bags, and fan jackets, iron-on is fine."
   },
 ];
 
@@ -97,8 +93,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
   return {
-    title: "Sports Team Patches - No Minimum, Fast Turnaround",
-    description: "Custom sports patches for teams, leagues, and clubs. Embroidered uniform patches, jersey numbers, varsity letters, and championship patches. No minimum, free mockup.",
+    title: "Custom Sports Patches | Chenille Varsity, Championship & Jersey Patches",
+    description: "Custom sports patches for varsity jackets, game jerseys, and championships. Chenille letters, embroidered team logos, league bulk pricing. Rush for season deadlines. No minimum.",
     keywords: [
       "custom sports patches",
       "sports team patches",

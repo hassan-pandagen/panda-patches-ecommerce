@@ -268,6 +268,8 @@ export async function POST(req: Request) {
             paid_at: new Date().toISOString(),
             lead_source: 'WEBSITE',
             sales_agent: 'WEBSITE_BOT',
+            attribution: orderData.attribution || null,
+            meta_capi_sent_at: new Date().toISOString(),
           });
 
         if (insertError) {
@@ -309,7 +311,20 @@ export async function POST(req: Request) {
           .eq('lead_source', 'WEBSITE_LEAD');
       }
 
+      // Mark abandoned-cart row as purchased so the cron skips it
+      await supabase
+        .from('checkout_attempts')
+        .update({
+          status: 'PURCHASED',
+          purchased_at: new Date().toISOString(),
+        })
+        .eq('provider_session_id', orderId)
+        .then(({ error }) => {
+          if (error) console.error('checkout_attempts mark purchased (paypal capture):', error);
+        });
+
       // Fire Meta CAPI Purchase event for PayPal orders (non-blocking)
+      // Uses `${orderId}_purchase` eventId so it dedupes against the PayPal webhook backup.
       if (orderData?.customer_email) {
         const [firstName, ...lastParts] = String(orderData.customer_name || '').trim().split(/\s+/);
         sendMetaEvent({
@@ -320,6 +335,7 @@ export async function POST(req: Request) {
           phone: orderData.customer_phone || null,
           firstName,
           lastName: lastParts.join(' ') || undefined,
+          attribution: orderData.attribution || undefined,
           value: amountPaid,
           currency: 'USD',
           orderId,
@@ -332,7 +348,8 @@ export async function POST(req: Request) {
       return NextResponse.json({
         success: true,
         message: 'Payment captured successfully',
-        captureId
+        captureId,
+        amountPaid,
       });
     } else {
       return NextResponse.json(

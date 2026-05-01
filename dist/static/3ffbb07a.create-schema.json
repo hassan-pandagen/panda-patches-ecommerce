@@ -1,0 +1,4221 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "The big text (e.g., \"Custom Iron On Patches...\")",
+        "name": "title",
+        "type": "string",
+        "title": "Main Heading"
+      },
+      {
+        "description": "The paragraph below the heading.",
+        "name": "subtitle",
+        "type": "text",
+        "title": "Sub Text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "The big image of the patches on the left.",
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "Describe the image for SEO: e.g., \"Custom embroidered patches display featuring police, sports, and military designs\"",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt Text (SEO)"
+          }
+        ],
+        "name": "heroImage",
+        "type": "image",
+        "title": "Patch Pile Image"
+      },
+      {
+        "description": "Upload logos like Etsy, Trustpilot, Google with descriptive names.",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "image",
+                "type": "image",
+                "title": "Badge Image"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "e.g., \"Trustpilot 5-star rating\", \"Google Verified Business\"",
+                "name": "alt",
+                "type": "string",
+                "title": "Badge Name"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "trustBadges",
+        "type": "array"
+      }
+    ],
+    "name": "hero",
+    "type": "document",
+    "title": "Home - Hero Section"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Product Title"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Product Image"
+      },
+      {
+        "rows": 3,
+        "name": "description",
+        "type": "text",
+        "title": "Short Description"
+      },
+      {
+        "initialValue": "25% Off",
+        "name": "tag",
+        "type": "string",
+        "title": "Discount Tag"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Main Patches (Top 8)",
+              "value": "main"
+            },
+            {
+              "title": "Other Products (Bottom 4)",
+              "value": "other"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "main",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "main",
+                  "other"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "category",
+        "type": "string",
+        "title": "Section Category"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Unique product identifier for inventory and Google Shopping",
+        "name": "sku",
+        "type": "string",
+        "title": "SKU (Stock Keeping Unit)"
+      },
+      {
+        "description": "Global Trade Item Number for Google Merchant Center (optional for custom products)",
+        "name": "gtin",
+        "type": "string",
+        "title": "GTIN / UPC / Barcode"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "In Stock",
+              "value": "InStock"
+            },
+            {
+              "title": "Made to Order (7-14 days)",
+              "value": "MadeToOrder"
+            },
+            {
+              "title": "Pre-Order",
+              "value": "PreOrder"
+            },
+            {
+              "title": "Out of Stock",
+              "value": "OutOfStock"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "MadeToOrder",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "InStock",
+                  "MadeToOrder",
+                  "PreOrder",
+                  "OutOfStock"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "availability",
+        "type": "string",
+        "title": "Availability Status"
+      },
+      {
+        "initialValue": "7-14 days",
+        "description": "e.g., \"7-14 days\", \"3-5 business days\"",
+        "name": "leadTime",
+        "type": "string",
+        "title": "Lead Time / Delivery Estimate"
+      },
+      {
+        "description": "Define price breaks for different quantity ranges",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "min",
+                        "constraint": 0
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "minQuantity",
+                "type": "number",
+                "title": "Minimum Quantity"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "min",
+                        "constraint": 0
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "maxQuantity",
+                "type": "number",
+                "title": "Maximum Quantity"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "min",
+                        "constraint": 0
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "unitPrice",
+                "type": "number",
+                "title": "Unit Price (USD)"
+              }
+            ],
+            "type": "object",
+            "name": "priceTier"
+          }
+        ],
+        "name": "pricingTiers",
+        "type": "array",
+        "title": "Pricing Tiers (for bulk orders)"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Embroidered Thread",
+              "value": "Embroidered Thread"
+            },
+            {
+              "title": "PVC Rubber",
+              "value": "PVC Rubber"
+            },
+            {
+              "title": "Woven Fabric",
+              "value": "Woven Fabric"
+            },
+            {
+              "title": "Chenille",
+              "value": "Chenille"
+            },
+            {
+              "title": "Leather",
+              "value": "Leather"
+            },
+            {
+              "title": "Metal",
+              "value": "Metal"
+            },
+            {
+              "title": "Twill Fabric",
+              "value": "Twill Fabric"
+            },
+            {
+              "title": "Velcro",
+              "value": "Velcro"
+            },
+            {
+              "title": "Iron-on Backing",
+              "value": "Iron-on Backing"
+            }
+          ]
+        },
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "materials",
+        "type": "array",
+        "title": "Materials Used"
+      },
+      {
+        "fields": [
+          {
+            "description": "in inches",
+            "name": "width",
+            "type": "number"
+          },
+          {
+            "description": "in inches",
+            "name": "height",
+            "type": "number"
+          },
+          {
+            "description": "in inches",
+            "name": "depth",
+            "type": "number",
+            "title": "Depth/Thickness"
+          }
+        ],
+        "name": "dimensions",
+        "type": "object"
+      },
+      {
+        "fields": [
+          {
+            "name": "value",
+            "type": "number",
+            "title": "Weight Value"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Ounces (oz)",
+                  "value": "oz"
+                },
+                {
+                  "title": "Pounds (lb)",
+                  "value": "lb"
+                },
+                {
+                  "title": "Grams (g)",
+                  "value": "g"
+                },
+                {
+                  "title": "Kilograms (kg)",
+                  "value": "kg"
+                }
+              ]
+            },
+            "initialValue": "oz",
+            "name": "unit",
+            "type": "string"
+          }
+        ],
+        "name": "weight",
+        "type": "object",
+        "title": "Shipping Weight"
+      }
+    ],
+    "name": "product",
+    "type": "document",
+    "title": "Products"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "TAKE THE FIRST STEP ON YOUR PATCH QUEST!",
+        "name": "heading",
+        "type": "string",
+        "title": "Main Heading"
+      },
+      {
+        "name": "subheading",
+        "type": "text",
+        "title": "Sub Heading"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "length",
+                "constraint": 3
+              }
+            ],
+            "level": "error",
+            "message": "You must have exactly 3 steps"
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Yellow Label (e.g. SKETCH)"
+              },
+              {
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "steps",
+        "type": "array",
+        "title": "The 3 Steps"
+      }
+    ],
+    "name": "process",
+    "type": "document",
+    "title": "Home - Process Section"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "ORDERING IRON ON PATCHES MADE SIMPLE AND EXCITING!",
+        "name": "heading",
+        "type": "string",
+        "title": "Main Heading"
+      },
+      {
+        "name": "subheading",
+        "type": "text",
+        "title": "Sub Heading"
+      },
+      {
+        "name": "imageLeft",
+        "type": "image",
+        "title": "Top Left Image (Collage 1)"
+      },
+      {
+        "name": "imageRight",
+        "type": "image",
+        "title": "Bottom Right Image (Collage 2)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "length",
+                "constraint": 4
+              }
+            ],
+            "level": "error",
+            "message": "You must have exactly 4 steps"
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "description": "This will also be used as the Big Watermark (e.g. \"1\")",
+                "name": "number",
+                "type": "string",
+                "title": "Step Number"
+              },
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Main Title"
+              },
+              {
+                "description": "e.g. \"Quick, easy, and convenient\"",
+                "name": "subtitle",
+                "type": "string",
+                "title": "Subtitle (Bold Text)"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "title": "Description (Grey Text)"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "steps",
+        "type": "array",
+        "title": "The 4 Steps"
+      }
+    ],
+    "name": "timeline",
+    "type": "document",
+    "title": "Home - Timeline Section"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "FREQUENTLY ASKED QUESTIONS",
+        "name": "heading",
+        "type": "string",
+        "title": "Section Heading"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "question",
+                "type": "string"
+              },
+              {
+                "name": "answer",
+                "type": "text"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "questions",
+        "type": "array",
+        "title": "Questions List"
+      }
+    ],
+    "name": "faq",
+    "type": "document",
+    "title": "Home - FAQ Section"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Blog Title"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug",
+        "title": "Slug (URL)"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Main Image"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 200
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "excerpt",
+        "type": "text",
+        "title": "Short Summary"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Custom Patches",
+              "value": "Custom Patches"
+            },
+            {
+              "title": "Chenille Patches",
+              "value": "Chenille Patches"
+            },
+            {
+              "title": "Custom Military Patches",
+              "value": "Custom Military Patches"
+            },
+            {
+              "title": "Custom Business Patches",
+              "value": "Custom Business Patches"
+            },
+            {
+              "title": "Custom Sublimation Patches",
+              "value": "Custom Sublimation Patches"
+            },
+            {
+              "title": "Custom PVC Patch",
+              "value": "Custom PVC Patch"
+            },
+            {
+              "title": "Embroidery Patch Vs Woven Patch",
+              "value": "Embroidery Patch Vs Woven Patch"
+            },
+            {
+              "title": "Enamel Pins",
+              "value": "Enamel Pins"
+            },
+            {
+              "title": "Challenge Coin",
+              "value": "Challenge Coin"
+            },
+            {
+              "title": "Types Of Backing Options",
+              "value": "Types Of Backing Options"
+            },
+            {
+              "title": "Custom Sports Patches",
+              "value": "Custom Sports Patches"
+            },
+            {
+              "title": "Custom Leather Patches",
+              "value": "Custom Leather Patches"
+            },
+            {
+              "title": "Custom Sequin Patches",
+              "value": "Custom Sequin Patches"
+            },
+            {
+              "title": "Custom Tactical Patches",
+              "value": "Custom Tactical Patches"
+            },
+            {
+              "title": "Ordering Guide",
+              "value": "Ordering Guide"
+            }
+          ]
+        },
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "options": {
+          "layout": "tags"
+        },
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "tags",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "The date this post was published. Used in byline, schema markup, and sort order.",
+        "name": "publishedAt",
+        "type": "datetime",
+        "title": "Published Date"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Overrides the browser tab title. Max 60 characters. Leave blank to use the blog title.",
+        "name": "metaTitle",
+        "type": "string",
+        "title": "SEO Title (optional)"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Overrides the Google snippet description. Max 160 characters. Leave blank to use the excerpt.",
+        "name": "metaDescription",
+        "type": "text",
+        "title": "SEO Meta Description (optional)"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Upload a headshot of Imran Raza. Displayed in the author byline and bio card. Recommended: 200x200px square.",
+        "name": "authorPhoto",
+        "type": "image",
+        "title": "Author Photo (Imran Raza)"
+      },
+      {
+        "description": "Add Q&A pairs to generate FAQPage schema for rich results in Google. Copy the FAQ section from your blog post here.",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "question",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "answer",
+                "type": "text"
+              }
+            ],
+            "type": "object",
+            "name": "faqItem",
+            "title": "FAQ Item"
+          }
+        ],
+        "name": "faqItems",
+        "type": "array",
+        "title": "FAQ Items (FAQPage Schema)"
+      },
+      {
+        "description": "Add steps for the \"How to Order\" section. Generates HowTo schema for rich results in Google. Leave empty if the blog has no ordering steps.",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "e.g. \"Submit your design\"",
+                "name": "name",
+                "type": "string",
+                "title": "Step Name"
+              },
+              {
+                "rows": 2,
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "e.g. \"Upload artwork or describe your idea. No artwork? Our design team creates it at no charge.\"",
+                "name": "text",
+                "type": "text",
+                "title": "Step Description"
+              }
+            ],
+            "type": "object",
+            "name": "howToStep",
+            "title": "Step"
+          }
+        ],
+        "name": "howToSteps",
+        "type": "array",
+        "title": "HowTo Steps (HowTo Schema)"
+      },
+      {
+        "description": "Add product offers from the pricing table. Generates Product schema for price rich snippets in Google. Leave empty if the blog has no pricing.",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "e.g. \"Custom Embroidered Patches 100 Pack\"",
+                "name": "name",
+                "type": "string",
+                "title": "Product Name"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "min",
+                        "constraint": 0
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "e.g. 240.00",
+                "name": "price",
+                "type": "number",
+                "title": "Price (USD)"
+              },
+              {
+                "description": "e.g. \"100 embroidered patches under 4 inches with free shipping\"",
+                "name": "description",
+                "type": "string",
+                "title": "Short Description (optional)"
+              }
+            ],
+            "type": "object",
+            "name": "productOffer"
+          }
+        ],
+        "name": "productOffers",
+        "type": "array",
+        "title": "Product Offers (Product Schema)"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "description": "Describe the image for SEO and accessibility.",
+                "name": "alt",
+                "type": "string",
+                "title": "Alt Text"
+              },
+              {
+                "name": "caption",
+                "type": "string",
+                "title": "Caption (optional)"
+              }
+            ],
+            "type": "image"
+          },
+          {
+            "fields": [
+              {
+                "name": "caption",
+                "type": "string",
+                "title": "Caption (optional)"
+              },
+              {
+                "of": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "name": "headers",
+                "type": "array",
+                "title": "Column Headers"
+              },
+              {
+                "of": [
+                  {
+                    "fields": [
+                      {
+                        "of": [
+                          {
+                            "type": "string"
+                          }
+                        ],
+                        "name": "cells",
+                        "type": "array"
+                      }
+                    ],
+                    "type": "object",
+                    "name": "tableRow",
+                    "title": "Row"
+                  }
+                ],
+                "name": "rows",
+                "type": "array"
+              }
+            ],
+            "type": "object",
+            "name": "tableBlock",
+            "title": "Table"
+          }
+        ],
+        "name": "content",
+        "type": "array",
+        "title": "Full Content"
+      }
+    ],
+    "name": "blog",
+    "type": "document",
+    "title": "Blog Posts"
+  },
+  {
+    "fields": [
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "heading",
+                "type": "string"
+              },
+              {
+                "of": [
+                  {
+                    "marks": {
+                      "annotations": [
+                        {
+                          "i18nTitleKey": "inputs.portable-text.annotation.link",
+                          "options": {
+                            "modal": {
+                              "type": "popover"
+                            }
+                          },
+                          "fields": [
+                            {
+                              "validation": [
+                                {
+                                  "rules": [
+                                    {
+                                      "flag": "uri",
+                                      "constraint": {
+                                        "options": {
+                                          "scheme": [
+                                            "/^http$/",
+                                            "/^https$/",
+                                            "/^tel$/",
+                                            "/^mailto$/"
+                                          ],
+                                          "allowRelative": true,
+                                          "relativeOnly": false,
+                                          "allowCredentials": false
+                                        }
+                                      }
+                                    }
+                                  ],
+                                  "level": "error"
+                                }
+                              ],
+                              "description": "A valid web, email, phone, or relative link.",
+                              "name": "href",
+                              "type": "url",
+                              "title": "Link"
+                            }
+                          ],
+                          "name": "link",
+                          "type": "object"
+                        }
+                      ],
+                      "decorators": [
+                        {
+                          "value": "strong",
+                          "title": "Strong"
+                        },
+                        {
+                          "value": "em",
+                          "title": "Italic"
+                        },
+                        {
+                          "value": "code",
+                          "title": "Code"
+                        },
+                        {
+                          "value": "underline",
+                          "title": "Underline"
+                        },
+                        {
+                          "value": "strike-through",
+                          "title": "Strike"
+                        }
+                      ]
+                    },
+                    "lists": [
+                      {
+                        "value": "bullet",
+                        "title": "Bulleted list"
+                      },
+                      {
+                        "value": "number",
+                        "title": "Numbered list"
+                      }
+                    ],
+                    "styles": [
+                      {
+                        "value": "normal",
+                        "title": "Normal"
+                      },
+                      {
+                        "value": "h1",
+                        "title": "Heading 1"
+                      },
+                      {
+                        "value": "h2",
+                        "title": "Heading 2"
+                      },
+                      {
+                        "value": "h3",
+                        "title": "Heading 3"
+                      },
+                      {
+                        "value": "h4",
+                        "title": "Heading 4"
+                      },
+                      {
+                        "value": "h5",
+                        "title": "Heading 5"
+                      },
+                      {
+                        "value": "h6",
+                        "title": "Heading 6"
+                      },
+                      {
+                        "value": "blockquote",
+                        "title": "Quote"
+                      }
+                    ],
+                    "of": [],
+                    "type": "block"
+                  }
+                ],
+                "name": "body",
+                "type": "array",
+                "title": "Body Text"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "sections",
+        "type": "array",
+        "title": "Text Sections"
+      }
+    ],
+    "name": "content",
+    "type": "document",
+    "title": "Home - SEO Content"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Get started with your design today!",
+        "name": "heading",
+        "type": "string"
+      },
+      {
+        "initialValue": "Why wait? Select your options, share your artwork, and we'll get you started on your custom products.",
+        "name": "subheading",
+        "type": "text",
+        "title": "Sub Heading"
+      },
+      {
+        "initialValue": "Get Quote",
+        "name": "buttonText",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "backgroundImage",
+        "type": "image",
+        "title": "Background Image (Giant Pic)"
+      }
+    ],
+    "name": "cta",
+    "type": "document",
+    "title": "Home - CTA Section"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "About Us",
+        "name": "mainHeading",
+        "type": "string",
+        "title": "Main Page Title"
+      },
+      {
+        "of": [
+          {
+            "type": "image"
+          }
+        ],
+        "name": "trustBadges",
+        "type": "array",
+        "title": "Trust Badges (Top)"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "heading",
+                "type": "string"
+              },
+              {
+                "rows": 4,
+                "name": "description",
+                "type": "text"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "textSections",
+        "type": "array"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "The screenshot of the phone chat reviews",
+        "name": "socialImage",
+        "type": "image",
+        "title": "Social Reviews Image"
+      },
+      {
+        "initialValue": "PANDA PATCHES FACTORY",
+        "name": "factoryHeading",
+        "type": "string"
+      },
+      {
+        "rows": 4,
+        "name": "factoryDescription",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "factoryImage",
+        "type": "image"
+      },
+      {
+        "initialValue": "PICK YOUR PATCH!",
+        "name": "pickPatchHeading",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "image",
+                "type": "image",
+                "title": "Patch Image"
+              },
+              {
+                "name": "label",
+                "type": "string",
+                "title": "Label (e.g. Chenille Patches)"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "regex",
+                        "constraint": {
+                          "pattern": "/^\\//",
+                          "name": "relative-url",
+                          "invert": false
+                        }
+                      }
+                    ],
+                    "level": "error",
+                    "message": "Must start with / for relative URL"
+                  }
+                ],
+                "description": "e.g. /custom-patches/embroidered-patches",
+                "name": "link",
+                "type": "string",
+                "title": "Link to Category Page"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "patchCards",
+        "type": "array",
+        "title": "Patch Cards (Add as many as you want - will show grid on desktop, swiper on mobile)"
+      }
+    ],
+    "name": "about",
+    "type": "document",
+    "title": "About Page"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Page Title"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug",
+        "title": "URL Slug"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Describe this specific patch image for SEO",
+                "name": "alt",
+                "type": "string",
+                "title": "Alt Text (SEO)"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "name": "gallery",
+        "type": "array",
+        "title": "Hero Gallery"
+      },
+      {
+        "rows": 4,
+        "name": "description",
+        "type": "text",
+        "title": "Hero Description"
+      },
+      {
+        "description": "Specific backings for this product (e.g. PVC backing vs Embroidery backing)",
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "fields": [
+                  {
+                    "description": "Describe this option image for SEO",
+                    "name": "alt",
+                    "type": "string",
+                    "title": "Alt Text (SEO)"
+                  }
+                ],
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "backingOptions",
+        "type": "array",
+        "title": "1. Backing Options"
+      },
+      {
+        "description": "Optional: rename this section. E.g. \"TPU Color Options\", \"Glitter Colors\", \"Border Style\". Leave blank to use default \"Border Options\".",
+        "name": "borderSectionLabel",
+        "type": "string",
+        "title": "2. Section Label (rename \"Border Options\")"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "fields": [
+                  {
+                    "description": "Describe this option image for SEO",
+                    "name": "alt",
+                    "type": "string",
+                    "title": "Alt Text (SEO)"
+                  }
+                ],
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "borderOptions",
+        "type": "array",
+        "title": "2. Border / Color Options"
+      },
+      {
+        "description": "Optional: rename this section. E.g. \"Available Colors\", \"Pattern Options\". Leave blank to use default \"Thread/Color Options\".",
+        "name": "threadSectionLabel",
+        "type": "string",
+        "title": "3. Section Label (rename \"Thread/Color Options\")"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "fields": [
+                  {
+                    "description": "Describe this option image for SEO",
+                    "name": "alt",
+                    "type": "string",
+                    "title": "Alt Text (SEO)"
+                  }
+                ],
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "threadOptions",
+        "type": "array",
+        "title": "3. Thread/Color Options"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "fields": [
+                  {
+                    "description": "Describe this option image for SEO",
+                    "name": "alt",
+                    "type": "string",
+                    "title": "Alt Text (SEO)"
+                  }
+                ],
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "upgradeOptions",
+        "type": "array",
+        "title": "4. Upgrades & Add-ons"
+      },
+      {
+        "description": "Use this for \"Coin Types\", \"Pin Styles\", \"Keychain Materials\", etc.",
+        "fields": [
+          {
+            "initialValue": "Coin Types",
+            "name": "heading",
+            "type": "string",
+            "title": "Black Card Heading"
+          },
+          {
+            "initialValue": "Customizable Challenge Coins",
+            "name": "subheading",
+            "type": "string",
+            "title": "Black Card Subheading"
+          },
+          {
+            "of": [
+              {
+                "fields": [
+                  {
+                    "name": "title",
+                    "type": "string"
+                  },
+                  {
+                    "rows": 3,
+                    "name": "description",
+                    "type": "text"
+                  },
+                  {
+                    "name": "image",
+                    "type": "image"
+                  }
+                ],
+                "type": "object"
+              }
+            ],
+            "name": "types",
+            "type": "array",
+            "title": "The Cards"
+          }
+        ],
+        "name": "productVariants",
+        "type": "object",
+        "title": "5. Product Types / Variants"
+      },
+      {
+        "description": "List items like \"Sports Teams\", \"Corporate Events\", \"Schools\", etc.",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "idealFor",
+        "type": "array",
+        "title": "Ideal For (Bullet Points)"
+      },
+      {
+        "description": "Real photos of THIS specific product type with SEO-friendly descriptions.",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Describe this work sample: e.g., \"Custom embroidered firefighter patch with Maltese cross design\"",
+                "name": "alt",
+                "type": "string",
+                "title": "Alt Text (SEO)"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "name": "workSamples",
+        "type": "array",
+        "title": "Work Sample Gallery"
+      }
+    ],
+    "name": "productPage",
+    "type": "document",
+    "title": "Product Page Template"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "title": "Patch Name (e.g. Custom Embroidered Patches)"
+      },
+      {
+        "rows": 4,
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "description": "Add items like \"Military\", \"Scouts\", etc.",
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "idealFor",
+        "type": "array",
+        "title": "Ideal For (List)"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Patch Image"
+      }
+    ],
+    "name": "patchTypes",
+    "type": "document",
+    "title": "Patch Types Slider"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "title": "Card Title (e.g. Patch Material)"
+      },
+      {
+        "rows": 4,
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Card Image"
+      }
+    ],
+    "name": "patchOption",
+    "type": "document",
+    "title": "Product Info Cards"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "CUSTOMIZED IRON ON PATCHES FOR VARIOUS INDUSTRIES",
+        "name": "heading",
+        "type": "string",
+        "title": "Main Heading"
+      },
+      {
+        "rows": 3,
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Card Title"
+              },
+              {
+                "name": "image",
+                "type": "image",
+                "title": "Card Image"
+              },
+              {
+                "rows": 3,
+                "name": "text",
+                "type": "text",
+                "title": "Card Text"
+              },
+              {
+                "of": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "name": "list",
+                "type": "array",
+                "title": "Ideal For List"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "cards",
+        "type": "array",
+        "title": "Industry Cards"
+      }
+    ],
+    "name": "industry",
+    "type": "document",
+    "title": "Home - Industry Section"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "WORK SAMPLE",
+        "name": "heading",
+        "type": "string"
+      },
+      {
+        "description": "Upload 4-8 high quality photos of finished patches with SEO descriptions.",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Describe this work sample: e.g., \"Custom police badge patch with detailed embroidery\"",
+                "name": "alt",
+                "type": "string",
+                "title": "Alt Text (SEO)"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "name": "images",
+        "type": "array",
+        "title": "Sample Images"
+      }
+    ],
+    "name": "workSample",
+    "type": "document",
+    "title": "Product - Work Samples"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Iron On Instruction",
+        "name": "title",
+        "type": "string",
+        "title": "Page Title"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug",
+        "title": "URL Slug"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "patchType",
+                "type": "string",
+                "title": "Patch Type Name (e.g. Chenille)"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "name": "image",
+                "type": "image",
+                "title": "Instruction Image"
+              },
+              {
+                "of": [
+                  {
+                    "marks": {
+                      "annotations": [
+                        {
+                          "i18nTitleKey": "inputs.portable-text.annotation.link",
+                          "options": {
+                            "modal": {
+                              "type": "popover"
+                            }
+                          },
+                          "fields": [
+                            {
+                              "validation": [
+                                {
+                                  "rules": [
+                                    {
+                                      "flag": "uri",
+                                      "constraint": {
+                                        "options": {
+                                          "scheme": [
+                                            "/^http$/",
+                                            "/^https$/",
+                                            "/^tel$/",
+                                            "/^mailto$/"
+                                          ],
+                                          "allowRelative": true,
+                                          "relativeOnly": false,
+                                          "allowCredentials": false
+                                        }
+                                      }
+                                    }
+                                  ],
+                                  "level": "error"
+                                }
+                              ],
+                              "description": "A valid web, email, phone, or relative link.",
+                              "name": "href",
+                              "type": "url",
+                              "title": "Link"
+                            }
+                          ],
+                          "name": "link",
+                          "type": "object"
+                        }
+                      ],
+                      "decorators": [
+                        {
+                          "value": "strong",
+                          "title": "Strong"
+                        },
+                        {
+                          "value": "em",
+                          "title": "Italic"
+                        },
+                        {
+                          "value": "code",
+                          "title": "Code"
+                        },
+                        {
+                          "value": "underline",
+                          "title": "Underline"
+                        },
+                        {
+                          "value": "strike-through",
+                          "title": "Strike"
+                        }
+                      ]
+                    },
+                    "lists": [
+                      {
+                        "value": "bullet",
+                        "title": "Bulleted list"
+                      },
+                      {
+                        "value": "number",
+                        "title": "Numbered list"
+                      }
+                    ],
+                    "styles": [
+                      {
+                        "value": "normal",
+                        "title": "Normal"
+                      },
+                      {
+                        "value": "h1",
+                        "title": "Heading 1"
+                      },
+                      {
+                        "value": "h2",
+                        "title": "Heading 2"
+                      },
+                      {
+                        "value": "h3",
+                        "title": "Heading 3"
+                      },
+                      {
+                        "value": "h4",
+                        "title": "Heading 4"
+                      },
+                      {
+                        "value": "h5",
+                        "title": "Heading 5"
+                      },
+                      {
+                        "value": "h6",
+                        "title": "Heading 6"
+                      },
+                      {
+                        "value": "blockquote",
+                        "title": "Quote"
+                      }
+                    ],
+                    "of": [],
+                    "type": "block"
+                  }
+                ],
+                "name": "steps",
+                "type": "array",
+                "title": "Steps (Bulleted List)"
+              },
+              {
+                "of": [
+                  {
+                    "fields": [
+                      {
+                        "description": "e.g. \"Temperature 160 C / 320 F for 15-20 seconds\"",
+                        "name": "value",
+                        "type": "string",
+                        "title": "Row Text"
+                      }
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "name": "tableData",
+                "type": "array",
+                "title": "Extra Info Rows (Temperature/Time)"
+              }
+            ],
+            "type": "object",
+            "title": "Instruction Block"
+          }
+        ],
+        "name": "instructions",
+        "type": "array",
+        "title": "Instruction List"
+      }
+    ],
+    "name": "ironOn",
+    "type": "document",
+    "title": "Asset - Iron On Instructions"
+  },
+  {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "title": "Page Title"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug",
+        "title": "URL Slug"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "The Giant Image"
+      }
+    ],
+    "name": "assetResource",
+    "type": "document",
+    "title": "Asset - Single Image Page"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "SEE OUR CRAFTSMANSHIP",
+        "name": "heading",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 5
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "accept": "video/mp4"
+                },
+                "name": "videoFile",
+                "type": "file",
+                "title": "Video File (MP4)"
+              },
+              {
+                "name": "thumbnail",
+                "type": "image",
+                "title": "Cover Image (Poster)"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "uri",
+                        "constraint": {
+                          "options": {
+                            "scheme": [
+                              "/^http$/",
+                              "/^https$/"
+                            ],
+                            "allowRelative": false,
+                            "relativeOnly": false,
+                            "allowCredentials": false
+                          }
+                        }
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "link",
+                "type": "url",
+                "title": "Instagram Link"
+              },
+              {
+                "description": "e.g. \"Custom Embroidered Patches Manufacturing Process\"",
+                "name": "videoName",
+                "type": "string",
+                "title": "Video Title (for SEO)"
+              },
+              {
+                "rows": 2,
+                "description": "e.g. \"Watch how we create custom embroidered patches from artwork to finished product at Panda Patches.\"",
+                "name": "videoDescription",
+                "type": "text",
+                "title": "Video Description (for SEO)"
+              },
+              {
+                "description": "The date this reel was posted.",
+                "name": "uploadDate",
+                "type": "date"
+              },
+              {
+                "initialValue": "PT0M30S",
+                "description": "e.g. PT0M30S = 30 seconds, PT1M15S = 1 min 15 sec",
+                "name": "duration",
+                "type": "string",
+                "title": "Duration (ISO 8601)"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "videos",
+        "type": "array",
+        "title": "Video Reels (Max 5)"
+      }
+    ],
+    "name": "craftsmanship",
+    "type": "document",
+    "title": "Home - Craftsmanship (Reels)"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "locationName",
+        "type": "string",
+        "title": "Location Name (e.g. Alabama)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug",
+        "title": "URL Slug"
+      },
+      {
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "type": "image"
+          }
+        ],
+        "name": "gallery",
+        "type": "array",
+        "title": "Hero Gallery (Upload 3-4 images)"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "seoSection1",
+        "type": "array",
+        "title": "SEO Text 1 (Buy [Location] Patches)"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "seoSection2",
+        "type": "array",
+        "title": "SEO Text 2 (Why Choose Us / Ordering Made Easy)"
+      }
+    ],
+    "name": "locationPage",
+    "type": "document",
+    "title": "Location SEO Pages"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Page Title (e.g. Custom Morale Patches)"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug",
+        "title": "URL Slug"
+      },
+      {
+        "rows": 3,
+        "description": "The short text that appears next to the main image in the Hero.",
+        "name": "description",
+        "type": "text",
+        "title": "Hero Short Description"
+      },
+      {
+        "of": [
+          {
+            "type": "image"
+          }
+        ],
+        "name": "gallery",
+        "type": "array",
+        "title": "Hero Gallery Images"
+      },
+      {
+        "name": "seoTitle1",
+        "type": "string",
+        "title": "SEO Heading 1"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "seoContent1",
+        "type": "array",
+        "title": "SEO Text 1 (Top)"
+      },
+      {
+        "of": [
+          {
+            "type": "image"
+          }
+        ],
+        "name": "workSamples",
+        "type": "array",
+        "title": "Work Sample Gallery"
+      },
+      {
+        "name": "seoTitle2",
+        "type": "string",
+        "title": "SEO Heading 2"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "seoContent2",
+        "type": "array",
+        "title": "SEO Text 2 (Bottom)"
+      }
+    ],
+    "name": "patchStyle",
+    "type": "document",
+    "title": "Patch Style Pages (SEO)"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Product Title"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug",
+        "title": "URL Slug"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Main image shown on the Custom Products listing page",
+        "name": "heroImage",
+        "type": "image",
+        "title": "Main Product Image (for listing page)"
+      },
+      {
+        "description": "Upload 3-4 images here for the Main Hero on individual product page.",
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "type": "image"
+          }
+        ],
+        "name": "gallery",
+        "type": "array",
+        "title": "Hero Gallery"
+      },
+      {
+        "rows": 4,
+        "name": "description",
+        "type": "text",
+        "title": "Hero Description"
+      },
+      {
+        "name": "basePrice",
+        "type": "string",
+        "title": "Starting Price (Optional)"
+      },
+      {
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "type": "image"
+          }
+        ],
+        "name": "workSamples",
+        "type": "array",
+        "title": "Work Sample Gallery"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "idealFor",
+        "type": "array",
+        "title": "Ideal For (Bullet Points)"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Unique product identifier for inventory and Google Shopping",
+        "name": "sku",
+        "type": "string",
+        "title": "SKU (Stock Keeping Unit)"
+      },
+      {
+        "description": "Global Trade Item Number for Google Merchant Center (optional for custom products)",
+        "name": "gtin",
+        "type": "string",
+        "title": "GTIN / UPC / Barcode"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "In Stock",
+              "value": "InStock"
+            },
+            {
+              "title": "Made to Order (7-14 days)",
+              "value": "MadeToOrder"
+            },
+            {
+              "title": "Pre-Order",
+              "value": "PreOrder"
+            },
+            {
+              "title": "Out of Stock",
+              "value": "OutOfStock"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "MadeToOrder",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "InStock",
+                  "MadeToOrder",
+                  "PreOrder",
+                  "OutOfStock"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "availability",
+        "type": "string",
+        "title": "Availability Status"
+      },
+      {
+        "initialValue": "7-14 days",
+        "description": "e.g., \"7-14 days\", \"3-5 business days\"",
+        "name": "leadTime",
+        "type": "string",
+        "title": "Lead Time / Delivery Estimate"
+      },
+      {
+        "description": "Define price breaks for different quantity ranges",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "min",
+                        "constraint": 0
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "minQuantity",
+                "type": "number",
+                "title": "Minimum Quantity"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "min",
+                        "constraint": 0
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Leave empty for unlimited upper range (e.g., 500+)",
+                "name": "maxQuantity",
+                "type": "number",
+                "title": "Maximum Quantity"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "min",
+                        "constraint": 0
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "unitPrice",
+                "type": "number",
+                "title": "Unit Price (USD)"
+              }
+            ],
+            "type": "object",
+            "name": "priceTier"
+          }
+        ],
+        "name": "pricingTiers",
+        "type": "array",
+        "title": "Pricing Tiers (for bulk orders)"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Metal (Zinc Alloy)",
+              "value": "Metal (Zinc Alloy)"
+            },
+            {
+              "title": "Brass",
+              "value": "Brass"
+            },
+            {
+              "title": "Copper",
+              "value": "Copper"
+            },
+            {
+              "title": "Enamel",
+              "value": "Enamel"
+            },
+            {
+              "title": "Gold Plating",
+              "value": "Gold Plating"
+            },
+            {
+              "title": "Silver Plating",
+              "value": "Silver Plating"
+            },
+            {
+              "title": "Nickel Plating",
+              "value": "Nickel Plating"
+            },
+            {
+              "title": "Epoxy Coating",
+              "value": "Epoxy Coating"
+            },
+            {
+              "title": "Rubber Backing",
+              "value": "Rubber Backing"
+            }
+          ]
+        },
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "materials",
+        "type": "array",
+        "title": "Materials Used"
+      },
+      {
+        "fields": [
+          {
+            "description": "in inches",
+            "name": "width",
+            "type": "number"
+          },
+          {
+            "description": "in inches",
+            "name": "height",
+            "type": "number"
+          },
+          {
+            "description": "in inches",
+            "name": "depth",
+            "type": "number",
+            "title": "Depth/Thickness"
+          }
+        ],
+        "name": "dimensions",
+        "type": "object"
+      },
+      {
+        "fields": [
+          {
+            "name": "value",
+            "type": "number",
+            "title": "Weight Value"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Ounces (oz)",
+                  "value": "oz"
+                },
+                {
+                  "title": "Pounds (lb)",
+                  "value": "lb"
+                },
+                {
+                  "title": "Grams (g)",
+                  "value": "g"
+                },
+                {
+                  "title": "Kilograms (kg)",
+                  "value": "kg"
+                }
+              ]
+            },
+            "initialValue": "oz",
+            "name": "unit",
+            "type": "string"
+          }
+        ],
+        "name": "weight",
+        "type": "object",
+        "title": "Shipping Weight"
+      },
+      {
+        "initialValue": "Available Types",
+        "description": "e.g. \"Custom Pin Styles\" or \"Coin Finishes\"",
+        "name": "productTypesHeading",
+        "type": "string",
+        "title": "Types Section Heading"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object",
+            "name": "productType"
+          }
+        ],
+        "name": "productTypes",
+        "type": "array",
+        "title": "Product Types List (Zig Zag)"
+      },
+      {
+        "description": "e.g. \"Plating Options\"",
+        "name": "option1Title",
+        "type": "string",
+        "title": "Carousel 1 Title"
+      },
+      {
+        "name": "option1Subtitle",
+        "type": "string",
+        "title": "Carousel 1 Subtitle"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object",
+            "name": "option1Card"
+          }
+        ],
+        "name": "option1Cards",
+        "type": "array",
+        "title": "Carousel 1 Cards"
+      },
+      {
+        "description": "e.g. \"Backing Attachments\"",
+        "name": "option2Title",
+        "type": "string",
+        "title": "Carousel 2 Title"
+      },
+      {
+        "name": "option2Subtitle",
+        "type": "string",
+        "title": "Carousel 2 Subtitle"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object",
+            "name": "option2Card"
+          }
+        ],
+        "name": "option2Cards",
+        "type": "array",
+        "title": "Carousel 2 Cards"
+      },
+      {
+        "description": "e.g. \"Packaging\"",
+        "name": "option3Title",
+        "type": "string",
+        "title": "Carousel 3 Title"
+      },
+      {
+        "name": "option3Subtitle",
+        "type": "string",
+        "title": "Carousel 3 Subtitle"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object",
+            "name": "option3Card"
+          }
+        ],
+        "name": "option3Cards",
+        "type": "array",
+        "title": "Carousel 3 Cards"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "seoTop",
+        "type": "array",
+        "title": "Top SEO Text"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "seoBottom",
+        "type": "array",
+        "title": "Bottom SEO Text"
+      }
+    ],
+    "name": "customProduct",
+    "type": "document",
+    "title": "Custom Product Pages (Pins/Coins)"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Sample Box Media",
+        "description": "Internal title for this content",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 6
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Upload 1-6 product images. Recommended: 3 images (closed box, open box, patches display)",
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "image",
+                "type": "image"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Describe the image for accessibility and SEO",
+                "name": "alt",
+                "type": "string",
+                "title": "Alt Text"
+              },
+              {
+                "description": "Optional caption to display over the image",
+                "name": "caption",
+                "type": "string",
+                "title": "Caption (Optional)"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "gallery",
+        "type": "array",
+        "title": "Image Gallery"
+      },
+      {
+        "description": "Your unboxing video (10-30 seconds recommended)",
+        "fields": [
+          {
+            "options": {
+              "accept": "video/mp4,video/webm"
+            },
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "Upload your video (recommended: under 5MB, MP4 format)",
+            "name": "file",
+            "type": "file",
+            "title": "Video File"
+          },
+          {
+            "description": "Custom thumbnail for video. If not set, will use first gallery image",
+            "name": "thumbnail",
+            "type": "image",
+            "title": "Video Thumbnail (Optional)"
+          },
+          {
+            "initialValue": "Sample Box Unboxing",
+            "description": "Title shown on video thumbnail",
+            "name": "title",
+            "type": "string",
+            "title": "Video Title"
+          }
+        ],
+        "name": "video",
+        "type": "object",
+        "title": "Unboxing Video"
+      }
+    ],
+    "name": "sampleBox",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g., \"Custom Fire Department Patches\"",
+        "name": "title",
+        "type": "string",
+        "title": "Page Title"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "e.g., \"custom-fire-department-patches\"",
+        "name": "slug",
+        "type": "slug",
+        "title": "URL Slug"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Fire Department",
+              "value": "fire-department"
+            },
+            {
+              "title": "Police / Law Enforcement",
+              "value": "police"
+            },
+            {
+              "title": "Sports Teams",
+              "value": "sports"
+            },
+            {
+              "title": "Corporate / Business",
+              "value": "corporate"
+            },
+            {
+              "title": "Military",
+              "value": "military"
+            },
+            {
+              "title": "Schools / Universities",
+              "value": "schools"
+            },
+            {
+              "title": "Chenille TPU Patches",
+              "value": "chenille-tpu"
+            },
+            {
+              "title": "Chenille Glitter Patches",
+              "value": "chenille-glitter"
+            }
+          ],
+          "layout": "dropdown"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "fire-department",
+                  "police",
+                  "sports",
+                  "corporate",
+                  "military",
+                  "schools",
+                  "chenille-tpu",
+                  "chenille-glitter"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "category",
+        "type": "string",
+        "title": "Category Type"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Main hero image for this category page",
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "Describe the hero image for SEO",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt Text (SEO)"
+          }
+        ],
+        "name": "heroImage",
+        "type": "image"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 5
+              },
+              {
+                "flag": "max",
+                "constraint": 6
+              }
+            ],
+            "level": "warning",
+            "message": "Upload 5-6 images for best display"
+          }
+        ],
+        "description": "Upload 5-6 high-quality patch images specific to this category",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Describe this patch: e.g., \"Custom embroidered fire department badge with Maltese cross design\"",
+                "name": "alt",
+                "type": "string",
+                "title": "Alt Text (SEO)"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "name": "workSamples",
+        "type": "array",
+        "title": "Work Sample Gallery (5-6 Images)"
+      },
+      {
+        "description": "e.g., \"Custom Fire Department Patches — Professional Firefighter Patches\"",
+        "name": "seoHeading",
+        "type": "string",
+        "title": "SEO Section Heading"
+      },
+      {
+        "description": "3-4 paragraphs of SEO-optimized content about this category",
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          }
+        ],
+        "name": "seoContent",
+        "type": "array",
+        "title": "SEO Content (Rich Text)"
+      },
+      {
+        "description": "Add 7 buyer-intent FAQ questions. Used for FAQPage schema and the on-page accordion.",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "question",
+                "type": "string"
+              },
+              {
+                "rows": 4,
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "answer",
+                "type": "text"
+              }
+            ],
+            "type": "object",
+            "name": "faqItem"
+          }
+        ],
+        "name": "faqItems",
+        "type": "array",
+        "title": "FAQ Items (7 questions for schema + page accordion)"
+      }
+    ],
+    "name": "categoryPage",
+    "type": "document",
+    "title": "Category Pages (Bulk Orders)"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image",
+        "title": "Patch Photo (optional — add real photo to replace icon)"
+      },
+      {
+        "name": "quantity",
+        "type": "string",
+        "title": "Quantity (e.g. \"800 pieces\")"
+      },
+      {
+        "name": "patchType",
+        "type": "string",
+        "title": "Patch Type (e.g. \"Embroidered\")"
+      },
+      {
+        "name": "turnaround",
+        "type": "string",
+        "title": "Turnaround (e.g. \"10 days\")"
+      },
+      {
+        "initialValue": 0,
+        "name": "order",
+        "type": "number",
+        "title": "Display Order (lower = first)"
+      }
+    ],
+    "name": "bulkCaseStudy",
+    "type": "document",
+    "title": "Bulk Page - Case Studies"
+  }
+]

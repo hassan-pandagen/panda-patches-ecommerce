@@ -55,6 +55,8 @@ function loadTawkScript() {
   Tawk_API.onChatMessageVisitor = function () {
     if (sessionStorage.getItem('tawk_conv_fired')) return;
     sessionStorage.setItem('tawk_conv_fired', '1');
+
+    // 1) Google Ads conversion (existing)
     if (typeof (window as any).gtag === 'function') {
       (window as any).gtag('event', 'conversion', {
         send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
@@ -62,6 +64,55 @@ function loadTawkScript() {
         currency: 'USD',
       });
     }
+
+    // 2) Meta — Contact event (browser pixel + server CAPI mirror with shared eventID for dedup)
+    try {
+      const eventId = `contact_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+      if (typeof (window as any).fbq === 'function') {
+        (window as any).fbq('track', 'Contact', {
+          content_name: 'Tawk Chat Started',
+          content_category: 'tawk',
+        }, { eventID: eventId });
+      }
+      // Read fbp/fbc cookies for server-side match-quality lift
+      const cookies = Object.fromEntries(
+        document.cookie.split('; ').map((c) => {
+          const idx = c.indexOf('=');
+          return idx === -1 ? [c, ''] : [c.slice(0, idx), decodeURIComponent(c.slice(idx + 1))];
+        })
+      );
+      // Best-effort visitor info from Tawk's visitor object (set when prechat form is filled)
+      const tawkVisitor = (window as any).Tawk_API?.visitor || {};
+      fetch('/api/meta/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        keepalive: true,
+        body: JSON.stringify({
+          eventId,
+          fbp: cookies._fbp || null,
+          fbc: cookies._fbc || null,
+          source: 'tawk',
+          email: tawkVisitor.email || null,
+          phone: tawkVisitor.phone || null,
+          firstName: tawkVisitor.name?.split('|')[0]?.trim() || null,
+        }),
+      }).catch(() => { /* silent — pixel still fired client-side */ });
+    } catch { /* noop */ }
+  };
+
+  // Capture pre-chat form data so we can pass email/phone to CAPI on first message
+  Tawk_API.onPrechatSubmit = function (data: any) {
+    try {
+      const fields = Array.isArray(data) ? data : [];
+      const get = (label: string) =>
+        fields.find((f: any) => f?.label?.toLowerCase().includes(label))?.value || null;
+      const visitor = (window as any).Tawk_API?.visitor || {};
+      visitor.email = get('email') || visitor.email;
+      visitor.phone = get('phone') || visitor.phone;
+      const nameVal = get('name');
+      if (nameVal) visitor.name = nameVal;
+      (window as any).Tawk_API.visitor = visitor;
+    } catch { /* noop */ }
   };
 
   // On mobile, keep widget minimized — do not auto-maximize (avoids CLS)
