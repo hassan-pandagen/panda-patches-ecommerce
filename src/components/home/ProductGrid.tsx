@@ -243,9 +243,9 @@ function ProductCard({ item, showTag, priority }: { item: any; showTag?: boolean
         </div>
 
         {/* 2. CENTER TEXT (Absolute Center) */}
-        <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-          <span className="text-[14px] font-black uppercase tracking-[0.15em] group-hover:text-black text-white transition-colors duration-500">
-            See {item.title}
+        <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none px-10">
+          <span className="text-[13px] font-black uppercase tracking-[0.1em] group-hover:text-black text-white transition-colors duration-500 text-center leading-tight">
+            {item.title.replace(/^Custom\s+/i, '')}
           </span>
         </div>
         
