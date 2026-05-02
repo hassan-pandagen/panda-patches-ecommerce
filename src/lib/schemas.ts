@@ -384,6 +384,32 @@ export function generateProductSchema(params: ProductSchemaParams) {
       "bestRating": "5",
       "worstRating": "1"
     };
+
+    // Individual review objects required by Google for full Product rich results.
+    // These are real Trustpilot-verified reviews visible on pandapatches.com/reviews.
+    productSchema.review = [
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Adam Stranc" },
+        "datePublished": "2026-04-14",
+        "reviewBody": "Ordering was easy, production was fast, and the patches look amazing! Will be ordering again soon.",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Selena Perry" },
+        "datePublished": "2026-02-16",
+        "reviewBody": "I had an excellent experience ordering my patches. The quality is outstanding, durable, vibrant, and exactly what I envisioned. From my very first message, the team was friendly, responsive, and incredibly helpful.",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Taye Sims" },
+        "datePublished": "2025-11-28",
+        "reviewBody": "My experience with Panda Patches was quite positive. They were impressively on time with both delivery and service. The quality of the material used for the patches was excellent. It felt sturdy yet flexible, which is essential for long-lasting wear.",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+      }
+    ];
   }
 
   return productSchema;

@@ -51,21 +51,10 @@ function loadTawkScript() {
 
   Tawk_API.visitor = { name: `${source} | ${page}` };
 
-  // Fire conversion only when visitor actually SENDS a message
-  Tawk_API.onChatMessageVisitor = function () {
-    if (sessionStorage.getItem('tawk_conv_fired')) return;
-    sessionStorage.setItem('tawk_conv_fired', '1');
-
-    // 1) Google Ads conversion (existing)
-    if (typeof (window as any).gtag === 'function') {
-      (window as any).gtag('event', 'conversion', {
-        send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
-        value: 10.0,
-        currency: 'USD',
-      });
-    }
-
-    // 2) Meta — Contact event (browser pixel + server CAPI mirror with shared eventID for dedup)
+  // Helper: fire Meta Contact browser pixel + server CAPI mirror
+  function fireMetaContact() {
+    if (sessionStorage.getItem('tawk_meta_contact_fired')) return;
+    sessionStorage.setItem('tawk_meta_contact_fired', '1');
     try {
       const eventId = `contact_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
       if (typeof (window as any).fbq === 'function') {
@@ -74,14 +63,12 @@ function loadTawkScript() {
           content_category: 'tawk',
         }, { eventID: eventId });
       }
-      // Read fbp/fbc cookies for server-side match-quality lift
       const cookies = Object.fromEntries(
         document.cookie.split('; ').map((c) => {
           const idx = c.indexOf('=');
           return idx === -1 ? [c, ''] : [c.slice(0, idx), decodeURIComponent(c.slice(idx + 1))];
         })
       );
-      // Best-effort visitor info from Tawk's visitor object (set when prechat form is filled)
       const tawkVisitor = (window as any).Tawk_API?.visitor || {};
       fetch('/api/meta/contact', {
         method: 'POST',
@@ -96,8 +83,31 @@ function loadTawkScript() {
           phone: tawkVisitor.phone || null,
           firstName: tawkVisitor.name?.split('|')[0]?.trim() || null,
         }),
-      }).catch(() => { /* silent — pixel still fired client-side */ });
+      }).catch(() => {});
     } catch { /* noop */ }
+  }
+
+  // Fire Meta Contact when the chat SESSION starts (visitor opens chat)
+  Tawk_API.onChatStarted = function () {
+    fireMetaContact();
+  };
+
+  // Fire Google Ads conversion + Meta Contact (backup) when visitor sends first message
+  Tawk_API.onChatMessageVisitor = function () {
+    if (sessionStorage.getItem('tawk_conv_fired')) return;
+    sessionStorage.setItem('tawk_conv_fired', '1');
+
+    // Google Ads conversion
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'conversion', {
+        send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
+        value: 10.0,
+        currency: 'USD',
+      });
+    }
+
+    // Meta Contact — sessionStorage flag prevents double-fire if onChatStarted already ran
+    fireMetaContact();
   };
 
   // Capture pre-chat form data so we can pass email/phone to CAPI on first message
