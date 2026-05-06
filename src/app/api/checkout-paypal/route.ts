@@ -150,13 +150,24 @@ export async function POST(req: Request) {
       );
     }
 
+    // Enrich attribution with server-side signals before persisting
+    const serverIp = ((req.headers.get('x-forwarded-for') || '').split(',')[0].trim()
+      || req.headers.get('x-real-ip') || '') || undefined;
+    const serverUa = req.headers.get('user-agent') || undefined;
+    const serverUrl = req.headers.get('referer') || 'https://www.pandapatches.com';
+    const enrichedAttribution = {
+      ...(attribution || {}),
+      ...(serverIp ? { client_ip: serverIp } : {}),
+      ...(serverUa ? { client_ua: serverUa } : {}),
+      page_url: (attribution as any)?.page_url || serverUrl,
+    };
+
     // Store orderData server-side so capture works even if localStorage is cleared (e.g. mobile Safari, different device)
-    // Persist attribution alongside orderData so capture-paypal/webhook can enrich the Purchase event
     await supabase
       .from('paypal_pending_orders')
       .upsert({
         paypal_order_id: paypalOrder.id,
-        order_data: { ...orderData, attribution: attribution || null },
+        order_data: { ...orderData, attribution: enrichedAttribution },
       }, { onConflict: 'paypal_order_id' });
 
     // Track abandoned cart — upsert checkout_attempts row so the cron can email
@@ -203,11 +214,7 @@ export async function POST(req: Request) {
         phone: customer.phone || null,
         firstName: icFirstName,
         lastName: icLastParts.join(' ') || null,
-        attribution: {
-          ...(attribution || {}),
-          client_ip: ipHeader,
-          client_ua: ua,
-        },
+        attribution: enrichedAttribution,
         value: finalPrice,
         currency: 'USD',
         contentName: productName,

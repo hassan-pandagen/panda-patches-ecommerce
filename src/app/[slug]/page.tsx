@@ -9,6 +9,7 @@ import { getSanityOgImage } from "@/lib/sanityOgImage";
 import cityPageMeta from "@/lib/cityPageMeta";
 import patchStyleMeta from "@/lib/patchStyleMeta";
 import { getPatchStyleProductSchema } from "@/lib/patchStyleProductSchema";
+import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT_STR } from "@/lib/reviewConstants";
 import BulkHero from "@/components/bulk/BulkHero";
 import WorkGallery from "@/components/bulk/WorkGallery";
 import CategoryFAQ from "@/components/bulk/CategoryFAQ";
@@ -169,7 +170,10 @@ async function getData(slug: string) {
   // Explicitly exclude drafts to only get published documents
   const query = `
     {
-      "blog": *[_type == "blog" && slug.current == $slug && !(_id in path("drafts.**"))][0],
+      "blog": *[_type == "blog" && slug.current == $slug && !(_id in path("drafts.**"))][0]{
+        ...,
+        "resolvedImageUrl": coalesce(mainImage.asset->url, image.asset->url)
+      },
       "location": *[_type == "locationPage" && slug.current == $slug && !(_id in path("drafts.**"))][0],
       "patchStyle": *[_type == "patchStyle" && slug.current == $slug && !(_id in path("drafts.**"))][0],
       "categoryPage": *[_type == "categoryPage" && slug.current == $slug && !(_id in path("drafts.**"))][0] {
@@ -285,12 +289,12 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       })),
     } : null;
 
-    // Image source for Product schema (mainImage preferred, fallback to image, then OG default)
-    const productImage = data.blog.mainImage
-      ? urlFor(data.blog.mainImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
-      : data.blog.image
-        ? urlFor(data.blog.image).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
-        : 'https://www.pandapatches.com/assets/og-image.png';
+    // Image source for Product / Merchant Listing schema.
+    // Use GROQ-resolved URL directly (coalesce mainImage → image → OG fallback)
+    // so Google always sees a valid image URL in the schema.
+    const productImage = data.blog.resolvedImageUrl
+      ? `${data.blog.resolvedImageUrl}?w=1200&h=630&fit=crop&auto=format`
+      : 'https://www.pandapatches.com/assets/og-image.png';
 
     // Shared shipping details for every Offer — free US shipping, 1-2 day handling, 7-14 day transit
     const productShippingDetails = {
@@ -321,12 +325,36 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       "image": productImage,
       "brand": { "@type": "Brand", "name": "Panda Patches" },
       "description": data.blog.metaDescription || data.blog.excerpt || "",
-      // aggregateRating / review intentionally omitted on blog product schemas.
-      // Per Google 2026 guidance they must match visible page content exactly
-      // and be specific to the item on the page. Panda Patches' Trustpilot
-      // rating is company-wide, not specific to any one blog offering. Using
-      // it here triggers review-snippet mismatch risk. Those ratings belong
-      // on actual product pages where the product is the page subject.
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": TRUSTPILOT_RATING,
+        "reviewCount": TRUSTPILOT_REVIEW_COUNT_STR,
+        "bestRating": "5",
+        "worstRating": "1",
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Adam Stranc" },
+          "datePublished": "2026-04-14",
+          "reviewBody": "Ordering was easy, production was fast, and the patches look amazing! Will be ordering again soon.",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Selena Perry" },
+          "datePublished": "2026-02-16",
+          "reviewBody": "I had an excellent experience ordering my patches. The quality is outstanding, durable, vibrant, and exactly what I envisioned. From my very first message, the team was friendly, responsive, and incredibly helpful.",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Taye Sims" },
+          "datePublished": "2025-11-28",
+          "reviewBody": "My experience with Panda Patches was quite positive. They were impressively on time with both delivery and service. The quality of the material used for the patches was excellent.",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        },
+      ],
       "offers": data.blog.productOffers.map((offer: { name: string; price: number; description?: string }) => ({
         "@type": "Offer",
         "name": offer.name,

@@ -61,7 +61,11 @@ const faqEntries = [
   },
   {
     question: "What industries does Panda Patches serve?",
-    answer: "Panda Patches serves small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, fashion brands, and Fortune 500 corporations. The company has delivered patches for uniforms, tactical gear, merchandise, team apparel, corporate branding, event giveaways, and promotional products. All orders are custom-produced to the client's specifications.",
+    answer: "Panda Patches serves small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, fraternities, sororities, fashion brands, apparel brands, and Fortune 500 corporations. The company has delivered patches for uniforms, tactical gear, merchandise, team apparel, corporate branding, event giveaways, and promotional products. Industry-specific pages exist for fire departments, police, sports teams, corporate brands, military units, motorcycle clubs, schools, and fraternities at pandapatches.com.",
+  },
+  {
+    question: "Does Panda Patches have a partner or reseller program?",
+    answer: "Yes. Panda Patches offers a partner program for promotional product agencies, uniform suppliers, embroidery shops, and branding agencies. Partners receive 10 to 18% below retail pricing scaled by volume, a dedicated account manager from day one, white-label blind shipping with no Panda Patches branding, unbranded mockup PDFs on request, priority production queue, and Net-15/Net-30 payment terms after three completed projects. The program has three tiers: wholesale reseller (buy at partner price and mark up), white-label supplier (blind ship direct to client), and preferred vendor (use Panda Patches in RFPs). Apply at pandapatches.com/partners or email design@pandapatches.com.",
   },
   {
     question: "How is Panda Patches different from other custom patch manufacturers?",

@@ -269,9 +269,20 @@ export async function POST(req: Request) {
         const addonsArray = meta.website_addons ? meta.website_addons.split(', ').filter(Boolean) : null;
 
         // Parse attribution from Stripe metadata (serialized JSON, may be empty)
+        // Merge in server-side signals (IP, UA, event_source_url) stored as separate
+        // metadata keys at checkout time — they are too large to fit in the 500-char
+        // attribution JSON field so they were stored separately.
         let attribution: Attribution | null = null;
         if (meta.attribution) {
           try { attribution = JSON.parse(meta.attribution) as Attribution; } catch { attribution = null; }
+        }
+        if (meta.meta_client_ip || meta.meta_client_ua || meta.meta_event_source_url) {
+          attribution = {
+            ...(attribution || {}),
+            ...(meta.meta_client_ip ? { client_ip: meta.meta_client_ip } : {}),
+            ...(meta.meta_client_ua ? { client_ua: meta.meta_client_ua } : {}),
+            ...(meta.meta_event_source_url ? { page_url: attribution?.page_url || meta.meta_event_source_url } : {}),
+          } as Attribution;
         }
 
         const paidAtIso = new Date().toISOString();

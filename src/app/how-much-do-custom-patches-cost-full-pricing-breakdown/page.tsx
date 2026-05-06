@@ -10,14 +10,14 @@ const BASE = 'https://www.pandapatches.com';
 const CANONICAL = `${BASE}/how-much-do-custom-patches-cost-full-pricing-breakdown`;
 
 export const metadata: Metadata = {
-  title: 'Custom Patch Pricing 2026 — How Much Do Patches Cost?',
+  title: 'How Much Do Custom Patches Cost? $0.71 to $7/pc (2026)',
   description:
-    'Custom embroidered patches start at $0.71/pc at 5,000 qty. Full pricing tables for woven, PVC, chenille, and leather patches — by quantity and size. Free shipping included.',
+    'Custom patches cost $0.71 to $7 per piece in 2026. Full pricing tables for embroidered, woven, PVC, chenille, and leather patches by quantity and size. Free shipping included.',
   alternates: { canonical: CANONICAL },
   openGraph: {
-    title: 'Custom Patch Pricing 2026 — How Much Do Patches Cost?',
+    title: 'How Much Do Custom Patches Cost? $0.71 to $7/pc (2026)',
     description:
-      'Full pricing tables for every patch type. From $0.71/pc at volume to $80 flat for a single patch. Free mockup, free shipping, no hidden fees.',
+      'Custom patch pricing in 2026. From $0.71/pc at volume to $80 flat for a single patch. Full tables by type and quantity. Free mockup, free shipping.',
     url: CANONICAL,
     type: 'website',
     images: [{ url: `${BASE}/assets/og-image.png`, width: 1200, height: 630, alt: 'Custom Patch Pricing' }],

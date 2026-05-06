@@ -180,6 +180,14 @@ export async function POST(req: Request) {
         order_amount: String(finalPrice),
         // Attribution for Meta CAPI (serialized — trimmed to fit Stripe's 500 char metadata limit)
         attribution: attribution ? JSON.stringify(attribution).substring(0, 500) : '',
+        // Server-side signals stored as separate metadata keys (not in attribution JSON)
+        // so they don't eat into the 500-char attribution limit.
+        // The Stripe webhook merges these into orders.attribution before writing to Supabase.
+        meta_client_ip: ((req.headers.get('x-forwarded-for') || '').split(',')[0].trim()
+          || req.headers.get('x-real-ip')
+          || '').substring(0, 50),
+        meta_client_ua: (req.headers.get('user-agent') || '').substring(0, 250),
+        meta_event_source_url: (req.headers.get('referer') || `https://www.pandapatches.com`).substring(0, 200),
       },
     };
 

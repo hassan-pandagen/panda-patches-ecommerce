@@ -30,3 +30,17 @@ Thumbs.db
 
 # Email campaign (local-only: contacts, state, API keys, CSV imports)
 email-campaign/
+
+# All CSV files (GSC exports, data dumps, etc.)
+*.csv
+
+# GSC folder (Google Search Console exports)
+GSC/
+
+# Blog drafts (local-only working copies)
+blog-drafts/
+
+# Local scratch markdown — keep CLAUDE.md and README.md tracked
+/*.md
+!CLAUDE.md
+!README.md
