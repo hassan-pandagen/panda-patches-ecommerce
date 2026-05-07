@@ -51,9 +51,16 @@ function loadTawkScript() {
 
   Tawk_API.visitor = { name: `${source} | ${page}` };
 
-  // Helper: fire Meta Contact browser pixel + server CAPI mirror
+  // Helper: fire Meta Contact browser pixel + server CAPI mirror.
+  // Only fires when we have at least one PII identifier (email or phone) — firing
+  // anonymous chat-open events tanks EMQ score (was 6.1 with 456/wk anonymous opens).
+  // Now fires on first visitor message AND only when pre-chat form supplied identifiers.
   function fireMetaContact() {
     if (sessionStorage.getItem('tawk_meta_contact_fired')) return;
+    const tawkVisitor = (window as any).Tawk_API?.visitor || {};
+    const email = tawkVisitor.email || null;
+    const phone = tawkVisitor.phone || null;
+    if (!email && !phone) return;
     sessionStorage.setItem('tawk_meta_contact_fired', '1');
     try {
       const eventId = `contact_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
@@ -69,7 +76,6 @@ function loadTawkScript() {
           return idx === -1 ? [c, ''] : [c.slice(0, idx), decodeURIComponent(c.slice(idx + 1))];
         })
       );
-      const tawkVisitor = (window as any).Tawk_API?.visitor || {};
       fetch('/api/meta/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -79,25 +85,21 @@ function loadTawkScript() {
           fbp: cookies._fbp || null,
           fbc: cookies._fbc || null,
           source: 'tawk',
-          email: tawkVisitor.email || null,
-          phone: tawkVisitor.phone || null,
+          email,
+          phone,
           firstName: tawkVisitor.name?.split('|')[0]?.trim() || null,
         }),
       }).catch(() => {});
     } catch { /* noop */ }
   }
 
-  // Fire Meta Contact when the chat SESSION starts (visitor opens chat)
-  Tawk_API.onChatStarted = function () {
-    fireMetaContact();
-  };
-
-  // Fire Google Ads conversion + Meta Contact (backup) when visitor sends first message
+  // Fire Google Ads conversion + Meta Contact when visitor sends first message.
+  // Meta Contact only fires if email/phone present (guarded inside fireMetaContact).
   Tawk_API.onChatMessageVisitor = function () {
     if (sessionStorage.getItem('tawk_conv_fired')) return;
     sessionStorage.setItem('tawk_conv_fired', '1');
 
-    // Google Ads conversion
+    // Google Ads conversion (always fires — Google handles low-quality signal differently than Meta)
     if (typeof (window as any).gtag === 'function') {
       (window as any).gtag('event', 'conversion', {
         send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
@@ -106,7 +108,6 @@ function loadTawkScript() {
       });
     }
 
-    // Meta Contact — sessionStorage flag prevents double-fire if onChatStarted already ran
     fireMetaContact();
   };
 
