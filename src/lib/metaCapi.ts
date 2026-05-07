@@ -35,6 +35,7 @@ export interface Attribution {
   client_ip?: string;
   client_ua?: string;
   page_url?: string;
+  referrer?: string;
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;

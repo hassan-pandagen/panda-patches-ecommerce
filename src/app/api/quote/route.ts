@@ -39,7 +39,7 @@ const QuoteSchema = z.object({
     utm_medium: z.string().optional(),
     utm_campaign: z.string().optional(),
     page_url: z.string().optional(),
-    referrer: z.string().optional(),
+    referrer: z.string().max(500).optional(),
     first_seen_at: z.string().optional(),
   }).optional(),
   eventId: z.string().max(100).optional(),
@@ -53,6 +53,93 @@ function esc(s: string) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#x27;');
+}
+
+function deriveLeadSource(pageUrl: string | undefined, isBulkOrder: boolean | undefined, hasBasePrice: boolean): string {
+  if (isBulkOrder) return 'Bulk Order Form';
+  if (!pageUrl) return hasBasePrice ? 'Product Calculator' : 'Website Form';
+
+  let path = '';
+  try {
+    path = new URL(pageUrl).pathname.toLowerCase();
+  } catch {
+    path = pageUrl.toLowerCase();
+  }
+
+  if (path === '/' || path === '') return 'Homepage Hero Form';
+  if (path.startsWith('/custom-patches/')) {
+    const type = path.replace('/custom-patches/', '').replace(/\/$/, '').split('/')[0];
+    if (type) return `${type.charAt(0).toUpperCase() + type.slice(1)} Product Page`;
+  }
+  if (path.startsWith('/contact')) return 'Contact Page';
+  if (path.startsWith('/offers')) return 'Offers Page';
+  if (path.startsWith('/bulk')) return 'Bulk Order Form';
+  if (path.startsWith('/blog/')) {
+    const slug = path.replace('/blog/', '').replace(/\/$/, '');
+    return slug ? `Blog: ${slug}` : 'Blog';
+  }
+  if (path.startsWith('/custom-')) {
+    const slug = path.replace(/^\//, '').replace(/\/$/, '');
+    return `Industry Page: ${slug}`;
+  }
+
+  return `Page: ${path}`;
+}
+
+function deriveTrafficSource(attribution: Record<string, any> | undefined): string {
+  if (!attribution) return 'Direct / Unknown';
+
+  const { gclid, fbclid, utm_source, utm_medium, utm_campaign, referrer } = attribution;
+
+  if (gclid) {
+    const campaign = utm_campaign ? ` (${utm_campaign})` : '';
+    return `Google Ads${campaign}`;
+  }
+  if (fbclid) {
+    const medium = utm_medium === 'paid' || utm_source?.toLowerCase().includes('fb') ? 'Ads' : 'Click';
+    const campaign = utm_campaign ? ` (${utm_campaign})` : '';
+    return `Facebook ${medium}${campaign}`;
+  }
+  if (utm_source) {
+    const src = utm_source.toLowerCase();
+    const medium = (utm_medium || '').toLowerCase();
+    let label = utm_source.charAt(0).toUpperCase() + utm_source.slice(1);
+    if (medium.includes('cpc') || medium.includes('paid') || medium === 'ppc') label += ' Ads';
+    else if (medium === 'email') label += ' Email';
+    else if (medium === 'social') label += ' Social';
+    if (utm_campaign) label += ` (${utm_campaign})`;
+    return label;
+  }
+  if (referrer) {
+    let host = '';
+    try {
+      host = new URL(referrer).hostname.toLowerCase().replace(/^www\./, '');
+    } catch {
+      host = referrer.toLowerCase();
+    }
+    if (host.includes('chatgpt.com') || host.includes('chat.openai.com') || host.includes('openai.com')) return 'ChatGPT';
+    if (host.includes('claude.ai') || host.includes('anthropic.')) return 'Claude';
+    if (host.includes('perplexity.')) return 'Perplexity';
+    if (host.includes('gemini.google.') || host.includes('bard.google.')) return 'Gemini';
+    if (host.includes('copilot.microsoft.') || host.includes('bing.com/chat')) return 'Bing Copilot';
+    if (host.includes('you.com')) return 'You.com';
+    if (host.includes('grok.x.') || host.includes('grok.com')) return 'Grok';
+    if (host.includes('google.')) return 'Google (Organic)';
+    if (host.includes('bing.')) return 'Bing (Organic)';
+    if (host.includes('duckduckgo.')) return 'DuckDuckGo (Organic)';
+    if (host.includes('yahoo.')) return 'Yahoo (Organic)';
+    if (host.includes('facebook.') || host.includes('fb.com') || host.includes('m.facebook')) return 'Facebook (Organic)';
+    if (host.includes('instagram.')) return 'Instagram';
+    if (host.includes('messenger.') || host.includes('m.me')) return 'Messenger';
+    if (host.includes('t.co') || host.includes('twitter.') || host.includes('x.com')) return 'Twitter / X';
+    if (host.includes('linkedin.')) return 'LinkedIn';
+    if (host.includes('reddit.')) return 'Reddit';
+    if (host.includes('youtube.')) return 'YouTube';
+    if (host.includes('pinterest.')) return 'Pinterest';
+    if (host.includes('tiktok.')) return 'TikTok';
+    if (host && host !== 'pandapatches.com') return `Referral: ${host}`;
+  }
+  return 'Direct / Unknown';
 }
 
 export async function POST(req: Request) {
@@ -102,6 +189,8 @@ export async function POST(req: Request) {
     const attribution = getAttributionFromRequest(req, bodyAttribution);
 
     const sizeLabel = details.width > 0 ? `${details.width}" x ${details.height}"` : 'Custom / See instructions';
+    const leadSource = deriveLeadSource(pageUrl, isBulkOrder, basePrice != null);
+    const trafficSource = deriveTrafficSource(attribution as any);
     const subject = isBulkOrder
       ? `New Bulk Quote Request from ${customer.name}`
       : `New Quote Request from ${customer.name}`;
@@ -135,6 +224,8 @@ export async function POST(req: Request) {
       <span style="color:#dcff70;font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">Customer Information</span>
     </div>
     <table style="width:100%;border-collapse:collapse;font-size:14px;border:1px solid #e0e0e0;border-top:none;">
+      <tr><td style="padding:9px 14px;color:#666;width:140px;background:#fafafa;">Source</td><td style="padding:9px 14px;font-weight:600;color:#0a7d2a;">${esc(leadSource)}</td></tr>
+      <tr><td style="padding:9px 14px;color:#666;width:140px;background:#fafafa;">Traffic</td><td style="padding:9px 14px;font-weight:600;color:#1a73e8;">${esc(trafficSource)}</td></tr>
       <tr><td style="padding:9px 14px;color:#666;width:140px;background:#fafafa;">Name</td><td style="padding:9px 14px;font-weight:600;color:#fb6e1d;">${esc(customer.name)}</td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Email</td><td style="padding:9px 14px;"><a href="mailto:${esc(customer.email)}" style="color:#333;">${esc(customer.email)}</a></td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Phone</td><td style="padding:9px 14px;">${esc(customer.phone || 'Not provided')}</td></tr>
@@ -294,7 +385,7 @@ export async function POST(req: Request) {
         instructions: details.instructions || details.placement || '',
         customer_attachment_urls: [artworkUrl, artworkUrl2].filter(Boolean) as string[],
         sales_agent: 'WEBSITE_BOT',
-        lead_source: isBulkOrder ? 'BULK_ORDER_FORM' : 'WEBSITE_FORM',
+        lead_source: leadSource,
         page_url: pageUrl || null,
         quote_amount: basePrice ?? null,
         email_sent_at: (token && basePrice != null && !internalOnly) ? new Date().toISOString() : null,

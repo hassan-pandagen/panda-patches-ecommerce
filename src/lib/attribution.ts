@@ -40,6 +40,7 @@ export function getAttributionFromRequest(
     client_ip: ip,
     client_ua: ua,
     page_url: bodyAttribution?.page_url || referer,
+    referrer: bodyAttribution?.referrer,
     utm_source: bodyAttribution?.utm_source,
     utm_medium: bodyAttribution?.utm_medium,
     utm_campaign: bodyAttribution?.utm_campaign,

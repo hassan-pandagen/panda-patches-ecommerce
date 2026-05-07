@@ -141,28 +141,30 @@ export default function RootLayout({
           {`(function(){var s=document.createElement('style');s.textContent='.faq-wrapper{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease,opacity .3s ease;opacity:0}.faq-wrapper.open{grid-template-rows:1fr;opacity:1}.faq-inner{overflow:hidden;min-height:0}::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#051C05}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#DFFF00,#3B7E00);border-radius:10px}::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#e8ff33,#4a9e00)}@keyframes fade-in{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.animate-fade-in{animation:fade-in .3s ease-out}';document.head.appendChild(s)})();`}
         </Script>
 
-        {/* Third-party script loader: deferred until user interaction or 16s fallback.
-            Loads GTM, Meta Pixel, Bing UET, and Trustpilot AFTER the user scrolls,
-            clicks, touches, or presses a key. This keeps them out of Lighthouse measurement
-            while ensuring real users get full tracking within 1s of engagement.
-            Fallback at 16s ensures scripts load even if the user doesn't interact. */}
-        <Script id="staggered-loader" strategy="lazyOnload">
+        {/* GTM + Meta Pixel: fire on pageload (afterInteractive) so PageView is captured
+            even when users bounce within 5 seconds. Required for accurate attribution on
+            paid traffic, retargeting audiences, and lookalikes. Industry standard. */}
+        <Script id="gtm-loader" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-var ric=window.requestIdleCallback||function(cb){setTimeout(cb,1)};
+try{(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;if(f&&f.parentNode){f.parentNode.insertBefore(j,f);}else{document.head.appendChild(j);}})(window,document,'script','dataLayer','GTM-KQQQ674D');}catch(e){}`}
+        </Script>
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`try{!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];if(s&&s.parentNode){s.parentNode.insertBefore(t,s);}else{document.head.appendChild(t);}}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1515101469424765');fbq('track','PageView');}catch(e){}`}
+        </Script>
+
+        {/* Bing UET + Trustpilot: still deferred until user interaction or 16s fallback.
+            Bing has lower volume, Trustpilot is below-fold — these can stay lazy without
+            hurting attribution accuracy. */}
+        <Script id="staggered-loader" strategy="lazyOnload">
+          {`var ric=window.requestIdleCallback||function(cb){setTimeout(cb,1)};
 function loadScript(src,cb){var s=document.createElement('script');s.async=true;s.src=src;if(cb)s.onload=cb;document.head.appendChild(s);}
 var _3pLoaded=false;
 function load3p(){
 if(_3pLoaded)return;_3pLoaded=true;
 ['scroll','click','touchstart','keydown'].forEach(function(e){document.removeEventListener(e,load3p,{capture:true});});
 ric(function(){
-try{(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;if(f&&f.parentNode){f.parentNode.insertBefore(j,f);}else{document.head.appendChild(j);}})(window,document,'script','dataLayer','GTM-KQQQ674D');}catch(e){}
-});
-setTimeout(function(){ric(function(){
-try{!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];if(s&&s.parentNode){s.parentNode.insertBefore(t,s);}else{document.head.appendChild(t);}}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1515101469424765');fbq('track','PageView');}catch(e){}
-});},1000);
-setTimeout(function(){ric(function(){
 try{(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97147013"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0];if(i&&i.parentNode){i.parentNode.insertBefore(n,i);}else{document.head.appendChild(n);}})(window,document,"script","//bat.bing.com/bat.js","uetq");}catch(e){}
-});},5000);
+});
 var tpLoaded=false;function loadTP(){if(tpLoaded)return;tpLoaded=true;ric(function(){loadScript('//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js');});}
 var obs=new IntersectionObserver(function(e){if(e[0].isIntersecting){loadTP();obs.disconnect();}},{rootMargin:'400px'});
 var footer=document.querySelector('footer');if(footer)obs.observe(footer);else setTimeout(loadTP,5000);
