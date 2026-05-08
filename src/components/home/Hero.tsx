@@ -1,4 +1,3 @@
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import { client } from "@/lib/sanity";
 
@@ -129,19 +128,33 @@ export default async function Hero() {
             Trusted by Teams At
           </p>
 
-          {/* Mobile: 2x2 Grid | Desktop: 4 in 1 row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 w-full max-w-5xl mx-auto">
-             <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-google.svg" alt="Google" width={110} height={50} className="object-contain brightness-0 w-auto h-auto" loading="lazy" />
+          {/* Mobile: row 1 = Google + Microsoft, row 2 = Coca + Nissan + Wise | Desktop: 5 in 1 row */}
+          <style>{`
+            .panda-trust-grid-hero { display: grid; grid-template-columns: repeat(6, 1fr); column-gap: 0.75rem; row-gap: 0.75rem; }
+            .panda-trust-grid-hero > div { height: 3rem; }
+            .panda-trust-grid-hero > div:nth-child(1), .panda-trust-grid-hero > div:nth-child(2) { grid-column: span 3; }
+            .panda-trust-grid-hero > div:nth-child(3), .panda-trust-grid-hero > div:nth-child(4), .panda-trust-grid-hero > div:nth-child(5) { grid-column: span 2; }
+            @media (min-width: 768px) {
+              .panda-trust-grid-hero { grid-template-columns: repeat(5, 1fr); column-gap: 1rem; row-gap: 1rem; }
+              .panda-trust-grid-hero > div { height: 4rem; }
+              .panda-trust-grid-hero > div:nth-child(n) { grid-column: span 1; }
+            }
+          `}</style>
+          <div className="panda-trust-grid-hero w-full max-w-5xl mx-auto">
+             <div className="flex items-center justify-center">
+               <img src="/assets/logo-google.svg" alt="Google" style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
              </div>
-             <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-microsoft.svg" alt="Microsoft" width={130} height={50} className="object-contain brightness-0 w-auto h-auto" loading="lazy" />
+             <div className="flex items-center justify-center">
+               <img src="/assets/logo-microsoft.svg" alt="Microsoft" style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
              </div>
-             <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-cocacola.svg" alt="CocaCola" width={120} height={50} className="object-contain brightness-0 w-auto h-auto" loading="lazy" />
+             <div className="flex items-center justify-center">
+               <img src="/assets/logo-cocacola.svg" alt="CocaCola" style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
              </div>
-             <div className="flex items-center justify-center h-12 md:h-16">
-               <Image src="/assets/logo-nissan.svg" alt="Nissan" width={100} height={50} className="object-contain brightness-0 w-auto h-auto" loading="lazy" />
+             <div className="flex items-center justify-center">
+               <img src="/assets/logo-nissan.svg" alt="Nissan" style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
+             </div>
+             <div className="flex items-center justify-center">
+               <img src="/assets/logo-wise.svg" alt="Wise" style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
              </div>
           </div>
         </div>
