@@ -2,7 +2,6 @@ import { client } from "@/lib/sanity";
 import { Instagram } from "lucide-react";
 import Link from "next/link";
 import LazyVideoSwiper from "./LazyVideoSwiper";
-import { generateVideoObjectSchema, generateSchemaScript } from "@/lib/schemas";
 
 async function getData() {
   const query = `*[_type == "craftsmanship"][0] {
@@ -31,31 +30,16 @@ export default async function Craftsmanship() {
   const heading = data?.heading || "REAL ORDERS FROM REAL CUSTOMERS";
   const videos = data?.videos || [];
 
-  // Build Video schema only for videos that have the required SEO fields filled in
-  const videoSchemaItems = videos
-    .filter((v: any) => v.videoName && v.videoDescription && v.uploadDate && v.videoUrl)
-    .map((v: any) => ({
-      name: v.videoName,
-      description: v.videoDescription,
-      thumbnailUrl: v.thumbnailUrl || 'https://www.pandapatches.com/assets/og-image.png',
-      contentUrl: v.videoUrl,
-      uploadDate: v.uploadDate,
-      duration: v.duration || 'PT0M30S',
-    }));
-
-  const videoSchemas = videoSchemaItems.length > 0
-    ? generateVideoObjectSchema(videoSchemaItems)
-    : null;
+  // NOTE: VideoObject schema intentionally NOT emitted. These are decorative
+  // Instagram-loop videos shown across 17 commercial pages, not dedicated "watch
+  // pages." Emitting VideoObject triggered 30 "Video isn't on a watch page"
+  // warnings in GSC because the videos failed Google's watch-page bar (large
+  // player + descriptive content about the video as primary content).
+  // Pages themselves remain fully indexed. Re-introduce schema only if a future
+  // page is built as a dedicated video watch experience.
 
   return (
     <>
-      {videoSchemas && videoSchemas.map((schema: any, i: number) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={generateSchemaScript(schema)}
-        />
-      ))}
     <section className="w-full pt-8 pb-6 bg-[#F7F7F7]">
       <div className="container mx-auto px-6 text-center">
         
