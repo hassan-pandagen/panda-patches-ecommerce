@@ -220,6 +220,11 @@ export async function POST(req: Request) {
         const meta = session.metadata || {};
         const amountPaid = session.amount_total ? session.amount_total / 100 : 0;
 
+        // CRM payment links have origin: 'crm_agent' stamped in metadata.
+        // Those are handled entirely by the Supabase edge function on the CRM side.
+        // Skip here to prevent duplicate orders, emails, and CAPI Purchase events.
+        if (meta.origin === 'crm_agent') return NextResponse.json({ received: true });
+
         // Check if order already exists (e.g. from payment links or older flow)
         let orderId = meta.order_id;
         if (orderId) {
