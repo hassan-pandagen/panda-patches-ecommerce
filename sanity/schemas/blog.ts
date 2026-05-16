@@ -273,6 +273,38 @@ export default defineType({
             },
           },
         },
+        {
+          type: 'object',
+          name: 'productionFloorCallout',
+          title: 'Production Floor Callout (E-E-A-T signal)',
+          description: 'Founder-attributed insider commentary. Boosts Experience signal for May 2026+ Google ranking and AI Overview citation. Use specific, count-bearing details only someone who has actually done this work could write.',
+          fields: [
+            {
+              name: 'heading',
+              title: 'Heading',
+              type: 'string',
+              initialValue: 'From our production floor',
+              description: 'The callout title. Default works for most posts.',
+            },
+            {
+              name: 'body',
+              title: 'Body',
+              type: 'text',
+              rows: 6,
+              description: 'Insider commentary from the founder. Include specific patterns, dates, counts, or technical details only someone with hands-on production experience would know. End with the attribution baked into the text (e.g., "— Imran Raza, Founder").',
+              validation: (Rule: any) => Rule.required().min(80).max(1200),
+            },
+          ],
+          preview: {
+            select: { heading: 'heading', body: 'body' },
+            prepare({ heading, body }: { heading?: string; body?: string }) {
+              return {
+                title: heading || 'From our production floor',
+                subtitle: body ? body.slice(0, 80) + (body.length > 80 ? '…' : '') : '(empty)',
+              };
+            },
+          },
+        },
       ],
     }),
   ],

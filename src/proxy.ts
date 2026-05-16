@@ -70,10 +70,10 @@ const ww = (domain: string) => `wss://${W}.${domain}`;
 const cspHeader = [
   "default-src 'self'",
 
-  // Scripts: Google (GTM, GA4, Ads), Stripe, PayPal, Trustpilot, Clarity, Tawk.to, Facebook, Bing, Vercel
-  `script-src 'self' 'unsafe-inline' 'unsafe-eval' ${w('googletagmanager.com')} ${w('google-analytics.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} https://js.stripe.com ${w('paypal.com')} ${w('paypalobjects.com')} ${w('trustpilot.com')} ${w('clarity.ms')} ${w('tawk.to')} https://cdn.jsdelivr.net ${w('vercel-scripts.com')} ${w('vercel-insights.com')} ${w('facebook.net')} ${w('facebook.com')} https://bat.bing.com`,
+  // Scripts: Google (GTM, GA4, Ads), Stripe, PayPal, Trustpilot, Clarity, Tawk.to, Facebook, Bing, Vercel, Pinterest
+  `script-src 'self' 'unsafe-inline' 'unsafe-eval' ${w('googletagmanager.com')} ${w('google-analytics.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} https://js.stripe.com ${w('paypal.com')} ${w('paypalobjects.com')} ${w('trustpilot.com')} ${w('clarity.ms')} ${w('tawk.to')} https://cdn.jsdelivr.net ${w('vercel-scripts.com')} ${w('vercel-insights.com')} ${w('facebook.net')} ${w('facebook.com')} https://bat.bing.com https://s.pinimg.com`,
 
-  `script-src-elem 'self' 'unsafe-inline' ${w('googletagmanager.com')} ${w('google-analytics.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} https://js.stripe.com ${w('paypal.com')} ${w('paypalobjects.com')} ${w('trustpilot.com')} ${w('clarity.ms')} ${w('tawk.to')} https://cdn.jsdelivr.net ${w('vercel-scripts.com')} ${w('vercel-insights.com')} ${w('facebook.net')} ${w('facebook.com')} https://bat.bing.com`,
+  `script-src-elem 'self' 'unsafe-inline' ${w('googletagmanager.com')} ${w('google-analytics.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} https://js.stripe.com ${w('paypal.com')} ${w('paypalobjects.com')} ${w('trustpilot.com')} ${w('clarity.ms')} ${w('tawk.to')} https://cdn.jsdelivr.net ${w('vercel-scripts.com')} ${w('vercel-insights.com')} ${w('facebook.net')} ${w('facebook.com')} https://bat.bing.com https://s.pinimg.com`,
 
   // Styles
   `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${w('tawk.to')}`,
@@ -82,10 +82,10 @@ const cspHeader = [
   `font-src 'self' https://fonts.gstatic.com ${w('tawk.to')}`,
 
   // Images: everything that might serve pixels/images
-  `img-src 'self' data: blob: https://cdn.sanity.io ${w('google-analytics.com')} ${w('googletagmanager.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} ${w('google.com')} ${w('google.co.uk')} ${w('google.ca')} ${w('google.com.au')} ${w('google.com.pk')} ${w('paypalobjects.com')} ${w('clarity.ms')} ${w('tawk.to')} ${w('tawk.link')} https://tawk.link ${w('amazonaws.com')} ${w('trustpilot.com')} ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://bat.bing.com ${w('bing.com')} ${w('bing.net')} https://bat.bing.net https://cdn.jsdelivr.net`,
+  `img-src 'self' data: blob: https://cdn.sanity.io ${w('google-analytics.com')} ${w('googletagmanager.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} ${w('google.com')} ${w('google.co.uk')} ${w('google.ca')} ${w('google.com.au')} ${w('google.com.pk')} ${w('paypalobjects.com')} ${w('clarity.ms')} ${w('tawk.to')} ${w('tawk.link')} https://tawk.link ${w('amazonaws.com')} ${w('trustpilot.com')} ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://bat.bing.com ${w('bing.com')} ${w('bing.net')} https://bat.bing.net https://cdn.jsdelivr.net https://ct.pinterest.com ${w('pinimg.com')}`,
 
   // Connect: API calls, websockets, beacons
-  `connect-src 'self' ${w('sanity.io')} ${w('google-analytics.com')} ${w('analytics.google.com')} ${w('googletagmanager.com')} ${w('doubleclick.net')} ${w('googleadservices.com')} ${w('google.com')} ${w('google.co.uk')} ${w('google.ca')} ${w('google.com.au')} ${w('google.com.pk')} https://api.stripe.com ${w('supabase.co')} ${w('clarity.ms')} ${w('tawk.to')} ${ww('tawk.to')} https://mpc-prod-24-s6uit34pua-uw.a.run.app https://api.zeptomail.com ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://demo-1.conversionsapigateway.com ${w('trustpilot.com')} https://bat.bing.com ${w('bing.com')} ${w('bing.net')} https://bat.bing.net ${w('paypal.com')} ${w('vercel-insights.com')} ${w('vercel-scripts.com')}`,
+  `connect-src 'self' ${w('sanity.io')} ${w('google-analytics.com')} ${w('analytics.google.com')} ${w('googletagmanager.com')} ${w('doubleclick.net')} ${w('googleadservices.com')} ${w('google.com')} ${w('google.co.uk')} ${w('google.ca')} ${w('google.com.au')} ${w('google.com.pk')} https://api.stripe.com ${w('supabase.co')} ${w('clarity.ms')} ${w('tawk.to')} ${ww('tawk.to')} https://mpc-prod-24-s6uit34pua-uw.a.run.app https://api.zeptomail.com ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://demo-1.conversionsapigateway.com ${w('trustpilot.com')} https://bat.bing.com ${w('bing.com')} ${w('bing.net')} https://bat.bing.net ${w('paypal.com')} ${w('vercel-insights.com')} ${w('vercel-scripts.com')} https://ct.pinterest.com ${w('pinterest.com')}`,
 
   // Media
   `media-src 'self' data: https://cdn.sanity.io ${w('tawk.to')}`,

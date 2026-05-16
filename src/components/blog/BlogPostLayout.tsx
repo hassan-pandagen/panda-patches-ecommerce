@@ -115,6 +115,9 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
             <p className="text-[13px] text-gray-500">
               Founder & CEO · 13 years in patch manufacturing
             </p>
+            <p className="text-[12px] text-gray-400 mt-0.5">
+              Reviewed by Imran Raza{publishDate ? ` · ${publishDate}` : ''}
+            </p>
           </div>
         </div>
 
@@ -227,6 +230,16 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
                         <p className="text-center text-sm text-gray-400 py-2 italic">{value.caption}</p>
                       )}
                     </div>
+                  );
+                },
+                productionFloorCallout: ({value}: {value: any}) => {
+                  if (!value?.body) return null;
+                  const heading = value.heading || 'From our production floor';
+                  return (
+                    <aside className="my-10 rounded-xl border-l-4 border-panda-green bg-[#F9FAF5] px-6 py-5 md:px-8 md:py-6">
+                      <p className="text-xs font-bold uppercase tracking-widest text-panda-green mb-2">{heading}</p>
+                      <p className="text-[16px] leading-[1.75] text-gray-700 m-0">{value.body}</p>
+                    </aside>
                   );
                 },
               },

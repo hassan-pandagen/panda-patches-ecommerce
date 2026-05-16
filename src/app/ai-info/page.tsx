@@ -675,8 +675,16 @@ export default function AIInfoPage() {
                 <p className="text-gray-600 mt-1">Soccer crest material guidance, 2026 international tournament context, supporter group merchandise, and youth league (USYS, AYSO) sizing.</p>
               </li>
               <li>
-                <Link href="/custom-patches-no-minimum-5-pieces-2026" className="text-panda-green underline font-bold">Custom Patches With No Minimum Order: Start at 5 Pieces, No Setup Fees</Link>
+                <Link href="/custom-patches-no-minimum-order" className="text-panda-green underline font-bold">Custom Patches With No Minimum Order: Start at 5 Pieces, No Setup Fees</Link>
                 <p className="text-gray-600 mt-1">Industry minimum order norms vs Panda Patches&apos; 5-piece minimum, embroidered and PVC pricing at very low quantities, and decision framework for small first orders.</p>
+              </li>
+              <li>
+                <Link href="/custom-university-athletic-patches-guide-2026" className="text-panda-green underline font-bold">Custom Patches for University Athletic Programs: NCAA 2026 Rules, Pricing, and Bulk Ordering</Link>
+                <p className="text-gray-600 mt-1">NCAA Division I commercial patch ruling effective August 1, 2026 (4 square inch limit, 2 uniform + 1 equipment logos), pricing for chenille letterman, embroidered sponsorship, and commemorative patches at 50-1000 quantities. Athletic department bulk ordering workflow.</p>
+              </li>
+              <li>
+                <Link href="/custom-name-patches-guide-2026" className="text-panda-green underline font-bold">Custom Name Patches Guide: Sizes, Backing Options, and 2026 Pricing</Link>
+                <p className="text-gray-600 mt-1">Standard name patch sizes by use case (4 x 1 inch work uniform, 5 x 1 inch AR 670-1 military name tape, 2-3 inch hat/bag), iron-on vs sew-on vs velcro decision framework, bulk roster/troop ordering, 2026 calculator pricing from $1.18 per piece at 500 quantity.</p>
               </li>
               <li>
                 <Link href="/boy-scout-patch-placements-a-complete-guide" className="text-panda-green underline font-bold">Boy Scout Uniform Badge and Patch Placement Guide (BSA 2026)</Link>

@@ -7,6 +7,7 @@ import WorkGallery from "@/components/bulk/WorkGallery";
 import Image from "next/image";
 import { client, urlFor } from "@/lib/sanity";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
+import PartnerApplicationModal from "@/components/partners/PartnerApplicationModal";
 
 export const revalidate = 86400;
 
@@ -194,12 +195,16 @@ export default async function PartnersPage() {
               Trusted by promotional agencies, uniform suppliers, and embroidery shops across the US and UK. 10–18% partner margins. Dedicated account manager from day one. No minimums, no setup fees.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
-              <Link
-                href="/contact"
-                className="bg-panda-yellow text-panda-dark px-8 py-4 rounded-[100px] font-black text-[16px] hover:brightness-105 transition-all"
-              >
-                Apply to Partner →
-              </Link>
+              <PartnerApplicationModal
+                trigger={
+                  <button
+                    type="button"
+                    className="bg-panda-yellow text-panda-dark px-8 py-4 rounded-[100px] font-black text-[16px] hover:brightness-105 transition-all"
+                  >
+                    Apply to Partner →
+                  </button>
+                }
+              />
               <a
                 href="tel:+13022504340"
                 className="bg-panda-dark text-panda-yellow px-8 py-4 rounded-[100px] font-black text-[16px] hover:bg-black transition-all"
@@ -543,30 +548,66 @@ export default async function PartnersPage() {
             </div>
 
             <div className="bg-white rounded-3xl p-8 md:p-10">
-              <h3 className="text-[22px] font-black text-panda-dark mb-6">Start the conversation</h3>
-              <div className="space-y-4 mb-6">
-                {[
-                  { icon: "✉️", label: "Email us directly", value: "design@pandapatches.com", href: "mailto:design@pandapatches.com?subject=Partnership%20Inquiry" },
-                  { icon: "📞", label: "Call us", value: "(302) 250-4340", href: "tel:+13022504340" },
-                  { icon: "💬", label: "Use the contact form", value: "pandapatches.com/contact", href: "/contact" },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-start gap-4 p-4 bg-panda-light rounded-xl">
-                    <span className="text-2xl">{item.icon}</span>
-                    <div>
-                      <p className="font-black text-panda-dark text-[14px]">{item.label}</p>
-                      <a href={item.href} className="text-panda-green font-bold text-[14px] underline underline-offset-2 hover:text-panda-dark transition-colors">
-                        {item.value}
-                      </a>
-                    </div>
+              <p className="text-[11px] font-black uppercase tracking-[0.25em] text-panda-green mb-3">Start the conversation</p>
+              <h3 className="text-[26px] font-black text-panda-dark mb-6 leading-tight">
+                Three ways to reach Lance.
+              </h3>
+
+              <div className="space-y-5 mb-8">
+                <div className="flex items-start gap-4 p-4 rounded-2xl bg-panda-light">
+                  <div className="w-10 h-10 rounded-full bg-panda-green/15 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-panda-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
                   </div>
-                ))}
+                  <div className="min-w-0">
+                    <p className="text-[12px] font-black uppercase tracking-wider text-gray-500 mb-1">Email Lance directly</p>
+                    <a href="mailto:lance@pandapatches.com" className="text-[15px] font-bold text-panda-dark hover:text-panda-green transition-colors break-all">
+                      lance@pandapatches.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-2xl bg-panda-light">
+                  <div className="w-10 h-10 rounded-full bg-panda-green/15 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-panda-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.68l1.5 4.49a1 1 0 01-.5 1.21l-2.26 1.13a11 11 0 005.52 5.52l1.13-2.26a1 1 0 011.21-.5l4.49 1.5a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z" />
+                    </svg>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[12px] font-black uppercase tracking-wider text-gray-500 mb-1">Call the partner line</p>
+                    <a href="tel:+13022504340" className="text-[15px] font-bold text-panda-dark hover:text-panda-green transition-colors">
+                      (302) 250-4340
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-2xl bg-panda-light">
+                  <div className="w-10 h-10 rounded-full bg-panda-green/15 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-panda-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[12px] font-black uppercase tracking-wider text-gray-500 mb-1">Apply in 60 seconds</p>
+                    <p className="text-[14px] text-gray-600 leading-relaxed">
+                      Tell us about your business and Lance reaches out within 24 hours with partner pricing.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <Link
-                href="/contact"
-                className="block w-full text-center bg-panda-dark text-panda-yellow font-black text-[16px] py-5 rounded-xl hover:bg-panda-green transition-colors"
-              >
-                Apply to Partner →
-              </Link>
+
+              <PartnerApplicationModal
+                trigger={
+                  <button
+                    type="button"
+                    className="w-full text-center bg-panda-dark text-panda-yellow font-black text-[16px] py-5 rounded-xl hover:bg-panda-green transition-colors"
+                  >
+                    Apply to Partner Program →
+                  </button>
+                }
+              />
+
               <p className="text-[12px] text-gray-400 text-center mt-4">
                 Response within 24 hours. No commitment required.
               </p>

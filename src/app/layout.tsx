@@ -121,6 +121,17 @@ export default function RootLayout({
           />
         </noscript>
 
+        {/* Pinterest Tag Noscript Fallback */}
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            alt=""
+            src="https://ct.pinterest.com/v3/?event=init&tid=2612823226033&noscript=1"
+          />
+        </noscript>
+
         {/* Global Organization Schema for SEO */}
         <script
           type="application/ld+json"
@@ -150,6 +161,9 @@ try{(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime
         </Script>
         <Script id="meta-pixel" strategy="afterInteractive">
           {`try{!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];if(s&&s.parentNode){s.parentNode.insertBefore(t,s);}else{document.head.appendChild(t);}}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1515101469424765');fbq('track','PageView');}catch(e){}`}
+        </Script>
+        <Script id="pinterest-tag" strategy="afterInteractive">
+          {`try{!function(e){if(!window.pintrk){window.pintrk=function(){window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var n=window.pintrk;n.queue=[],n.version="3.0";var t=document.createElement("script");t.async=!0,t.src=e;var r=document.getElementsByTagName("script")[0];if(r&&r.parentNode){r.parentNode.insertBefore(t,r);}else{document.head.appendChild(t);}}}("https://s.pinimg.com/ct/core.js");pintrk('load','2612823226033');pintrk('page');}catch(e){}`}
         </Script>
 
         {/* Bing UET + Trustpilot: still deferred until user interaction or 16s fallback.
