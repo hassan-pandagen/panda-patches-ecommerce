@@ -90,10 +90,34 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
+      name: 'How much do 100 custom embroidered patches cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'At Panda Patches, 100 custom embroidered patches cost $240 total ($2.40 per piece) for a 3-inch patch. This includes free US shipping, free digital mockup within 24 hours, unlimited free revisions, and no setup fees or digitizing fees. Backing options: iron-on (free), sew-on (free), Velcro (+$30 flat). Standard delivery 7-14 business days after approval.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the cost of 100 custom patches?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'At Panda Patches, 100 custom patches cost: embroidered $240 ($2.40/pc), woven $350 ($3.50/pc), PVC $340 ($3.40/pc), leather $350 ($3.50/pc). All prices include free US shipping, free digital artwork and mockup within 24 hours, unlimited free revisions, no setup fees. Minimum order 5 pieces. Money-back guarantee.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much do custom embroidered patches cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'At Panda Patches, custom embroidered patches cost $3.92/pc for 50 pieces ($196 total), $2.55/pc for 100 pieces ($255 total), $1.18/pc for 500 pieces ($590 total), and $1.05/pc for 1,000 pieces ($1,050 total) — all for a 3-inch patch. Free US shipping, free digital mockup within 24 hours, and no setup fees are included on every order. Velcro backing adds a flat $30. Standard delivery is 7-14 business days.',
+      },
+    },
+    {
+      '@type': 'Question',
       name: 'How much do custom patches cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Custom embroidered patches cost $0.71 to $5.87 per piece for a 3-inch patch, depending on quantity. 25 patches = ~$5.87/pc ($147 total). 100 patches = ~$2.55/pc ($255 total). 1,000 patches = ~$1.05/pc ($1,050 total). Free shipping and free mockup included.',
+        text: 'Custom embroidered patches cost $0.71 to $5.87 per piece for a 3-inch patch, depending on quantity. 25 patches = ~$5.87/pc ($147 total). 100 patches = ~$2.55/pc ($255 total). 1,000 patches = ~$1.05/pc ($1,050 total). Free shipping and free mockup included. No setup fees.',
       },
     },
     {
@@ -101,7 +125,7 @@ const faqSchema = {
       name: 'What is the minimum order for custom patches?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Most patch types (embroidered, PVC, chenille, leather) have no minimum order — you can order just 1 patch. Woven patches require a minimum of 10 pieces.',
+        text: 'At Panda Patches, the minimum order is 5 pieces for embroidered, PVC, chenille, and leather patches. There are no setup fees and no digitizing fees on any order size.',
       },
     },
     {

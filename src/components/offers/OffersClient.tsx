@@ -553,6 +553,15 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
           });
         }
       } catch { /* noop */ }
+      // Store PII for Enhanced Conversions on success page (cleared after use)
+      try {
+        if (formData.email) sessionStorage.setItem('ec_email', formData.email);
+        if (formData.phone) sessionStorage.setItem('ec_phone', formData.phone);
+        const np = (formData.name || '').trim().split(' ');
+        if (np[0]) sessionStorage.setItem('ec_first', np[0]);
+        if (np.length > 1) sessionStorage.setItem('ec_last', np.slice(1).join(' '));
+      } catch { /* noop */ }
+
       const res = await fetch('/api/checkout-offers', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

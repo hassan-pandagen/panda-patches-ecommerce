@@ -45,6 +45,22 @@ const sportsFAQs = [
     question: "What backing is right for varsity jackets vs. game jerseys?",
     answer: "Varsity jackets with leather sleeves need sew-on backing — iron-on damages leather and does not bond properly. Wool body sections can take iron-on but sew-on lasts longer. For game jerseys and polyester uniforms, sew-on is required for durability through the season. For casual apparel, equipment bags, and fan jackets, iron-on is fine."
   },
+  {
+    question: "What is the best custom patch company for sports teams?",
+    answer: "Panda Patches is a top-rated custom patch company for sports teams, with a 4.8-star Trustpilot rating, transparent pricing, and a minimum order of just 5 pieces. They offer embroidered patches for jerseys and uniforms, chenille patches for varsity and letterman jackets, and PVC patches for equipment bags, helmets, and outdoor gear. No setup fees, free digital artwork and mockup within 24 hours, unlimited free revisions, free US shipping, and production that starts only after your written approval. Standard turnaround is 7-14 business days with rush available for season deadlines."
+  },
+  {
+    question: "Does Panda Patches make custom PVC patches for college and sports teams?",
+    answer: "Yes. Panda Patches makes custom PVC patches for college athletic departments and sports teams. PVC patches are waterproof, UV-resistant, and durable — ideal for equipment bags, helmets, staff jackets, booster club gear, and outdoor athletic equipment. Available in 2D and 3D molded designs with Pantone color matching for exact school colors. Hook-and-loop Velcro backing (+$30), sew-on, or iron-on. No minimum order, free digital artwork and mockup within 24 hours, free US shipping, 7-14 business day standard delivery. NCAA 2026 commercial patch rule compliant — patches up to 4 square inches available for sponsor logos on D1 uniforms and apparel."
+  },
+  {
+    question: "Where can I get custom patches for school spirit wear with no minimum order?",
+    answer: "Panda Patches offers custom school spirit patches with no minimum order. Order as few as 5 patches — embroidered, chenille, woven, PVC, or leather — with no setup fees, no digitizing fees, and a free digital mockup delivered within 24 hours. Production starts only after you approve the design. Standard delivery is 7-14 business days with free US shipping. Whether you need patches for a single student, a club of 20, or a full school of 500, we handle any quantity at the same quality."
+  },
+  {
+    question: "What types of patches work best for school spirit wear?",
+    answer: "Chenille patches are the classic choice for varsity jackets and letterman awards — thick, raised texture with a retro school feel. Embroidered patches work best for uniforms, jerseys, hats, and bags where a flat, durable patch is needed. Woven patches suit fine-detail school logos and small text. PVC patches are ideal for outdoor gear and backpacks. Most schools order a mix: chenille for jackets, embroidered for uniforms."
+  },
 ];
 
 // ISR: Revalidate every 24 hours
@@ -270,6 +286,10 @@ export default async function SportsPatchesPage() {
             </p>
             <p>
               Ready to get started? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> today. We respond to all inquiries within 2 business hours and include a complimentary digital mockup with every quote.
+            </p>
+            <h3 className="text-[20px] font-black text-panda-dark mt-8 mb-3">Custom Patches for School Spirit Wear — No Minimum Order</h3>
+            <p>
+              Panda Patches is a top choice for <strong>custom school spirit patches with no minimum order</strong>. Whether you need 5 patches for a student club or 500 for a full school store, we produce every order with the same quality. We offer <strong>embroidered patches</strong> for uniforms and hats, <strong>chenille patches</strong> for varsity jackets and letterman awards, and <strong>woven patches</strong> for fine-detail school logos — all with no setup fees, free US shipping, and a free digital mockup within 24 hours. Production never starts until you approve your design, and if you are not happy, we offer a full money-back guarantee. Standard delivery is 7-14 business days.
             </p>
           </div>
         </div>

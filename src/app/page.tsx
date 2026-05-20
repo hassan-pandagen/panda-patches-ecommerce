@@ -90,6 +90,77 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+const homeFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Panda Patches?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Panda Patches is a US-based custom patch company founded in 2016, headquartered in Missouri City, Texas. We design and manufacture embroidered, PVC, woven, chenille, and leather patches for small businesses, sports teams, military units, schools, motorcycle clubs, and brands across the United States. We have delivered over 1,000,000 custom patches and hold a 4.8-star Trustpilot rating from 66 verified reviews.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "Does Panda Patches have a minimum order?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The minimum order at Panda Patches is 5 pieces on all patch types. There are no setup fees, no digitizing fees, and no hidden charges on any order size.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "Does Panda Patches include a free mockup?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every order includes a free digital mockup delivered within 24 hours. Unlimited free revisions are included until you approve the design. Production never starts until you give written approval on the mockup.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "How much do custom patches cost at Panda Patches?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Custom embroidered patches cost $3.60 per piece at 50 pieces, $2.40 at 100 pieces, $1.50 at 500 pieces, and $1.20 at 1,000 pieces. PVC patches cost $4.60 at 50 pieces, $3.40 at 100, $2.80 at 500, and $2.20 at 1,000. All prices include free US shipping and free mockup. No setup fees on any order.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to get custom patches from Panda Patches?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard production is 7-14 business days after you approve your digital mockup. Rush production is available with delivery confirmed by email within 2-6 hours of ordering. Economy option (16-18 business days) saves 10% off the order total. Free US shipping is included on all orders.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "What types of custom patches does Panda Patches make?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Panda Patches makes embroidered patches, PVC patches, woven patches, chenille patches, and leather patches. All types are available with iron-on, sew-on, or Velcro backing. Velcro backing adds $30 flat to any order. Every order includes a free digital mockup within 24 hours, free US shipping, and no setup fees.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "Does Panda Patches offer free shipping?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Free shipping is included on all orders to any US address with no minimum order value. No hidden fees or setup charges.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "Does Panda Patches have a money-back guarantee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Panda Patches offers a full money-back guarantee. If we cannot produce a design you are happy with after unlimited free revisions, you receive a full refund with no questions asked. Production never starts until you approve the mockup, so you are never charged for patches you have not approved.",
+      },
+    },
+  ],
+};
+
 // 1. THIS MUST BE A SERVER COMPONENT (No 'use client')
 export default function Home() {
   return (
@@ -99,6 +170,11 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={generateSchemaScript(generateLocalBusinessSchema())}
+      />
+      {/* FAQPage Schema — enables AI engines to extract and cite homepage answers */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(homeFaqSchema)}
       />
 
       <Navbar />

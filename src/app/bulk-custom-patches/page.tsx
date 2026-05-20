@@ -167,6 +167,46 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
+      name: "Where can I order custom patches in bulk 1000 pieces?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Panda Patches offers bulk custom patches at 1,000 pieces with transparent pricing: embroidered patches $1,200 total ($1.20/pc), woven $2,000 ($2.00/pc), PVC $2,200 ($2.20/pc), leather $2,000 ($2.00/pc). No setup fees, no digitizing fees, free digital mockup within 24 hours, unlimited free revisions, free US shipping, money-back guarantee. Production starts only after written approval. Order at pandapatches.com/bulk-custom-patches.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How much do 500 custom patches cost?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "At Panda Patches, 500 custom patches cost: embroidered $750 ($1.50/pc), woven $1,200 ($2.40/pc), PVC $1,400 ($2.80/pc), leather $1,200 ($2.40/pc). All prices include free US shipping, free digital mockup within 24 hours, no setup fees, and no digitizing fees. Standard delivery 7-14 business days after approval.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is the price for a bulk custom patch order of 500 pieces?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Panda Patches bulk pricing at 500 pieces: embroidered patches $750 total ($1.50 per piece), woven patches $1,200 ($2.40/pc), PVC patches $1,400 ($2.80/pc), chenille patches (100pc tier) $1,400 ($14.00/pc), leather patches $1,200 ($2.40/pc). Free US shipping, free 24-hour digital mockup, no setup fees on any order. Minimum order 5 pieces.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do bulk custom patch orders include a free mockup?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Every bulk custom patch order at Panda Patches includes free artwork, free design assistance, and a free digital mockup delivered within 24 hours, regardless of quantity — 50 pieces or 50,000+. Unlimited free revisions until you approve the design. No setup fees, no digitizing fees, no mold fees. Production starts only after your written approval of the mockup. This applies to all bulk patch types: embroidered, PVC, woven, chenille, and leather.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Where can I order custom patches in bulk with no setup fee?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Panda Patches offers bulk custom patches with zero setup fees, zero digitizing fees, and no hidden charges on any order size. Bulk pricing starts at 50 pieces: embroidered patches from $180 for 50 pieces ($3.60/pc), $240 for 100 pieces ($2.40/pc), $750 for 500 pieces ($1.50/pc), and $1,200 for 1,000 pieces ($1.20/pc). Every bulk order includes a free digital mockup within 24 hours, unlimited free revisions, free US shipping, and a money-back guarantee. Production starts only after your written approval — nothing is manufactured without your sign-off.",
+      },
+    },
+    {
+      "@type": "Question",
       name: "What is the minimum order for bulk pricing?",
       acceptedAnswer: {
         "@type": "Answer",

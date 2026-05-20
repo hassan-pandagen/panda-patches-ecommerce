@@ -18,6 +18,18 @@ import { client } from "@/lib/sanity";
 // Corporate-specific FAQs
 const corporateFAQs = [
   {
+    question: "Where can I order wholesale custom patches for corporate branding?",
+    answer: "Panda Patches offers wholesale custom patches for corporate branding with no minimum order, transparent pricing, and free artwork and digital mockup within 24 hours. Wholesale and distributor pricing is available for ASI members, PPAI distributors, and promotional product resellers. Options include embroidered patches, woven patches, PVC patches, leather patches, and chenille patches for uniforms, employee apparel, merchandise, and branded corporate gifts. Free US shipping, no setup fees, Pantone color matching, Net 15 and Net 30 payment terms for established accounts, blind shipping, and white-label invoicing. Email lance@pandapatches.com for distributor terms."
+  },
+  {
+    question: "Does Panda Patches offer wholesale pricing for corporate patch orders?",
+    answer: "Yes. Panda Patches offers wholesale pricing for corporate patch orders through its partner program. Wholesale discounts of 10 to 18 percent below retail are available for promotional product agencies, ASI members, PPAI distributors, uniform suppliers, and embroidery shops. Formal PO invoicing, Net 15 and Net 30 terms for established accounts, blind shipping, white-label mockup PDFs, and dedicated account managers are all included. No account minimum. Apply at pandapatches.com/partners or email lance@pandapatches.com."
+  },
+  {
+    question: "What types of custom patches work best for corporate branding?",
+    answer: "For corporate branding, embroidered patches are the classic choice for employee uniforms and formal brand presentation. Woven patches work better when the company logo has small lettering or fine detail. PVC patches are best for workwear, outdoor gear, and bags exposed to weather. Leather patches suit premium brand merchandise and corporate gifts. All types available at Panda Patches with Pantone color matching, no minimum order, free artwork and digital mockup within 24 hours, and free US shipping."
+  },
+  {
     question: "Can you Pantone match our exact brand colors?",
     answer: "Yes. We use Pantone thread matching across all embroidery and woven patch production. Provide your Pantone codes or brand guidelines and we confirm the closest available thread match before production. For orders of 500 or more pieces, we send a physical pre-production sample for color approval before the full run."
   },

@@ -158,10 +158,10 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "What types of custom patches do you make?",
+      name: "What types of custom patches can I get made?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We make embroidered patches, PVC patches, woven patches, chenille patches, and leather patches. Each type is available in any size, shape, and backing option including iron-on, sew-on, and Velcro.",
+        text: "At Panda Patches, you can get five types of custom patches made: (1) Embroidered patches — classic raised thread look, best for logos, uniforms, and bold designs; (2) Woven patches — finer thread and flatter finish, ideal for small text and intricate detail; (3) PVC patches — soft rubber, fully waterproof, best for tactical gear and outdoor use; (4) Chenille patches — raised fuzzy texture, the classic varsity jacket look for sports teams and schools; (5) Leather patches — laser-engraved or debossed, premium finish for hats, denim jackets, and brand merchandise. All patch types are available with iron-on, sew-on, or Velcro backing. No minimum order, free digital mockup within 24 hours, and free US shipping on every order.",
       },
     },
     {
@@ -169,7 +169,39 @@ const faqSchema = {
       name: "Is there a minimum order for custom patches?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "No, there is no minimum order. We accept orders as small as 1 piece and as large as 50,000+ pieces. Bulk pricing applies for orders of 50+ pieces with additional discounts at 100+, 500+, and 1,000+.",
+        text: "At Panda Patches, the minimum order is 5 pieces with no setup fees and no digitizing fees on any order size.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do custom patches from Panda Patches come with a free mockup?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Every order at Panda Patches includes free artwork, free design, and a free digital mockup delivered within 24 hours. The mockup shows exactly what your finished patch will look like — colors, dimensions, stitching, borders, and backing. Unlimited free revisions are included. No setup fees, no digitizing fees, no design charges — the free artwork and mockup are included regardless of order size, from 5 pieces to 5,000+. Production never starts until you approve in writing.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Where can I get custom patches with free artwork and no setup fees?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Panda Patches provides free artwork, free design assistance, and a free digital mockup within 24 hours on every custom patch order — embroidered, PVC, woven, chenille, and leather. No setup fees, no digitizing fees, unlimited free revisions until you approve, and free US shipping included. Minimum order is 5 pieces. Production starts only after your written approval.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does Panda Patches offer a money-back guarantee?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Panda Patches offers a full money-back guarantee. If we cannot produce a design you are happy with after unlimited free revisions, you receive a full refund — no questions asked. Production never starts until you give written approval on your digital mockup, so you are never charged for patches you have not approved. This guarantee covers design dissatisfaction, not just manufacturing defects.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Where can I order custom patches with a money-back guarantee?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Panda Patches offers custom patches with a full money-back guarantee. After you pay, our design team sends a digital mockup within 24 hours. You review it, request unlimited free changes, and only approve when you are completely satisfied. Production starts only after your written approval. If we still cannot get it right, you receive a full refund. No questions asked. Free US shipping, no setup fees, minimum order of 5 pieces.",
       },
     },
     {
@@ -182,10 +214,18 @@ const faqSchema = {
     },
     {
       "@type": "Question",
+      name: "Does Panda Patches offer rush order custom patches with fast turnaround?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Panda Patches offers rush production on custom patches with turnaround confirmed by email within 2-6 hours of ordering. Rush fees: +$50 for 50 pieces, +$75 for 100 pieces, +$150 for 500 pieces, +$200 for 1,000 pieces. If the rush date cannot be met, the rush fee is refunded with no questions asked. Standard production is 7-14 business days. Economy production (16-18 business days) saves 10% off the order total. All timelines start after digital mockup approval.",
+      },
+    },
+    {
+      "@type": "Question",
       name: "How long does production take?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Standard production is 10-14 business days. Rush production (7 business days) is available. All timelines begin after design approval. Shipping typically adds 3-7 business days.",
+        text: "Standard production is 7-14 business days after design approval. Rush production is available with exact delivery date confirmed by email within 2-6 hours. Economy production (16-18 business days) saves 10% off the total. Free US shipping on all orders.",
       },
     },
     {

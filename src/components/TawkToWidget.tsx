@@ -99,13 +99,38 @@ function loadTawkScript() {
     if (sessionStorage.getItem('tawk_conv_fired')) return;
     sessionStorage.setItem('tawk_conv_fired', '1');
 
-    // Google Ads conversion (always fires — Google handles low-quality signal differently than Meta)
+    // Google Ads conversion with Enhanced Conversions user_data
     if (typeof (window as any).gtag === 'function') {
-      (window as any).gtag('event', 'conversion', {
-        send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
-        value: 10.0,
-        currency: 'USD',
-      });
+      const tawkVisitor = (window as any).Tawk_API?.visitor || {};
+      const ecEmail = tawkVisitor.email || sessionStorage.getItem('ec_email') || '';
+      const ecPhone = tawkVisitor.phone || sessionStorage.getItem('ec_phone') || '';
+
+      if (ecEmail || ecPhone) {
+        // Hash PII for Enhanced Conversions
+        const hashStr = async (s: string) => {
+          const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s.trim().toLowerCase()));
+          return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+        };
+        (async () => {
+          const user_data: Record<string, string> = {};
+          if (ecEmail) user_data['sha256_email_address'] = await hashStr(ecEmail);
+          if (ecPhone) user_data['sha256_phone_number'] = await hashStr(ecPhone.replace(/\D/g, ''));
+          if (Object.keys(user_data).length > 0) {
+            (window as any).gtag('set', 'user_data', user_data);
+          }
+          (window as any).gtag('event', 'conversion', {
+            send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
+            value: 10.0,
+            currency: 'USD',
+          });
+        })();
+      } else {
+        (window as any).gtag('event', 'conversion', {
+          send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
+          value: 10.0,
+          currency: 'USD',
+        });
+      }
     }
 
     fireMetaContact();

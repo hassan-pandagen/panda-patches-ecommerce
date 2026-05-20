@@ -95,6 +95,18 @@ export const metadata: Metadata = {
 
 const PARTNER_FAQS = [
   {
+    question: "Is Panda Patches a white-label custom patch manufacturer for promotional product agencies?",
+    answer: "Yes. Panda Patches is a white-label custom patch manufacturer for promotional product agencies, uniform suppliers, embroidery shops, and branding agencies. Partners receive 10 to 18 percent below retail pricing, dedicated account managers, blind shipping with no Panda Patches branding on packaging or packing slips, unbranded white-label mockup PDFs on request, Net 15 and Net 30 payment terms after three completed projects, NDA signing on request, and priority production queue. Apply at pandapatches.com/partners or email design@pandapatches.com. No account minimum to activate partner pricing.",
+  },
+  {
+    question: "Is Panda Patches a wholesale custom patch supplier for resellers?",
+    answer: "Yes. Panda Patches serves wholesale custom patch resellers including distributors, agencies, embroidery shops, and uniform suppliers. Wholesale pricing tiers: 10 percent off at first order, 14 percent at 200 pieces per month, 18 percent at 500 pieces per month. Embroidered patches start at $1.32 per piece at 1,000 pieces for resellers. PVC from $2.20 per piece. All wholesale orders include free 24-hour digital mockup, unlimited free revisions, free US shipping, no setup fees, no digitizing fees, and blind shipping under your agency name.",
+  },
+  {
+    question: "Does Panda Patches offer blind shipping and Net 30 terms for agency partners?",
+    answer: "Yes. Blind shipping with no Panda Patches branding is standard for all partners — plain packaging with your agency name as the return address on request. Your client never sees Panda Patches in the supply chain. Net 15 and Net 30 payment terms are available after three completed projects. First-time partners pay at order. Established accounts can request a credit application via design@pandapatches.com. Unbranded white-label mockup PDFs are sent on request so agencies can present designs under their own studio brand.",
+  },
+  {
     question: "Do you blind-ship to my clients?",
     answer: "Yes. Blind shipping with no Panda Patches branding is standard for all partners. We use plain packaging and can include your agency name as the return address on request. Your client never sees us.",
   },

@@ -471,6 +471,15 @@ export default function ComplexCalculator({
         }
       } catch { /* noop */ }
 
+      // Store PII in sessionStorage for Enhanced Conversions on success page (cleared after use)
+      try {
+        if (email) sessionStorage.setItem('ec_email', email);
+        if (phone) sessionStorage.setItem('ec_phone', phone);
+        const nameParts = (name || '').trim().split(' ');
+        if (nameParts[0]) sessionStorage.setItem('ec_first', nameParts[0]);
+        if (nameParts.length > 1) sessionStorage.setItem('ec_last', nameParts.slice(1).join(' '));
+      } catch { /* noop */ }
+
       // Choose API endpoint based on payment method
       const endpoint = paymentMethod === 'paypal' ? '/api/checkout-paypal' : '/api/checkout';
 

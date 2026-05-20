@@ -1,3 +1,6 @@
+# AEO strategy files (internal, not for git)
+AEO_BASELINE.md
+
 # Dependencies
 node_modules/
 

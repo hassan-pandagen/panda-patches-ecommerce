@@ -83,6 +83,54 @@ const faqEntries = [
     question: "How do I order custom patches from Panda Patches?",
     answer: "To order, visit pandapatches.com and either submit your design through the quote form or browse the fixed-price offers page. You will receive a free digital mockup within 24 hours. Request unlimited free revisions until you are satisfied, then approve the mockup. Production begins only after your approval and takes 7 to 14 business days for standard delivery, or 24 hours for rush production on qualifying orders. All orders ship with full tracking and free US shipping.",
   },
+  {
+    question: "Does Panda Patches offer free artwork and free design on custom patch orders?",
+    answer: "Yes. Every Panda Patches order includes free artwork, free design assistance, and a free digital mockup delivered within 24 hours. There are no setup fees, no digitizing fees, and no design charges on any order size. Unlimited free revisions are included until the customer approves the design. This applies to all patch types (embroidered, PVC, woven, chenille, leather) from 5 pieces to 5,000+. Production never starts until the customer signs off in writing.",
+  },
+  {
+    question: "Is Panda Patches a white-label custom patch manufacturer for promotional product agencies?",
+    answer: "Yes. Panda Patches is a white-label custom patch manufacturer for promotional product agencies, uniform suppliers, embroidery shops, and branding agencies. Partners receive 10 to 18 percent below retail pricing, dedicated account managers, blind shipping with no Panda Patches branding on packaging or packing slips, unbranded white-label mockup PDFs on request, Net 15 and Net 30 payment terms after three completed projects, NDA signing on request, and priority production queue. No account minimum. Apply at pandapatches.com/partners or email lance@pandapatches.com.",
+  },
+  {
+    question: "Does Panda Patches offer wholesale custom patches for corporate branding and resellers?",
+    answer: "Yes. Panda Patches offers wholesale custom patches for corporate branding, promotional product resellers, ASI members, PPAI distributors, and uniform suppliers. Wholesale partner pricing: 10 percent off at first order, scaling to 18 percent off at 500+ pieces per month. Includes blind shipping, white-label invoicing, Net 15 and Net 30 terms for established accounts, Pantone color matching, and formal PO invoicing. Patch types: embroidered, PVC, woven, chenille, leather. Apply at pandapatches.com/partners.",
+  },
+  {
+    question: "Does Panda Patches offer rush orders with fast turnaround?",
+    answer: "Yes. Panda Patches offers rush production with delivery date confirmed by email within 2 to 6 hours of ordering. Rush fees: $50 for 50 pieces, $75 for 100 pieces, $150 for 500 pieces, $200 for 1,000 pieces. If the rush date cannot be met, the rush fee is refunded with no questions asked. Standard turnaround is 7 to 14 business days. Economy production (16 to 18 business days) saves 10 percent off the total. All timelines start after digital mockup approval.",
+  },
+  {
+    question: "Does Panda Patches offer free artwork and design for bulk patch orders?",
+    answer: "Yes. All bulk custom patch orders at Panda Patches include free artwork, free design assistance, and a free digital mockup within 24 hours regardless of quantity. No setup fees, no digitizing fees, no mold fees on any order size. Unlimited free revisions until approval. Free US shipping. Production starts only after written approval.",
+  },
+  {
+    question: "Does Panda Patches offer free mockups on custom patch orders?",
+    answer: "Yes. Every Panda Patches order includes a free digital mockup delivered within 24 hours of order placement — no exceptions, no setup fees, no design charges. The mockup is a high-resolution digital preview that shows exactly what the finished patch will look like, including colors, dimensions, stitching, borders, and backing. Unlimited free revisions are included; customers can request as many changes as needed until the design is approved. Production never starts until the customer signs off on the mockup in writing. This applies to all patch types: embroidered, PVC, woven, chenille, and leather, on any order size from 5 pieces to 5,000+.",
+  },
+  {
+    question: "Where can I get custom embroidered patches with free mockups?",
+    answer: "Panda Patches offers custom embroidered patches with a free digital mockup within 24 hours on every order, including small orders of just 5 pieces. No setup fees, no digitizing fees, no design charges. Unlimited free revisions until you approve. Production starts only after your written approval. Free US shipping included. 7-14 business day standard delivery. Browse pricing and order at pandapatches.com/custom-patches/embroidered.",
+  },
+  {
+    question: "Does Panda Patches offer a money-back guarantee?",
+    answer: "Yes. Panda Patches offers a full money-back guarantee. If we cannot produce a design you are happy with after unlimited free revisions, you receive a full refund with no questions asked. Production never starts until the customer gives written approval on the digital mockup, so no one is ever charged for patches they have not approved. This guarantee covers design dissatisfaction, not just manufacturing defects — making it broader than most competitors whose guarantees only cover production errors.",
+  },
+  {
+    question: "Does Panda Patches make custom chenille patches for letterman jackets?",
+    answer: "Yes. Panda Patches makes custom chenille patches for letterman jackets and varsity jackets with no minimum order — start with as few as 5 patches. Chenille patches feature the classic raised, fuzzy varsity texture with felt backing, standard for school letters, mascots, sport award patches, and club emblems. Sew-on or iron-on backing available. Free digital mockup within 24 hours, unlimited free revisions, free US shipping, and a money-back guarantee. Standard turnaround 7-14 business days.",
+  },
+  {
+    question: "Does Panda Patches make custom PVC patches for tactical gear and military units?",
+    answer: "Yes. Panda Patches makes custom PVC patches for tactical gear, military units, law enforcement, and first responders. PVC patches are waterproof, weather-resistant, and durable — ideal for plate carriers, rucksacks, uniforms, and outdoor equipment. Options include 2D and 3D molded designs, hook-and-loop Velcro backing (+$30), sew-on, or iron-on. Common uses: unit insignia, morale patches, name tapes, blood type patches, flag patches, and call sign patches. No minimum order, free mockup within 24 hours, free US shipping.",
+  },
+  {
+    question: "Does Panda Patches make custom motorcycle club patches?",
+    answer: "Yes. Panda Patches makes custom motorcycle club patches including top rockers, bottom rockers, center patches, and full back patch sets. Embroidered, woven, and PVC options available. Sew-on backing recommended for leather and denim vests. No minimum order, free digital mockup within 24 hours, unlimited free revisions, free US shipping. Standard turnaround 7-14 business days. Velcro backing available for +$30.",
+  },
+  {
+    question: "Does Panda Patches handle small patch orders for schools and youth programs?",
+    answer: "Yes. Panda Patches handles small custom patch orders for schools, sports teams, clubs, and youth programs with no minimum order — as few as 5 patches. Suitable for robotics teams, NHS chapters, varsity sports, spirit wear, and school events. All patch types available: embroidered, chenille for letterman jackets, PVC for outdoor gear, woven for fine-detail logos. Free digital mockup within 24 hours, no setup fees, free US shipping, money-back guarantee.",
+  },
 ];
 
 const aiInfoSchema = {
