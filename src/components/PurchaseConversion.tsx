@@ -2,10 +2,29 @@
 
 import { useEffect } from 'react';
 
-// SHA-256 hash helper for Enhanced Conversions (hashed PII only, never raw)
-async function sha256(str: string): Promise<string> {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str.trim().toLowerCase()));
+// SHA-256 hash helper — input must already be normalized before calling
+async function sha256(normalized: string): Promise<string> {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(normalized));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Normalize email: lowercase + trim
+function normalizeEmail(email: string): string {
+  return email.toLowerCase().trim();
+}
+
+// Normalize phone to E.164 (+1XXXXXXXXXX for US numbers)
+// Strips all non-digits, then prepends +1 if not already present
+function normalizePhone(phone: string): string {
+  const digits = phone.replace(/\D/g, '');
+  if (digits.length === 10) return `+1${digits}`;
+  if (digits.length === 11 && digits.startsWith('1')) return `+${digits}`;
+  return `+${digits}`;
+}
+
+// Normalize name: lowercase + trim + strip non-letter chars (per Google EC spec)
+function normalizeName(name: string): string {
+  return name.toLowerCase().trim().replace(/[^a-z\s-]/g, '');
 }
 
 export default function PurchaseConversion() {
@@ -26,11 +45,12 @@ export default function PurchaseConversion() {
     async function fireGoogleAds() {
       if (!(window as any).gtag) return;
 
-      // Build hashed user_data for Enhanced Conversions
+      // Build hashed user_data for Enhanced Conversions — normalize BEFORE hashing
       const user_data: Record<string, string> = {};
-      if (rawEmail) user_data['sha256_email_address'] = await sha256(rawEmail);
-      if (rawPhone) user_data['sha256_phone_number'] = await sha256(rawPhone.replace(/\D/g, ''));
-      if (firstName) user_data['address'] = JSON.stringify({ first_name: firstName, last_name: lastName });
+      if (rawEmail) user_data['sha256_email_address'] = await sha256(normalizeEmail(rawEmail));
+      if (rawPhone) user_data['sha256_phone_number'] = await sha256(normalizePhone(rawPhone));
+      if (firstName) user_data['sha256_first_name'] = await sha256(normalizeName(firstName));
+      if (lastName) user_data['sha256_last_name'] = await sha256(normalizeName(lastName));
 
       // Set user_data globally before the conversion event
       if (Object.keys(user_data).length > 0) {

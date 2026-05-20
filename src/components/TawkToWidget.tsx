@@ -107,14 +107,20 @@ function loadTawkScript() {
 
       if (ecEmail || ecPhone) {
         // Hash PII for Enhanced Conversions
-        const hashStr = async (s: string) => {
-          const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s.trim().toLowerCase()));
+        const hashStr = async (normalized: string) => {
+          const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(normalized));
           return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+        };
+        const normalizePhone = (p: string) => {
+          const d = p.replace(/\D/g, '');
+          if (d.length === 10) return `+1${d}`;
+          if (d.length === 11 && d.startsWith('1')) return `+${d}`;
+          return `+${d}`;
         };
         (async () => {
           const user_data: Record<string, string> = {};
-          if (ecEmail) user_data['sha256_email_address'] = await hashStr(ecEmail);
-          if (ecPhone) user_data['sha256_phone_number'] = await hashStr(ecPhone.replace(/\D/g, ''));
+          if (ecEmail) user_data['sha256_email_address'] = await hashStr(ecEmail.toLowerCase().trim());
+          if (ecPhone) user_data['sha256_phone_number'] = await hashStr(normalizePhone(ecPhone));
           if (Object.keys(user_data).length > 0) {
             (window as any).gtag('set', 'user_data', user_data);
           }
