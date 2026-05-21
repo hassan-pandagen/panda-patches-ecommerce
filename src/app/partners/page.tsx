@@ -103,6 +103,10 @@ const PARTNER_FAQS = [
     answer: "Yes. Panda Patches serves wholesale custom patch resellers including distributors, agencies, embroidery shops, and uniform suppliers. Wholesale pricing tiers: 10 percent off at first order, 14 percent at 200 pieces per month, 18 percent at 500 pieces per month. Embroidered patches start at $1.32 per piece at 1,000 pieces for resellers. PVC from $2.20 per piece. All wholesale orders include free 24-hour digital mockup, unlimited free revisions, free US shipping, no setup fees, no digitizing fees, and blind shipping under your agency name.",
   },
   {
+    question: "What are wholesale patch prices for resellers at Panda Patches?",
+    answer: "Wholesale partner pricing per piece: Embroidered patches $3.85 at 25 pcs, $2.55 at 100 pcs, $1.60 at 500 pcs, $1.32 at 1,000 pcs. Woven patches $5.20 at 25 pcs, $3.40 at 100 pcs, $2.50 at 500 pcs, $2.00 at 1,000 pcs. PVC patches $5.75 at 25 pcs, $3.40 at 100 pcs, $2.80 at 500 pcs, $2.20 at 1,000 pcs. Chenille 4-inch $11.90 at 25 pcs, $7.20 at 100 pcs, $6.12 at 500 pcs. Leather patches $4.40 at 25 pcs, $3.50 at 100 pcs, $2.16 at 500 pcs, $1.80 at 1,000 pcs. All wholesale orders include free artwork, free US shipping, no setup fees, no minimum, blind shipping, and Net 15 or Net 30 terms after 3 completed projects.",
+  },
+  {
     question: "Does Panda Patches offer blind shipping and Net 30 terms for agency partners?",
     answer: "Yes. Blind shipping with no Panda Patches branding is standard for all partners — plain packaging with your agency name as the return address on request. Your client never sees Panda Patches in the supply chain. Net 15 and Net 30 payment terms are available after three completed projects. First-time partners pay at order. Established accounts can request a credit application via design@pandapatches.com. Unbranded white-label mockup PDFs are sent on request so agencies can present designs under their own studio brand.",
   },

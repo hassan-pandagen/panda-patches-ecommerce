@@ -98,23 +98,25 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (data.categoryPage) {
     const pageTitle = data.categoryPage.title || "Custom Patches";
     const ogImage = await getSanityOgImage();
+    // Strip any existing "| Panda Patches" suffix so we never double-append
+    const cleanTitle = pageTitle.replace(/\s*\|\s*Panda Patches\s*$/i, '').trim();
     return {
-      title: `${pageTitle} | No Minimum, Free Mockup | Panda Patches`,
-      description: `Order ${pageTitle.toLowerCase()} with no minimum, free digital mockup in 24 hours, and 7-14 day delivery. 4.8 stars on Trustpilot. Money-back guarantee.`,
+      title: `${cleanTitle} | No Minimum, Free Mockup | Panda Patches`,
+      description: `Order ${cleanTitle.toLowerCase()} with no minimum, free digital mockup in 24 hours, and 7-14 day delivery. 4.8 stars on Trustpilot. Money-back guarantee.`,
       alternates: { canonical: `https://www.pandapatches.com/${slug}` },
       robots: { index: true, follow: true },
       openGraph: {
-        title: `${pageTitle} | Panda Patches`,
-        description: `${pageTitle} with free mockup, no minimum, and 7-14 day delivery.`,
+        title: `${cleanTitle} | Panda Patches`,
+        description: `${cleanTitle} with free mockup, no minimum, and 7-14 day delivery.`,
         url: `https://www.pandapatches.com/${slug}`,
         siteName: 'Panda Patches',
         type: 'website',
-        images: [{ url: ogImage, width: 1200, height: 630, alt: pageTitle }],
+        images: [{ url: ogImage, width: 1200, height: 630, alt: cleanTitle }],
       },
       twitter: {
         card: 'summary_large_image',
-        title: `${pageTitle} | Panda Patches`,
-        description: `${pageTitle} with free mockup, no minimum, and 7-14 day delivery.`,
+        title: `${cleanTitle} | Panda Patches`,
+        description: `${cleanTitle} with free mockup, no minimum, and 7-14 day delivery.`,
         images: [ogImage],
       },
     };
@@ -127,9 +129,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       : data.blog.image
         ? urlFor(data.blog.image).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
         : 'https://www.pandapatches.com/assets/og-image.png';
+    // Title suffix logic: only append "| Panda Patches" if not already present.
+    // Editor-supplied metaTitle often already includes the brand suffix; appending again
+    // creates the "Title | Panda Patches | Panda Patches" duplicate seen in Google SERPs.
+    const appendBrand = (s: string) =>
+      /\|\s*Panda Patches\s*$/i.test(s.trim()) ? s.trim() : `${s.trim()} | Panda Patches`;
     const blogTitle = data.blog.metaTitle
-      ? `${data.blog.metaTitle} | Panda Patches`
-      : `${data.blog.title} | Panda Patches Blog`;
+      ? appendBrand(data.blog.metaTitle)
+      : appendBrand(`${data.blog.title} Blog`);
     const blogDesc = data.blog.metaDescription || data.blog.excerpt || data.blog.description || 'Custom patch tips, tutorials, and industry insights from Panda Patches.';
     return {
       title: blogTitle,
@@ -271,7 +278,11 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       })),
     } : null;
 
-    const howToSchema = data.blog.howToSteps?.length > 0 ? {
+    // HowTo schema: opt-in only via Sanity `enableHowToSchema` boolean field.
+    // Google deprecated the HowTo rich result in September 2023 — emitting HowTo
+    // by default wastes crawl budget and triggers no SERP feature. Editors must
+    // explicitly enable it per-post if there is a specific reason.
+    const howToSchema = (data.blog.enableHowToSchema && data.blog.howToSteps?.length > 0) ? {
       "@context": "https://schema.org",
       "@type": "HowTo",
       "name": `How to Order ${data.blog.title?.replace(/:.*/,'')} from Panda Patches`,

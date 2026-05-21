@@ -88,8 +88,17 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
           </div>
         )}
 
-        {/* Author Byline (before content) */}
-        <div className="flex items-center gap-3 mb-10 pb-8 border-b border-gray-100">
+        {/* Speakable excerpt — rendered BEFORE byline so AI extractors pick up the actual
+            lede as the page summary, not the author tag. Referenced by Speakable schema cssSelector. */}
+        {post.excerpt && (
+          <p className="speakable-summary text-[18px] leading-[1.8] text-gray-600 font-medium mb-10 border-l-4 border-panda-yellow pl-5 italic">
+            {post.excerpt}
+          </p>
+        )}
+
+        {/* Author Byline — wrapped in <aside> so semantic parsers skip it when extracting
+            the page summary. Renders after the lede in DOM order. */}
+        <aside className="flex items-center gap-3 mb-10 pb-8 border-b border-gray-100">
           <div className="w-10 h-10 rounded-full bg-panda-dark flex items-center justify-center flex-shrink-0 overflow-hidden">
             {post.authorPhoto ? (
               <Image
@@ -119,14 +128,7 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
               Reviewed by Imran Raza{publishDate ? ` · ${publishDate}` : ''}
             </p>
           </div>
-        </div>
-
-        {/* Speakable excerpt — referenced by Speakable schema cssSelector */}
-        {post.excerpt && (
-          <p className="speakable-summary text-[18px] leading-[1.8] text-gray-600 font-medium mb-10 border-l-4 border-panda-yellow pl-5 italic">
-            {post.excerpt}
-          </p>
-        )}
+        </aside>
 
         {/* Content Body - Custom Styling */}
         <div className="text-gray-800">

@@ -127,10 +127,17 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'enableHowToSchema',
+      title: 'Enable HowTo Schema (off by default)',
+      type: 'boolean',
+      description: 'Google deprecated the HowTo rich result in September 2023. Keep this OFF unless you have a specific reason. Steps below remain visible to readers either way.',
+      initialValue: false,
+    }),
+    defineField({
       name: 'howToSteps',
-      title: 'HowTo Steps (HowTo Schema)',
+      title: 'HowTo Steps (visible in body — schema only emits if toggle above is ON)',
       type: 'array',
-      description: 'Add steps for the "How to Order" section. Generates HowTo schema for rich results in Google. Leave empty if the blog has no ordering steps.',
+      description: 'Visible step-by-step list for readers. JSON-LD HowTo schema is only emitted if "Enable HowTo Schema" toggle is enabled above.',
       of: [
         {
           type: 'object',

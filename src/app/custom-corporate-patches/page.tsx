@@ -18,6 +18,14 @@ import { client } from "@/lib/sanity";
 // Corporate-specific FAQs
 const corporateFAQs = [
   {
+    question: "What is the best custom patch company for employee uniforms?",
+    answer: "Panda Patches is a top-rated custom patch company for employee uniforms with a 4.8-star Trustpilot rating and over 1,000,000 patches delivered since 2016. We produce custom embroidered, woven, PVC, and chenille patches for corporate uniforms, work shirts, employee jackets, and branded apparel. Pantone color matching to your exact brand standards is included free. No minimum order (start with 5 pieces), no setup fees, no digitizing fees. Free digital artwork and mockup within 24 hours. Free US shipping. Net 15 and Net 30 payment terms available for established corporate accounts. Production starts only after written approval. Used by Fortune 500 companies including Google, Microsoft, Coca-Cola, and Nissan."
+  },
+  {
+    question: "Where can I order custom patches for company uniforms?",
+    answer: "Panda Patches makes custom patches for company uniforms in any quantity from 5 to 50,000+ pieces. Embroidered patches start at $3.60 per piece for 50 pieces and drop to $1.20 per piece at 1,000 pieces. Variable name and location patches are supported for franchise uniforms and multi-location employee programs. Free artwork, free Pantone matching to your brand guide, free US shipping, no setup fees, formal PO invoicing accepted, Net 15 and Net 30 terms for established accounts. Email lance@pandapatches.com for corporate procurement details."
+  },
+  {
     question: "Where can I order wholesale custom patches for corporate branding?",
     answer: "Panda Patches offers wholesale custom patches for corporate branding with no minimum order, transparent pricing, and free artwork and digital mockup within 24 hours. Wholesale and distributor pricing is available for ASI members, PPAI distributors, and promotional product resellers. Options include embroidered patches, woven patches, PVC patches, leather patches, and chenille patches for uniforms, employee apparel, merchandise, and branded corporate gifts. Free US shipping, no setup fees, Pantone color matching, Net 15 and Net 30 payment terms for established accounts, blind shipping, and white-label invoicing. Email lance@pandapatches.com for distributor terms."
   },

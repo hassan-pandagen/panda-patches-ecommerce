@@ -1,6 +1,9 @@
 # AEO strategy files (internal, not for git)
 AEO_BASELINE.md
 
+# Video benchmark working files (internal, not for git)
+video-benchmarks/
+
 # Dependencies
 node_modules/
 
