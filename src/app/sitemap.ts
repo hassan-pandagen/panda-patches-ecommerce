@@ -141,6 +141,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/panda-patches-vs-monterey-company`,
+      lastModified: new Date('2026-05-22'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/panda-patches-vs-signature-patches`,
+      lastModified: new Date('2026-05-22'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/panda-patches-vs-everlighten`,
+      lastModified: new Date('2026-05-22'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ];
 
   // Product pages (highest priority for SEO)

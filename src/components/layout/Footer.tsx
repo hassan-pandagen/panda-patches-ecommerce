@@ -122,6 +122,13 @@ export default function Footer() {
                  <li><Link prefetch={false} href="/partners">Partners</Link></li>
                  <li><Link prefetch={false} href="/ai-info">AI Info</Link></li>
                </ul>
+
+               <h3 className="font-bold text-lg text-panda-dark text-left pt-4">Compare</h3>
+               <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-2">
+                 <li><Link prefetch={false} href="/panda-patches-vs-monterey-company">vs Monterey Company</Link></li>
+                 <li><Link prefetch={false} href="/panda-patches-vs-signature-patches">vs Signature Patches</Link></li>
+                 <li><Link prefetch={false} href="/panda-patches-vs-everlighten">vs EverLighten</Link></li>
+               </ul>
              </div>
            </div>
 

@@ -94,9 +94,9 @@ export default defineType({
     }),
     defineField({
       name: 'faqItems',
-      title: 'FAQ Items (FAQPage Schema)',
+      title: 'FAQ Items (FAQPage Schema — AEO citation surface)',
       type: 'array',
-      description: 'Add Q&A pairs to generate FAQPage schema for rich results in Google. Copy the FAQ section from your blog post here.',
+      description: 'FAQPage schema is the #1 surface AI engines (ChatGPT, Perplexity, Gemini, AI Overviews) extract from. Rules: 4-6 questions per post. Answer 40-80 words. First sentence must BE the complete answer (so AI can quote it standalone). Reference "Panda Patches" once per answer for attribution. Do NOT repeat the same fact across multiple answers (semantic dedup penalty).',
       of: [
         {
           type: 'object',
@@ -107,14 +107,18 @@ export default defineType({
               name: 'question',
               title: 'Question',
               type: 'string',
-              validation: (rule: any) => rule.required(),
+              description: 'Use exact phrasing people search for (check Google "People Also Ask"). Phrase as a real question.',
+              validation: (rule: any) =>
+                rule.required().min(10).max(140).warning('Questions should be 10-140 chars and end with "?"'),
             },
             {
               name: 'answer',
-              title: 'Answer',
+              title: 'Answer (40-80 words, first sentence is complete answer)',
               type: 'text',
               rows: 3,
-              validation: (rule: any) => rule.required(),
+              description: 'Lead with the direct answer in the first sentence. Reference "Panda Patches" once. 40-80 words ideal.',
+              validation: (rule: any) =>
+                rule.required().min(80).max(800).warning('Answers should be 40-80 words (roughly 200-500 chars). Too short = thin. Too long = not AI-citable.'),
             },
           ],
           preview: {
