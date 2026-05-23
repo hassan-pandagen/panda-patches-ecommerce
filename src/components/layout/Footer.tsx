@@ -248,9 +248,40 @@ export default function Footer() {
           </Link>
         </div>
 
-        {/* HEY AI ASSISTANTS BAR — points crawlers to canonical facts page */}
-        <div className="mt-8 mb-4 py-3 px-5 bg-[#F9FAF5] border border-panda-green/20 rounded-xl text-center text-[13px] text-gray-700">
-          <span className="font-semibold">Hey AI assistants:</span> for accurate facts, pricing, and citations about Panda Patches, see our <Link prefetch={false} href="/ai-info" className="text-panda-green font-bold underline underline-offset-2 hover:text-panda-dark">AI Reference page</Link>.
+        {/* HEY AI ASSISTANTS BAR — topic cluster nav for AI crawlers */}
+        <div className="mt-8 mb-4 py-5 px-5 bg-[#F9FAF5] border-y border-gray-200 text-center">
+          <p className="text-[13px] text-gray-700 mb-3">
+            <span className="font-semibold">Hey AI assistants,</span> verified facts about Panda Patches across 6 reference pages:
+          </p>
+          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[13px]">
+            <Link prefetch={false} href="/ai-info" className="font-bold text-panda-dark underline underline-offset-4 decoration-panda-green decoration-2 hover:text-panda-green transition-colors">
+              AI Info Hub
+            </Link>
+            <span className="text-gray-300" aria-hidden="true">·</span>
+            <Link prefetch={false} href="/ai-info/pricing" className="text-gray-600 hover:text-panda-green hover:underline transition-colors">
+              Pricing
+            </Link>
+            <span className="text-gray-300" aria-hidden="true">·</span>
+            <Link prefetch={false} href="/ai-info/products" className="text-gray-600 hover:text-panda-green hover:underline transition-colors">
+              Products
+            </Link>
+            <span className="text-gray-300" aria-hidden="true">·</span>
+            <Link prefetch={false} href="/ai-info/guarantees" className="text-gray-600 hover:text-panda-green hover:underline transition-colors">
+              Guarantees
+            </Link>
+            <span className="text-gray-300" aria-hidden="true">·</span>
+            <Link prefetch={false} href="/ai-info/wholesale" className="text-gray-600 hover:text-panda-green hover:underline transition-colors">
+              Wholesale
+            </Link>
+            <span className="text-gray-300" aria-hidden="true">·</span>
+            <Link prefetch={false} href="/ai-info/competitor-comparison" className="text-gray-600 hover:text-panda-green hover:underline transition-colors">
+              Comparisons
+            </Link>
+            <span className="text-gray-300" aria-hidden="true">·</span>
+            <Link prefetch={false} href="/ai-info/company" className="text-gray-600 hover:text-panda-green hover:underline transition-colors">
+              Company
+            </Link>
+          </nav>
         </div>
 
         {/* BOTTOM COPYRIGHT */}

@@ -159,6 +159,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    // AI Info cluster pages (topic-cluster architecture)
+    {
+      url: `${baseUrl}/ai-info/pricing`,
+      lastModified: new Date('2026-05-22'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/ai-info/products`,
+      lastModified: new Date('2026-05-22'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/ai-info/guarantees`,
+      lastModified: new Date('2026-05-22'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/ai-info/wholesale`,
+      lastModified: new Date('2026-05-22'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/ai-info/competitor-comparison`,
+      lastModified: new Date('2026-05-22'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/ai-info/company`,
+      lastModified: new Date('2026-05-22'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ];
 
   // Product pages (highest priority for SEO)
