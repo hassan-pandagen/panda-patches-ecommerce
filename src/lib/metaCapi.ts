@@ -97,7 +97,9 @@ export async function sendMetaEvent(input: MetaEventInput): Promise<{ success: b
   const custom_data: Record<string, unknown> = {};
   // Meta requires value AND currency together. Sending value without currency (or vice versa)
   // causes the 48% Lead-event currency-format failure flagged in Events Manager May 2026.
-  // Default missing currency to USD whenever a numeric value is present.
+  // Defaults missing currency to USD — safe today because all Panda Patches revenue is in USD.
+  // IMPORTANT: Update this default when adding multi-currency support (CAD, GBP, EUR, AUD, etc).
+  // The fallback would silently miscategorize non-USD orders if international sales launch.
   if (input.value !== undefined) {
     custom_data.value = input.value;
     custom_data.currency = input.currency || 'USD';
