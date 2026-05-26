@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useTrustpilot } from '@/lib/useTrustpilot';
 import ReviewsSection from '@/components/home/ReviewsSection';
 import { useFileUpload } from '@/hooks/useFileUpload';
-import { getStoredAttribution } from '@/lib/clientAttribution';
+import { getStoredAttribution, generateEventId } from '@/lib/clientAttribution';
 import {
   OFFER_CATEGORIES, calculateOfferTotal, getRushFee,
   VELCRO_FEE, METALLIC_FEE, GLOW_FEE, PUFF_FEE,
@@ -544,13 +544,17 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
     setLoading(true);
     setError(null);
     const attribution = getStoredAttribution();
+    // Shared event ID so browser pixel + server CAPI can dedupe (fixes May 26 Meta diagnostic)
+    const initiateCheckoutEventId = generateEventId('initcheckout');
     try {
       try {
         if (typeof (window as any).fbq === 'function') {
           (window as any).fbq('track', 'InitiateCheckout', {
             content_name: selectedOffer.packName,
             content_category: selectedOffer.categoryId,
-          });
+            value: total,
+            currency: 'USD',
+          }, { eventID: initiateCheckoutEventId });
         }
       } catch { /* noop */ }
       // Store PII for Enhanced Conversions on success page (cleared after use)
@@ -580,6 +584,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
           specialInstructions: formData.specialInstructions,
           company: formData.company,
           attribution,
+          initiateCheckoutEventId,
         }),
       });
       const data = await res.json();
@@ -600,13 +605,17 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
     setLoading(true);
     setError(null);
     const attribution = getStoredAttribution();
+    // Shared event ID so browser pixel + server CAPI can dedupe (fixes May 26 Meta diagnostic)
+    const initiateCheckoutEventId = generateEventId('initcheckout');
     try {
       try {
         if (typeof (window as any).fbq === 'function') {
           (window as any).fbq('track', 'InitiateCheckout', {
             content_name: selectedOffer.packName,
             content_category: selectedOffer.categoryId,
-          });
+            value: total,
+            currency: 'USD',
+          }, { eventID: initiateCheckoutEventId });
         }
       } catch { /* noop */ }
       const res = await fetch('/api/checkout-offers-paypal', {
@@ -627,6 +636,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
           specialInstructions: formData.specialInstructions,
           company: formData.company,
           attribution,
+          initiateCheckoutEventId,
         }),
       });
       const data = await res.json();

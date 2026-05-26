@@ -63,8 +63,9 @@ export default function QuoteModal({
         (window as any).fbq('track', 'Lead', {
           content_name: 'Quote Modal',
           content_category: productType,
-          value: priceError ? undefined : basePrice,
-          currency: priceError ? undefined : 'USD',
+          // Always send value AND currency together; Meta rejects partial pairs
+          value: priceError ? 0 : basePrice,
+          currency: 'USD',
         }, { eventID: eventId });
       }
     } catch { /* noop */ }

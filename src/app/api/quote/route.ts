@@ -411,8 +411,10 @@ export async function POST(req: Request) {
       lastName,
       attribution,
       eventSourceUrl: pageUrl || attribution.page_url,
-      value: basePrice,
-      currency: basePrice ? 'USD' : undefined,
+      // Always send value AND currency together. Meta rejects partial pairs (48% of Lead events were failing this).
+      // For leads with no priced calculator (home form, bulk form), send value: 0.
+      value: basePrice || 0,
+      currency: 'USD',
       numItems: details.quantity,
       contentName: isBulkOrder ? 'Bulk Quote Request' : 'Quote Request',
       contentCategory: details.patchType || 'Custom Patches',

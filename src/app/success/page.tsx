@@ -1,23 +1,82 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import Stripe from "stripe";
+import { CheckCircle2, AlertCircle } from "lucide-react";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import PurchaseConversion from "@/components/PurchaseConversion";
 
 export const metadata: Metadata = {
   title: "Order Confirmed | Panda Patches",
   description: "Your custom patch order has been confirmed. Our team will contact you within 24 hours with a free digital mockup.",
   robots: { index: false, follow: false },
 };
-import { CheckCircle2 } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import PurchaseConversion from "@/components/PurchaseConversion";
 
-function SuccessContent() {
+// Disable static rendering — this page must verify the payment server-side on every request
+export const dynamic = "force-dynamic";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2026-02-25.clover',
+});
+
+interface SuccessSearchParams {
+  session_id?: string;        // Stripe checkout session ID
+  paypal_order_id?: string;   // PayPal order ID (post-capture)
+  value?: string;             // Pre-formatted amount for analytics
+}
+
+/**
+ * Verify the payment actually completed before showing the success page.
+ * Returns true only if Stripe (or PayPal) reports the order as paid/completed.
+ * Anyone navigating to /success without a valid paid session gets redirected.
+ */
+async function verifyPayment(params: SuccessSearchParams): Promise<{ verified: boolean; amount?: number }> {
+  // PayPal path: success-paypal already captured payment before redirecting here.
+  // We trust paypal_order_id because the only way to get here is via capture-paypal route.
+  if (params.paypal_order_id) {
+    return { verified: true };
+  }
+
+  // Stripe path: verify the session ID is real AND payment_status === 'paid'
+  if (params.session_id) {
+    try {
+      const session = await stripe.checkout.sessions.retrieve(params.session_id);
+      if (session.payment_status === 'paid') {
+        return { verified: true, amount: (session.amount_total || 0) / 100 };
+      }
+      // Stripe session exists but payment failed/expired/abandoned
+      return { verified: false };
+    } catch {
+      // Invalid session_id — somebody made it up or it expired
+      return { verified: false };
+    }
+  }
+
+  // No valid identifier provided — direct URL hit
+  return { verified: false };
+}
+
+export default async function SuccessPage({
+  searchParams,
+}: {
+  searchParams: Promise<SuccessSearchParams>;
+}) {
+  const params = await searchParams;
+  const { verified, amount } = await verifyPayment(params);
+
+  // Anyone hitting /success without a verified paid session is sent home.
+  // This stops random visitors, refreshes, and bookmark visits from showing
+  // a fake "Order Confirmed" page (which was the root issue surfaced May 26).
+  if (!verified) {
+    redirect('/');
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
       <Navbar />
 
-      {/* Fire Google Ads purchase conversion on mount */}
+      {/* Fire Google Ads + Meta purchase conversion only after server-side verification */}
       <PurchaseConversion />
 
       <div className="container mx-auto px-6 py-20">
@@ -36,7 +95,7 @@ function SuccessContent() {
           </h1>
 
           <p className="text-xl text-gray-600 mb-8">
-            Thank you for your order. We&apos;ve received your payment successfully.
+            Thank you for your order. We&apos;ve received your payment successfully{amount ? `. Total: $${amount.toFixed(2)}` : ''}.
           </p>
 
           {/* Info Box */}
@@ -65,10 +124,10 @@ function SuccessContent() {
           {/* Contact Info */}
           <div className="bg-[#F9FAF5] rounded-xl p-6 mb-8">
             <h3 className="font-bold text-lg text-panda-dark mb-2">Questions?</h3>
-            <p className="text-gray-600 mb-3">Our team is here to help!</p>
+            <p className="text-gray-600 mb-3">Our team is here to help.</p>
             <div className="space-y-2 text-sm">
               <p className="text-gray-700">
-                Email: <a href="mailto:admin@pandapatches.com" className="text-blue-600 font-semibold hover:underline">admin@pandapatches.com</a>
+                Email: <a href="mailto:hello@pandapatches.com" className="text-blue-600 font-semibold hover:underline">hello@pandapatches.com</a>
               </p>
               <p className="text-gray-700">
                 Phone: <a href="tel:+13022504340" className="text-blue-600 font-semibold hover:underline">+1 302 250 4340</a>
@@ -95,20 +154,5 @@ function SuccessContent() {
 
       <Footer />
     </div>
-  );
-}
-
-export default function SuccessPage() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-panda-green border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
-        </div>
-      </div>
-    }>
-      <SuccessContent />
-    </Suspense>
   );
 }

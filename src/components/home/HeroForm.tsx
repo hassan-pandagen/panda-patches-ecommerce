@@ -99,6 +99,8 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
         (window as any).fbq('track', 'Lead', {
           content_name: 'Quote Request',
           content_category: 'Custom Patches',
+          value: 0,
+          currency: 'USD',
         }, { eventID: eventId });
       }
     } catch { /* noop */ }
@@ -163,10 +165,9 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           currency: 'USD',
         });
       }
-      // Facebook Pixel — Lead event
-      if (typeof window !== 'undefined' && (window as any).fbq) {
-        (window as any).fbq('track', 'Lead', { value: 50.0, currency: 'USD' });
-      }
+      // NOTE: Lead pixel event already fired at top of submit with eventID for CAPI dedup.
+      // Do NOT fire a second Lead here — Meta counts it as a duplicate, breaking dedup.
+
       // Tawk.to — tag visitor as quote lead
       if (typeof window !== 'undefined' && (window as any).Tawk_API?.setAttributes) {
         (window as any).Tawk_API.setAttributes({

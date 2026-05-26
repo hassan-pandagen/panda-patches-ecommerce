@@ -95,8 +95,15 @@ export async function sendMetaEvent(input: MetaEventInput): Promise<{ success: b
   }
 
   const custom_data: Record<string, unknown> = {};
-  if (input.value !== undefined) custom_data.value = input.value;
-  if (input.currency) custom_data.currency = input.currency;
+  // Meta requires value AND currency together. Sending value without currency (or vice versa)
+  // causes the 48% Lead-event currency-format failure flagged in Events Manager May 2026.
+  // Default missing currency to USD whenever a numeric value is present.
+  if (input.value !== undefined) {
+    custom_data.value = input.value;
+    custom_data.currency = input.currency || 'USD';
+  } else if (input.currency) {
+    // Edge case: currency provided without value. Don't send orphan currency.
+  }
   if (input.contentName) custom_data.content_name = input.contentName;
   if (input.contentCategory) custom_data.content_category = input.contentCategory;
   if (input.contentIds) custom_data.content_ids = input.contentIds;

@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { lookupOfferPrice, calculateOfferTotal, OFFER_CATEGORIES } from '@/lib/offerPackages';
 import { PayPalClient } from '@/lib/paypal';
 import { resolveBaseUrl } from '@/lib/checkoutConfig';
+import { sendMetaEvent } from '@/lib/metaCapi';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -28,6 +29,8 @@ const Schema = z.object({
   designDescription: z.string().max(2000).optional().or(z.literal('')),
   specialInstructions: z.string().max(500).optional().or(z.literal('')),
   company: z.string().max(100).optional().or(z.literal('')),
+  attribution: z.any().optional(),
+  initiateCheckoutEventId: z.string().max(120).optional(),
 });
 
 export async function POST(req: Request) {
@@ -42,7 +45,8 @@ export async function POST(req: Request) {
     const {
       categoryId, packName, backing, delivery, upgrades,
       customer, shippingAddress, width, height,
-      artworkUrl, designDescription, specialInstructions, company
+      artworkUrl, designDescription, specialInstructions, company,
+      attribution, initiateCheckoutEventId,
     } = result.data;
 
     const offer = lookupOfferPrice(categoryId, packName);
@@ -105,6 +109,36 @@ export async function POST(req: Request) {
     await supabase
       .from('paypal_pending_orders')
       .upsert({ paypal_order_id: paypalOrder.id, order_data: orderData }, { onConflict: 'paypal_order_id' });
+
+    // Fire server CAPI InitiateCheckout with same eventId as browser pixel for dedup
+    if (initiateCheckoutEventId) {
+      const ipHeader = (req.headers.get('x-forwarded-for') || '').split(',')[0].trim() || undefined;
+      const ua = req.headers.get('user-agent') || undefined;
+      const refererUrl = req.headers.get('referer') || undefined;
+      const [icFirstName, ...icLastParts] = (customer.name || '').trim().split(/\s+/);
+
+      sendMetaEvent({
+        eventName: 'InitiateCheckout',
+        eventId: initiateCheckoutEventId,
+        actionSource: 'website',
+        eventSourceUrl: refererUrl,
+        email: customer.email,
+        phone: customer.phone || null,
+        firstName: icFirstName,
+        lastName: icLastParts.join(' ') || null,
+        attribution: {
+          ...(attribution || {}),
+          client_ip: ipHeader,
+          client_ua: ua,
+        },
+        value: finalPrice,
+        currency: 'USD',
+        contentName: productName,
+        contentCategory: 'Custom Patches',
+        numItems: qty,
+        orderId: paypalOrder.id,
+      }).catch((err) => console.error('[META CAPI] InitiateCheckout (Offers PayPal) send failed:', err));
+    }
 
     return NextResponse.json({ url: approvalUrl, paypalOrderId: paypalOrder.id, orderData });
   } catch (error) {

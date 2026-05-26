@@ -358,8 +358,9 @@ export default function ComplexCalculator({
         (window as any).fbq('track', 'Lead', {
           content_name: 'Calculator Quote',
           content_category: productType,
-          value: priceResult.error ? undefined : basePrice,
-          currency: priceResult.error ? undefined : 'USD',
+          // Always send value AND currency together; Meta rejects partial pairs
+          value: priceResult.error ? 0 : basePrice,
+          currency: 'USD',
         }, { eventID: eventId });
       }
     } catch { /* noop */ }

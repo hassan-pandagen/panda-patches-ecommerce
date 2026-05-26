@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { lookupOfferPrice, calculateOfferTotal, OFFER_CATEGORIES } from '@/lib/offerPackages';
 import { resolveBaseUrl } from '@/lib/checkoutConfig';
+import { sendMetaEvent } from '@/lib/metaCapi';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-02-25.clover',
@@ -33,6 +34,8 @@ const Schema = z.object({
   specialInstructions: z.string().max(500).optional().or(z.literal('')),
   company: z.string().max(100).optional().or(z.literal('')),
   paymentMethod: z.enum(['card', 'applepay', 'afterpay', 'klarna', 'cashapp']).optional().default('card'),
+  attribution: z.any().optional(),
+  initiateCheckoutEventId: z.string().max(120).optional(),
 });
 
 export async function POST(req: Request) {
@@ -47,7 +50,8 @@ export async function POST(req: Request) {
     const {
       categoryId, packName, backing, delivery, upgrades,
       customer, shippingAddress, width, height,
-      artworkUrl, designDescription, specialInstructions, company, paymentMethod
+      artworkUrl, designDescription, specialInstructions, company, paymentMethod,
+      attribution, initiateCheckoutEventId,
     } = result.data;
 
     // Server-side price lookup prevents manipulation
@@ -139,6 +143,36 @@ export async function POST(req: Request) {
     }).then(({ error }) => {
       if (error) console.error('Supabase insert error (non-blocking):', error);
     });
+
+    // Fire server CAPI InitiateCheckout with same eventId as browser pixel for dedup
+    if (initiateCheckoutEventId) {
+      const ipHeader = (req.headers.get('x-forwarded-for') || '').split(',')[0].trim() || undefined;
+      const ua = req.headers.get('user-agent') || undefined;
+      const refererUrl = req.headers.get('referer') || undefined;
+      const [icFirstName, ...icLastParts] = (customer.name || '').trim().split(/\s+/);
+
+      sendMetaEvent({
+        eventName: 'InitiateCheckout',
+        eventId: initiateCheckoutEventId,
+        actionSource: 'website',
+        eventSourceUrl: refererUrl,
+        email: customer.email,
+        phone: customer.phone || null,
+        firstName: icFirstName,
+        lastName: icLastParts.join(' ') || null,
+        attribution: {
+          ...(attribution || {}),
+          client_ip: ipHeader,
+          client_ua: ua,
+        },
+        value: finalPrice,
+        currency: 'USD',
+        contentName: productName,
+        contentCategory: 'Custom Patches',
+        numItems: qty,
+        orderId: session.id,
+      }).catch((err) => console.error('[META CAPI] InitiateCheckout (Offers Stripe) send failed:', err));
+    }
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
