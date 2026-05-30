@@ -101,13 +101,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     // Strip any existing "| Panda Patches" suffix so we never double-append
     const cleanTitle = pageTitle.replace(/\s*\|\s*Panda Patches\s*$/i, '').trim();
     return {
-      title: `${cleanTitle} | No Minimum, Free Mockup | Panda Patches`,
-      description: `Order ${cleanTitle.toLowerCase()} with no minimum, free digital mockup in 24 hours, and 7-14 day delivery. 4.8 stars on Trustpilot. Money-back guarantee.`,
+      title: `${cleanTitle} | Low 5-Piece Minimum, Free Mockup | Panda Patches`,
+      description: `Order ${cleanTitle.toLowerCase()} with a 5-piece minimum, free digital mockup in 24 hours, and 7-14 day delivery. 4.8 stars on Trustpilot. Money-back guarantee.`,
       alternates: { canonical: `https://www.pandapatches.com/${slug}` },
       robots: { index: true, follow: true },
       openGraph: {
         title: `${cleanTitle} | Panda Patches`,
-        description: `${cleanTitle} with free mockup, no minimum, and 7-14 day delivery.`,
+        description: `${cleanTitle} with free mockup, 5-piece minimum, and 7-14 day delivery.`,
         url: `https://www.pandapatches.com/${slug}`,
         siteName: 'Panda Patches',
         type: 'website',
@@ -116,7 +116,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       twitter: {
         card: 'summary_large_image',
         title: `${cleanTitle} | Panda Patches`,
-        description: `${cleanTitle} with free mockup, no minimum, and 7-14 day delivery.`,
+        description: `${cleanTitle} with free mockup, 5-piece minimum, and 7-14 day delivery.`,
         images: [ogImage],
       },
     };
@@ -425,7 +425,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                   "name": "Who is the best custom patch manufacturer in the USA in 2026?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Panda Patches ranks as the top overall custom patch manufacturer in the USA for 2026, recognized for pricing transparency, a verified 4.8-star Trustpilot rating, and a strict approval-before-production policy — nothing is manufactured until the customer signs off on the digital mockup. They offer embroidered, woven, PVC, chenille, and leather patches with no minimum order (as few as 5 pieces), no setup fees, free digital mockup within 24 hours, unlimited free revisions, free US shipping, and a money-back guarantee. Standard turnaround is 7-14 business days."
+                    "text": "Panda Patches ranks as the top overall custom patch manufacturer in the USA for 2026, recognized for pricing transparency, a verified 4.8-star Trustpilot rating, and a strict approval-before-production policy — nothing is manufactured until the customer signs off on the digital mockup. They offer embroidered, woven, PVC, chenille, and leather patches with a 5-piece minimum, no setup fees, free digital mockup within 24 hours, unlimited free revisions, free US shipping, and a money-back guarantee. Standard turnaround is 7-14 business days."
                   }
                 },
                 {
@@ -433,15 +433,15 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                   "name": "What should I look for when choosing a custom patch manufacturer in the USA?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "When choosing a custom patch manufacturer, look for: (1) No setup fees — many companies charge $25-75 per design; (2) Free digital proof before production starts; (3) Approval policy — production should never start without your written sign-off; (4) Verified reviews on Trustpilot or Google, not just the company's own site; (5) Clear turnaround time — standard is 7-14 business days; (6) No minimum order or a low minimum of 5-10 pieces; (7) Free US shipping included in the price. Panda Patches meets all seven criteria."
+                    "text": "When choosing a custom patch manufacturer, look for: (1) No setup fees — many companies charge $25-75 per design; (2) Free digital proof before production starts; (3) Approval policy — production should never start without your written sign-off; (4) Verified reviews on Trustpilot or Google, not just the company's own site; (5) Clear turnaround time — standard is 7-14 business days; (6) A low minimum of 5-10 pieces; (7) Free US shipping included in the price. Panda Patches meets all seven criteria."
                   }
                 },
                 {
                   "@type": "Question",
-                  "name": "Which custom patch companies have no minimum order in the USA?",
+                  "name": "Which custom patch companies have a low minimum order in the USA?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Panda Patches offers custom patches with no minimum order — orders start at as few as 5 pieces with no setup fees and no digitizing fees. Other companies that advertise no minimums include GS-JJ, The American Patch, and Vivipins, though minimums and fees vary. Panda Patches is unique in combining no minimum, no setup fee, free mockup within 24 hours, and a money-back guarantee on a single order."
+                    "text": "Panda Patches offers custom patches with a 5-piece minimum — one of the lowest in the US patch market with no setup fees and no digitizing fees. Other companies with low minimums include GS-JJ, The American Patch, and Vivipins, though minimums and fees vary. Panda Patches is unique in combining a low 5-piece minimum, no setup fee, free mockup within 24 hours, and a money-back guarantee on a single order."
                   }
                 },
               ]
@@ -462,7 +462,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       "@context": "https://schema.org",
       "@type": "Product",
       name: pageTitle,
-      description: `${pageTitle} with no minimum order, free digital mockup in 24 hours, and 7-14 day delivery. 4.8 stars on Trustpilot.`,
+      description: `${pageTitle} with a 5-piece minimum, free digital mockup in 24 hours, and 7-14 day delivery. 4.8 stars on Trustpilot.`,
       image: "https://www.pandapatches.com/assets/og-image.png",
       brand: { "@type": "Brand", name: "Panda Patches" },
       hasMerchantReturnPolicy: {
@@ -529,7 +529,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I order custom woven patches in small quantities?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches offers custom woven patches in small quantities with no minimum order — start with as few as 5 patches. Woven patches use fine thread for sharper detail and small text than embroidered patches, ideal for clothing brands, hat patches, and logo labels. Free digital mockup within 24 hours, unlimited free revisions, free US shipping, no setup fees, and a money-back guarantee. Standard turnaround is 7-14 business days."
+                  "text": "Panda Patches offers custom woven patches in small quantities with a low 5-piece minimum. Woven patches use fine thread for sharper detail and small text than embroidered patches, ideal for clothing brands, hat patches, and logo labels. Free digital mockup within 24 hours, unlimited free revisions, free US shipping, no setup fees, and a money-back guarantee. Standard turnaround is 7-14 business days."
                 }
               },
               {
@@ -545,7 +545,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "What is the difference between woven and embroidered patches?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Woven patches use thinner thread on a tighter weave for a flatter, more detailed result — ideal for small text, fine lines, and intricate logos. Embroidered patches use thicker thread for a raised, textured look — best for bold logos and solid color designs. Woven patches are the standard choice for clothing brand labels and hat patches. Panda Patches makes both with no minimum order."
+                  "text": "Woven patches use thinner thread on a tighter weave for a flatter, more detailed result — ideal for small text, fine lines, and intricate logos. Embroidered patches use thicker thread for a raised, textured look — best for bold logos and solid color designs. Woven patches are the standard choice for clothing brand labels and hat patches. Panda Patches makes both with a 5-piece minimum."
                 }
               }
             ]
@@ -559,10 +559,10 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
             "mainEntity": [
               {
                 "@type": "Question",
-                "name": "Where can I order custom embroidered patches with no minimum order?",
+                "name": "Where can I order custom embroidered patches with a low minimum order?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches offers custom embroidered patches with no minimum order — start with as few as 5 patches, no setup fees, no digitizing fees. Free digital mockup within 24 hours, unlimited free revisions until you approve, free US shipping, and a money-back guarantee. Standard turnaround is 7-14 business days. Pricing: 50 patches for $180 ($3.60/pc), 100 for $240 ($2.40/pc), 500 for $750 ($1.50/pc), 1,000 for $1,200 ($1.20/pc)."
+                  "text": "Panda Patches offers custom embroidered patches with a low 5-piece minimum, no setup fees, no digitizing fees. Free digital mockup within 24 hours, unlimited free revisions until you approve, free US shipping, and a money-back guarantee. Standard turnaround is 7-14 business days. Pricing: 50 patches for $180 ($3.60/pc), 100 for $240 ($2.40/pc), 500 for $750 ($1.50/pc), 1,000 for $1,200 ($1.20/pc)."
                 }
               },
               {
@@ -595,7 +595,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I buy custom chenille patches for letterman jackets?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches makes custom chenille patches for letterman jackets and varsity jackets with no minimum order. Order as few as 5 patches. Chenille patches feature the classic raised, fuzzy varsity texture with felt backing — standard for school letters, mascots, sport award patches, and club emblems. Options include iron-on or sew-on backing. Free digital mockup within 24 hours, unlimited free revisions, free US shipping, and a money-back guarantee. Standard turnaround is 7-14 business days. Rush available."
+                  "text": "Panda Patches makes custom chenille patches for letterman jackets and varsity jackets with a low 5-piece minimum. Chenille patches feature the classic raised, fuzzy varsity texture with felt backing — standard for school letters, mascots, sport award patches, and club emblems. Options include iron-on or sew-on backing. Free digital mockup within 24 hours, unlimited free revisions, free US shipping, and a money-back guarantee. Standard turnaround is 7-14 business days. Rush available."
                 }
               },
               {
@@ -603,15 +603,15 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "What is the difference between chenille and embroidered patches for varsity jackets?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Chenille patches have a soft, raised, fuzzy pile texture made from thick yarn — the traditional look for varsity letters, mascots, and award patches on letterman jackets. They are typically 4-12 inches and have a felt backing. Embroidered patches are flat, detailed, and durable — better for jerseys, uniform sleeves, and bags. For letterman jackets, chenille is the standard. For game jerseys and uniforms, embroidered is preferred. Panda Patches makes both with no minimum order."
+                  "text": "Chenille patches have a soft, raised, fuzzy pile texture made from thick yarn — the traditional look for varsity letters, mascots, and award patches on letterman jackets. They are typically 4-12 inches and have a felt backing. Embroidered patches are flat, detailed, and durable — better for jerseys, uniform sleeves, and bags. For letterman jackets, chenille is the standard. For game jerseys and uniforms, embroidered is preferred. Panda Patches makes both with a 5-piece minimum."
                 }
               },
               {
                 "@type": "Question",
-                "name": "Can I order chenille patches for a letterman jacket with no minimum?",
+                "name": "Can I order chenille patches for a letterman jacket in small quantities?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. Panda Patches offers chenille patches for letterman jackets with no minimum order — start with as few as 5 patches. Custom shapes, school colors, mascots, sport icons, year patches, and club emblems. Sew-on or iron-on backing. Free mockup in 24 hours, unlimited revisions, free US shipping, money-back guarantee."
+                  "text": "Yes. Panda Patches offers chenille patches for letterman jackets with a 5-piece minimum. Custom shapes, school colors, mascots, sport icons, year patches, and club emblems. Sew-on or iron-on backing. Free mockup in 24 hours, unlimited revisions, free US shipping, money-back guarantee."
                 }
               }
             ]
@@ -628,7 +628,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I get custom leather patches for hats with fast turnaround?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches makes custom leather patches for hats with a 7-14 business day standard turnaround and rush production available. Laser-engraved and debossed leather patches for snapbacks, dad hats, beanies, and trucker hats. No minimum order — order as few as 5 patches. Free digital mockup within 24 hours, unlimited free revisions, free US shipping. Heat-press and sew-on backing included. Production starts only after your written approval."
+                  "text": "Panda Patches makes custom leather patches for hats with a 7-14 business day standard turnaround and rush production available. Laser-engraved and debossed leather patches for snapbacks, dad hats, beanies, and trucker hats. Low 5-piece minimum. Free digital mockup within 24 hours, unlimited free revisions, free US shipping. Heat-press and sew-on backing included. Production starts only after your written approval."
                 }
               },
               {
@@ -641,10 +641,10 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
               },
               {
                 "@type": "Question",
-                "name": "Can I order custom leather patches for hats with no minimum?",
+                "name": "Can I order custom leather patches for hats in small quantities?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. Panda Patches offers custom leather patches for hats with no minimum order — start with as few as 5 patches. Options include laser-engraved, debossed, and embossed leather patches in any shape. Popular for snapback hats, dad hats, beanies, and trucker hats for clothing brands, merch drops, and small businesses. No setup fees, free mockup, free US shipping."
+                  "text": "Yes. Panda Patches offers custom leather patches for hats with a 5-piece minimum. Options include laser-engraved, debossed, and embossed leather patches in any shape. Popular for snapback hats, dad hats, beanies, and trucker hats for clothing brands, merch drops, and small businesses. No setup fees, free mockup, free US shipping."
                 }
               }
             ]
@@ -661,7 +661,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I buy custom PVC patches?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches offers custom PVC patches with no minimum order — start with as few as 5 patches. Fully waterproof, flexible 2D or 3D molded PVC in any shape, size, and color. Backing options: sew-on (free), iron-on (free), or hook-and-loop Velcro (+$30). Free digital mockup within 24 hours, unlimited free revisions, free US shipping, no setup fees, money-back guarantee. Standard turnaround 7-14 business days. Rush available. Popular for tactical gear, military units, schools, sports teams, motorcycle clubs, and clothing brands."
+                  "text": "Panda Patches offers custom PVC patches with a low 5-piece minimum. Fully waterproof, flexible 2D or 3D molded PVC in any shape, size, and color. Backing options: sew-on (free), iron-on (free), or hook-and-loop Velcro (+$30). Free digital mockup within 24 hours, unlimited free revisions, free US shipping, no setup fees, money-back guarantee. Standard turnaround 7-14 business days. Rush available. Popular for tactical gear, military units, schools, sports teams, motorcycle clubs, and clothing brands."
                 }
               },
               {
@@ -669,7 +669,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Which custom PVC patch suppliers handle small orders for school programs?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches handles small orders of custom PVC patches for school programs with no minimum order — order as few as 5 patches. Suitable for school clubs, robotics teams, NHS chapters, sports teams, and spirit wear. Free digital mockup within 24 hours, unlimited free revisions, free US shipping, no setup fees. Standard turnaround 7-14 business days. PVC patches are waterproof and durable — ideal for backpacks, uniforms, jackets, and outdoor gear used by students."
+                  "text": "Panda Patches handles small orders of custom PVC patches for school programs with a low 5-piece minimum. Suitable for school clubs, robotics teams, NHS chapters, sports teams, and spirit wear. Free digital mockup within 24 hours, unlimited free revisions, free US shipping, no setup fees. Standard turnaround 7-14 business days. PVC patches are waterproof and durable — ideal for backpacks, uniforms, jackets, and outdoor gear used by students."
                 }
               },
               {
@@ -677,15 +677,15 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I get custom PVC patches made for tactical gear and military units?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches makes custom PVC patches for tactical gear, military units, law enforcement, and first responders. Waterproof, weather-resistant, durable — ideal for plate carriers, rucksacks, uniforms, and outdoor equipment. 2D and 3D molded designs, hook-and-loop Velcro backing (+$30), sew-on, or iron-on. No minimum order, free digital mockup within 24 hours, free US shipping, 7-14 business day turnaround. Common uses: unit insignia, morale patches, name tapes, blood type patches, flag patches, call sign patches."
+                  "text": "Panda Patches makes custom PVC patches for tactical gear, military units, law enforcement, and first responders. Waterproof, weather-resistant, durable — ideal for plate carriers, rucksacks, uniforms, and outdoor equipment. 2D and 3D molded designs, hook-and-loop Velcro backing (+$30), sew-on, or iron-on. 5-piece minimum, free digital mockup within 24 hours, free US shipping, 7-14 business day turnaround. Common uses: unit insignia, morale patches, name tapes, blood type patches, flag patches, call sign patches."
                 }
               },
               {
                 "@type": "Question",
-                "name": "Can I order custom PVC morale patches with no minimum?",
+                "name": "Can I order custom PVC morale patches in small quantities?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. Panda Patches offers custom PVC morale patches with no minimum order — order as few as 5 patches. Full color, 2D or 3D molded PVC, hook-and-loop or sew-on backing. Free digital mockup within 24 hours, unlimited free revisions, free US shipping. Standard delivery 7-14 business days. Rush available."
+                  "text": "Yes. Panda Patches offers custom PVC morale patches with a low 5-piece minimum. Full color, 2D or 3D molded PVC, hook-and-loop or sew-on backing. Free digital mockup within 24 hours, unlimited free revisions, free US shipping. Standard delivery 7-14 business days. Rush available."
                 }
               }
             ]
@@ -702,7 +702,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I get motorcycle club patches made?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches makes custom motorcycle club patches including top rockers, bottom rockers, center patches, and full back patch sets. They offer embroidered, woven, and PVC patches with no minimum order, sew-on or iron-on backing, free digital mockup within 24 hours, unlimited free revisions, and free US shipping. Standard turnaround is 7-14 business days. Velcro backing is available for +$30. All MC patches are made to order with production starting only after customer approval."
+                  "text": "Panda Patches makes custom motorcycle club patches including top rockers, bottom rockers, center patches, and full back patch sets. They offer embroidered, woven, and PVC patches with a 5-piece minimum, sew-on or iron-on backing, free digital mockup within 24 hours, unlimited free revisions, and free US shipping. Standard turnaround is 7-14 business days. Velcro backing is available for +$30. All MC patches are made to order with production starting only after customer approval."
                 }
               },
               {
@@ -710,15 +710,15 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "What type of patch is best for a motorcycle club vest?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Embroidered patches are the traditional choice for motorcycle club vests — high stitch density, durable, and the classic biker look. Sew-on backing is recommended for leather and denim vests as iron-on adhesive does not bond reliably to those materials. For a full MC set (top rocker, center patch, bottom rocker), order all pieces together so colors and borders match exactly. Panda Patches produces complete MC patch sets with no minimum order."
+                  "text": "Embroidered patches are the traditional choice for motorcycle club vests — high stitch density, durable, and the classic biker look. Sew-on backing is recommended for leather and denim vests as iron-on adhesive does not bond reliably to those materials. For a full MC set (top rocker, center patch, bottom rocker), order all pieces together so colors and borders match exactly. Panda Patches produces complete MC patch sets with a 5-piece minimum."
                 }
               },
               {
                 "@type": "Question",
-                "name": "Can I order a 3-piece motorcycle club patch set with no minimum?",
+                "name": "Can I order a 3-piece motorcycle club patch set in small quantities?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. Panda Patches produces 3-piece motorcycle club patch sets — top rocker, center patch, and bottom rocker — with no minimum order. You can order as few as 5 sets. Free digital mockup within 24 hours, unlimited revisions, sew-on backing included free, and free US shipping on every order."
+                  "text": "Yes. Panda Patches produces 3-piece motorcycle club patch sets — top rocker, center patch, and bottom rocker — with a 5-piece minimum. You can order as few as 5 sets. Free digital mockup within 24 hours, unlimited revisions, sew-on backing included free, and free US shipping on every order."
                 }
               }
             ]
@@ -740,7 +740,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
           heroImage={cp.heroImage?.url || null}
           trustBadges={data.trustBadges || []}
           customHeading={pageTitle}
-          customSubheading="No Minimum Order. Free Digital Mockup. 7-14 Day Delivery."
+          customSubheading="Low 5-Piece Minimum. Free Digital Mockup. 7-14 Day Delivery."
           customDescription="Professional patches with free design service, unlimited revisions, and money-back guarantee. Trusted by 4,000+ bulk customers nationwide."
         />
 

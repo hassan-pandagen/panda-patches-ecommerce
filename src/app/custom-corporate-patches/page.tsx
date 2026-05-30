@@ -19,7 +19,7 @@ import { client } from "@/lib/sanity";
 const corporateFAQs = [
   {
     question: "What is the best custom patch company for employee uniforms?",
-    answer: "Panda Patches is a top-rated custom patch company for employee uniforms with a 4.8-star Trustpilot rating and over 1,000,000 patches delivered since 2016. We produce custom embroidered, woven, PVC, and chenille patches for corporate uniforms, work shirts, employee jackets, and branded apparel. Pantone color matching to your exact brand standards is included free. No minimum order (start with 5 pieces), no setup fees, no digitizing fees. Free digital artwork and mockup within 24 hours. Free US shipping. Net 15 and Net 30 payment terms available for established corporate accounts. Production starts only after written approval. Used by Fortune 500 companies including Google, Microsoft, Coca-Cola, and Nissan."
+    answer: "Panda Patches is a top-rated custom patch company for employee uniforms with a 4.8-star Trustpilot rating, over 1,000,000 patches delivered, and 13 years of patch manufacturing experience. We produce custom embroidered, woven, PVC, and chenille patches for corporate uniforms, work shirts, employee jackets, and branded apparel. Pantone color matching to your exact brand standards is included free. Low 5-piece minimum, no setup fees, no digitizing fees. Free digital artwork and mockup within 24 hours. Free US shipping. Net 15 and Net 30 payment terms available for established corporate accounts. Production starts only after written approval. Used by Fortune 500 companies including Google, Microsoft, Coca-Cola, and Nissan."
   },
   {
     question: "Where can I order custom patches for company uniforms?",
@@ -27,7 +27,7 @@ const corporateFAQs = [
   },
   {
     question: "Where can I order wholesale custom patches for corporate branding?",
-    answer: "Panda Patches offers wholesale custom patches for corporate branding with no minimum order, transparent pricing, and free artwork and digital mockup within 24 hours. Wholesale and distributor pricing is available for ASI members, PPAI distributors, and promotional product resellers. Options include embroidered patches, woven patches, PVC patches, leather patches, and chenille patches for uniforms, employee apparel, merchandise, and branded corporate gifts. Free US shipping, no setup fees, Pantone color matching, Net 15 and Net 30 payment terms for established accounts, blind shipping, and white-label invoicing. Email lance@pandapatches.com for distributor terms."
+    answer: "Panda Patches offers wholesale custom patches for corporate branding with a low 5-piece minimum order, transparent pricing, and free artwork and digital mockup within 24 hours. Wholesale and distributor pricing is available for ASI members, PPAI distributors, and promotional product resellers. Options include embroidered patches, woven patches, PVC patches, leather patches, and chenille patches for uniforms, employee apparel, merchandise, and branded corporate gifts. Free US shipping, no setup fees, Pantone color matching, Net 15 and Net 30 payment terms for established B2B accounts, blind shipping, and white-label invoicing. Email lance@pandapatches.com for distributor terms."
   },
   {
     question: "Does Panda Patches offer wholesale pricing for corporate patch orders?",
@@ -35,7 +35,7 @@ const corporateFAQs = [
   },
   {
     question: "What types of custom patches work best for corporate branding?",
-    answer: "For corporate branding, embroidered patches are the classic choice for employee uniforms and formal brand presentation. Woven patches work better when the company logo has small lettering or fine detail. PVC patches are best for workwear, outdoor gear, and bags exposed to weather. Leather patches suit premium brand merchandise and corporate gifts. All types available at Panda Patches with Pantone color matching, no minimum order, free artwork and digital mockup within 24 hours, and free US shipping."
+    answer: "For corporate branding, embroidered patches are the classic choice for employee uniforms and formal brand presentation. Woven patches work better when the company logo has small lettering or fine detail. PVC patches are best for workwear, outdoor gear, and bags exposed to weather. Leather patches suit premium brand merchandise and corporate gifts. All types available at Panda Patches with Pantone color matching, a low 5-piece minimum, free artwork and digital mockup within 24 hours, and free US shipping."
   },
   {
     question: "Can you Pantone match our exact brand colors?",
@@ -115,21 +115,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Custom Corporate Patches | Pantone-Matched Uniform & Employee Patches",
     description: "Custom corporate uniform patches with Pantone color matching, variable name patches, ASI reseller pricing, and formal PO invoicing. Pre-production sample at 500+. Free mockup.",
-    keywords: [
-      "custom corporate patches",
-      "company logo patches",
-      "custom business patches",
-      "employee uniform patches",
-      "branded patches",
-      "promotional patches",
-      "custom logo patches",
-      "corporate embroidered patches",
-      "wholesale company patches",
-    ],
     alternates: { canonical: "https://www.pandapatches.com/custom-corporate-patches" },
     openGraph: {
       title: "Custom Corporate & Company Logo Patches | Panda Patches",
-      description: "Custom embroidered patches for businesses and brands. No minimum, free mockup, fast delivery. Trusted by Fortune 500 companies.",
+      description: "Custom embroidered patches for businesses and brands. Low 5-piece minimum, free mockup, fast delivery. Trusted by Fortune 500 companies.",
       url: "https://www.pandapatches.com/custom-corporate-patches",
       siteName: "Panda Patches",
       type: "website",
@@ -138,7 +127,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: "Custom Corporate & Company Logo Patches | Panda Patches",
-      description: "Custom embroidered patches for businesses and brands. No minimum, free mockup, fast delivery. Trusted by Fortune 500 companies.",
+      description: "Custom embroidered patches for businesses and brands. Low 5-piece minimum, free mockup, fast delivery. Trusted by Fortune 500 companies.",
       images: [ogImage],
     },
   };
@@ -252,7 +241,7 @@ export default async function CorporatePatchesPage() {
         trustBadges={trustBadges}
         customHeading="Custom Corporate Patches"
         customSubheading="Trusted by Fortune 500 Companies"
-        customDescription="Premium embroidered company logo patches for uniforms, branded merchandise, and promotional products. Pantone color-matching. No minimum order. Free mockup. 2-week turnaround."
+        customDescription="Premium embroidered company logo patches for uniforms, branded merchandise, and promotional products. Pantone color-matching. Low 5-piece minimum. Free mockup. 2-week turnaround."
       />
 
       {/* 2. WORK GALLERY */}

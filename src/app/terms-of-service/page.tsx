@@ -136,7 +136,7 @@ export default function TermsOfServicePage() {
             </ul>
             <p className="text-[16px] leading-[1.8] mt-4">
               To request a replacement, contact us within <strong>14 days of delivery</strong> at{" "}
-              <a href="mailto:admin@pandapatches.com" className="text-panda-dark font-semibold underline">admin@pandapatches.com</a>{" "}
+              <a href="mailto:hello@pandapatches.com" className="text-panda-dark font-semibold underline">hello@pandapatches.com</a>{" "}
               with photos of the issue.
             </p>
           </section>
@@ -187,7 +187,7 @@ export default function TermsOfServicePage() {
             <div className="mt-4 bg-gray-50 rounded-2xl p-6 text-[16px] space-y-2">
               <p><strong>MC Patches LLC (Panda Patches)</strong></p>
               <p>Missouri City, TX, United States</p>
-              <p>Email: <a href="mailto:admin@pandapatches.com" className="text-panda-dark font-semibold underline">admin@pandapatches.com</a></p>
+              <p>Email: <a href="mailto:hello@pandapatches.com" className="text-panda-dark font-semibold underline">hello@pandapatches.com</a></p>
               <p>Phone: <a href="tel:+13022504340" className="text-panda-dark font-semibold underline">+1 (302) 250-4340</a></p>
             </div>
           </section>

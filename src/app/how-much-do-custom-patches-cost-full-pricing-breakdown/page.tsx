@@ -22,6 +22,13 @@ export const metadata: Metadata = {
     type: 'website',
     images: [{ url: `${BASE}/assets/og-image.png`, width: 1200, height: 630, alt: 'Custom Patch Pricing' }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'How Much Do Custom Patches Cost? $0.71 to $7/pc (2026)',
+    description:
+      'Custom patch pricing in 2026. From $0.71/pc at volume to $80 flat for a single patch. Full tables by type and quantity. Free mockup, free shipping.',
+    images: [`${BASE}/assets/og-image.png`],
+  },
   robots: { index: true, follow: true },
 };
 
@@ -213,7 +220,7 @@ export default function PricingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(buildProductSchema(
         'Custom Embroidered Patches',
-        'Custom embroidered patches with free mockup, free shipping, and no minimum order. From $0.71/pc at volume.',
+        'Custom embroidered patches with free mockup, free shipping, and a low 5-piece minimum order. From $0.71/pc at volume.',
         embTiers
       ))} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(buildProductSchema(
@@ -223,7 +230,7 @@ export default function PricingPage() {
       ))} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(buildProductSchema(
         'Custom PVC Patches',
-        'Custom PVC patches, waterproof and 3D textured. No minimum. From $1.40/pc at volume.',
+        'Custom PVC patches, waterproof and 3D textured. Low 5-piece minimum. From $1.40/pc at volume.',
         pvcTiers
       ))} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(faqSchema)} />
@@ -313,7 +320,7 @@ export default function PricingPage() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-gray-400 mt-3">Size = longest dimension. 1-pc flat fee covers design setup. No minimum order.</p>
+          <p className="text-xs text-gray-400 mt-3">Size = longest dimension. 1-pc flat fee covers design setup. Low 5-piece minimum.</p>
         </div>
       </section>
 
@@ -344,7 +351,7 @@ export default function PricingPage() {
           </div>
           <div>
             <h2 className="text-xl font-black text-gray-900 mb-1">PVC Patch Pricing</h2>
-            <p className="text-gray-500 text-sm mb-5">3" patch, per piece. No minimum.</p>
+            <p className="text-gray-500 text-sm mb-5">3" patch, per piece. Low 5-piece minimum.</p>
             <div className="overflow-x-auto rounded-2xl border border-gray-200">
               <table className="w-full text-sm">
                 <thead>
@@ -455,7 +462,7 @@ export default function PricingPage() {
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl font-black text-white mb-4">Ready to Order?</h2>
           <p className="text-gray-300 mb-8">
-            Free mockup in 24 hours. No minimum on most styles. {TRUSTPILOT_RATING} stars from {TRUSTPILOT_REVIEW_COUNT_STR} verified buyers.
+            Free mockup in 24 hours. Low 5-piece minimum on most styles. {TRUSTPILOT_RATING} stars from {TRUSTPILOT_REVIEW_COUNT_STR} verified buyers.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

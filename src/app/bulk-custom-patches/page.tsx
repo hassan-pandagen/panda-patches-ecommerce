@@ -56,22 +56,6 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Bulk Custom Patches | Wholesale from $0.50/pc | 4.8★",
     description: "Bulk custom patches at wholesale prices. Volume discounts from $0.50/pc. Embroidered, PVC, woven & more. Free design, no setup fees. 1M+ patches delivered. Get your bulk quote today!",
-    keywords: [
-      "custom patches bulk order",
-      "wholesale custom patches",
-      "bulk custom patches",
-      "custom patches manufacturer",
-      "bulk embroidered patches",
-      "custom patches for businesses",
-      "wholesale embroidered patches",
-      "bulk iron on patches",
-      "custom patches large order",
-      "promotional products patches",
-      "bulk PVC patches",
-      "wholesale woven patches",
-      "bulk fire department patches",
-      "corporate patches bulk",
-    ],
     alternates: {
       canonical: "https://www.pandapatches.com/bulk-custom-patches",
     },
@@ -210,7 +194,7 @@ const faqSchema = {
       name: "What is the minimum order for bulk pricing?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We start bulk pricing at 50 pieces with no strict minimum. You get better rates at 100+, 500+, and 1,000+ pieces. Whether you need 50 patches for your team or 50,000 for a national rollout, we have you covered.",
+        text: "Our overall minimum is 5 pieces. Bulk pricing kicks in at 50 pieces, with better rates at 100+, 500+, and 1,000+. Whether you need 5 patches for a sample, 50 for your team, or 50,000 for a national rollout, we have you covered.",
       },
     },
     {
@@ -451,8 +435,8 @@ export default async function BulkCustomPatchesPage() {
         },
         {
           icon: "/assets/icon-money.svg",
-          title: "Net 15/30 Payment Terms",
-          desc: "Qualified distributors and repeat clients can apply for Net 15 or Net 30 payment terms. No upfront cash required.",
+          title: "B2B Net 15/30 Payment Terms",
+          desc: "Qualified distributors, ASI members, and repeat business clients can apply for Net 15 or Net 30 payment terms after three completed projects. Partner / wholesale accounts only, not available on retail orders.",
         },
         {
           icon: "/assets/icon-clock.svg",

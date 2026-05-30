@@ -12,14 +12,6 @@ export const metadata: Metadata = {
   title: `Panda Patches vs ${COMPETITOR}: 2026 Comparison`,
   description:
     "Panda Patches vs Monterey Company: 5pc minimum vs 50pc, published pricing vs quote-only, 24hr free mockup, money-back guarantee. Side-by-side comparison.",
-  keywords: [
-    "panda patches vs monterey company",
-    "monterey company alternative",
-    "monterey patch company review",
-    "custom patch company comparison",
-    "low minimum patch company",
-    "transparent patch pricing",
-  ],
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
@@ -30,6 +22,13 @@ export const metadata: Metadata = {
     siteName: "Panda Patches",
     type: "article",
     images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
+    description:
+      "Compare minimum orders, pricing transparency, mockup turnaround, and guarantees. Panda Patches wins on 5 of 6 dimensions for small and mid-volume buyers.",
+    images: ["https://www.pandapatches.com/assets/og-image.png"],
   },
 };
 
@@ -129,7 +128,7 @@ export default function PandaVsMonterey() {
 
             { category: "Guarantees and trust", feature: "Money-back guarantee", panda: "Yes, covers design dissatisfaction", competitor: "Not publicly stated", pandaWin: true },
             { category: "Guarantees and trust", feature: "Trustpilot rating", panda: "4.8 from 65 reviews", competitor: "5.0 from 214 reviews", competitorWin: true },
-            { category: "Guarantees and trust", feature: "Years in business", panda: "Since 2016 (9 years)", competitor: "Since 1989 (36 years)", competitorWin: true },
+            { category: "Guarantees and trust", feature: "Patch manufacturing experience", panda: "13 years of founder-led experience", competitor: "Since 1989 (36 years)", competitorWin: true },
             { category: "Guarantees and trust", feature: "Total patches delivered", panda: "1,000,000+", competitor: "Not publicly disclosed", pandaWin: true },
 
             { category: "Shipping and fees", feature: "Free US shipping", panda: "Yes, every order", competitor: "Not publicly stated", pandaWin: true },

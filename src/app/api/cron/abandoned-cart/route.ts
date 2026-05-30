@@ -237,7 +237,7 @@ function buildFirstEmailHtml(row: CheckoutAttempt, fname: string): string {
       <p style="margin:0;color:#444444;font-size:14px;line-height:1.8;">
         ✓ Free digital mockup within 24 hours<br>
         ✓ Unlimited free revisions until you approve<br>
-        ✓ No setup fees, no digitizing fees, no minimums<br>
+        ✓ No setup fees, no digitizing fees, low 5-piece minimums<br>
         ✓ Money-back guarantee if you don't love it
       </p>
     </div>

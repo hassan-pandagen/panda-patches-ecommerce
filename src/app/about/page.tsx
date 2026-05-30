@@ -20,23 +20,6 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "About Panda Patches | 8+ Years Custom Patch Experts",
     description: "Learn about Panda Patches. 8+ years creating custom embroidered patches with low minimums. Family-owned factory, 4.8 star Trustpilot rating.",
-    keywords: [
-      "about Panda Patches",
-      "custom patch manufacturer",
-      "embroidered patch company",
-      "patch maker USA",
-      "Imran Raza founder",
-      "custom patch experts",
-      "patch supplier USA",
-      "trusted patch manufacturer",
-      "family owned patch company",
-      "8 years patch manufacturing",
-      "patch production factory",
-      "ASI patch supplier",
-      "wholesale patch manufacturer",
-      "military patch maker",
-      "police patch supplier",
-    ],
     openGraph: {
       title: "About Panda Patches | 8+ Years Custom Patch Experts",
       description: "Family-owned custom patch manufacturer with 8+ years experience. Low minimums, free design services, 4.8★ rated.",

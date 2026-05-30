@@ -31,7 +31,7 @@ const sportsFAQs = [
   },
   {
     question: "We have a youth team of 14 players. Is there a minimum order?",
-    answer: "No minimum. We regularly produce 10-25 piece runs for youth teams, small clubs, and coach gift orders at the same quality as large league orders. The 50-piece Starter tier on our Offers page gives the best per-piece price, but a 14-patch team run is completely normal and we handle it with the same care."
+    answer: "Low 5-piece minimum. We regularly produce 10-25 piece runs for youth teams, small clubs, and coach gift orders at the same quality as large league orders. The 50-piece Starter tier on our Offers page gives the best per-piece price, but a 14-patch team run is completely normal and we handle it with the same care."
   },
   {
     question: "We run a whole league with 8 different team designs. Do we get bulk pricing?",
@@ -51,11 +51,11 @@ const sportsFAQs = [
   },
   {
     question: "Does Panda Patches make custom PVC patches for college and sports teams?",
-    answer: "Yes. Panda Patches makes custom PVC patches for college athletic departments and sports teams. PVC patches are waterproof, UV-resistant, and durable — ideal for equipment bags, helmets, staff jackets, booster club gear, and outdoor athletic equipment. Available in 2D and 3D molded designs with Pantone color matching for exact school colors. Hook-and-loop Velcro backing (+$30), sew-on, or iron-on. No minimum order, free digital artwork and mockup within 24 hours, free US shipping, 7-14 business day standard delivery. NCAA 2026 commercial patch rule compliant — patches up to 4 square inches available for sponsor logos on D1 uniforms and apparel."
+    answer: "Yes. Panda Patches makes custom PVC patches for college athletic departments and sports teams. PVC patches are waterproof, UV-resistant, and durable — ideal for equipment bags, helmets, staff jackets, booster club gear, and outdoor athletic equipment. Available in 2D and 3D molded designs with Pantone color matching for exact school colors. Hook-and-loop Velcro backing (+$30), sew-on, or iron-on. Low 5-piece minimum, free digital artwork and mockup within 24 hours, free US shipping, 7-14 business day standard delivery. NCAA 2026 commercial patch rule compliant — patches up to 4 square inches available for sponsor logos on D1 uniforms and apparel."
   },
   {
-    question: "Where can I get custom patches for school spirit wear with no minimum order?",
-    answer: "Panda Patches offers custom school spirit patches with no minimum order. Order as few as 5 patches — embroidered, chenille, woven, PVC, or leather — with no setup fees, no digitizing fees, and a free digital mockup delivered within 24 hours. Production starts only after you approve the design. Standard delivery is 7-14 business days with free US shipping. Whether you need patches for a single student, a club of 20, or a full school of 500, we handle any quantity at the same quality."
+    question: "Where can I get custom patches for school spirit wear with a low minimum order?",
+    answer: "Panda Patches offers custom school spirit patches with a low 5-piece minimum. Order embroidered, chenille, woven, PVC, or leather patches with no setup fees, no digitizing fees, and a free digital mockup delivered within 24 hours. Production starts only after you approve the design. Standard delivery is 7-14 business days with free US shipping. Whether you need patches for a single class, a club of 20, or a full school of 500, we handle any quantity at the same quality."
   },
   {
     question: "What types of patches work best for school spirit wear?",
@@ -110,24 +110,11 @@ export async function generateMetadata(): Promise<Metadata> {
     : 'https://www.pandapatches.com/assets/og-image.png';
   return {
     title: "Custom Sports Patches | Chenille Varsity, Championship & Jersey Patches",
-    description: "Custom sports patches for varsity jackets, game jerseys, and championships. Chenille letters, embroidered team logos, league bulk pricing. Rush for season deadlines. No minimum.",
-    keywords: [
-      "custom sports patches",
-      "sports team patches",
-      "custom team patches",
-      "embroidered sports patches",
-      "custom jersey patches",
-      "varsity letter patches",
-      "championship patches",
-      "custom uniform patches",
-      "baseball patches",
-      "football patches",
-      "soccer patches",
-    ],
+    description: "Custom sports patches for varsity jackets, game jerseys, and championships. Chenille letters, embroidered team logos, league bulk pricing. Rush for season deadlines. Low 5-piece minimum.",
     alternates: { canonical: "https://www.pandapatches.com/custom-sports-patches" },
     openGraph: {
       title: "Custom Sports Team Patches | Panda Patches",
-      description: "Custom embroidered patches for sports teams, leagues, and clubs. No minimum order, free mockup, fast delivery.",
+      description: "Custom embroidered patches for sports teams, leagues, and clubs. Low 5-piece minimum, free mockup, fast delivery.",
       url: "https://www.pandapatches.com/custom-sports-patches",
       siteName: "Panda Patches",
       type: "website",
@@ -136,7 +123,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: "Custom Sports Team Patches | Panda Patches",
-      description: "Custom embroidered patches for sports teams, leagues, and clubs. No minimum order, free mockup, fast delivery.",
+      description: "Custom embroidered patches for sports teams, leagues, and clubs. Low 5-piece minimum, free mockup, fast delivery.",
       images: [ogImage],
     },
   };
@@ -250,7 +237,7 @@ export default async function SportsPatchesPage() {
         trustBadges={trustBadges}
         customHeading="Custom Sports Team Patches"
         customSubheading="Trusted by Youth Leagues & Pro Teams"
-        customDescription="Premium embroidered sports patches for uniforms, jerseys, varsity jackets, and championship gear. Team logos, numbers, and custom designs. No minimum order. Free mockup. 2-week turnaround."
+        customDescription="Premium embroidered sports patches for uniforms, jerseys, varsity jackets, and championship gear. Team logos, numbers, and custom designs. Low 5-piece minimum. Free mockup. 2-week turnaround."
       />
 
       {/* 2. WORK GALLERY */}
@@ -287,9 +274,9 @@ export default async function SportsPatchesPage() {
             <p>
               Ready to get started? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> today. We respond to all inquiries within 2 business hours and include a complimentary digital mockup with every quote.
             </p>
-            <h3 className="text-[20px] font-black text-panda-dark mt-8 mb-3">Custom Patches for School Spirit Wear — No Minimum Order</h3>
+            <h3 className="text-[20px] font-black text-panda-dark mt-8 mb-3">Custom Patches for School Spirit Wear — Low 5-Piece Minimum</h3>
             <p>
-              Panda Patches is a top choice for <strong>custom school spirit patches with no minimum order</strong>. Whether you need 5 patches for a student club or 500 for a full school store, we produce every order with the same quality. We offer <strong>embroidered patches</strong> for uniforms and hats, <strong>chenille patches</strong> for varsity jackets and letterman awards, and <strong>woven patches</strong> for fine-detail school logos — all with no setup fees, free US shipping, and a free digital mockup within 24 hours. Production never starts until you approve your design, and if you are not happy, we offer a full money-back guarantee. Standard delivery is 7-14 business days.
+              Panda Patches is a top choice for <strong>custom school spirit patches with a low 5-piece minimum</strong>. Whether you need 5 patches for a student club or 500 for a full school store, we produce every order with the same quality. We offer <strong>embroidered patches</strong> for uniforms and hats, <strong>chenille patches</strong> for varsity jackets and letterman awards, and <strong>woven patches</strong> for fine-detail school logos — all with no setup fees, free US shipping, and a free digital mockup within 24 hours. Production never starts until you approve your design, and if you are not happy, we offer a full money-back guarantee. Standard delivery is 7-14 business days.
             </p>
           </div>
         </div>

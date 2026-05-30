@@ -113,7 +113,7 @@ export default function PrivacyPolicyPage() {
               We retain your personal information for as long as necessary to fulfill your order, provide customer support,
               and comply with legal obligations. Order records are kept for a minimum of 5 years for accounting and tax purposes.
               You may request deletion of your personal data at any time by contacting us at{" "}
-              <a href="mailto:admin@pandapatches.com" className="text-panda-dark font-semibold underline">admin@pandapatches.com</a>.
+              <a href="mailto:hello@pandapatches.com" className="text-panda-dark font-semibold underline">hello@pandapatches.com</a>.
             </p>
           </section>
 
@@ -130,7 +130,7 @@ export default function PrivacyPolicyPage() {
             </ul>
             <p className="text-[16px] leading-[1.8] mt-4">
               To exercise these rights, email us at{" "}
-              <a href="mailto:admin@pandapatches.com" className="text-panda-dark font-semibold underline">admin@pandapatches.com</a>.
+              <a href="mailto:hello@pandapatches.com" className="text-panda-dark font-semibold underline">hello@pandapatches.com</a>.
             </p>
           </section>
 
@@ -176,7 +176,7 @@ export default function PrivacyPolicyPage() {
             <div className="mt-4 bg-gray-50 rounded-2xl p-6 text-[16px] space-y-2">
               <p><strong>MC Patches LLC (Panda Patches)</strong></p>
               <p>Missouri City, TX, United States</p>
-              <p>Email: <a href="mailto:admin@pandapatches.com" className="text-panda-dark font-semibold underline">admin@pandapatches.com</a></p>
+              <p>Email: <a href="mailto:hello@pandapatches.com" className="text-panda-dark font-semibold underline">hello@pandapatches.com</a></p>
               <p>Phone: <a href="tel:+13022504340" className="text-panda-dark font-semibold underline">+1 (302) 250-4340</a></p>
             </div>
           </section>

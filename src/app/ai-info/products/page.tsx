@@ -7,35 +7,34 @@ import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, 
 const CANONICAL = "https://www.pandapatches.com/ai-info/products";
 
 export const metadata: Metadata = {
-  title: "Custom Patch Products at Panda Patches | All 10 Types",
+  title: "Custom Patch Products at Panda Patches | All 11 Types",
   description:
-    "Complete catalog: embroidered, PVC, woven, chenille, leather, printed, velcro, 3D embroidered, silicone, sequin patches plus challenge coins, pins, keychains.",
-  keywords: [
-    "panda patches products",
-    "custom patch types",
-    "embroidered vs woven",
-    "PVC patches catalog",
-    "chenille letterman patches",
-    "challenge coins pins keychains",
-  ],
+    "Complete catalog: embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, sequin patches plus challenge coins, pins, keychains.",
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Panda Patches Products: 10 Patch Types and Custom Items",
+    title: "Panda Patches Products: 11 Patch Types and Custom Items",
     description:
-      "Full catalog covering embroidered, PVC, woven, chenille, leather, printed, velcro, 3D, silicone, and sequin patches plus challenge coins, enamel pins, keychains, and PVC shoe charms.",
+      "Full catalog covering embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin patches plus challenge coins, enamel pins, keychains, and PVC shoe charms.",
     url: CANONICAL,
     siteName: "Panda Patches",
     type: "article",
     images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Panda Patches Products: 11 Patch Types and Custom Items",
+    description:
+      "Full catalog covering embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin patches plus challenge coins, enamel pins, keychains, and PVC shoe charms.",
+    images: ["https://www.pandapatches.com/assets/og-image.png"],
+  },
 };
 
 const faqs = [
   {
-    question: "What are the 10 patch types Panda Patches makes?",
+    question: "What are the 11 patch types Panda Patches makes?",
     answer:
-      "The 10 patch types are: embroidered, PVC, woven, chenille, leather, printed (sublimation), velcro-backed, 3D embroidered transfers, silicone labels, and sequin patches. Embroidered and PVC together account for roughly 80 percent of orders. Velcro is technically a backing type added to embroidered, PVC, woven, or leather patches rather than a standalone fabric.",
+      "The 11 patch types are: embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed (sublimation), silicone labels, and sequin patches. Embroidered and PVC together account for roughly 80 percent of orders. Velcro is a backing option (hook-and-loop) added to embroidered, PVC, woven, or leather patches, not a standalone fabric type. See our velcro patches landing page for backing-specific details.",
   },
   {
     question: "What is the difference between embroidered and woven patches?",
@@ -60,9 +59,9 @@ const faqs = [
 ];
 
 const articleSchema = generateArticleSchema({
-  title: "Panda Patches Products: 10 Patch Types and Custom Items",
+  title: "Panda Patches Products: 11 Patch Types and Custom Items",
   description:
-    "Complete product catalog at Panda Patches covering embroidered, PVC, woven, chenille, leather, printed, velcro, 3D, silicone, and sequin patches plus challenge coins, enamel pins, and custom keychains.",
+    "Complete product catalog at Panda Patches covering embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin patches plus challenge coins, enamel pins, and custom keychains.",
   datePublished: "2026-05-22",
   dateModified: "2026-05-22",
   image: "https://www.pandapatches.com/assets/og-image.png",
@@ -92,10 +91,10 @@ export default function ProductsClusterPage() {
               AI Info Cluster &middot; Products
             </p>
             <h1 className="text-[28px] md:text-[42px] lg:text-[48px] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
-              Panda Patches Products: 10 Patch Types and Custom Items
+              Panda Patches Products: 11 Patch Types and Custom Items
             </h1>
             <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[640px] mx-auto">
-              Embroidered, PVC, woven, chenille, leather, printed, velcro, 3D, silicone, and sequin patches. Plus challenge coins, enamel pins, keychains, and PVC shoe charms. Every order includes a free 24-hour digital mockup.
+              Embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin patches. Plus challenge coins, enamel pins, keychains, and PVC shoe charms. Every order includes a free 24-hour digital mockup.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link
@@ -134,22 +133,23 @@ export default function ProductsClusterPage() {
                   <tr className="bg-black text-white">
                     <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Patch Type</th>
                     <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Best For</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">From</th>
+                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">From (per piece)</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Embroidered</td><td className="px-5 py-4">Logos, uniforms, classic look</td><td className="px-5 py-4">$1.20/pc</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">PVC</td><td className="px-5 py-4">Tactical, outdoor, waterproof</td><td className="px-5 py-4">$2.20/pc</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Woven</td><td className="px-5 py-4">Fine detail, small text</td><td className="px-5 py-4">$2.00/pc</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Chenille</td><td className="px-5 py-4">Letterman jackets, varsity</td><td className="px-5 py-4">$6.80/pc</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Leather</td><td className="px-5 py-4">Hat brands, premium apparel</td><td className="px-5 py-4">$2.00/pc</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Printed</td><td className="px-5 py-4">Photo, gradients, full color</td><td className="px-5 py-4">$0.71/pc</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Velcro backing</td><td className="px-5 py-4">Tactical, removable patches</td><td className="px-5 py-4">+$30 flat</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">3D embroidered</td><td className="px-5 py-4">Hats, premium varsity</td><td className="px-5 py-4">+$30/order</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Silicone labels</td><td className="px-5 py-4">Apparel, bag brands</td><td className="px-5 py-4">Quote</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Sequin</td><td className="px-5 py-4">Costume, fashion, gameday</td><td className="px-5 py-4">Quote</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Embroidered</td><td className="px-5 py-4">Logos, uniforms, classic look</td><td className="px-5 py-4">$1.20 (1,000 qty, under 4&quot;)<br/><span className="text-xs text-gray-500">$0.71 at 5,000 qty, 2&quot;</span></td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">PVC</td><td className="px-5 py-4">Tactical, outdoor, waterproof</td><td className="px-5 py-4">$2.20 (1,000 qty, under 4&quot;)<br/><span className="text-xs text-gray-500">~$1.40 at 5,000 qty, 2&quot;</span></td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Woven</td><td className="px-5 py-4">Fine detail, small text</td><td className="px-5 py-4">$2.00 (1,000 qty, under 4&quot;)<br/><span className="text-xs text-gray-500">~$0.78 at 5,000 qty, 2&quot;</span></td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Chenille</td><td className="px-5 py-4">Letterman jackets, varsity</td><td className="px-5 py-4">$3.50 (100 qty, under 4&quot;)<br/><span className="text-xs text-gray-500">$7.00 starter at 25 qty</span></td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Leather</td><td className="px-5 py-4">Hat brands, premium apparel</td><td className="px-5 py-4">$2.00 (1,000 qty, under 4&quot;)<br/><span className="text-xs text-gray-500">$4.40 starter at 50 qty</span></td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Printed</td><td className="px-5 py-4">Photo, gradients, full color</td><td className="px-5 py-4">$0.71 (5,000 qty, 2&quot;)<br/><span className="text-xs text-gray-500">Volume calculator quote</span></td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Velcro backing</td><td className="px-5 py-4">Tactical, removable patches</td><td className="px-5 py-4">+$30 flat per order</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">3D puff embroidery</td><td className="px-5 py-4">Hats, premium varsity</td><td className="px-5 py-4">+$30 flat per order</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Silicone labels</td><td className="px-5 py-4">Apparel, bag brands</td><td className="px-5 py-4">Custom quote</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Sequin</td><td className="px-5 py-4">Costume, fashion, gameday</td><td className="px-5 py-4">Custom quote</td></tr>
                 </tbody>
               </table>
+              <p className="text-xs text-gray-500 px-5 py-3 bg-gray-50 border-t border-gray-100">All &quot;under 4&quot; tier prices come from the published packs on pandapatches.com/offers. Higher-volume per-piece prices are quoted live by the calculator on each product page and reflect a 2&quot; reference size. Per-piece price drops as quantity rises and rises as size grows.</p>
             </div>
           </section>
 
@@ -184,7 +184,7 @@ export default function ProductsClusterPage() {
           <section className="mb-10">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">Chenille patches</h2>
             <p className="text-gray-700 leading-relaxed mb-3">
-              Chenille patches use thick, raised yarn that creates the classic fuzzy varsity letterman texture. The construction is layered on a felt backing in any color. Chenille is the standard for school letterman jackets, varsity sport patches, cheerleading uniforms, and any application where the texture and 3D feel matter. Up to 3 colors per design (chenille yarn is bulkier than thread, so color counts are lower). Backing is sew-on by default because chenille is too thick for iron-on heat-press to bond reliably. Standard chenille patches under 4 inches start at $6.80 per piece at 50 quantity.
+              Chenille patches use thick, raised yarn that creates the classic fuzzy varsity letterman texture. The construction is layered on a felt backing in any color. Chenille is the standard for school letterman jackets, varsity sport patches, cheerleading uniforms, and any application where the texture and 3D feel matter. Up to 3 colors per design (chenille yarn is bulkier than thread, so color counts are lower). Backing is sew-on by default because chenille is too thick for iron-on heat-press to bond reliably. Standard chenille patches under 4 inches start at $7.00 per piece at 25 quantity, drop to $5.00 per piece at 50 quantity, and reach $3.50 per piece at 100 quantity (the best per-piece tier).
             </p>
             <Link href="/custom-patches/chenille" prefetch={false} className="text-panda-green font-bold text-sm underline">View chenille patches &rarr;</Link>
           </section>
@@ -193,7 +193,7 @@ export default function ProductsClusterPage() {
           <section className="mb-10">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">Leather patches</h2>
             <p className="text-gray-700 leading-relaxed mb-3">
-              Leather patches use real or premium synthetic leather with designs applied through debossing (pressed into the leather), embossing (raised out of the leather), or laser etching (burned into the surface). The result is a premium texture and a craft look that signals quality. Common uses include hat brand patches, backpack labels, jacket patches on premium apparel, and luxury merchandise branding. Multiple colors and finishes are available. Backing options are sew-on or adhesive. Leather patches start at $2.00 per piece at 1,000 quantity and $4.40 per piece at 50 quantity.
+              Leather patches use real or premium synthetic leather with designs applied through debossing (pressed into the leather), embossing (raised out of the leather), or laser etching (burned into the surface). The result is a premium texture and a craft look that signals quality. Common uses include hat brand patches, backpack labels, jacket patches on premium apparel, and luxury merchandise branding. Multiple colors and finishes are available. Backing options are sew-on or adhesive. Leather patches under 4 inches start at $2.00 per piece at 1,000 quantity and $4.40 per piece at the 50-piece starter tier.
             </p>
             <Link href="/custom-patches/leather" prefetch={false} className="text-panda-green font-bold text-sm underline">View leather patches &rarr;</Link>
           </section>
@@ -202,7 +202,7 @@ export default function ProductsClusterPage() {
           <section className="mb-10">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">Printed patches</h2>
             <p className="text-gray-700 leading-relaxed mb-3">
-              Printed patches use sublimation printing to transfer full-color artwork directly onto fabric. This unlocks photo-realistic reproduction, unlimited colors, gradients, and intricate detail that is impossible to reproduce with thread. Printed patches are the right choice when the design contains photos, complex gradients, or 50+ colors. Borders are typically merrowed (rounded raised edge) and the patch can be cut to any custom shape. Backings include iron-on, sew-on, velcro (+$30), and adhesive. Printed patches start at $0.71 per piece at volume, making them the lowest per-piece cost option in the catalog for full-color designs.
+              Printed patches use sublimation printing to transfer full-color artwork directly onto fabric. This unlocks photo-realistic reproduction, unlimited colors, gradients, and intricate detail that is impossible to reproduce with thread. Printed patches are the right choice when the design contains photos, complex gradients, or 50+ colors. Borders are typically merrowed (rounded raised edge) and the patch can be cut to any custom shape. Backings include iron-on, sew-on, velcro (+$30), and adhesive. Printed patches start at $0.71 per piece at 5,000 quantity (2-inch reference size), making them the lowest per-piece cost option in the catalog for full-color designs.
             </p>
             <Link href="/custom-patches/printed" prefetch={false} className="text-panda-green font-bold text-sm underline">View printed patches &rarr;</Link>
           </section>

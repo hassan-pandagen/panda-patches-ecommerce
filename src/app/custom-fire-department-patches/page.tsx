@@ -94,18 +94,7 @@ export async function generateMetadata(): Promise<Metadata> {
     : 'https://www.pandapatches.com/assets/og-image.png';
   return {
     title: "Custom Fire Department Patches | Memorial, Station & Rank | Panda Patches",
-    description: "Custom fire department patches that survive industrial washing. Maltese cross, rank insignia, LODD memorial rush in 72 hrs, IAFF union orders. No minimum. Free mockup.",
-    keywords: [
-      "custom fire department patches",
-      "firefighter patches",
-      "fire station patches",
-      "custom fire badges",
-      "embroidered fire patches",
-      "firefighter uniform patches",
-      "custom EMS patches",
-      "fire department badges",
-      "nomex fire patches",
-    ],
+    description: "Custom fire department patches that survive industrial washing. Maltese cross, rank insignia, LODD memorial rush in 72 hrs, IAFF union orders. Low 5-piece minimum. Free mockup.",
     alternates: { canonical: "https://www.pandapatches.com/custom-fire-department-patches" },
     openGraph: {
       title: "Custom Fire Department Patches | Panda Patches",

@@ -20,6 +20,12 @@ export const metadata: Metadata = {
     type: "website",
     images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630, alt: "Panda Patches Customer Reviews" }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Panda Patches Reviews — 4.8★ Verified on Trustpilot",
+    description: `${TRUSTPILOT_REVIEW_COUNT}+ verified buyers. 4.8★ average rating. Real reviews from military, sports, fire department, and business customers.`,
+    images: ["https://www.pandapatches.com/assets/og-image.png"],
+  },
   robots: { index: true, follow: true },
 };
 
@@ -147,7 +153,7 @@ const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "Custom Patches",
-  "description": "Custom embroidered, woven, PVC, chenille, leather and printed patches with no minimum order, free design, and 7-14 day delivery.",
+  "description": "Custom embroidered, woven, PVC, chenille, leather and printed patches with a low 5-piece minimum, free design, and 7-14 day delivery.",
   "brand": { "@type": "Brand", "name": "Panda Patches" },
   "image": "https://www.pandapatches.com/assets/og-image.png",
   "aggregateRating": {

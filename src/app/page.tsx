@@ -40,18 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: "Custom Patches | Embroidered, PVC & Woven | Free Design | Panda Patches",
-    description: "Custom patches starting at $0.50/pc. Embroidered, PVC, woven, chenille & leather patches. No minimums, free design mockup in 24hrs, ships in 7-14 days. 1M+ delivered. Get your free quote!",
-    keywords: [
-      "custom patches",
-      "embroidered patches",
-      "iron on patches",
-      "custom embroidered patches",
-      "woven patches",
-      "PVC patches",
-      "no minimum patches",
-      "custom patch maker",
-      "patch design services"
-    ],
+    description: "Custom patches starting at $0.50/pc. Embroidered, PVC, woven, chenille & leather patches. Low 5-piece minimums, free design mockup in 24hrs, ships in 7-14 days. 1M+ delivered. Get your free quote!",
     openGraph: {
       title: "Custom Patches From $0.50/pc. Free Design. Ships in 14 Days.",
       description: "1,000,000+ patches delivered to brands worldwide. Custom embroidered, PVC, chenille & woven patches with free artwork, no setup fees, and a 4.8-star rating on Trustpilot. Get your free quote today.",
@@ -99,7 +88,7 @@ const homeFaqSchema = {
       "name": "What is Panda Patches?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Panda Patches is a US-based custom patch company founded in 2016, headquartered in Missouri City, Texas. We design and manufacture embroidered, PVC, woven, chenille, and leather patches for small businesses, sports teams, military units, schools, motorcycle clubs, and brands across the United States. We have delivered over 1,000,000 custom patches and hold a 4.8-star Trustpilot rating from 66 verified reviews.",
+        "text": "Panda Patches is a US-based custom patch company founded by Imran Raza, headquartered in Missouri City, Texas, built on 13 years of patch manufacturing experience. We design and manufacture embroidered, PVC, woven, chenille, and leather patches for small businesses, sports teams, military units, schools, motorcycle clubs, and brands across the United States. We have delivered over 1,000,000 custom patches and hold a 4.8-star Trustpilot rating from 66 verified reviews.",
       },
     },
     {

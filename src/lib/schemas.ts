@@ -69,9 +69,8 @@ export function generateOrganizationSchema() {
     "url": "https://www.pandapatches.com",
     "logo": "https://www.pandapatches.com/assets/logo-panda.svg",
     "image": "https://www.pandapatches.com/assets/og-image.png",
-    "foundingDate": "2016",
     "description": "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 8+ years of excellence.",
-    "email": "admin@pandapatches.com",
+    "email": "hello@pandapatches.com",
     "telephone": "+1-302-250-4340",
     "founder": {
       "@type": "Person",
@@ -126,7 +125,7 @@ export function generateOrganizationSchema() {
       "@type": "ContactPoint",
       "telephone": "+1-302-250-4340",
       "contactType": "Customer Service",
-      "email": "admin@pandapatches.com",
+      "email": "hello@pandapatches.com",
       "availableLanguage": ["English"],
       "areaServed": ["US", "CA", "GB", "AU"]
     },
@@ -595,7 +594,7 @@ export function generateLocalBusinessSchema() {
       "longitude": -95.5377
     },
     "telephone": "+1-302-250-4340",
-    "email": "admin@pandapatches.com",
+    "email": "hello@pandapatches.com",
     "url": "https://www.pandapatches.com",
     "priceRange": "$$",
     "founder": {
@@ -639,7 +638,7 @@ export function generateLocationBusinessSchema(locationName: string, pageSlug?: 
     "name": `Custom Patches in ${locationName} | Panda Patches`,
     "description": `Order custom embroidered patches delivered to ${locationName}. Low minimums, free mockups, fast 7-14 day turnaround. Founded by Imran Raza with 13 years of patch manufacturing expertise.`,
     "telephone": "+1-302-250-4340",
-    "email": "admin@pandapatches.com",
+    "email": "hello@pandapatches.com",
     "url": `https://www.pandapatches.com/${urlSlug}`,
     "image": "https://www.pandapatches.com/assets/logo-panda.svg",
     "priceRange": "$$",
@@ -683,7 +682,7 @@ export function generateHowToSchema() {
     "@context": "https://schema.org",
     "@type": "HowTo",
     "name": "How to Order Custom Patches from Panda Patches",
-    "description": "Order custom embroidered patches in 4 simple steps. Free mockup, no minimum order, 7-14 day delivery.",
+    "description": "Order custom embroidered patches in 4 simple steps. Free mockup, low 5-piece minimum, 7-14 day delivery.",
     "totalTime": "PT14D",
     "supply": [
       { "@type": "HowToSupply", "name": "Artwork file or design idea" }
@@ -708,7 +707,7 @@ export function generateHowToSchema() {
         "@type": "HowToStep",
         "position": 3,
         "name": "Place Your Order",
-        "text": "Confirm patch type, size, quantity, and backing. No minimum order required. Pay securely online."
+        "text": "Confirm patch type, size, quantity, and backing. Low 5-piece minimum order. Pay securely online."
       },
       {
         "@type": "HowToStep",
@@ -896,7 +895,7 @@ import { generateFAQSchema, generateSchemaScript } from '@/lib/schemas';
 const faqSchema = generateFAQSchema([
   {
     question: "What is the minimum order quantity?",
-    answer: "We have no minimum order requirements. Order as few or as many as you need."
+    answer: "Our minimum order is 5 pieces. Order as few or as many as you need beyond that."
   },
   {
     question: "How long does production take?",

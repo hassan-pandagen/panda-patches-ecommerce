@@ -12,14 +12,6 @@ export const metadata: Metadata = {
   title: `Panda Patches vs ${COMPETITOR}: 2026 Comparison`,
   description:
     "Panda Patches vs EverLighten: US support vs China manufacturer, 5pc vs 50pc minimum, 4.8 vs 4.3 Trustpilot, 24hr mockup SLA. Honest 2026 side-by-side.",
-  keywords: [
-    "panda patches vs everlighten",
-    "everlighten alternative",
-    "everlighten review",
-    "us based custom patch company",
-    "custom patch company comparison",
-    "us patch manufacturer",
-  ],
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
@@ -30,6 +22,13 @@ export const metadata: Metadata = {
     siteName: "Panda Patches",
     type: "article",
     images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
+    description:
+      "US-headquartered support and direct quality control vs overseas factory model. Compare minimum orders, Trustpilot ratings, mockup turnaround, and guarantees.",
+    images: ["https://www.pandapatches.com/assets/og-image.png"],
   },
 };
 

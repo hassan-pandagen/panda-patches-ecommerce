@@ -31,7 +31,7 @@ const policeFAQs = [
   },
   {
     question: "Can we order small quantities for a K-9 team or special unit?",
-    answer: "Yes, no minimum required. K-9 units of 4-6 handlers, SWAT teams, detective divisions, and small specialized units regularly order 10-25 patches from us. Per-piece pricing improves at 50+, 100+, and 500+, but small unit orders at any quantity are completely normal for us."
+    answer: "Yes, low 5-piece minimum. K-9 units of 4-6 handlers, SWAT teams, detective divisions, and small specialized units regularly order 10-25 patches from us. Per-piece pricing improves at 50+, 100+, and 500+, but small unit orders at any quantity are completely normal for us."
   },
   {
     question: "How fast can you produce memorial patches for a fallen officer?",
@@ -94,18 +94,7 @@ export async function generateMetadata(): Promise<Metadata> {
     : 'https://www.pandapatches.com/assets/og-image.png';
   return {
     title: "Custom Police Patches | Department, Tactical & Memorial | Panda Patches",
-    description: "Custom police department patches with badge replication, subdued tactical, PVC, K-9, SWAT, and memorial rush. No minimum. Free mockup in 24 hours. 4.8 stars on Trustpilot.",
-    keywords: [
-      "custom police patches",
-      "law enforcement patches",
-      "police department patches",
-      "sheriff patches",
-      "tactical patches",
-      "custom police badges",
-      "embroidered police patches",
-      "police uniform patches",
-      "custom law enforcement badges",
-    ],
+    description: "Custom police department patches with badge replication, subdued tactical, PVC, K-9, SWAT, and memorial rush. Low 5-piece minimum. Free mockup in 24 hours. 4.8 stars on Trustpilot.",
     alternates: { canonical: "https://www.pandapatches.com/custom-police-patches" },
     openGraph: {
       title: "Custom Police & Law Enforcement Patches | Panda Patches",

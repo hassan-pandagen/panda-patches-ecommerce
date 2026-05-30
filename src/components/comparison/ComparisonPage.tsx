@@ -253,6 +253,9 @@ export default function ComparisonPage({
               </tbody>
             </table>
           </div>
+          <p className="text-[12px] md:text-[13px] text-gray-500 mt-4 leading-relaxed max-w-[900px] mx-auto text-center">
+            Trustpilot ratings, review counts, and competitor stats are pulled from each company&apos;s public Trustpilot profile and website, verified May 2026. Numbers move over time. Panda Patches review counts are from our own verified Trustpilot profile at trustpilot.com/review/pandapatches.com.
+          </p>
         </div>
       </section>
 

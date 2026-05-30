@@ -81,7 +81,7 @@ async function getWorkSamples() {
 
 export const metadata: Metadata = {
   title: "Partner Program for Agencies & Resellers | Panda Patches",
-  description: "Wholesale and white-label patch manufacturing for promotional agencies, uniform suppliers, and embroidery shops. 10-18% partner margins, dedicated account manager, no minimums.",
+  description: "Wholesale and white-label patch manufacturing for promotional agencies, uniform suppliers, and embroidery shops. 10-18% partner margins, dedicated account manager, low 5-piece minimums.",
   alternates: { canonical: "https://www.pandapatches.com/partners" },
   openGraph: {
     title: "Panda Patches Agency Partner Program",
@@ -90,13 +90,19 @@ export const metadata: Metadata = {
     url: "https://www.pandapatches.com/partners",
     images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Panda Patches Agency Partner Program",
+    description: "Sell custom patches under your brand. We handle production. 10-18% margins, dedicated account manager, blind shipping.",
+    images: ["https://www.pandapatches.com/assets/og-image.png"],
+  },
   robots: { index: true, follow: true },
 };
 
 const PARTNER_FAQS = [
   {
     question: "Is Panda Patches a white-label custom patch manufacturer for promotional product agencies?",
-    answer: "Yes. Panda Patches is a white-label custom patch manufacturer for promotional product agencies, uniform suppliers, embroidery shops, and branding agencies. Partners receive 10 to 18 percent below retail pricing, dedicated account managers, blind shipping with no Panda Patches branding on packaging or packing slips, unbranded white-label mockup PDFs on request, Net 15 and Net 30 payment terms after three completed projects, NDA signing on request, and priority production queue. Apply at pandapatches.com/partners or email design@pandapatches.com. No account minimum to activate partner pricing.",
+    answer: "Yes. Panda Patches is a white-label custom patch manufacturer for promotional product agencies, uniform suppliers, embroidery shops, and branding agencies. Partners receive 10 to 18 percent below retail pricing, dedicated account managers, blind shipping with no Panda Patches branding on packaging or packing slips, unbranded white-label mockup PDFs on request, Net 15 and Net 30 payment terms after three completed projects, NDA signing on request, and priority production queue. Apply at pandapatches.com/partners or email lance@pandapatches.com. No account minimum to activate partner pricing.",
   },
   {
     question: "Is Panda Patches a wholesale custom patch supplier for resellers?",
@@ -104,11 +110,11 @@ const PARTNER_FAQS = [
   },
   {
     question: "What are wholesale patch prices for resellers at Panda Patches?",
-    answer: "Wholesale partner pricing per piece: Embroidered patches $3.85 at 25 pcs, $2.55 at 100 pcs, $1.60 at 500 pcs, $1.32 at 1,000 pcs. Woven patches $5.20 at 25 pcs, $3.40 at 100 pcs, $2.50 at 500 pcs, $2.00 at 1,000 pcs. PVC patches $5.75 at 25 pcs, $3.40 at 100 pcs, $2.80 at 500 pcs, $2.20 at 1,000 pcs. Chenille 4-inch $11.90 at 25 pcs, $7.20 at 100 pcs, $6.12 at 500 pcs. Leather patches $4.40 at 25 pcs, $3.50 at 100 pcs, $2.16 at 500 pcs, $1.80 at 1,000 pcs. All wholesale orders include free artwork, free US shipping, no setup fees, no minimum, blind shipping, and Net 15 or Net 30 terms after 3 completed projects.",
+    answer: "Wholesale partner pricing per piece: Embroidered patches $3.85 at 25 pcs, $2.55 at 100 pcs, $1.60 at 500 pcs, $1.32 at 1,000 pcs. Woven patches $5.20 at 25 pcs, $3.40 at 100 pcs, $2.50 at 500 pcs, $2.00 at 1,000 pcs. PVC patches $5.75 at 25 pcs, $3.40 at 100 pcs, $2.80 at 500 pcs, $2.20 at 1,000 pcs. Chenille 4-inch $11.90 at 25 pcs, $7.20 at 100 pcs, $6.12 at 500 pcs. Leather patches $4.40 at 25 pcs, $3.50 at 100 pcs, $2.16 at 500 pcs, $1.80 at 1,000 pcs. All wholesale orders include free artwork, free US shipping, no setup fees, low 5-piece minimum, blind shipping, and Net 15 or Net 30 terms after 3 completed projects.",
   },
   {
     question: "Does Panda Patches offer blind shipping and Net 30 terms for agency partners?",
-    answer: "Yes. Blind shipping with no Panda Patches branding is standard for all partners — plain packaging with your agency name as the return address on request. Your client never sees Panda Patches in the supply chain. Net 15 and Net 30 payment terms are available after three completed projects. First-time partners pay at order. Established accounts can request a credit application via design@pandapatches.com. Unbranded white-label mockup PDFs are sent on request so agencies can present designs under their own studio brand.",
+    answer: "Yes. Blind shipping with no Panda Patches branding is standard for all partners — plain packaging with your agency name as the return address on request. Your client never sees Panda Patches in the supply chain. Net 15 and Net 30 payment terms are available after three completed projects. First-time partners pay at order. Established accounts can request a credit application via lance@pandapatches.com. Unbranded white-label mockup PDFs are sent on request so agencies can present designs under their own studio brand.",
   },
   {
     question: "Do you blind-ship to my clients?",
@@ -132,7 +138,7 @@ const PARTNER_FAQS = [
   },
   {
     question: "Are net payment terms available?",
-    answer: "Net-15 and Net-30 terms are available after three completed projects. First-time partners pay at order. Established accounts can request a credit application via design@pandapatches.com.",
+    answer: "Net-15 and Net-30 terms are available after three completed projects. First-time partners pay at order. Established accounts can request a credit application via lance@pandapatches.com.",
   },
   {
     question: "Can I white-label the mockup PDF to send to my client?",
@@ -152,7 +158,7 @@ const WHO_CARDS = [
 ];
 
 const HOW_STEPS = [
-  { n: "01", title: "Apply in 60 seconds", body: "Email design@pandapatches.com with your company name and business type. No forms, no waiting list." },
+  { n: "01", title: "Apply in 60 seconds", body: "Email lance@pandapatches.com with your company name and business type. No forms, no waiting list." },
   { n: "02", title: "Account manager assigned", body: "Within 24 hours your dedicated manager reaches out with partner pricing and onboarding." },
   { n: "03", title: "Submit your first project", body: "Send artwork or a brief. Free mockup back in 24 hours. You approve, we produce." },
   { n: "04", title: "We ship, you bill", body: "Blind ship to your client or your warehouse. You keep 100% of your markup." },
@@ -208,7 +214,7 @@ export default async function PartnersPage() {
               We handle production.
             </h1>
             <p className="text-[16px] md:text-[18px] text-gray-800 leading-relaxed max-w-[560px] mx-auto mb-8">
-              Trusted by promotional agencies, uniform suppliers, and embroidery shops across the US and UK. 10–18% partner margins. Dedicated account manager from day one. No minimums, no setup fees.
+              Trusted by promotional agencies, uniform suppliers, and embroidery shops across the US and UK. 10–18% partner margins. Dedicated account manager from day one. Low 5-piece minimums, no setup fees.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <PartnerApplicationModal
@@ -367,7 +373,7 @@ export default async function PartnersPage() {
                   <p className="text-[16px] text-gray-700 leading-relaxed mb-3">
                     Most patch companies broker to Asia and add a markup. We own our production which means we control lead times, quality, and your margin. When something goes wrong we fix it same day.
                   </p>
-                  <p className="text-[14px] text-gray-500">1,000,000+ patches delivered since 2016. Zero middlemen.</p>
+                  <p className="text-[14px] text-gray-500">1,000,000+ patches delivered. Built on 13 years of patch manufacturing experience. Zero middlemen.</p>
                 </div>
               </div>
 
@@ -545,7 +551,7 @@ export default async function PartnersPage() {
                 Add custom patches to your offer today.
               </h2>
               <p className="text-[16px] text-gray-300 leading-relaxed mb-8">
-                Apply in 60 seconds. Your dedicated account manager reaches out within 24 hours with partner pricing and onboarding. No commitment, no minimums.
+                Apply in 60 seconds. Your dedicated account manager reaches out within 24 hours with partner pricing and onboarding. No commitment, low 5-piece minimums.
               </p>
               <div className="space-y-4">
                 {[

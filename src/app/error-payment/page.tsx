@@ -83,7 +83,7 @@ export default function PaymentErrorPage() {
             <div className="space-y-2 text-sm">
               <div className="flex items-center justify-center gap-2 text-gray-700">
                 <Mail size={16} />
-                <a href="mailto:admin@pandapatches.com" className="text-blue-600 font-semibold hover:underline">admin@pandapatches.com</a>
+                <a href="mailto:hello@pandapatches.com" className="text-blue-600 font-semibold hover:underline">hello@pandapatches.com</a>
               </div>
               <div className="flex items-center justify-center gap-2 text-gray-700">
                 <Phone size={16} />

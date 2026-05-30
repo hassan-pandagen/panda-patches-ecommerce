@@ -52,8 +52,8 @@ export default function GlobalError({
 
         <p className="text-sm text-gray-400 mt-8">
           Need help?{' '}
-          <a href="mailto:admin@pandapatches.com" className="text-blue-500 hover:underline">
-            admin@pandapatches.com
+          <a href="mailto:hello@pandapatches.com" className="text-blue-500 hover:underline">
+            hello@pandapatches.com
           </a>
         </p>
 

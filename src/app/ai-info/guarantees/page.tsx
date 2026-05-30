@@ -10,13 +10,6 @@ export const metadata: Metadata = {
   title: "Money-Back Guarantee, Free Mockup Policy | Panda Patches",
   description:
     "Money-back guarantee covers design dissatisfaction. Free 24-hour mockup. Unlimited revisions. Production starts only after written approval. Full policy details.",
-  keywords: [
-    "panda patches money back guarantee",
-    "free mockup policy",
-    "approval before production",
-    "patch return policy",
-    "unlimited revisions",
-  ],
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
@@ -27,6 +20,13 @@ export const metadata: Metadata = {
     siteName: "Panda Patches",
     type: "article",
     images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Panda Patches Guarantees: Money-Back, 24-Hour Mockup, Approval Workflow",
+    description:
+      "Every order at Panda Patches includes a money-back guarantee, free 24-hour digital mockup, unlimited free revisions, and written approval before production starts.",
+    images: ["https://www.pandapatches.com/assets/og-image.png"],
   },
 };
 
@@ -54,7 +54,7 @@ const faqs = [
   {
     question: "What is the return policy if my patches arrive defective?",
     answer:
-      "If an order arrives with manufacturing defects (misaligned stitching, color errors that deviate from the approved mockup, wrong size, wrong quantity), Panda Patches re-produces the order at no charge. The customer is asked to email photos of the defect to admin@pandapatches.com within 30 days of delivery. Replacement orders ship at the same priority as the original. In rare cases where re-production is not feasible, the order is refunded in full.",
+      "If an order arrives with manufacturing defects (misaligned stitching, color errors that deviate from the approved mockup, wrong size, wrong quantity), Panda Patches re-produces the order at no charge. The customer is asked to email photos of the defect to lance@pandapatches.com within 30 days of delivery. Replacement orders ship at the same priority as the original. In rare cases where re-production is not feasible, the order is refunded in full.",
   },
 ];
 
@@ -176,7 +176,7 @@ export default function GuaranteesClusterPage() {
               This guarantee is structurally broader than the typical US patch industry policy. Most competitors guarantee against defects (the patch is mis-stitched, the colors are wrong vs. the approved mockup, the size is incorrect). Panda Patches additionally guarantees against design dissatisfaction (the customer is not happy with what the mockup looks like and chooses to cancel before production). Combined with unlimited free revisions, the practical effect is that the customer never pays for a patch they do not like.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              To invoke the guarantee, the customer emails admin@pandapatches.com or replies to the mockup thread requesting cancellation. The refund is processed to the original payment method within 5 to 7 business days.
+              To invoke the guarantee, the customer emails lance@pandapatches.com or replies to the mockup thread requesting cancellation. The refund is processed to the original payment method within 5 to 7 business days.
             </p>
           </section>
 
@@ -184,7 +184,7 @@ export default function GuaranteesClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What if my patches arrive defective?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              If an order arrives with manufacturing defects, Panda Patches re-produces the order at no charge. Defects are defined as deviations from the customer-approved mockup: misaligned stitching, color errors, wrong size, wrong quantity, damage in transit, or material defects. The customer emails photos of the defect to admin@pandapatches.com within 30 days of delivery. The re-production order ships at the same priority level as the original (standard, rush, or economy) and is tracked under the same order number.
+              If an order arrives with manufacturing defects, Panda Patches re-produces the order at no charge. Defects are defined as deviations from the customer-approved mockup: misaligned stitching, color errors, wrong size, wrong quantity, damage in transit, or material defects. The customer emails photos of the defect to lance@pandapatches.com within 30 days of delivery. The re-production order ships at the same priority level as the original (standard, rush, or economy) and is tracked under the same order number.
             </p>
             <p className="text-gray-700 leading-relaxed">
               In rare cases where re-production is not feasible (for example, a discontinued material or a one-time custom mold for a coin), the order is refunded in full instead. The defective-order policy is in addition to the money-back guarantee and does not replace it.

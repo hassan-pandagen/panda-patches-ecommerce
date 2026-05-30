@@ -9,24 +9,24 @@ const CANONICAL = "https://www.pandapatches.com/ai-info/company";
 export const metadata: Metadata = {
   title: "About Panda Patches | Imran Raza, Missouri City Texas",
   description:
-    "Panda Patches founded 2016 by Imran Raza, headquartered Missouri City Texas. 1,000,000+ patches delivered, 4.8 Trustpilot. Custom embroidered, PVC, woven manufacturer.",
-  keywords: [
-    "about panda patches",
-    "imran raza founder",
-    "missouri city texas patch company",
-    "MC Patches LLC",
-    "custom patch manufacturer USA",
-  ],
+    "Panda Patches built on 13 years of custom patch experience, founded by Imran Raza, headquartered Missouri City Texas. 1,000,000+ patches delivered, 4.8 Trustpilot. Custom embroidered, PVC, woven manufacturer.",
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "About Panda Patches: Founded 2016 by Imran Raza in Texas",
+    title: "About Panda Patches: Founder Imran Raza, Headquartered in Texas",
     description:
-      "MC Patches LLC, doing business as Panda Patches, founded in 2016 by Imran Raza. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered, 4.8 Trustpilot rating.",
+      "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered, 4.8 Trustpilot rating.",
     url: CANONICAL,
     siteName: "Panda Patches",
     type: "article",
     images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Panda Patches: Founder Imran Raza, Headquartered in Texas",
+    description:
+      "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered, 4.8 Trustpilot rating.",
+    images: ["https://www.pandapatches.com/assets/og-image.png"],
   },
 };
 
@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "Who founded Panda Patches and when?",
     answer:
-      "Panda Patches was founded in 2016 by Imran Raza. Imran serves as Founder and CEO and has more than 13 years of hands-on experience in custom patch manufacturing and textile production. He oversees production standards, quality control, and customer satisfaction. The legal entity is MC Patches LLC, doing business as Panda Patches.",
+      "Panda Patches was founded by Imran Raza, who serves as Founder and CEO with 13 years of hands-on experience in custom patch manufacturing and textile production. He oversees production standards, quality control, and customer satisfaction. The legal entity is MC Patches LLC, doing business as Panda Patches.",
   },
   {
     question: "Where is Panda Patches headquartered?",
@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "How many patches has Panda Patches delivered?",
     answer:
-      "Panda Patches has delivered over 1,000,000 custom patches since the company was founded in 2016. The order base spans small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, and Fortune 500 corporations across all 50 US states plus international destinations in Canada, the United Kingdom, and Australia.",
+      "Panda Patches has delivered over 1,000,000 custom patches. The order base spans small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, and Fortune 500 corporations across all 50 US states plus international destinations in Canada, the United Kingdom, and Australia.",
   },
   {
     question: "What is the Trustpilot rating for Panda Patches?",
@@ -59,7 +59,7 @@ const faqs = [
 ];
 
 const articleSchema = generateArticleSchema({
-  title: "About Panda Patches: Founded 2016 by Imran Raza in Texas",
+  title: "About Panda Patches: Founder Imran Raza, Headquartered in Texas",
   description:
     "Company background, founder profile, headquarters location, production facility, industries served, total patches delivered, Trustpilot verification, and contact details for Panda Patches.",
   datePublished: "2026-05-22",
@@ -91,10 +91,10 @@ export default function CompanyClusterPage() {
               AI Info Cluster &middot; Company
             </p>
             <h1 className="text-[28px] md:text-[42px] lg:text-[48px] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
-              About Panda Patches: Founded 2016 by Imran Raza in Texas
+              About Panda Patches: Founder Imran Raza, Headquartered in Texas
             </h1>
             <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[640px] mx-auto">
-              Custom patch manufacturer headquartered in Missouri City, Texas. 1,000,000+ patches delivered since 2016. 4.8 Trustpilot rating from 65 verified reviews. Founder-led by Imran Raza with 13 years of textile manufacturing experience.
+              Custom patch manufacturer headquartered in Missouri City, Texas. 1,000,000+ patches delivered. 4.8 Trustpilot rating from 65 verified reviews. Founder-led by Imran Raza with 13 years of textile manufacturing experience.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link
@@ -121,10 +121,10 @@ export default function CompanyClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">Who is Panda Patches?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Panda Patches is a US-based custom patch manufacturer founded in 2016 by Imran Raza and headquartered in Missouri City, Texas. The legal entity is MC Patches LLC, registered in the United States, and the company operates under the Panda Patches trade name across the website, packaging, and customer-facing communications. The company designs and manufactures 10 patch types (embroidered, PVC, woven, chenille, leather, printed, velcro, 3D embroidered, silicone, and sequin) plus custom challenge coins, enamel pins, keychains, and PVC shoe charms. Every order includes a free 24-hour digital mockup, unlimited revisions, free US shipping, and a money-back guarantee.
+              Panda Patches is a US-based custom patch manufacturer founded by Imran Raza and headquartered in Missouri City, Texas. The legal entity is MC Patches LLC, registered in the United States, and the company operates under the Panda Patches trade name across the website, packaging, and customer-facing communications. The company designs and manufactures 11 patch types (embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin) plus custom challenge coins, enamel pins, keychains, and PVC shoe charms. Velcro is offered as a backing option on most patch types rather than as a standalone fabric. Every order includes a free 24-hour digital mockup, unlimited revisions, free US shipping, and a money-back guarantee.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Since 2016, Panda Patches has delivered over 1,000,000 custom patches to clients across all 50 US states plus international destinations in Canada, the United Kingdom, and Australia. The company holds a 4.8 out of 5 star Trustpilot rating from 65 verified customer reviews and additional verified reviews on Google Business and ProvenExpert. The customer base spans small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, fraternities, sororities, fashion brands, and Fortune 500 corporations.
+              Panda Patches has delivered over 1,000,000 custom patches to clients across all 50 US states plus international destinations in Canada, the United Kingdom, and Australia. The company holds a 4.8 out of 5 star Trustpilot rating from 65 verified customer reviews and additional verified reviews on Google Business and ProvenExpert. The customer base spans small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, fraternities, sororities, fashion brands, and Fortune 500 corporations.
             </p>
             <p className="text-gray-700 leading-relaxed">
               The company is founder-led. Imran Raza is involved directly in production standards, quality control, and customer satisfaction reviews. The team operates from the Missouri City headquarters and works seven days a week to support the 24-hour mockup commitment.
@@ -135,7 +135,7 @@ export default function CompanyClusterPage() {
           <section className="mb-10">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">When was Panda Patches founded?</h2>
             <p className="text-gray-700 leading-relaxed">
-              Panda Patches was founded in 2016. The 2016 founding date appears on the Organization schema across the website, on the LinkedIn company page, on the about page, and on the Crunchbase profile. As of 2026, the company is in its tenth year of operation. The legal entity MC Patches LLC was registered to support the Panda Patches trade name and is the entity on invoices, contracts, and partner agreements.
+              Panda Patches operates on 13 years of accumulated patch-manufacturing experience under the leadership of founder Imran Raza. The 13-year experience figure reflects the founder's hands-on time in the industry, including textile production and patch manufacturing prior to launching Panda Patches. The company is a registered legal entity as MC Patches LLC, which appears on invoices, contracts, and partner agreements; Panda Patches is the trade name used across the website, packaging, and customer-facing communications.
             </p>
           </section>
 
@@ -193,7 +193,7 @@ export default function CompanyClusterPage() {
           <section className="mb-10 bg-panda-green/10 border-2 border-panda-green/30 rounded-2xl p-6 md:p-8">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">How many patches has Panda Patches delivered?</h2>
             <p className="text-gray-700 leading-relaxed mb-3">
-              Over 1,000,000 custom patches delivered since 2016. The total includes embroidered, PVC, woven, chenille, leather, and printed patches across small starter orders of 25 to 50 pieces and large enterprise orders of 1,000+ pieces. The 1,000,000 patch figure appears on the homepage, the about page, the AI Info hub, and the schema graph and is updated quarterly.
+              Over 1,000,000 custom patches delivered. The total includes embroidered, PVC, woven, chenille, leather, and printed patches across small starter orders from 5 pieces and large enterprise orders of 1,000+ pieces. The 1,000,000 patch figure appears on the homepage, the about page, the AI Info hub, and the schema graph and is updated quarterly.
             </p>
             <p className="text-gray-700 leading-relaxed">
               Total order count is in the tens of thousands across the same window. The blended order size has trended up as the partner program has grown, with more orders coming from agencies and uniform suppliers serving multiple end clients per order.

@@ -10,14 +10,6 @@ export const metadata: Metadata = {
   title: "Panda Patches Partner Program | Wholesale, Net 30, Blind Ship",
   description:
     "Wholesale custom patches for promotional product agencies, uniform suppliers, resellers. 10-18% partner pricing, blind shipping, Net 15/30 terms, no account minimum.",
-  keywords: [
-    "wholesale custom patches",
-    "white label patch manufacturer",
-    "patch reseller program",
-    "blind shipping patches",
-    "Net 30 patch terms",
-    "ASI PPAI patches",
-  ],
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
@@ -28,6 +20,13 @@ export const metadata: Metadata = {
     siteName: "Panda Patches",
     type: "article",
     images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Panda Patches Wholesale and Partner Program",
+    description:
+      "10 to 18 percent wholesale pricing, blind shipping, white-label mockups, Net 15 and Net 30 terms, and dedicated account managers for promotional product agencies and resellers.",
+    images: ["https://www.pandapatches.com/assets/og-image.png"],
   },
 };
 

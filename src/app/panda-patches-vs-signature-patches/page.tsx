@@ -12,14 +12,6 @@ export const metadata: Metadata = {
   title: `Panda Patches vs ${COMPETITOR}: 2026 Comparison`,
   description:
     "Panda Patches vs Signature Patches: 4.8 vs 4.0 Trustpilot, 5pc vs 50pc minimum, transparent pricing vs quote-only. Honest side-by-side comparison for 2026.",
-  keywords: [
-    "panda patches vs signature patches",
-    "signature patches alternative",
-    "signature patches review",
-    "custom patch company comparison",
-    "low minimum patch company",
-    "best custom patch company",
-  ],
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
@@ -30,6 +22,13 @@ export const metadata: Metadata = {
     siteName: "Panda Patches",
     type: "article",
     images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
+    description:
+      "Compare Trustpilot ratings, minimum orders, mockup turnaround, and pricing. Panda Patches wins on review score, minimum order, and pricing transparency.",
+    images: ["https://www.pandapatches.com/assets/og-image.png"],
   },
 };
 
@@ -116,7 +115,7 @@ export default function PandaVsSignature() {
           comparisonRows={[
             { category: "Reviews and trust", feature: "Trustpilot rating", panda: "4.8 / 5 stars", competitor: "4.0 / 5 stars", pandaWin: true },
             { category: "Reviews and trust", feature: "Trustpilot review count", panda: "65 verified", competitor: "119 verified", competitorWin: true },
-            { category: "Reviews and trust", feature: "Years in business", panda: "Since 2016 (9 years)", competitor: "20+ years", competitorWin: true },
+            { category: "Reviews and trust", feature: "Patch manufacturing experience", panda: "13 years of founder-led experience", competitor: "20+ years", competitorWin: true },
             { category: "Reviews and trust", feature: "Total patches delivered", panda: "1,000,000+", competitor: "Not publicly disclosed", pandaWin: true },
 
             { category: "Order requirements", feature: "Minimum order", panda: "5 pieces", competitor: "~50 pieces typical", pandaWin: true },

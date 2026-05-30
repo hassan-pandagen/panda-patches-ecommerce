@@ -26,7 +26,7 @@ const patchStyleMeta: Record<string, PatchStyleMeta> = {
   },
   "motorcycle-patches": {
     title: "Custom Motorcycle Patches | MC Club & Biker Vest Patches | Panda Patches",
-    description: "Custom motorcycle club patches & biker vest patches. Top & bottom rockers, center patches, MC logos. Embroidered or PVC. No minimums, free design. Ships in 7-14 days!",
+    description: "Custom motorcycle club patches & biker vest patches. Top & bottom rockers, center patches, MC logos. Embroidered or PVC. Low 5-piece minimum, free design. Ships in 7-14 days!",
     ogTitle: "Custom Motorcycle Patches | MC Club & Biker Vest Patches | Panda Patches",
     ogDescription: "Motorcycle club patches and biker vest patches. Top & bottom rockers, center patches, MC logos. Embroidered or PVC. Free design.",
   },

@@ -196,6 +196,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/ai-info/specs-and-care`,
+      lastModified: new Date('2026-05-30'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ];
 
   // Product pages (highest priority for SEO)

@@ -22,17 +22,6 @@ import { ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Custom Products - Coins, Pins, Keychains & More | Panda Patches",
   description: "Custom lapel pins, challenge coins, keychains, and stickers with low minimums. Free design services and fast 7-14 day delivery from Panda Patches.",
-  keywords: [
-    "custom lapel pins",
-    "challenge coins",
-    "custom keychains",
-    "custom stickers",
-    "enamel pins",
-    "custom coins",
-    "promotional products",
-    "branded merchandise",
-    "custom products",
-  ],
   alternates: {
     canonical: "https://www.pandapatches.com/custom-products",
   },

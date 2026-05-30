@@ -279,8 +279,8 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
               <p className="text-[15px] text-gray-600 leading-[1.8]">
                 Imran brings 13 years of hands-on expertise in embroidered patches and textile manufacturing.
                 As the founder of Panda Patches, he oversees quality control, production standards, and customer satisfaction
-                for thousands of custom patch orders each year. He founded the company in 2016 to make premium custom patches
-                accessible with no minimum orders and a fast turnaround.
+                for thousands of custom patch orders each year. He founded the company to make premium custom patches
+                accessible with a low 5-piece minimum and a fast turnaround.
               </p>
             </div>
           </div>
