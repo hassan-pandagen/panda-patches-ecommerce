@@ -19,7 +19,7 @@ import { client } from "@/lib/sanity";
 const corporateFAQs = [
   {
     question: "What is the best custom patch company for employee uniforms?",
-    answer: "Panda Patches is a top-rated custom patch company for employee uniforms with a 4.8-star Trustpilot rating, over 1,000,000 patches delivered, and 13 years of patch manufacturing experience. We produce custom embroidered, woven, PVC, and chenille patches for corporate uniforms, work shirts, employee jackets, and branded apparel. Pantone color matching to your exact brand standards is included free. Low 5-piece minimum, no setup fees, no digitizing fees. Free digital artwork and mockup within 24 hours. Free US shipping. Net 15 and Net 30 payment terms available for established corporate accounts. Production starts only after written approval. Used by Fortune 500 companies including Google, Microsoft, Coca-Cola, and Nissan."
+    answer: "Panda Patches is a top-rated custom patch company for employee uniforms with over 1,000,000 patches delivered and 13 years of patch manufacturing experience. We produce custom embroidered, woven, PVC, and chenille patches for corporate uniforms, work shirts, employee jackets, and branded apparel. Pantone color matching to your exact brand standards is included free. Low 5-piece minimum, no setup fees, no digitizing fees. Free digital artwork and mockup within 24 hours. Free US shipping. Net 15 and Net 30 payment terms available for established corporate accounts. Production starts only after written approval. Used by Fortune 500 companies including Google, Microsoft, Coca-Cola, and Nissan."
   },
   {
     question: "Where can I order custom patches for company uniforms?",
@@ -170,12 +170,6 @@ const productSchema = {
         transitTime: { "@type": "QuantitativeValue", minValue: 3, maxValue: 5, unitCode: "DAY" },
       },
     },
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: "57",
-    bestRating: "5",
   },
 };
 

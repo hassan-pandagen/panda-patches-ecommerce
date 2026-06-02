@@ -151,12 +151,6 @@ const productSchema = {
       },
     },
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: "57",
-    bestRating: "5",
-  },
 };
 
 // Breadcrumb schema (3-level matching visual breadcrumb)

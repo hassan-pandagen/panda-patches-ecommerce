@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: "Custom patches starting at $0.50/pc. Embroidered, PVC, woven, chenille & leather patches. Low 5-piece minimums, free design mockup in 24hrs, ships in 7-14 days. 1M+ delivered. Get your free quote!",
     openGraph: {
       title: "Custom Patches From $0.50/pc. Free Design. Ships in 14 Days.",
-      description: "1,000,000+ patches delivered to brands worldwide. Custom embroidered, PVC, chenille & woven patches with free artwork, no setup fees, and a 4.8-star rating on Trustpilot. Get your free quote today.",
+      description: "1,000,000+ patches delivered to brands worldwide. Custom embroidered, PVC, chenille & woven patches with free artwork, no setup fees, and free 24-hour design mockup. Get your free quote today.",
       type: "website",
       url: "https://www.pandapatches.com",
       images: [
@@ -59,7 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: "Custom Patches From $0.50/pc. Free Design. Ships in 14 Days.",
-      description: "1,000,000+ patches delivered worldwide. Free artwork, no setup fees, 4.8 stars on Trustpilot.",
+      description: "1,000,000+ patches delivered worldwide. Free artwork, no setup fees, free design mockup in 24 hours.",
       images: [ogImageUrl]
     },
     alternates: {
@@ -88,7 +88,7 @@ const homeFaqSchema = {
       "name": "What is Panda Patches?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Panda Patches is a US-based custom patch company founded by Imran Raza, headquartered in Missouri City, Texas, built on 13 years of patch manufacturing experience. We design and manufacture embroidered, PVC, woven, chenille, and leather patches for small businesses, sports teams, military units, schools, motorcycle clubs, and brands across the United States. We have delivered over 1,000,000 custom patches and hold a 4.8-star Trustpilot rating from 66 verified reviews.",
+        "text": "Panda Patches is a US-based custom patch company founded by Imran Raza, headquartered in Missouri City, Texas, built on 13 years of patch manufacturing experience. We design and manufacture embroidered, PVC, woven, chenille, and leather patches for small businesses, sports teams, military units, schools, motorcycle clubs, and brands across the United States. We have delivered over 1,000,000 custom patches with a free 24-hour design mockup, low 5-piece minimum, and money-back guarantee on every order.",
       },
     },
     {

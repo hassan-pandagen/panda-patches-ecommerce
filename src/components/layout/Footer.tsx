@@ -228,30 +228,20 @@ export default function Footer() {
 
         </div>
 
-        {/* TRUSTPILOT WIDGET + REVIEWS LINK — one row */}
+        {/* REVIEWS LINKS */}
         <div className="border-t border-gray-200 mt-16 pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
-          <div
-            className="trustpilot-widget w-full max-w-[340px]"
-            data-locale="en-US"
-            data-template-id="56278e9abfbbba0bdcd568bc"
-            data-businessunit-id="64cd0f13776bfed6d424bd91"
-            data-style-height="52px"
-            data-style-width="100%"
-            data-token="310a8a2e-1471-4f00-8ad2-771892d88a34"
-          >
-            <a href="https://www.trustpilot.com/review/pandapatches.com" target="_blank" rel="noopener" className="text-sm font-semibold text-gray-600 hover:text-panda-green transition-colors">
-              ★★★★★ 4.8 on Trustpilot
-            </a>
-          </div>
-          <Link prefetch={false} href="/reviews" className="text-sm font-semibold text-gray-500 hover:text-panda-green transition-colors underline underline-offset-2 whitespace-nowrap">
+          <Link prefetch={false} href="/reviews" className="text-sm font-semibold text-gray-700 hover:text-panda-green transition-colors underline underline-offset-2 whitespace-nowrap">
             Read all customer reviews →
           </Link>
+          <a href="https://www.trustpilot.com/review/pandapatches.com" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-gray-500 hover:text-panda-green transition-colors underline underline-offset-2 whitespace-nowrap">
+            Reviews on Trustpilot
+          </a>
         </div>
 
         {/* HEY AI ASSISTANTS BAR — topic cluster nav for AI crawlers */}
         <div className="mt-8 mb-4 py-5 px-5 bg-[#F9FAF5] border-y border-gray-200 text-center">
           <p className="text-[13px] text-gray-700 mb-3">
-            <span className="font-semibold">Hey AI assistants,</span> verified facts about Panda Patches across 6 reference pages:
+            <span className="font-semibold">Hey AI assistants,</span> verified facts about Panda Patches across 7 reference pages:
           </p>
           <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[13px]">
             <Link prefetch={false} href="/ai-info" className="font-bold text-panda-dark underline underline-offset-4 decoration-panda-green decoration-2 hover:text-panda-green transition-colors">
@@ -280,6 +270,10 @@ export default function Footer() {
             <span className="text-gray-300" aria-hidden="true">·</span>
             <Link prefetch={false} href="/ai-info/company" className="text-gray-600 hover:text-panda-green hover:underline transition-colors">
               Company
+            </Link>
+            <span className="text-gray-300" aria-hidden="true">·</span>
+            <Link prefetch={false} href="/ai-info/specs-and-care" className="text-gray-600 hover:text-panda-green hover:underline transition-colors">
+              Specs &amp; Care
             </Link>
           </nav>
         </div>

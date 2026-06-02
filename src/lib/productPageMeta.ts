@@ -13,15 +13,15 @@ interface ProductPageMeta {
 
 const productPageMeta: Record<string, ProductPageMeta> = {
   "embroidered": {
-    title: "Custom Embroidered Patches from $0.71 | Free Mockup | 4.8★",
+    title: "Custom Embroidered Patches from $0.71 | Free Mockup | 5pc Min",
     description: "Custom embroidered patches from $0.71/pc. Any size, shape & color. Iron-on, sew-on or velcro backing. Free design mockup in 24hrs. 5-piece minimum. Ships in 7-14 days. Get your free quote!",
-    ogTitle: "Custom Embroidered Patches from $0.71 | Free Mockup | 4.8★",
+    ogTitle: "Custom Embroidered Patches from $0.71 | Free Mockup | 5pc Min",
     ogDescription: "Embroidered patches from $0.71/pc. Any size, shape & color. Free design mockup in 24hrs. 5-piece minimum. Ships in 7-14 days.",
   },
   "pvc": {
-    title: "Custom PVC Patches from $1.20 | Free Design | 4.8★",
+    title: "Custom PVC Patches from $1.20 | Free Design | 5pc Min",
     description: "Custom PVC patches built to last. Waterproof, flexible & 3D-molded. Perfect for tactical gear, outdoor brands & uniforms. 5-piece minimum, free design. Ships in 7-14 days. Order now!",
-    ogTitle: "Custom PVC Patches from $1.20 | Free Design | 4.8★",
+    ogTitle: "Custom PVC Patches from $1.20 | Free Design | 5pc Min",
     ogDescription: "PVC patches built to last. Waterproof, flexible & 3D-molded. Perfect for tactical gear, outdoor brands & uniforms. Free design, ships in 7-14 days.",
   },
   "woven": {
@@ -37,9 +37,9 @@ const productPageMeta: Record<string, ProductPageMeta> = {
     ogDescription: "Chenille patches for varsity and letterman jackets. Soft raised texture, vibrant colors. Free mockup, ships in 7-14 days.",
   },
   "leather": {
-    title: "Custom Leather Patches from $1.50 | Free Mockup | 4.8★",
+    title: "Custom Leather Patches from $1.50 | Free Mockup | 5pc Min",
     description: "Custom leather patches from $1.50/pc. Premium real and vegan leather for hats, bags, and apparel. Debossed or laser-engraved. Free design mockup in 24hrs. Ships in 7-14 days.",
-    ogTitle: "Custom Leather Patches from $1.50 | Free Mockup | 4.8★",
+    ogTitle: "Custom Leather Patches from $1.50 | Free Mockup | 5pc Min",
     ogDescription: "Leather patches from $1.50/pc. Premium real and vegan leather for hats, bags, apparel. Free mockup, ships in 7-14 days.",
   },
 };

@@ -94,12 +94,6 @@ const productSchema = {
       { "@type": "Offer", name: "Sequin Patches", price: "6.00", priceCurrency: "USD", availability: "https://schema.org/InStock", priceValidUntil: "2027-01-01" },
     ],
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: "57",
-    bestRating: "5",
-  },
 };
 
 // Breadcrumb schema

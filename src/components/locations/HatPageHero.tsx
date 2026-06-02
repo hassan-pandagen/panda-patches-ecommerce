@@ -113,8 +113,8 @@ export default function HatPageHero({ title, description, gallery = [] }: Props)
                 <p className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide">Patches Delivered</p>
               </div>
               <div className="text-center">
-                <p className="text-[22px] font-black text-panda-dark">4.8★</p>
-                <p className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide">Trustpilot Rating</p>
+                <p className="text-[22px] font-black text-panda-dark">5 pc</p>
+                <p className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide">Low Minimum</p>
               </div>
               <div className="text-center">
                 <p className="text-[22px] font-black text-panda-dark">24h</p>

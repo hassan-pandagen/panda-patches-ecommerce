@@ -122,10 +122,6 @@ export default async function CustomProductPage({ params }: { params: Promise<{ 
     image: data.heroImage ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url() : 'https://www.pandapatches.com/assets/og-image.png',
     url: `https://www.pandapatches.com/custom-products/${slug}`,
     priceRange: "$100-$1000", // Typical price range for custom coins/pins/keychains
-    // Company-wide Trustpilot rating stays on Organization schema only, not
-    // on individual Product pages. Per Google 2026 guidance: aggregateRating
-    // must be specific to the item on the page.
-    includeReviews: false,
   });
 
   const breadcrumbSchema = generateBreadcrumbSchema([

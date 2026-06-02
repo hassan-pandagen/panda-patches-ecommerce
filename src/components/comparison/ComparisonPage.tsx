@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { CheckCircle2, XCircle, AlertCircle, Star, Award, Clock, Shield, MessageCircle, Phone, Package } from "lucide-react";
 
 const CHECK = String.fromCharCode(10003); // ✓ — built at runtime so CSP doesn't trip
@@ -134,12 +133,6 @@ export default function ComparisonPage({
         <div className="container mx-auto px-6 max-w-[1100px]">
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[13px] md:text-[14px]">
             <div className="flex items-center gap-2">
-              <Star className="w-4 h-4 text-panda-yellow fill-panda-yellow" />
-              <strong className="text-panda-dark">4.8/5 on Trustpilot</strong>
-              <span className="text-gray-500">(65 verified)</span>
-            </div>
-            <div className="hidden md:block w-1 h-1 bg-gray-300 rounded-full" />
-            <div className="flex items-center gap-2">
               <Award className="w-4 h-4 text-panda-green" />
               <strong className="text-panda-dark">1,000,000+ patches delivered</strong>
             </div>
@@ -147,6 +140,11 @@ export default function ComparisonPage({
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-panda-green" />
               <strong className="text-panda-dark">Free mockup in 24 hours</strong>
+            </div>
+            <div className="hidden md:block w-1 h-1 bg-gray-300 rounded-full" />
+            <div className="flex items-center gap-2">
+              <Shield className="w-4 h-4 text-panda-green" />
+              <strong className="text-panda-dark">Money-back guarantee</strong>
             </div>
           </div>
         </div>
@@ -191,11 +189,6 @@ export default function ComparisonPage({
       {/* 5. PRIMARY CUSTOMER QUOTE — Panda dark theme */}
       <section className="bg-panda-dark py-14 md:py-20 px-6">
         <div className="container mx-auto max-w-[820px] text-center">
-          <div className="flex justify-center mb-5">
-            {Array(primaryQuote.rating || 5).fill(0).map((_, i) => (
-              <Star key={i} className="w-5 h-5 md:w-6 md:h-6 text-panda-yellow fill-panda-yellow" />
-            ))}
-          </div>
           <blockquote className="text-[20px] md:text-[28px] text-white font-medium leading-[1.4] mb-6 [text-wrap:balance]">
             &ldquo;{primaryQuote.text}&rdquo;
           </blockquote>
@@ -204,7 +197,6 @@ export default function ComparisonPage({
             {primaryQuote.role && <span className="text-gray-400 font-normal"> · {primaryQuote.role}</span>}
             {primaryQuote.company && <span className="text-gray-400 font-normal"> · {primaryQuote.company}</span>}
           </p>
-          <p className="text-[11px] text-gray-500 mt-2 uppercase tracking-wider">Verified Trustpilot review</p>
         </div>
       </section>
 
@@ -254,7 +246,7 @@ export default function ComparisonPage({
             </table>
           </div>
           <p className="text-[12px] md:text-[13px] text-gray-500 mt-4 leading-relaxed max-w-[900px] mx-auto text-center">
-            Trustpilot ratings, review counts, and competitor stats are pulled from each company&apos;s public Trustpilot profile and website, verified May 2026. Numbers move over time. Panda Patches review counts are from our own verified Trustpilot profile at trustpilot.com/review/pandapatches.com.
+            Competitor stats are pulled from each company&apos;s public website, verified May 2026. Numbers move over time.
           </p>
         </div>
       </section>
@@ -344,11 +336,6 @@ export default function ComparisonPage({
                 </div>
               </div>
               <div className="flex-1">
-                <div className="flex mb-3">
-                  {Array(secondaryQuote.rating || 5).fill(0).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-panda-yellow fill-panda-yellow" />
-                  ))}
-                </div>
                 <blockquote className="text-[16px] md:text-[18px] text-gray-800 leading-[1.7] italic mb-3 font-medium">
                   &ldquo;{secondaryQuote.text}&rdquo;
                 </blockquote>

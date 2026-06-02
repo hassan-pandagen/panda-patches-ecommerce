@@ -4,7 +4,6 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { generateSchemaScript, generateBreadcrumbSchema } from '@/lib/schemas';
 import { getSchemaPricingTiers } from '@/lib/pricingCalculator';
-import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT_STR } from '@/lib/reviewConstants';
 
 const BASE = 'https://www.pandapatches.com';
 const CANONICAL = `${BASE}/how-much-do-custom-patches-cost-full-pricing-breakdown`;
@@ -55,13 +54,6 @@ function buildProductSchema(
     description,
     brand: { '@type': 'Brand', name: 'Panda Patches' },
     image: `${BASE}/assets/og-image.png`,
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: TRUSTPILOT_RATING,
-      reviewCount: TRUSTPILOT_REVIEW_COUNT_STR,
-      bestRating: '5',
-      worstRating: '1',
-    },
     offers: tiers.map((t) => ({
       '@type': 'Offer',
       price: t.unitPrice.toFixed(2),
@@ -462,7 +454,7 @@ export default function PricingPage() {
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl font-black text-white mb-4">Ready to Order?</h2>
           <p className="text-gray-300 mb-8">
-            Free mockup in 24 hours. Low 5-piece minimum on most styles. {TRUSTPILOT_RATING} stars from {TRUSTPILOT_REVIEW_COUNT_STR} verified buyers.
+            Free mockup in 24 hours. Low 5-piece minimum on most styles. Money-back guarantee.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

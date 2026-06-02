@@ -7,8 +7,6 @@
  * <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(generateOrganizationSchema())} />
  */
 
-import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT_STR, TRUSTPILOT_URL } from './reviewConstants';
-
 // ============================================
 // HELPER FUNCTION
 // ============================================
@@ -109,18 +107,10 @@ export function generateOrganizationSchema() {
       "https://www.linkedin.com/company/pandapatchesofficial",
       "https://www.youtube.com/@PandaPatchesOfficial",
       "https://www.tiktok.com/@pandapatchesofficial",
-      TRUSTPILOT_URL,
       "https://www.provenexpert.com/en-us/panda-patches/",
       "https://www.yelp.com/biz/panda-patches",
       "https://maps.app.goo.gl/i5yZ6n2wUMJVAdUb7"
     ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": TRUSTPILOT_RATING,
-      "reviewCount": TRUSTPILOT_REVIEW_COUNT_STR,
-      "bestRating": "5",
-      "worstRating": "1"
-    },
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+1-302-250-4340",
@@ -173,8 +163,6 @@ interface ProductSchemaParams {
   priceRange?: string; // e.g., "$50-$500"
   priceCurrency?: string;
   availability?: "InStock" | "OutOfStock" | "PreOrder" | "MadeToOrder";
-  /** @deprecated brand-level Trustpilot rating no longer attached to Product schema (Google 2026 self-serving review enforcement). Kept for backwards compat; ignored. */
-  includeReviews?: boolean;
   // UCP / Variant Support
   pricingTiers?: PricingTier[];
   variants?: ProductVariant[];
@@ -375,12 +363,6 @@ export function generateProductSchema(params: ProductSchemaParams) {
     };
   }
 
-  // NOTE: Brand-level Trustpilot reviews intentionally NOT attached to Product schema.
-  // Google's 2026 enforcement treats brand-level aggregateRating on individual Product
-  // pages as self-serving (the rating is about the business, not the specific product).
-  // Brand-level rating remains on Organization + LocalBusiness schemas (legitimate use).
-  // Re-introduce here only when per-product reviews exist (3+ reviews per SKU).
-
   return productSchema;
 }
 
@@ -494,81 +476,7 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
 }
 
 // ============================================
-// 6. AGGREGATE RATING SCHEMA (standalone)
-// ============================================
-
-interface AggregateRatingParams {
-  ratingValue: number;
-  reviewCount: number;
-  bestRating?: number;
-  worstRating?: number;
-}
-
-export function generateAggregateRatingSchema(params: AggregateRatingParams) {
-  const {
-    ratingValue,
-    reviewCount,
-    bestRating = 5,
-    worstRating = 1,
-  } = params;
-
-  return {
-    "@type": "AggregateRating",
-    "ratingValue": ratingValue.toString(),
-    "reviewCount": reviewCount.toString(),
-    "bestRating": bestRating.toString(),
-    "worstRating": worstRating.toString()
-  };
-}
-
-// ============================================
-// 7. REVIEW SCHEMA (for individual reviews)
-// ============================================
-
-interface ReviewSchemaParams {
-  author: string;
-  datePublished: string;
-  reviewBody: string;
-  ratingValue: number;
-  itemReviewed: {
-    name: string;
-    type?: string; // default: "Organization"
-  };
-}
-
-export function generateReviewSchema(params: ReviewSchemaParams) {
-  const {
-    author,
-    datePublished,
-    reviewBody,
-    ratingValue,
-    itemReviewed,
-  } = params;
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    "author": {
-      "@type": "Person",
-      "name": author
-    },
-    "datePublished": datePublished,
-    "reviewBody": reviewBody,
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": ratingValue.toString(),
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "itemReviewed": {
-      "@type": itemReviewed.type || "Organization",
-      "name": itemReviewed.name
-    }
-  };
-}
-
-// ============================================
-// 8. LOCAL BUSINESS SCHEMA (global - for homepage/about)
+// 6. LOCAL BUSINESS SCHEMA (global - for homepage/about)
 // ============================================
 
 export function generateLocalBusinessSchema() {
@@ -603,17 +511,9 @@ export function generateLocalBusinessSchema() {
       "sameAs": "https://www.linkedin.com/in/imran-raza-ladhani/"
     },
     "sameAs": [
-      "https://www.trustpilot.com/review/pandapatches.com",
       "https://www.instagram.com/pandapatchesofficial/",
       "https://www.linkedin.com/in/imran-raza-ladhani/"
     ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": TRUSTPILOT_RATING,
-      "reviewCount": TRUSTPILOT_REVIEW_COUNT_STR,
-      "bestRating": "5",
-      "worstRating": "1"
-    },
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
@@ -662,13 +562,6 @@ export function generateLocationBusinessSchema(locationName: string, pageSlug?: 
       "@type": "Person",
       "name": "Imran Raza",
       "sameAs": "https://www.linkedin.com/in/imran-raza-ladhani/"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": TRUSTPILOT_RATING,
-      "reviewCount": TRUSTPILOT_REVIEW_COUNT_STR,
-      "bestRating": "5",
-      "worstRating": "1"
     }
   };
 }

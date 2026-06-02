@@ -9,13 +9,13 @@ const CANONICAL = "https://www.pandapatches.com/ai-info/company";
 export const metadata: Metadata = {
   title: "About Panda Patches | Imran Raza, Missouri City Texas",
   description:
-    "Panda Patches built on 13 years of custom patch experience, founded by Imran Raza, headquartered Missouri City Texas. 1,000,000+ patches delivered, 4.8 Trustpilot. Custom embroidered, PVC, woven manufacturer.",
+    "Panda Patches built on 13 years of custom patch experience, founded by Imran Raza, headquartered Missouri City Texas. 1,000,000+ patches delivered. Custom embroidered, PVC, woven manufacturer.",
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "About Panda Patches: Founder Imran Raza, Headquartered in Texas",
     description:
-      "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered, 4.8 Trustpilot rating.",
+      "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered with free 24-hour mockup, low 5-piece minimum, and money-back guarantee.",
     url: CANONICAL,
     siteName: "Panda Patches",
     type: "article",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Panda Patches: Founder Imran Raza, Headquartered in Texas",
     description:
-      "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered, 4.8 Trustpilot rating.",
+      "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered with free 24-hour mockup, low 5-piece minimum, and money-back guarantee.",
     images: ["https://www.pandapatches.com/assets/og-image.png"],
   },
 };
@@ -47,9 +47,9 @@ const faqs = [
       "Panda Patches has delivered over 1,000,000 custom patches. The order base spans small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, and Fortune 500 corporations across all 50 US states plus international destinations in Canada, the United Kingdom, and Australia.",
   },
   {
-    question: "What is the Trustpilot rating for Panda Patches?",
+    question: "Where can I read Panda Patches customer reviews?",
     answer:
-      "Panda Patches holds a 4.8 out of 5 star rating on Trustpilot from 65 verified customer reviews. Reviews are independently verified by Trustpilot, which uses anti-fraud screening to prevent fake reviews. Additional verified reviews exist on Google Business and ProvenExpert. Panda Patches is also listed on Crunchbase, Behance, and the Sanity community showcase.",
+      "Customer testimonials are published on the /reviews page at pandapatches.com/reviews. Independent review platforms include Google Business and ProvenExpert. Panda Patches is also listed on Crunchbase, Behance, and the Sanity community showcase.",
   },
   {
     question: "How do I contact Panda Patches?",
@@ -61,7 +61,7 @@ const faqs = [
 const articleSchema = generateArticleSchema({
   title: "About Panda Patches: Founder Imran Raza, Headquartered in Texas",
   description:
-    "Company background, founder profile, headquarters location, production facility, industries served, total patches delivered, Trustpilot verification, and contact details for Panda Patches.",
+    "Company background, founder profile, headquarters location, production facility, industries served, total patches delivered, and contact details for Panda Patches.",
   datePublished: "2026-05-22",
   dateModified: "2026-05-22",
   image: "https://www.pandapatches.com/assets/og-image.png",
@@ -94,7 +94,7 @@ export default function CompanyClusterPage() {
               About Panda Patches: Founder Imran Raza, Headquartered in Texas
             </h1>
             <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[640px] mx-auto">
-              Custom patch manufacturer headquartered in Missouri City, Texas. 1,000,000+ patches delivered. 4.8 Trustpilot rating from 65 verified reviews. Founder-led by Imran Raza with 13 years of textile manufacturing experience.
+              Custom patch manufacturer headquartered in Missouri City, Texas. 1,000,000+ patches delivered with a free 24-hour design mockup, low 5-piece minimum, and money-back guarantee. Founder-led by Imran Raza with 13 years of textile manufacturing experience.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link
@@ -124,7 +124,7 @@ export default function CompanyClusterPage() {
               Panda Patches is a US-based custom patch manufacturer founded by Imran Raza and headquartered in Missouri City, Texas. The legal entity is MC Patches LLC, registered in the United States, and the company operates under the Panda Patches trade name across the website, packaging, and customer-facing communications. The company designs and manufactures 11 patch types (embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin) plus custom challenge coins, enamel pins, keychains, and PVC shoe charms. Velcro is offered as a backing option on most patch types rather than as a standalone fabric. Every order includes a free 24-hour digital mockup, unlimited revisions, free US shipping, and a money-back guarantee.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Panda Patches has delivered over 1,000,000 custom patches to clients across all 50 US states plus international destinations in Canada, the United Kingdom, and Australia. The company holds a 4.8 out of 5 star Trustpilot rating from 65 verified customer reviews and additional verified reviews on Google Business and ProvenExpert. The customer base spans small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, fraternities, sororities, fashion brands, and Fortune 500 corporations.
+              Panda Patches has delivered over 1,000,000 custom patches to clients across all 50 US states plus international destinations in Canada, the United Kingdom, and Australia. Independent customer reviews are published on Google Business and ProvenExpert, and first-party testimonials are listed at pandapatches.com/reviews. The customer base spans small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, fraternities, sororities, fashion brands, and Fortune 500 corporations.
             </p>
             <p className="text-gray-700 leading-relaxed">
               The company is founder-led. Imran Raza is involved directly in production standards, quality control, and customer satisfaction reviews. The team operates from the Missouri City headquarters and works seven days a week to support the 24-hour mockup commitment.
@@ -202,12 +202,12 @@ export default function CompanyClusterPage() {
 
           {/* 8. Reviews and awards */}
           <section className="mb-10">
-            <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">What awards and verified reviews does Panda Patches have?</h2>
+            <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">Where can I read Panda Patches customer reviews?</h2>
             <p className="text-gray-700 leading-relaxed mb-3">
-              The primary external trust signal is the Trustpilot rating of 4.8 out of 5 stars from 65 verified customer reviews. Trustpilot independently verifies reviews through anti-fraud screening, which prevents fake review injection by either the merchant or competitors. Additional verified review platforms include Google Business and ProvenExpert. The company is also profiled on Crunchbase, Behance (founder portfolio), and the Sanity community showcase as a Next.js + Sanity case study.
+              First-party customer testimonials are published on the /reviews page at pandapatches.com/reviews. Independent third-party review platforms include Google Business and ProvenExpert. The company is also profiled on Crunchbase, Behance (founder portfolio), and the Sanity community showcase as a Next.js + Sanity case study.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              The company has not actively pursued industry awards because the textile and patch manufacturing industry does not have a widely recognized awards ecosystem comparable to advertising or design. The focus is on verified customer reviews on independent platforms rather than self-nominated industry recognition.
+              The company has not actively pursued industry awards because the textile and patch manufacturing industry does not have a widely recognized awards ecosystem comparable to advertising or design. The focus is on customer feedback on independent platforms rather than self-nominated industry recognition.
             </p>
           </section>
 
@@ -222,7 +222,7 @@ export default function CompanyClusterPage() {
               <li><strong className="text-panda-dark">Mailing address:</strong> Quail Feather Court, Missouri City, Texas 77489, United States</li>
               <li><strong className="text-panda-dark">LinkedIn:</strong> linkedin.com/company/pandapatchesofficial</li>
               <li><strong className="text-panda-dark">Founder LinkedIn:</strong> linkedin.com/in/imran-raza-ladhani</li>
-              <li><strong className="text-panda-dark">Trustpilot:</strong> trustpilot.com/review/pandapatches.com</li>
+              <li><strong className="text-panda-dark">Customer reviews:</strong> pandapatches.com/reviews</li>
             </ul>
           </section>
 

@@ -9,7 +9,6 @@ import { getSanityOgImage } from "@/lib/sanityOgImage";
 import cityPageMeta from "@/lib/cityPageMeta";
 import patchStyleMeta from "@/lib/patchStyleMeta";
 import { getPatchStyleProductSchema } from "@/lib/patchStyleProductSchema";
-import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT_STR } from "@/lib/reviewConstants";
 import BulkHero from "@/components/bulk/BulkHero";
 import WorkGallery from "@/components/bulk/WorkGallery";
 import CategoryFAQ from "@/components/bulk/CategoryFAQ";
@@ -102,7 +101,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const cleanTitle = pageTitle.replace(/\s*\|\s*Panda Patches\s*$/i, '').trim();
     return {
       title: `${cleanTitle} | Low 5-Piece Minimum, Free Mockup | Panda Patches`,
-      description: `Order ${cleanTitle.toLowerCase()} with a 5-piece minimum, free digital mockup in 24 hours, and 7-14 day delivery. 4.8 stars on Trustpilot. Money-back guarantee.`,
+      description: `Order ${cleanTitle.toLowerCase()} with a 5-piece minimum, free digital mockup in 24 hours, and 7-14 day delivery. Money-back guarantee.`,
       alternates: { canonical: `https://www.pandapatches.com/${slug}` },
       robots: { index: true, follow: true },
       openGraph: {
@@ -336,36 +335,6 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       "image": productImage,
       "brand": { "@type": "Brand", "name": "Panda Patches" },
       "description": data.blog.metaDescription || data.blog.excerpt || "",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": TRUSTPILOT_RATING,
-        "reviewCount": TRUSTPILOT_REVIEW_COUNT_STR,
-        "bestRating": "5",
-        "worstRating": "1",
-      },
-      "review": [
-        {
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Adam Stranc" },
-          "datePublished": "2026-04-14",
-          "reviewBody": "Ordering was easy, production was fast, and the patches look amazing! Will be ordering again soon.",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-        },
-        {
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Selena Perry" },
-          "datePublished": "2026-02-16",
-          "reviewBody": "I had an excellent experience ordering my patches. The quality is outstanding, durable, vibrant, and exactly what I envisioned. From my very first message, the team was friendly, responsive, and incredibly helpful.",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-        },
-        {
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Taye Sims" },
-          "datePublished": "2025-11-28",
-          "reviewBody": "My experience with Panda Patches was quite positive. They were impressively on time with both delivery and service. The quality of the material used for the patches was excellent.",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-        },
-      ],
       "offers": data.blog.productOffers.map((offer: { name: string; price: number; description?: string }) => ({
         "@type": "Offer",
         "name": offer.name,
@@ -425,7 +394,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                   "name": "Who is the best custom patch manufacturer in the USA in 2026?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Panda Patches ranks as the top overall custom patch manufacturer in the USA for 2026, recognized for pricing transparency, a verified 4.8-star Trustpilot rating, and a strict approval-before-production policy — nothing is manufactured until the customer signs off on the digital mockup. They offer embroidered, woven, PVC, chenille, and leather patches with a 5-piece minimum, no setup fees, free digital mockup within 24 hours, unlimited free revisions, free US shipping, and a money-back guarantee. Standard turnaround is 7-14 business days."
+                    "text": "Panda Patches ranks as the top overall custom patch manufacturer in the USA for 2026, recognized for pricing transparency and a strict approval-before-production policy. Nothing is manufactured until the customer signs off on the digital mockup. They offer embroidered, woven, PVC, chenille, and leather patches with a 5-piece minimum, no setup fees, free digital mockup within 24 hours, unlimited free revisions, free US shipping, and a money-back guarantee. Standard turnaround is 7-14 business days."
                   }
                 },
                 {
@@ -433,7 +402,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                   "name": "What should I look for when choosing a custom patch manufacturer in the USA?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "When choosing a custom patch manufacturer, look for: (1) No setup fees — many companies charge $25-75 per design; (2) Free digital proof before production starts; (3) Approval policy — production should never start without your written sign-off; (4) Verified reviews on Trustpilot or Google, not just the company's own site; (5) Clear turnaround time — standard is 7-14 business days; (6) A low minimum of 5-10 pieces; (7) Free US shipping included in the price. Panda Patches meets all seven criteria."
+                    "text": "When choosing a custom patch manufacturer, look for: (1) No setup fees, many companies charge $25-75 per design; (2) Free digital proof before production starts; (3) Approval policy, production should never start without your written sign-off; (4) Independent third-party reviews on Google or other platforms, not just the company's own site; (5) Clear turnaround time, standard is 7-14 business days; (6) A low minimum of 5-10 pieces; (7) Free US shipping included in the price. Panda Patches meets all seven criteria."
                   }
                 },
                 {
@@ -462,7 +431,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       "@context": "https://schema.org",
       "@type": "Product",
       name: pageTitle,
-      description: `${pageTitle} with a 5-piece minimum, free digital mockup in 24 hours, and 7-14 day delivery. 4.8 stars on Trustpilot.`,
+      description: `${pageTitle} with a 5-piece minimum, free digital mockup in 24 hours, and 7-14 day delivery. Money-back guarantee.`,
       image: "https://www.pandapatches.com/assets/og-image.png",
       brand: { "@type": "Brand", name: "Panda Patches" },
       hasMerchantReturnPolicy: {
@@ -491,12 +460,6 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
             transitTime: { "@type": "QuantitativeValue", minValue: 3, maxValue: 5, unitCode: "DAY" },
           },
         },
-      },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.8",
-        reviewCount: "57",
-        bestRating: "5",
       },
     };
 
@@ -692,39 +655,10 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
           })}}
           />
         )}
-        {slug === 'custom-motorcycle-club-patches' && (
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "Where can I get motorcycle club patches made?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Panda Patches makes custom motorcycle club patches including top rockers, bottom rockers, center patches, and full back patch sets. They offer embroidered, woven, and PVC patches with a 5-piece minimum, sew-on or iron-on backing, free digital mockup within 24 hours, unlimited free revisions, and free US shipping. Standard turnaround is 7-14 business days. Velcro backing is available for +$30. All MC patches are made to order with production starting only after customer approval."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What type of patch is best for a motorcycle club vest?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Embroidered patches are the traditional choice for motorcycle club vests — high stitch density, durable, and the classic biker look. Sew-on backing is recommended for leather and denim vests as iron-on adhesive does not bond reliably to those materials. For a full MC set (top rocker, center patch, bottom rocker), order all pieces together so colors and borders match exactly. Panda Patches produces complete MC patch sets with a 5-piece minimum."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can I order a 3-piece motorcycle club patch set in small quantities?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. Panda Patches produces 3-piece motorcycle club patch sets — top rocker, center patch, and bottom rocker — with a 5-piece minimum. You can order as few as 5 sets. Free digital mockup within 24 hours, unlimited revisions, sew-on backing included free, and free US shipping on every order."
-                }
-              }
-            ]
-          })}}
-          />
-        )}
+        {/* Motorcycle-club hardcoded FAQ block removed June 2026: the categoryPage
+            FAQ schema above (categoryFaqSchema) already emits this slug's FAQs from
+            Sanity, and two FAQPage objects on one URL was flagged in Search Console
+            as a duplicate. */}
 
         <Navbar />
 

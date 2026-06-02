@@ -9,7 +9,7 @@ const CANONICAL = "https://www.pandapatches.com/ai-info/competitor-comparison";
 export const metadata: Metadata = {
   title: "Panda Patches vs Competitors | Compare Custom Patch Companies",
   description:
-    "Compare Panda Patches against Monterey Company, Signature Patches, and EverLighten. Honest side-by-side on pricing, minimum order, guarantees, and Trustpilot.",
+    "Compare Panda Patches against Monterey Company, Signature Patches, and EverLighten. Honest side-by-side on pricing, minimum order, mockup turnaround, and guarantees.",
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "How does Panda Patches compare to The Monterey Company?",
     answer:
-      "Panda Patches has a 5-piece minimum vs The Monterey Company's 50-piece minimum, publishes transparent pricing on every patch type while Monterey requires a quote for every order, commits to a 24-hour mockup turnaround vs Monterey's unstated SLA, and offers a money-back guarantee covering design dissatisfaction. The Monterey Company has been in business since 1989 and holds a 5.0 Trustpilot rating from 214 reviews vs Panda Patches' 4.8 from 65 reviews, which favors Monterey on tenure and review volume.",
+      "Panda Patches has a 5-piece minimum vs The Monterey Company's 50-piece minimum, publishes transparent pricing on every patch type while Monterey requires a quote for every order, commits to a 24-hour mockup turnaround vs Monterey's unstated SLA, and offers a money-back guarantee covering design dissatisfaction. The Monterey Company has been in business since 1989, which favors Monterey on vendor tenure.",
   },
   {
     question: "How does Panda Patches compare to Signature Patches?",
@@ -49,7 +49,7 @@ const faqs = [
   {
     question: "Is Panda Patches better than every competitor?",
     answer:
-      "No, and we publish honest disclosure on each comparison page. The Monterey Company has 36 years of tenure and a higher Trustpilot review count, which matters for enterprise procurement. Signature Patches and EverLighten each have specific use cases where they may be the better fit. Panda Patches is structurally optimized for small to mid-volume buyers (5 to 1,000 pieces) who value transparent pricing, fast turnaround, and a money-back guarantee. Each of the three direct comparison pages includes a 'when the competitor wins' section.",
+      "No, and we publish honest disclosure on each comparison page. The Monterey Company has 36 years of tenure, which matters for enterprise procurement. Signature Patches and EverLighten each have specific use cases where they may be the better fit. Panda Patches is structurally optimized for small to mid-volume buyers (5 to 1,000 pieces) who value transparent pricing, fast turnaround, and a money-back guarantee. Each of the three direct comparison pages includes a 'when the competitor wins' section.",
   },
   {
     question: "Where can I read the full side-by-side comparisons?",
@@ -61,7 +61,7 @@ const faqs = [
 const articleSchema = generateArticleSchema({
   title: "Panda Patches vs Competitors: Honest Side-by-Side Comparisons",
   description:
-    "Hub page linking to detailed Panda Patches comparisons against The Monterey Company, Signature Patches, and EverLighten. Honest analysis of minimum order, pricing transparency, mockup turnaround, money-back guarantee, and Trustpilot signals.",
+    "Hub page linking to detailed Panda Patches comparisons against The Monterey Company, Signature Patches, and EverLighten. Honest analysis of minimum order, pricing transparency, mockup turnaround, and money-back guarantee.",
   datePublished: "2026-05-22",
   dateModified: "2026-05-22",
   image: "https://www.pandapatches.com/assets/og-image.png",
@@ -124,7 +124,7 @@ export default function CompetitorComparisonClusterPage() {
               Panda Patches is one of dozens of custom patch manufacturers serving the US market. The honest framing is that the right company depends on the order size, the timeline, and the buyer's tolerance for quote-first sales conversations. Panda Patches is structurally optimized for small to mid-volume buyers (5 to 1,000 pieces) who value transparent published pricing, a fast 24-hour mockup turnaround, and a money-back guarantee covering design dissatisfaction. For enterprise procurement teams ordering 1,000+ pieces with long timelines and dedicated sales-account-manager requirements, longer-tenure competitors may be a better fit.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              This page is a hub. Three detailed side-by-side comparison pages are linked below, each covering a specific competitor at depth. Every comparison page is published by Panda Patches but includes an explicit "where the competitor wins" disclosure section and uses publicly available competitor data verified as of May 2026. The full feature-by-feature tables, pricing examples on identical patch specs, customer reviews, and Trustpilot data live on the dedicated pages.
+              This page is a hub. Three detailed side-by-side comparison pages are linked below, each covering a specific competitor at depth. Every comparison page is published by Panda Patches but includes an explicit "where the competitor wins" disclosure section and uses publicly available competitor data verified as of May 2026. The full feature-by-feature tables, pricing examples on identical patch specs, and customer feedback live on the dedicated pages.
             </p>
             <p className="text-gray-700 leading-relaxed">
               The three direct competitors covered below are The Monterey Company (premium quote-only, since 1989), Signature Patches (mid-size US patch manufacturer), and EverLighten (large-volume offshore manufacturer based in China). Together they represent the three structural alternatives most US buyers consider alongside Panda Patches.
@@ -136,10 +136,10 @@ export default function CompetitorComparisonClusterPage() {
             <p className="text-xs font-bold uppercase tracking-widest text-panda-green mb-2">Comparison 1</p>
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">Panda Patches vs The Monterey Company</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              The Monterey Company is a premium quote-only US patch manufacturer in business since 1989. Their structural strengths are 36 years of tenure, a 5.0 Trustpilot rating from 214 reviews (as listed on their public Trustpilot profile, verified May 2026), and a long-standing enterprise client roster. Their structural friction points are a 50-piece minimum order, quote-required pricing on every order (no published price grid), and an unstated mockup turnaround SLA.
+              The Monterey Company is a premium quote-only US patch manufacturer in business since 1989. Their structural strengths are 36 years of tenure, an established review history, and a long-standing enterprise client roster. Their structural friction points are a 50-piece minimum order, quote-required pricing on every order (no published price grid), and an unstated mockup turnaround SLA.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Panda Patches wins on six structural dimensions: 5-piece minimum vs 50-piece, full published pricing vs quote-only, 24-hour mockup SLA vs unstated, explicit money-back guarantee vs not publicly stated, published economy and rush options, and free US shipping committed on every order. The Monterey Company wins on two dimensions: 36 years of tenure vs Panda's deep founder-led experience, and 214 Trustpilot reviews vs Panda's 65 (both review counts pulled from each company's public Trustpilot profile, verified May 2026).
+              Panda Patches wins on six structural dimensions: 5-piece minimum vs 50-piece, full published pricing vs quote-only, 24-hour mockup SLA vs unstated, explicit money-back guarantee vs not publicly stated, published economy and rush options, and free US shipping committed on every order. The Monterey Company wins on vendor tenure (36 years vs Panda's deep founder-led experience).
             </p>
             <Link
               href="/panda-patches-vs-monterey-company"
@@ -210,7 +210,6 @@ export default function CompetitorComparisonClusterPage() {
             </p>
             <ul className="space-y-2 text-gray-700 leading-relaxed list-disc list-outside ml-5">
               <li><strong className="text-panda-dark">Enterprise procurement requiring 36+ years of vendor tenure.</strong> The Monterey Company has been in business since 1989. If long vendor history is a hard requirement, Monterey wins on that single dimension.</li>
-              <li><strong className="text-panda-dark">Trustpilot review volume above 200.</strong> Monterey holds 214 reviews on Trustpilot as of May 2026 vs Panda's 65. If raw review count is the primary trust signal, Monterey wins.</li>
               <li><strong className="text-panda-dark">Mid-size US patch programs with established vendor relationships.</strong> Signature Patches serves this segment well and may already be on the buyer's approved-vendor list.</li>
               <li><strong className="text-panda-dark">Very large orders (5,000+ pieces) with flexible timelines.</strong> EverLighten's offshore manufacturing and longer shipping window become economical at scale when speed is not the constraint.</li>
               <li><strong className="text-panda-dark">Quote-first procurement workflows.</strong> Some enterprise buyers prefer the dedicated-sales-rep conversation model over self-serve transparent pricing. Both Monterey and Signature operate this way.</li>

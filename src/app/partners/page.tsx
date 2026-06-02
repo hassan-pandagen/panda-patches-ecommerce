@@ -244,7 +244,7 @@ export default async function PartnersPage() {
           <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
               { value: "1M+", label: "Patches Delivered" },
-              { value: "4.8★", label: "Trustpilot Rating" },
+              { value: "5 pc", label: "Low Minimum" },
               { value: "24 hr", label: "Mockup Turnaround" },
               { value: "$0", label: "Setup Fees, Ever" },
             ].map((s) => (

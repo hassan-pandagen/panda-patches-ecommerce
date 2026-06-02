@@ -31,7 +31,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.pandapatches.com'),
   title: "Panda Patches | Custom Iron On Patches",
-  description: "Order custom embroidered patches, iron-on patches, PVC patches with low minimums. Free design services, 7-14 day delivery. 4.8★ rated on Trustpilot. No setup fees!",
+  description: "Order custom embroidered patches, iron-on patches, PVC patches with low minimums. Free design services, 7-14 day delivery. 1,000,000+ patches delivered. No setup fees!",
   alternates: {
     canonical: 'https://www.pandapatches.com',
     languages: {
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Panda Patches | Custom Iron On Patches",
-    description: "Order custom embroidered patches, iron-on patches, PVC patches with low minimums. Free design services, 7-14 day delivery. 4.8★ rated on Trustpilot.",
+    description: "Order custom embroidered patches, iron-on patches, PVC patches with low minimums. Free design services, 7-14 day delivery. 1,000,000+ patches delivered.",
     images: ["https://www.pandapatches.com/assets/og-image.png"],
   },
   icons: {
@@ -162,26 +162,23 @@ try{(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime
         <Script id="meta-pixel" strategy="afterInteractive">
           {`try{!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];if(s&&s.parentNode){s.parentNode.insertBefore(t,s);}else{document.head.appendChild(t);}}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1515101469424765');fbq('track','PageView');}catch(e){}`}
         </Script>
+        <Script id="openai-pixel" strategy="afterInteractive">
+          {`try{!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments);};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];if(f&&f.parentNode){f.parentNode.insertBefore(j,f);}else{document.head.appendChild(j);}}(window,document,'script','https://bzrcdn.openai.com/sdk/oaiq.min.js');oaiq('init',{pixelId:'CHMS7gNcUNe5Tcv3CMpX8B'});}catch(e){}`}
+        </Script>
         <Script id="pinterest-tag" strategy="afterInteractive">
           {`try{!function(e){if(!window.pintrk){window.pintrk=function(){window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var n=window.pintrk;n.queue=[],n.version="3.0";var t=document.createElement("script");t.async=!0,t.src=e;var r=document.getElementsByTagName("script")[0];if(r&&r.parentNode){r.parentNode.insertBefore(t,r);}else{document.head.appendChild(t);}}}("https://s.pinimg.com/ct/core.js");pintrk('load','2612823226033');pintrk('page');}catch(e){}`}
         </Script>
 
-        {/* Bing UET + Trustpilot: still deferred until user interaction or 16s fallback.
-            Bing has lower volume, Trustpilot is below-fold — these can stay lazy without
-            hurting attribution accuracy. */}
+        {/* Bing UET: deferred until user interaction or 16s fallback. */}
         <Script id="staggered-loader" strategy="lazyOnload">
-          {`var ric=window.requestIdleCallback||function(cb){setTimeout(cb,1)};
-function loadScript(src,cb){var s=document.createElement('script');s.async=true;s.src=src;if(cb)s.onload=cb;document.head.appendChild(s);}
-var _3pLoaded=false;
+          {`var _3pLoaded=false;
 function load3p(){
 if(_3pLoaded)return;_3pLoaded=true;
 ['scroll','click','touchstart','keydown'].forEach(function(e){document.removeEventListener(e,load3p,{capture:true});});
+var ric=window.requestIdleCallback||function(cb){setTimeout(cb,1)};
 ric(function(){
 try{(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97147013"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0];if(i&&i.parentNode){i.parentNode.insertBefore(n,i);}else{document.head.appendChild(n);}})(window,document,"script","//bat.bing.com/bat.js","uetq");}catch(e){}
 });
-var tpLoaded=false;function loadTP(){if(tpLoaded)return;tpLoaded=true;ric(function(){loadScript('//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js');});}
-var obs=new IntersectionObserver(function(e){if(e[0].isIntersecting){loadTP();obs.disconnect();}},{rootMargin:'400px'});
-var footer=document.querySelector('footer');if(footer)obs.observe(footer);else setTimeout(loadTP,5000);
 }
 ['scroll','click','touchstart','keydown'].forEach(function(e){document.addEventListener(e,load3p,{capture:true,once:true,passive:true});});
 setTimeout(load3p,16000);`}

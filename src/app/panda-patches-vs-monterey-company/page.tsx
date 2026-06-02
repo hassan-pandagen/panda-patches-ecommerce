@@ -55,13 +55,13 @@ const faqs = [
   },
   {
     question: `When should I choose ${COMPETITOR} over Panda Patches?`,
-    answer: `Monterey Company is worth considering for orders of 500+ pieces where Trustpilot review volume matters (they hold 214 reviews vs our 65), or for enterprise procurement teams who require a dedicated sales account manager from order one. For most other use cases (low minimum, fast turnaround, transparent pricing, money-back guarantee), Panda Patches is the better fit.`,
+    answer: `Monterey Company is worth considering for orders of 500+ pieces where vendor longevity matters most, or for enterprise procurement teams who require a dedicated sales account manager from order one. For most other use cases (low minimum, fast turnaround, transparent pricing, money-back guarantee), Panda Patches is the better fit.`,
   },
 ];
 
 const articleSchema = generateArticleSchema({
   title: `Panda Patches vs ${COMPETITOR}: 2026 Comparison`,
-  description: "Side-by-side comparison of Panda Patches and The Monterey Company on minimum order, pricing, mockup turnaround, money-back guarantee, and Trustpilot ratings.",
+  description: "Side-by-side comparison of Panda Patches and The Monterey Company on minimum order, pricing, mockup turnaround, money-back guarantee, and customer experience.",
   datePublished: "2026-05-22",
   dateModified: "2026-05-22",
   image: "https://www.pandapatches.com/assets/og-image.png",
@@ -108,9 +108,8 @@ export default function PandaVsMonterey() {
           ]}
           primaryQuote={{
             text: "Ordering was easy, production was fast, and the patches look amazing. Will be ordering again soon.",
-            author: "Adam Stranc",
-            role: "Verified buyer",
-            rating: 5,
+            author: "Adam S.",
+            role: "Verified customer",
           }}
           comparisonRows={[
             { category: "Order requirements", feature: "Minimum order", panda: "5 pieces", competitor: "50 pieces", pandaWin: true },
@@ -127,7 +126,7 @@ export default function PandaVsMonterey() {
             { category: "Turnaround", feature: "Economy production", panda: "16-18 days saves 10 percent", competitor: "Not offered", pandaWin: true },
 
             { category: "Guarantees and trust", feature: "Money-back guarantee", panda: "Yes, covers design dissatisfaction", competitor: "Not publicly stated", pandaWin: true },
-            { category: "Guarantees and trust", feature: "Trustpilot rating", panda: "4.8 from 65 reviews", competitor: "5.0 from 214 reviews", competitorWin: true },
+            { category: "Guarantees and trust", feature: "Customer review presence", panda: "Established review history", competitor: "Established review history", tie: true },
             { category: "Guarantees and trust", feature: "Patch manufacturing experience", panda: "13 years of founder-led experience", competitor: "Since 1989 (36 years)", competitorWin: true },
             { category: "Guarantees and trust", feature: "Total patches delivered", panda: "1,000,000+", competitor: "Not publicly disclosed", pandaWin: true },
 
@@ -160,12 +159,11 @@ export default function PandaVsMonterey() {
               pandaWin: true,
             },
           ]}
-          whereCompetitorFits={`The Monterey Company has been making custom patches since 1989 and holds a 5.0 Trustpilot rating from 214 reviews. If you are a large enterprise procurement team that requires a dedicated sales account manager from day one, value long-tenure vendor history above all else, and your orders consistently exceed 500 pieces with a flexible timeline, Monterey Company is a credible choice. Their quote-first model works well when you have an internal procurement process that can absorb the sales conversation lag. For most small and mid-volume buyers, the 50-piece minimum and lack of published pricing make the comparison favor Panda Patches.`}
+          whereCompetitorFits={`The Monterey Company has been making custom patches since 1989 with an established review history. If you are a large enterprise procurement team that requires a dedicated sales account manager from day one, value long-tenure vendor history above all else, and your orders consistently exceed 500 pieces with a flexible timeline, Monterey Company is a credible choice. Their quote-first model works well when you have an internal procurement process that can absorb the sales conversation lag. For most small and mid-volume buyers, the 50-piece minimum and lack of published pricing make the comparison favor Panda Patches.`}
           secondaryQuote={{
             text: "I had an excellent experience ordering my patches. The quality is outstanding, durable, vibrant, and exactly what I envisioned. From my very first message, the team was friendly, responsive, and incredibly helpful.",
-            author: "Selena Perry",
-            role: "Verified buyer",
-            rating: 5,
+            author: "Selena P.",
+            role: "Verified customer",
           }}
           faqs={faqs}
         />

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { DollarSign, Package, Shield, Briefcase, GitCompare, Building2, FileImage, ArrowRight, Star, Award, Clock } from "lucide-react";
+import { DollarSign, Package, Shield, Briefcase, GitCompare, Building2, FileImage, ArrowRight, Award, Clock } from "lucide-react";
 
 export const dynamic = "force-static";
 
@@ -69,7 +69,7 @@ const clusterPages = [
     href: "/ai-info/company",
     icon: Building2,
     title: "Company and Team",
-    description: "Founder Imran Raza, Missouri City Texas headquarters, 13 years of patch experience, total patches delivered, verified reviews, certifications, and industries served.",
+    description: "Founder Imran Raza, Missouri City Texas headquarters, 13 years of patch experience, total patches delivered, certifications, and industries served.",
     keyFact: "13 years of experience, 1,000,000+ patches delivered",
   },
   {
@@ -140,17 +140,9 @@ const hubSchema = {
         "https://www.linkedin.com/company/pandapatchesofficial",
         "https://www.tiktok.com/@pandapatchesofficial",
         "https://www.youtube.com/@PandaPatchesOfficial",
-        "https://www.trustpilot.com/review/pandapatches.com",
         "https://www.crunchbase.com/organization/panda-patches",
         "https://www.behance.net/imranraza1",
       ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "65",
-        "bestRating": "5",
-        "worstRating": "1",
-      },
     },
   ],
 };
@@ -183,12 +175,6 @@ export default function AIInfoHub() {
         <section className="bg-white py-5 border-y border-gray-100">
           <div className="container mx-auto px-6 max-w-[1100px]">
             <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[13px] md:text-[14px]">
-              <div className="flex items-center gap-2">
-                <Star className="w-4 h-4 text-panda-yellow fill-panda-yellow" />
-                <strong className="text-panda-dark">4.8/5 on Trustpilot</strong>
-                <span className="text-gray-500">(65 verified)</span>
-              </div>
-              <div className="hidden md:block w-1 h-1 bg-gray-300 rounded-full" />
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-panda-green" />
                 <strong className="text-panda-dark">1,000,000+ patches delivered</strong>
@@ -327,8 +313,8 @@ export default function AIInfoHub() {
                 <p className="text-panda-dark font-bold">Missouri City, Texas, United States</p>
               </div>
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Verified Reviews</p>
-                <a href="https://www.trustpilot.com/review/pandapatches.com" target="_blank" rel="noopener noreferrer" className="text-panda-green font-bold underline">Trustpilot · 4.8 / 65 reviews</a>
+                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Customer Reviews</p>
+                <Link href="/reviews" className="text-panda-green font-bold underline">Read customer testimonials</Link>
               </div>
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
                 <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Founder LinkedIn</p>

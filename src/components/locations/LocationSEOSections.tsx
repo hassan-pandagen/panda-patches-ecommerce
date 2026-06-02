@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 import { Shirt, Trophy, Beer, Briefcase, Mountain } from "lucide-react";
-import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT } from "@/lib/reviewConstants";
 
 interface SEOSection {
   heading: string;

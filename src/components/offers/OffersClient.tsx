@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTrustpilot } from '@/lib/useTrustpilot';
 import ReviewsSection from '@/components/home/ReviewsSection';
 import { useFileUpload } from '@/hooks/useFileUpload';
 import { getStoredAttribution, generateEventId } from '@/lib/clientAttribution';
@@ -511,7 +510,6 @@ function Step5({
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function OffersClient({ categoryImages, ctaImageUrl, industryImages, craftmanshipSlot }: { categoryImages?: Record<string, string>; ctaImageUrl?: string; industryImages?: Record<string, string>; craftmanshipSlot?: React.ReactNode }) {
-  const { rating: TRUSTPILOT_RATING, reviewCount: TRUSTPILOT_REVIEW_COUNT } = useTrustpilot();
   const [selectedOffer, setSelectedOffer] = useState<SelectedOffer | null>(null);
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM);
@@ -676,7 +674,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
           </h1>
           <p className="text-gray-300 md:text-gray-700 text-lg mb-6">No setup fees. No surprise charges. Free design mockup included.<br />Order in minutes, we handle the rest.</p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            {['Free design mockup', '7-14 day delivery', `${TRUSTPILOT_RATING} stars on Trustpilot`, 'Money-back guarantee'].map(t => (
+            {['Free design mockup', '7-14 day delivery', 'Low 5-piece minimum', 'Money-back guarantee'].map(t => (
               <span key={t} className="flex items-center gap-1.5 text-[#DFFF00] md:text-[#051C05] font-semibold"><span>✓</span>{t}</span>
             ))}
           </div>
@@ -687,7 +685,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-px bg-white/10">
             {[
               { stat: '1M+', label: 'Patches Delivered' },
-              { stat: `${TRUSTPILOT_RATING}★`, label: 'Trustpilot Rating' },
+              { stat: '5pc', label: 'Low Minimum Order' },
               { stat: '24h', label: 'Free Mockup' },
               { stat: '∞', label: 'Free Revisions' },
               { stat: '100%', label: 'Money-Back Guarantee' },
@@ -887,7 +885,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
               'Zero setup fees and zero hidden charges',
               'Choice of backing type. Velcro hook and loop costs $30 extra',
               '7 to 14 day standard delivery. Rush production available',
-              `Rated ${TRUSTPILOT_RATING} stars on Trustpilot with ${TRUSTPILOT_REVIEW_COUNT} verified customer reviews`,
+              'Over 1,000,000 patches delivered to brands across the US',
               '100% money-back guarantee. No questions asked',
               'Dedicated support team available 7 days a week',
             ].map(item => (

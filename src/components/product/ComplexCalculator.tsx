@@ -438,6 +438,15 @@ export default function ComplexCalculator({
           currency: 'USD',
         });
       }
+      try {
+        if (typeof (window as any).oaiq === 'function') {
+          (window as any).oaiq('measure', 'registration_completed', {
+            type: 'customer_action',
+            amount: 0,
+            currency: 'USD',
+          });
+        }
+      } catch { /* noop */ }
     } else {
       setQuoteError("Failed to send quote. Please try again.");
     }

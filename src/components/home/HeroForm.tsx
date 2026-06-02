@@ -165,6 +165,16 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           currency: 'USD',
         });
       }
+      // OpenAI Conversions (ChatGPT/AI search attribution) — Fill Quote Form
+      try {
+        if (typeof (window as any).oaiq === 'function') {
+          (window as any).oaiq('measure', 'registration_completed', {
+            type: 'customer_action',
+            amount: 0,
+            currency: 'USD',
+          });
+        }
+      } catch { /* noop */ }
       // NOTE: Lead pixel event already fired at top of submit with eventID for CAPI dedup.
       // Do NOT fire a second Lead here — Meta counts it as a duplicate, breaking dedup.
 

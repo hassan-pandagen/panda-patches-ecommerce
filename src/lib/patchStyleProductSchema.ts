@@ -12,8 +12,6 @@ interface ProductSchemaData {
     name: string;
     price: string;
   }>;
-  ratingValue: string;
-  reviewCount: string;
 }
 
 // Specific overrides for key patchStyle slugs
@@ -26,13 +24,11 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "6.80",
     offerCount: "4",
     offers: [
-      { name: "Embroidered Hat Patches — 50 pieces", price: "180.00" },
-      { name: "Woven Hat Patches — 50 pieces", price: "220.00" },
-      { name: "Leather Hat Patches — 50 pieces", price: "220.00" },
-      { name: "PVC Hat Patches — 50 pieces", price: "230.00" },
+      { name: "Embroidered Hat Patches, 50 pieces", price: "180.00" },
+      { name: "Woven Hat Patches, 50 pieces", price: "220.00" },
+      { name: "Leather Hat Patches, 50 pieces", price: "220.00" },
+      { name: "PVC Hat Patches, 50 pieces", price: "230.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
   "custom-jacket-patches": {
     name: "Custom Jacket Patches",
@@ -42,12 +38,10 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "6.80",
     offerCount: "3",
     offers: [
-      { name: "Embroidered Jacket Patches — 50 pieces", price: "180.00" },
-      { name: "Woven Jacket Patches — 50 pieces", price: "220.00" },
-      { name: "Chenille Jacket Patches — 25 pieces", price: "230.00" },
+      { name: "Embroidered Jacket Patches, 50 pieces", price: "180.00" },
+      { name: "Woven Jacket Patches, 50 pieces", price: "220.00" },
+      { name: "Chenille Jacket Patches, 25 pieces", price: "230.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
   "motorcycle-patches": {
     name: "Custom Motorcycle Patches",
@@ -57,12 +51,10 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "6.80",
     offerCount: "3",
     offers: [
-      { name: "Embroidered MC Patches — 50 pieces", price: "180.00" },
-      { name: "Woven MC Patches — 50 pieces", price: "220.00" },
-      { name: "Embroidered MC Patches — 100 pieces", price: "240.00" },
+      { name: "Embroidered MC Patches, 50 pieces", price: "180.00" },
+      { name: "Woven MC Patches, 50 pieces", price: "220.00" },
+      { name: "Embroidered MC Patches, 100 pieces", price: "240.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
   "custom-velcro-patches": {
     name: "Custom Velcro Patches",
@@ -72,12 +64,10 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "7.10",
     offerCount: "3",
     offers: [
-      { name: "Embroidered Velcro Patches — 50 pieces", price: "210.00" },
-      { name: "PVC Velcro Patches — 50 pieces", price: "260.00" },
-      { name: "Embroidered Velcro Patches — 100 pieces", price: "270.00" },
+      { name: "Embroidered Velcro Patches, 50 pieces", price: "210.00" },
+      { name: "PVC Velcro Patches, 50 pieces", price: "260.00" },
+      { name: "Embroidered Velcro Patches, 100 pieces", price: "270.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
   "custom-tactical-patches": {
     name: "Custom Tactical Patches",
@@ -87,12 +77,10 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "7.10",
     offerCount: "3",
     offers: [
-      { name: "Embroidered Tactical Patches — 50 pieces", price: "210.00" },
-      { name: "PVC Tactical Patches — 50 pieces", price: "260.00" },
-      { name: "Embroidered Tactical Patches — 100 pieces", price: "270.00" },
+      { name: "Embroidered Tactical Patches, 50 pieces", price: "210.00" },
+      { name: "PVC Tactical Patches, 50 pieces", price: "260.00" },
+      { name: "Embroidered Tactical Patches, 100 pieces", price: "270.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
   "custom-morale-patches": {
     name: "Custom Morale Patches",
@@ -102,12 +90,10 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "7.10",
     offerCount: "3",
     offers: [
-      { name: "Embroidered Morale Patches — 50 pieces", price: "210.00" },
-      { name: "PVC Morale Patches — 50 pieces", price: "260.00" },
-      { name: "Embroidered Morale Patches — 100 pieces", price: "270.00" },
+      { name: "Embroidered Morale Patches, 50 pieces", price: "210.00" },
+      { name: "PVC Morale Patches, 50 pieces", price: "260.00" },
+      { name: "Embroidered Morale Patches, 100 pieces", price: "270.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
   "custom-law-enforcement-patches": {
     name: "Custom Law Enforcement Patches",
@@ -117,12 +103,10 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "6.80",
     offerCount: "3",
     offers: [
-      { name: "Embroidered Law Enforcement Patches — 50 pieces", price: "180.00" },
-      { name: "Woven Law Enforcement Patches — 50 pieces", price: "220.00" },
-      { name: "PVC Law Enforcement Patches — 50 pieces", price: "230.00" },
+      { name: "Embroidered Law Enforcement Patches, 50 pieces", price: "180.00" },
+      { name: "Woven Law Enforcement Patches, 50 pieces", price: "220.00" },
+      { name: "PVC Law Enforcement Patches, 50 pieces", price: "230.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
   "custom-logo-patches": {
     name: "Custom Logo Patches",
@@ -132,13 +116,11 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "6.80",
     offerCount: "4",
     offers: [
-      { name: "Embroidered Logo Patches — 50 pieces", price: "180.00" },
-      { name: "Woven Logo Patches — 50 pieces", price: "220.00" },
-      { name: "PVC Logo Patches — 50 pieces", price: "230.00" },
-      { name: "Leather Logo Patches — 50 pieces", price: "220.00" },
+      { name: "Embroidered Logo Patches, 50 pieces", price: "180.00" },
+      { name: "Woven Logo Patches, 50 pieces", price: "220.00" },
+      { name: "PVC Logo Patches, 50 pieces", price: "230.00" },
+      { name: "Leather Logo Patches, 50 pieces", price: "220.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
   "custom-name-patches": {
     name: "Custom Name Patches",
@@ -148,12 +130,10 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "4.40",
     offerCount: "3",
     offers: [
-      { name: "Embroidered Name Patches — 50 pieces", price: "180.00" },
-      { name: "Woven Name Patches — 50 pieces", price: "220.00" },
-      { name: "Embroidered Name Patches — 100 pieces", price: "240.00" },
+      { name: "Embroidered Name Patches, 50 pieces", price: "180.00" },
+      { name: "Woven Name Patches, 50 pieces", price: "220.00" },
+      { name: "Embroidered Name Patches, 100 pieces", price: "240.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
   "custom-anime-patches": {
     name: "Custom Anime Patches",
@@ -163,12 +143,10 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "4.40",
     offerCount: "3",
     offers: [
-      { name: "Embroidered Anime Patches — 50 pieces", price: "180.00" },
-      { name: "Embroidered Anime Patches — 100 pieces", price: "240.00" },
-      { name: "Woven Anime Patches — 50 pieces", price: "220.00" },
+      { name: "Embroidered Anime Patches, 50 pieces", price: "180.00" },
+      { name: "Embroidered Anime Patches, 100 pieces", price: "240.00" },
+      { name: "Woven Anime Patches, 50 pieces", price: "220.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
   "custom-soccer-patches": {
     name: "Custom Soccer Patches",
@@ -178,12 +156,10 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "4.40",
     offerCount: "3",
     offers: [
-      { name: "Embroidered Soccer Patches — 50 pieces", price: "180.00" },
-      { name: "Woven Soccer Patches — 50 pieces", price: "220.00" },
-      { name: "Embroidered Soccer Patches — 100 pieces", price: "240.00" },
+      { name: "Embroidered Soccer Patches, 50 pieces", price: "180.00" },
+      { name: "Woven Soccer Patches, 50 pieces", price: "220.00" },
+      { name: "Embroidered Soccer Patches, 100 pieces", price: "240.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
   "custom-hockey-patches": {
     name: "Custom Hockey Patches",
@@ -193,12 +169,10 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "4.40",
     offerCount: "3",
     offers: [
-      { name: "Embroidered Hockey Patches — 50 pieces", price: "180.00" },
-      { name: "Woven Hockey Patches — 50 pieces", price: "220.00" },
-      { name: "Embroidered Hockey Patches — 100 pieces", price: "240.00" },
+      { name: "Embroidered Hockey Patches, 50 pieces", price: "180.00" },
+      { name: "Woven Hockey Patches, 50 pieces", price: "220.00" },
+      { name: "Embroidered Hockey Patches, 100 pieces", price: "240.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
   "custom-baseball-patches": {
     name: "Custom Baseball Patches",
@@ -208,12 +182,10 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "4.40",
     offerCount: "3",
     offers: [
-      { name: "Embroidered Baseball Patches — 50 pieces", price: "180.00" },
-      { name: "Woven Baseball Patches — 50 pieces", price: "220.00" },
-      { name: "Embroidered Baseball Patches — 100 pieces", price: "240.00" },
+      { name: "Embroidered Baseball Patches, 50 pieces", price: "180.00" },
+      { name: "Woven Baseball Patches, 50 pieces", price: "220.00" },
+      { name: "Embroidered Baseball Patches, 100 pieces", price: "240.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
   "custom-rock-band-patches": {
     name: "Custom Rock Band Patches",
@@ -223,12 +195,10 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     highPrice: "4.40",
     offerCount: "3",
     offers: [
-      { name: "Embroidered Rock Band Patches — 50 pieces", price: "180.00" },
-      { name: "Woven Rock Band Patches — 50 pieces", price: "220.00" },
-      { name: "Embroidered Rock Band Patches — 100 pieces", price: "240.00" },
+      { name: "Embroidered Rock Band Patches, 50 pieces", price: "180.00" },
+      { name: "Woven Rock Band Patches, 50 pieces", price: "220.00" },
+      { name: "Embroidered Rock Band Patches, 100 pieces", price: "240.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   },
 };
 
@@ -243,12 +213,10 @@ function buildGenericSchema(styleName: string, slug: string): ProductSchemaData 
     highPrice: "6.80",
     offerCount: "3",
     offers: [
-      { name: `${styleName} — 50 pieces`, price: "180.00" },
-      { name: `${styleName} — 100 pieces`, price: "240.00" },
-      { name: `${styleName} — 500 pieces`, price: "750.00" },
+      { name: `${styleName}, 50 pieces`, price: "180.00" },
+      { name: `${styleName}, 100 pieces`, price: "240.00" },
+      { name: `${styleName}, 500 pieces`, price: "750.00" },
     ],
-    ratingValue: "4.8",
-    reviewCount: "66",
   };
 }
 
@@ -288,12 +256,6 @@ export function getPatchStyleProductSchema(slug: string, styleName: string) {
         "availability": "https://schema.org/InStock",
         "priceValidUntil": "2027-01-01",
       })),
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": data.ratingValue,
-      "reviewCount": data.reviewCount,
-      "bestRating": "5",
     },
   };
 }

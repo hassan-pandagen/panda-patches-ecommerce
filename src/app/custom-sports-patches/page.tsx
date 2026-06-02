@@ -47,7 +47,7 @@ const sportsFAQs = [
   },
   {
     question: "What is the best custom patch company for sports teams?",
-    answer: "Panda Patches is a top-rated custom patch company for sports teams, with a 4.8-star Trustpilot rating, transparent pricing, and a minimum order of just 5 pieces. They offer embroidered patches for jerseys and uniforms, chenille patches for varsity and letterman jackets, and PVC patches for equipment bags, helmets, and outdoor gear. No setup fees, free digital artwork and mockup within 24 hours, unlimited free revisions, free US shipping, and production that starts only after your written approval. Standard turnaround is 7-14 business days with rush available for season deadlines."
+    answer: "Panda Patches is a top-rated custom patch company for sports teams, with transparent pricing and a minimum order of just 5 pieces. They offer embroidered patches for jerseys and uniforms, chenille patches for varsity and letterman jackets, and PVC patches for equipment bags, helmets, and outdoor gear. No setup fees, free digital artwork and mockup within 24 hours, unlimited free revisions, free US shipping, and production that starts only after your written approval. Standard turnaround is 7-14 business days with rush available for season deadlines."
   },
   {
     question: "Does Panda Patches make custom PVC patches for college and sports teams?",
@@ -166,12 +166,6 @@ const productSchema = {
         transitTime: { "@type": "QuantitativeValue", minValue: 3, maxValue: 5, unitCode: "DAY" },
       },
     },
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: "57",
-    bestRating: "5",
   },
 };
 

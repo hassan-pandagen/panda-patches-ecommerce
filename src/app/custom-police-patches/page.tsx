@@ -94,7 +94,7 @@ export async function generateMetadata(): Promise<Metadata> {
     : 'https://www.pandapatches.com/assets/og-image.png';
   return {
     title: "Custom Police Patches | Department, Tactical & Memorial | Panda Patches",
-    description: "Custom police department patches with badge replication, subdued tactical, PVC, K-9, SWAT, and memorial rush. Low 5-piece minimum. Free mockup in 24 hours. 4.8 stars on Trustpilot.",
+    description: "Custom police department patches with badge replication, subdued tactical, PVC, K-9, SWAT, and memorial rush. Low 5-piece minimum. Free mockup in 24 hours. Free US shipping.",
     alternates: { canonical: "https://www.pandapatches.com/custom-police-patches" },
     openGraph: {
       title: "Custom Police & Law Enforcement Patches | Panda Patches",
@@ -150,12 +150,6 @@ const productSchema = {
         transitTime: { "@type": "QuantitativeValue", minValue: 3, maxValue: 5, unitCode: "DAY" },
       },
     },
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: "57",
-    bestRating: "5",
   },
 };
 

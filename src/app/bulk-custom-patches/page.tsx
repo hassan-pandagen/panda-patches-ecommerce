@@ -54,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
   return {
-    title: "Bulk Custom Patches | Wholesale from $0.50/pc | 4.8★",
+    title: "Bulk Custom Patches | Wholesale from $0.50/pc | Panda Patches",
     description: "Bulk custom patches at wholesale prices. Volume discounts from $0.50/pc. Embroidered, PVC, woven & more. Free design, no setup fees. 1M+ patches delivered. Get your bulk quote today!",
     alternates: {
       canonical: "https://www.pandapatches.com/bulk-custom-patches",
@@ -115,12 +115,6 @@ const productSchema = {
         transitTime: { "@type": "QuantitativeValue", minValue: 3, maxValue: 5, unitCode: "DAY" },
       },
     },
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: "57",
-    bestRating: "5",
   },
 };
 
