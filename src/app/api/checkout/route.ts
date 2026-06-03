@@ -21,7 +21,7 @@ const supabase = createClient(
 const CheckoutSchema = z.object({
   productName: z.string().min(1, 'Product name is required').max(100, 'Product name too long'),
   price: z.number().positive('Price must be positive').max(100000, 'Price too high'),
-  quantity: z.number().int('Quantity must be an integer').min(1, 'Minimum quantity is 1').max(10000, 'Quantity too high'),
+  quantity: z.number().int('Quantity must be an integer').min(5, 'Minimum order is 5 pieces').max(10000, 'Quantity too high'),
   backing: z.string().max(100, 'Backing type too long').optional().or(z.literal('')),
   color: z.string().max(100).optional().or(z.null()).or(z.literal('')),
   width: z.number().positive('Width must be positive').min(0.5, 'Minimum width is 0.5 inches').max(50, 'Maximum width is 50 inches'),

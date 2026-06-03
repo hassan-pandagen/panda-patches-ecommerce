@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "What is the minimum order at Panda Patches?",
     answer:
-      "Panda Patches accepts custom orders from as few as 5 pieces through the quote form. Fixed-price starter packs on the offers page start at 25 pieces (chenille) or 50 pieces (embroidered, PVC, woven, leather). There is no hard minimum-order requirement. Small first runs of 10 to 40 pieces are common.",
+      "Panda Patches accepts custom orders from as few as 5 pieces through the quote form. 5 pieces is the hard minimum order quantity across all patch types. Fixed-price starter packs on the offers page start at 25 pieces (chenille) or 50 pieces (embroidered, PVC, woven, leather). Small first runs of 5 to 40 pieces are common.",
   },
   {
     question: "How does rush pricing work at Panda Patches?",

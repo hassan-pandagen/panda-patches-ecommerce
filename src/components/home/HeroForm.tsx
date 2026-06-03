@@ -275,10 +275,10 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           </div>
           <div>
             <input
-              {...register("quantity", { required: "Quantity is required", min: { value: 1, message: "Min 1" } })}
-              placeholder="Quantity *"
+              {...register("quantity", { required: "Quantity is required", min: { value: 5, message: "Minimum order is 5 pieces" } })}
+              placeholder="Quantity (min 5) *"
               type="number"
-              min="1"
+              min="5"
               className={`form-input ${errors.quantity ? 'border-red-400 bg-red-50' : ''}`}
             />
             {errors.quantity && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.quantity.message)}</p>}

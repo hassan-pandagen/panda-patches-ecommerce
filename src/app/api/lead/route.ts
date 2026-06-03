@@ -10,7 +10,7 @@ const supabase = createClient(
 
 const LeadSchema = z.object({
   productName: z.string().min(1).max(100),
-  quantity: z.number().int().min(1).max(10000),
+  quantity: z.number().int().min(5, 'Minimum order is 5 pieces').max(10000),
   backing: z.string().max(100).optional().or(z.literal('')),
   color: z.string().max(100).optional().or(z.null()).or(z.literal('')),
   width: z.number().positive().min(0.5).max(50),

@@ -19,7 +19,7 @@ const QuoteSchema = z.object({
   details: z.object({
     width: z.number().min(0).max(50),
     height: z.number().min(0).max(50),
-    quantity: z.number().int().min(1).max(100000),
+    quantity: z.number().int().min(5, 'Minimum order is 5 pieces').max(100000),
     backing: z.string().min(1).max(50),
     placement: z.string().max(200).optional().or(z.literal('')),
     instructions: z.string().max(2000).optional().or(z.literal('')),

@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 const bulkFAQs = [
   {
     question: "What's the minimum order for bulk pricing?",
-    answer: "We start bulk pricing at 50 pieces — no strict minimum. You get better rates at 100+, 500+, and 1,000+ pieces. Whether you need 50 patches for your team or 50,000 for a national rollout, we've got you covered."
+    answer: "Our overall minimum order is 5 pieces. Bulk pricing tiers kick in at 50 pieces, with better rates at 100+, 500+, and 1,000+. Whether you need 50 patches for your team or 50,000 for a national rollout, we've got you covered."
   },
   {
     question: "Can I get a pre-production sample before placing a large order?",

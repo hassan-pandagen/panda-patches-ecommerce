@@ -152,14 +152,14 @@ export default function ComplexCalculator({
   const [height, setHeight] = useState(3);
   const [widthInput, setWidthInput] = useState('3');
   const [heightInput, setHeightInput] = useState('3');
-  const [quantity, setQuantity] = useState(1);
-  const [quantityInput, setQuantityInput] = useState('1');
+  const [quantity, setQuantity] = useState(5);
+  const [quantityInput, setQuantityInput] = useState('5');
 
   // Contact State (used in Step 2)
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [fieldErrors, setFieldErrors] = useState<{ name?: string; email?: string; address?: string }>({});
+  const [fieldErrors, setFieldErrors] = useState<{ name?: string; email?: string; address?: string; quantity?: string }>({});
 
   // Shipping Address State (single field for reduced friction)
   const [address, setAddress] = useState("");
@@ -221,7 +221,7 @@ export default function ComplexCalculator({
       if (s.selectedColor) setSelectedColor(s.selectedColor);
       if (s.width) { const w = Math.ceil(s.width); setWidth(w); setWidthInput(String(w)); }
       if (s.height) { const h = Math.ceil(s.height); setHeight(h); setHeightInput(String(h)); }
-      if (s.quantity) { setQuantity(s.quantity); setQuantityInput(String(s.quantity)); }
+      if (s.quantity) { const q = Math.max(5, s.quantity); setQuantity(q); setQuantityInput(String(q)); }
       if (s.fileUrl) { setFiles([{ url: s.fileUrl, name: s.fileName || '' }]); }
       if (s.name) setName(s.name);
       if (s.email) setEmail(s.email);
@@ -307,7 +307,8 @@ export default function ComplexCalculator({
         setFieldErrors({ name: priceResult.error });
         return false;
       }
-      const errs: { name?: string; email?: string } = {};
+      const errs: { name?: string; email?: string; quantity?: string } = {};
+      if (quantity < 5) errs.quantity = "Minimum order is 5 pieces";
       if (!name) errs.name = "Name is required";
       if (!email) errs.email = "Email is required";
       else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = "Please enter a valid email";
@@ -418,6 +419,12 @@ export default function ComplexCalculator({
       return;
     }
 
+    if (quantity < 5) {
+      setFieldErrors(p => ({ ...p, quantity: 'Minimum order is 5 pieces' }));
+      calcRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
     if (!email) {
       setFieldErrors({ email: "Email is required" });
       setCurrentStep(1);
@@ -455,6 +462,13 @@ export default function ComplexCalculator({
 
   const handleCheckout = async (e: any) => {
     e.preventDefault();
+
+    if (quantity < 5) {
+      setFieldErrors(p => ({ ...p, quantity: 'Minimum order is 5 pieces' }));
+      setCurrentStep(1);
+      calcRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
 
     if (!validateStep(2)) {
       return;
@@ -870,21 +884,34 @@ export default function ComplexCalculator({
                     if (val === '' || /^\d+$/.test(val)) {
                       setQuantityInput(val);
                       if (val !== '') {
-                        setQuantity(Math.max(1, Number(val)));
+                        setQuantity(Number(val));
                       }
+                      setFieldErrors(p => ({ ...p, quantity: undefined }));
                     }
                   }}
                   onBlur={(e) => {
                     const val = e.target.value;
-                    const num = val === '' ? 1 : Math.max(1, Number(val));
-                    setQuantity(num);
-                    setQuantityInput(String(num));
+                    const num = val === '' ? 0 : Number(val);
+                    if (num < 5) {
+                      setQuantity(num);
+                      setQuantityInput(val);
+                      setFieldErrors(p => ({ ...p, quantity: 'Minimum order is 5 pieces' }));
+                    } else {
+                      setQuantity(num);
+                      setQuantityInput(String(num));
+                      setFieldErrors(p => ({ ...p, quantity: undefined }));
+                    }
                   }}
-                  style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: '#9ca3af' }}
+                  style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: fieldErrors.quantity ? '#f87171' : '#9ca3af', background: fieldErrors.quantity ? '#fef2f2' : '#fff' }}
                   className="w-full h-[52px] rounded-[12px] px-6 font-black text-2xl text-black outline-none focus:border-black transition-all"
                 />
                 <div className="absolute right-5 top-1/2 -translate-y-1/2 text-xs text-gray-500 font-bold pointer-events-none uppercase tracking-wide">Pieces</div>
               </div>
+              {fieldErrors.quantity ? (
+                <p className="text-red-500 text-[12px] mt-1.5 font-semibold">⚠ {fieldErrors.quantity}</p>
+              ) : (
+                <p className="text-gray-500 text-[12px] mt-1.5 font-medium">Minimum order: 5 pieces</p>
+              )}
             </div>
 
             {/* 4. ARTWORK UPLOAD - Moved UP */}

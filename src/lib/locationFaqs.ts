@@ -6,7 +6,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can Alabama sports teams get custom patches for their uniforms?",
-      answer: "Yes. We work with high school, college, and semi-pro sports teams across Alabama. Whether you need embroidered sleeve patches for a football program, chenille letterman patches for a basketball team, or woven patches for a soccer club, we handle orders from 1 piece to 10,000 with free design included."
+      answer: "Yes. We work with high school, college, and semi-pro sports teams across Alabama. Whether you need embroidered sleeve patches for a football program, chenille letterman patches for a basketball team, or woven patches for a soccer club, we handle orders from 5 pieces to 10,000 with free design included."
     },
     {
       question: "What patch type holds up best in Alabama's hot and humid summers?",
@@ -248,7 +248,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can LA streetwear brands order custom patches for apparel drops?",
-      answer: "Yes. We work with streetwear brands throughout Los Angeles County producing iron-on, sew-on, and heat-transfer patches for denim jackets, hoodies, and caps. Minimum orders start at just 1 piece, and per-unit pricing drops significantly at 50 and 100 pieces — perfect for limited release drops. We can produce chenille patches in the classic varsity style popular in LA's current fashion moment."
+      answer: "Yes. We work with streetwear brands throughout Los Angeles County producing iron-on, sew-on, and heat-transfer patches for denim jackets, hoodies, and caps. Minimum orders start at just 5 pieces, and per-unit pricing drops significantly at 50 and 100 pieces, perfect for limited release drops. We can produce chenille patches in the classic varsity style popular in LA's current fashion moment."
     },
     {
       question: "What patch style is most popular with Los Angeles's surf and skate community?",
@@ -358,7 +358,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Do Bay Area startups order patches for their launch events and swag?",
-      answer: "Yes. San Francisco's startup ecosystem loves patches as a tactile, memorable alternative to standard tech swag. We work with Series A companies at Caltrain corridor offices and YC-backed startups in SOMA to produce branded logo patches for launch kits, hackathon prizes, and team gear. Minimum order starts at 1 piece — perfect for a startup testing their brand on patch merchandise."
+      answer: "Yes. San Francisco's startup ecosystem loves patches as a tactile, memorable alternative to standard tech swag. We work with Series A companies at Caltrain corridor offices and YC-backed startups in SOMA to produce branded logo patches for launch kits, hackathon prizes, and team gear. Minimum order starts at 5 pieces, perfect for a startup testing their brand on patch merchandise."
     },
     {
       question: "What patch types are best for San Francisco's fog and cool climate?",
@@ -568,7 +568,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Do you produce fan tifo patches and supporter scarf patches for MLS and USL fans?",
-      answer: "Yes. Supporter group patches for soccer scarves, flags, and matchday jackets are a growing product category. We work with organized supporter groups for MLS, USL, and NWSL clubs to produce high-quality patches for group merchandise. Minimum orders start at 1 piece with volume pricing becoming attractive at 50 pieces — typical for supporter group bulk orders before a home opener."
+      answer: "Yes. Supporter group patches for soccer scarves, flags, and matchday jackets are a growing product category. We work with organized supporter groups for MLS, USL, and NWSL clubs to produce high-quality patches for group merchandise. Minimum orders start at 5 pieces with volume pricing becoming attractive at 50 pieces, typical for supporter group bulk orders before a home opener."
     }
   ],
   "custom-hockey-patches": [
