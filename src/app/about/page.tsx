@@ -18,19 +18,19 @@ const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"),
 export async function generateMetadata(): Promise<Metadata> {
   const ogImage = await getSanityOgImage();
   return {
-    title: "About Panda Patches | 8+ Years Custom Patch Experts",
-    description: "Learn about Panda Patches. 8+ years creating custom embroidered patches with low minimums. Family-owned factory with free 24-hour design mockup and money-back guarantee.",
+    title: "About Panda Patches | 13 Years Custom Patch Experts",
+    description: "Learn about Panda Patches. 13 years of custom embroidered patch experience with low minimums. Family-owned with free 24-hour design mockup and money-back guarantee.",
     openGraph: {
-      title: "About Panda Patches | 8+ Years Custom Patch Experts",
-      description: "Family-owned custom patch manufacturer with 8+ years experience. Low minimums, free design services, money-back guarantee.",
+      title: "About Panda Patches | 13 Years Custom Patch Experts",
+      description: "Family-owned custom patch company with 13 years of experience. Low minimums, free design services, money-back guarantee.",
       type: "website",
       url: "https://www.pandapatches.com/about",
       images: [{ url: ogImage, width: 1200, height: 630, alt: "About Panda Patches" }],
     },
     twitter: {
       card: "summary_large_image",
-      title: "About Panda Patches | 8+ Years Custom Patch Experts",
-      description: "Family-owned custom patch manufacturer with 8+ years experience. Low minimums, free design services.",
+      title: "About Panda Patches | 13 Years Custom Patch Experts",
+      description: "Family-owned custom patch company with 13 years of experience. Low minimums, free design services.",
       images: [ogImage],
     },
     alternates: {

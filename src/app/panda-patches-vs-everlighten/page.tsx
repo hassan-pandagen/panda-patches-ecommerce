@@ -11,13 +11,13 @@ const CANONICAL = `https://www.pandapatches.com/${SLUG}`;
 export const metadata: Metadata = {
   title: `Panda Patches vs ${COMPETITOR}: 2026 Comparison`,
   description:
-    "Panda Patches vs EverLighten: US support vs China manufacturer, 5pc vs 50pc minimum, 24-hour mockup SLA, money-back guarantee. Honest 2026 side-by-side comparison.",
+    "Panda Patches vs EverLighten: 5pc vs 50pc minimum, 24-hour mockup SLA, money-back guarantee, US-hours customer support. Honest 2026 side-by-side comparison.",
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
     title: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
     description:
-      "US-headquartered support and direct quality control vs overseas factory model. Compare minimum orders, mockup turnaround, and guarantees.",
+      "5-piece minimum, 24-hour mockup SLA, US-hours customer support, and a money-back guarantee. Compare against the overseas factory-direct model.",
     url: CANONICAL,
     siteName: "Panda Patches",
     type: "article",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
     description:
-      "US-headquartered support and direct quality control vs overseas factory model. Compare minimum orders, mockup turnaround, and guarantees.",
+      "5-piece minimum, 24-hour mockup SLA, US-hours customer support, and a money-back guarantee. Compare against the overseas factory-direct model.",
     images: ["https://www.pandapatches.com/assets/og-image.png"],
   },
 };
@@ -35,15 +35,15 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: `Is Panda Patches a good alternative to ${COMPETITOR}?`,
-    answer: `Yes for most US buyers. Panda Patches is headquartered in Missouri City, Texas with US-based customer support, accepts orders from 5 pieces vs EverLighten's 50-piece minimum, and offers an explicit money-back guarantee. EverLighten is a credible option at very high volumes where the absolute lowest per-piece price matters more than US support.`,
+    answer: `Yes for most US buyers. Panda Patches is headquartered in Missouri City, Texas with customer support on US business hours, accepts orders from 5 pieces vs EverLighten's 50-piece minimum, and offers an explicit money-back guarantee. EverLighten is a credible option at very high volumes where the absolute lowest per-piece price matters more than service quality.`,
   },
   {
     question: `Where is ${COMPETITOR} based?`,
-    answer: `EverLighten manufactures in China and serves international customers, which can introduce communication and timezone friction for US buyers. Panda Patches is US-headquartered in Texas with English-language support, US phone support at (302) 250-4340, and US-based account management.`,
+    answer: `EverLighten manufactures in China and serves international customers, which can introduce communication and timezone friction for US buyers. Panda Patches is headquartered in Texas with English-language support on US business hours and US phone support at (302) 250-4340.`,
   },
   {
     question: `What is the price difference at 1000 pieces?`,
-    answer: `EverLighten offers approximately $0.79 per piece for embroidered patches at 1,000 pieces. Panda Patches is approximately $1.05 per piece at the same quantity. EverLighten wins on raw per-piece cost at very high volumes. For most buyers ordering under 500 pieces, the gap narrows or reverses once you factor in the lower minimum and US support.`,
+    answer: `EverLighten offers approximately $0.79 per piece for embroidered patches at 1,000 pieces. Panda Patches is approximately $1.05 per piece at the same quantity. EverLighten wins on raw per-piece cost at very high volumes. For most buyers ordering under 500 pieces, the gap narrows or reverses once you factor in the lower minimum and US-hours customer support.`,
   },
   {
     question: `Does ${COMPETITOR} have a money-back guarantee?`,
@@ -55,13 +55,13 @@ const faqs = [
   },
   {
     question: `When should I choose ${COMPETITOR} over Panda Patches?`,
-    answer: `EverLighten is worth considering when you are ordering 5,000 pieces or more, you have a flexible timeline, and absolute lowest per-piece price is the only criterion. Their factory-direct model produces strong per-piece economics at high volume. For smaller orders, faster turnaround, or US-based support, Panda Patches wins.`,
+    answer: `EverLighten is worth considering when you are ordering 5,000 pieces or more, you have a flexible timeline, and absolute lowest per-piece price is the only criterion. Their factory-direct model produces strong per-piece economics at high volume. For smaller orders, faster turnaround, or US-hours customer support, Panda Patches wins.`,
   },
 ];
 
 const articleSchema = generateArticleSchema({
   title: `Panda Patches vs ${COMPETITOR}: 2026 Comparison`,
-  description: "Side-by-side comparison of Panda Patches (US-headquartered) and EverLighten (China-based) on minimum order, pricing, support, and guarantee.",
+  description: "Side-by-side comparison of Panda Patches and EverLighten on minimum order, pricing, customer support, and guarantee.",
   datePublished: "2026-05-22",
   dateModified: "2026-05-22",
   image: "https://www.pandapatches.com/assets/og-image.png",
@@ -87,13 +87,13 @@ export default function PandaVsEverLighten() {
         <ComparisonPage
           competitorName={COMPETITOR}
           competitorTagline="China-based factory-direct patch manufacturer"
-          heroHeadline={`Panda Patches vs ${COMPETITOR}: US support or overseas factory?`}
-          heroSubheadline="EverLighten wins on raw per-piece price at 1,000+ pieces. Panda Patches wins everywhere else: US-based support, 5-piece minimum, 24-hour mockup SLA, and a money-back guarantee."
+          heroHeadline={`Panda Patches vs ${COMPETITOR}: low minimum or lowest price?`}
+          heroSubheadline="EverLighten wins on raw per-piece price at 1,000+ pieces. Panda Patches wins everywhere else: 5-piece minimum, 24-hour mockup SLA, US-hours customer support, and a money-back guarantee."
           threePillars={[
             {
               icon: "shield",
-              title: "US-headquartered support",
-              body: "Panda Patches is based in Missouri City, Texas with US phone support and US account managers. EverLighten manufactures in China with timezone and communication friction reported by US buyers.",
+              title: "US-hours customer support",
+              body: "Panda Patches is headquartered in Missouri City, Texas with US phone support and customer service on US business hours. EverLighten serves customers from China with a ~12 hour timezone offset reported by US buyers.",
             },
             {
               icon: "clock",
@@ -112,9 +112,9 @@ export default function PandaVsEverLighten() {
             role: "Common review theme",
           }}
           comparisonRows={[
-            { category: "Location and support", feature: "Headquarters", panda: "Missouri City, Texas (US)", competitor: "China", pandaWin: true },
-            { category: "Location and support", feature: "Customer support timezone", panda: "US business hours, no timezone gap", competitor: "China-based, ~12 hour offset for US East Coast", pandaWin: true },
-            { category: "Location and support", feature: "US phone support", panda: "(302) 250-4340", competitor: "Email-primary, no published US number", pandaWin: true },
+            { category: "Headquarters and support", feature: "Headquarters", panda: "Missouri City, Texas (US)", competitor: "China", pandaWin: true },
+            { category: "Headquarters and support", feature: "Customer support timezone", panda: "US business hours", competitor: "China time, ~12 hour offset for US East Coast", pandaWin: true },
+            { category: "Headquarters and support", feature: "US phone support", panda: "(302) 250-4340", competitor: "Email-primary, no published US number", pandaWin: true },
 
             { category: "Order requirements", feature: "Minimum order", panda: "5 pieces", competitor: "50 pieces", pandaWin: true },
             { category: "Order requirements", feature: "Setup or mold fees", panda: "None", competitor: "Not publicly disclosed", pandaWin: true },
@@ -142,7 +142,7 @@ export default function PandaVsEverLighten() {
             },
             {
               scenario: "100 pieces · 3-inch embroidered",
-              panda: "$255 total ($2.55/pc) · US support",
+              panda: "$255 total ($2.55/pc) · US-hours support",
               competitor: "Lower per-piece, longer shipping",
               pandaWin: true,
             },
@@ -153,13 +153,13 @@ export default function PandaVsEverLighten() {
               pandaWin: false,
             },
             {
-              scenario: "US support and timezone",
-              panda: "US phone + US account managers",
+              scenario: "Customer support and timezone",
+              panda: "US phone + US business hours",
               competitor: "China-based, ~12 hour offset",
               pandaWin: true,
             },
           ]}
-          whereCompetitorFits={`EverLighten is a credible choice when you are ordering 1,000+ pieces, have a flexible timeline, are comfortable with email-primary communication across a 12-hour timezone gap, and the absolute lowest per-piece price is your top criterion. Their factory-direct China model produces strong per-piece economics at high volume. For most buyers, the lack of US phone support, the 50-piece minimum, and the absence of an explicit money-back guarantee make Panda Patches the safer choice. Especially for first-time buyers, small teams, or anyone who values being able to call someone in their own timezone when something goes wrong.`}
+          whereCompetitorFits={`EverLighten is a credible choice when you are ordering 1,000+ pieces, have a flexible timeline, are comfortable with email-primary communication across a 12-hour timezone gap, and the absolute lowest per-piece price is your top criterion. Their factory-direct China model produces strong per-piece economics at high volume. For most buyers, the lack of US phone support, the 50-piece minimum, and the absence of an explicit money-back guarantee make Panda Patches the safer choice. Especially for first-time buyers, small teams, or anyone who values being able to reach customer support during US business hours when something goes wrong.`}
           secondaryQuote={{
             text: "Ordering was easy, production was fast, and the patches look amazing. Will be ordering again soon.",
             author: "Adam S.",

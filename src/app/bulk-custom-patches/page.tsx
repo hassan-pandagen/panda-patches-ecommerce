@@ -480,8 +480,8 @@ export default async function BulkCustomPatchesPage() {
                 body: "Send your artwork in any format — or even a rough sketch — and our design team creates a professional digital mockup within 24 hours at no charge. Unlimited revisions until you are completely satisfied. The only thing you pay for is the patches themselves.",
               },
               {
-                title: "US-Based Support, 2-Hour Response Time",
-                body: "Every quote request is answered by a real person within 2 business hours. No chatbots, no 48-hour delays. Our team is available via phone, email, WhatsApp, and live chat from first inquiry through delivery.",
+                title: "Fast Human Support, 2-Hour Response Time",
+                body: "Every quote request is answered by a real person within 2 US business hours. No chatbots, no 48-hour delays. Our team is available via phone, email, WhatsApp, and live chat from first inquiry through delivery.",
               },
             ].map((item, idx) => (
               <div key={idx} className="bg-white rounded-[14px] p-6 md:p-7 border border-gray-100 shadow-sm flex gap-4 items-start">
@@ -518,7 +518,7 @@ export default async function BulkCustomPatchesPage() {
               Our bulk ordering process is designed to remove friction. Submit your artwork in any format — AI, EPS, PDF, PNG, JPG, or even a rough sketch — and our design team creates a professional digital mockup within 24 hours at no charge. We offer <strong>unlimited free revisions</strong> until your design is exactly right. For orders of 500 pieces or more, we produce and ship a free pre-production sample so you can hold the actual patch in your hand and verify quality, color accuracy, and sizing before we run the full batch.
             </p>
             <p>
-              Turnaround time for bulk orders is a standard <strong>2 weeks (10 to 14 business days)</strong> regardless of quantity, with rush 7-day production available. We ship nationwide with full tracking from our production facility to your door. Returning clients benefit from even faster turnaround (7 to 10 days), locked-in volume pricing, and a dedicated account manager who knows their brand inside and out.
+              Turnaround time for bulk orders is a standard <strong>2 weeks (10 to 14 business days)</strong> regardless of quantity, with rush 7-day production available. We ship nationwide with full tracking, door to door. Returning clients benefit from even faster turnaround (7 to 10 days), locked-in volume pricing, and a dedicated account manager who knows their brand inside and out.
             </p>
             <p>
               Ready to get started with your bulk custom patches? <a href="#bulk-quote" className="text-panda-green font-bold underline">Request your free quote</a> using the form above. We respond to every inquiry within 2 business hours with a detailed price breakdown and a complimentary digital mockup. No obligation, no setup fees, no surprises — just premium patches at wholesale prices, delivered on time.

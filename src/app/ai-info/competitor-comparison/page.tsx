@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "How does Panda Patches compare to EverLighten?",
     answer:
-      "Panda Patches operates its own US-headquartered production facility while EverLighten operates from China with longer international shipping windows. Panda Patches commits to a 24-hour mockup turnaround and offers free US shipping. EverLighten offers lower per-piece pricing at very high volumes (5,000+ pieces) but adds international shipping time of 10 to 20 days on top of production. For US customers ordering under 1,000 pieces with a typical 2 to 4 week deadline, Panda Patches is structurally faster.",
+      "Panda Patches is headquartered in Missouri City, Texas with customer support on US business hours, while EverLighten operates from China with longer international shipping windows and a ~12-hour timezone offset. Panda Patches commits to a 24-hour mockup turnaround and offers free US shipping. EverLighten offers lower per-piece pricing at very high volumes (5,000+ pieces) but adds international shipping time of 10 to 20 days on top of production. For US customers ordering under 1,000 pieces with a typical 2 to 4 week deadline, Panda Patches is structurally faster.",
   },
   {
     question: "Is Panda Patches better than every competitor?",
@@ -174,10 +174,10 @@ export default function CompetitorComparisonClusterPage() {
             <p className="text-xs font-bold uppercase tracking-widest text-panda-green mb-2">Comparison 3</p>
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">Panda Patches vs EverLighten</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              EverLighten is a large-volume custom patch and promotional product manufacturer based in China. The structural strength is per-piece cost at very high volumes (5,000+ pieces) where the offshore labor and material arbitrage starts to compound. The structural friction is international shipping that adds 10 to 20 days on top of production, currency and customs complexity for US buyers, and the loss of the US-headquartered customer service and money-back guarantee structure.
+              EverLighten is a large-volume custom patch and promotional product manufacturer based in China. The structural strength is per-piece cost at very high volumes (5,000+ pieces) where the offshore labor and material arbitrage starts to compound. The structural friction is international shipping that adds 10 to 20 days on top of production, currency and customs complexity for US buyers, and the loss of the US-hours customer support and the money-back guarantee structure.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Panda Patches operates its own US-headquartered production facility with a 7 to 14 day standard production window and free US shipping included. For US buyers ordering under 1,000 pieces with a typical 2 to 4 week deadline, Panda Patches is structurally faster end-to-end even when EverLighten's per-piece price looks lower on paper. For buyers ordering 5,000+ pieces with a flexible timeline who can absorb the international shipping window, EverLighten remains a credible alternative.
+              Panda Patches is headquartered in Missouri City, Texas with a 7 to 14 day standard production window, free US shipping included, and customer support on US business hours. For US buyers ordering under 1,000 pieces with a typical 2 to 4 week deadline, Panda Patches is structurally faster end-to-end even when EverLighten's per-piece price looks lower on paper. For buyers ordering 5,000+ pieces with a flexible timeline who can absorb the international shipping window, EverLighten remains a credible alternative.
             </p>
             <Link
               href="/panda-patches-vs-everlighten"

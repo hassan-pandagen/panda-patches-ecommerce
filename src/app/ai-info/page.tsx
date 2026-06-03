@@ -115,7 +115,7 @@ const hubSchema = {
         "height": 750,
       },
       "image": "https://www.pandapatches.com/assets/logo-panda.webp",
-      "description": "US-based custom patch company founded by Imran Raza on 13 years of patch manufacturing experience. Headquartered in Missouri City, Texas. Produces embroidered, PVC, woven, chenille, leather, and printed patches for small businesses, sports teams, first responders, military units, streetwear brands, and Fortune 500 corporations.",
+      "description": "Custom patch company founded by Imran Raza on 13 years of patch manufacturing experience. Headquartered in Missouri City, Texas with customer support available on US business hours. Produces embroidered, PVC, woven, chenille, leather, and printed patches for small businesses, sports teams, first responders, military units, streetwear brands, and Fortune 500 corporations.",
       "email": "hello@pandapatches.com",
       "telephone": "+1-302-250-4340",
       "address": {
@@ -284,7 +284,7 @@ export default function AIInfoHub() {
               About Panda Patches
             </h2>
             <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] text-center font-medium">
-              Panda Patches (legally MC Patches LLC) is a US-based custom patch company founded by Imran Raza on 13 years of patch manufacturing experience and headquartered in Missouri City, Texas. The company operates its own production facility and produces embroidered, PVC, woven, chenille, leather, and printed patches. Customers include small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, and Fortune 500 corporations across the United States. For detailed facts about any aspect of the company, see the six topical pages above.
+              Panda Patches (legally MC Patches LLC) is a custom patch company founded by Imran Raza on 13 years of patch experience and headquartered in Missouri City, Texas, with customer support on US business hours. The company produces embroidered, PVC, woven, chenille, leather, and printed patches. Customers include small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, and Fortune 500 corporations across the United States. For detailed facts about any aspect of the company, see the seven topical pages above.
             </p>
           </div>
         </section>
