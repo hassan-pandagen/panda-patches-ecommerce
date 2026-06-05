@@ -10,13 +10,13 @@ import { cache } from 'react';
 
 export const metadata: Metadata = {
   title: 'Custom Patch Packages — Fixed Prices from $25 | Panda Patches',
-  description: 'Order custom patch packages at fixed prices. Embroidered, woven, PVC, chenille and leather patches with free mockup, free shipping, and 7-14 day delivery.',
+  description: 'Order custom patch packages at fixed prices. Embroidered, woven, PVC, chenille and leather patches with digital mockup in 12 to 24 hours, free shipping, and 7-14 day delivery.',
   alternates: {
     canonical: 'https://www.pandapatches.com/offers',
   },
   openGraph: {
     title: 'Custom Patch Packages — Fixed Prices | Panda Patches',
-    description: 'Fixed-price patch packages with free mockup, free US shipping, and money-back guarantee. Embroidered, woven, PVC, chenille, leather.',
+    description: 'Fixed-price patch packages with digital mockup in 12 to 24 hours, free worldwide shipping, and money-back guarantee. Embroidered, woven, PVC, chenille, leather.',
     url: 'https://www.pandapatches.com/offers',
     type: 'website',
     images: [{ url: 'https://www.pandapatches.com/assets/og-image.png', width: 1200, height: 630, alt: 'Custom patch packages at fixed prices — Panda Patches' }],
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Custom Patch Packages — Fixed Prices | Panda Patches',
-    description: 'Fixed-price patch packages with free mockup, free US shipping, and money-back guarantee.',
+    description: 'Fixed-price patch packages with digital mockup in 12 to 24 hours, free worldwide shipping, and money-back guarantee.',
     images: ['https://www.pandapatches.com/assets/og-image.png'],
   },
 };
@@ -155,13 +155,13 @@ const getIndustryImages = cache(async (): Promise<Record<string, string>> => {
 });
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
-  'woven-u4': 'Custom woven patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free US shipping, free mockup, and money-back guarantee.',
-  'embroidered-u4': 'Custom embroidered patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free US shipping, free mockup, and money-back guarantee.',
-  'embroidered-12in': 'Custom 12-inch embroidered patches across the chest. Fixed-price packs from 25 to 100 pieces with free US shipping and free mockup.',
-  'pvc-u4': 'Custom PVC patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free US shipping, free mockup, and money-back guarantee.',
-  'chenille-u4': 'Custom chenille patches under 4 inches. Fixed-price packs from 25 to 100 pieces with free US shipping and free mockup.',
-  'chenille-12in': 'Custom 12-inch chenille patches. Fixed-price packs from 25 to 100 pieces with free US shipping and free mockup.',
-  'leather-u4': 'Custom leather patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free US shipping, free mockup, and money-back guarantee.',
+  'woven-u4': 'Custom woven patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free worldwide shipping, mockup in 12-24 hours, and money-back guarantee.',
+  'embroidered-u4': 'Custom embroidered patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free worldwide shipping, mockup in 12-24 hours, and money-back guarantee.',
+  'embroidered-12in': 'Custom 12-inch embroidered patches across the chest. Fixed-price packs from 25 to 100 pieces with free worldwide shipping and mockup in 12-24 hours.',
+  'pvc-u4': 'Custom PVC patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free worldwide shipping, mockup in 12-24 hours, and money-back guarantee.',
+  'chenille-u4': 'Custom chenille patches under 4 inches. Fixed-price packs from 25 to 100 pieces with free worldwide shipping and mockup in 12-24 hours.',
+  'chenille-12in': 'Custom 12-inch chenille patches. Fixed-price packs from 25 to 100 pieces with free worldwide shipping and mockup in 12-24 hours.',
+  'leather-u4': 'Custom leather patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free worldwide shipping, mockup in 12-24 hours, and money-back guarantee.',
 };
 
 export default async function OffersPage() {

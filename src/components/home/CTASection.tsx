@@ -12,7 +12,7 @@ export default async function CTASection() {
   const data = await getCTAData();
 
   // Fallback Data
-  const heading = data?.heading || "Get Your Free Mockup. Takes 60 Seconds.";
+  const heading = data?.heading || "Get Your Mockup in 12-24 Hours. Takes 60 Seconds.";
   const sub = data?.subheading || "Why wait? Select your options, share your artwork, and we'll get you started on your custom products.";
 
   // Use Sanity Image or Fallback to local

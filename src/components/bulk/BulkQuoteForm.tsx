@@ -149,7 +149,7 @@ export default function BulkQuoteForm() {
         }, function() {});
       }
 
-      setMessage({ type: "success", text: "Quote submitted! We'll respond within 2 business hours with your free mockup." });
+      setMessage({ type: "success", text: "Quote submitted! We'll respond within 2 business hours with your mockup in 12-24 hours." });
       setUploadedFiles([]);
       reset();
 
@@ -177,7 +177,7 @@ export default function BulkQuoteForm() {
           </div>
           <h3 className="text-[22px] font-black text-panda-dark mb-2">Quote Request Sent!</h3>
           <p className="text-gray-500 font-medium text-[14px] mb-6">
-            We&apos;ve received your bulk quote request. Our team will respond within 2 business hours with your free mockup.
+            We&apos;ve received your bulk quote request. Our team will respond within 2 business hours with your mockup in 12-24 hours.
           </p>
           <button
             type="button"
@@ -206,7 +206,7 @@ export default function BulkQuoteForm() {
           Get Your Free Bulk Quote
         </h3>
         <p className="text-[12px] md:text-[13px] text-gray-500 font-medium mt-1.5">
-          Free mockup included. We respond within 2 hours.
+          Mockup in 12-24 hours. We respond within 2 hours.
         </p>
       </div>
 

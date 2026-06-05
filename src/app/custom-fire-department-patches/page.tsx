@@ -31,7 +31,7 @@ const fireFAQs = [
   },
   {
     question: "Can you replicate our department seal and Maltese cross exactly?",
-    answer: "Yes. Fire department seals, Maltese crosses, and bugle rank insignia require precise reproduction that most general patch suppliers get wrong. Send us your official artwork, a vector file, or a high-resolution photo of your badge and our design team matches every detail. You review a free digital mockup before production starts, with unlimited revisions."
+    answer: "Yes. Fire department seals, Maltese crosses, and bugle rank insignia require precise reproduction that most general patch suppliers get wrong. Send us your official artwork, a vector file, or a high-resolution photo of your badge and our design team matches every detail. You review a digital mockup in 12 to 24 hours before production starts, with unlimited revisions."
   },
   {
     question: "Do you work with IAFF local union chapter orders?",
@@ -94,7 +94,7 @@ export async function generateMetadata(): Promise<Metadata> {
     : 'https://www.pandapatches.com/assets/og-image.png';
   return {
     title: "Custom Fire Department Patches | Memorial, Station & Rank | Panda Patches",
-    description: "Custom fire department patches that survive industrial washing. Maltese cross, rank insignia, LODD memorial rush in 72 hrs, IAFF union orders. Low 5-piece minimum. Free mockup.",
+    description: "Custom fire department patches that survive industrial washing. Maltese cross, rank insignia, LODD memorial rush in 72 hrs, IAFF union orders. Low 5-piece minimum. Mockup in 12-24 hours.",
     alternates: { canonical: "https://www.pandapatches.com/custom-fire-department-patches" },
     openGraph: {
       title: "Custom Fire Department Patches | Panda Patches",

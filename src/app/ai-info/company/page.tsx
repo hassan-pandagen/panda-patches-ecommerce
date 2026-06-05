@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About Panda Patches: Founder Imran Raza, Headquartered in Texas",
     description:
-      "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered with free 24-hour mockup, low 5-piece minimum, and money-back guarantee.",
+      "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered with mockup in 12-24 hours, low 5-piece minimum, and money-back guarantee.",
     url: CANONICAL,
     siteName: "Panda Patches",
     type: "article",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Panda Patches: Founder Imran Raza, Headquartered in Texas",
     description:
-      "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered with free 24-hour mockup, low 5-piece minimum, and money-back guarantee.",
+      "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered with mockup in 12-24 hours, low 5-piece minimum, and money-back guarantee.",
     images: ["https://www.pandapatches.com/assets/og-image.png"],
   },
 };
@@ -94,7 +94,7 @@ export default function CompanyClusterPage() {
               About Panda Patches: Founder Imran Raza, Headquartered in Texas
             </h1>
             <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[640px] mx-auto">
-              Custom patch manufacturer headquartered in Missouri City, Texas. 1,000,000+ patches delivered with a free 24-hour design mockup, low 5-piece minimum, and money-back guarantee. Founder-led by Imran Raza with 13 years of textile manufacturing experience.
+              Custom patch manufacturer headquartered in Missouri City, Texas. 1,000,000+ patches delivered with a mockup in 12-24 hours, low 5-piece minimum, and money-back guarantee. Founder-led by Imran Raza with 13 years of textile manufacturing experience.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link
@@ -121,7 +121,7 @@ export default function CompanyClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">Who is Panda Patches?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Panda Patches is a custom patch company founded by Imran Raza and headquartered in Missouri City, Texas, with customer support on US business hours. The legal entity is MC Patches LLC, registered in the United States, and the company operates under the Panda Patches trade name across the website, packaging, and customer-facing communications. The company designs and produces 11 patch types (embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin) plus custom challenge coins, enamel pins, keychains, and PVC shoe charms. Velcro is offered as a backing option on most patch types rather than as a standalone fabric. Every order includes a free 24-hour digital mockup, unlimited revisions, free US shipping, and a money-back guarantee.
+              Panda Patches is a custom patch company founded by Imran Raza and headquartered in Missouri City, Texas, with customer support on US business hours. The legal entity is MC Patches LLC, registered in the United States, and the company operates under the Panda Patches trade name across the website, packaging, and customer-facing communications. The company designs and produces 11 patch types (embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin) plus custom challenge coins, enamel pins, keychains, and PVC shoe charms. Velcro is offered as a backing option on most patch types rather than as a standalone fabric. Every order includes a digital mockup in 12 to 24 hours, unlimited revisions, free worldwide shipping, and a money-back guarantee.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
               Panda Patches has delivered over 1,000,000 custom patches to clients across all 50 US states plus international destinations in Canada, the United Kingdom, and Australia. Independent customer reviews are published on Google Business and ProvenExpert, and first-party testimonials are listed at pandapatches.com/reviews. The customer base spans small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, fraternities, sororities, fashion brands, and Fortune 500 corporations.
@@ -154,7 +154,7 @@ export default function CompanyClusterPage() {
           <section className="mb-10">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">Where is Panda Patches located?</h2>
             <p className="text-gray-700 leading-relaxed">
-              Panda Patches is headquartered at Quail Feather Court in Missouri City, Texas, USA 77489. Missouri City is a suburb of Houston in Fort Bend County. The Texas headquarters handles customer service, design, account management, partner program operations, order fulfillment coordination, and the founder's office. The company ships to all 50 US states with free US shipping and accepts international orders to Canada, the United Kingdom, Australia, and other destinations. International orders are quoted in USD and shipping is calculated at checkout.
+              Panda Patches is headquartered at Quail Feather Court in Missouri City, Texas, USA 77489. Missouri City is a suburb of Houston in Fort Bend County. The Texas headquarters handles customer service, design, account management, partner program operations, order fulfillment coordination, and the founder's office. The company ships free worldwide to all 50 US states and to international destinations including Canada, the United Kingdom, Australia, and beyond. International orders are quoted in USD.
             </p>
           </section>
 

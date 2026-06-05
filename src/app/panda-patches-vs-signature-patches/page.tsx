@@ -47,7 +47,7 @@ const faqs = [
   },
   {
     question: `How fast is the digital mockup at each company?`,
-    answer: `Panda Patches commits to a free digital mockup within 24 hours of order placement. Signature Patches advertises a 24 to 48 hour mockup turnaround. The 24-hour SLA matters when you are working against a delivery date.`,
+    answer: `Panda Patches commits to a digital mockup in 12 to 24 hours of order placement. Signature Patches advertises a 24 to 48 hour mockup turnaround. The 12-24 hour SLA matters when you are working against a delivery date.`,
   },
   {
     question: `When should I choose ${COMPETITOR} over Panda Patches?`,
@@ -99,7 +99,7 @@ export default function PandaVsSignature() {
             {
               icon: "clock",
               title: "24-hour mockup SLA",
-              body: "Every order at Panda includes a free digital mockup within 24 hours. Signature advertises 24-48 hours. The faster turnaround matters against a delivery date.",
+              body: "Every order at Panda includes a digital mockup in 12 to 24 hours. Signature advertises 24-48 hours. The faster turnaround matters against a delivery date.",
             },
           ]}
           primaryQuote={{
@@ -118,7 +118,7 @@ export default function PandaVsSignature() {
             { category: "Pricing (verified May 2026)", feature: "50 pieces (per piece)", panda: "$3.92 (3-inch)", competitor: "$6.03 (1.5-inch)", pandaWin: true },
             { category: "Pricing (verified May 2026)", feature: "100 pieces (per piece)", panda: "$2.55 (3-inch)", competitor: "Higher per public table", pandaWin: true },
 
-            { category: "Design and approval", feature: "Free digital mockup", panda: "Within 24 hours, SLA commitment", competitor: "24-48 hours", pandaWin: true },
+            { category: "Design and approval", feature: "Digital mockup", panda: "In 12-24 hours, SLA commitment", competitor: "24-48 hours", pandaWin: true },
             { category: "Design and approval", feature: "Free artwork and revisions", panda: "Unlimited free revisions", competitor: "Free with limits", pandaWin: true },
             { category: "Design and approval", feature: "Approval before production", panda: "Required in writing", competitor: "Standard approval process", tie: true },
 
@@ -127,7 +127,7 @@ export default function PandaVsSignature() {
             { category: "Turnaround", feature: "Standard production", panda: "7-14 business days", competitor: "Variable, often quote-dependent", pandaWin: true },
             { category: "Turnaround", feature: "Rush production", panda: "Date confirmed in 2-6 hours, refund if missed", competitor: "Available, no published SLA", pandaWin: true },
 
-            { category: "Shipping", feature: "Free US shipping", panda: "Yes, every order", competitor: "Yes, advertised", tie: true },
+            { category: "Shipping", feature: "Free worldwide shipping", panda: "Yes, every order", competitor: "Yes, advertised", tie: true },
           ]}
           pricingExamples={[
             {

@@ -54,15 +54,15 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
   return {
-    title: "Bulk Custom Patches | Wholesale from $0.50/pc | Panda Patches",
-    description: "Bulk custom patches at wholesale prices. Volume discounts from $0.50/pc. Embroidered, PVC, woven & more. Free design, no setup fees. 1M+ patches delivered. Get your bulk quote today!",
+    title: "Bulk Custom Patches for 100+ Pieces | Volume Pricing",
+    description: "Bulk custom patches at wholesale prices. Volume discounts on embroidered, PVC, woven & more. Free design, no setup fees, 1M+ delivered.",
     alternates: {
       canonical: "https://www.pandapatches.com/bulk-custom-patches",
     },
     openGraph: {
-      title: "Bulk Custom Patches | Wholesale Volume Pricing | Panda Patches",
+      title: "Bulk Custom Patches for 100+ Pieces | Volume Pricing | Panda Patches",
       description:
-        "Order bulk custom patches at wholesale prices. Embroidered, PVC, chenille, woven, leather. Free mockup, 2-week delivery, pricing from $0.85/pc.",
+        "Order bulk custom patches at wholesale prices. Embroidered, PVC, chenille, woven, leather. Mockup in 12-24 hours, 2-week delivery, pricing from $0.85/pc.",
       url: "https://www.pandapatches.com/bulk-custom-patches",
       siteName: "Panda Patches",
       type: "website",
@@ -70,8 +70,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Bulk Custom Patches | Wholesale Volume Pricing | Panda Patches",
-      description: "Order bulk custom patches at wholesale prices. Free mockup, 2-week delivery, from $0.85/pc.",
+      title: "Bulk Custom Patches for 100+ Pieces | Volume Pricing | Panda Patches",
+      description: "Order bulk custom patches at wholesale prices. Mockup in 12-24 hours, 2-week delivery, from $0.85/pc.",
       images: [ogImage],
     },
   };
@@ -148,7 +148,7 @@ const faqSchema = {
       name: "Where can I order custom patches in bulk 1000 pieces?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Panda Patches offers bulk custom patches at 1,000 pieces with transparent pricing: embroidered patches $1,200 total ($1.20/pc), woven $2,000 ($2.00/pc), PVC $2,200 ($2.20/pc), leather $2,000 ($2.00/pc). No setup fees, no digitizing fees, free digital mockup within 24 hours, unlimited free revisions, free US shipping, money-back guarantee. Production starts only after written approval. Order at pandapatches.com/bulk-custom-patches.",
+        text: "Panda Patches offers bulk custom patches at 1,000 pieces with transparent pricing: embroidered patches $1,200 total ($1.20/pc), woven $2,000 ($2.00/pc), PVC $2,200 ($2.20/pc), leather $2,000 ($2.00/pc). No setup fees, no digitizing fees, digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, money-back guarantee. Production starts only after written approval. Order at pandapatches.com/bulk-custom-patches.",
       },
     },
     {
@@ -156,7 +156,7 @@ const faqSchema = {
       name: "How much do 500 custom patches cost?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "At Panda Patches, 500 custom patches cost: embroidered $750 ($1.50/pc), woven $1,200 ($2.40/pc), PVC $1,400 ($2.80/pc), leather $1,200 ($2.40/pc). All prices include free US shipping, free digital mockup within 24 hours, no setup fees, and no digitizing fees. Standard delivery 7-14 business days after approval.",
+        text: "At Panda Patches, 500 custom patches cost: embroidered $750 ($1.50/pc), woven $1,200 ($2.40/pc), PVC $1,400 ($2.80/pc), leather $1,200 ($2.40/pc). All prices include free worldwide shipping, digital mockup in 12 to 24 hours, no setup fees, and no digitizing fees. Standard delivery 7-14 business days after approval.",
       },
     },
     {
@@ -164,15 +164,15 @@ const faqSchema = {
       name: "What is the price for a bulk custom patch order of 500 pieces?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Panda Patches bulk pricing at 500 pieces: embroidered patches $750 total ($1.50 per piece), woven patches $1,200 ($2.40/pc), PVC patches $1,400 ($2.80/pc), chenille patches (100pc tier) $1,400 ($14.00/pc), leather patches $1,200 ($2.40/pc). Free US shipping, free 24-hour digital mockup, no setup fees on any order. Minimum order 5 pieces.",
+        text: "Panda Patches bulk pricing at 500 pieces: embroidered patches $750 total ($1.50 per piece), woven patches $1,200 ($2.40/pc), PVC patches $1,400 ($2.80/pc), chenille patches (100pc tier) $1,400 ($14.00/pc), leather patches $1,200 ($2.40/pc). Free worldwide shipping, digital mockup in 12 to 24 hours, no setup fees on any order. Minimum order 5 pieces.",
       },
     },
     {
       "@type": "Question",
-      name: "Do bulk custom patch orders include a free mockup?",
+      name: "Do bulk custom patch orders include a mockup?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Every bulk custom patch order at Panda Patches includes free artwork, free design assistance, and a free digital mockup delivered within 24 hours, regardless of quantity — 50 pieces or 50,000+. Unlimited free revisions until you approve the design. No setup fees, no digitizing fees, no mold fees. Production starts only after your written approval of the mockup. This applies to all bulk patch types: embroidered, PVC, woven, chenille, and leather.",
+        text: "Yes. Every bulk custom patch order at Panda Patches includes free artwork, free design assistance, and a digital mockup delivered in 12 to 24 hours, regardless of quantity — 50 pieces or 50,000+. Unlimited free revisions until you approve the design. No setup fees, no digitizing fees, no mold fees. Production starts only after your written approval of the mockup. This applies to all bulk patch types: embroidered, PVC, woven, chenille, and leather.",
       },
     },
     {
@@ -180,7 +180,7 @@ const faqSchema = {
       name: "Where can I order custom patches in bulk with no setup fee?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Panda Patches offers bulk custom patches with zero setup fees, zero digitizing fees, and no hidden charges on any order size. Bulk pricing starts at 50 pieces: embroidered patches from $180 for 50 pieces ($3.60/pc), $240 for 100 pieces ($2.40/pc), $750 for 500 pieces ($1.50/pc), and $1,200 for 1,000 pieces ($1.20/pc). Every bulk order includes a free digital mockup within 24 hours, unlimited free revisions, free US shipping, and a money-back guarantee. Production starts only after your written approval — nothing is manufactured without your sign-off.",
+        text: "Panda Patches offers bulk custom patches with zero setup fees, zero digitizing fees, and no hidden charges on any order size. Bulk pricing starts at 50 pieces: embroidered patches from $180 for 50 pieces ($3.60/pc), $240 for 100 pieces ($2.40/pc), $750 for 500 pieces ($1.50/pc), and $1,200 for 1,000 pieces ($1.20/pc). Every bulk order includes a digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, and a money-back guarantee. Production starts only after your written approval — nothing is manufactured without your sign-off.",
       },
     },
     {
@@ -285,8 +285,8 @@ export default async function BulkCustomPatchesPage() {
               },
               {
                 step: "02",
-                title: "Free Digital Mockup",
-                desc: "We create a professional mockup within 24 hours. Unlimited free revisions until you love it.",
+                title: "Digital Mockup in 12-24 Hours",
+                desc: "We create a professional mockup in 12 to 24 hours. Unlimited free revisions until you love it.",
               },
               {
                 step: "03",
@@ -476,8 +476,8 @@ export default async function BulkCustomPatchesPage() {
                 body: "Thread tension verification, Pantone color matching, backing durability test, stitch integrity check, and final visual inspection — every single patch in your bulk order goes through all five. This is why fire departments, police agencies, and Fortune 500 companies trust us with their branding.",
               },
               {
-                title: "Free Mockups, Free Revisions, No Setup Fees",
-                body: "Send your artwork in any format — or even a rough sketch — and our design team creates a professional digital mockup within 24 hours at no charge. Unlimited revisions until you are completely satisfied. The only thing you pay for is the patches themselves.",
+                title: "Mockup in 12-24 Hours, Free Revisions, No Setup Fees",
+                body: "Send your artwork in any format, or even a rough sketch, and our design team creates a professional digital mockup in 12 to 24 hours at no charge. Unlimited revisions until you are completely satisfied. The only thing you pay for is the patches themselves.",
               },
               {
                 title: "Fast Human Support, 2-Hour Response Time",

@@ -209,7 +209,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           </div>
           <h3 className="text-[22px] font-black text-panda-dark mb-2">Quote Request Sent!</h3>
           <p className="text-gray-500 font-medium text-[14px] mb-6">
-            Thank you! Our team will contact you soon with your free design mockup.
+            Thank you! Our team will contact you soon with your digital mockup in 12 to 24 hours.
           </p>
           <button
             type="button"
@@ -225,7 +225,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
 
       <div className="text-center mb-6">
         <h2 className="text-[24px] leading-tight font-black text-panda-dark uppercase tracking-tight">
-          Get Your Free Quote & <br/> Design Mockup
+          Get Your Free Quote & <br/> 12-24h Mockup
         </h2>
       </div>
 
@@ -452,7 +452,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
             disabled:opacity-50 disabled:cursor-not-allowed
           "
         >
-          {isSubmitting ? 'Submitting...' : 'Get My Free Mockup'}
+          {isSubmitting ? 'Submitting...' : 'Get My Mockup in 12-24 Hours'}
         </button>
       </form>
 

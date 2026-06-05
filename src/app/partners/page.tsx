@@ -106,11 +106,11 @@ const PARTNER_FAQS = [
   },
   {
     question: "Is Panda Patches a wholesale custom patch supplier for resellers?",
-    answer: "Yes. Panda Patches serves wholesale custom patch resellers including distributors, agencies, embroidery shops, and uniform suppliers. Wholesale pricing tiers: 10 percent off at first order, 14 percent at 200 pieces per month, 18 percent at 500 pieces per month. Embroidered patches start at $1.32 per piece at 1,000 pieces for resellers. PVC from $2.20 per piece. All wholesale orders include free 24-hour digital mockup, unlimited free revisions, free US shipping, no setup fees, no digitizing fees, and blind shipping under your agency name.",
+    answer: "Yes. Panda Patches serves wholesale custom patch resellers including distributors, agencies, embroidery shops, and uniform suppliers. Wholesale pricing tiers: 10 percent off at first order, 14 percent at 200 pieces per month, 18 percent at 500 pieces per month. Embroidered patches start at $1.32 per piece at 1,000 pieces for resellers. PVC from $2.20 per piece. All wholesale orders include a digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, no setup fees, no digitizing fees, and blind shipping under your agency name.",
   },
   {
     question: "What are wholesale patch prices for resellers at Panda Patches?",
-    answer: "Wholesale partner pricing per piece: Embroidered patches $3.85 at 25 pcs, $2.55 at 100 pcs, $1.60 at 500 pcs, $1.32 at 1,000 pcs. Woven patches $5.20 at 25 pcs, $3.40 at 100 pcs, $2.50 at 500 pcs, $2.00 at 1,000 pcs. PVC patches $5.75 at 25 pcs, $3.40 at 100 pcs, $2.80 at 500 pcs, $2.20 at 1,000 pcs. Chenille 4-inch $11.90 at 25 pcs, $7.20 at 100 pcs, $6.12 at 500 pcs. Leather patches $4.40 at 25 pcs, $3.50 at 100 pcs, $2.16 at 500 pcs, $1.80 at 1,000 pcs. All wholesale orders include free artwork, free US shipping, no setup fees, low 5-piece minimum, blind shipping, and Net 15 or Net 30 terms after 3 completed projects.",
+    answer: "Wholesale partner pricing per piece: Embroidered patches $3.85 at 25 pcs, $2.55 at 100 pcs, $1.60 at 500 pcs, $1.32 at 1,000 pcs. Woven patches $5.20 at 25 pcs, $3.40 at 100 pcs, $2.50 at 500 pcs, $2.00 at 1,000 pcs. PVC patches $5.75 at 25 pcs, $3.40 at 100 pcs, $2.80 at 500 pcs, $2.20 at 1,000 pcs. Chenille 4-inch $11.90 at 25 pcs, $7.20 at 100 pcs, $6.12 at 500 pcs. Leather patches $4.40 at 25 pcs, $3.50 at 100 pcs, $2.16 at 500 pcs, $1.80 at 1,000 pcs. All wholesale orders include free artwork, free worldwide shipping, no setup fees, low 5-piece minimum, blind shipping, and Net 15 or Net 30 terms after 3 completed projects.",
   },
   {
     question: "Does Panda Patches offer blind shipping and Net 30 terms for agency partners?",
@@ -154,13 +154,13 @@ const WHO_CARDS = [
   { icon: "📣", title: "Promotional Agencies", body: "Quote patches in minutes, ship in 7-14 days, keep the margin. Stop losing jobs to slower vendors." },
   { icon: "🦺", title: "Uniform Suppliers", body: "All backings, every patch type, fully owned production. We are not a broker — no middleman markup." },
   { icon: "🧵", title: "Embroidery Shops", body: "Outsource when in-house can't keep up. Blind-shipped to your door or directly to your client." },
-  { icon: "🏆", title: "Sports & Branding Agencies", body: "Free mockup in 24 hours. Your client approves, we produce. Championship rush available." },
+  { icon: "🏆", title: "Sports & Branding Agencies", body: "Mockup in 12-24 hours. Your client approves, we produce. Championship rush available." },
 ];
 
 const HOW_STEPS = [
   { n: "01", title: "Apply in 60 seconds", body: "Email lance@pandapatches.com with your company name and business type. No forms, no waiting list." },
   { n: "02", title: "Account manager assigned", body: "Within 24 hours your dedicated manager reaches out with partner pricing and onboarding." },
-  { n: "03", title: "Submit your first project", body: "Send artwork or a brief. Free mockup back in 24 hours. You approve, we produce." },
+  { n: "03", title: "Submit your first project", body: "Send artwork or a brief. Mockup back in 12-24 hours. You approve, we produce." },
   { n: "04", title: "We ship, you bill", body: "Blind ship to your client or your warehouse. You keep 100% of your markup." },
 ];
 
@@ -557,7 +557,7 @@ export default async function PartnersPage() {
                 {[
                   "Dedicated account manager in 24 hours",
                   "Partner pricing from your very first order",
-                  "Free mockup on every project",
+                  "Mockup in 12-24 hours on every project",
                   "Blind shipping included at no charge",
                   "Net terms after 3 projects",
                 ].map((item) => (

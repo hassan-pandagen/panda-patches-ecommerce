@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'How Much Do Custom Patches Cost? $0.71 to $7/pc (2026)',
     description:
-      'Custom patch pricing in 2026. From $0.71/pc at volume to $80 flat for a single patch. Full tables by type and quantity. Free mockup, free shipping.',
+      'Custom patch pricing in 2026. From $0.71/pc at volume to $80 flat for a single patch. Full tables by type and quantity. Mockup in 12-24 hours, free shipping.',
     url: CANONICAL,
     type: 'website',
     images: [{ url: `${BASE}/assets/og-image.png`, width: 1200, height: 630, alt: 'Custom Patch Pricing' }],
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'How Much Do Custom Patches Cost? $0.71 to $7/pc (2026)',
     description:
-      'Custom patch pricing in 2026. From $0.71/pc at volume to $80 flat for a single patch. Full tables by type and quantity. Free mockup, free shipping.',
+      'Custom patch pricing in 2026. From $0.71/pc at volume to $80 flat for a single patch. Full tables by type and quantity. Mockup in 12-24 hours, free shipping.',
     images: [`${BASE}/assets/og-image.png`],
   },
   robots: { index: true, follow: true },
@@ -92,7 +92,7 @@ const faqSchema = {
       name: 'How much do 100 custom embroidered patches cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'At Panda Patches, 100 custom embroidered patches cost $240 total ($2.40 per piece) for a 3-inch patch. This includes free US shipping, free digital mockup within 24 hours, unlimited free revisions, and no setup fees or digitizing fees. Backing options: iron-on (free), sew-on (free), Velcro (+$30 flat). Standard delivery 7-14 business days after approval.',
+        text: 'At Panda Patches, 100 custom embroidered patches cost $240 total ($2.40 per piece) for a 3-inch patch. This includes free worldwide shipping, digital mockup in 12 to 24 hours, unlimited free revisions, and no setup fees or digitizing fees. Backing options: iron-on (free), sew-on (free), Velcro (+$30 flat). Standard delivery 7-14 business days after approval.',
       },
     },
     {
@@ -100,7 +100,7 @@ const faqSchema = {
       name: 'What is the cost of 100 custom patches?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'At Panda Patches, 100 custom patches cost: embroidered $240 ($2.40/pc), woven $350 ($3.50/pc), PVC $340 ($3.40/pc), leather $350 ($3.50/pc). All prices include free US shipping, free digital artwork and mockup within 24 hours, unlimited free revisions, no setup fees. Minimum order 5 pieces. Money-back guarantee.',
+        text: 'At Panda Patches, 100 custom patches cost: embroidered $240 ($2.40/pc), woven $350 ($3.50/pc), PVC $340 ($3.40/pc), leather $350 ($3.50/pc). All prices include free worldwide shipping, free digital artwork and a mockup in 12 to 24 hours, unlimited free revisions, no setup fees. Minimum order 5 pieces. Money-back guarantee.',
       },
     },
     {
@@ -108,7 +108,7 @@ const faqSchema = {
       name: 'How much do custom embroidered patches cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'At Panda Patches, custom embroidered patches cost $3.92/pc for 50 pieces ($196 total), $2.55/pc for 100 pieces ($255 total), $1.18/pc for 500 pieces ($590 total), and $1.05/pc for 1,000 pieces ($1,050 total) — all for a 3-inch patch. Free US shipping, free digital mockup within 24 hours, and no setup fees are included on every order. Velcro backing adds a flat $30. Standard delivery is 7-14 business days.',
+        text: 'At Panda Patches, custom embroidered patches cost $3.92/pc for 50 pieces ($196 total), $2.55/pc for 100 pieces ($255 total), $1.18/pc for 500 pieces ($590 total), and $1.05/pc for 1,000 pieces ($1,050 total) — all for a 3-inch patch. Free worldwide shipping, digital mockup in 12 to 24 hours, and no setup fees are included on every order. Velcro backing adds a flat $30. Standard delivery is 7-14 business days.',
       },
     },
     {
@@ -116,7 +116,7 @@ const faqSchema = {
       name: 'How much do custom patches cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Custom embroidered patches cost $0.71 to $5.87 per piece for a 3-inch patch, depending on quantity. 25 patches = ~$5.87/pc ($147 total). 100 patches = ~$2.55/pc ($255 total). 1,000 patches = ~$1.05/pc ($1,050 total). Free shipping and free mockup included. No setup fees.',
+        text: 'Custom embroidered patches cost $0.71 to $5.87 per piece for a 3-inch patch, depending on quantity. 25 patches = ~$5.87/pc ($147 total). 100 patches = ~$2.55/pc ($255 total). 1,000 patches = ~$1.05/pc ($1,050 total). Free shipping and a mockup in 12-24 hours included. No setup fees.',
       },
     },
     {
@@ -212,7 +212,7 @@ export default function PricingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(buildProductSchema(
         'Custom Embroidered Patches',
-        'Custom embroidered patches with free mockup, free shipping, and a low 5-piece minimum order. From $0.71/pc at volume.',
+        'Custom embroidered patches with mockup in 12-24 hours, free shipping, and a low 5-piece minimum order. From $0.71/pc at volume.',
         embTiers
       ))} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(buildProductSchema(
@@ -236,7 +236,7 @@ export default function PricingPage() {
             How Much Do Custom Patches Cost?
           </h1>
           <p className="text-lg text-gray-200 leading-relaxed max-w-3xl">
-            Custom embroidered patches cost <strong className="text-[#dcff70]">$0.71 to $5.87 per piece</strong> for a 3-inch patch, depending on quantity. A 25-pack runs about $147 total; a 100-pack runs about $255. Free shipping and a free design mockup are included on every order. No setup fees.
+            Custom embroidered patches cost <strong className="text-[#dcff70]">$0.71 to $5.87 per piece</strong> for a 3-inch patch, depending on quantity. A 25-pack runs about $147 total; a 100-pack runs about $255. Free shipping and a mockup in 12-24 hours are included on every order. No setup fees.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
@@ -402,7 +402,7 @@ export default function PricingPage() {
             <h3 className="font-black text-gray-900 mb-2 text-lg">What's always included — free</h3>
             <ul className="grid sm:grid-cols-2 gap-2 text-sm text-gray-800">
               {[
-                'Free digital mockup within 24 hours',
+                'Digital mockup in 12-24 hours',
                 'Unlimited revisions until you approve',
                 'Free shipping to any US address',
                 'No setup fees or design fees',
@@ -454,7 +454,7 @@ export default function PricingPage() {
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl font-black text-white mb-4">Ready to Order?</h2>
           <p className="text-gray-300 mb-8">
-            Free mockup in 24 hours. Low 5-piece minimum on most styles. Money-back guarantee.
+            Mockup in 12-24 hours. Low 5-piece minimum on most styles. Money-back guarantee.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

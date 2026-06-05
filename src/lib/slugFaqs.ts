@@ -9,7 +9,7 @@ interface FAQItem {
 const embroideredFaqs: FAQItem[] = [
   {
     question: "What thread coverage percentage is recommended for embroidered patches?",
-    answer: "We recommend 70-80% thread coverage for most logos. Full coverage (100%) creates a richer look but costs slightly more and is best for bold, simple designs. We guide you to the right coverage during the free mockup review."
+    answer: "We recommend 70-80% thread coverage for most logos. Full coverage (100%) creates a richer look but costs slightly more and is best for bold, simple designs. We guide you to the right coverage during the mockup review."
   },
   {
     question: "What backing options are available for embroidered patches?",

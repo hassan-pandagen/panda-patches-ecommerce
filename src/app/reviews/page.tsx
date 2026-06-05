@@ -7,13 +7,13 @@ import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
 
 export const metadata: Metadata = {
   title: "Panda Patches Customer Reviews — Custom Patch Quality & Turnaround",
-  description: "Real customer feedback on patch quality, fast turnaround, and our free 24-hour design mockup service. See what brands say about their custom embroidered, PVC, woven, and chenille patches.",
+  description: "Real customer feedback on patch quality, fast turnaround, and our 12-24 hour digital mockup service. See what brands say about their custom embroidered, PVC, woven, and chenille patches.",
   alternates: {
     canonical: "https://www.pandapatches.com/reviews",
   },
   openGraph: {
     title: "Panda Patches Customer Reviews — Custom Patch Quality & Turnaround",
-    description: "Read what our customers say about patch quality, fast 7-14 day turnaround, and our free design mockup service. Custom embroidered, PVC, chenille, woven, and leather patches.",
+    description: "Read what our customers say about patch quality, fast 7-14 day turnaround, and our 12-24 hour mockup service. Custom embroidered, PVC, chenille, woven, and leather patches.",
     url: "https://www.pandapatches.com/reviews",
     type: "website",
     images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630, alt: "Panda Patches Customer Reviews" }],
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Panda Patches Customer Reviews — Custom Patch Quality & Turnaround",
-    description: "Real customer feedback on patch quality, fast turnaround, and our free 24-hour design mockup service.",
+    description: "Real customer feedback on patch quality, fast turnaround, and our 12-24 hour digital mockup service.",
     images: ["https://www.pandapatches.com/assets/og-image.png"],
   },
   robots: { index: true, follow: true },
@@ -145,7 +145,7 @@ export default function ReviewsPage() {
             What Our Customers Say
           </h1>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Real feedback from brands, motorcycle clubs, fire departments, sports teams, and businesses on patch quality, fast 7-14 day turnaround, and our free 24-hour design mockup service.
+            Real feedback from brands, motorcycle clubs, fire departments, sports teams, and businesses on patch quality, fast 7-14 day turnaround, and our 12-24 hour digital mockup service.
           </p>
         </div>
       </section>
@@ -155,7 +155,7 @@ export default function ReviewsPage() {
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
             { value: "1M+", label: "Patches Delivered" },
-            { value: "24 Hours", label: "Free Mockup" },
+            { value: "12-24 Hours", label: "Mockup" },
             { value: "7-14 Days", label: "Standard Delivery" },
             { value: "5 Pieces", label: "Low Minimum Order" },
           ].map((stat) => (
@@ -184,7 +184,7 @@ export default function ReviewsPage() {
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl font-black text-white mb-4">Order With Confidence</h2>
           <p className="text-gray-300 mb-8">
-            Free design mockup in 24 hours. Unlimited revisions. Money-back guarantee.
+            Mockup in 12-24 hours. Unlimited revisions. Money-back guarantee.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

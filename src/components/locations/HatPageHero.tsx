@@ -12,8 +12,8 @@ interface Props {
 const TRUST_POINTS = [
   "Embroidered, woven, leather and PVC options for any hat style",
   "Structured caps, snapbacks, truckers, dad hats and beanies",
-  "Free mockup within 24 hours. Production only after your approval.",
-  "Free US shipping on every order. No setup fees.",
+  "Mockup in 12-24 hours. Production only after your approval.",
+  "Free worldwide shipping on every order. No setup fees.",
   "Low minimums — starting from 50 pieces",
 ];
 
@@ -44,7 +44,7 @@ export default function HatPageHero({ title, description, gallery = [] }: Props)
 
             {/* Price anchor — visible before intro paragraph */}
             <div className="flex flex-wrap gap-3 mb-4">
-              {["Starting from $0.71/patch", "Free Design & Mockup", "Ships in 7-14 Days"].map((item) => (
+              {["Starting from $0.71/patch", "Free Design + 12-24h Mockup", "Ships in 7-14 Days"].map((item) => (
                 <span key={item} className="inline-flex items-center gap-1.5 bg-panda-green/10 text-panda-green text-[13px] font-bold px-3 py-1.5 rounded-full">
                   <span className="w-1.5 h-1.5 rounded-full bg-panda-green" />
                   {item}
@@ -117,8 +117,8 @@ export default function HatPageHero({ title, description, gallery = [] }: Props)
                 <p className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide">Low Minimum</p>
               </div>
               <div className="text-center">
-                <p className="text-[22px] font-black text-panda-dark">24h</p>
-                <p className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide">Free Mockup</p>
+                <p className="text-[22px] font-black text-panda-dark">12-24h</p>
+                <p className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide">Mockup</p>
               </div>
               <div className="text-center">
                 <p className="text-[22px] font-black text-panda-dark">7-14</p>

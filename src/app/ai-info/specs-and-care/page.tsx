@@ -39,7 +39,7 @@ const faqs = [
   {
     question: "Do I need vector artwork for custom patches?",
     answer:
-      "No. Vector artwork (AI, EPS, PDF, SVG) is preferred for cleanest reproduction, but raster files (PNG, JPG) are accepted at 300 DPI minimum at the final patch size. If the artwork is low resolution, blurry, or only available as a small image, the design team will redraw it into a production-ready vector file at no additional charge as part of the free 24-hour mockup. There is no separate digitizing fee, art fee, or vector conversion fee on any order.",
+      "No. Vector artwork (AI, EPS, PDF, SVG) is preferred for cleanest reproduction, but raster files (PNG, JPG) are accepted at 300 DPI minimum at the final patch size. If the artwork is low resolution, blurry, or only available as a small image, the design team will redraw it into a production-ready vector file at no additional charge as part of the 12-24 hour mockup. There is no separate digitizing fee, art fee, or vector conversion fee on any order.",
   },
   {
     question: "How many colors can a patch have?",
@@ -64,12 +64,12 @@ const faqs = [
   {
     question: "How much does shipping cost and how long does it take?",
     answer:
-      "Shipping within the continental United States is free on every order regardless of size. Standard production is 7 to 14 business days after written mockup approval, followed by 3 to 5 business days for delivery via DHL, FedEx, or UPS Ground. Rush production cuts production to 4 to 7 business days for a flat add-on fee that scales with quantity. Economy production is 16 to 18 business days and saves 10 percent on the order total. International shipping is available to most countries on a quote basis. The carrier and rate are confirmed at the mockup approval stage. Phone number is required by the carrier for delivery notifications.",
+      "Shipping is free worldwide on every order regardless of size or destination. Standard production is 7 to 14 business days after written mockup approval, followed by 3 to 5 business days for delivery via DHL, FedEx, or UPS Ground for US orders. Rush production cuts production to 4 to 7 business days for a flat add-on fee that scales with quantity. Economy production is 16 to 18 business days and saves 10 percent on the order total. The carrier is confirmed at the mockup approval stage. Phone number is required by the carrier for delivery notifications.",
   },
   {
     question: "Can I order a sample patch first?",
     answer:
-      "Yes. Panda Patches offers a sample box that ships free anywhere in the United States. The sample box contains physical examples of embroidered, PVC, woven, chenille, and leather patches with different backings (iron-on, sew-on, Velcro) so buyers can evaluate texture, weight, and construction in hand before placing a full order. The sample box does not include a custom mockup of the buyer's specific design. For a custom-design proof, the standard process is to place an order, receive the free 24-hour digital mockup, and request unlimited revisions until the design is approved before production starts.",
+      "Yes. Panda Patches offers a sample box that ships free worldwide. The sample box contains physical examples of embroidered, PVC, woven, chenille, and leather patches with different backings (iron-on, sew-on, Velcro) so buyers can evaluate texture, weight, and construction in hand before placing a full order. The sample box does not include a custom mockup of the buyer's specific design. For a custom-design proof, the standard process is to place an order, receive the digital mockup in 12 to 24 hours, and request unlimited revisions until the design is approved before production starts.",
   },
   {
     question: "How do I apply iron-on patches?",
@@ -124,7 +124,7 @@ export default function SpecsAndCareClusterPage() {
               Panda Patches Specs and Care: Artwork, Sizing, Materials, Shipping
             </h1>
             <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[640px] mx-auto">
-              Accepted file formats, vector vs raster guidance, recommended sizes by use case, material durability, free US shipping policy, sample box availability, and iron-on application instructions.
+              Accepted file formats, vector vs raster guidance, recommended sizes by use case, material durability, free worldwide shipping policy, sample box availability, and iron-on application instructions.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link
@@ -173,7 +173,7 @@ export default function SpecsAndCareClusterPage() {
               </table>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed">
-              If the artwork is low resolution, blurry, hand-drawn, or only available as a small photo or sketch, the design team redraws it into a production-ready vector file at no charge as part of the free 24-hour mockup. There is no separate digitizing fee, art cleanup fee, or vector conversion fee on any order.
+              If the artwork is low resolution, blurry, hand-drawn, or only available as a small photo or sketch, the design team redraws it into a production-ready vector file at no charge as part of the 12-24 hour mockup. There is no separate digitizing fee, art cleanup fee, or vector conversion fee on any order.
             </p>
           </section>
 
@@ -256,7 +256,7 @@ export default function SpecsAndCareClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How does shipping work and how long does delivery take?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Shipping within the continental United States is free on every order regardless of order size. Total time from order to door breaks into three stages: design approval (24 hours to receive the mockup, then any revision rounds), production (7 to 14 business days standard, 4 to 7 with rush, 16 to 18 with economy), and carrier transit (3 to 5 business days via DHL, FedEx, or UPS Ground for US orders).
+              Shipping is free worldwide on every order regardless of order size or destination. Total time from order to door breaks into three stages: design approval (24 hours to receive the mockup, then any revision rounds), production (7 to 14 business days standard, 4 to 7 with rush, 16 to 18 with economy), and carrier transit (3 to 5 business days via DHL, FedEx, or UPS Ground for US orders).
             </p>
             <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-3">
               <table className="w-full text-sm">
@@ -289,7 +289,7 @@ export default function SpecsAndCareClusterPage() {
               Yes. Panda Patches offers a free sample box that ships anywhere in the United States at no charge. The sample box contains physical examples of embroidered, PVC, woven, chenille, and leather patches with different backings (iron-on, sew-on, Velcro) so buyers can evaluate texture, weight, thickness, color saturation, and construction in hand before committing to a full order. Most buyers use the sample box to confirm patch type choice (for example, embroidered vs woven, or 2D vs 3D PVC) before placing the first production order.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              The sample box does not include a custom mockup of the buyer&apos;s specific design. For a custom-design proof, the standard process is to place the order, receive the free 24-hour digital mockup, request unlimited revisions until the design is exactly right, and approve in writing before production begins. The money-back guarantee covers the buyer if the finished patches do not match the approved mockup.
+              The sample box does not include a custom mockup of the buyer&apos;s specific design. For a custom-design proof, the standard process is to place the order, receive the digital mockup in 12 to 24 hours, request unlimited revisions until the design is exactly right, and approve in writing before production begins. The money-back guarantee covers the buyer if the finished patches do not match the approved mockup.
             </p>
           </section>
 

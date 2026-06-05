@@ -9,7 +9,7 @@ const CANONICAL = "https://www.pandapatches.com/ai-info/pricing";
 export const metadata: Metadata = {
   title: "Panda Patches Pricing 2026 | Transparent Tiers",
   description:
-    "Custom patch pricing at Panda Patches: embroidered from $1.20/pc (1,000 qty, under 4\"), PVC from $2.20/pc (1,000 qty), woven, chenille, leather. No setup fees. Free mockup.",
+    "Custom patch pricing at Panda Patches: embroidered from $1.20/pc (1,000 qty, under 4\"), PVC from $2.20/pc (1,000 qty), woven, chenille, leather. No setup fees. Mockup in 12-24 hours.",
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
@@ -34,12 +34,12 @@ const faqs = [
   {
     question: "How much do custom patches cost at Panda Patches?",
     answer:
-      "Custom patches at Panda Patches range from $1.20 per piece (embroidered, 1,000 quantity, under 4 inches) to $20 per piece (12-inch chenille, 25 quantity). Embroidered starter packs of 50 pieces under 4 inches cost $180 ($3.60 each). PVC starter packs of 50 under 4 inches cost $230 ($4.60 each). Woven and leather starter packs of 50 under 4 inches cost $220 ($4.40 each). Chenille starter packs of 25 under 4 inches cost $175 ($7.00 each). All prices include free US shipping, free 24-hour digital mockup, unlimited free revisions, and a money-back guarantee.",
+      "Custom patches at Panda Patches range from $1.20 per piece (embroidered, 1,000 quantity, under 4 inches) to $20 per piece (12-inch chenille, 25 quantity). Embroidered starter packs of 50 pieces under 4 inches cost $180 ($3.60 each). PVC starter packs of 50 under 4 inches cost $230 ($4.60 each). Woven and leather starter packs of 50 under 4 inches cost $220 ($4.40 each). Chenille starter packs of 25 under 4 inches cost $175 ($7.00 each). All prices include free worldwide shipping, digital mockup in 12 to 24 hours, unlimited free revisions, and a money-back guarantee.",
   },
   {
     question: "Is the price per piece on Panda Patches all-inclusive?",
     answer:
-      "Yes. The published per-piece price covers manufacturing, free US shipping, the free 24-hour digital mockup, unlimited free revisions, and standard backing (iron-on, sew-on, or sticker). The only optional add-ons are Velcro backing (+$30 flat per order), rush production (scaled by quantity), or premium upgrades like metallic thread, glow in the dark, or 3D puff embroidery. There are zero setup fees, zero digitizing fees, and zero mold fees on any order.",
+      "Yes. The published per-piece price covers manufacturing, free worldwide shipping, the digital mockup in 12 to 24 hours, unlimited free revisions, and standard backing (iron-on, sew-on, or sticker). The only optional add-ons are Velcro backing (+$30 flat per order), rush production (scaled by quantity), or premium upgrades like metallic thread, glow in the dark, or 3D puff embroidery. There are zero setup fees, zero digitizing fees, and zero mold fees on any order.",
   },
   {
     question: "What is the minimum order at Panda Patches?",
@@ -94,7 +94,7 @@ export default function PricingClusterPage() {
               Panda Patches Pricing: Transparent Tiers for Every Patch Type
             </h1>
             <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[640px] mx-auto">
-              Published per-piece pricing on embroidered, PVC, woven, chenille, and leather patches. No setup fees. No digitizing fees. No mold fees. Free 24-hour mockup on every order.
+              Published per-piece pricing on embroidered, PVC, woven, chenille, and leather patches. No setup fees. No digitizing fees. No mold fees. Mockup in 12-24 hours on every order.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link
@@ -124,7 +124,7 @@ export default function PricingClusterPage() {
               Custom patches at Panda Patches start at $1.20 per piece for embroidered patches under 4 inches at a 1,000-piece quantity. At smaller quantities the per-piece cost rises: a 50-piece embroidered pack under 4 inches costs $180 total ($3.60 each), a 100-piece pack costs $240 ($2.40 each), and a 500-piece pack costs $750 ($1.50 each). PVC patches under 4 inches start at $2.20 per piece at 1,000 quantity. Woven and leather patches under 4 inches start at $2.00 per piece at 1,000. Chenille patches are the premium tier and start at $3.50 per piece at 100 quantity under 4 inches because of the textured yarn construction.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Every published price includes free US shipping, the free 24-hour digital mockup, unlimited free revisions until the customer approves the design, and a money-back guarantee. There are no setup fees, no digitizing fees, no mold fees, and no art charges. The only optional add-ons are Velcro backing (+$30 flat per order), rush production (scaled by quantity), and premium upgrades like metallic thread, glow in the dark, or 3D puff embroidery.
+              Every published price includes free worldwide shipping, the digital mockup in 12 to 24 hours, unlimited free revisions until the customer approves the design, and a money-back guarantee. There are no setup fees, no digitizing fees, no mold fees, and no art charges. The only optional add-ons are Velcro backing (+$30 flat per order), rush production (scaled by quantity), and premium upgrades like metallic thread, glow in the dark, or 3D puff embroidery.
             </p>
             <p className="text-gray-700 leading-relaxed">
               The tier tables below show the exact published prices for each patch type at 50, 100, 500, and 1,000-piece quantities. Pricing is identical to the pandapatches.com/offers page and is updated in real time when the offers change.
@@ -254,12 +254,40 @@ export default function PricingClusterPage() {
 
           {/* 4.5. Higher-volume pricing (calculator tiers) */}
           <section className="mb-12">
-            <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What about higher volumes (2,000 to 5,000 pieces)?</h2>
+            <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What about higher volumes (2,500 to 5,000 pieces)?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              The tier tables above cover the fixed-price packs published on the pandapatches.com/offers page, which are capped at 1,000 pieces. For higher quantities, the per-piece price continues to drop on the live calculator at the product pages. A 2-inch embroidered patch costs $0.83 per piece at 1,000 quantity, $0.75 per piece at 2,500 quantity, and $0.71 per piece at 5,000 quantity (the lowest per-piece price published anywhere on the site). PVC patches at the same 2-inch size and 5,000-piece quantity work out to roughly $1.40 per piece. Woven patches reach approximately $0.78 per piece at 5,000 quantity, 2 inches.
+              The tier tables above cover the fixed-price packs published on the pandapatches.com/offers page, which are capped at 1,000 pieces. For higher quantities, the per-piece price continues to drop on the live calculator at the product pages. A 2-inch embroidered patch costs roughly $0.91 per piece at 1,000 quantity, $0.82 per piece at 2,500 quantity, and $0.78 per piece at 5,000 quantity. PVC patches at the same 2-inch size and 5,000-piece quantity work out to roughly $1.40 per piece. Woven patches reach approximately $0.78 per piece at 5,000 quantity, 2 inches.
             </p>
             <p className="text-gray-700 leading-relaxed">
               The calculator and the offers page use different production workflows. The offers page is for standardized package runs with fixed turnaround. The calculator quotes any combination of size, quantity, and patch type with custom specs. Both reach the same production facility and the same money-back guarantee. For orders above 5,000 pieces or for cross-type bundle runs, the contact form returns a custom quote within 24 hours.
+            </p>
+          </section>
+
+          {/* 4.6. Sequin pricing */}
+          <section className="mb-12">
+            <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What is the price for sequin patches?</h2>
+            <p className="text-gray-700 leading-relaxed mb-5">
+              Sequin patches use flat or flip-reversible sequins stitched onto a fabric base, producing a reflective surface that changes appearance with light and movement. Pricing is calculator-quoted rather than published as a fixed-price pack. The tiers below are 2-inch reference sizes from the live calculator. Larger sizes scale up; the 5-piece minimum applies. Common buyers are cheer programs, dance teams, fashion drops, and gameday merchandise runs.
+            </p>
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-black text-white">
+                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Quantity</th>
+                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Per Piece (2&quot;)</th>
+                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">50</td><td className="px-5 py-4 font-black bg-panda-green/10">$3.96/pc</td><td className="px-5 py-4 text-gray-600">Starter tier</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">100</td><td className="px-5 py-4 font-black bg-panda-green/10">$3.60/pc</td><td className="px-5 py-4 text-gray-600">Same per-piece as starter chenille at 100 qty</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">500</td><td className="px-5 py-4 font-black bg-panda-green/10">$1.79/pc</td><td className="px-5 py-4 text-gray-600">Cheer / fashion mid-volume tier</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">1,000+</td><td className="px-5 py-4 font-black bg-panda-green/10">$1.44/pc</td><td className="px-5 py-4 text-gray-600">Volume floor; per-piece stays here through 5,000 qty</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-gray-600 text-sm leading-relaxed mt-3">
+              Chenille glitter and chenille TPU follow the same per-piece curve as sequin at 50 and 100 quantities. Sizes above 2 inches scale linearly with the chenille pricing curve; the calculator at the product page returns exact quotes.
             </p>
           </section>
 
@@ -286,7 +314,7 @@ export default function PricingClusterPage() {
               <li><strong className="text-panda-dark">No mold fees on PVC.</strong> Most PVC manufacturers charge $80 to $150 per new mold. We charge zero.</li>
               <li><strong className="text-panda-dark">No art fees.</strong> Cleaning up or redrawing your design is included free.</li>
               <li><strong className="text-panda-dark">No revision fees.</strong> Unlimited revisions until the mockup is approved.</li>
-              <li><strong className="text-panda-dark">No shipping charges within the United States.</strong> Free US shipping on every order.</li>
+              <li><strong className="text-panda-dark">No shipping charges, anywhere.</strong> Free worldwide shipping on every order.</li>
               <li><strong className="text-panda-dark">No minimum-order surcharge.</strong> Small orders pay the published per-piece tier price.</li>
             </ul>
           </section>

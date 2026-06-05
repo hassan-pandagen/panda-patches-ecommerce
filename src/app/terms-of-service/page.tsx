@@ -52,8 +52,8 @@ export default function TermsOfServicePage() {
             <h2 className="text-[26px] font-black text-panda-dark mb-4">3. Ordering Process</h2>
             <ul className="list-disc pl-6 space-y-3 text-[16px] leading-[1.8]">
               <li>
-                <strong>Quote & Mockup:</strong> You submit your design and specifications. We provide a free digital mockup
-                within 24 hours. Unlimited revisions are provided at no charge until you approve the design.
+                <strong>Quote & Mockup:</strong> You submit your design and specifications. We provide a digital mockup
+                in 12 to 24 hours. Unlimited revisions are provided at no charge until you approve the design.
               </li>
               <li>
                 <strong>Order Confirmation:</strong> Production begins only after you provide written approval of the final mockup.

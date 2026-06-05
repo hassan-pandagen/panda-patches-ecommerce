@@ -18,7 +18,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Why LA Brands Choose Custom Patches",
         content: (
           <p className="text-[17px] leading-[1.8] text-gray-600">
-            Los Angeles runs on visual identity. From Fairfax streetwear labels to studio wardrobe departments in Burbank, custom patches are part of how LA brands communicate who they are. We work with independent clothing lines on Melrose, film production crews that need unit patches for set identification, and sports teams across LA County. The demand here is specific: bold designs, fast turnaround, and the ability to handle small runs for limited drops alongside bulk orders for corporate uniforms. That is exactly how we operate. Every order starts with a free digital mockup within 24 hours so you see the patch before anything is produced.
+            Los Angeles runs on visual identity. From Fairfax streetwear labels to studio wardrobe departments in Burbank, custom patches are part of how LA brands communicate who they are. We work with independent clothing lines on Melrose, film production crews that need unit patches for set identification, and sports teams across LA County. The demand here is specific: bold designs, fast turnaround, and the ability to handle small runs for limited drops alongside bulk orders for corporate uniforms. That is exactly how we operate. Every order starts with a digital mockup in 12 to 24 hours so you see the patch before anything is produced.
           </p>
         )
       },
@@ -64,7 +64,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Oil and Energy Industry Patches",
         content: (
           <p className="text-[17px] leading-[1.8] text-gray-600">
-            The Houston energy sector has specific requirements for uniform patches. Name identification must be readable at arm's length. Company logos need to reproduce accurately across multiple garment types. Safety and compliance patches must meet visibility standards. We handle all of this. Our process starts with a free mockup, and we confirm size, thread colors, and material suitability before production begins. For bulk orders serving large field teams, our <Link href="/bulk-custom-patches" className="text-purple-600 hover:underline font-medium">bulk pricing</Link> reduces cost per piece significantly. We also produce patches for NASA contractor teams, Houston rodeo events, and western wear brands across the region.
+            The Houston energy sector has specific requirements for uniform patches. Name identification must be readable at arm's length. Company logos need to reproduce accurately across multiple garment types. Safety and compliance patches must meet visibility standards. We handle all of this. Our process starts with a digital mockup in 12 to 24 hours, and we confirm size, thread colors, and material suitability before production begins. For bulk orders serving large field teams, our <Link href="/bulk-custom-patches" className="text-purple-600 hover:underline font-medium">bulk pricing</Link> reduces cost per piece significantly. We also produce patches for NASA contractor teams, Houston rodeo events, and western wear brands across the region.
           </p>
         )
       },
@@ -86,7 +86,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "NYC's Custom Patch Designers",
         content: (
           <p className="text-[17px] leading-[1.8] text-gray-600">
-            New York City sets the standard for quality. Fashion houses in the Garment District, streetwear brands in Brooklyn, and corporate headquarters in Midtown all need patches that meet NYC expectations. We produce patches for New York clothing labels that sell in boutiques on the Lower East Side, for uniformed staff at Manhattan hotels and restaurants, and for FDNY and NYPD affiliated organizations ordering custom unit patches. Every patch starts with a free digital mockup. You approve before we produce. No exceptions.
+            New York City sets the standard for quality. Fashion houses in the Garment District, streetwear brands in Brooklyn, and corporate headquarters in Midtown all need patches that meet NYC expectations. We produce patches for New York clothing labels that sell in boutiques on the Lower East Side, for uniformed staff at Manhattan hotels and restaurants, and for FDNY and NYPD affiliated organizations ordering custom unit patches. Every patch starts with a digital mockup in 12 to 24 hours. You approve before we produce. No exceptions.
           </p>
         )
       },
@@ -166,7 +166,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
             <Link href="/custom-patches/embroidered" className="text-purple-600 hover:underline font-medium">Embroidered patches</Link>
             {" "}work well for bold crests and lettering.{" "}
             <Link href="/custom-patches/woven" className="text-purple-600 hover:underline font-medium">Woven patches</Link>
-            {" "}handle the fine detail in intricate university seals. We match Pantone colors on request and provide a free mockup before production so you confirm the design is accurate. Beyond universities, we also serve Boston Marathon running groups, tech startups along the Route 128 corridor, and New England maritime organizations ordering nautical-themed patches.
+            {" "}handle the fine detail in intricate university seals. We match Pantone colors on request and provide a digital mockup in 12 to 24 hours before production so you confirm the design is accurate. Beyond universities, we also serve Boston Marathon running groups, tech startups along the Route 128 corridor, and New England maritime organizations ordering nautical-themed patches.
           </p>
         )
       },
@@ -274,7 +274,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Keep Portland Patched",
         content: (
           <p className="text-[17px] leading-[1.8] text-gray-600">
-            Portland businesses value local, sustainable, and authentic. We produce patches with durable materials designed to last years, not months. No disposable quality. Every order includes a free mockup, unlimited revisions, and free shipping to Portland and anywhere in Oregon. <Link href="/offers" className="text-purple-600 hover:underline font-medium">See pricing</Link> or <Link href="/contact" className="text-purple-600 hover:underline font-medium">get a free quote</Link>.
+            Portland businesses value local, sustainable, and authentic. We produce patches with durable materials designed to last years, not months. No disposable quality. Every order includes a mockup in 12-24 hours, unlimited revisions, and free shipping to Portland and anywhere in Oregon. <Link href="/offers" className="text-purple-600 hover:underline font-medium">See pricing</Link> or <Link href="/contact" className="text-purple-600 hover:underline font-medium">get a free quote</Link>.
           </p>
         )
       }
@@ -300,7 +300,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
             <Link href="/custom-patches/chenille" className="text-purple-600 hover:underline font-medium">Chenille patches</Link>
             {" "}add texture for fashion-forward designs.{" "}
             <Link href="/custom-patches/printed" className="text-purple-600 hover:underline font-medium">Printed patches</Link>
-            {" "}handle the full-color artwork that creative clients often need. Every design gets a free mockup before production.
+            {" "}handle the full-color artwork that creative clients often need. Every design gets a mockup in 12-24 hours before production.
           </p>
         )
       },
@@ -392,7 +392,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Southern Quality, Nationwide Standards",
         content: (
           <p className="text-[17px] leading-[1.8] text-gray-600">
-            Alabama businesses expect quality and reliability. Every patch order includes a free mockup within 24 hours, unlimited revisions until you approve, and production that starts only after your sign-off. No surprises, no hidden fees. <Link href="/offers" className="text-purple-600 hover:underline font-medium">View patch packages</Link> or <Link href="/contact" className="text-purple-600 hover:underline font-medium">get a free quote</Link>.
+            Alabama businesses expect quality and reliability. Every patch order includes a mockup in 12 to 24 hours, unlimited revisions until you approve, and production that starts only after your sign-off. No surprises, no hidden fees. <Link href="/offers" className="text-purple-600 hover:underline font-medium">View patch packages</Link> or <Link href="/contact" className="text-purple-600 hover:underline font-medium">get a free quote</Link>.
           </p>
         )
       }
@@ -444,7 +444,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Mile High City Custom Patches",
         content: (
           <p className="text-[17px] leading-[1.8] text-gray-600">
-            Denver sits at the intersection of outdoor culture and urban business. Breweries on the RiNo Art District, outdoor outfitters along Broadway, Broncos fan groups, and corporate offices in LoDo all order custom patches. We serve Denver businesses with the same attention to detail whether you need 50 patches for a brewery tap room or 5,000 for a corporate uniform rollout. Free mockup, free shipping, free revisions on every order.
+            Denver sits at the intersection of outdoor culture and urban business. Breweries on the RiNo Art District, outdoor outfitters along Broadway, Broncos fan groups, and corporate offices in LoDo all order custom patches. We serve Denver businesses with the same attention to detail whether you need 50 patches for a brewery tap room or 5,000 for a corporate uniform rollout. Mockup in 12-24 hours, free shipping, free revisions on every order.
           </p>
         )
       },
@@ -503,7 +503,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Ohio Custom Patches for Buckeye State Businesses",
         content: (
           <p className="text-[17px] leading-[1.8] text-gray-600">
-            Ohio's diverse economy spans manufacturing in Cleveland, corporate headquarters in Columbus, healthcare in Cincinnati, and some of the most passionate college sports fans in the country. We produce custom patches for Ohio businesses, universities, sports teams, and community organizations. Whether you need patches for an Ohio State tailgate group or a Cleveland manufacturing plant, our quality and process are the same: free mockup, unlimited revisions, approval before production.
+            Ohio's diverse economy spans manufacturing in Cleveland, corporate headquarters in Columbus, healthcare in Cincinnati, and some of the most passionate college sports fans in the country. We produce custom patches for Ohio businesses, universities, sports teams, and community organizations. Whether you need patches for an Ohio State tailgate group or a Cleveland manufacturing plant, our quality and process are the same: mockup in 12-24 hours, unlimited revisions, approval before production.
           </p>
         )
       },
@@ -568,8 +568,8 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "",
         content: (
           <div className="bg-panda-green/5 border border-panda-green/20 rounded-[16px] p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <p className="text-[15px] text-gray-700 font-medium leading-[1.6] max-w-[520px]">Not sure which patch type fits your hat? Get a free mockup and see it before you order.</p>
-            <a href="#quote-form" className="flex-shrink-0 bg-panda-green text-white font-black text-[14px] px-6 py-3 rounded-full hover:bg-panda-dark transition-colors whitespace-nowrap">Get Your Free Mockup</a>
+            <p className="text-[15px] text-gray-700 font-medium leading-[1.6] max-w-[520px]">Not sure which patch type fits your hat? Get a digital mockup in 12 to 24 hours and see it before you order.</p>
+            <a href="#quote-form" className="flex-shrink-0 bg-panda-green text-white font-black text-[14px] px-6 py-3 rounded-full hover:bg-panda-dark transition-colors whitespace-nowrap">Get Your 12-24h Mockup</a>
           </div>
         )
       },
@@ -767,7 +767,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Hat Patch Pricing",
         content: (
           <div>
-            <p className="text-[16px] leading-[1.8] text-gray-600 mb-6">All hat patch orders include a free digital mockup within 24 hours, unlimited revisions, free US shipping, and production only after your approval.</p>
+            <p className="text-[16px] leading-[1.8] text-gray-600 mb-6">All hat patch orders include a digital mockup in 12 to 24 hours, unlimited revisions, free worldwide shipping, and production only after your approval.</p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
               {[
                 { qty: "50 pcs", from: "From $180", per: "$3.60/pc" },
@@ -810,7 +810,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
               The most popular choice for hat front panels is the <Link href="/custom-patches/embroidered" className="text-purple-600 hover:underline font-medium">custom embroidered patch</Link>. The raised thread construction gives a premium, tactile feel that stands out on both structured and unstructured caps. For logos with fine detail, small text, or complex artwork, <Link href="/custom-patches/woven" className="text-purple-600 hover:underline font-medium">woven patches</Link> deliver sharper reproduction at a flatter profile — ideal for dad hats and fitted caps where a low-profile look is preferred. Streetwear brands and premium hat lines frequently use <Link href="/custom-patches/leather" className="text-purple-600 hover:underline font-medium">leather patches</Link> for the label-like aesthetic that positions a hat as a retail product rather than promotional merchandise.
             </p>
             <p>
-              Every hat patch order at Panda Patches starts with a <strong>free digital mockup within 24 hours</strong>. Our design team reviews your artwork against the size and hat type you have specified, flags any issues before production, and sends a visual representation of exactly how the patch will look on your hat. You request changes until it is right — no limit on revisions, no charge. Production does not start until you give final approval. Nothing ships without your sign-off.
+              Every hat patch order at Panda Patches starts with a <strong>digital mockup in 12 to 24 hours</strong>. Our design team reviews your artwork against the size and hat type you have specified, flags any issues before production, and sends a visual representation of exactly how the patch will look on your hat. You request changes until it is right with no limit on revisions and no charge. Production does not start until you give final approval. Nothing ships without your sign-off.
             </p>
             <p>
               Standard delivery is <strong>7-14 business days</strong> after approval. Rush production is available. All orders ship free to anywhere in the US. For custom quantities, mixed patch types, or patches for a hat collection launch, <Link href="/contact" className="text-purple-600 hover:underline font-medium">contact us directly</Link> or call (302) 250-4340.
@@ -825,7 +825,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Washington State Custom Patches",
         content: (
           <p className="text-[17px] leading-[1.8] text-gray-600">
-            Washington state's tech industry in Seattle, outdoor recreation across the Cascades, military presence at Joint Base Lewis-McChord, and agricultural businesses in Eastern Washington all create demand for custom patches. We serve Washington businesses with the same quality and process as every other market: free mockup, free revisions, free shipping, and production only after your approval. <Link href="/offers" className="text-purple-600 hover:underline font-medium">View pricing</Link> or <Link href="/contact" className="text-purple-600 hover:underline font-medium">get a free quote</Link>.
+            Washington state's tech industry in Seattle, outdoor recreation across the Cascades, military presence at Joint Base Lewis-McChord, and agricultural businesses in Eastern Washington all create demand for custom patches. We serve Washington businesses with the same quality and process as every other market: mockup in 12-24 hours, free revisions, free shipping, and production only after your approval. <Link href="/offers" className="text-purple-600 hover:underline font-medium">View pricing</Link> or <Link href="/contact" className="text-purple-600 hover:underline font-medium">get a free quote</Link>.
           </p>
         )
       }

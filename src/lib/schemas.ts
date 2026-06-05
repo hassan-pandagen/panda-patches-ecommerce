@@ -536,7 +536,7 @@ export function generateLocationBusinessSchema(locationName: string, pageSlug?: 
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "Store"],
     "name": `Custom Patches in ${locationName} | Panda Patches`,
-    "description": `Order custom embroidered patches delivered to ${locationName}. Low minimums, free mockups, fast 7-14 day turnaround. Founded by Imran Raza with 13 years of patch manufacturing expertise.`,
+    "description": `Order custom embroidered patches delivered to ${locationName}. Low minimums, mockup in 12-24 hours, fast 7-14 day turnaround. Founded by Imran Raza with 13 years of patch manufacturing expertise.`,
     "telephone": "+1-302-250-4340",
     "email": "hello@pandapatches.com",
     "url": `https://www.pandapatches.com/${urlSlug}`,
@@ -575,7 +575,7 @@ export function generateHowToSchema() {
     "@context": "https://schema.org",
     "@type": "HowTo",
     "name": "How to Order Custom Patches from Panda Patches",
-    "description": "Order custom embroidered patches in 4 simple steps. Free mockup, low 5-piece minimum, 7-14 day delivery.",
+    "description": "Order custom embroidered patches in 4 simple steps. Mockup in 12-24 hours, low 5-piece minimum, 7-14 day delivery.",
     "totalTime": "PT14D",
     "supply": [
       { "@type": "HowToSupply", "name": "Artwork file or design idea" }
@@ -588,7 +588,7 @@ export function generateHowToSchema() {
         "@type": "HowToStep",
         "position": 1,
         "name": "Submit Your Design",
-        "text": "Upload your artwork or describe your idea. Our designers send a free digital mockup within 24 hours."
+        "text": "Upload your artwork or describe your idea. Our designers send a digital mockup in 12 to 24 hours."
       },
       {
         "@type": "HowToStep",
@@ -652,7 +652,7 @@ export function generateServiceSchema() {
     "@type": "Service",
     "serviceType": "Custom Patch Design",
     "name": "Free Custom Patch Design Service",
-    "description": "Free professional digital mockup for every custom patch order. Our designers create your patch design within 24 hours with unlimited revisions until you are satisfied. No setup fees, no hidden charges.",
+    "description": "Professional digital mockup in 12 to 24 hours for every custom patch order. Our designers create your patch design with unlimited revisions until you are satisfied. No setup fees, no hidden charges.",
     "provider": {
       "@type": "Organization",
       "name": "Panda Patches",
@@ -662,7 +662,7 @@ export function generateServiceSchema() {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD",
-      "description": "Free design mockup included with every patch order. Unlimited revisions at no extra cost."
+      "description": "Digital mockup in 12 to 24 hours included with every patch order. Unlimited revisions at no extra cost."
     },
     "areaServed": {
       "@type": "Country",

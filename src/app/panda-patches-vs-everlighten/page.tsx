@@ -51,7 +51,7 @@ const faqs = [
   },
   {
     question: `How fast is the digital mockup at each company?`,
-    answer: `Panda Patches commits to a free digital mockup within 24 hours of order placement, every order. EverLighten offers free digital proofs but turnaround varies based on the China timezone and order complexity. For time-sensitive orders, the published 24-hour SLA is a real planning advantage.`,
+    answer: `Panda Patches commits to a digital mockup in 12 to 24 hours of order placement, every order. EverLighten offers digital proofs but turnaround varies based on the China timezone and order complexity. For time-sensitive orders, the published 12-24 hour SLA is a real planning advantage.`,
   },
   {
     question: `When should I choose ${COMPETITOR} over Panda Patches?`,
@@ -107,7 +107,7 @@ export default function PandaVsEverLighten() {
             },
           ]}
           primaryQuote={{
-            text: "Production starts only after written approval. Free mockup within 24 hours. Free US shipping. After a bad experience with an overseas vendor, this was exactly the contract clarity I needed.",
+            text: "Production starts only after written approval. Mockup in 12 to 24 hours. Free worldwide shipping. After a bad experience with an overseas vendor, this was exactly the contract clarity I needed.",
             author: "Customer feedback",
             role: "Common review theme",
           }}
@@ -123,13 +123,13 @@ export default function PandaVsEverLighten() {
             { category: "Pricing (3-inch embroidered)", feature: "500 pieces (per piece)", panda: "$1.18", competitor: "Approximately $1.00 typical", competitorWin: true },
             { category: "Pricing (3-inch embroidered)", feature: "1,000 pieces (per piece)", panda: "$1.05", competitor: "Approximately $0.79", competitorWin: true },
 
-            { category: "Design and approval", feature: "Free digital mockup", panda: "Within 24 hours, committed SLA", competitor: "Variable, timezone-dependent", pandaWin: true },
+            { category: "Design and approval", feature: "Digital mockup", panda: "In 12-24 hours, committed SLA", competitor: "Variable, timezone-dependent", pandaWin: true },
             { category: "Design and approval", feature: "Free artwork and revisions", panda: "Unlimited free revisions", competitor: "Free, with variable turnaround", pandaWin: true },
             { category: "Design and approval", feature: "Approval before production", panda: "Required in writing", competitor: "Standard approval process", tie: true },
 
             { category: "Turnaround", feature: "Standard production", panda: "7-14 business days", competitor: "10-15 business days plus ocean freight", pandaWin: true },
             { category: "Turnaround", feature: "Rush production", panda: "Date confirmed in 2-6 hours, refund if missed", competitor: "Air freight available, additional cost", pandaWin: true },
-            { category: "Turnaround", feature: "US delivery speed", panda: "Free US shipping included", competitor: "Shipping from China, transit time varies", pandaWin: true },
+            { category: "Turnaround", feature: "US delivery speed", panda: "Free worldwide shipping included", competitor: "Shipping from China, transit time varies", pandaWin: true },
 
             { category: "Guarantees", feature: "Money-back guarantee", panda: "Yes, covers design dissatisfaction", competitor: "Not explicitly published", pandaWin: true },
           ]}

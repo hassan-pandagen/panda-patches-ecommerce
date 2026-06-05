@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = await getSanityOgImage();
   return {
     title: "Custom Patches | All Types from $0.71/pc | Free Design | Panda Patches",
-    description: "Order custom patches in any style: embroidered, PVC, woven, chenille & leather. As low as 5 patches. Free artwork & mockup in 24hrs. Ships in 7-14 days. Trusted by 10,000+ brands. Get a free quote!",
+    description: "Order custom patches in any style: embroidered, PVC, woven, chenille & leather. As low as 5 patches. Free artwork plus a mockup in 12-24 hours. Ships in 7-14 days. Trusted by 10,000+ brands. Get a free quote!",
     alternates: {
       canonical: "https://www.pandapatches.com/custom-patches",
     },
@@ -126,7 +126,7 @@ const faqSchema = {
       name: "What types of custom patches can I get made?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "At Panda Patches, you can get five types of custom patches made: (1) Embroidered patches — classic raised thread look, best for logos, uniforms, and bold designs; (2) Woven patches — finer thread and flatter finish, ideal for small text and intricate detail; (3) PVC patches — soft rubber, fully waterproof, best for tactical gear and outdoor use; (4) Chenille patches — raised fuzzy texture, the classic varsity jacket look for sports teams and schools; (5) Leather patches — laser-engraved or debossed, premium finish for hats, denim jackets, and brand merchandise. All patch types are available with iron-on, sew-on, or Velcro backing. Low 5-piece minimum, free digital mockup within 24 hours, and free US shipping on every order.",
+        text: "At Panda Patches, you can get five types of custom patches made: (1) Embroidered patches — classic raised thread look, best for logos, uniforms, and bold designs; (2) Woven patches — finer thread and flatter finish, ideal for small text and intricate detail; (3) PVC patches — soft rubber, fully waterproof, best for tactical gear and outdoor use; (4) Chenille patches — raised fuzzy texture, the classic varsity jacket look for sports teams and schools; (5) Leather patches — laser-engraved or debossed, premium finish for hats, denim jackets, and brand merchandise. All patch types are available with iron-on, sew-on, or Velcro backing. Low 5-piece minimum, digital mockup in 12 to 24 hours, and free worldwide shipping on every order.",
       },
     },
     {
@@ -139,10 +139,10 @@ const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "Do custom patches from Panda Patches come with a free mockup?",
+      name: "Do custom patches from Panda Patches come with a mockup?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Every order at Panda Patches includes free artwork, free design, and a free digital mockup delivered within 24 hours. The mockup shows exactly what your finished patch will look like — colors, dimensions, stitching, borders, and backing. Unlimited free revisions are included. No setup fees, no digitizing fees, no design charges — the free artwork and mockup are included regardless of order size, from 5 pieces to 5,000+. Production never starts until you approve in writing.",
+        text: "Yes. Every order at Panda Patches includes free artwork, free design, and a digital mockup delivered in 12 to 24 hours. The mockup shows exactly what your finished patch will look like, including colors, dimensions, stitching, borders, and backing. Unlimited free revisions are included. No setup fees, no digitizing fees, no design charges. The free artwork and the mockup are included regardless of order size, from 5 pieces to 5,000+. Production never starts until you approve in writing.",
       },
     },
     {
@@ -150,7 +150,7 @@ const faqSchema = {
       name: "Where can I get custom patches with free artwork and no setup fees?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Panda Patches provides free artwork, free design assistance, and a free digital mockup within 24 hours on every custom patch order — embroidered, PVC, woven, chenille, and leather. No setup fees, no digitizing fees, unlimited free revisions until you approve, and free US shipping included. Minimum order is 5 pieces. Production starts only after your written approval.",
+        text: "Panda Patches provides free artwork, free design assistance, and a digital mockup in 12 to 24 hours on every custom patch order — embroidered, PVC, woven, chenille, and leather. No setup fees, no digitizing fees, unlimited free revisions until you approve, and free worldwide shipping included. Minimum order is 5 pieces. Production starts only after your written approval.",
       },
     },
     {
@@ -166,7 +166,7 @@ const faqSchema = {
       name: "Where can I order custom patches with a money-back guarantee?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Panda Patches offers custom patches with a full money-back guarantee. After you pay, our design team sends a digital mockup within 24 hours. You review it, request unlimited free changes, and only approve when you are completely satisfied. Production starts only after your written approval. If we still cannot get it right, you receive a full refund. No questions asked. Free US shipping, no setup fees, minimum order of 5 pieces.",
+        text: "Panda Patches offers custom patches with a full money-back guarantee. After you pay, our design team sends a digital mockup within 24 hours. You review it, request unlimited free changes, and only approve when you are completely satisfied. Production starts only after your written approval. If we still cannot get it right, you receive a full refund. No questions asked. Free worldwide shipping, no setup fees, minimum order of 5 pieces.",
       },
     },
     {
@@ -190,7 +190,7 @@ const faqSchema = {
       name: "How long does production take?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Standard production is 7-14 business days after design approval. Rush production is available with exact delivery date confirmed by email within 2-6 hours. Economy production (16-18 business days) saves 10% off the total. Free US shipping on all orders.",
+        text: "Standard production is 7-14 business days after design approval. Rush production is available with exact delivery date confirmed by email within 2-6 hours. Economy production (16-18 business days) saves 10% off the total. Free worldwide shipping on all orders.",
       },
     },
     {
@@ -198,7 +198,7 @@ const faqSchema = {
       name: "Do you offer free design services?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, we provide a free professional digital mockup for every order within 24 hours. Unlimited revisions are included at no extra charge until you are 100% satisfied with the design.",
+        text: "Yes, we provide a professional digital mockup for every order in 12 to 24 hours. Unlimited revisions are included at no extra charge until you are 100% satisfied with the design.",
       },
     },
     {
@@ -358,7 +358,7 @@ export default async function ProductLandingPage() {
           </p>
           <ol className="space-y-3 mb-8 text-[17px] leading-[1.8] text-gray-600 list-decimal list-inside">
             <li><strong className="text-panda-dark">Submit your quote.</strong> Upload your artwork or describe your idea using our quote form. Include patch type, size, quantity, and backing preference.</li>
-            <li><strong className="text-panda-dark">Receive your free mockup within 24 hours.</strong> Our design team creates a digital proof showing exactly what your patch will look like. Review it and request any changes, free of charge.</li>
+            <li><strong className="text-panda-dark">Receive your digital mockup in 12 to 24 hours.</strong> Our design team creates a digital proof showing exactly what your patch will look like. Review it and request any changes, free of charge.</li>
             <li><strong className="text-panda-dark">Approve and pay.</strong> Once you are happy with the mockup, confirm your order. Production begins immediately after approval.</li>
             <li><strong className="text-panda-dark">Receive your patches in 7-14 days.</strong> Standard production ships in 7-14 business days. Rush production is available if you need them sooner.</li>
           </ol>
@@ -376,7 +376,7 @@ export default async function ProductLandingPage() {
             <li><strong className="text-panda-dark">1,000 pieces:</strong> $1,200 total ($1.20/pc)</li>
           </ul>
           <p className="text-[17px] leading-[1.8] text-gray-600 mb-4">
-            PVC, chenille, and leather patches carry slightly higher base prices due to materials and production complexity. Woven patches are comparable to embroidered. All prices include free shipping within the US and a free digital mockup. There are no setup fees and no hidden charges.
+            PVC, chenille, and leather patches carry slightly higher base prices due to materials and production complexity. Woven patches are comparable to embroidered. All prices include free worldwide shipping and a digital mockup in 12 to 24 hours. There are no setup fees and no hidden charges.
           </p>
           <p className="text-[17px] leading-[1.8] text-gray-600">
             Need a precise quote? Use our free quote form above, upload your design, and receive a detailed price breakdown within 24 hours.

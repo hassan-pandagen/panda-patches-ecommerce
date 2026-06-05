@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = await getSanityOgImage();
   return {
     title: "About Panda Patches | 13 Years Custom Patch Experts",
-    description: "Learn about Panda Patches. 13 years of custom embroidered patch experience with low minimums. Family-owned with free 24-hour design mockup and money-back guarantee.",
+    description: "Learn about Panda Patches. 13 years of custom embroidered patch experience with low minimums. Family-owned with mockup in 12-24 hours and money-back guarantee.",
     openGraph: {
       title: "About Panda Patches | 13 Years Custom Patch Experts",
       description: "Family-owned custom patch company with 13 years of experience. Low minimums, free design services, money-back guarantee.",

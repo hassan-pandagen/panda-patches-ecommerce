@@ -174,7 +174,7 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
           <div className="py-10 bg-white border-t border-gray-100">
             <div className="container mx-auto px-6 max-w-[860px] text-center">
               <p className="text-[18px] md:text-[22px] font-black text-panda-dark mb-2">Ready to create your custom hat patches?</p>
-              <p className="text-[15px] text-gray-500 mb-6">Upload your design and get a free mockup in 24 hours.</p>
+              <p className="text-[15px] text-gray-500 mb-6">Upload your design and get a mockup in 12-24 hours.</p>
               <a href="#quote-form" className="inline-block bg-panda-green text-white font-black text-[16px] px-10 py-4 rounded-full hover:bg-panda-dark transition-colors shadow-lg">Start Your Order</a>
             </div>
           </div>

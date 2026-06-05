@@ -113,7 +113,7 @@ export default function ComparisonPage({
                 className="flex items-center justify-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
               >
                 <MessageCircle size={18} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
-                <span>Get Free Mockup</span>
+                <span>Get 12-24h Mockup</span>
               </Link>
               <Link
                 href="/offers"
@@ -139,7 +139,7 @@ export default function ComparisonPage({
             <div className="hidden md:block w-1 h-1 bg-gray-300 rounded-full" />
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4 text-panda-green" />
-              <strong className="text-panda-dark">Free mockup in 24 hours</strong>
+              <strong className="text-panda-dark">Mockup in 12-24 hours</strong>
             </div>
             <div className="hidden md:block w-1 h-1 bg-gray-300 rounded-full" />
             <div className="flex items-center gap-2">
@@ -313,13 +313,13 @@ export default function ComparisonPage({
               We don&apos;t start production until you approve in writing
             </h2>
             <p className="text-gray-600 leading-[1.7] text-[15px] md:text-[16px] max-w-[640px] mx-auto mb-7 font-medium">
-              You see a free digital mockup within 24 hours. You request unlimited free revisions. Only when you give written approval do patches get manufactured. If we can&apos;t get the design right after revisions, you receive a full refund. No questions asked.
+              You see a digital mockup in 12 to 24 hours. You request unlimited free revisions. Only when you give written approval do patches get manufactured. If we can&apos;t get the design right after revisions, you receive a full refund. No questions asked.
             </p>
             <Link
               href="/contact"
               className="inline-block bg-panda-dark text-panda-yellow font-black text-[14px] md:text-[15px] px-8 py-3.5 rounded-full hover:bg-panda-green hover:text-panda-dark transition-colors"
             >
-              Get Your Free Mockup
+              Get Your Mockup in 12-24 Hours
             </Link>
           </div>
         </div>
@@ -394,7 +394,7 @@ export default function ComparisonPage({
               className="flex items-center justify-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
             >
               <MessageCircle size={18} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
-              <span>Get Free Mockup</span>
+              <span>Get 12-24h Mockup</span>
             </Link>
             <a
               href="tel:+13022504340"

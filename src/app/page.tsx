@@ -40,10 +40,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: "Custom Patches | Embroidered, PVC & Woven | Free Design | Panda Patches",
-    description: "Custom patches starting at $0.50/pc. Embroidered, PVC, woven, chenille & leather patches. Low 5-piece minimums, free design mockup in 24hrs, ships in 7-14 days. 1M+ delivered. Get your free quote!",
+    description: "Custom patches starting at $0.50/pc. Embroidered, PVC, woven, chenille & leather patches. Low 5-piece minimums, mockup in 12-24 hours, ships in 7-14 days. 1M+ delivered. Get your free quote!",
     openGraph: {
       title: "Custom Patches From $0.50/pc. Free Design. Ships in 14 Days.",
-      description: "1,000,000+ patches delivered to brands worldwide. Custom embroidered, PVC, chenille & woven patches with free artwork, no setup fees, and free 24-hour design mockup. Get your free quote today.",
+      description: "1,000,000+ patches delivered to brands worldwide. Custom embroidered, PVC, chenille & woven patches with free artwork, no setup fees, and a digital mockup in 12 to 24 hours. Get your free quote today.",
       type: "website",
       url: "https://www.pandapatches.com",
       images: [
@@ -59,7 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: "Custom Patches From $0.50/pc. Free Design. Ships in 14 Days.",
-      description: "1,000,000+ patches delivered worldwide. Free artwork, no setup fees, free design mockup in 24 hours.",
+      description: "1,000,000+ patches delivered worldwide. Free artwork, no setup fees, mockup in 12-24 hours.",
       images: [ogImageUrl]
     },
     alternates: {
@@ -88,7 +88,7 @@ const homeFaqSchema = {
       "name": "What is Panda Patches?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Panda Patches is a custom patch company founded by Imran Raza, headquartered in Missouri City, Texas, built on 13 years of patch experience. We design and produce embroidered, PVC, woven, chenille, and leather patches for small businesses, sports teams, military units, schools, motorcycle clubs, and brands across the United States. We have delivered over 1,000,000 custom patches with a free 24-hour design mockup, low 5-piece minimum, and money-back guarantee on every order.",
+        "text": "Panda Patches is a custom patch company founded by Imran Raza, headquartered in Missouri City, Texas, built on 13 years of patch experience. We design and produce embroidered, PVC, woven, chenille, and leather patches for small businesses, sports teams, military units, schools, motorcycle clubs, and brands across the United States. We have delivered over 1,000,000 custom patches with a digital mockup in 12 to 24 hours, low 5-piece minimum, and money-back guarantee on every order.",
       },
     },
     {
@@ -101,10 +101,10 @@ const homeFaqSchema = {
     },
     {
       "@type": "Question",
-      "name": "Does Panda Patches include a free mockup?",
+      "name": "Does Panda Patches include a mockup with every order?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Every order includes a free digital mockup delivered within 24 hours. Unlimited free revisions are included until you approve the design. Production never starts until you give written approval on the mockup.",
+        "text": "Yes. Every order includes a digital mockup delivered in 12 to 24 hours. Unlimited free revisions are included until you approve the design. Production never starts until you give written approval on the mockup.",
       },
     },
     {
@@ -112,7 +112,7 @@ const homeFaqSchema = {
       "name": "How much do custom patches cost at Panda Patches?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Custom embroidered patches cost $3.60 per piece at 50 pieces, $2.40 at 100 pieces, $1.50 at 500 pieces, and $1.20 at 1,000 pieces. PVC patches cost $4.60 at 50 pieces, $3.40 at 100, $2.80 at 500, and $2.20 at 1,000. All prices include free US shipping and free mockup. No setup fees on any order.",
+        "text": "Custom embroidered patches cost $3.60 per piece at 50 pieces, $2.40 at 100 pieces, $1.50 at 500 pieces, and $1.20 at 1,000 pieces. PVC patches cost $4.60 at 50 pieces, $3.40 at 100, $2.80 at 500, and $2.20 at 1,000. All prices include free worldwide shipping and a digital mockup in 12 to 24 hours. No setup fees on any order.",
       },
     },
     {
@@ -120,7 +120,7 @@ const homeFaqSchema = {
       "name": "How long does it take to get custom patches from Panda Patches?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Standard production is 7-14 business days after you approve your digital mockup. Rush production is available with delivery confirmed by email within 2-6 hours of ordering. Economy option (16-18 business days) saves 10% off the order total. Free US shipping is included on all orders.",
+        "text": "Standard production is 7-14 business days after you approve your digital mockup. Rush production is available with delivery confirmed by email within 2-6 hours of ordering. Economy option (16-18 business days) saves 10% off the order total. Free worldwide shipping is included on all orders.",
       },
     },
     {
@@ -128,7 +128,7 @@ const homeFaqSchema = {
       "name": "What types of custom patches does Panda Patches make?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Panda Patches makes embroidered patches, PVC patches, woven patches, chenille patches, and leather patches. All types are available with iron-on, sew-on, or Velcro backing. Velcro backing adds $30 flat to any order. Every order includes a free digital mockup within 24 hours, free US shipping, and no setup fees.",
+        "text": "Panda Patches makes embroidered patches, PVC patches, woven patches, chenille patches, and leather patches. All types are available with iron-on, sew-on, or Velcro backing. Velcro backing adds $30 flat to any order. Every order includes a digital mockup in 12 to 24 hours, free worldwide shipping, and no setup fees.",
       },
     },
     {
@@ -136,7 +136,7 @@ const homeFaqSchema = {
       "name": "Does Panda Patches offer free shipping?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Free shipping is included on all orders to any US address with no minimum order value. No hidden fees or setup charges.",
+        "text": "Yes. Free worldwide shipping is included on every order regardless of size, with no hidden fees and no setup charges. Our minimum order is 5 pieces per design.",
       },
     },
     {

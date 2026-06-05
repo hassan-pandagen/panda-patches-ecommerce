@@ -969,7 +969,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "What is the minimum order for custom hat patches?",
-      answer: "Our minimum order for custom hat patches is 50 pieces. Pricing drops at 100, 500, and 1,000 pieces. For a full price breakdown, see our offers page. Every order includes a free digital mockup within 24 hours, unlimited revisions, and production only starts after you approve the design."
+      answer: "Our minimum order for custom hat patches is 50 pieces. Pricing drops at 100, 500, and 1,000 pieces. For a full price breakdown, see our offers page. Every order includes a digital mockup in 12 to 24 hours, unlimited revisions, and production only starts after you approve the design."
     },
     {
       question: "How do I attach a patch to a hat without sewing?",
@@ -997,7 +997,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "What is the turnaround time for custom hat patches?",
-      answer: "Standard production takes 7-14 business days from design approval. We provide a free digital mockup within 24 hours of receiving your design, so you can approve or request changes quickly. If you need patches faster, ask about our rush production options. Shipping within the US typically adds 2-5 business days depending on your location."
+      answer: "Standard production takes 7-14 business days from design approval. We provide a digital mockup in 12 to 24 hours of receiving your design, so you can approve or request changes quickly. If you need patches faster, ask about our rush production options. Shipping within the US typically adds 2-5 business days depending on your location."
     },
     {
       question: "How much do custom hat patches cost?",

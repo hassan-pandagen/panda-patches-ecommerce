@@ -13,10 +13,10 @@ interface ProductPageMeta {
 
 const productPageMeta: Record<string, ProductPageMeta> = {
   "embroidered": {
-    title: "Custom Embroidered Patches from $0.71 | Free Mockup | 5pc Min",
-    description: "Custom embroidered patches from $0.71/pc. Any size, shape & color. Iron-on, sew-on or velcro backing. Free design mockup in 24hrs. 5-piece minimum. Ships in 7-14 days. Get your free quote!",
-    ogTitle: "Custom Embroidered Patches from $0.71 | Free Mockup | 5pc Min",
-    ogDescription: "Embroidered patches from $0.71/pc. Any size, shape & color. Free design mockup in 24hrs. 5-piece minimum. Ships in 7-14 days.",
+    title: "Custom Embroidered Patches from $0.71 | 24h Mockup | 5pc Min",
+    description: "Custom embroidered patches from $0.71/pc. Any size, shape & color. Iron-on, sew-on or velcro backing. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days. Get your free quote!",
+    ogTitle: "Custom Embroidered Patches from $0.71 | 24h Mockup | 5pc Min",
+    ogDescription: "Embroidered patches from $0.71/pc. Any size, shape & color. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days.",
   },
   "pvc": {
     title: "Custom PVC Patches from $1.20 | Free Design | 5pc Min",
@@ -26,21 +26,27 @@ const productPageMeta: Record<string, ProductPageMeta> = {
   },
   "woven": {
     title: "Custom Woven Patches from $0.65 | 5-Piece Min | 24h Mockup",
-    description: "Custom woven patches from $0.65/pc. Ultra-fine detail, thin profile, perfect for small text and complex logos. 5-piece minimum. Free design mockup in 24hrs. Ships in 7-14 days.",
+    description: "Custom woven patches from $0.65/pc. Ultra-fine detail, thin profile, perfect for small text and complex logos. 5-piece minimum. Digital mockup in 12 to 24 hours. Ships in 7-14 days.",
     ogTitle: "Custom Woven Patches from $0.65 | 5-Piece Min | 24h Mockup",
-    ogDescription: "Woven patches from $0.65/pc. Ultra-fine detail for small text and complex logos. Free mockup, 5-piece minimum, ships in 7-14 days.",
+    ogDescription: "Woven patches from $0.65/pc. Ultra-fine detail for small text and complex logos. 12-24h mockup, 5-piece minimum, ships in 7-14 days.",
   },
   "chenille": {
     title: "Custom Chenille Patches | Varsity & Letterman | Free Design",
-    description: "Custom chenille patches for varsity jackets, letterman jackets, and sports teams. Soft raised texture, vibrant colors. Free design mockup in 24hrs. 5-piece minimum. Ships in 7-14 days.",
+    description: "Custom chenille patches for varsity jackets, letterman jackets, and sports teams. Soft raised texture, vibrant colors. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days.",
     ogTitle: "Custom Chenille Patches | Varsity & Letterman | Free Design",
-    ogDescription: "Chenille patches for varsity and letterman jackets. Soft raised texture, vibrant colors. Free mockup, ships in 7-14 days.",
+    ogDescription: "Chenille patches for varsity and letterman jackets. Soft raised texture, vibrant colors. 12-24h mockup, ships in 7-14 days.",
   },
   "leather": {
-    title: "Custom Leather Patches from $1.50 | Free Mockup | 5pc Min",
-    description: "Custom leather patches from $1.50/pc. Premium real and vegan leather for hats, bags, and apparel. Debossed or laser-engraved. Free design mockup in 24hrs. Ships in 7-14 days.",
-    ogTitle: "Custom Leather Patches from $1.50 | Free Mockup | 5pc Min",
-    ogDescription: "Leather patches from $1.50/pc. Premium real and vegan leather for hats, bags, apparel. Free mockup, ships in 7-14 days.",
+    title: "Custom Leather Patches from $1.50 | 24h Mockup | 5pc Min",
+    description: "Custom leather patches from $1.50/pc. Premium real and vegan leather for hats, bags, and apparel. Debossed or laser-engraved. Digital mockup in 12 to 24 hours. Ships in 7-14 days.",
+    ogTitle: "Custom Leather Patches from $1.50 | 24h Mockup | 5pc Min",
+    ogDescription: "Leather patches from $1.50/pc. Premium real and vegan leather for hats, bags, apparel. 12-24h mockup, ships in 7-14 days.",
+  },
+  "custom-chenille-glitter-patches": {
+    title: "Custom Chenille Glitter Patches | 24h Mockup",
+    description: "Custom chenille glitter patches with sparkling yarn for varsity jackets, cheer, dance, and fashion. Low 5-piece minimum, digital mockup in 12 to 24 hours.",
+    ogTitle: "Custom Chenille Glitter Patches | Low 5-Piece Min | 24h Mockup",
+    ogDescription: "Chenille glitter patches with sparkling metallic yarn for varsity jackets, cheer uniforms, and dance teams. Low 5-piece minimum, 12-24h mockup, ships in 7-14 days.",
   },
 };
 

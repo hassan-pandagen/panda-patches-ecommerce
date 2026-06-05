@@ -9,7 +9,7 @@ import PurchaseConversion from "@/components/PurchaseConversion";
 
 export const metadata: Metadata = {
   title: "Order Confirmed | Panda Patches",
-  description: "Your custom patch order has been confirmed. Our team will contact you within 24 hours with a free digital mockup.",
+  description: "Your custom patch order has been confirmed. Our team will contact you in 12 to 24 hours with a digital mockup.",
   robots: { index: false, follow: false },
 };
 
@@ -112,7 +112,7 @@ export default async function SuccessPage({
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 size={20} className="text-green-600 mt-1 flex-shrink-0" />
-                <span>We&apos;ll send you a <strong>free digital mockup</strong> for approval before production.</span>
+                <span>We&apos;ll send you a <strong>digital mockup in 12 to 24 hours</strong> for approval before production.</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 size={20} className="text-green-600 mt-1 flex-shrink-0" />

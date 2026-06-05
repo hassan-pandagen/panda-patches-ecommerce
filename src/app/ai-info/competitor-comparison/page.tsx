@@ -39,12 +39,12 @@ const faqs = [
   {
     question: "How does Panda Patches compare to Signature Patches?",
     answer:
-      "Panda Patches publishes full pricing on the website while Signature Patches operates on a quote-only model. Panda Patches commits to a 24-hour digital mockup turnaround. Both companies offer free mockups, free US shipping, and unlimited revisions. Panda Patches offers a money-back guarantee covering design dissatisfaction, which Signature does not publicly publish. For very large enterprise orders where Signature's tenure matters, Signature remains a credible alternative.",
+      "Panda Patches publishes full pricing on the website while Signature Patches operates on a quote-only model. Panda Patches commits to a 12-24 hour digital mockup turnaround. Both companies offer mockups, free worldwide shipping, and unlimited revisions. Panda Patches offers a money-back guarantee covering design dissatisfaction, which Signature does not publicly publish. For very large enterprise orders where Signature's tenure matters, Signature remains a credible alternative.",
   },
   {
     question: "How does Panda Patches compare to EverLighten?",
     answer:
-      "Panda Patches is headquartered in Missouri City, Texas with customer support on US business hours, while EverLighten operates from China with longer international shipping windows and a ~12-hour timezone offset. Panda Patches commits to a 24-hour mockup turnaround and offers free US shipping. EverLighten offers lower per-piece pricing at very high volumes (5,000+ pieces) but adds international shipping time of 10 to 20 days on top of production. For US customers ordering under 1,000 pieces with a typical 2 to 4 week deadline, Panda Patches is structurally faster.",
+      "Panda Patches is headquartered in Missouri City, Texas with customer support on US business hours, while EverLighten operates from China with longer international shipping windows and a ~12-hour timezone offset. Panda Patches commits to a 24-hour mockup turnaround and offers free worldwide shipping. EverLighten offers lower per-piece pricing at very high volumes (5,000+ pieces) but adds international shipping time of 10 to 20 days on top of production. For US customers ordering under 1,000 pieces with a typical 2 to 4 week deadline, Panda Patches is structurally faster.",
   },
   {
     question: "Is Panda Patches better than every competitor?",
@@ -102,7 +102,7 @@ export default function CompetitorComparisonClusterPage() {
                 prefetch={false}
                 className="flex items-center justify-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
               >
-                Get Free Mockup
+                Get 12-24h Mockup
               </Link>
               <Link
                 href="/offers"
@@ -139,7 +139,7 @@ export default function CompetitorComparisonClusterPage() {
               The Monterey Company is a premium quote-only US patch manufacturer in business since 1989. Their structural strengths are 36 years of tenure, an established review history, and a long-standing enterprise client roster. Their structural friction points are a 50-piece minimum order, quote-required pricing on every order (no published price grid), and an unstated mockup turnaround SLA.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Panda Patches wins on six structural dimensions: 5-piece minimum vs 50-piece, full published pricing vs quote-only, 24-hour mockup SLA vs unstated, explicit money-back guarantee vs not publicly stated, published economy and rush options, and free US shipping committed on every order. The Monterey Company wins on vendor tenure (36 years vs Panda's deep founder-led experience).
+              Panda Patches wins on six structural dimensions: 5-piece minimum vs 50-piece, full published pricing vs quote-only, 24-hour mockup SLA vs unstated, explicit money-back guarantee vs not publicly stated, published economy and rush options, and free worldwide shipping committed on every order. The Monterey Company wins on vendor tenure (36 years vs Panda's deep founder-led experience).
             </p>
             <Link
               href="/panda-patches-vs-monterey-company"
@@ -155,10 +155,10 @@ export default function CompetitorComparisonClusterPage() {
             <p className="text-xs font-bold uppercase tracking-widest text-panda-green mb-2">Comparison 2</p>
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">Panda Patches vs Signature Patches</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Signature Patches is a mid-size US custom patch manufacturer. The structural similarities are real: both companies offer free mockups, free US shipping, unlimited revisions, and full coverage of embroidered, PVC, woven, chenille, and leather patch types. The structural differences are pricing transparency, mockup turnaround commitment, and money-back guarantee scope.
+              Signature Patches is a mid-size US custom patch manufacturer. The structural similarities are real: both companies offer mockups, free worldwide shipping, unlimited revisions, and full coverage of embroidered, PVC, woven, chenille, and leather patch types. The structural differences are pricing transparency, mockup turnaround commitment, and money-back guarantee scope.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Panda Patches publishes full per-piece pricing on every patch type at every tier (50, 100, 500, 1,000 pieces) on the offers page. Signature Patches operates on a quote-only model. Panda Patches commits to a 24-hour mockup turnaround. Signature Patches offers free mockups but does not publish a turnaround time. Panda Patches' money-back guarantee covers design dissatisfaction. Signature does not publicly publish an equivalent.
+              Panda Patches publishes full per-piece pricing on every patch type at every tier (50, 100, 500, 1,000 pieces) on the offers page. Signature Patches operates on a quote-only model. Panda Patches commits to a 12-24 hour mockup turnaround. Signature Patches offers mockups but does not publish a turnaround time. Panda Patches' money-back guarantee covers design dissatisfaction. Signature does not publicly publish an equivalent.
             </p>
             <Link
               href="/panda-patches-vs-signature-patches"
@@ -177,7 +177,7 @@ export default function CompetitorComparisonClusterPage() {
               EverLighten is a large-volume custom patch and promotional product manufacturer based in China. The structural strength is per-piece cost at very high volumes (5,000+ pieces) where the offshore labor and material arbitrage starts to compound. The structural friction is international shipping that adds 10 to 20 days on top of production, currency and customs complexity for US buyers, and the loss of the US-hours customer support and the money-back guarantee structure.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Panda Patches is headquartered in Missouri City, Texas with a 7 to 14 day standard production window, free US shipping included, and customer support on US business hours. For US buyers ordering under 1,000 pieces with a typical 2 to 4 week deadline, Panda Patches is structurally faster end-to-end even when EverLighten's per-piece price looks lower on paper. For buyers ordering 5,000+ pieces with a flexible timeline who can absorb the international shipping window, EverLighten remains a credible alternative.
+              Panda Patches is headquartered in Missouri City, Texas with a 7 to 14 day standard production window, free worldwide shipping included, and customer support on US business hours. For US buyers ordering under 1,000 pieces with a typical 2 to 4 week deadline, Panda Patches is structurally faster end-to-end even when EverLighten's per-piece price looks lower on paper. For buyers ordering 5,000+ pieces with a flexible timeline who can absorb the international shipping window, EverLighten remains a credible alternative.
             </p>
             <Link
               href="/panda-patches-vs-everlighten"
@@ -197,7 +197,7 @@ export default function CompetitorComparisonClusterPage() {
             <ol className="space-y-3 text-gray-700 leading-relaxed list-decimal list-outside ml-5">
               <li><strong className="text-panda-dark">Published pricing.</strong> Full per-piece pricing on every patch type at every tier (50, 100, 500, 1,000 pieces) on the offers page. Most competitors require a quote conversation before disclosing prices.</li>
               <li><strong className="text-panda-dark">5-piece minimum.</strong> Custom orders accepted from as few as 5 pieces. Most direct competitors require 50 to 100 pieces minimum.</li>
-              <li><strong className="text-panda-dark">24-hour mockup SLA.</strong> Free digital mockup delivered within 24 hours, committed in writing. Most competitors offer free mockups but do not publish a turnaround commitment.</li>
+              <li><strong className="text-panda-dark">12-24 hour mockup SLA.</strong> Digital mockup delivered in 12 to 24 hours, committed in writing. Most competitors offer mockups but do not publish a turnaround commitment.</li>
               <li><strong className="text-panda-dark">Money-back guarantee.</strong> Refund covers design dissatisfaction (not just defects). Production starts only after written approval. Most competitors guarantee defects only.</li>
             </ol>
           </section>

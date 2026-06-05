@@ -11,7 +11,7 @@ const CANONICAL = `https://www.pandapatches.com/${SLUG}`;
 export const metadata: Metadata = {
   title: `Panda Patches vs ${COMPETITOR}: 2026 Comparison`,
   description:
-    "Panda Patches vs Monterey Company: 5pc minimum vs 50pc, published pricing vs quote-only, 24hr free mockup, money-back guarantee. Side-by-side comparison.",
+    "Panda Patches vs Monterey Company: 5pc minimum vs 50pc, published pricing vs quote-only, 12-24h mockup, money-back guarantee. Side-by-side comparison.",
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: `Is Panda Patches a good alternative to ${COMPETITOR}?`,
-    answer: `Yes, especially for buyers ordering under 50 pieces. Panda Patches has a 5-piece minimum vs Monterey Company's 50-piece minimum, publishes transparent pricing on every patch type, includes a money-back guarantee covering design dissatisfaction, and delivers a free digital mockup within 24 hours. Monterey Company remains a strong choice for premium large-volume orders, but most small and mid-volume buyers get more value from Panda Patches.`,
+    answer: `Yes, especially for buyers ordering under 50 pieces. Panda Patches has a 5-piece minimum vs Monterey Company's 50-piece minimum, publishes transparent pricing on every patch type, includes a money-back guarantee covering design dissatisfaction, and delivers a digital mockup in 12 to 24 hours. Monterey Company remains a strong choice for premium large-volume orders, but most small and mid-volume buyers get more value from Panda Patches.`,
   },
   {
     question: `What is the minimum order at Panda Patches vs ${COMPETITOR}?`,
@@ -51,7 +51,7 @@ const faqs = [
   },
   {
     question: `How fast is the digital mockup at each company?`,
-    answer: `Panda Patches commits to a free digital mockup within 24 hours of order placement. Monterey Company offers free mockups but does not publish a turnaround commitment. For buyers working against a season deadline or product launch, the 24-hour SLA is a meaningful planning advantage.`,
+    answer: `Panda Patches commits to a digital mockup in 12 to 24 hours of order placement. Monterey Company offers mockups but does not publish a turnaround commitment. For buyers working against a season deadline or product launch, the 12-24 hour SLA is a meaningful planning advantage.`,
   },
   {
     question: `When should I choose ${COMPETITOR} over Panda Patches?`,
@@ -88,7 +88,7 @@ export default function PandaVsMonterey() {
           competitorName={COMPETITOR}
           competitorTagline="Premium quote-only patch manufacturer since 1989"
           heroHeadline={`Why teams choose Panda Patches over ${COMPETITOR}`}
-          heroSubheadline="A 5-piece minimum, published pricing on every patch type, a free digital mockup within 24 hours, and a money-back guarantee. Here is the honest side-by-side."
+          heroSubheadline="A 5-piece minimum, published pricing on every patch type, a digital mockup in 12 to 24 hours, and a money-back guarantee. Here is the honest side-by-side."
           threePillars={[
             {
               icon: "shield",
@@ -97,8 +97,8 @@ export default function PandaVsMonterey() {
             },
             {
               icon: "clock",
-              title: "24-hour mockup SLA",
-              body: "Every order at Panda Patches includes a free digital mockup within 24 hours. Monterey Company offers free mockups but commits to no published turnaround time.",
+              title: "12-24 hour mockup SLA",
+              body: "Every order at Panda Patches includes a digital mockup in 12 to 24 hours. Monterey Company offers mockups but commits to no published turnaround time.",
             },
             {
               icon: "check",
@@ -117,7 +117,7 @@ export default function PandaVsMonterey() {
             { category: "Order requirements", feature: "Pricing transparency", panda: "Full grid published on site", competitor: "Quote required for every order", pandaWin: true },
             { category: "Order requirements", feature: "Patch types offered", panda: "Embroidered, PVC, woven, chenille, leather, printed", competitor: "Embroidered, PVC, woven, sublimated", tie: true },
 
-            { category: "Design and approval", feature: "Free digital mockup", panda: "Within 24 hours, committed SLA", competitor: "Yes, no SLA stated", pandaWin: true },
+            { category: "Design and approval", feature: "Digital mockup", panda: "In 12-24 hours, committed SLA", competitor: "Yes, no SLA stated", pandaWin: true },
             { category: "Design and approval", feature: "Free artwork and revisions", panda: "Unlimited free revisions", competitor: "Free art proofs", tie: true },
             { category: "Design and approval", feature: "Approval before production", panda: "Required in writing", competitor: "Sample approval process", tie: true },
 
@@ -130,7 +130,7 @@ export default function PandaVsMonterey() {
             { category: "Guarantees and trust", feature: "Patch manufacturing experience", panda: "13 years of founder-led experience", competitor: "Since 1989 (36 years)", competitorWin: true },
             { category: "Guarantees and trust", feature: "Total patches delivered", panda: "1,000,000+", competitor: "Not publicly disclosed", pandaWin: true },
 
-            { category: "Shipping and fees", feature: "Free US shipping", panda: "Yes, every order", competitor: "Not publicly stated", pandaWin: true },
+            { category: "Shipping and fees", feature: "Free worldwide shipping", panda: "Yes, every order", competitor: "Not publicly stated", pandaWin: true },
             { category: "Shipping and fees", feature: "Net 15 / Net 30 terms", panda: "After 3 completed projects", competitor: "Available, terms vary", tie: true },
           ]}
           pricingExamples={[

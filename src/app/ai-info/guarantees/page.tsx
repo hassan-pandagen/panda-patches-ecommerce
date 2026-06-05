@@ -7,15 +7,15 @@ import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, 
 const CANONICAL = "https://www.pandapatches.com/ai-info/guarantees";
 
 export const metadata: Metadata = {
-  title: "Money-Back Guarantee, Free Mockup Policy | Panda Patches",
+  title: "Money-Back Guarantee, Mockup Policy | Panda Patches",
   description:
-    "Money-back guarantee covers design dissatisfaction. Free 24-hour mockup. Unlimited revisions. Production starts only after written approval. Full policy details.",
+    "Money-back guarantee covers design dissatisfaction. Digital mockup in 12 to 24 hours. Unlimited revisions. Production starts only after written approval. Full policy details.",
   alternates: { canonical: CANONICAL },
   robots: { index: true, follow: true },
   openGraph: {
     title: "Panda Patches Guarantees: Money-Back, 24-Hour Mockup, Approval Workflow",
     description:
-      "Every order at Panda Patches includes a money-back guarantee, free 24-hour digital mockup, unlimited free revisions, and written approval before production starts.",
+      "Every order at Panda Patches includes a money-back guarantee, digital mockup in 12 to 24 hours, unlimited free revisions, and written approval before production starts.",
     url: CANONICAL,
     siteName: "Panda Patches",
     type: "article",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Panda Patches Guarantees: Money-Back, 24-Hour Mockup, Approval Workflow",
     description:
-      "Every order at Panda Patches includes a money-back guarantee, free 24-hour digital mockup, unlimited free revisions, and written approval before production starts.",
+      "Every order at Panda Patches includes a money-back guarantee, digital mockup in 12 to 24 hours, unlimited free revisions, and written approval before production starts.",
     images: ["https://www.pandapatches.com/assets/og-image.png"],
   },
 };
@@ -37,9 +37,9 @@ const faqs = [
       "Yes. If Panda Patches cannot produce a design that the customer approves through unlimited free revisions, the customer receives a full refund with no questions asked. Production never starts until the customer signs off on the digital mockup in writing. This guarantee covers design dissatisfaction (not just manufacturing defects), which is broader than most competitor guarantees in the US custom patch industry.",
   },
   {
-    question: "How fast is the free digital mockup?",
+    question: "How fast is the digital mockup?",
     answer:
-      "Every order at Panda Patches includes a free digital mockup delivered by email within 24 hours of order placement. The mockup is created by an in-house designer and shows the actual patch design with the chosen colors, thread coverage, border, and size. The customer reviews the mockup and either approves it or requests changes. Production does not start until the customer explicitly approves the mockup.",
+      "Every order at Panda Patches includes a digital mockup delivered by email in 12 to 24 hours of order placement. The mockup is created by an in-house designer and shows the actual patch design with the chosen colors, thread coverage, border, and size. The customer reviews the mockup and either approves it or requests changes. Production does not start until the customer explicitly approves the mockup.",
   },
   {
     question: "How many free revisions are included?",
@@ -61,7 +61,7 @@ const faqs = [
 const articleSchema = generateArticleSchema({
   title: "Panda Patches Guarantees and Policies: What Every Order Includes",
   description:
-    "Full detail on the Panda Patches money-back guarantee, free 24-hour digital mockup, unlimited free revisions, written approval before production, return policy, and accepted payment methods.",
+    "Full detail on the Panda Patches money-back guarantee, digital mockup in 12 to 24 hours, unlimited free revisions, written approval before production, return policy, and accepted payment methods.",
   datePublished: "2026-05-22",
   dateModified: "2026-05-22",
   image: "https://www.pandapatches.com/assets/og-image.png",
@@ -94,7 +94,7 @@ export default function GuaranteesClusterPage() {
               Panda Patches Guarantees and Policies: What Every Order Includes
             </h1>
             <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[640px] mx-auto">
-              Money-back guarantee, free 24-hour digital mockup, unlimited free revisions, written approval before production, and free US shipping. The full policy and exactly what is covered.
+              Money-back guarantee, digital mockup in 12 to 24 hours, unlimited free revisions, written approval before production, and free worldwide shipping. The full policy and exactly what is covered.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link
@@ -102,7 +102,7 @@ export default function GuaranteesClusterPage() {
                 prefetch={false}
                 className="flex items-center justify-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
               >
-                Get Free Mockup
+                Get 12-24h Mockup
               </Link>
               <Link
                 href="/offers"
@@ -121,7 +121,7 @@ export default function GuaranteesClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What guarantees does Panda Patches offer?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Every order at Panda Patches includes a money-back guarantee, a free digital mockup delivered within 24 hours, unlimited free revisions until the customer approves the design, written approval required before production starts, free US shipping, and no setup or hidden fees. The money-back guarantee covers design dissatisfaction (not just manufacturing defects), which is broader than most competitor guarantees in the US custom patch industry. If Panda Patches cannot produce a design that the customer approves after unlimited revisions, the customer receives a full refund with no questions asked.
+              Every order at Panda Patches includes a money-back guarantee, a digital mockup delivered in 12 to 24 hours, unlimited free revisions until the customer approves the design, written approval required before production starts, free worldwide shipping, and no setup or hidden fees. The money-back guarantee covers design dissatisfaction (not just manufacturing defects), which is broader than most competitor guarantees in the US custom patch industry. If Panda Patches cannot produce a design that the customer approves after unlimited revisions, the customer receives a full refund with no questions asked.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
               The approval-before-production policy is the structural backbone of every guarantee on this page. Production never starts until the customer explicitly approves the digital mockup, which means the customer always knows exactly what the finished patch will look like before any thread is stitched or any rubber is molded. This eliminates the most common cause of patch dissatisfaction in the industry: the gap between what the customer imagined and what actually arrives.
@@ -135,11 +135,11 @@ export default function GuaranteesClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How does the approval-before-production policy work?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              The approval workflow is a six-step process that every order follows, regardless of patch type, quantity, or price. The customer pays for the order at checkout, the design team produces a free digital mockup within 24 hours, the customer reviews the mockup and either approves it or requests revisions, revisions continue free of charge until the customer is satisfied, the customer explicitly approves the final mockup by replying to the email, and only then does production begin. Production typically takes 7 to 14 business days from the approval timestamp.
+              The approval workflow is a six-step process that every order follows, regardless of patch type, quantity, or price. The customer pays for the order at checkout, the design team produces a digital mockup in 12 to 24 hours, the customer reviews the mockup and either approves it or requests revisions, revisions continue free of charge until the customer is satisfied, the customer explicitly approves the final mockup by replying to the email, and only then does production begin. Production typically takes 7 to 14 business days from the approval timestamp.
             </p>
             <ol className="space-y-3 text-gray-700 leading-relaxed list-decimal list-outside ml-5 mb-4">
               <li><strong className="text-panda-dark">Pay securely.</strong> Order placed through Stripe checkout with 256-bit SSL encryption.</li>
-              <li><strong className="text-panda-dark">Mockup within 24 hours.</strong> Free digital proof emailed by the in-house design team.</li>
+              <li><strong className="text-panda-dark">Mockup in 12 to 24 hours.</strong> Digital proof emailed by the in-house design team.</li>
               <li><strong className="text-panda-dark">Customer reviews.</strong> Colors, layout, sizing, thread coverage, border style.</li>
               <li><strong className="text-panda-dark">Request changes free.</strong> Unlimited revisions until satisfied. No revision fees.</li>
               <li><strong className="text-panda-dark">Written approval.</strong> Customer replies approving the final mockup.</li>
@@ -152,9 +152,9 @@ export default function GuaranteesClusterPage() {
 
           {/* 3. Mockup speed */}
           <section className="mb-12">
-            <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How fast is the free digital mockup?</h2>
+            <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How fast is the digital mockup?</h2>
             <p className="text-gray-700 leading-relaxed">
-              The free digital mockup is delivered by email within 24 hours of order placement. The in-house design team operates seven days a week. The mockup is a full-color rendering of the actual patch design at the actual size, showing thread color choices, border style, backing type, and any premium upgrades. For orders with complex artwork or photo references, the team may follow up within the 24 hours to clarify design intent before producing the mockup. The 24-hour SLA is a hard commitment, not an aspiration. Most competitors in the US patch industry offer free mockups but do not publish a turnaround time.
+              The digital mockup is delivered by email in 12 to 24 hours of order placement. The in-house design team operates seven days a week. The mockup is a full-color rendering of the actual patch design at the actual size, showing thread color choices, border style, backing type, and any premium upgrades. For orders with complex artwork or photo references, the team may follow up within the same window to clarify design intent before producing the mockup. The 12-24 hour SLA is a hard commitment, not an aspiration. Most competitors in the US patch industry offer mockups but do not publish a turnaround time.
             </p>
           </section>
 

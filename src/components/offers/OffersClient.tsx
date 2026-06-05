@@ -672,9 +672,9 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
           <h1 className="text-3xl sm:text-5xl font-black leading-tight mb-4 text-white md:text-[#051C05]">
             Custom Patch Packages<br />at Fixed Prices
           </h1>
-          <p className="text-gray-300 md:text-gray-700 text-lg mb-6">No setup fees. No surprise charges. Free design mockup included.<br />Order in minutes, we handle the rest.</p>
+          <p className="text-gray-300 md:text-gray-700 text-lg mb-6">No setup fees. No surprise charges. Mockup in 12-24 hours included.<br />Order in minutes, we handle the rest.</p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
-            {['Free design mockup', '7-14 day delivery', 'Low 5-piece minimum', 'Money-back guarantee'].map(t => (
+            {['Mockup in 12-24 hours', '7-14 day delivery', 'Low 5-piece minimum', 'Money-back guarantee'].map(t => (
               <span key={t} className="flex items-center gap-1.5 text-[#DFFF00] md:text-[#051C05] font-semibold"><span>✓</span>{t}</span>
             ))}
           </div>
@@ -686,7 +686,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
             {[
               { stat: '1M+', label: 'Patches Delivered' },
               { stat: '5pc', label: 'Low Minimum Order' },
-              { stat: '24h', label: 'Free Mockup' },
+              { stat: '24h', label: 'Mockup' },
               { stat: '∞', label: 'Free Revisions' },
               { stat: '100%', label: 'Money-Back Guarantee' },
               { stat: 'A+', label: 'Top Notch Quality' },
@@ -878,7 +878,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
           <h2 className="text-3xl font-black text-[#051C05] mb-8">What&apos;s Included in Every Offer</h2>
           <div className="grid sm:grid-cols-2 gap-3 text-left">
             {[
-              'Free digital mockup delivered within 24 hours',
+              'Digital mockup delivered in 12 to 24 hours',
               'Unlimited free revisions until you are 100% happy',
               'Production starts only after your written approval',
               'Free shipping on every order anywhere in the US',

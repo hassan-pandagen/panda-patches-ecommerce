@@ -18,7 +18,7 @@ interface ProductSchemaData {
 const specificSchemas: Record<string, ProductSchemaData> = {
   "patches-for-hats": {
     name: "Custom Patches for Hats",
-    description: "Custom hat patches for snapbacks, trucker hats, fitted caps, dad hats, and beanies. Available in embroidered, woven, leather, and PVC. Low minimums, free mockup in 24 hours.",
+    description: "Custom hat patches for snapbacks, trucker hats, fitted caps, dad hats, and beanies. Available in embroidered, woven, leather, and PVC. Low minimums, mockup in 12-24 hours.",
     url: "https://www.pandapatches.com/patches-for-hats",
     lowPrice: "0.71",
     highPrice: "6.80",

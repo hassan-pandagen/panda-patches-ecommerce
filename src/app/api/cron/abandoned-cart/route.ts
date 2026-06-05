@@ -235,7 +235,7 @@ function buildFirstEmailHtml(row: CheckoutAttempt, fname: string): string {
     <div style="margin-top:8px;padding:20px 24px;background:#f9f9f9;border-left:4px solid #fb6e1d;border-radius:0 4px 4px 0;">
       <p style="margin:0 0 10px;font-weight:bold;color:#222222;font-size:14px;">Why customers choose Panda Patches:</p>
       <p style="margin:0;color:#444444;font-size:14px;line-height:1.8;">
-        ✓ Free digital mockup within 24 hours<br>
+        ✓ Digital mockup in 12 to 24 hours<br>
         ✓ Unlimited free revisions until you approve<br>
         ✓ No setup fees, no digitizing fees, low 5-piece minimums<br>
         ✓ Money-back guarantee if you don't love it

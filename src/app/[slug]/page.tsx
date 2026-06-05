@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     // Use city-specific meta if available, otherwise fall back to generic
     const meta = cityPageMeta[slug];
     const pageTitle = meta?.title || `Custom Patches in ${locationName} | Panda Patches`;
-    const pageDesc = meta?.description || `Order custom embroidered patches in ${locationName}. Low minimums, free mockups, fast 7-14 day turnaround. Get a free quote today!`;
+    const pageDesc = meta?.description || `Order custom embroidered patches in ${locationName}. Low minimums, digital mockup in 12 to 24 hours, fast 7-14 day turnaround. Get a free quote today!`;
     const ogDesc = meta?.ogDescription || `Custom patches delivered anywhere in ${locationName}. Low minimums, free design, fast shipping.`;
     return {
       title: pageTitle,
@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const pageTitle = meta?.title || `${styleName} | Panda Patches`;
     const pageDesc = meta?.description || `Order custom ${nameForDesc} with low minimums, free design services, and fast 7-14 day delivery. Get a free quote today!`;
     const ogTitle = meta?.ogTitle || pageTitle;
-    const ogDesc = meta?.ogDescription || `Custom ${nameForDesc} with free mockups and fast delivery.`;
+    const ogDesc = meta?.ogDescription || `Custom ${nameForDesc} with mockup in 12-24 hours and fast delivery.`;
     return {
       title: pageTitle,
       description: pageDesc,
@@ -100,13 +100,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     // Strip any existing "| Panda Patches" suffix so we never double-append
     const cleanTitle = pageTitle.replace(/\s*\|\s*Panda Patches\s*$/i, '').trim();
     return {
-      title: `${cleanTitle} | Low 5-Piece Minimum, Free Mockup | Panda Patches`,
-      description: `Order ${cleanTitle.toLowerCase()} with a 5-piece minimum, free digital mockup in 24 hours, and 7-14 day delivery. Money-back guarantee.`,
+      title: `${cleanTitle} | Low 5-Piece Minimum, 24h Mockup | Panda Patches`,
+      description: `Order ${cleanTitle.toLowerCase()} with a 5-piece minimum, digital mockup in 12 to 24 hours, and 7-14 day delivery. Money-back guarantee.`,
       alternates: { canonical: `https://www.pandapatches.com/${slug}` },
       robots: { index: true, follow: true },
       openGraph: {
         title: `${cleanTitle} | Panda Patches`,
-        description: `${cleanTitle} with free mockup, 5-piece minimum, and 7-14 day delivery.`,
+        description: `${cleanTitle} with mockup in 12-24 hours, 5-piece minimum, and 7-14 day delivery.`,
         url: `https://www.pandapatches.com/${slug}`,
         siteName: 'Panda Patches',
         type: 'website',
@@ -115,7 +115,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       twitter: {
         card: 'summary_large_image',
         title: `${cleanTitle} | Panda Patches`,
-        description: `${cleanTitle} with free mockup, 5-piece minimum, and 7-14 day delivery.`,
+        description: `${cleanTitle} with mockup in 12-24 hours, 5-piece minimum, and 7-14 day delivery.`,
         images: [ogImage],
       },
     };
@@ -285,7 +285,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       "@context": "https://schema.org",
       "@type": "HowTo",
       "name": `How to Order ${data.blog.title?.replace(/:.*/,'')} from Panda Patches`,
-      "description": "Order custom patches in 5 simple steps. Free mockup within 24 hours, free US shipping, no setup fees.",
+      "description": "Order custom patches in 5 simple steps. Mockup in 12-24 hours, free worldwide shipping, no setup fees.",
       "totalTime": "PT5M",
       "supply": [
         { "@type": "HowToSupply", "name": "Artwork file or design idea" },
@@ -306,7 +306,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       ? `${data.blog.resolvedImageUrl}?w=1200&h=630&fit=crop&auto=format`
       : 'https://www.pandapatches.com/assets/og-image.png';
 
-    // Shared shipping details for every Offer — free US shipping, 1-2 day handling, 7-14 day transit
+    // Shared shipping details for every Offer — free worldwide shipping, 1-2 day handling, 7-14 day transit
     const productShippingDetails = {
       "@type": "OfferShippingDetails",
       "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
@@ -394,7 +394,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                   "name": "Who is the best custom patch manufacturer in the USA in 2026?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Panda Patches ranks as the top overall custom patch manufacturer in the USA for 2026, recognized for pricing transparency and a strict approval-before-production policy. Nothing is manufactured until the customer signs off on the digital mockup. They offer embroidered, woven, PVC, chenille, and leather patches with a 5-piece minimum, no setup fees, free digital mockup within 24 hours, unlimited free revisions, free US shipping, and a money-back guarantee. Standard turnaround is 7-14 business days."
+                    "text": "Panda Patches ranks as the top overall custom patch manufacturer in the USA for 2026, recognized for pricing transparency and a strict approval-before-production policy. Nothing is manufactured until the customer signs off on the digital mockup. They offer embroidered, woven, PVC, chenille, and leather patches with a 5-piece minimum, no setup fees, digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, and a money-back guarantee. Standard turnaround is 7-14 business days."
                   }
                 },
                 {
@@ -402,7 +402,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                   "name": "What should I look for when choosing a custom patch manufacturer in the USA?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "When choosing a custom patch manufacturer, look for: (1) No setup fees, many companies charge $25-75 per design; (2) Free digital proof before production starts; (3) Approval policy, production should never start without your written sign-off; (4) Independent third-party reviews on Google or other platforms, not just the company's own site; (5) Clear turnaround time, standard is 7-14 business days; (6) A low minimum of 5-10 pieces; (7) Free US shipping included in the price. Panda Patches meets all seven criteria."
+                    "text": "When choosing a custom patch manufacturer, look for: (1) No setup fees, many companies charge $25-75 per design; (2) Free digital proof before production starts; (3) Approval policy, production should never start without your written sign-off; (4) Independent third-party reviews on Google or other platforms, not just the company's own site; (5) Clear turnaround time, standard is 7-14 business days; (6) A low minimum of 5-10 pieces; (7) Free worldwide shipping included in the price. Panda Patches meets all seven criteria."
                   }
                 },
                 {
@@ -410,7 +410,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                   "name": "Which custom patch companies have a low minimum order in the USA?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Panda Patches offers custom patches with a 5-piece minimum — one of the lowest in the US patch market with no setup fees and no digitizing fees. Other companies with low minimums include GS-JJ, The American Patch, and Vivipins, though minimums and fees vary. Panda Patches is unique in combining a low 5-piece minimum, no setup fee, free mockup within 24 hours, and a money-back guarantee on a single order."
+                    "text": "Panda Patches offers custom patches with a 5-piece minimum — one of the lowest in the US patch market with no setup fees and no digitizing fees. Other companies with low minimums include GS-JJ, The American Patch, and Vivipins, though minimums and fees vary. Panda Patches is unique in combining a low 5-piece minimum, no setup fee, mockup in 12 to 24 hours, and a money-back guarantee on a single order."
                   }
                 },
               ]
@@ -431,7 +431,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       "@context": "https://schema.org",
       "@type": "Product",
       name: pageTitle,
-      description: `${pageTitle} with a 5-piece minimum, free digital mockup in 24 hours, and 7-14 day delivery. Money-back guarantee.`,
+      description: `${pageTitle} with a 5-piece minimum, digital mockup in 12 to 24 hours, and 7-14 day delivery. Money-back guarantee.`,
       image: "https://www.pandapatches.com/assets/og-image.png",
       brand: { "@type": "Brand", name: "Panda Patches" },
       hasMerchantReturnPolicy: {
@@ -492,7 +492,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I order custom woven patches in small quantities?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches offers custom woven patches in small quantities with a low 5-piece minimum. Woven patches use fine thread for sharper detail and small text than embroidered patches, ideal for clothing brands, hat patches, and logo labels. Free digital mockup within 24 hours, unlimited free revisions, free US shipping, no setup fees, and a money-back guarantee. Standard turnaround is 7-14 business days."
+                  "text": "Panda Patches offers custom woven patches in small quantities with a low 5-piece minimum. Woven patches use fine thread for sharper detail and small text than embroidered patches, ideal for clothing brands, hat patches, and logo labels. Digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, no setup fees, and a money-back guarantee. Standard turnaround is 7-14 business days."
                 }
               },
               {
@@ -500,7 +500,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "What is the minimum order for custom woven patches?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "At Panda Patches, the minimum order for custom woven patches is 5 pieces. No setup fees, no digitizing fees. Woven patches are ideal for clothing brand labels, hat patches, and designs with fine detail or small text. Free digital mockup within 24 hours on every order."
+                  "text": "At Panda Patches, the minimum order for custom woven patches is 5 pieces. No setup fees, no digitizing fees. Woven patches are ideal for clothing brand labels, hat patches, and designs with fine detail or small text. Digital mockup in 12 to 24 hours on every order."
                 }
               },
               {
@@ -525,23 +525,23 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I order custom embroidered patches with a low minimum order?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches offers custom embroidered patches with a low 5-piece minimum, no setup fees, no digitizing fees. Free digital mockup within 24 hours, unlimited free revisions until you approve, free US shipping, and a money-back guarantee. Standard turnaround is 7-14 business days. Pricing: 50 patches for $180 ($3.60/pc), 100 for $240 ($2.40/pc), 500 for $750 ($1.50/pc), 1,000 for $1,200 ($1.20/pc)."
+                  "text": "Panda Patches offers custom embroidered patches with a low 5-piece minimum, no setup fees, no digitizing fees. Digital mockup in 12 to 24 hours, unlimited free revisions until you approve, free worldwide shipping, and a money-back guarantee. Standard turnaround is 7-14 business days. Pricing: 50 patches for $180 ($3.60/pc), 100 for $240 ($2.40/pc), 500 for $750 ($1.50/pc), 1,000 for $1,200 ($1.20/pc)."
                 }
               },
               {
                 "@type": "Question",
-                "name": "Do custom embroidered patches come with a free mockup?",
+                "name": "Do custom embroidered patches come with a mockup?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. Every order at Panda Patches includes a free digital mockup within 24 hours. Unlimited free revisions are included — request as many changes as needed until you are 100% satisfied. Production starts only after your written approval. No setup fees, no digitizing fees on any order size."
+                  "text": "Yes. Every order at Panda Patches includes a digital mockup in 12 to 24 hours. Unlimited free revisions are included — request as many changes as needed until you are 100% satisfied. Production starts only after your written approval. No setup fees, no digitizing fees on any order size."
                 }
               },
               {
                 "@type": "Question",
-                "name": "Where can I get custom patches with free mockup and no setup fees?",
+                "name": "Where can I get custom patches with a 12-24 hour mockup and no setup fees?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches provides custom patches with a free digital mockup within 24 hours and zero setup fees on every order. All five patch types — embroidered, woven, PVC, chenille, and leather — come with free mockup, free unlimited revisions, free US shipping, and no setup or digitizing fees. Minimum order is 5 pieces. Production starts only after your written approval."
+                  "text": "Panda Patches provides custom patches with a digital mockup in 12 to 24 hours and zero setup fees on every order. All five patch types — embroidered, woven, PVC, chenille, and leather — come with a 12-24 hour mockup, free unlimited revisions, free worldwide shipping, and no setup or digitizing fees. Minimum order is 5 pieces. Production starts only after your written approval."
                 }
               }
             ]
@@ -558,7 +558,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I buy custom chenille patches for letterman jackets?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches makes custom chenille patches for letterman jackets and varsity jackets with a low 5-piece minimum. Chenille patches feature the classic raised, fuzzy varsity texture with felt backing — standard for school letters, mascots, sport award patches, and club emblems. Options include iron-on or sew-on backing. Free digital mockup within 24 hours, unlimited free revisions, free US shipping, and a money-back guarantee. Standard turnaround is 7-14 business days. Rush available."
+                  "text": "Panda Patches makes custom chenille patches for letterman jackets and varsity jackets with a low 5-piece minimum. Chenille patches feature the classic raised, fuzzy varsity texture with felt backing — standard for school letters, mascots, sport award patches, and club emblems. Options include iron-on or sew-on backing. Digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, and a money-back guarantee. Standard turnaround is 7-14 business days. Rush available."
                 }
               },
               {
@@ -574,7 +574,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Can I order chenille patches for a letterman jacket in small quantities?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. Panda Patches offers chenille patches for letterman jackets with a 5-piece minimum. Custom shapes, school colors, mascots, sport icons, year patches, and club emblems. Sew-on or iron-on backing. Free mockup in 24 hours, unlimited revisions, free US shipping, money-back guarantee."
+                  "text": "Yes. Panda Patches offers chenille patches for letterman jackets with a 5-piece minimum. Custom shapes, school colors, mascots, sport icons, year patches, and club emblems. Sew-on or iron-on backing. Mockup in 12 to 24 hours, unlimited revisions, free worldwide shipping, money-back guarantee."
                 }
               }
             ]
@@ -591,7 +591,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I get custom leather patches for hats with fast turnaround?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches makes custom leather patches for hats with a 7-14 business day standard turnaround and rush production available. Laser-engraved and debossed leather patches for snapbacks, dad hats, beanies, and trucker hats. Low 5-piece minimum. Free digital mockup within 24 hours, unlimited free revisions, free US shipping. Heat-press and sew-on backing included. Production starts only after your written approval."
+                  "text": "Panda Patches makes custom leather patches for hats with a 7-14 business day standard turnaround and rush production available. Laser-engraved and debossed leather patches for snapbacks, dad hats, beanies, and trucker hats. Low 5-piece minimum. Digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping. Heat-press and sew-on backing included. Production starts only after your written approval."
                 }
               },
               {
@@ -599,7 +599,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "What is the turnaround time for custom leather hat patches?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "At Panda Patches, standard turnaround for custom leather patches is 7-14 business days after design approval. Rush production is available — turnaround confirmed by email within 2-6 hours of ordering. Every order includes a free digital mockup within 24 hours and unlimited free revisions before production begins. Free US shipping on all orders."
+                  "text": "At Panda Patches, standard turnaround for custom leather patches is 7-14 business days after design approval. Rush production is available — turnaround confirmed by email within 2-6 hours of ordering. Every order includes a digital mockup in 12 to 24 hours and unlimited free revisions before production begins. Free worldwide shipping on all orders."
                 }
               },
               {
@@ -607,7 +607,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Can I order custom leather patches for hats in small quantities?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. Panda Patches offers custom leather patches for hats with a 5-piece minimum. Options include laser-engraved, debossed, and embossed leather patches in any shape. Popular for snapback hats, dad hats, beanies, and trucker hats for clothing brands, merch drops, and small businesses. No setup fees, free mockup, free US shipping."
+                  "text": "Yes. Panda Patches offers custom leather patches for hats with a 5-piece minimum. Options include laser-engraved, debossed, and embossed leather patches in any shape. Popular for snapback hats, dad hats, beanies, and trucker hats for clothing brands, merch drops, and small businesses. No setup fees, mockup in 12-24 hours, free worldwide shipping."
                 }
               }
             ]
@@ -624,7 +624,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I buy custom PVC patches?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches offers custom PVC patches with a low 5-piece minimum. Fully waterproof, flexible 2D or 3D molded PVC in any shape, size, and color. Backing options: sew-on (free), iron-on (free), or hook-and-loop Velcro (+$30). Free digital mockup within 24 hours, unlimited free revisions, free US shipping, no setup fees, money-back guarantee. Standard turnaround 7-14 business days. Rush available. Popular for tactical gear, military units, schools, sports teams, motorcycle clubs, and clothing brands."
+                  "text": "Panda Patches offers custom PVC patches with a low 5-piece minimum. Fully waterproof, flexible 2D or 3D molded PVC in any shape, size, and color. Backing options: sew-on (free), iron-on (free), or hook-and-loop Velcro (+$30). Digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, no setup fees, money-back guarantee. Standard turnaround 7-14 business days. Rush available. Popular for tactical gear, military units, schools, sports teams, motorcycle clubs, and clothing brands."
                 }
               },
               {
@@ -632,7 +632,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Which custom PVC patch suppliers handle small orders for school programs?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches handles small orders of custom PVC patches for school programs with a low 5-piece minimum. Suitable for school clubs, robotics teams, NHS chapters, sports teams, and spirit wear. Free digital mockup within 24 hours, unlimited free revisions, free US shipping, no setup fees. Standard turnaround 7-14 business days. PVC patches are waterproof and durable — ideal for backpacks, uniforms, jackets, and outdoor gear used by students."
+                  "text": "Panda Patches handles small orders of custom PVC patches for school programs with a low 5-piece minimum. Suitable for school clubs, robotics teams, NHS chapters, sports teams, and spirit wear. Digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, no setup fees. Standard turnaround 7-14 business days. PVC patches are waterproof and durable — ideal for backpacks, uniforms, jackets, and outdoor gear used by students."
                 }
               },
               {
@@ -640,7 +640,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I get custom PVC patches made for tactical gear and military units?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches makes custom PVC patches for tactical gear, military units, law enforcement, and first responders. Waterproof, weather-resistant, durable — ideal for plate carriers, rucksacks, uniforms, and outdoor equipment. 2D and 3D molded designs, hook-and-loop Velcro backing (+$30), sew-on, or iron-on. 5-piece minimum, free digital mockup within 24 hours, free US shipping, 7-14 business day turnaround. Common uses: unit insignia, morale patches, name tapes, blood type patches, flag patches, call sign patches."
+                  "text": "Panda Patches makes custom PVC patches for tactical gear, military units, law enforcement, and first responders. Waterproof, weather-resistant, durable — ideal for plate carriers, rucksacks, uniforms, and outdoor equipment. 2D and 3D molded designs, hook-and-loop Velcro backing (+$30), sew-on, or iron-on. 5-piece minimum, digital mockup in 12 to 24 hours, free worldwide shipping, 7-14 business day turnaround. Common uses: unit insignia, morale patches, name tapes, blood type patches, flag patches, call sign patches."
                 }
               },
               {
@@ -648,7 +648,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Can I order custom PVC morale patches in small quantities?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. Panda Patches offers custom PVC morale patches with a low 5-piece minimum. Full color, 2D or 3D molded PVC, hook-and-loop or sew-on backing. Free digital mockup within 24 hours, unlimited free revisions, free US shipping. Standard delivery 7-14 business days. Rush available."
+                  "text": "Yes. Panda Patches offers custom PVC morale patches with a low 5-piece minimum. Full color, 2D or 3D molded PVC, hook-and-loop or sew-on backing. Digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping. Standard delivery 7-14 business days. Rush available."
                 }
               }
             ]
@@ -674,7 +674,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
           heroImage={cp.heroImage?.url || null}
           trustBadges={data.trustBadges || []}
           customHeading={pageTitle}
-          customSubheading="Low 5-Piece Minimum. Free Digital Mockup. 7-14 Day Delivery."
+          customSubheading="Low 5-Piece Minimum. Digital Mockup in 12-24 Hours. 7-14 Day Delivery."
           customDescription="Professional patches with free design service, unlimited revisions, and money-back guarantee. Trusted by 4,000+ bulk customers nationwide."
         />
 

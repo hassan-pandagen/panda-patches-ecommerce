@@ -19,7 +19,7 @@ import { client } from "@/lib/sanity";
 const policeFAQs = [
   {
     question: "Can you replicate our exact department badge or insignia?",
-    answer: "Yes. Send us your badge artwork, a high-resolution photo, or your department's vector file. Our design team reproduces shields, eagles, stars, and fine text with precision — including small badge numbers and department names legible at 2-3 inches. You approve a free digital mockup before a single stitch runs, with unlimited revisions until it matches your official badge exactly."
+    answer: "Yes. Send us your badge artwork, a high-resolution photo, or your department's vector file. Our design team reproduces shields, eagles, stars, and fine text with precision — including small badge numbers and department names legible at 2-3 inches. You approve a digital mockup in 12 to 24 hours before a single stitch runs, with unlimited revisions until it matches your official badge exactly."
   },
   {
     question: "What backing is best for police uniforms vs. tactical vests?",
@@ -94,7 +94,7 @@ export async function generateMetadata(): Promise<Metadata> {
     : 'https://www.pandapatches.com/assets/og-image.png';
   return {
     title: "Custom Police Patches | Department, Tactical & Memorial | Panda Patches",
-    description: "Custom police department patches with badge replication, subdued tactical, PVC, K-9, SWAT, and memorial rush. Low 5-piece minimum. Free mockup in 24 hours. Free US shipping.",
+    description: "Custom police department patches with badge replication, subdued tactical, PVC, K-9, SWAT, and memorial rush. Low 5-piece minimum. Mockup in 12-24 hours. Free worldwide shipping.",
     alternates: { canonical: "https://www.pandapatches.com/custom-police-patches" },
     openGraph: {
       title: "Custom Police & Law Enforcement Patches | Panda Patches",
@@ -247,7 +247,7 @@ export default async function PolicePatchesPage() {
               We produce <strong>custom law enforcement patches</strong> for police departments, sheriff&apos;s offices, tactical units, K-9 units, SWAT teams, and security departments. From <strong>embroidered department badges</strong> and <strong>PVC tactical patches</strong> to <strong>woven name patches</strong>, every patch is built to withstand the demands of daily law enforcement work.
             </p>
             <p>
-              Whether you need <strong>50 patches for a small department</strong> or <strong>5,000 patches for a county-wide rollout</strong>, we handle orders of all sizes with the same professional standards. With <strong>volume pricing</strong>, <strong>free design mockups</strong>, and a reliable <strong>2-week turnaround</strong>, equipping your department with quality patches has never been easier.
+              Whether you need <strong>50 patches for a small department</strong> or <strong>5,000 patches for a county-wide rollout</strong>, we handle orders of all sizes with the same professional standards. With <strong>volume pricing</strong>, <strong>mockup in 12-24 hours</strong>, and a reliable <strong>2-week turnaround</strong>, equipping your department with quality patches has never been easier.
             </p>
             <p>
               Ready to get started? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> today. We respond to all inquiries within 2 business hours and work directly with your department specifications.

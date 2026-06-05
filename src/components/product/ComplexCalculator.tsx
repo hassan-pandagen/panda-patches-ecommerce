@@ -1000,7 +1000,7 @@ export default function ComplexCalculator({
                   <textarea
                     value={patchIdea}
                     onChange={(e) => setPatchIdea(e.target.value)}
-                    placeholder={`Describe your patch idea in detail — our designers will create a free mockup!\n\ne.g. "A fierce eagle with wings spread wide, bold text reading 'IRON PACK' below, dark navy & gold colors, vintage distressed style, circular shape."\n\nTell us: subject / image, any text, colors, style, and any references you like.`}
+                    placeholder={`Describe your patch idea in detail. Our designers will send a digital mockup in 12 to 24 hours.\n\ne.g. "A fierce eagle with wings spread wide, bold text reading 'IRON PACK' below, dark navy & gold colors, vintage distressed style, circular shape."\n\nTell us: subject / image, any text, colors, style, and any references you like.`}
                     rows={5}
                     className="w-full border-2 border-black rounded-[12px] px-4 py-3 font-medium text-sm text-black outline-none focus:border-black transition-all resize-none placeholder:text-gray-400 leading-relaxed"
                     autoFocus

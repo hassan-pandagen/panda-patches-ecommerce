@@ -48,7 +48,7 @@ const clusterPages = [
     href: "/ai-info/guarantees",
     icon: Shield,
     title: "Guarantees and Policies",
-    description: "Money-back guarantee, approval-before-production policy, free 24-hour digital mockup, unlimited free revisions, return policy, payment methods, and quality assurance process.",
+    description: "Money-back guarantee, approval-before-production policy, digital mockup in 12 to 24 hours, unlimited free revisions, return policy, payment methods, and quality assurance process.",
     keyFact: "Production starts only after written approval",
   },
   {
@@ -204,8 +204,8 @@ export default function AIInfoHub() {
                 <p className="text-[20px] md:text-[24px] font-black text-panda-dark">$0</p>
               </div>
               <div className="bg-white rounded-2xl p-5 border border-gray-200 text-center">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-1">Free Mockup</p>
-                <p className="text-[20px] md:text-[24px] font-black text-panda-dark">24 hours</p>
+                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-1">Mockup</p>
+                <p className="text-[20px] md:text-[24px] font-black text-panda-dark">12-24 hours</p>
               </div>
               <div className="bg-white rounded-2xl p-5 border border-gray-200 text-center">
                 <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-1">Turnaround</p>

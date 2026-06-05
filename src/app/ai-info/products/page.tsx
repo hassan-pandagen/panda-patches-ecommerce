@@ -94,7 +94,7 @@ export default function ProductsClusterPage() {
               Panda Patches Products: 11 Patch Types and Custom Items
             </h1>
             <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[640px] mx-auto">
-              Embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin patches. Plus challenge coins, enamel pins, keychains, and PVC shoe charms. Every order includes a free 24-hour digital mockup.
+              Embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin patches. Plus challenge coins, enamel pins, keychains, and PVC shoe charms. Every order includes a digital mockup in 12 to 24 hours.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link
@@ -146,7 +146,7 @@ export default function ProductsClusterPage() {
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Velcro backing</td><td className="px-5 py-4">Tactical, removable patches</td><td className="px-5 py-4">+$30 flat per order</td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">3D puff embroidery</td><td className="px-5 py-4">Hats, premium varsity</td><td className="px-5 py-4">+$30 flat per order</td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Silicone labels</td><td className="px-5 py-4">Apparel, bag brands</td><td className="px-5 py-4">Custom quote</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Sequin</td><td className="px-5 py-4">Costume, fashion, gameday</td><td className="px-5 py-4">Custom quote</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Sequin (flip / reversible)</td><td className="px-5 py-4">Costume, fashion, gameday</td><td className="px-5 py-4">$3.60 (100 qty, 2&quot;)<br/><span className="text-xs text-gray-500">~$1.44 at 1,000 qty, 2&quot;</span></td></tr>
                 </tbody>
               </table>
               <p className="text-xs text-gray-500 px-5 py-3 bg-gray-50 border-t border-gray-100">All &quot;under 4&quot; tier prices come from the published packs on pandapatches.com/offers. Higher-volume per-piece prices are quoted live by the calculator on each product page and reflect a 2&quot; reference size. Per-piece price drops as quantity rises and rises as size grows.</p>
@@ -223,7 +223,7 @@ export default function ProductsClusterPage() {
           <section className="mb-12 bg-[#F7F7F7] border-l-4 border-panda-green rounded-r-2xl p-6 md:p-8">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">Custom products beyond patches</h2>
             <p className="text-gray-700 leading-relaxed mb-3">
-              The same Panda Patches facility produces four additional custom merchandise categories on the same workflow (free mockup, written approval, money-back guarantee). These are quoted custom because production is offset metal casting or molded rubber rather than fabric, which changes the cost structure and lead time.
+              The same Panda Patches facility produces four additional custom merchandise categories on the same workflow (12-24 hour mockup, written approval, money-back guarantee). These are quoted custom because production is offset metal casting or molded rubber rather than fabric, which changes the cost structure and lead time.
             </p>
             <ul className="space-y-2 text-gray-700 leading-relaxed list-disc list-outside ml-5">
               <li><strong className="text-panda-dark">Challenge coins.</strong> Die-struck metal coins for military units, corporate recognition, fundraising, commemorative events. Lead time 3 to 6 weeks.</li>
