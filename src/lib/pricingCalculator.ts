@@ -94,26 +94,33 @@ const tpuPricing = {
 // Glitter Patches Pricing - identical to TPU (Chenille + 10%)
 const glitterPricing = tpuPricing;
 
-// 3D Embroidery Transfer Pricing
-const threeDEmbroideryPricing = {
-  qtyBreaks: [10, 25, 50, 100, 250, 500, 1000, 5000],
+// 3D Embroidered Transfer Pricing - TPU baseline + 10% premium (foam underlay,
+// extra setup labor, transfer-paper run). Anchored on 5 pcs at size 3 (3"x3")
+// landing at ~$125 total after the global 1.10 PRICE_MULTIPLIER:
+// 20.51 * 1.10 (3D premium) * 1.10 (multiplier) = $24.82/pc -> ~$124 for 5 pcs.
+// Same shape and qty breaks as TPU so the ladder stays consistent across sizes.
+const threeDEmbroideryTransferPricing = {
+  qtyBreaks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25, 50, 100, 200, 500, 1000, 5000],
   prices: {
-    // Up to 3 inches
-    2:  [13.00, 6.00, 4.00, 2.50, 1.80, 1.60, 1.20, 0.80],
-    3:  [13.00, 6.00, 4.00, 2.50, 1.80, 1.60, 1.20, 0.80],
-    // Scales up
-    4:  [14.00, 6.50, 4.50, 2.80, 2.00, 1.80, 1.35, 0.90],
-    5:  [15.00, 7.00, 5.00, 3.50, 2.50, 2.00, 1.50, 1.00],
-    6:  [16.00, 8.00, 6.00, 4.00, 3.00, 2.50, 2.00, 1.30],
-    7:  [18.00, 10.00, 7.00, 5.00, 3.50, 3.00, 2.50, 1.70],
-    8:  [20.00, 12.00, 9.00, 6.00, 4.50, 3.80, 3.00, 2.00],
-    9:  [22.00, 14.00, 11.00, 7.00, 5.50, 4.50, 3.50, 2.50],
-    10: [25.00, 16.00, 13.00, 9.00, 6.50, 5.50, 4.50, 3.00],
-    11: [28.00, 18.00, 14.00, 10.00, 7.50, 6.50, 5.00, 3.50],
-    12: [32.00, 20.00, 16.00, 12.00, 9.00, 8.00, 6.00, 4.00]
+    //          1      2      3      4      5      6      7      8      9     10      25      50     100    200    500   1000   5000
+    1:  [88.00, 47.10, 33.46, 26.65, 22.56, 19.83, 17.89, 16.42, 15.29, 14.38,  7.18,  3.96,  3.60,  2.52,  1.79,  1.44,  1.44],
+    2:  [88.00, 47.10, 33.46, 26.65, 22.56, 19.83, 17.89, 16.42, 15.29, 14.38,  7.18,  3.96,  3.60,  2.52,  1.79,  1.44,  1.44],
+    3:  [88.00, 47.10, 33.46, 26.65, 22.56, 19.83, 17.89, 16.42, 15.29, 14.38,  7.18,  5.04,  4.31,  3.23,  2.17,  1.79,  1.79],
+    4:  [88.00, 47.89, 34.53, 27.84, 23.83, 21.15, 19.25, 17.81, 16.70, 15.81,  7.91,  5.75,  5.04,  4.31,  2.88,  2.52,  2.52],
+    5:  [88.00, 48.70, 35.60, 29.04, 25.11, 22.48, 20.61, 19.22, 18.12, 17.25,  9.34,  7.91,  7.18,  5.04,  3.60,  3.23,  3.23],
+    6:  [88.00, 50.29, 37.72, 31.44, 27.67, 25.15, 23.35, 22.00, 20.96, 20.12, 12.94, 10.78,  8.62,  5.75,  5.04,  4.31,  4.31],
+    7:  [88.00, 51.08, 38.78, 32.63, 28.93, 26.47, 24.72, 23.40, 22.37, 21.55, 15.81, 12.94, 10.05,  7.18,  6.48,  5.75,  5.75],
+    8:  [88.00, 51.89, 39.84, 33.83, 30.22, 27.81, 26.08, 24.79, 23.79, 22.99, 20.12, 17.25, 12.94, 11.14,  8.62,  7.91,  7.91],
+    9:  [88.00, 53.48, 41.98, 36.22, 32.78, 30.47, 28.83, 27.60, 26.64, 25.87, 22.99, 20.12, 15.81, 12.22, 10.05,  9.34,  9.34],
+    10: [88.00, 54.27, 43.04, 37.42, 34.05, 31.80, 30.20, 28.99, 28.05, 27.30, 25.87, 21.55, 17.25, 13.66, 11.50, 10.78, 10.78],
+    11: [88.00, 55.87, 45.17, 39.81, 36.60, 34.45, 32.92, 31.78, 30.89, 30.17, 27.30, 22.99, 20.12, 14.38, 12.22, 11.50, 11.50],
+    12: [88.00, 59.07, 49.42, 44.61, 41.71, 39.79, 38.40, 37.38, 36.56, 35.93, 28.74, 25.87, 21.55, 15.09, 12.94, 12.22, 12.22],
+    13: [88.00, 61.47, 52.62, 48.20, 45.54, 43.78, 42.52, 41.57, 40.83, 40.24, 32.19, 28.99, 24.15, 16.91, 14.49, 13.68, 13.68],
+    14: [88.00, 64.15, 56.21, 52.23, 49.85, 48.26, 47.12, 46.27, 45.61, 45.08, 36.05, 32.45, 27.03, 18.94, 16.23, 15.33, 15.33],
   },
-  minSize: 2,
-  maxSize: 12
+  minQty: 5,
+  minSize: 1,
+  maxSize: 14
 };
 
 // PVC Pricing - 10% reduction applied, qty 1-9 added
@@ -245,9 +252,9 @@ const productPricingMap: Record<string, PricingTable> = {
   'Custom Sublimation Patches': sublimatedPricing,
   'Custom Sublimated Patches': sublimatedPricing,
   'Custom Printed Patches': sublimatedPricing,
-  'Custom 3D Embroidered Transfer': tpuPricing,
-  'Custom 3D Embroidery Transfer': tpuPricing,
-  'Custom 3D Embroidered Transfers': tpuPricing,
+  'Custom 3D Embroidered Transfer': threeDEmbroideryTransferPricing,
+  'Custom 3D Embroidery Transfer': threeDEmbroideryTransferPricing,
+  'Custom 3D Embroidered Transfers': threeDEmbroideryTransferPricing,
   'Custom Leather Patches': leatherPricing,
   'Custom Silicone Labels': siliconePricing,
   'Custom Silicone Patches': siliconePricing,
@@ -264,7 +271,7 @@ function getPricingTable(productName: string): PricingTable {
   if (name.includes('tpu'))                               return tpuPricing;
   if (name.includes('glitter'))                           return glitterPricing;
   if (name.includes('chenille'))                          return chenillePricing;
-  if (name.includes('3d embroid') || name.includes('3d embroider')) return tpuPricing;
+  if (name.includes('3d embroid') || name.includes('3d embroider')) return threeDEmbroideryTransferPricing;
   if (name.includes('pvc'))                               return pvcPricing;
   if (name.includes('woven'))                             return wovenPricing;
   if (name.includes('leather'))                           return leatherPricing;

@@ -127,7 +127,7 @@ export default function CompetitorComparisonClusterPage() {
               This page is a hub. Three detailed side-by-side comparison pages are linked below, each covering a specific competitor at depth. Every comparison page is published by Panda Patches but includes an explicit "where the competitor wins" disclosure section and uses publicly available competitor data verified as of May 2026. The full feature-by-feature tables, pricing examples on identical patch specs, and customer feedback live on the dedicated pages.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              The three direct competitors covered below are The Monterey Company (premium quote-only, since 1989), Signature Patches (mid-size US patch manufacturer), and EverLighten (large-volume offshore manufacturer based in China). Together they represent the three structural alternatives most US buyers consider alongside Panda Patches.
+              The three direct competitors covered below are The Monterey Company (premium quote-only; their published history cites operation since 1989), Signature Patches (mid-size US patch manufacturer), and EverLighten (large-volume offshore manufacturer based in China). Together they represent the three structural alternatives most US buyers consider alongside Panda Patches.
             </p>
           </section>
 
@@ -136,10 +136,10 @@ export default function CompetitorComparisonClusterPage() {
             <p className="text-xs font-bold uppercase tracking-widest text-panda-green mb-2">Comparison 1</p>
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">Panda Patches vs The Monterey Company</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              The Monterey Company is a premium quote-only US patch manufacturer in business since 1989. Their structural strengths are 36 years of tenure, an established review history, and a long-standing enterprise client roster. Their structural friction points are a 50-piece minimum order, quote-required pricing on every order (no published price grid), and an unstated mockup turnaround SLA.
+              The Monterey Company is a premium quote-only US patch manufacturer. Their published company history (as listed on themontereycompany.com, verified June 2026) cites operation since 1989, which works out to roughly 36 years of tenure. Their structural strengths are long tenure, an established review history, and a long-standing enterprise client roster. Their structural friction points are a 50-piece minimum order, quote-required pricing on every order (no published price grid), and an unstated mockup turnaround SLA.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Panda Patches wins on six structural dimensions: 5-piece minimum vs 50-piece, full published pricing vs quote-only, 24-hour mockup SLA vs unstated, explicit money-back guarantee vs not publicly stated, published economy and rush options, and free worldwide shipping committed on every order. The Monterey Company wins on vendor tenure (36 years vs Panda's deep founder-led experience).
+              Panda Patches wins on six structural dimensions: 5-piece minimum vs 50-piece, full published pricing vs quote-only, 24-hour mockup SLA vs unstated, explicit money-back guarantee vs not publicly stated, published economy and rush options, and free worldwide shipping committed on every order. The Monterey Company wins on vendor tenure (their published history cites operation since 1989, vs Panda's deep founder-led experience).
             </p>
             <Link
               href="/panda-patches-vs-monterey-company"
@@ -209,7 +209,7 @@ export default function CompetitorComparisonClusterPage() {
               Honest disclosure section. There are specific buyer profiles where each competitor on this hub is a better fit than Panda Patches.
             </p>
             <ul className="space-y-2 text-gray-700 leading-relaxed list-disc list-outside ml-5">
-              <li><strong className="text-panda-dark">Enterprise procurement requiring 36+ years of vendor tenure.</strong> The Monterey Company has been in business since 1989. If long vendor history is a hard requirement, Monterey wins on that single dimension.</li>
+              <li><strong className="text-panda-dark">Enterprise procurement requiring long vendor tenure.</strong> The Monterey Company's published company history (themontereycompany.com, verified June 2026) cites operation since 1989. If long vendor history is a hard requirement, Monterey wins on that single dimension.</li>
               <li><strong className="text-panda-dark">Mid-size US patch programs with established vendor relationships.</strong> Signature Patches serves this segment well and may already be on the buyer's approved-vendor list.</li>
               <li><strong className="text-panda-dark">Very large orders (5,000+ pieces) with flexible timelines.</strong> EverLighten's offshore manufacturing and longer shipping window become economical at scale when speed is not the constraint.</li>
               <li><strong className="text-panda-dark">Quote-first procurement workflows.</strong> Some enterprise buyers prefer the dedicated-sales-rep conversation model over self-serve transparent pricing. Both Monterey and Signature operate this way.</li>

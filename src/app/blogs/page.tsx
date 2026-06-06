@@ -54,7 +54,8 @@ async function getBlogs() {
     category,
     tags,
     publishedAt,
-    _createdAt
+    _createdAt,
+    _updatedAt
   }`;
   const data = await client.fetch(query);
   return data;

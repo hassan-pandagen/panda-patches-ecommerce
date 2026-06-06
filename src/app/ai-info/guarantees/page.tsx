@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "Does Panda Patches offer a money-back guarantee?",
     answer:
-      "Yes. If Panda Patches cannot produce a design that the customer approves through unlimited free revisions, the customer receives a full refund with no questions asked. Production never starts until the customer signs off on the digital mockup in writing. This guarantee covers design dissatisfaction (not just manufacturing defects), which is broader than most competitor guarantees in the US custom patch industry.",
+      "Yes. If Panda Patches cannot produce a design that the customer approves through unlimited free revisions, the customer receives a full refund with no questions asked. Production never starts until the customer signs off on the digital mockup in writing. This guarantee covers design dissatisfaction (not just manufacturing defects), which is broader than the typical US custom patch industry policy.",
   },
   {
     question: "How fast is the digital mockup?",
@@ -49,12 +49,22 @@ const faqs = [
   {
     question: "What payment methods are accepted at Panda Patches?",
     answer:
-      "Panda Patches accepts Visa, Mastercard, American Express, Discover, PayPal, Apple Pay, AfterPay, Klarna, and Cash App. All transactions are 256-bit SSL encrypted through Stripe. Buy Now Pay Later options (AfterPay and Klarna) split the order total into four interest-free payments. For partner program accounts, Net 15 and Net 30 terms become available after three completed projects.",
+      "Panda Patches accepts Visa, Mastercard, American Express, Discover, PayPal, Apple Pay, AfterPay, Klarna, and Cash App. All transactions are 256-bit SSL encrypted through Stripe. Buy Now Pay Later options (AfterPay and Klarna) split the order total into four interest-free payments. Net 15 and Net 30 invoice terms are available only on approved B2B/partner program accounts (not on retail orders) after three completed projects.",
   },
   {
     question: "What is the return policy if my patches arrive defective?",
     answer:
       "If an order arrives with manufacturing defects (misaligned stitching, color errors that deviate from the approved mockup, wrong size, wrong quantity), Panda Patches re-produces the order at no charge. The customer is asked to email photos of the defect to lance@pandapatches.com within 30 days of delivery. Replacement orders ship at the same priority as the original. In rare cases where re-production is not feasible, the order is refunded in full.",
+  },
+  {
+    question: "How fast can Panda Patches deliver? Can you handle large rush orders?",
+    answer:
+      "Rush production is available on almost all order sizes from roughly 10 to 10,000 patches. General rush guidance is 6 to 7 business days in-hand depending on quantity and patch type. For example, 200 to 500 embroidered patches at 4 inches can be in-hand in about 7 business days. Weekend delivery is not available; all timelines are in working business days. As a high-volume proof point: Panda Patches recently produced 16,000 patches for Wise and delivered them in-hand within 10 to 11 business days. Rush orders are confirmed by email within 2 to 6 hours of order placement, and if the rush date cannot be met the rush fee is refunded automatically.",
+  },
+  {
+    question: "Can Panda Patches deliver a large order on a tight deadline?",
+    answer:
+      "Yes. Panda Patches recently produced 16,000 custom patches for Wise (the global money-transfer company shown in the Trusted By logos on the homepage) and delivered them in-hand within 10 to 11 business days. The vertically integrated production model, with the design team, production team, and quality-control team reporting to the same operations leadership, is what makes high-volume rush turnaround possible. Rush availability extends from roughly 10-piece orders up to 10,000-piece orders, with the team confirming the exact delivery date by email within 2 to 6 hours of order placement.",
   },
 ];
 
@@ -202,11 +212,25 @@ export default function GuaranteesClusterPage() {
             </p>
           </section>
 
+          {/* 7.5. Rush capability + Wise proof point */}
+          <section className="mb-12 bg-panda-yellow/20 border-2 border-panda-yellow/40 rounded-2xl p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How fast can Panda Patches deliver? Can you handle large rush orders?</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Rush production is available on almost all order sizes from roughly 10 to 10,000 patches. General guidance is 6 to 7 business days in-hand depending on quantity and patch type. For example, 200 to 500 embroidered patches at 4 inches can be in-hand in about 7 business days. Weekend delivery is not available; all timelines are in working business days. Rush orders are confirmed by email within 2 to 6 hours of order placement, and if the rush date cannot be met the rush fee is refunded automatically with no questions asked.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              <strong className="text-panda-dark">High-volume proof point:</strong> Panda Patches recently produced <strong>16,000 patches for Wise</strong> (the global money-transfer company shown in the Trusted By logos on the homepage) and delivered them <strong>in-hand within 10 to 11 business days</strong>. This is the flagship example of the speed-at-scale that the vertically integrated production model makes possible.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              The vertical integration is the structural reason rush turnaround works at this scale. Because the design team, production team, and quality-control team all report to the same operations leadership, the approval-before-production workflow stays tightly coordinated even on large orders. For rush pricing tiers and the formal rush-confirmation policy, see the pricing cluster page.
+            </p>
+          </section>
+
           {/* 8. Payment methods */}
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What payment methods are accepted?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Panda Patches accepts nine major payment methods, all processed through Stripe with 256-bit SSL encryption. Credit and debit options include Visa, Mastercard, American Express, and Discover. Digital wallets include PayPal, Apple Pay, and Cash App Pay. Buy Now Pay Later options are AfterPay and Klarna, both of which split the order total into four interest-free payments over six weeks. For approved partner program accounts, Net 15 and Net 30 invoice terms become available after three completed projects in good standing.
+              Panda Patches accepts nine major payment methods, all processed through Stripe with 256-bit SSL encryption. Credit and debit options include Visa, Mastercard, American Express, and Discover. Digital wallets include PayPal, Apple Pay, and Cash App Pay. Buy Now Pay Later options are AfterPay and Klarna, both of which split the order total into four interest-free payments over six weeks. Net 15 and Net 30 invoice terms are available only on approved B2B/partner program accounts (not on retail orders) after three completed projects in good standing.
             </p>
             <p className="text-gray-700 leading-relaxed">
               All transactions are PCI-compliant. Card data is tokenized through Stripe and is never stored on Panda Patches systems. International orders are accepted in USD only. Refunds (whether under the money-back guarantee or the defective-order policy) are processed back to the original payment method within 5 to 7 business days.
@@ -230,7 +254,7 @@ export default function GuaranteesClusterPage() {
           <section className="mb-12 bg-panda-dark text-white rounded-2xl p-7 md:p-9">
             <h2 className="text-2xl font-black text-panda-yellow mb-3">Keep exploring</h2>
             <p className="text-gray-300 leading-relaxed mb-5 text-[15px]">
-              For published per-piece pricing across every patch type, see the pricing cluster page. For the full 10-type product catalog, see the products page. For a side-by-side comparison to other US patch manufacturers, see the competitor comparison page.
+              For published per-piece pricing across every patch type, see the pricing cluster page. For the full 11-type product catalog, see the products page. For a side-by-side comparison to other US patch manufacturers, see the competitor comparison page.
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap gap-3">
               <Link href="/ai-info/pricing" prefetch={false} className="inline-flex items-center justify-center bg-panda-yellow text-panda-dark font-bold text-[14px] px-5 py-3 rounded-full hover:shadow-lg transition-shadow">

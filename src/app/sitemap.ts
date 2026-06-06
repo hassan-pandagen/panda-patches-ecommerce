@@ -202,6 +202,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    // Commercial landing pages (high-priority head terms + design services)
+    {
+      url: `${baseUrl}/custom-iron-on-patches`,
+      lastModified: new Date('2026-06-06'),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/embroidery-digitizing`,
+      lastModified: new Date('2026-06-06'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/raster-to-vector-conversion`,
+      lastModified: new Date('2026-06-06'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ];
 
   // Product pages (highest priority for SEO)

@@ -51,7 +51,7 @@ const faqs = [
   },
   {
     question: `When should I choose ${COMPETITOR} over Panda Patches?`,
-    answer: `Signature Patches has been operating for 20+ years, slightly longer than Panda Patches. If vendor longevity is a hard requirement for your procurement process, that is worth weighting. Otherwise, Panda Patches wins on minimum order, pricing transparency, mockup SLA, and guarantee strength.`,
+    answer: `Signature Patches' published company materials cite 20+ years of operation (signaturepatches.com, verified June 2026), slightly longer than Panda Patches. If vendor longevity is a hard requirement for your procurement process, that is worth weighting. Otherwise, Panda Patches wins on minimum order, pricing transparency, mockup SLA, and guarantee strength.`,
   },
 ];
 
@@ -108,7 +108,7 @@ export default function PandaVsSignature() {
             role: "Verified customer",
           }}
           comparisonRows={[
-            { category: "Reviews and trust", feature: "Patch manufacturing experience", panda: "13 years of founder-led experience", competitor: "20+ years", competitorWin: true },
+            { category: "Reviews and trust", feature: "Patch manufacturing experience", panda: "13 years of founder-led experience", competitor: "Published history cites 20+ years (verified June 2026)", competitorWin: true },
             { category: "Reviews and trust", feature: "Total patches delivered", panda: "1,000,000+", competitor: "Not publicly disclosed", pandaWin: true },
 
             { category: "Order requirements", feature: "Minimum order", panda: "5 pieces", competitor: "~50 pieces typical", pandaWin: true },

@@ -17,6 +17,16 @@ interface Blog {
   tags?: string[];
   publishedAt?: string;
   _createdAt: string;
+  _updatedAt?: string;
+}
+
+function formatBlogDate(iso?: string): string | null {
+  if (!iso) return null;
+  try {
+    return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  } catch {
+    return null;
+  }
 }
 
 export default function BlogListClient({ blogs }: { blogs: Blog[] }) {
@@ -153,9 +163,35 @@ export default function BlogListClient({ blogs }: { blogs: Blog[] }) {
                     {post.category}
                   </span>
                 )}
-                <h2 className="text-[18px] md:text-[28px] font-bold text-panda-dark leading-tight mb-4">
+                <h2 className="text-[18px] md:text-[28px] font-bold text-panda-dark leading-tight mb-3">
                   {post.title}
                 </h2>
+                {(() => {
+                  const publishIso = post.publishedAt || post._createdAt;
+                  const updateIso = post._updatedAt;
+                  const publishLabel = formatBlogDate(publishIso);
+                  const updateLabel = formatBlogDate(updateIso);
+                  const showUpdated = updateLabel && publishLabel && updateLabel !== publishLabel;
+                  if (!publishLabel) return null;
+                  return (
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[12px] text-gray-500 mb-4">
+                      <span>
+                        Published{" "}
+                        <time dateTime={publishIso} className="font-medium text-gray-700">
+                          {publishLabel}
+                        </time>
+                      </span>
+                      {showUpdated && (
+                        <span>
+                          &middot; Updated{" "}
+                          <time dateTime={updateIso} className="font-medium text-gray-700">
+                            {updateLabel}
+                          </time>
+                        </span>
+                      )}
+                    </div>
+                  );
+                })()}
                 <p className="text-[14px] md:text-[16px] text-gray-600 leading-[1.6] mb-6 md:mb-8 line-clamp-3">
                   {post.excerpt}
                 </p>
