@@ -2,18 +2,19 @@ import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 
 const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "Home", url: "https://www.pandapatches.com" },
   { name: "Privacy Policy", url: "https://www.pandapatches.com/privacy-policy" },
 ]);
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Privacy Policy | Panda Patches",
   description: "Privacy Policy for Panda Patches (MC Patches LLC). Learn how we collect, use, and protect your personal information when you order custom patches.",
-  alternates: { canonical: "https://www.pandapatches.com/privacy-policy" },
+  url: "https://www.pandapatches.com/privacy-policy",
   robots: { index: true, follow: true },
-};
+});
 
 export default function PrivacyPolicyPage() {
   const lastUpdated = "February 18, 2026";

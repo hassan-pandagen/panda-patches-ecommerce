@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { sendMetaEvent, type Attribution } from '@/lib/metaCapi';
+import { sendCustomerEmail } from '@/lib/sendCustomerEmail';
 
 interface PayPalEventResource {
   id: string;
@@ -178,11 +179,15 @@ async function handlePaymentCaptured(event: PayPalEvent) {
   // capture-paypal already fires this with the same eventId (`${orderId}_purchase`),
   // so Meta will dedupe whichever arrives second. This ensures Purchase is sent
   // even if the customer closes the browser before /api/capture-paypal runs.
+  //
+  // We also fire CUSTOMER_PAYMENT_CONFIRMATION here as a defensive backup —
+  // the send-once guard (customer_confirmation_sent_at) means if
+  // /api/capture-paypal already sent it, this becomes a no-op.
   if (orderId) {
     try {
       const { data: order } = await supabase
         .from('orders')
-        .select('customer_name, customer_email, customer_phone, patches_quantity, patches_type, attribution')
+        .select('id, order_number, customer_name, customer_email, customer_phone, patches_quantity, patches_type, attribution')
         .eq('paypal_order_id', orderId)
         .single();
 
@@ -204,6 +209,47 @@ async function handlePaymentCaptured(event: PayPalEvent) {
           contentName: order.patches_type || 'Custom Patches Order',
           contentCategory: 'Custom Patches',
         }).catch((err) => console.error('[META CAPI] PayPal webhook Purchase send failed:', err));
+
+        // Backup: customer "Payment Received" email. Guard via DB so this
+        // is a no-op if capture-paypal already sent it.
+        if (order.id) {
+          try {
+            const { data: claimed } = await supabase
+              .from('orders')
+              .update({ customer_confirmation_sent_at: new Date().toISOString() })
+              .eq('id', order.id)
+              .is('customer_confirmation_sent_at', null)
+              .select('id')
+              .maybeSingle();
+
+            if (claimed) {
+              const orderRef =
+                order.order_number || `PP-${String(order.id).padStart(5, '0')}`;
+              const amountStr = `$${amountPaid.toFixed(2)}`;
+              const portalUrl = `https://www.pandapatches.com/login?email=${encodeURIComponent(
+                order.customer_email
+              )}`;
+
+              await sendCustomerEmail({
+                to: order.customer_email,
+                templateId: 'CUSTOMER_PAYMENT_CONFIRMATION',
+                dynamicData: {
+                  customer_name: order.customer_name || 'Customer',
+                  customer_email: order.customer_email,
+                  order_number: orderRef,
+                  amount_paid: amountStr,
+                  total_amount: amountStr,
+                  portal_action_url: portalUrl,
+                },
+              });
+            }
+          } catch (emailErr) {
+            console.error(
+              '[paypal webhook] CUSTOMER_PAYMENT_CONFIRMATION send failed (non-blocking):',
+              emailErr
+            );
+          }
+        }
       }
     } catch (e) {
       console.error('PayPal webhook Meta CAPI lookup failed:', e);

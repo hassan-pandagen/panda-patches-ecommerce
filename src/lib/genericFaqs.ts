@@ -5,8 +5,8 @@ export const genericFaqs = [
     answer: "We guarantee 100% satisfaction. Our patches go through 5-point quality inspection: thread tension verification, color matching confirmation, backing durability test, stitch integrity check, and final visual inspection. If you receive patches that don't meet your expectations, contact us within 48 hours for a remake or refund. We use military-grade thread and professional twill backing. Real-world durability: 50+ washing cycles without fading, outdoor wear and weather exposure, daily friction and contact. Used by military units, police departments, and sports teams that demand durability."
   },
   {
-    question: "Embroidered vs Woven vs Chenille vs PVC — which should I choose?",
-    answer: "Each material has unique benefits. Embroidered patches offer classic texture at affordable cost — great for sports teams and fashion. Woven patches handle fine details perfectly — ideal for band logos and complex designs. PVC patches are waterproof and durable for outdoor use. Chenille has a luxury fuzzy feel for premium look. Tell us your design and we'll recommend the best option. EMBROIDERED: Thread stitched onto fabric, classic look, 2-4\" ideal, $0.85-$2.50 per patch. WOVEN: Ultra-thin threads woven together, photo-like clarity, any size, $1.20-$3.50 per patch. PVC: Waterproof plastic, 3D effects, outdoor durable, custom pricing. CHENILLE: Fuzzy varsity look, luxury feel, $2.50-$6.00 per patch."
+    question: "Embroidered vs Woven vs Chenille vs PVC. Which should I choose?",
+    answer: "Each material has unique benefits. Embroidered patches offer classic texture at affordable cost, great for sports teams and fashion. Woven patches handle fine details perfectly, ideal for band logos and complex designs. PVC patches are waterproof and durable for outdoor use. Chenille has a luxury fuzzy feel for a premium look. EMBROIDERED: thread stitched onto twill, classic look, 2 to 4 inches ideal, from $0.85 per piece at volume. WOVEN: ultra-thin threads woven together, photo-like clarity, any size, from $0.65 per piece at volume. PVC: waterproof rubber, 3D effects, outdoor durable, from $1.20 per piece at volume. CHENILLE: fuzzy varsity look, raised felt backing, from $3.50 per piece at 100 pieces. Tell us your design and we will recommend the best option."
   },
   {
     question: "What size should my patch be?",
@@ -14,11 +14,11 @@ export const genericFaqs = [
   },
   {
     question: "How much do custom patches cost?",
-    answer: "Pricing depends on patch type, size, and quantity. Embroidered patches typically range from $1-3 per patch with volume discounts. Woven patches cost 20-30% more due to fine detail capability. PVC patches are similarly priced to embroidered. Volume discounts: 5-50 pieces (standard), 51-200 (5% off), 201-500 (10% off), 501+ (15% off). Examples: 5-10 patches ($3-5 each), 50-100 patches ($2-3.50 each), 500+ patches ($1-2 each). Get an instant quote after uploading your design."
+    answer: "Custom patches start from $0.85 per piece at volume. Pricing depends on patch type, size, and quantity. Examples from the live calculator: 50 embroidered patches under 4 inches cost $3.60 each ($180 total). 100 embroidered = $2.40 each ($240 total). 500 = $1.50 each ($750 total). 1,000 = $1.20 each ($1,200 total). Small first runs of 5 to 10 patches typically land at $3 to $5 each. Free worldwide shipping, digital mockup in 12 to 24 hours, no setup fees. Economy delivery (16 to 18 business days) saves 10 percent off the order total."
   },
   {
     question: "What's your turnaround time?",
-    answer: "Standard production: 10-14 business days. Rush option: 5-7 business days. Express: 2-3 business days. All timelines start after design approval (mockup phase = 1-2 days). Shipping typically adds 3-7 business days depending on your location. Total timeline: 13-21 days standard, 8-14 days rush, 3-6 days express."
+    answer: "Standard production is 7 to 14 business days after you approve the digital mockup. The mockup arrives within 12 to 24 hours of order. Rush production is available with the exact delivery date confirmed by email within 2 to 6 hours of order placement. Economy production (16 to 18 business days) saves 10 percent off the order total. Free worldwide shipping is included on every order."
   },
   {
     question: "What's your design approval process?",
@@ -26,7 +26,7 @@ export const genericFaqs = [
   },
   {
     question: "What are your minimum order quantities?",
-    answer: "Minimum orders: Embroidered 5 pieces, Woven 10 pieces, PVC 10 pieces, Chenille 5 pieces. No expensive startup fees! Volume discounts: 5-50 (standard pricing), 51-200 (5% discount), 201-500 (10% discount), 501-1000 (15% discount), 1000+ (custom pricing)."
+    answer: "The minimum order at Panda Patches is 5 pieces across embroidered, PVC, chenille, and leather. Woven patches have a 10-piece minimum because the schiffli loom needs a slightly longer setup run. There are no setup fees, no digitizing fees, and no small-order surcharges. The 5-piece price uses the same materials, the same Pantone matching, and the same money-back guarantee as a 1,000-piece order. Pricing scales by quantity: 50 embroidered = $3.60 each, 100 = $2.40 each, 500 = $1.50 each, 1,000 = $1.20 each. Economy delivery saves 10 percent off the order total."
   },
   {
     question: "What file formats do you accept for patch design?",

@@ -14,6 +14,7 @@ import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
+import { buildPageMetadata } from "@/lib/seo";
 
 // Police-specific FAQs
 const policeFAQs = [
@@ -92,25 +93,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = heroImage
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
-  return {
+  const ogTitle = "Custom Police & Law Enforcement Patches | Panda Patches";
+  const ogDescription = "Custom police department patches and law enforcement badges. Trusted by departments nationwide. Fast turnaround, bulk pricing.";
+  return buildPageMetadata({
     title: "Custom Police Patches | Department, Tactical & Memorial | Panda Patches",
     description: "Custom police department patches with badge replication, subdued tactical, PVC, K-9, SWAT, and memorial rush. Low 5-piece minimum. Mockup in 12-24 hours. Free worldwide shipping.",
-    alternates: { canonical: "https://www.pandapatches.com/custom-police-patches" },
-    openGraph: {
-      title: "Custom Police & Law Enforcement Patches | Panda Patches",
-      description: "Custom police department patches and law enforcement badges. Trusted by departments nationwide. Fast turnaround, bulk pricing.",
-      url: "https://www.pandapatches.com/custom-police-patches",
-      siteName: "Panda Patches",
-      type: "website",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Police & Law Enforcement Patches | Panda Patches" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Custom Police & Law Enforcement Patches | Panda Patches",
-      description: "Custom police department patches and law enforcement badges. Trusted by departments nationwide. Fast turnaround, bulk pricing.",
-      images: [ogImage],
-    },
-  };
+    url: "https://www.pandapatches.com/custom-police-patches",
+    image: { url: ogImage, alt: ogTitle },
+    ogTitle,
+    ogDescription,
+  });
 }
 
 // Product schema
@@ -139,6 +131,7 @@ const productSchema = {
     highPrice: "4.50",
     offerCount: "3",
     availability: "https://schema.org/InStock",
+    itemCondition: "https://schema.org/NewCondition",
     priceValidUntil: "2027-01-01",
     shippingDetails: {
       "@type": "OfferShippingDetails",

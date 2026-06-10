@@ -1,7 +1,7 @@
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
-const REVALIDATE_TOKEN = process.env.REVALIDATE_TOKEN || 'your-secret-token';
+const REVALIDATE_TOKEN = process.env.REVALIDATE_TOKEN;
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,6 +9,12 @@ export async function POST(request: NextRequest) {
     const authHeader = request.headers.get('authorization');
     const token = authHeader?.replace('Bearer ', '') || request.nextUrl.searchParams.get('token');
 
+    if (!REVALIDATE_TOKEN) {
+      return NextResponse.json(
+        { message: 'Revalidation not configured' },
+        { status: 500 }
+      );
+    }
     if (token !== REVALIDATE_TOKEN) {
       return NextResponse.json(
         { message: 'Invalid token' },

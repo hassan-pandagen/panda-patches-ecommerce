@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { client } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -24,11 +25,8 @@ export default async function PatchStylePage({ params }: { params: Promise<{ slu
   const data = await getStylePageData(slug);
 
   if (!data) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <h1 className="text-2xl font-bold">Page Not Found</h1>
-      </div>
-    );
+    // Real HTTP 404 instead of 200 with a "Page Not Found" message.
+    notFound();
   }
 
   // Helper for SEO Text Styling

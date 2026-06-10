@@ -133,6 +133,24 @@ const nextConfig = {
         permanent: true,
       },
 
+      // VELCRO BLOG CANNIBALIZATION FIX (June 2026)
+      // The blog post /custom-velcro-patches-styles-uses-and-how-to-order was
+      // outranking the commercial /custom-velcro-patches landing page for buy
+      // intent queries (pos 10.9, 4,018 monthly impressions on the blog vs
+      // weaker ranking on the commercial page). Per WEBSIT_1.MD T20, 301 the
+      // blog to the commercial page to consolidate signal. Any unique content
+      // worth keeping has been moved into the commercial page first.
+      {
+        source: '/custom-velcro-patches-styles-uses-and-how-to-order',
+        destination: '/custom-velcro-patches',
+        permanent: true,
+      },
+      {
+        source: '/custom-velcro-patches-styles-uses-and-how-to-order/',
+        destination: '/custom-velcro-patches',
+        permanent: true,
+      },
+
       // OLD BLOG URL → NEW BLOGS URL
       {
         source: '/blog',

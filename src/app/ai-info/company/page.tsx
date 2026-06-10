@@ -3,32 +3,21 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 
 const CANONICAL = "https://www.pandapatches.com/ai-info/company";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "About Panda Patches | Imran Raza, Missouri City Texas",
   description:
     "Panda Patches built on 13 years of custom patch experience, founded by Imran Raza, headquartered Missouri City Texas. 1,000,000+ patches delivered. Custom embroidered, PVC, woven manufacturer.",
-  alternates: { canonical: CANONICAL },
+  url: CANONICAL,
+  ogType: "article",
+  ogTitle: "About Panda Patches: Founder Imran Raza, Headquartered in Texas",
+  ogDescription:
+    "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered with mockup in 12-24 hours, low 5-piece minimum, and money-back guarantee.",
   robots: { index: true, follow: true },
-  openGraph: {
-    title: "About Panda Patches: Founder Imran Raza, Headquartered in Texas",
-    description:
-      "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered with mockup in 12-24 hours, low 5-piece minimum, and money-back guarantee.",
-    url: CANONICAL,
-    siteName: "Panda Patches",
-    type: "article",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Panda Patches: Founder Imran Raza, Headquartered in Texas",
-    description:
-      "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered with mockup in 12-24 hours, low 5-piece minimum, and money-back guarantee.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
-};
+});
 
 const faqs = [
   {

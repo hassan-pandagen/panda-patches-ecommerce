@@ -165,7 +165,11 @@ try{(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime
         <Script id="openai-pixel" strategy="afterInteractive">
           {`try{!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments);};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];if(f&&f.parentNode){f.parentNode.insertBefore(j,f);}else{document.head.appendChild(j);}}(window,document,'script','https://bzrcdn.openai.com/sdk/oaiq.min.js');oaiq('init',{pixelId:'CHMS7gNcUNe5Tcv3CMpX8B'});}catch(e){}`}
         </Script>
-        <Script id="pinterest-tag" strategy="afterInteractive">
+        {/* Pinterest tag bumped from afterInteractive to lazyOnload (June 2026).
+            core.js dynamically loads ct/token_create.js which was flagged as
+            render-blocking in WEBSIT_1.MD T17. lazyOnload defers both until
+            the page is fully loaded so neither blocks interactive paint. */}
+        <Script id="pinterest-tag" strategy="lazyOnload">
           {`try{!function(e){if(!window.pintrk){window.pintrk=function(){window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var n=window.pintrk;n.queue=[],n.version="3.0";var t=document.createElement("script");t.async=!0,t.src=e;var r=document.getElementsByTagName("script")[0];if(r&&r.parentNode){r.parentNode.insertBefore(t,r);}else{document.head.appendChild(t);}}}("https://s.pinimg.com/ct/core.js");pintrk('load','2612823226033');pintrk('page');}catch(e){}`}
         </Script>
 

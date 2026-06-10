@@ -14,6 +14,7 @@ import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
+import { buildPageMetadata } from "@/lib/seo";
 
 // Fire Department-specific FAQs
 const fireFAQs = [
@@ -92,25 +93,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = heroImage
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
-  return {
+  const ogTitle = "Custom Fire Department Patches | Panda Patches";
+  const ogDescription = "Custom fire department patches and firefighter badges. Trusted by departments nationwide. Fast turnaround, bulk pricing.";
+  return buildPageMetadata({
     title: "Custom Fire Department Patches | Memorial, Station & Rank | Panda Patches",
     description: "Custom fire department patches that survive industrial washing. Maltese cross, rank insignia, LODD memorial rush in 72 hrs, IAFF union orders. Low 5-piece minimum. Mockup in 12-24 hours.",
-    alternates: { canonical: "https://www.pandapatches.com/custom-fire-department-patches" },
-    openGraph: {
-      title: "Custom Fire Department Patches | Panda Patches",
-      description: "Custom fire department patches and firefighter badges. Trusted by departments nationwide. Fast turnaround, bulk pricing.",
-      url: "https://www.pandapatches.com/custom-fire-department-patches",
-      siteName: "Panda Patches",
-      type: "website",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Fire Department Patches | Panda Patches" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Custom Fire Department Patches | Panda Patches",
-      description: "Custom fire department patches and firefighter badges. Trusted by departments nationwide. Fast turnaround, bulk pricing.",
-      images: [ogImage],
-    },
-  };
+    url: "https://www.pandapatches.com/custom-fire-department-patches",
+    image: { url: ogImage, alt: ogTitle },
+    ogTitle,
+    ogDescription,
+  });
 }
 
 // Product schema
@@ -139,6 +131,7 @@ const productSchema = {
     highPrice: "4.50",
     offerCount: "3",
     availability: "https://schema.org/InStock",
+    itemCondition: "https://schema.org/NewCondition",
     priceValidUntil: "2027-01-01",
     shippingDetails: {
       "@type": "OfferShippingDetails",

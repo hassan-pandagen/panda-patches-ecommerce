@@ -3,6 +3,8 @@ import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 import { SendMailClient } from 'zeptomail';
 import { sendMetaEvent, type Attribution } from '@/lib/metaCapi';
+import { resolveLeadSource } from '@/lib/attribution';
+import { sendCustomerEmail } from '@/lib/sendCustomerEmail';
 
 // Initialize Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -315,10 +317,17 @@ export async function POST(req: Request) {
             status: 'PAID',
             payment_status: 'paid',
             paid_at: paidAtIso,
-            lead_source: 'Checkout',
+            // lead_source resolved from attribution UTM + referrer (June 2026,
+            // CRM dev handoff). sales_agent stays WEB_CHECKOUT — they self-paid.
+            // resolveLeadSource() falls back to 'Checkout' when no signal exists,
+            // which preserves the legacy default for direct/unknown traffic.
+            lead_source: resolveLeadSource(attribution),
             sales_agent: 'WEB_CHECKOUT',
             attribution,
             meta_capi_sent_at: paidAtIso,
+            // Link to the auth user when the buyer was signed in at checkout.
+            // Empty string from Stripe metadata becomes null here (orders.user_id is nullable).
+            user_id: meta.user_id && meta.user_id.length === 36 ? meta.user_id : null,
           })
           .select('id, order_number, patches_quantity')
           .single();
@@ -329,6 +338,59 @@ export async function POST(req: Request) {
             { error: 'Failed to create order' },
             { status: 500 }
           );
+        }
+
+        // === CUSTOMER PAYMENT CONFIRMATION EMAIL ===========================
+        // Stripe-paid orders are INSERTed already at status='PAID'. The CRM's
+        // email flow only fires on subsequent UPDATEs, so without this block
+        // the customer would get nothing from us until an agent manually opens
+        // and saves the order. We send CUSTOMER_PAYMENT_CONFIRMATION here
+        // (branded by the shared send-email Edge Function).
+        //
+        // Send-once guard: stamp customer_confirmation_sent_at via conditional
+        // UPDATE. Stripe retries the webhook on transient failures — the
+        // second attempt's UPDATE matches zero rows and we skip the send.
+        // Same pattern the CRM dev uses across stripe-balance-webhook +
+        // square-payment-webhook.
+        if (inserted?.id && validEmail) {
+          try {
+            const { data: claimed } = await supabase
+              .from('orders')
+              .update({ customer_confirmation_sent_at: new Date().toISOString() })
+              .eq('id', inserted.id)
+              .is('customer_confirmation_sent_at', null)
+              .select('id')
+              .maybeSingle();
+
+            if (claimed) {
+              const orderRef =
+                inserted.order_number || `PP-${String(inserted.id).padStart(5, '0')}`;
+              const amountStr = `$${amountPaid.toFixed(2)}`;
+              const portalUrl = `https://www.pandapatches.com/login?email=${encodeURIComponent(
+                validEmail
+              )}`;
+
+              await sendCustomerEmail({
+                to: validEmail,
+                templateId: 'CUSTOMER_PAYMENT_CONFIRMATION',
+                dynamicData: {
+                  customer_name: validName,
+                  customer_email: validEmail,
+                  order_number: orderRef,
+                  amount_paid: amountStr,
+                  total_amount: amountStr,
+                  portal_action_url: portalUrl,
+                },
+              });
+            }
+          } catch (emailErr) {
+            // Non-blocking: we never want a failed email to mark the webhook
+            // as failed (Stripe would retry forever).
+            console.error(
+              '[stripe webhook] CUSTOMER_PAYMENT_CONFIRMATION send failed (non-blocking):',
+              emailErr
+            );
+          }
         }
 
         // Fire Meta CAPI Purchase (non-blocking). Direct-Stripe orders are inserted

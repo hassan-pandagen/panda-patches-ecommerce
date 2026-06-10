@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { buildPageMetadata } from "@/lib/seo";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, generateBreadcrumbSchema, generateLocalBusinessSchema } from "@/lib/schemas";
@@ -14,33 +15,21 @@ import Promises from "@/components/home/Promises";
 import PickPatch from "@/components/about/PickPatch";
 
 // SEO Metadata for Contact Page
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Contact Us - Get Custom Patch Quote | Panda Patches",
   description: "Contact Panda Patches for custom patch quotes. Phone: +1 302 250 4340. Email: hello@pandapatches.com. Free design consultation available.",
-  openGraph: {
-    title: "Contact Us - Get Custom Patch Quote | Panda Patches",
-    description: "Get in touch for custom patch quotes. Phone: +1 302 250 4340. Free design consultation available.",
-    type: "website",
-    url: "https://www.pandapatches.com/contact",
-    images: [
-      {
-        url: "https://www.pandapatches.com/assets/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Contact Panda Patches"
-      }
-    ]
+  url: "https://www.pandapatches.com/contact",
+  image: {
+    url: "https://www.pandapatches.com/assets/og-image.png",
+    width: 1200,
+    height: 630,
+    alt: "Contact Panda Patches",
   },
-  twitter: {
-    card: "summary",
-    title: "Contact Us | Panda Patches",
-    description: "Get custom patch quotes. Phone: +1 302 250 4340. Free design consultation.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"]
-  },
-  alternates: {
-    canonical: "https://www.pandapatches.com/contact"
-  }
-};
+  ogDescription: "Get in touch for custom patch quotes. Phone: +1 302 250 4340. Free design consultation available.",
+  twitterCard: "summary",
+  twitterTitle: "Contact Us | Panda Patches",
+  twitterDescription: "Get custom patch quotes. Phone: +1 302 250 4340. Free design consultation.",
+});
 
 export default function ContactPage() {
   return (

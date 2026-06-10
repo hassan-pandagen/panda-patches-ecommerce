@@ -1001,7 +1001,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How much do custom hat patches cost?",
-      answer: "Custom hat patches start from $0.71 per patch, with pricing based on size, patch type, quantity, and complexity. Embroidered patches are the most affordable option. Leather and PVC patches cost slightly more due to materials. Volume discounts apply: the more you order, the lower the per-patch price. We offer free quotes with no obligation, so send us your design and we will provide exact pricing within 24 hours."
+      answer: "Custom hat patches start from $0.85 per patch, with pricing based on size, patch type, quantity, and complexity. Embroidered patches are the most affordable option. Leather and PVC patches cost slightly more due to materials. Volume discounts apply: the more you order, the lower the per-patch price. We offer free quotes with no obligation, so send us your design and we will provide exact pricing within 24 hours."
     }
   ]
 };

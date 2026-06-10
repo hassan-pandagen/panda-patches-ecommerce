@@ -15,6 +15,7 @@ import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateServiceSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
+import { buildPageMetadata } from "@/lib/seo";
 
 // ISR: Revalidate every 24 hours
 export const revalidate = 86400;
@@ -53,28 +54,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = heroImage
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
-  return {
+  return buildPageMetadata({
     title: "Bulk Custom Patches for 100+ Pieces | Volume Pricing",
     description: "Bulk custom patches at wholesale prices. Volume discounts on embroidered, PVC, woven & more. Free design, no setup fees, 1M+ delivered.",
-    alternates: {
-      canonical: "https://www.pandapatches.com/bulk-custom-patches",
-    },
-    openGraph: {
-      title: "Bulk Custom Patches for 100+ Pieces | Volume Pricing | Panda Patches",
-      description:
-        "Order bulk custom patches at wholesale prices. Embroidered, PVC, chenille, woven, leather. Mockup in 12-24 hours, 2-week delivery, pricing from $0.85/pc.",
-      url: "https://www.pandapatches.com/bulk-custom-patches",
-      siteName: "Panda Patches",
-      type: "website",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: "Panda Patches - Bulk Custom Patches" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Bulk Custom Patches for 100+ Pieces | Volume Pricing | Panda Patches",
-      description: "Order bulk custom patches at wholesale prices. Mockup in 12-24 hours, 2-week delivery, from $0.85/pc.",
-      images: [ogImage],
-    },
-  };
+    url: "https://www.pandapatches.com/bulk-custom-patches",
+    image: { url: ogImage, alt: "Panda Patches - Bulk Custom Patches" },
+    ogTitle: "Bulk Custom Patches for 100+ Pieces | Volume Pricing | Panda Patches",
+    ogDescription:
+      "Order bulk custom patches at wholesale prices. Embroidered, PVC, chenille, woven, leather. Mockup in 12-24 hours, 2-week delivery, pricing from $0.85/pc.",
+    twitterDescription: "Order bulk custom patches at wholesale prices. Mockup in 12-24 hours, 2-week delivery, from $0.85/pc.",
+  });
 }
 
 // Product schema for bulk pricing
@@ -104,6 +93,7 @@ const productSchema = {
     highPrice: "6.00",
     offerCount: "4",
     availability: "https://schema.org/InStock",
+    itemCondition: "https://schema.org/NewCondition",
     priceValidUntil: "2027-01-01",
     shippingDetails: {
       "@type": "OfferShippingDetails",

@@ -3,11 +3,69 @@ import { createClient } from '@supabase/supabase-js';
 import { PayPalClient } from '@/lib/paypal';
 import { SendMailClient } from 'zeptomail';
 import { sendMetaEvent } from '@/lib/metaCapi';
+import { resolveLeadSource } from '@/lib/attribution';
+import { sendCustomerEmail } from '@/lib/sendCustomerEmail';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
+
+/**
+ * Send the branded "Payment Received" email via the shared send-email Edge
+ * Function. Uses the customer_confirmation_sent_at column as a send-once
+ * guard so duplicate PayPal webhooks don't double-email.
+ *
+ * Same pattern used by /api/webhooks/stripe and the CRM's
+ * stripe-balance-webhook / square-payment-webhook.
+ */
+async function sendPaymentConfirmationOnce(params: {
+  orderId: number | string;
+  orderNumber?: string | null;
+  customerEmail: string;
+  customerName: string;
+  amountPaid: number;
+}): Promise<void> {
+  const { orderId, orderNumber, customerEmail, customerName, amountPaid } = params;
+  if (!orderId || !customerEmail) return;
+
+  try {
+    const { data: claimed } = await supabase
+      .from('orders')
+      .update({ customer_confirmation_sent_at: new Date().toISOString() })
+      .eq('id', orderId)
+      .is('customer_confirmation_sent_at', null)
+      .select('id')
+      .maybeSingle();
+
+    if (!claimed) return; // already sent — duplicate webhook, silently skip
+
+    const orderRef =
+      orderNumber || `PP-${String(orderId).padStart(5, '0')}`;
+    const amountStr = `$${amountPaid.toFixed(2)}`;
+    const portalUrl = `https://www.pandapatches.com/login?email=${encodeURIComponent(customerEmail)}`;
+
+    await sendCustomerEmail({
+      to: customerEmail,
+      templateId: 'CUSTOMER_PAYMENT_CONFIRMATION',
+      dynamicData: {
+        customer_name: customerName,
+        customer_email: customerEmail,
+        order_number: orderRef,
+        amount_paid: amountStr,
+        total_amount: amountStr,
+        portal_action_url: portalUrl,
+      },
+    });
+  } catch (err) {
+    // Non-blocking — never let a failed email kill the webhook (would cause
+    // PayPal to retry forever).
+    console.error(
+      '[paypal capture] CUSTOMER_PAYMENT_CONFIRMATION send failed (non-blocking):',
+      err
+    );
+  }
+}
 
 function esc(s: string) {
   return String(s)
@@ -239,10 +297,17 @@ export async function POST(req: Request) {
           sendOrderEmails(orderData, amountPaid, orderId).catch(e =>
             console.error('Order email send error:', e)
           );
+          // Branded "Payment Received" to customer (send-once via DB guard).
+          await sendPaymentConfirmationOnce({
+            orderId: existingOrder.id,
+            customerEmail: String(orderData.customer_email || ''),
+            customerName: String(orderData.customer_name || 'Customer'),
+            amountPaid,
+          });
         }
       } else if (orderData) {
         // New flow: create order only on successful payment
-        const { error: insertError } = await supabase
+        const { data: insertedRow, error: insertError } = await supabase
           .from('orders')
           .insert({
             customer_name: orderData.customer_name || 'Unknown',
@@ -266,11 +331,16 @@ export async function POST(req: Request) {
             status: 'CONFIRMED',
             payment_status: 'paid',
             paid_at: new Date().toISOString(),
-            lead_source: 'WEBSITE',
+            // lead_source resolved from attribution UTM + referrer (June 2026,
+            // CRM dev handoff). Matches the resolver used in the Stripe webhook
+            // and on the Square + payment-form side.
+            lead_source: resolveLeadSource(orderData.attribution),
             sales_agent: 'WEBSITE_BOT',
             attribution: orderData.attribution || null,
             meta_capi_sent_at: new Date().toISOString(),
-          });
+          })
+          .select('id, order_number')
+          .single();
 
         if (insertError) {
           console.error('Database insert error:', insertError);
@@ -279,6 +349,17 @@ export async function POST(req: Request) {
         sendOrderEmails(orderData, amountPaid, orderId).catch(e =>
           console.error('Order email send error:', e)
         );
+
+        // Branded "Payment Received" to customer (send-once via DB guard).
+        if (insertedRow?.id) {
+          await sendPaymentConfirmationOnce({
+            orderId: insertedRow.id,
+            orderNumber: insertedRow.order_number,
+            customerEmail: String(orderData.customer_email || ''),
+            customerName: String(orderData.customer_name || 'Customer'),
+            amountPaid,
+          });
+        }
       } else {
         // Fallback: create minimal order from PayPal data
         await supabase
@@ -296,7 +377,10 @@ export async function POST(req: Request) {
             status: 'CONFIRMED',
             payment_status: 'paid',
             paid_at: new Date().toISOString(),
-            lead_source: 'WEBSITE',
+            // No attribution available in this fallback branch (orderData was
+            // lost), so the resolver returns 'Checkout'. Kept consistent with
+            // the Stripe webhook default rather than the legacy 'WEBSITE'.
+            lead_source: resolveLeadSource(null),
             sales_agent: 'WEBSITE_BOT',
           });
       }

@@ -14,6 +14,7 @@ import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
+import { buildPageMetadata } from "@/lib/seo";
 
 // Sports-specific FAQs
 const sportsFAQs = [
@@ -108,25 +109,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = heroImage
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
-  return {
+  const ogTitle = "Custom Sports Team Patches | Panda Patches";
+  const ogDescription = "Custom embroidered patches for sports teams, leagues, and clubs. Low 5-piece minimum, mockup in 12-24 hours, fast delivery.";
+  return buildPageMetadata({
     title: "Custom Sports Patches | Chenille Varsity, Championship & Jersey Patches",
     description: "Custom sports patches for varsity jackets, game jerseys, and championships. Chenille letters, embroidered team logos, league bulk pricing. Rush for season deadlines. Low 5-piece minimum.",
-    alternates: { canonical: "https://www.pandapatches.com/custom-sports-patches" },
-    openGraph: {
-      title: "Custom Sports Team Patches | Panda Patches",
-      description: "Custom embroidered patches for sports teams, leagues, and clubs. Low 5-piece minimum, mockup in 12-24 hours, fast delivery.",
-      url: "https://www.pandapatches.com/custom-sports-patches",
-      siteName: "Panda Patches",
-      type: "website",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Sports Team Patches | Panda Patches" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Custom Sports Team Patches | Panda Patches",
-      description: "Custom embroidered patches for sports teams, leagues, and clubs. Low 5-piece minimum, mockup in 12-24 hours, fast delivery.",
-      images: [ogImage],
-    },
-  };
+    url: "https://www.pandapatches.com/custom-sports-patches",
+    image: { url: ogImage, alt: ogTitle },
+    ogTitle,
+    ogDescription,
+  });
 }
 
 // Product schema
@@ -155,6 +147,7 @@ const productSchema = {
     highPrice: "4.50",
     offerCount: "3",
     availability: "https://schema.org/InStock",
+    itemCondition: "https://schema.org/NewCondition",
     priceValidUntil: "2027-01-01",
     shippingDetails: {
       "@type": "OfferShippingDetails",

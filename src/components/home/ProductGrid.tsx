@@ -107,7 +107,7 @@ export default async function ProductGrid() {
         <div className="text-center mb-16 space-y-6">
           <h2 className="text-[26px] md:text-[40px] font-semibold text-panda-dark uppercase leading-tight tracking-tight">
             PICK YOUR PATCH TYPE. <br />
-            FROM $1.20/PIECE
+            FROM $0.85/PIECE
           </h2>
           <p className="text-[14px] md:text-[17px] text-gray-800 leading-[1.8] max-w-[1020px] mx-auto font-medium">
             From personalized logo patches, to <Link href="/custom-name-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">personalized name patch</Link>, from <Link href="/custom-tactical-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">military patches</Link>, to <Link href="/custom-jacket-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">personalized patches for jackets</Link>, and custom <Link href="/custom-velcro-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">Velcro patches</Link>,

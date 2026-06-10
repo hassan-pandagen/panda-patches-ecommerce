@@ -5,6 +5,7 @@ import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Footer from "@/components/layout/Footer";
 import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema, generateSchemaScript } from "@/lib/schemas";
 import { genericFaqs } from "@/lib/genericFaqs";
+import { buildPageMetadata } from "@/lib/seo";
 
 // COMPONENTS
 import ProductHero from "@/components/product/ProductHero";
@@ -36,25 +37,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
     : 'https://www.pandapatches.com/assets/og-image.png';
 
-  return {
+  return buildPageMetadata({
     title: `${data.title} | Panda Patches`,
     description: data.description,
-    alternates: { canonical: `https://www.pandapatches.com/custom-products/${slug}` },
-    openGraph: {
-      type: "website",
-      title: data.title,
-      description: data.description,
-      url: `https://www.pandapatches.com/custom-products/${slug}`,
-      siteName: "Panda Patches",
-      images: [{ url: imageUrl, width: 1200, height: 630, alt: data.title }],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${data.title} | Panda Patches`,
-      description: data.description,
-      images: [imageUrl],
-    },
-  };
+    url: `https://www.pandapatches.com/custom-products/${slug}`,
+    image: { url: imageUrl, alt: data.title },
+    ogTitle: data.title,
+    twitterTitle: `${data.title} | Panda Patches`,
+  });
 }
 
 // 2. Page Layout

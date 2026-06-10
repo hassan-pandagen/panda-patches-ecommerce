@@ -15,6 +15,7 @@ import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
+import { buildPageMetadata } from "@/lib/seo";
 
 const CANONICAL = "https://www.pandapatches.com/embroidery-digitizing";
 
@@ -85,29 +86,19 @@ const getDigitizingPageData = cache(async () => {
   }
 });
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Embroidery Digitizing Service | Free With Patch Orders | Panda Patches",
   description:
     "Custom embroidery digitizing service. Free with every patch order. Free standalone trial for simple designs under 4 inches. Complex jobs quoted. DST, PES, EXP, JEF formats. Chat or upload to start.",
-  alternates: { canonical: CANONICAL },
+  url: CANONICAL,
+  ogType: "article",
+  ogTitle: "Embroidery Digitizing Service: Free With Patch Orders, Free Trial Under 4 Inches",
+  ogDescription:
+    "Convert logo to embroidery file (DST, PES, EXP, JEF). Free with any patch order. Standalone simple-design trial under 4 inches is free. Complex digitizing quoted. Chat or upload to start.",
+  twitterDescription:
+    "Convert logo to embroidery file. Free with any patch order. Standalone trial under 4 inches is free. Complex jobs quoted.",
   robots: { index: true, follow: true },
-  openGraph: {
-    title: "Embroidery Digitizing Service: Free With Patch Orders, Free Trial Under 4 Inches",
-    description:
-      "Convert logo to embroidery file (DST, PES, EXP, JEF). Free with any patch order. Standalone simple-design trial under 4 inches is free. Complex digitizing quoted. Chat or upload to start.",
-    url: CANONICAL,
-    siteName: "Panda Patches",
-    type: "article",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Embroidery Digitizing Service: Free With Patch Orders, Free Trial Under 4 Inches",
-    description:
-      "Convert logo to embroidery file. Free with any patch order. Standalone trial under 4 inches is free. Complex jobs quoted.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
-};
+});
 
 const articleSchema = generateArticleSchema({
   title: "Embroidery Digitizing Service: Free With Patch Orders, Standalone Trial Available",

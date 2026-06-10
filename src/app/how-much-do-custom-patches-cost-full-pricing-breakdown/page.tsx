@@ -3,33 +3,31 @@ import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { generateSchemaScript, generateBreadcrumbSchema } from '@/lib/schemas';
-import { getSchemaPricingTiers } from '@/lib/pricingCalculator';
+import { getSchemaPricingTiers, calculatePatchPrice } from '@/lib/pricingCalculator';
+import { buildPageMetadata } from '@/lib/seo';
+
+// Pull every displayed price tier from the live calculator so the table can never
+// drift from the checkout-time price. All prices already include the
+// 1.10 PRICE_MULTIPLIER applied inside calculatePatchPrice().
+function calcPerPc(productName: string, size: number, qty: number): string {
+  const r = calculatePatchPrice(productName, size, size, qty);
+  if (r.error || !r.unitPrice) return '—';
+  return `$${r.unitPrice.toFixed(2)}`;
+}
 
 const BASE = 'https://www.pandapatches.com';
 const CANONICAL = `${BASE}/how-much-do-custom-patches-cost-full-pricing-breakdown`;
 
-export const metadata: Metadata = {
-  title: 'How Much Do Custom Patches Cost? $0.71 to $7/pc (2026)',
+export const metadata: Metadata = buildPageMetadata({
+  title: 'How Much Do Custom Patches Cost? $0.85 to $7/pc (2026)',
   description:
-    'Custom patches cost $0.71 to $7 per piece in 2026. Full pricing tables for embroidered, woven, PVC, chenille, and leather patches by quantity and size. Free shipping included.',
-  alternates: { canonical: CANONICAL },
-  openGraph: {
-    title: 'How Much Do Custom Patches Cost? $0.71 to $7/pc (2026)',
-    description:
-      'Custom patch pricing in 2026. From $0.71/pc at volume to $80 flat for a single patch. Full tables by type and quantity. Mockup in 12-24 hours, free shipping.',
-    url: CANONICAL,
-    type: 'website',
-    images: [{ url: `${BASE}/assets/og-image.png`, width: 1200, height: 630, alt: 'Custom Patch Pricing' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'How Much Do Custom Patches Cost? $0.71 to $7/pc (2026)',
-    description:
-      'Custom patch pricing in 2026. From $0.71/pc at volume to $80 flat for a single patch. Full tables by type and quantity. Mockup in 12-24 hours, free shipping.',
-    images: [`${BASE}/assets/og-image.png`],
-  },
+    'Custom patches cost $0.85 to $7 per piece in 2026. Full pricing tables for embroidered, woven, PVC, chenille, and leather patches by quantity and size. Free shipping included.',
+  url: CANONICAL,
+  ogDescription:
+    'Custom patch pricing in 2026. From $0.85/pc at volume to $80 flat for a single patch. Full tables by type and quantity. Mockup in 12-24 hours, free shipping.',
+  image: { url: `${BASE}/assets/og-image.png`, width: 1200, height: 630, alt: 'Custom Patch Pricing' },
   robots: { index: true, follow: true },
-};
+});
 
 // ── Schema markup ──────────────────────────────────────────────────────────────
 
@@ -164,36 +162,33 @@ const faqSchema = {
 
 // ── Pricing table data ─────────────────────────────────────────────────────────
 
+// Embroidered: 1pc is the flat setup tier (calculator returns $80 flat); for 10+ we pull live.
+const EMB_QTY_BREAKS = [10, 25, 50, 100, 200, 500, 1000, 5000];
 const EMBROIDED_TABLE = [
   { qty: '1', size2: '$80 flat', size3: '$80 flat', size5: '$80 flat' },
-  { qty: '10', size2: '$13.07', size3: '$13.07', size5: '$15.68' },
-  { qty: '25', size2: '$5.87', size3: '$5.87', size5: '$7.84' },
-  { qty: '50', size2: '$3.92', size3: '$3.92', size5: '$5.23' },
-  { qty: '100', size2: '$2.42', size3: '$2.55', size5: '$3.92' },
-  { qty: '200', size2: '$1.89', size3: '$1.96', size5: '$2.62' },
-  { qty: '500', size2: '$1.05', size3: '$1.18', size5: '$1.69' },
-  { qty: '1,000', size2: '$0.91', size3: '$1.05', size5: '$1.63' },
-  { qty: '5,000', size2: '$0.78', size3: '$0.90', size5: '$1.43' },
+  ...EMB_QTY_BREAKS.map((q) => ({
+    qty: q.toLocaleString('en-US'),
+    size2: calcPerPc('Custom Embroidered Patches', 2, q),
+    size3: calcPerPc('Custom Embroidered Patches', 3, q),
+    size5: calcPerPc('Custom Embroidered Patches', 5, q),
+  })),
 ];
 
-const WOVEN_TABLE = [
-  { qty: '10', per: '$13.75' },
-  { qty: '25', per: '$8.06' },
-  { qty: '50', per: '$5.36' },
-  { qty: '100', per: '$3.97' },
-  { qty: '200', per: '$3.86' },
-  { qty: '500', per: '$3.10' },
-  { qty: '1,000', per: '$2.49' },
-  { qty: '5,000', per: '$2.49' },
-];
+// Woven minimum is 10 pcs (enforced by calculator); we display the 3-inch reference column.
+const WOVEN_QTY_BREAKS = [10, 25, 50, 100, 200, 500, 1000, 5000];
+const WOVEN_TABLE = WOVEN_QTY_BREAKS.map((q) => ({
+  qty: q.toLocaleString('en-US'),
+  per: calcPerPc('Custom Woven Patches', 3, q),
+}));
 
+// PVC: 1pc is the flat tier; remaining quantities pull live from the calculator at 3-inch reference.
+const PVC_QTY_BREAKS = [25, 50, 100, 500, 1000];
 const PVC_TABLE = [
   { qty: '1', per: '$100 flat' },
-  { qty: '25', per: '$8.67' },
-  { qty: '50', per: '$6.19' },
-  { qty: '100', per: '$4.33' },
-  { qty: '500', per: '$3.10' },
-  { qty: '1,000', per: '$2.78' },
+  ...PVC_QTY_BREAKS.map((q) => ({
+    qty: q.toLocaleString('en-US'),
+    per: calcPerPc('Custom PVC Patches', 3, q),
+  })),
 ];
 
 const TYPE_SUMMARY = [
@@ -236,7 +231,7 @@ export default function PricingPage() {
             How Much Do Custom Patches Cost?
           </h1>
           <p className="text-lg text-gray-200 leading-relaxed max-w-3xl">
-            Custom embroidered patches cost <strong className="text-[#dcff70]">$0.71 to $5.87 per piece</strong> for a 3-inch patch, depending on quantity. A 25-pack runs about $147 total; a 100-pack runs about $255. Free shipping and a mockup in 12-24 hours are included on every order. No setup fees.
+            <Link href="/custom-patches/embroidered" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Custom embroidered patches</Link> cost <strong className="text-[#dcff70]">$0.85 to $5.87 per piece</strong> for a 3-inch patch, depending on quantity. A 25-pack runs about $147 total; a 100-pack runs about $255. Free worldwide shipping and a mockup in 12-24 hours are included on every order. No setup fees. <Link href="/custom-patches/woven" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Woven patches</Link> are typically a few cents cheaper at volume.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link

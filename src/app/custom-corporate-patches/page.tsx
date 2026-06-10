@@ -14,6 +14,7 @@ import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
+import { buildPageMetadata } from "@/lib/seo";
 
 // Corporate-specific FAQs
 const corporateFAQs = [
@@ -112,25 +113,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = heroImage
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
-  return {
+  const ogTitle = "Custom Corporate & Company Logo Patches | Panda Patches";
+  const ogDescription = "Custom embroidered patches for businesses and brands. Low 5-piece minimum, mockup in 12-24 hours, fast delivery. Trusted by Fortune 500 companies.";
+  return buildPageMetadata({
     title: "Custom Corporate Patches | Pantone-Matched Uniform & Employee Patches",
     description: "Custom corporate uniform patches with Pantone color matching, variable name patches, ASI reseller pricing, and formal PO invoicing. Pre-production sample at 500+. Mockup in 12-24 hours.",
-    alternates: { canonical: "https://www.pandapatches.com/custom-corporate-patches" },
-    openGraph: {
-      title: "Custom Corporate & Company Logo Patches | Panda Patches",
-      description: "Custom embroidered patches for businesses and brands. Low 5-piece minimum, mockup in 12-24 hours, fast delivery. Trusted by Fortune 500 companies.",
-      url: "https://www.pandapatches.com/custom-corporate-patches",
-      siteName: "Panda Patches",
-      type: "website",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: "Custom Corporate & Company Logo Patches | Panda Patches" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Custom Corporate & Company Logo Patches | Panda Patches",
-      description: "Custom embroidered patches for businesses and brands. Low 5-piece minimum, mockup in 12-24 hours, fast delivery. Trusted by Fortune 500 companies.",
-      images: [ogImage],
-    },
-  };
+    url: "https://www.pandapatches.com/custom-corporate-patches",
+    image: { url: ogImage, alt: ogTitle },
+    ogTitle,
+    ogDescription,
+  });
 }
 
 // Product schema
@@ -159,6 +151,7 @@ const productSchema = {
     highPrice: "4.50",
     offerCount: "3",
     availability: "https://schema.org/InStock",
+    itemCondition: "https://schema.org/NewCondition",
     priceValidUntil: "2027-01-01",
     shippingDetails: {
       "@type": "OfferShippingDetails",

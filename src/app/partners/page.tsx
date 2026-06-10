@@ -7,6 +7,7 @@ import WorkGallery from "@/components/bulk/WorkGallery";
 import Image from "next/image";
 import { client, urlFor } from "@/lib/sanity";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 import PartnerApplicationModal from "@/components/partners/PartnerApplicationModal";
 
 export const revalidate = 86400;
@@ -79,25 +80,14 @@ async function getWorkSamples() {
   }
 }
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Partner Program for Agencies & Resellers | Panda Patches",
   description: "Wholesale and white-label patch manufacturing for promotional agencies, uniform suppliers, and embroidery shops. 10-18% partner margins, dedicated account manager, low 5-piece minimums.",
-  alternates: { canonical: "https://www.pandapatches.com/partners" },
-  openGraph: {
-    title: "Panda Patches Agency Partner Program",
-    description: "Sell custom patches under your brand. We handle production. 10-18% margins, dedicated account manager, blind shipping.",
-    type: "website",
-    url: "https://www.pandapatches.com/partners",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Panda Patches Agency Partner Program",
-    description: "Sell custom patches under your brand. We handle production. 10-18% margins, dedicated account manager, blind shipping.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
+  url: "https://www.pandapatches.com/partners",
+  ogTitle: "Panda Patches Agency Partner Program",
+  ogDescription: "Sell custom patches under your brand. We handle production. 10-18% margins, dedicated account manager, blind shipping.",
   robots: { index: true, follow: true },
-};
+});
 
 const PARTNER_FAQS = [
   {

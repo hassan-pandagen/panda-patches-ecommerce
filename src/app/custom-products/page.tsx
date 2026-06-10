@@ -1,5 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
 import { client, urlFor } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -19,25 +20,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Custom Products - Coins, Pins, Keychains & More | Panda Patches",
   description: "Custom lapel pins, challenge coins, keychains, and stickers with low minimums. Free design services and fast 7-14 day delivery from Panda Patches.",
-  alternates: {
-    canonical: "https://www.pandapatches.com/custom-products",
-  },
-  openGraph: {
-    title: "Custom Products - Coins, Pins, Keychains & More | Panda Patches",
-    description: "Custom lapel pins, challenge coins, keychains, and promotional products with low minimums and fast delivery.",
-    url: "https://www.pandapatches.com/custom-products",
-    siteName: "Panda Patches",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Custom Products - Coins, Pins, Keychains | Panda Patches",
-    description: "Custom lapel pins, challenge coins, keychains, and promotional products with low minimums.",
-  },
-};
+  url: "https://www.pandapatches.com/custom-products",
+  ogDescription: "Custom lapel pins, challenge coins, keychains, and promotional products with low minimums and fast delivery.",
+  twitterTitle: "Custom Products - Coins, Pins, Keychains | Panda Patches",
+  twitterDescription: "Custom lapel pins, challenge coins, keychains, and promotional products with low minimums.",
+});
 
 // ISR: Revalidate custom products listing every 6 hours (pricing may change)
 export const revalidate = 21600;

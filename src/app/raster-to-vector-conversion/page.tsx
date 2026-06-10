@@ -15,6 +15,7 @@ import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
+import { buildPageMetadata } from "@/lib/seo";
 
 const CANONICAL = "https://www.pandapatches.com/raster-to-vector-conversion";
 
@@ -85,29 +86,19 @@ const getVectorPageData = cache(async () => {
   }
 });
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Raster to Vector Conversion Service | Free First Vector | Panda Patches",
   description:
     "Raster to vector conversion service. Free with every patch order. First simple vector is free. Complex images quoted separately. JPG, PNG to AI, EPS, SVG, PDF. Upload artwork to start.",
-  alternates: { canonical: CANONICAL },
+  url: CANONICAL,
+  ogType: "article",
+  ogTitle: "Raster to Vector Conversion: Free First Vector, Complex Quoted Separately",
+  ogDescription:
+    "Convert JPG, PNG, or low-res logos to clean AI, EPS, SVG, PDF vector files. Free with any patch order. First simple vector standalone is free. Complex images quoted.",
+  twitterDescription:
+    "Convert JPG, PNG to AI, EPS, SVG, PDF. Free with patch orders. First simple vector standalone is free.",
   robots: { index: true, follow: true },
-  openGraph: {
-    title: "Raster to Vector Conversion: Free First Vector, Complex Quoted Separately",
-    description:
-      "Convert JPG, PNG, or low-res logos to clean AI, EPS, SVG, PDF vector files. Free with any patch order. First simple vector standalone is free. Complex images quoted.",
-    url: CANONICAL,
-    siteName: "Panda Patches",
-    type: "article",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Raster to Vector Conversion: Free First Vector, Complex Quoted Separately",
-    description:
-      "Convert JPG, PNG to AI, EPS, SVG, PDF. Free with patch orders. First simple vector standalone is free.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
-};
+});
 
 const articleSchema = generateArticleSchema({
   title: "Raster to Vector Conversion: Free With Patch Orders, Free First Standalone Vector",

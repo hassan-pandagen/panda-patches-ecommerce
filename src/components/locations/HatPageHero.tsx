@@ -44,7 +44,7 @@ export default function HatPageHero({ title, description, gallery = [] }: Props)
 
             {/* Price anchor — visible before intro paragraph */}
             <div className="flex flex-wrap gap-3 mb-4">
-              {["Starting from $0.71/patch", "Free Design + 12-24h Mockup", "Ships in 7-14 Days"].map((item) => (
+              {["Starting from $0.85/patch", "Free Design + 12-24h Mockup", "Ships in 7-14 Days"].map((item) => (
                 <span key={item} className="inline-flex items-center gap-1.5 bg-panda-green/10 text-panda-green text-[13px] font-bold px-3 py-1.5 rounded-full">
                   <span className="w-1.5 h-1.5 rounded-full bg-panda-green" />
                   {item}

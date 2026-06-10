@@ -117,6 +117,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.6,
     },
+    // Locations hub added June 2026 (WEBSIT_1.MD T23). Links to every
+    // location page so crawlers find them faster than depending on the
+    // footer alone.
+    {
+      url: `${baseUrl}/locations`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
     {
       url: `${baseUrl}/sample-box`,
       lastModified: new Date('2026-01-01'),

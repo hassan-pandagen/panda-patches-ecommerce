@@ -13,10 +13,10 @@ interface ProductPageMeta {
 
 const productPageMeta: Record<string, ProductPageMeta> = {
   "embroidered": {
-    title: "Custom Embroidered Patches from $0.71 | 24h Mockup | 5pc Min",
-    description: "Custom embroidered patches from $0.71/pc. Any size, shape & color. Iron-on, sew-on or velcro backing. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days. Get your free quote!",
-    ogTitle: "Custom Embroidered Patches from $0.71 | 24h Mockup | 5pc Min",
-    ogDescription: "Embroidered patches from $0.71/pc. Any size, shape & color. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days.",
+    title: "Custom Embroidered Patches from $0.85 | 24h Mockup | 5pc Min",
+    description: "Custom embroidered patches from $0.85/pc. Any size, shape & color. Iron-on, sew-on or velcro backing. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days. Get your free quote!",
+    ogTitle: "Custom Embroidered Patches from $0.85 | 24h Mockup | 5pc Min",
+    ogDescription: "Embroidered patches from $0.85/pc. Any size, shape & color. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days.",
   },
   "pvc": {
     title: "Custom PVC Patches from $1.20 | Free Design | 5pc Min",

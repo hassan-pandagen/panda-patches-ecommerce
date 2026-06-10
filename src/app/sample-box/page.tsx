@@ -1,3 +1,4 @@
+import { buildPageMetadata } from "@/lib/seo";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SampleBoxHero from "@/components/samplebox/SampleBoxHero";
@@ -10,33 +11,21 @@ import { client, urlFor } from "@/lib/sanity";
 // ISR: Revalidate every hour
 export const revalidate = 3600;
 
-export const metadata = {
+export const metadata = buildPageMetadata({
   title: "Order Sample Box - 9 Patch Samples for $45 | Panda Patches",
   description: "Get 9 custom patch samples including embroidered, PVC, chenille, woven, and leather for $45 with free shipping. Experience our quality first.",
-  openGraph: {
-    title: "Order Sample Box - 9 Patch Samples for $45 | Panda Patches",
-    description: "Get 9 patch samples for $45. Experience embroidered, PVC, chenille, woven patches & more with free shipping.",
-    type: "website",
-    url: "https://www.pandapatches.com/sample-box",
-    images: [
-      {
-        url: "https://www.pandapatches.com/assets/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Panda Patches Sample Box"
-      }
-    ]
+  url: "https://www.pandapatches.com/sample-box",
+  image: {
+    url: "https://www.pandapatches.com/assets/og-image.png",
+    width: 1200,
+    height: 630,
+    alt: "Panda Patches Sample Box",
   },
-  twitter: {
-    card: "summary",
-    title: "Order Sample Box - 9 Patch Samples for $45",
-    description: "Get 9 patch samples including embroidered, PVC, chenille & more for only $45 with free shipping.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"]
-  },
-  alternates: {
-    canonical: "https://www.pandapatches.com/sample-box"
-  }
-};
+  ogDescription: "Get 9 patch samples for $45. Experience embroidered, PVC, chenille, woven patches & more with free shipping.",
+  twitterCard: "summary",
+  twitterTitle: "Order Sample Box - 9 Patch Samples for $45",
+  twitterDescription: "Get 9 patch samples including embroidered, PVC, chenille & more for only $45 with free shipping.",
+});
 
 // Categories included in the sample box - All 9 categories
 const includedCategories = [

@@ -3,32 +3,21 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 
 const CANONICAL = "https://www.pandapatches.com/ai-info/products";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Custom Patch Products at Panda Patches | All 11 Types",
   description:
     "Complete catalog: embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, sequin patches plus challenge coins, pins, keychains.",
-  alternates: { canonical: CANONICAL },
+  url: CANONICAL,
+  ogType: "article",
+  ogTitle: "Panda Patches Products: 11 Patch Types and Custom Items",
+  ogDescription:
+    "Full catalog covering embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin patches plus challenge coins, enamel pins, keychains, and PVC shoe charms.",
   robots: { index: true, follow: true },
-  openGraph: {
-    title: "Panda Patches Products: 11 Patch Types and Custom Items",
-    description:
-      "Full catalog covering embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin patches plus challenge coins, enamel pins, keychains, and PVC shoe charms.",
-    url: CANONICAL,
-    siteName: "Panda Patches",
-    type: "article",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Panda Patches Products: 11 Patch Types and Custom Items",
-    description:
-      "Full catalog covering embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin patches plus challenge coins, enamel pins, keychains, and PVC shoe charms.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
-};
+});
 
 const faqs = [
   {
@@ -137,7 +126,7 @@ export default function ProductsClusterPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Embroidered</td><td className="px-5 py-4">Logos, uniforms, classic look</td><td className="px-5 py-4">$1.20 (1,000 qty, under 4&quot;)<br/><span className="text-xs text-gray-500">$0.71 at 5,000 qty, 2&quot;</span></td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Embroidered</td><td className="px-5 py-4">Logos, uniforms, classic look</td><td className="px-5 py-4">$0.85 (volume)<br/><span className="text-xs text-gray-500">$1.20/pc at 1,000 qty, under 4&quot; · $0.71 at 5,000 qty, 2&quot;</span></td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">PVC</td><td className="px-5 py-4">Tactical, outdoor, waterproof</td><td className="px-5 py-4">$2.20 (1,000 qty, under 4&quot;)<br/><span className="text-xs text-gray-500">~$1.40 at 5,000 qty, 2&quot;</span></td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Woven</td><td className="px-5 py-4">Fine detail, small text</td><td className="px-5 py-4">$2.00 (1,000 qty, under 4&quot;)<br/><span className="text-xs text-gray-500">~$0.78 at 5,000 qty, 2&quot;</span></td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">3D Embroidered Transfer</td><td className="px-5 py-4">Hats, premium varsity, transfer apparel</td><td className="px-5 py-4">+$30/order flat over base embroidery<br/><span className="text-xs text-gray-500">10-piece minimum</span></td></tr>

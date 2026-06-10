@@ -36,32 +36,35 @@ export default async function ProductHero({ productData, isMainPage = false }: P
 
         <div className="flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-20 items-start">
 
-          {/* === LEFT COLUMN - Mobile Responsive === */}
+          {/* === LEFT COLUMN — gallery sticks beside the order form on desktop ===
+              The right-column form is taller than the gallery on most desktops,
+              so without a sticky gallery the left column emptied out as the
+              user scrolled, leaving a long blank stripe next to the form
+              (WEBSIT_1.MD T11). Sticky positioning pins the gallery inside its
+              own column once the user scrolls past the title and description. */}
           <div className="flex-1 w-full">
 
-            {/*
-               TITLE - Mobile Responsive
-               - Smaller font sizes for better balance with form
-               - Single line on all screen sizes
-               - Optimized for mobile and desktop
-            */}
+            {/* Title and description scroll normally above the sticky region. */}
             <h1 className="text-[20px] sm:text-[22px] md:text-[26px] lg:text-[30px] xl:text-[34px] font-extrabold text-panda-dark leading-tight mb-4 md:mb-6 w-full tracking-tight text-center md:text-left whitespace-nowrap overflow-hidden">
               {title}
             </h1>
 
-            {/* Description - Mobile Responsive */}
             <p className="text-[14px] md:text-[16px] text-gray-600 leading-[1.6] md:leading-[1.7] font-medium mb-6 md:mb-10 max-w-[600px] text-center md:text-left mx-auto md:mx-0">
               <AutoLinker text={desc} />
             </p>
 
-            {/* Gallery */}
-            <ProductGalleryWrapper images={gallery} />
+            {/* Gallery becomes sticky once the title+description have scrolled out.
+                top-24 matches the sticky header height. h-fit lets it shrink so
+                a short gallery doesn't reserve unused space. */}
+            <div className="lg:sticky lg:top-24 lg:h-fit">
+              <ProductGalleryWrapper images={gallery} />
+            </div>
 
           </div>
 
-          {/* === RIGHT COLUMN — sticky on desktop so it stays visible while scrolling gallery === */}
+          {/* === RIGHT COLUMN === */}
           <div className={`
-             w-full max-w-[600px] lg:sticky lg:top-24 lg:h-fit
+             w-full max-w-[600px]
              ${isMainPage ? 'mt-4 md:mt-8 lg:mt-16' : 'mt-0'}
           `}>
              {isMainPage ? (

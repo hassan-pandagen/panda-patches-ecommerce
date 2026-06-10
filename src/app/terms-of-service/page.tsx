@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Terms of Service | Panda Patches",
   description: "Terms of Service for Panda Patches (MC Patches LLC). Read our terms for ordering custom patches, payments, refunds, and artwork policies.",
-  alternates: { canonical: "https://www.pandapatches.com/terms-of-service" },
+  url: "https://www.pandapatches.com/terms-of-service",
   robots: { index: true, follow: true },
-};
+});
 
 export default function TermsOfServicePage() {
   const lastUpdated = "February 18, 2026";

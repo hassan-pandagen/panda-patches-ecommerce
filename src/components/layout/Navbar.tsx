@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { MessageCircle, ChevronDown, Package, Menu, X } from "lucide-react";
+import { MessageCircle, ChevronDown, Menu, X, UserPlus } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import TrustBar from "@/components/layout/TrustBar";
+import NavbarAuth from "@/components/auth/NavbarAuth";
 
 const AnnouncementBar = dynamic(() => import("@/components/layout/AnnouncementBar"), { ssr: false });
 
@@ -41,18 +42,25 @@ const navLinks = [
       { name: "Custom PVC Shoe Charms", href: "/custom-products/pvc-shoe-charms" },
     ]
   },
-  { name: "OFFERS", href: "/offers", highlight: true } as any,
-  { name: "BULK ORDER", href: "/bulk-custom-patches" },
   {
-    name: "ASSETS",
-    href: "/assets",
+    name: "OFFERS",
+    href: "/offers",
+    highlight: true,
     dropdown: [
-      { name: "Thread Color Chart", href: "/assets/thread-color-chart" },
-      { name: "Iron On Instructions", href: "/assets/iron-on-instructions" }
+      { name: "Fixed-Price Offers", href: "/offers" },
+      { name: "Embroidery Digitizing", href: "/embroidery-digitizing" },
+      { name: "Raster to Vector Conversion", href: "/raster-to-vector-conversion" },
+      { name: "Free Sample Box", href: "/sample-box" },
     ]
-  },
+  } as any,
+  { name: "BULK ORDER", href: "/bulk-custom-patches" },
+  // ASSETS and PARTNERS moved to the footer in June 2026 (WEBSIT_1.MD T10).
+  // The nav had 11 top-level items plus 2 right-side CTAs which clipped the
+  // Sample Box / Login pill off screen at ~1568px viewport width. Both items
+  // are still reachable from the footer Company column and the footer
+  // sitemap; removing them from the nav keeps every CTA visible at 1280px
+  // and above without sacrificing discoverability.
   { name: "BLOGS", href: "/blogs" },
-  { name: "PARTNERS", href: "/partners" },
   { name: "CONTACT US", href: "/contact" },
 ];
 
@@ -89,8 +97,12 @@ export default function Navbar() {
       <TrustBar />
       <div className="w-full max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 xl:px-12 h-[70px] md:h-[100px] flex items-center justify-between">
 
-        {/* === 1. LEFT: LOGO === */}
-        <div className="flex items-center justify-start flex-shrink-0 mr-3">
+        {/* === 1. LEFT: LOGO ===
+            -ml-6 pulls the rendered logo left to compensate for the transparent
+            padding baked into logo-panda.webp, so the visual left gap matches
+            the right-side padding around the action buttons. Logo render size
+            unchanged. */}
+        <div className="flex items-center justify-start flex-shrink-0 -ml-6 mr-0">
           <Link href="/" className="flex items-center">
             <Image
               src="/assets/logo-panda.webp"
@@ -190,8 +202,11 @@ export default function Navbar() {
             )}
           </button>
 
-          {/* DESKTOP ACTION BUTTONS */}
-          <div className="hidden xl:flex items-center gap-3 lg:gap-4 ml-3">
+          {/* DESKTOP ACTION BUTTONS
+              -mr-6 pushes the pills right by the same amount the logo block
+              is pulled left (-ml-6), so the visual gap from the page edge
+              matches on both sides. */}
+          <div className="hidden xl:flex items-center gap-2.5 lg:gap-3 -mr-6">
 
             {/* Chat Now Button */}
             <button
@@ -208,15 +223,10 @@ export default function Navbar() {
               <span>Chat Now</span>
             </button>
 
-            {/* Sample Box Button */}
-            <Link
-              href="/sample-box"
-              prefetch={false}
-              className="flex items-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[14px] px-5 py-3 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
-            >
-              <Package size={18} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" />
-              <span>Sample Box</span>
-            </Link>
+            {/* Login / Register pill (signed out) — or avatar dropdown (signed in).
+                Both states share the same dark-green pill styling used by the
+                old Sample Box button so the visual weight is unchanged. */}
+            <NavbarAuth />
           </div>
         </div>
 
@@ -285,13 +295,18 @@ export default function Navbar() {
                     prefetch={false}
                     onClick={() => setIsMobileMenuOpen(false)}
                     suppressHydrationWarning
-                    className="flex items-center justify-between py-4 px-3 hover:bg-orange-50 transition-colors"
+                    className="flex items-center justify-between gap-3 py-4 px-3 hover:bg-orange-50 transition-colors"
                   >
-                    <span className="flex items-center gap-2 text-[15px] font-black text-orange-700 uppercase tracking-wide">
+                    {/* Inline-flex with whitespace-nowrap so 'OFFERS' never
+                        concatenates with the 'HOT' pill on narrow viewports.
+                        The pill is a separate flex sibling, not an inline node. */}
+                    <span className="inline-flex items-center gap-2 text-[15px] font-black text-orange-700 uppercase tracking-wide whitespace-nowrap">
                       <span aria-hidden="true">🔥</span>
-                      {link.name}
+                      <span>{link.name}</span>
                     </span>
-                    <span className="text-[10px] font-black bg-red-800 text-white px-2 py-0.5 rounded-full">HOT</span>
+                    <span className="flex-shrink-0 text-[10px] font-black bg-red-800 text-white px-2 py-0.5 rounded-full">
+                      HOT
+                    </span>
                   </Link>
                 ) : (
                   <Link
@@ -328,6 +343,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Actions */}
         <div className="p-4 space-y-3 border-t border-gray-200 bg-gray-50">
+
           {/* Chat Now Button */}
           <button
             onClick={() => {
@@ -344,14 +360,16 @@ export default function Navbar() {
             <span>Chat Now</span>
           </button>
 
-          {/* Sample Box Button */}
+          {/* Login / Register pill — matches the dark-green Sample Box styling.
+              Guards redirect to /login when accessed without a session,
+              and to /account when already signed in. */}
           <Link
-            href="/sample-box"
+            href="/account"
             onClick={() => setIsMobileMenuOpen(false)}
             className="w-full flex items-center justify-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[15px] px-6 py-4 rounded-full hover:shadow-lg transition-all"
           >
-            <Package size={20} strokeWidth={2.5} />
-            <span>Sample Box</span>
+            <UserPlus size={20} strokeWidth={2.5} />
+            <span>Login / Register</span>
           </Link>
 
           {/* Social Icons */}

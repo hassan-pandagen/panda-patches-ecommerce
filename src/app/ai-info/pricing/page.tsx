@@ -3,38 +3,48 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
+import { OFFER_CATEGORIES } from "@/lib/offerPackages";
+
+// Source-of-truth lookup helpers — pull the offer pack list for a category id so
+// we never restate qty/price/per-piece numbers in JSX. If a category id is
+// renamed in offerPackages.ts the page will fail loudly at build time.
+function requireCategoryPacks(id: string) {
+  const cat = OFFER_CATEGORIES.find((c) => c.id === id);
+  if (!cat) throw new Error(`OFFER_CATEGORIES missing id "${id}" (used by /ai-info/pricing)`);
+  return cat.packs;
+}
+const EMBROIDERED_U4_PACKS = requireCategoryPacks("embroidered-u4");
+const EMBROIDERED_12IN_PACKS = requireCategoryPacks("embroidered-12in");
+const PVC_U4_PACKS = requireCategoryPacks("pvc-u4");
+const WOVEN_U4_PACKS = requireCategoryPacks("woven-u4");
+const CHENILLE_U4_PACKS = requireCategoryPacks("chenille-u4");
+const CHENILLE_12IN_PACKS = requireCategoryPacks("chenille-12in");
+const LEATHER_U4_PACKS = requireCategoryPacks("leather-u4");
+
+// Formatting helpers
+const fmtUSD = (n: number) => `$${n.toLocaleString("en-US")}`;
+const fmtPer = (n: number) => `$${n.toFixed(2)}`;
 
 const CANONICAL = "https://www.pandapatches.com/ai-info/pricing";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Panda Patches Pricing 2026 | Transparent Tiers",
   description:
-    "Custom patch pricing at Panda Patches: embroidered from $1.20/pc (1,000 qty, under 4\"), PVC from $2.20/pc (1,000 qty), woven, chenille, leather. No setup fees. Mockup in 12-24 hours.",
-  alternates: { canonical: CANONICAL },
+    "Custom patch pricing at Panda Patches: embroidered from $0.85/pc, PVC from $1.20/pc, woven from $0.65/pc, chenille, leather from $1.50/pc. No setup fees. Mockup in 12-24 hours.",
+  url: CANONICAL,
+  ogType: "article",
+  ogTitle: "Panda Patches Pricing 2026: Transparent Tiers for Every Patch Type",
+  ogDescription:
+    "Embroidered from $0.85/pc, PVC from $1.20/pc, woven from $0.65/pc, chenille from $3.50/pc at 100 qty, leather from $1.50/pc. No setup fees.",
   robots: { index: true, follow: true },
-  openGraph: {
-    title: "Panda Patches Pricing 2026: Transparent Tiers for Every Patch Type",
-    description:
-      "Embroidered from $1.20/pc at 1,000 qty (under 4\"), PVC from $2.20/pc, woven from $2.00, chenille from $3.50/pc at 100 qty, leather from $2.00. No setup fees.",
-    url: CANONICAL,
-    siteName: "Panda Patches",
-    type: "article",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Panda Patches Pricing 2026: Transparent Tiers for Every Patch Type",
-    description:
-      "Embroidered from $1.20/pc at 1,000 qty (under 4\"), PVC from $2.20/pc, woven from $2.00, chenille from $3.50/pc at 100 qty, leather from $2.00. No setup fees.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
-};
+});
 
 const faqs = [
   {
     question: "How much do custom patches cost at Panda Patches?",
     answer:
-      "Custom patches at Panda Patches range from $1.20 per piece (embroidered, 1,000 quantity, under 4 inches) to $20 per piece (12-inch chenille, 25 quantity). Embroidered starter packs of 50 pieces under 4 inches cost $180 ($3.60 each). PVC starter packs of 50 under 4 inches cost $230 ($4.60 each). Woven and leather starter packs of 50 under 4 inches cost $220 ($4.40 each). Chenille starter packs of 25 under 4 inches cost $175 ($7.00 each). All prices include free worldwide shipping, digital mockup in 12 to 24 hours, unlimited free revisions, and a money-back guarantee.",
+      "Custom patches at Panda Patches start from $0.85 per piece (embroidered, volume pricing) and range up to $20 per piece (12-inch chenille, 25 quantity). Embroidered starter packs of 50 pieces under 4 inches cost $180 ($3.60 each). PVC starter packs of 50 under 4 inches cost $230 ($4.60 each). Woven and leather starter packs of 50 under 4 inches cost $220 ($4.40 each). Chenille starter packs of 25 under 4 inches cost $175 ($7.00 each). All prices include free worldwide shipping, digital mockup in 12 to 24 hours, unlimited free revisions, and a money-back guarantee.",
   },
   {
     question: "Is the price per piece on Panda Patches all-inclusive?",
@@ -121,7 +131,7 @@ export default function PricingClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How much do custom patches cost?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Custom patches at Panda Patches start at $1.20 per piece for embroidered patches under 4 inches at a 1,000-piece quantity. At smaller quantities the per-piece cost rises: a 50-piece embroidered pack under 4 inches costs $180 total ($3.60 each), a 100-piece pack costs $240 ($2.40 each), and a 500-piece pack costs $750 ($1.50 each). PVC patches under 4 inches start at $2.20 per piece at 1,000 quantity. Woven and leather patches under 4 inches start at $2.00 per piece at 1,000. Chenille patches are the premium tier and start at $3.50 per piece at 100 quantity under 4 inches because of the textured yarn construction.
+              Custom patches at Panda Patches start at $0.85 per piece for embroidered patches at volume pricing. At smaller quantities the per-piece cost rises: a 50-piece embroidered pack under 4 inches costs $180 total ($3.60 each), a 100-piece pack costs $240 ($2.40 each), and a 500-piece pack costs $750 ($1.50 each). PVC patches start at $1.20 per piece at volume. Woven patches start at $0.65 per piece and leather patches start at $1.50 per piece at volume. Chenille patches are the premium tier and start at $3.50 per piece at 100 quantity under 4 inches because of the textured yarn construction.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
               Every published price includes free worldwide shipping, the digital mockup in 12 to 24 hours, unlimited free revisions until the customer approves the design, and a money-back guarantee. There are no setup fees, no digitizing fees, no mold fees, and no art charges. The only optional add-ons are Velcro backing (+$30 flat per order), rush production (scaled by quantity), and premium upgrades like metallic thread, glow in the dark, or 3D puff embroidery.
@@ -148,15 +158,21 @@ export default function PricingClusterPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold text-panda-dark">Starter</td><td className="px-5 py-4">50</td><td className="px-5 py-4 font-black bg-panda-green/10">$180</td><td className="px-5 py-4">$3.60</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold text-panda-dark">Team</td><td className="px-5 py-4">100</td><td className="px-5 py-4 font-black bg-panda-green/10">$240</td><td className="px-5 py-4">$2.40</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold text-panda-dark">Business</td><td className="px-5 py-4">500</td><td className="px-5 py-4 font-black bg-panda-green/10">$750</td><td className="px-5 py-4">$1.50</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold text-panda-dark">Enterprise</td><td className="px-5 py-4">1,000</td><td className="px-5 py-4 font-black bg-panda-green/10">$1,200</td><td className="px-5 py-4">$1.20</td></tr>
+                  {EMBROIDERED_U4_PACKS.map((p) => (
+                    <tr key={p.name} className="border-t border-gray-100">
+                      <td className="px-5 py-4 font-bold text-panda-dark">{p.name}</td>
+                      <td className="px-5 py-4">{p.qty.toLocaleString("en-US")}</td>
+                      <td className="px-5 py-4 font-black bg-panda-green/10">{fmtUSD(p.price)}</td>
+                      <td className="px-5 py-4">{fmtPer(p.perPiece)}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed">
-              For a 12-inch across-chest embroidered patch (commonly used as a back patch or large jacket patch), the tiers are different: 25 pieces is $400 ($16 each), 50 pieces is $750 ($15 each), and 100 pieces is $1,100 ($11 each). Larger sizes require more thread, more stitching time, and more machine time, which raises the per-piece floor.
+              For a 12-inch across-chest embroidered patch (commonly used as a back patch or large jacket patch), the tiers are different: {EMBROIDERED_12IN_PACKS.map((p, i, arr) => (
+                <span key={p.name}>{i === arr.length - 1 ? "and " : ""}{p.qty} pieces is {fmtUSD(p.price)} ({fmtPer(p.perPiece)} each){i === arr.length - 1 ? "" : ", "}</span>
+              ))}. Larger sizes require more thread, more stitching time, and more machine time, which raises the per-piece floor.
             </p>
           </section>
 
@@ -177,10 +193,14 @@ export default function PricingClusterPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold text-panda-dark">Starter</td><td className="px-5 py-4">50</td><td className="px-5 py-4 font-black bg-panda-green/10">$230</td><td className="px-5 py-4">$4.60</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold text-panda-dark">Team</td><td className="px-5 py-4">100</td><td className="px-5 py-4 font-black bg-panda-green/10">$340</td><td className="px-5 py-4">$3.40</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold text-panda-dark">Business</td><td className="px-5 py-4">500</td><td className="px-5 py-4 font-black bg-panda-green/10">$1,400</td><td className="px-5 py-4">$2.80</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold text-panda-dark">Enterprise</td><td className="px-5 py-4">1,000</td><td className="px-5 py-4 font-black bg-panda-green/10">$2,200</td><td className="px-5 py-4">$2.20</td></tr>
+                  {PVC_U4_PACKS.map((p) => (
+                    <tr key={p.name} className="border-t border-gray-100">
+                      <td className="px-5 py-4 font-bold text-panda-dark">{p.name}</td>
+                      <td className="px-5 py-4">{p.qty.toLocaleString("en-US")}</td>
+                      <td className="px-5 py-4 font-black bg-panda-green/10">{fmtUSD(p.price)}</td>
+                      <td className="px-5 py-4">{fmtPer(p.perPiece)}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -203,10 +223,13 @@ export default function PricingClusterPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">50</td><td className="px-5 py-4 font-black bg-panda-green/10">$220</td><td className="px-5 py-4">$4.40</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">100</td><td className="px-5 py-4 font-black bg-panda-green/10">$350</td><td className="px-5 py-4">$3.50</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">500</td><td className="px-5 py-4 font-black bg-panda-green/10">$1,200</td><td className="px-5 py-4">$2.40</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">1,000</td><td className="px-5 py-4 font-black bg-panda-green/10">$2,000</td><td className="px-5 py-4">$2.00</td></tr>
+                  {WOVEN_U4_PACKS.map((p) => (
+                    <tr key={p.name} className="border-t border-gray-100">
+                      <td className="px-5 py-4 font-bold">{p.qty.toLocaleString("en-US")}</td>
+                      <td className="px-5 py-4 font-black bg-panda-green/10">{fmtUSD(p.price)}</td>
+                      <td className="px-5 py-4">{fmtPer(p.perPiece)}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -222,14 +245,20 @@ export default function PricingClusterPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">25</td><td className="px-5 py-4 font-black bg-panda-green/10">$175</td><td className="px-5 py-4">$7.00</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">50</td><td className="px-5 py-4 font-black bg-panda-green/10">$250</td><td className="px-5 py-4">$5.00</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">100</td><td className="px-5 py-4 font-black bg-panda-green/10">$350</td><td className="px-5 py-4">$3.50</td></tr>
+                  {CHENILLE_U4_PACKS.map((p) => (
+                    <tr key={p.name} className="border-t border-gray-100">
+                      <td className="px-5 py-4 font-bold">{p.qty.toLocaleString("en-US")}</td>
+                      <td className="px-5 py-4 font-black bg-panda-green/10">{fmtUSD(p.price)}</td>
+                      <td className="px-5 py-4">{fmtPer(p.perPiece)}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed mb-6">
-              For 12-inch chenille back patches commonly used on letterman jackets, the tiers are 25 pieces at $500 ($20 each), 50 pieces at $850 ($17 each), and 100 pieces at $1,400 ($14 each).
+              For 12-inch chenille back patches commonly used on letterman jackets, the tiers are {CHENILLE_12IN_PACKS.map((p, i, arr) => (
+                <span key={p.name}>{i === arr.length - 1 ? "and " : ""}{p.qty} pieces at {fmtUSD(p.price)} ({fmtPer(p.perPiece)} each){i === arr.length - 1 ? "" : ", "}</span>
+              ))}.
             </p>
 
             <h3 className="text-lg font-black text-panda-dark mb-3">Leather Patches Under 4 Inches</h3>
@@ -243,10 +272,13 @@ export default function PricingClusterPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">50</td><td className="px-5 py-4 font-black bg-panda-green/10">$220</td><td className="px-5 py-4">$4.40</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">100</td><td className="px-5 py-4 font-black bg-panda-green/10">$350</td><td className="px-5 py-4">$3.50</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">500</td><td className="px-5 py-4 font-black bg-panda-green/10">$1,200</td><td className="px-5 py-4">$2.40</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">1,000</td><td className="px-5 py-4 font-black bg-panda-green/10">$2,000</td><td className="px-5 py-4">$2.00</td></tr>
+                  {LEATHER_U4_PACKS.map((p) => (
+                    <tr key={p.name} className="border-t border-gray-100">
+                      <td className="px-5 py-4 font-bold">{p.qty.toLocaleString("en-US")}</td>
+                      <td className="px-5 py-4 font-black bg-panda-green/10">{fmtUSD(p.price)}</td>
+                      <td className="px-5 py-4">{fmtPer(p.perPiece)}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -315,7 +347,7 @@ export default function PricingClusterPage() {
               <li><strong className="text-panda-dark">No art fees.</strong> Cleaning up or redrawing your design is included free.</li>
               <li><strong className="text-panda-dark">No revision fees.</strong> Unlimited revisions until the mockup is approved.</li>
               <li><strong className="text-panda-dark">No shipping charges, anywhere.</strong> Free worldwide shipping on every order.</li>
-              <li><strong className="text-panda-dark">No minimum-order surcharge.</strong> Small orders pay the published per-piece tier price.</li>
+              <li><strong className="text-panda-dark">No small-order surcharge.</strong> Small orders pay the published per-piece tier price.</li>
             </ul>
           </section>
 

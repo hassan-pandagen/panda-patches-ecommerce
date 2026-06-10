@@ -187,6 +187,23 @@ const specificSchemas: Record<string, ProductSchemaData> = {
       { name: "Embroidered Baseball Patches, 100 pieces", price: "240.00" },
     ],
   },
+  // Added June 2026 (WEBSIT_1.MD T22). Scout patches use the embroidered-
+  // anchored pricing floor because BSA Insignia Guide compliance and
+  // merit-badge-style designs are virtually always thread on twill.
+  "custom-scout-patches": {
+    name: "Custom Scout Patches",
+    description: "Custom scout patches for Cub Scouts, Webelos, Boy Scouts, Girl Scouts, Venturing Crew, and Eagle Scout courts of honor. BSA Insignia Guide compliant. Patrol patches, troop numerals, council strips, segments, and event patches.",
+    url: "https://www.pandapatches.com/custom-scout-patches",
+    lowPrice: "0.85",
+    highPrice: "6.80",
+    offerCount: "4",
+    offers: [
+      { name: "Embroidered Scout Patches, 50 pieces", price: "180.00" },
+      { name: "Embroidered Scout Patches, 100 pieces", price: "240.00" },
+      { name: "Embroidered Scout Patches, 500 pieces", price: "750.00" },
+      { name: "Embroidered Scout Patches, 1,000 pieces", price: "1200.00" },
+    ],
+  },
   "custom-rock-band-patches": {
     name: "Custom Rock Band Patches",
     description: "Custom rock band patches for jackets, vests, and bags. Iron-on and sew-on options. Bold designs for punk, metal, and rock fans.",
@@ -230,6 +247,9 @@ export function getPatchStyleProductSchema(slug: string, styleName: string) {
     "image": "https://www.pandapatches.com/assets/og-image.png",
     "brand": { "@type": "Brand", "name": "Panda Patches" },
     "url": data.url,
+    // itemCondition added June 2026 (WEBSIT_1.MD T7). Required by Google
+    // Merchant for shopping snippet eligibility. Missing it on the inner
+    // Offers was the likely cause of the listings drop from pos 4.0 to 0.
     "offers": {
       "@type": "AggregateOffer",
       "priceCurrency": "USD",
@@ -237,6 +257,7 @@ export function getPatchStyleProductSchema(slug: string, styleName: string) {
       "highPrice": data.highPrice,
       "offerCount": data.offerCount,
       "availability": "https://schema.org/InStock",
+      "itemCondition": "https://schema.org/NewCondition",
       "priceValidUntil": "2027-01-01",
       "shippingDetails": {
         "@type": "OfferShippingDetails",
@@ -254,6 +275,7 @@ export function getPatchStyleProductSchema(slug: string, styleName: string) {
         "price": o.price,
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition",
         "priceValidUntil": "2027-01-01",
       })),
     },

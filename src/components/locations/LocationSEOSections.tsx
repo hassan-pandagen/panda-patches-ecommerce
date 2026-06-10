@@ -38,7 +38,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Patches for LA Sports Teams and Fan Gear",
         content: (
           <p className="text-[17px] leading-[1.8] text-gray-600">
-            Los Angeles is home to some of the most passionate sports communities in the country. Youth leagues, rec leagues, and fan clubs across the city order custom patches for jerseys, jackets, and hats. Whether you need 50 patches for a Little League team or 1,000 for a fan club event, our <Link href="/offers" className="text-purple-600 hover:underline font-medium">patch packages</Link> start at $1.20 per piece at quantity. All orders include free design help, unlimited revisions, and your approval before production.
+            Los Angeles is home to some of the most passionate sports communities in the country. Youth leagues, rec leagues, and fan clubs across the city order custom patches for jerseys, jackets, and hats. Whether you need 50 patches for a Little League team or 1,000 for a fan club event, our <Link href="/offers" className="text-purple-600 hover:underline font-medium">patch packages</Link> start at $0.85 per piece at quantity. All orders include free design help, unlimited revisions, and your approval before production.
           </p>
         )
       }
@@ -140,7 +140,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Chi-Town Sports and Culture",
         content: (
           <p className="text-[17px] leading-[1.8] text-gray-600">
-            Chicago sports culture runs deep. Bears, Cubs, Bulls, Blackhawks, White Sox, Fire. Fan clubs, tailgate groups, and youth leagues across Chicagoland order custom patches for jackets, jerseys, and gear. We also serve Chicago's music scene, neighborhood associations, and community organizations that use patches for identity and belonging. <Link href="/custom-sports-patches" className="text-purple-600 hover:underline font-medium">Custom sports patches</Link> start at $1.20 per piece at quantity. Free design, free shipping, free revisions. <Link href="/offers" className="text-purple-600 hover:underline font-medium">See pricing</Link>.
+            Chicago sports culture runs deep. Bears, Cubs, Bulls, Blackhawks, White Sox, Fire. Fan clubs, tailgate groups, and youth leagues across Chicagoland order custom patches for jackets, jerseys, and gear. We also serve Chicago's music scene, neighborhood associations, and community organizations that use patches for identity and belonging. <Link href="/custom-sports-patches" className="text-purple-600 hover:underline font-medium">Custom sports patches</Link> start at $0.85 per piece at quantity. Free design, free shipping, free revisions. <Link href="/offers" className="text-purple-600 hover:underline font-medium">See pricing</Link>.
           </p>
         )
       }
@@ -236,7 +236,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "DFW Sports and Event Patches",
         content: (
           <p className="text-[17px] leading-[1.8] text-gray-600">
-            Dallas loves its sports. Cowboys, Mavericks, Stars, FC Dallas, Rangers. Youth leagues, fan clubs, and sports organizations across the DFW metro order custom patches for jerseys, jackets, and caps. We also produce patches for the Texas State Fair, rodeo events, and the DFW conference circuit. <Link href="/custom-sports-patches" className="text-purple-600 hover:underline font-medium">Sports patches</Link> from $1.20/piece at quantity. <Link href="/offers" className="text-purple-600 hover:underline font-medium">View all packages</Link>.
+            Dallas loves its sports. Cowboys, Mavericks, Stars, FC Dallas, Rangers. Youth leagues, fan clubs, and sports organizations across the DFW metro order custom patches for jerseys, jackets, and caps. We also produce patches for the Texas State Fair, rodeo events, and the DFW conference circuit. <Link href="/custom-sports-patches" className="text-purple-600 hover:underline font-medium">Sports patches</Link> from $0.85/piece at quantity. <Link href="/offers" className="text-purple-600 hover:underline font-medium">View all packages</Link>.
           </p>
         )
       }
@@ -630,7 +630,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
                 best: "Uniforms, sports teams, classic brands",
                 pros: "Raised texture, bold visibility, classic look",
                 cons: "Not ideal for fine text under 8pt",
-                price: "From $1.20/pc",
+                price: "From $0.85/pc",
                 tag: "Most Popular",
                 href: "/custom-patches/embroidered",
               },
@@ -794,7 +794,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "",
         content: (
           <div className="bg-panda-dark rounded-[16px] p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <p className="text-[15px] text-white font-medium leading-[1.6] max-w-[520px]">Custom hat patches from $0.71/pc. Get your exact quote in under 24 hours.</p>
+            <p className="text-[15px] text-white font-medium leading-[1.6] max-w-[520px]">Custom hat patches from $0.85/pc. Get your exact quote in under 24 hours.</p>
             <Link href="/contact" className="flex-shrink-0 bg-panda-yellow text-panda-dark font-black text-[14px] px-6 py-3 rounded-full hover:opacity-90 transition-opacity whitespace-nowrap">Get Your Free Quote</Link>
           </div>
         )

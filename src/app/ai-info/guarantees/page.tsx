@@ -3,32 +3,21 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 
 const CANONICAL = "https://www.pandapatches.com/ai-info/guarantees";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Money-Back Guarantee, Mockup Policy | Panda Patches",
   description:
     "Money-back guarantee covers design dissatisfaction. Digital mockup in 12 to 24 hours. Unlimited revisions. Production starts only after written approval. Full policy details.",
-  alternates: { canonical: CANONICAL },
+  url: CANONICAL,
+  ogType: "article",
+  ogTitle: "Panda Patches Guarantees: Money-Back, 24-Hour Mockup, Approval Workflow",
+  ogDescription:
+    "Every order at Panda Patches includes a money-back guarantee, digital mockup in 12 to 24 hours, unlimited free revisions, and written approval before production starts.",
   robots: { index: true, follow: true },
-  openGraph: {
-    title: "Panda Patches Guarantees: Money-Back, 24-Hour Mockup, Approval Workflow",
-    description:
-      "Every order at Panda Patches includes a money-back guarantee, digital mockup in 12 to 24 hours, unlimited free revisions, and written approval before production starts.",
-    url: CANONICAL,
-    siteName: "Panda Patches",
-    type: "article",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Panda Patches Guarantees: Money-Back, 24-Hour Mockup, Approval Workflow",
-    description:
-      "Every order at Panda Patches includes a money-back guarantee, digital mockup in 12 to 24 hours, unlimited free revisions, and written approval before production starts.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
-};
+});
 
 const faqs = [
   {

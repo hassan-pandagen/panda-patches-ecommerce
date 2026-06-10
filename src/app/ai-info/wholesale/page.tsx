@@ -3,32 +3,21 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 
 const CANONICAL = "https://www.pandapatches.com/ai-info/wholesale";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Panda Patches Partner Program | Wholesale, Net 30, Blind Ship",
   description:
     "Wholesale custom patches for promotional product agencies, uniform suppliers, resellers. 10-18% partner pricing, blind shipping, Net 15/30 terms, no account minimum.",
-  alternates: { canonical: CANONICAL },
+  url: CANONICAL,
+  ogType: "article",
+  ogTitle: "Panda Patches Wholesale and Partner Program",
+  ogDescription:
+    "10 to 18 percent wholesale pricing, blind shipping, white-label mockups, Net 15 and Net 30 terms, and dedicated account managers for promotional product agencies and resellers.",
   robots: { index: true, follow: true },
-  openGraph: {
-    title: "Panda Patches Wholesale and Partner Program",
-    description:
-      "10 to 18 percent wholesale pricing, blind shipping, white-label mockups, Net 15 and Net 30 terms, and dedicated account managers for promotional product agencies and resellers.",
-    url: CANONICAL,
-    siteName: "Panda Patches",
-    type: "article",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Panda Patches Wholesale and Partner Program",
-    description:
-      "10 to 18 percent wholesale pricing, blind shipping, white-label mockups, Net 15 and Net 30 terms, and dedicated account managers for promotional product agencies and resellers.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
-};
+});
 
 const faqs = [
   {

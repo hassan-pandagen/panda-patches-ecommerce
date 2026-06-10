@@ -3,34 +3,23 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ComparisonPage from "@/components/comparison/ComparisonPage";
 import { generateSchemaScript, generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 
 const COMPETITOR = "Signature Patches";
 const SLUG = "panda-patches-vs-signature-patches";
 const CANONICAL = `https://www.pandapatches.com/${SLUG}`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: `Panda Patches vs ${COMPETITOR}: 2026 Comparison`,
   description:
     "Panda Patches vs Signature Patches: 5pc vs 50pc minimum, transparent pricing vs quote-only, 24-hour mockup SLA, money-back guarantee. Honest side-by-side for 2026.",
-  alternates: { canonical: CANONICAL },
+  url: CANONICAL,
+  ogType: "article",
+  ogTitle: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
+  ogDescription:
+    "Compare minimum orders, mockup turnaround, pricing transparency, and guarantees. Panda Patches wins on minimum order, pricing transparency, and guarantee strength.",
   robots: { index: true, follow: true },
-  openGraph: {
-    title: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
-    description:
-      "Compare minimum orders, mockup turnaround, pricing transparency, and guarantees. Panda Patches wins on minimum order, pricing transparency, and guarantee strength.",
-    url: CANONICAL,
-    siteName: "Panda Patches",
-    type: "article",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
-    description:
-      "Compare minimum orders, mockup turnaround, pricing transparency, and guarantees. Panda Patches wins on minimum order, pricing transparency, and guarantee strength.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
-};
+});
 
 const faqs = [
   {

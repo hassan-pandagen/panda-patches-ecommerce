@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { calculatePatchPrice } from '@/lib/pricingCalculator';
 import { resolveBaseUrl, applyEconomyDiscount, applyVelcroPricing, getRushSurcharge } from '@/lib/checkoutConfig';
 import { sendMetaEvent } from '@/lib/metaCapi';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 
 // 1. Init Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -82,6 +83,18 @@ export async function POST(req: Request) {
       attribution,
       initiateCheckoutEventId,
     } = validationResult.data;
+
+    // Tag the checkout with the signed-in user if there is one. Guest checkout
+    // works unchanged when there is no session. The Stripe webhook reads this
+    // metadata and writes it into orders.user_id.
+    let userId: string | null = null;
+    try {
+      const authClient = await createSupabaseServerClient();
+      const { data: { user } } = await authClient.auth.getUser();
+      if (user) userId = user.id;
+    } catch {
+      // Guest checkout — no session cookie, no problem.
+    }
 
     // SECURITY: Calculate price server-side to prevent manipulation
     const priceResult = calculatePatchPrice(productName, width, height, quantity);
@@ -178,6 +191,9 @@ export async function POST(req: Request) {
         rush_date: rushDate || '',
         website_addons: addons?.length ? addons.join(', ') : '',
         order_amount: String(finalPrice),
+        // Auth user (empty string when guest checkout). Stripe webhook copies this
+        // to orders.user_id so the customer's account portal shows the order.
+        user_id: userId || '',
         // Attribution for Meta CAPI (serialized — trimmed to fit Stripe's 500 char metadata limit)
         attribution: attribution ? JSON.stringify(attribution).substring(0, 500) : '',
         // Server-side signals stored as separate metadata keys (not in attribution JSON)

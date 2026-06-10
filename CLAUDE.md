@@ -422,7 +422,7 @@ Do not edit next.config.mjs for CSP changes.
 
 ## CONTACTS
 
-Owner: Imran Raza — admin@pandapatches.com — (302) 250-4340
+Owner: Imran Raza. Email lance@pandapatches.com. Phone (302) 250-4340.
 Google Ads: imran.ladhani110@gmail.com
 GTM: GTM-KQQQ674D
 GA4: G-Y391W132NR

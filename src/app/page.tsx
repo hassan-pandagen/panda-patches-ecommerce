@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 import { generateLocalBusinessSchema, generateSchemaScript } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 import { client, urlFor } from "@/lib/sanity";
 import Hero from "@/components/home/Hero";
 import Promises from "@/components/home/Promises";
@@ -38,33 +39,20 @@ export async function generateMetadata(): Promise<Metadata> {
     // fallback to static image
   }
 
-  return {
-    title: "Custom Patches | Embroidered, PVC & Woven | Free Design | Panda Patches",
-    description: "Custom patches starting at $0.50/pc. Embroidered, PVC, woven, chenille & leather patches. Low 5-piece minimums, mockup in 12-24 hours, ships in 7-14 days. 1M+ delivered. Get your free quote!",
-    openGraph: {
-      title: "Custom Patches From $0.50/pc. Free Design. Ships in 14 Days.",
-      description: "1,000,000+ patches delivered to brands worldwide. Custom embroidered, PVC, chenille & woven patches with free artwork, no setup fees, and a digital mockup in 12 to 24 hours. Get your free quote today.",
-      type: "website",
-      url: "https://www.pandapatches.com",
-      images: [
-        {
-          url: ogImageUrl,
-          width: 1200,
-          height: 630,
-          alt: "Panda Patches - Custom Embroidered Patches From $0.50/pc"
-        }
-      ],
-      siteName: "Panda Patches"
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Custom Patches From $0.50/pc. Free Design. Ships in 14 Days.",
-      description: "1,000,000+ patches delivered worldwide. Free artwork, no setup fees, mockup in 12-24 hours.",
-      images: [ogImageUrl]
-    },
-    alternates: {
-      canonical: "https://www.pandapatches.com"
-    },
+  // Title 60 chars, meta 155 chars per WEBSIT_1.MD T8. Canonical "from"
+  // price is $0.85/pc (CEO confirmed June 2026, WEBSIT_1.MD T2) and applies
+  // to homepage card, section header, and page title. This is the lowest
+  // bulk embroidered price and matches what the configurator quotes at
+  // larger volumes, so any AI engine or human visitor verifying the number
+  // against the live cart will see consistency.
+  return buildPageMetadata({
+    title: "Custom Patches from $0.85/pc | 24h Mockup, 5pc Min",
+    description: "Custom embroidered, PVC, woven, chenille and leather patches from $0.85/pc. 5-piece minimum, digital mockup in 12 to 24 hours, free worldwide shipping.",
+    url: "https://www.pandapatches.com",
+    image: { url: ogImageUrl, alt: "Panda Patches custom embroidered, PVC, and woven patches from $0.85 per piece" },
+    ogTitle: "Custom Patches from $0.85/pc. Free Design. 24h Mockup.",
+    ogDescription: "1,000,000+ patches delivered. Custom embroidered, PVC, chenille and woven from $0.85/pc with free artwork, no setup fees, mockup in 12 to 24 hours.",
+    twitterDescription: "1,000,000+ patches delivered. From $0.85/pc. Free artwork, no setup fees, mockup in 12-24 hours.",
     robots: {
       index: true,
       follow: true,
@@ -76,7 +64,7 @@ export async function generateMetadata(): Promise<Metadata> {
         'max-snippet': -1,
       }
     }
-  };
+  });
 }
 
 const homeFaqSchema = {

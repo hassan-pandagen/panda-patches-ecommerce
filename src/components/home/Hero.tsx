@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { client } from "@/lib/sanity";
+import TrustpilotRatingLine from "@/components/reviews/TrustpilotRatingLine";
 
 // Defer HeroForm's JS chunk out of the critical path. ssr:true keeps SSR markup
 // so the form is visible immediately (LCP unaffected); only hydration is delayed.
@@ -69,9 +70,13 @@ export default async function Hero() {
              - Mobile: Font Size 16px
              - Width constrained to force 3 lines
           */}
-          <p className="text-[16px] md:text-[20px] text-gray-600 font-medium leading-[1.5] max-w-full md:max-w-[520px] mb-3 md:mb-6">
+          <p className="text-[16px] md:text-[20px] text-gray-600 font-medium leading-[1.5] max-w-full md:max-w-[520px] mb-3 md:mb-4">
             {data?.subtitle || "Welcome to Panda Patches, where brand stories are stitched into reality! From company logos to promotional swag, let your brand speak loud and clear with our iron on patches. Crafted with care, delivered with precision."}
           </p>
+
+          {/* Trustpilot rating line. Plain text + link only per Trustpilot's
+              free-plan policy. Brand-styled, no logo, no fake stars. */}
+          <TrustpilotRatingLine className="mb-4 md:mb-6 max-w-[520px] mx-auto lg:mx-0" />
 
 
           {/*

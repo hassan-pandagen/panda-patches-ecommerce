@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { client, urlFor } from "@/lib/sanity";
 import { Metadata } from "next";
 import dynamic from 'next/dynamic';
@@ -9,6 +10,7 @@ import { getSchemaPricingTiers } from "@/lib/pricingCalculator";
 import { genericFaqs } from "@/lib/genericFaqs";
 import { slugFaqMap } from "@/lib/slugFaqs";
 import productPageMeta from "@/lib/productPageMeta";
+import { buildPageMetadata } from "@/lib/seo";
 
 // COMPONENTS - Above the fold
 import ProductHero from "@/components/product/ProductHero";
@@ -118,26 +120,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     ? urlFor(product.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url()
     : 'https://www.pandapatches.com/assets/og-image.png';
 
-  return {
+  return buildPageMetadata({
     title: pageTitle,
     description: pageDesc,
-    openGraph: {
-      title: ogTitle,
-      description: ogDesc,
-      images: [{ url: imageUrl, width: 1200, height: 630, alt: pageTitle }],
-      type: 'website',
-      url: `https://www.pandapatches.com/custom-patches/${slug}`,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: ogTitle,
-      description: ogDesc,
-      images: [imageUrl],
-    },
-    alternates: {
-      canonical: `https://www.pandapatches.com/custom-patches/${slug}`,
-    },
-  };
+    url: `https://www.pandapatches.com/custom-patches/${slug}`,
+    image: { url: imageUrl, alt: pageTitle },
+    ogTitle,
+    ogDescription: ogDesc,
+  });
 }
 
 const PATCH_TYPES = [
@@ -155,21 +145,28 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
   const data = await getProductData(slug);
 
   if (!data) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <h1 className="text-2xl font-bold">Product Not Found</h1>
-      </div>
-    );
+    // Real HTTP 404 instead of 200 with a "Product Not Found" message.
+    notFound();
   }
 
   // Generate schema markup for SEO
+  // Derive priceRange directly from the live calculator tiers so the schema
+  // matches the actual checkout pricing (including the 1.10 PRICE_MULTIPLIER).
   const pricingTiers = getSchemaPricingTiers(data.title);
+  const computedPriceRange = pricingTiers.length > 0
+    ? (() => {
+        const prices = pricingTiers.map((t) => t.unitPrice);
+        const min = Math.min(...prices);
+        const max = Math.max(...prices);
+        return `$${min.toFixed(2)}-$${max.toFixed(2)}`;
+      })()
+    : "$0.85-$6.00";
   const productSchema = generateProductSchema({
     name: data.title,
     description: data.description || `High-quality ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
     image: data.heroImage ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url() : 'https://www.pandapatches.com/assets/og-image.png',
     url: `https://www.pandapatches.com/custom-patches/${slug}`,
-    priceRange: "$0.85-$6.00",
+    priceRange: computedPriceRange,
     pricingTiers: pricingTiers.length > 0 ? pricingTiers : undefined,
   });
 

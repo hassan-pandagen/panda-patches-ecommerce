@@ -67,7 +67,7 @@ export function generateOrganizationSchema() {
     "url": "https://www.pandapatches.com",
     "logo": "https://www.pandapatches.com/assets/logo-panda.svg",
     "image": "https://www.pandapatches.com/assets/og-image.png",
-    "description": "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 8+ years of excellence.",
+    "description": "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 13+ years of expertise.",
     "email": "hello@pandapatches.com",
     "telephone": "+1-302-250-4340",
     "founder": {
@@ -77,7 +77,7 @@ export function generateOrganizationSchema() {
     },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Quail Feather Ct",
+      "streetAddress": "1914 Quail Feather Ct",
       "addressLocality": "Missouri City",
       "addressRegion": "TX",
       "postalCode": "77489",
@@ -243,6 +243,11 @@ export function generateProductSchema(params: ProductSchemaParams) {
       "name": brand
     },
     "hasMerchantReturnPolicy": merchantReturnPolicy,
+    // itemCondition is REQUIRED by Google Merchant for product rich results
+    // and shopping snippets. Custom patches are made-to-order so every offer
+    // ships as a brand-new item; NewCondition is the only correct value here.
+    // Missing this field was the root cause of the Merchant listings impression
+    // drop from pos 4.0 to 0 (WEBSIT_1.MD T7).
     "offers": pricingTiers && pricingTiers.length > 0
       ? {
           "@type": "AggregateOffer",
@@ -251,6 +256,7 @@ export function generateProductSchema(params: ProductSchemaParams) {
           "highPrice": highPrice,
           "offerCount": pricingTiers.length.toString(),
           "availability": `https://schema.org/${schemaAvailability}`,
+          "itemCondition": "https://schema.org/NewCondition",
           "url": url,
           "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
           "shippingDetails": shippingDetails,
@@ -261,6 +267,7 @@ export function generateProductSchema(params: ProductSchemaParams) {
           "priceCurrency": priceCurrency,
           "price": lowPrice,
           "availability": `https://schema.org/${schemaAvailability}`,
+          "itemCondition": "https://schema.org/NewCondition",
           "url": url,
           "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
           "shippingDetails": shippingDetails,
@@ -490,7 +497,7 @@ export function generateLocalBusinessSchema() {
     "logo": "https://www.pandapatches.com/assets/logo-panda.svg",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Quail Feather Ct",
+      "streetAddress": "1914 Quail Feather Ct",
       "addressLocality": "Missouri City",
       "addressRegion": "TX",
       "postalCode": "77489",
@@ -544,7 +551,7 @@ export function generateLocationBusinessSchema(locationName: string, pageSlug?: 
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Quail Feather Ct",
+      "streetAddress": "1914 Quail Feather Ct",
       "addressLocality": "Missouri City",
       "addressRegion": "TX",
       "postalCode": "77489",

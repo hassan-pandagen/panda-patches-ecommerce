@@ -56,7 +56,7 @@ export default function Footer() {
              <div className="space-y-1">
                <h3 className="font-bold text-lg text-panda-dark text-left">Located At</h3>
                <p className="text-gray-600 leading-relaxed">
-                 Quail Feather Ct,<br />
+                 1914 Quail Feather Ct,<br />
                  Missouri City, TX 77489,<br />
                  United States
                </p>
@@ -128,6 +128,15 @@ export default function Footer() {
                  <li><Link prefetch={false} href="/panda-patches-vs-monterey-company">vs Monterey Company</Link></li>
                  <li><Link prefetch={false} href="/panda-patches-vs-signature-patches">vs Signature Patches</Link></li>
                  <li><Link prefetch={false} href="/panda-patches-vs-everlighten">vs EverLighten</Link></li>
+               </ul>
+
+               {/* ASSETS section moved here from the top nav in June 2026
+                   (WEBSIT_1.MD T10) to reduce nav width. Reachable via the
+                   footer Resources column without crowding the main nav. */}
+               <h3 className="font-bold text-lg text-panda-dark text-left pt-4">Resources</h3>
+               <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-2">
+                 <li><Link prefetch={false} href="/assets/thread-color-chart">Thread Color Chart</Link></li>
+                 <li><Link prefetch={false} href="/assets/iron-on-instructions">Iron-On Instructions</Link></li>
                </ul>
              </div>
            </div>
@@ -201,7 +210,11 @@ export default function Footer() {
 
           {/* COLUMN 7: Locations (Spans 2) */}
           <div className="lg:col-span-2 space-y-4">
-            <h3 className="font-bold text-lg text-panda-dark text-left">Custom Patches</h3>
+            <h3 className="font-bold text-lg text-panda-dark text-left">
+              <Link prefetch={false} href="/locations" className="hover:text-panda-green transition-colors">
+                Patches by Location
+              </Link>
+            </h3>
             <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-3">
               <li><Link prefetch={false} href="/alabama-patches">Alabama Patches</Link></li>
               <li><Link prefetch={false} href="/custom-austin-patches">Custom Austin Patches</Link></li>

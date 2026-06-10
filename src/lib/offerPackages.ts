@@ -133,6 +133,20 @@ export function lookupOfferPrice(
   return { basePrice: pack.price, qty: pack.qty, categoryType: cat.type };
 }
 
+/**
+ * Get the lowest per-piece offer pack price for a given category
+ * (matched by id or product-page slug). Used by cluster pages so they can render
+ * "starting at $X.XX" without copying numbers out of OFFER_CATEGORIES.
+ */
+export function getOfferStartingPrice(
+  slugOrCategoryId: string
+): { perPiece: number; qty: number; categoryType: string } | null {
+  const cat = OFFER_CATEGORIES.find(c => c.id === slugOrCategoryId || c.slug === slugOrCategoryId);
+  if (!cat) return null;
+  const lowest = cat.packs.reduce((min, p) => (p.perPiece < min.perPiece ? p : min), cat.packs[0]);
+  return { perPiece: lowest.perPiece, qty: lowest.qty, categoryType: cat.type };
+}
+
 export function calculateOfferTotal(
   basePrice: number,
   qty: number,

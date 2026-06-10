@@ -3,34 +3,23 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ComparisonPage from "@/components/comparison/ComparisonPage";
 import { generateSchemaScript, generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 
 const COMPETITOR = "EverLighten";
 const SLUG = "panda-patches-vs-everlighten";
 const CANONICAL = `https://www.pandapatches.com/${SLUG}`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: `Panda Patches vs ${COMPETITOR}: 2026 Comparison`,
   description:
     "Panda Patches vs EverLighten: 5pc vs 50pc minimum, 24-hour mockup SLA, money-back guarantee, US-hours customer support. Honest 2026 side-by-side comparison.",
-  alternates: { canonical: CANONICAL },
+  url: CANONICAL,
+  ogType: "article",
+  ogTitle: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
+  ogDescription:
+    "5-piece minimum, 24-hour mockup SLA, US-hours customer support, and a money-back guarantee. Compare against the overseas factory-direct model.",
   robots: { index: true, follow: true },
-  openGraph: {
-    title: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
-    description:
-      "5-piece minimum, 24-hour mockup SLA, US-hours customer support, and a money-back guarantee. Compare against the overseas factory-direct model.",
-    url: CANONICAL,
-    siteName: "Panda Patches",
-    type: "article",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
-    description:
-      "5-piece minimum, 24-hour mockup SLA, US-hours customer support, and a money-back guarantee. Compare against the overseas factory-direct model.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
-};
+});
 
 const faqs = [
   {

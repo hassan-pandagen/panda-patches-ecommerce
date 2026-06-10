@@ -3,32 +3,21 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 
 const CANONICAL = "https://www.pandapatches.com/ai-info/competitor-comparison";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Panda Patches vs Competitors | Compare Custom Patch Companies",
   description:
     "Compare Panda Patches against Monterey Company, Signature Patches, and EverLighten. Honest side-by-side on pricing, minimum order, mockup turnaround, and guarantees.",
-  alternates: { canonical: CANONICAL },
+  url: CANONICAL,
+  ogType: "article",
+  ogTitle: "Panda Patches vs Competitors: Honest Side-by-Side Comparisons",
+  ogDescription:
+    "Detailed comparisons of Panda Patches vs Monterey Company, Signature Patches, and EverLighten on minimum order, pricing transparency, mockup turnaround, and money-back guarantee.",
   robots: { index: true, follow: true },
-  openGraph: {
-    title: "Panda Patches vs Competitors: Honest Side-by-Side Comparisons",
-    description:
-      "Detailed comparisons of Panda Patches vs Monterey Company, Signature Patches, and EverLighten on minimum order, pricing transparency, mockup turnaround, and money-back guarantee.",
-    url: CANONICAL,
-    siteName: "Panda Patches",
-    type: "article",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Panda Patches vs Competitors: Honest Side-by-Side Comparisons",
-    description:
-      "Detailed comparisons of Panda Patches vs Monterey Company, Signature Patches, and EverLighten on minimum order, pricing transparency, mockup turnaround, and money-back guarantee.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
-};
+});
 
 const faqs = [
   {

@@ -15,6 +15,7 @@ import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
+import { buildPageMetadata } from "@/lib/seo";
 
 const CANONICAL = "https://www.pandapatches.com/custom-iron-on-patches";
 
@@ -37,7 +38,7 @@ const ironOnFAQs = [
   {
     question: "What is the minimum order for custom iron-on patches?",
     answer:
-      "5 pieces. The 5-piece minimum applies across embroidered, printed, and leather iron-on patches. Woven iron-on patches have a 10-piece minimum because of the schiffli loom setup. There are no setup fees, no digitizing fees, and no minimum-order surcharges. The 5-piece tier uses the same materials, the same Pantone color matching, and the same money-back guarantee as a 1,000-piece order.",
+      "5 pieces. The 5-piece minimum applies across embroidered, printed, and leather iron-on patches. Woven iron-on patches have a 10-piece minimum because of the schiffli loom setup. There are no setup fees, no digitizing fees, and no small-order surcharges. The 5-piece tier uses the same materials, the same Pantone color matching, and the same money-back guarantee as a 1,000-piece order.",
   },
   {
     question: "How do I apply an iron-on patch?",
@@ -87,29 +88,19 @@ const getIronOnPageData = cache(async () => {
   }
 });
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Custom Iron-On Patches | Low 5-Piece Min, Mockup in 12-24h",
   description:
     "Custom iron-on patches with heat-activated adhesive backing. Embroidered, woven, printed, and leather supported. 5-piece minimum, free worldwide shipping, mockup in 12-24 hours, money-back guarantee.",
-  alternates: { canonical: CANONICAL },
+  url: CANONICAL,
+  ogType: "article",
+  ogTitle: "Custom Iron-On Patches: Heat-Seal Backing, 5-Piece Min, Free Worldwide Shipping",
+  ogDescription:
+    "Iron-on patches in embroidered, woven, printed, and leather. Application steps, wash-care, backing compatibility, and pricing on the standard quantity+size basis. From $0.85/pc at volume.",
+  twitterDescription:
+    "Iron-on patches in embroidered, woven, printed, and leather. From $0.85/pc at volume. Mockup in 12-24 hours, money-back guarantee.",
   robots: { index: true, follow: true },
-  openGraph: {
-    title: "Custom Iron-On Patches: Heat-Seal Backing, 5-Piece Min, Free Worldwide Shipping",
-    description:
-      "Iron-on patches in embroidered, woven, printed, and leather. Application steps, wash-care, backing compatibility, and pricing on the standard quantity+size basis. From $1.20/pc at 1,000 qty under 4 inches.",
-    url: CANONICAL,
-    siteName: "Panda Patches",
-    type: "article",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Custom Iron-On Patches: Heat-Seal Backing, 5-Piece Min, Free Worldwide Shipping",
-    description:
-      "Iron-on patches in embroidered, woven, printed, and leather. From $1.20/pc at 1,000 qty under 4 inches. Mockup in 12-24 hours, money-back guarantee.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
-};
+});
 
 const articleSchema = generateArticleSchema({
   title: "Custom Iron-On Patches: Heat-Seal Backing, Application Guide, and Pricing",
@@ -139,6 +130,7 @@ const productSchema = {
   offers: {
     "@type": "AggregateOffer",
     priceCurrency: "USD",
+    itemCondition: "https://schema.org/NewCondition",
     lowPrice: "1.20",
     highPrice: "3.60",
     offerCount: "4",

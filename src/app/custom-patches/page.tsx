@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { getSanityOgImage } from "@/lib/sanityOgImage";
 import { client } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { generateSchemaScript } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 
 // COMPONENTS
 import ProductHero from "@/components/product/ProductHero";
@@ -25,27 +27,15 @@ const ProcessSection = dynamic(() => import("@/components/home/ProcessSection"),
 
 export async function generateMetadata(): Promise<Metadata> {
   const ogImage = await getSanityOgImage();
-  return {
-    title: "Custom Patches | All Types from $0.71/pc | Free Design | Panda Patches",
+  return buildPageMetadata({
+    title: "Custom Patches from $0.85/pc | Free Design | Panda Patches",
     description: "Order custom patches in any style: embroidered, PVC, woven, chenille & leather. As low as 5 patches. Free artwork plus a mockup in 12-24 hours. Ships in 7-14 days. Trusted by 10,000+ brands. Get a free quote!",
-    alternates: {
-      canonical: "https://www.pandapatches.com/custom-patches",
-    },
-    openGraph: {
-      title: "Custom Patches - All Types | Panda Patches",
-      description: "Browse all custom patch types with low minimums and fast delivery. Embroidered, PVC, woven, chenille, and leather patches available.",
-      url: "https://www.pandapatches.com/custom-patches",
-      siteName: "Panda Patches",
-      type: "website",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: "Panda Patches - Custom Patches" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Custom Patches - All Types | Panda Patches",
-      description: "Browse all custom patch types with low minimums and fast delivery. Embroidered, PVC, woven, chenille, and leather patches.",
-      images: [ogImage],
-    },
-  };
+    url: "https://www.pandapatches.com/custom-patches",
+    image: { url: ogImage, alt: "Panda Patches - Custom Patches" },
+    ogTitle: "Custom Patches - All Types | Panda Patches",
+    ogDescription: "Browse all custom patch types with low minimums and fast delivery. Embroidered, PVC, woven, chenille, and leather patches available.",
+    twitterDescription: "Browse all custom patch types with low minimums and fast delivery. Embroidered, PVC, woven, chenille, and leather patches.",
+  });
 }
 
 // Product schema for the main patches landing page
@@ -74,6 +64,7 @@ const productSchema = {
     highPrice: "6.00",
     offerCount: "6",
     availability: "https://schema.org/InStock",
+    itemCondition: "https://schema.org/NewCondition",
     priceValidUntil: "2027-01-01",
     shippingDetails: {
       "@type": "OfferShippingDetails",
@@ -86,12 +77,12 @@ const productSchema = {
       },
     },
     offers: [
-      { "@type": "Offer", name: "Embroidered Patches", price: "0.85", priceCurrency: "USD", availability: "https://schema.org/InStock", priceValidUntil: "2027-01-01" },
-      { "@type": "Offer", name: "PVC Patches", price: "1.20", priceCurrency: "USD", availability: "https://schema.org/InStock", priceValidUntil: "2027-01-01" },
-      { "@type": "Offer", name: "Woven Patches", price: "0.95", priceCurrency: "USD", availability: "https://schema.org/InStock", priceValidUntil: "2027-01-01" },
-      { "@type": "Offer", name: "Chenille Patches", price: "2.50", priceCurrency: "USD", availability: "https://schema.org/InStock", priceValidUntil: "2027-01-01" },
-      { "@type": "Offer", name: "Leather Patches", price: "3.00", priceCurrency: "USD", availability: "https://schema.org/InStock", priceValidUntil: "2027-01-01" },
-      { "@type": "Offer", name: "Sequin Patches", price: "6.00", priceCurrency: "USD", availability: "https://schema.org/InStock", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "Embroidered Patches", price: "0.85", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "PVC Patches", price: "1.20", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "Woven Patches", price: "0.95", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "Chenille Patches", price: "2.50", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "Leather Patches", price: "3.00", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "Sequin Patches", price: "6.00", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
     ],
   },
 };
@@ -314,11 +305,11 @@ export default async function ProductLandingPage() {
             Not every patch is made the same way. The right type depends on your design, application, and budget. Here is a quick breakdown of all five custom patch types we produce.
           </p>
           <ul className="space-y-4 mb-8 text-[17px] leading-[1.8] text-gray-600">
-            <li><strong className="text-panda-dark">Embroidered patches</strong> are the most popular choice. Thread is stitched directly onto a twill backing, creating a textured, premium look. Best for logos, text, and bold designs with solid colors. Starting from $0.71/pc at volume.</li>
-            <li><strong className="text-panda-dark">Woven patches</strong> use thinner thread for a flatter, more detailed result. Ideal when your design has fine lines, small text, or gradient shading that embroidery cannot replicate cleanly.</li>
-            <li><strong className="text-panda-dark">PVC patches</strong> are made from soft rubber and are fully waterproof. The best option for tactical gear, outdoor equipment, bags, and anything exposed to weather or heavy wear.</li>
-            <li><strong className="text-panda-dark">Chenille patches</strong> deliver the classic varsity look. A raised, fuzzy pile surface with a felt backing. Standard for letterman jackets, sports teams, and award patches.</li>
-            <li><strong className="text-panda-dark">Leather patches</strong> give a premium, heritage finish. Laser-engraved or debossed. Popular for denim jackets, hats, bags, and brand merchandise that needs to stand out.</li>
+            <li><Link href="/custom-patches/embroidered" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">Embroidered patches</Link> are the most popular choice. Thread is stitched directly onto a twill backing, creating a textured, premium look. Best for logos, text, and bold designs with solid colors. From $0.85/pc at volume.</li>
+            <li><Link href="/custom-patches/woven" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">Woven patches</Link> use thinner thread for a flatter, more detailed result. Ideal when your design has fine lines, small text, or gradient shading that embroidery cannot replicate cleanly.</li>
+            <li><Link href="/custom-patches/pvc" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">PVC patches</Link> are made from soft rubber and are fully waterproof. The best option for tactical gear, outdoor equipment, bags, and anything exposed to weather or heavy wear.</li>
+            <li><Link href="/custom-patches/chenille" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">Chenille patches</Link> deliver the classic varsity look. A raised, fuzzy pile surface with a felt backing. Standard for letterman jackets, sports teams, and award patches.</li>
+            <li><Link href="/custom-patches/leather" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">Leather patches</Link> give a premium, heritage finish. Laser-engraved or debossed. Popular for denim jackets, hats, bags, and brand merchandise that needs to stand out.</li>
           </ul>
 
           <h2 className="text-[26px] md:text-[32px] font-black text-panda-dark mb-4 leading-tight">

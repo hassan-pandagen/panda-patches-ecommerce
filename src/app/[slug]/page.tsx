@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { client, urlFor } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -6,6 +7,7 @@ import BlogPostLayout from "@/components/blog/BlogPostLayout";
 import LocationLayout from "@/components/locations/LocationLayout";
 import { generateArticleSchema, generateBreadcrumbSchema, generateLocationBusinessSchema, generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { getSanityOgImage } from "@/lib/sanityOgImage";
+import { buildPageMetadata } from "@/lib/seo";
 import cityPageMeta from "@/lib/cityPageMeta";
 import patchStyleMeta from "@/lib/patchStyleMeta";
 import { getPatchStyleProductSchema } from "@/lib/patchStyleProductSchema";
@@ -33,64 +35,38 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (data.location) {
     const locationName = data.location.locationName;
     const ogImage = await getSanityOgImage();
-    // Use city-specific meta if available, otherwise fall back to generic
     const meta = cityPageMeta[slug];
     const pageTitle = meta?.title || `Custom Patches in ${locationName} | Panda Patches`;
     const pageDesc = meta?.description || `Order custom embroidered patches in ${locationName}. Low minimums, digital mockup in 12 to 24 hours, fast 7-14 day turnaround. Get a free quote today!`;
     const ogDesc = meta?.ogDescription || `Custom patches delivered anywhere in ${locationName}. Low minimums, free design, fast shipping.`;
-    return {
+    return buildPageMetadata({
       title: pageTitle,
       description: pageDesc,
-      alternates: { canonical: `https://www.pandapatches.com/${slug}` },
+      url: `https://www.pandapatches.com/${slug}`,
+      image: { url: ogImage, alt: pageTitle },
+      ogDescription: ogDesc,
       robots: { index: true, follow: true },
-      openGraph: {
-        title: pageTitle,
-        description: ogDesc,
-        url: `https://www.pandapatches.com/${slug}`,
-        siteName: 'Panda Patches',
-        type: 'website',
-        images: [{ url: ogImage, width: 1200, height: 630, alt: pageTitle }],
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: pageTitle,
-        description: ogDesc,
-        images: [ogImage],
-      },
-    };
+    });
   }
 
   // Patch style page metadata
   if (data.patchStyle) {
     const styleName = data.patchStyle.title;
     const ogImage = await getSanityOgImage();
-    // Use slug-specific meta if available, otherwise use generic template
     const meta = patchStyleMeta[slug];
-    // Strip leading "Custom " from styleName to avoid "custom Custom X" in descriptions
     const nameForDesc = styleName.toLowerCase().startsWith('custom ') ? styleName.slice(7) : styleName;
     const pageTitle = meta?.title || `${styleName} | Panda Patches`;
     const pageDesc = meta?.description || `Order custom ${nameForDesc} with low minimums, free design services, and fast 7-14 day delivery. Get a free quote today!`;
     const ogTitle = meta?.ogTitle || pageTitle;
     const ogDesc = meta?.ogDescription || `Custom ${nameForDesc} with mockup in 12-24 hours and fast delivery.`;
-    return {
+    return buildPageMetadata({
       title: pageTitle,
       description: pageDesc,
-      alternates: { canonical: `https://www.pandapatches.com/${slug}` },
-      openGraph: {
-        title: ogTitle,
-        description: ogDesc,
-        url: `https://www.pandapatches.com/${slug}`,
-        siteName: 'Panda Patches',
-        type: 'website',
-        images: [{ url: ogImage, width: 1200, height: 630, alt: pageTitle }],
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: ogTitle,
-        description: ogDesc,
-        images: [ogImage],
-      },
-    };
+      url: `https://www.pandapatches.com/${slug}`,
+      image: { url: ogImage, alt: pageTitle },
+      ogTitle,
+      ogDescription: ogDesc,
+    });
   }
 
   // Category page metadata (military, motorcycle club, school, fraternity, etc.)
@@ -99,26 +75,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const ogImage = await getSanityOgImage();
     // Strip any existing "| Panda Patches" suffix so we never double-append
     const cleanTitle = pageTitle.replace(/\s*\|\s*Panda Patches\s*$/i, '').trim();
-    return {
+    return buildPageMetadata({
       title: `${cleanTitle} | Low 5-Piece Minimum, 24h Mockup | Panda Patches`,
       description: `Order ${cleanTitle.toLowerCase()} with a 5-piece minimum, digital mockup in 12 to 24 hours, and 7-14 day delivery. Money-back guarantee.`,
-      alternates: { canonical: `https://www.pandapatches.com/${slug}` },
+      url: `https://www.pandapatches.com/${slug}`,
+      image: { url: ogImage, alt: cleanTitle },
+      ogTitle: `${cleanTitle} | Panda Patches`,
+      ogDescription: `${cleanTitle} with mockup in 12-24 hours, 5-piece minimum, and 7-14 day delivery.`,
       robots: { index: true, follow: true },
-      openGraph: {
-        title: `${cleanTitle} | Panda Patches`,
-        description: `${cleanTitle} with mockup in 12-24 hours, 5-piece minimum, and 7-14 day delivery.`,
-        url: `https://www.pandapatches.com/${slug}`,
-        siteName: 'Panda Patches',
-        type: 'website',
-        images: [{ url: ogImage, width: 1200, height: 630, alt: cleanTitle }],
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: `${cleanTitle} | Panda Patches`,
-        description: `${cleanTitle} with mockup in 12-24 hours, 5-piece minimum, and 7-14 day delivery.`,
-        images: [ogImage],
-      },
-    };
+    });
   }
 
   // Blog post metadata
@@ -137,26 +102,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       ? appendBrand(data.blog.metaTitle)
       : appendBrand(`${data.blog.title} Blog`);
     const blogDesc = data.blog.metaDescription || data.blog.excerpt || data.blog.description || 'Custom patch tips, tutorials, and industry insights from Panda Patches.';
-    return {
+    return buildPageMetadata({
       title: blogTitle,
       description: blogDesc,
-      alternates: { canonical: `https://www.pandapatches.com/${slug}` },
+      url: `https://www.pandapatches.com/${slug}`,
+      image: { url: imageUrl, alt: data.blog.title },
+      ogType: "article",
+      ogTitle: data.blog.title,
       robots: { index: true, follow: true },
-      openGraph: {
-        title: data.blog.title,
-        description: blogDesc,
-        url: `https://www.pandapatches.com/${slug}`,
-        siteName: 'Panda Patches',
-        type: 'article',
-        images: [{ url: imageUrl, width: 1200, height: 630, alt: data.blog.title }],
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: blogTitle,
-        description: blogDesc,
-        images: [imageUrl],
-      },
-    };
+    });
   }
 
   return {
@@ -299,54 +253,12 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       })),
     } : null;
 
-    // Image source for Product / Merchant Listing schema.
-    // Use GROQ-resolved URL directly (coalesce mainImage → image → OG fallback)
-    // so Google always sees a valid image URL in the schema.
-    const productImage = data.blog.resolvedImageUrl
-      ? `${data.blog.resolvedImageUrl}?w=1200&h=630&fit=crop&auto=format`
-      : 'https://www.pandapatches.com/assets/og-image.png';
-
-    // Shared shipping details for every Offer — free worldwide shipping, 1-2 day handling, 7-14 day transit
-    const productShippingDetails = {
-      "@type": "OfferShippingDetails",
-      "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
-      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
-      "deliveryTime": {
-        "@type": "ShippingDeliveryTime",
-        "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 2, "unitCode": "DAY" },
-        "transitTime": { "@type": "QuantitativeValue", "minValue": 7, "maxValue": 14, "unitCode": "DAY" },
-      },
-    };
-
-    // Shared return policy — money-back guarantee, 30-day window, free return
-    const productReturnPolicy = {
-      "@type": "MerchantReturnPolicy",
-      "applicableCountry": "US",
-      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-      "merchantReturnDays": 30,
-      "returnMethod": "https://schema.org/ReturnByMail",
-      "returnFees": "https://schema.org/FreeReturn",
-    };
-
-    const productSchema = data.blog.productOffers?.length > 0 ? {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": data.blog.title,
-      "image": productImage,
-      "brand": { "@type": "Brand", "name": "Panda Patches" },
-      "description": data.blog.metaDescription || data.blog.excerpt || "",
-      "offers": data.blog.productOffers.map((offer: { name: string; price: number; description?: string }) => ({
-        "@type": "Offer",
-        "name": offer.name,
-        "price": offer.price.toFixed(2),
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock",
-        "seller": { "@type": "Organization", "name": "Panda Patches" },
-        "shippingDetails": productShippingDetails,
-        "hasMerchantReturnPolicy": productReturnPolicy,
-        ...(offer.description ? { "description": offer.description } : {}),
-      })),
-    } : null;
+    // Product schema removed June 2026. Blog/guide pages are not purchasable
+    // products. Emitting Product markup on informational content violates
+    // Google's "page must offer the product" rule and was contributing to the
+    // Product snippet position slide (16.9 to 20.5). Article + FAQPage +
+    // BreadcrumbList stay. Real Product schema lives on /custom-patches/[slug]
+    // and the patchStyle pages, which actually transact.
 
     return (
       <>
@@ -372,13 +284,6 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={generateSchemaScript(howToSchema)}
-          />
-        )}
-        {/* Product Schema for price rich snippets */}
-        {productSchema && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={generateSchemaScript(productSchema)}
           />
         )}
         {/* Slug-specific FAQ override for top manufacturers post */}
@@ -449,6 +354,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
         highPrice: "4.50",
         offerCount: "3",
         availability: "https://schema.org/InStock",
+        itemCondition: "https://schema.org/NewCondition",
         priceValidUntil: "2027-01-01",
         shippingDetails: {
           "@type": "OfferShippingDetails",
@@ -710,17 +616,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
     );
   }
 
-  // OPTION E: 404 Not Found
-  return (
-    <div className="min-h-screen bg-white flex flex-col justify-between">
-      <Navbar />
-      <div className="flex-1 flex flex-col items-center justify-center gap-4 text-center">
-        <h1 className="text-4xl font-black text-panda-dark">Page Not Found</h1>
-        <p className="text-gray-500">
-          We couldn&apos;t find a page or blog post at <span className="font-mono bg-gray-100 px-2 py-1">{slug}</span>
-        </p>
-      </div>
-      <Footer />
-    </div>
-  );
+  // OPTION E: Nothing matched. Throw the framework not-found so Next.js
+  // returns a real HTTP 404 and renders the enriched src/app/not-found.tsx.
+  notFound();
 }

@@ -3,29 +3,18 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ReviewCard from "@/components/reviews/ReviewCard";
+import TrustpilotRatingLine from "@/components/reviews/TrustpilotRatingLine";
 import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Panda Patches Customer Reviews — Custom Patch Quality & Turnaround",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Panda Patches Customer Reviews. Custom Patch Quality and Turnaround",
   description: "Real customer feedback on patch quality, fast turnaround, and our 12-24 hour digital mockup service. See what brands say about their custom embroidered, PVC, woven, and chenille patches.",
-  alternates: {
-    canonical: "https://www.pandapatches.com/reviews",
-  },
-  openGraph: {
-    title: "Panda Patches Customer Reviews — Custom Patch Quality & Turnaround",
-    description: "Read what our customers say about patch quality, fast 7-14 day turnaround, and our 12-24 hour mockup service. Custom embroidered, PVC, chenille, woven, and leather patches.",
-    url: "https://www.pandapatches.com/reviews",
-    type: "website",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630, alt: "Panda Patches Customer Reviews" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Panda Patches Customer Reviews — Custom Patch Quality & Turnaround",
-    description: "Real customer feedback on patch quality, fast turnaround, and our 12-24 hour digital mockup service.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
+  url: "https://www.pandapatches.com/reviews",
+  ogDescription: "Read what our customers say about patch quality, fast 7-14 day turnaround, and our 12-24 hour mockup service. Custom embroidered, PVC, chenille, woven, and leather patches.",
+  twitterDescription: "Real customer feedback on patch quality, fast turnaround, and our 12-24 hour digital mockup service.",
   robots: { index: true, follow: true },
-};
+});
 
 const FEATURED_REVIEWS = [
   {
@@ -144,9 +133,10 @@ export default function ReviewsPage() {
           <h1 className="text-4xl md:text-5xl font-black mb-4">
             What Our Customers Say
           </h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-5">
             Real feedback from brands, motorcycle clubs, fire departments, sports teams, and businesses on patch quality, fast 7-14 day turnaround, and our 12-24 hour digital mockup service.
           </p>
+          <TrustpilotRatingLine variant="dark" className="!text-center" />
         </div>
       </section>
 

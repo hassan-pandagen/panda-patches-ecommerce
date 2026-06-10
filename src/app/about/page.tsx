@@ -11,32 +11,21 @@ import FactorySection from "@/components/about/FactorySection";
 import PickPatch from "@/components/about/PickPatch";
 import ProcessSection from "@/components/home/ProcessSection";
 import { generatePersonSchema, generateSchemaScript } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 
 const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"), { ssr: true });
 
 // SEO Metadata for About Page
 export async function generateMetadata(): Promise<Metadata> {
   const ogImage = await getSanityOgImage();
-  return {
+  return buildPageMetadata({
     title: "About Panda Patches | 13 Years Custom Patch Experts",
     description: "Learn about Panda Patches. 13 years of custom embroidered patch experience with low minimums. Family-owned with mockup in 12-24 hours and money-back guarantee.",
-    openGraph: {
-      title: "About Panda Patches | 13 Years Custom Patch Experts",
-      description: "Family-owned custom patch company with 13 years of experience. Low minimums, free design services, money-back guarantee.",
-      type: "website",
-      url: "https://www.pandapatches.com/about",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: "About Panda Patches" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "About Panda Patches | 13 Years Custom Patch Experts",
-      description: "Family-owned custom patch company with 13 years of experience. Low minimums, free design services.",
-      images: [ogImage],
-    },
-    alternates: {
-      canonical: "https://www.pandapatches.com/about",
-    },
-  };
+    url: "https://www.pandapatches.com/about",
+    image: { url: ogImage, alt: "About Panda Patches" },
+    ogDescription: "Family-owned custom patch company with 13 years of experience. Low minimums, free design services, money-back guarantee.",
+    twitterDescription: "Family-owned custom patch company with 13 years of experience. Low minimums, free design services.",
+  });
 }
 
 export default function AboutPage() {

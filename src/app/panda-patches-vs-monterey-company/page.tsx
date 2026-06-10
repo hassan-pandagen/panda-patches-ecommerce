@@ -3,34 +3,23 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ComparisonPage from "@/components/comparison/ComparisonPage";
 import { generateSchemaScript, generateBreadcrumbSchema, generateFAQSchema, generateArticleSchema } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 
 const COMPETITOR = "The Monterey Company";
 const SLUG = "panda-patches-vs-monterey-company";
 const CANONICAL = `https://www.pandapatches.com/${SLUG}`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: `Panda Patches vs ${COMPETITOR}: 2026 Comparison`,
   description:
     "Panda Patches vs Monterey Company: 5pc minimum vs 50pc, published pricing vs quote-only, 12-24h mockup, money-back guarantee. Side-by-side comparison.",
-  alternates: { canonical: CANONICAL },
+  url: CANONICAL,
+  ogType: "article",
+  ogTitle: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
+  ogDescription:
+    "Compare minimum orders, pricing transparency, mockup turnaround, and guarantees. Panda Patches wins on 5 of 6 dimensions for small and mid-volume buyers.",
   robots: { index: true, follow: true },
-  openGraph: {
-    title: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
-    description:
-      "Compare minimum orders, pricing transparency, mockup turnaround, and guarantees. Panda Patches wins on 5 of 6 dimensions for small and mid-volume buyers.",
-    url: CANONICAL,
-    siteName: "Panda Patches",
-    type: "article",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `Panda Patches vs ${COMPETITOR}: Honest 2026 Comparison`,
-    description:
-      "Compare minimum orders, pricing transparency, mockup turnaround, and guarantees. Panda Patches wins on 5 of 6 dimensions for small and mid-volume buyers.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
-};
+});
 
 const faqs = [
   {

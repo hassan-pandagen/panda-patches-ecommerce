@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { buildPageMetadata } from '@/lib/seo';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import OffersClient from '@/components/offers/OffersClient';
@@ -8,26 +9,20 @@ import { OFFER_CATEGORIES } from '@/lib/offerPackages';
 import { client, urlFor } from '@/lib/sanity';
 import { cache } from 'react';
 
-export const metadata: Metadata = {
-  title: 'Custom Patch Packages — Fixed Prices from $25 | Panda Patches',
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Custom Patch Packages. Fixed Prices from $25 | Panda Patches',
   description: 'Order custom patch packages at fixed prices. Embroidered, woven, PVC, chenille and leather patches with digital mockup in 12 to 24 hours, free shipping, and 7-14 day delivery.',
-  alternates: {
-    canonical: 'https://www.pandapatches.com/offers',
+  url: 'https://www.pandapatches.com/offers',
+  image: {
+    url: 'https://www.pandapatches.com/assets/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Custom patch packages at fixed prices. Panda Patches',
   },
-  openGraph: {
-    title: 'Custom Patch Packages — Fixed Prices | Panda Patches',
-    description: 'Fixed-price patch packages with digital mockup in 12 to 24 hours, free worldwide shipping, and money-back guarantee. Embroidered, woven, PVC, chenille, leather.',
-    url: 'https://www.pandapatches.com/offers',
-    type: 'website',
-    images: [{ url: 'https://www.pandapatches.com/assets/og-image.png', width: 1200, height: 630, alt: 'Custom patch packages at fixed prices — Panda Patches' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Custom Patch Packages — Fixed Prices | Panda Patches',
-    description: 'Fixed-price patch packages with digital mockup in 12 to 24 hours, free worldwide shipping, and money-back guarantee.',
-    images: ['https://www.pandapatches.com/assets/og-image.png'],
-  },
-};
+  ogTitle: 'Custom Patch Packages. Fixed Prices | Panda Patches',
+  ogDescription: 'Fixed-price patch packages with digital mockup in 12 to 24 hours, free worldwide shipping, and money-back guarantee. Embroidered, woven, PVC, chenille, leather.',
+  twitterDescription: 'Fixed-price patch packages with digital mockup in 12 to 24 hours, free worldwide shipping, and money-back guarantee.',
+});
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -50,7 +45,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'What if I don\'t like the mockup?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Request as many changes as needed — all free. If we still can\'t get it right, full refund. Money-back guarantee.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Request as many changes as needed, all free. If we still can\'t get it right, full refund. Money-back guarantee.' },
     },
     {
       '@type': 'Question',
@@ -60,7 +55,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'What does "under 4 inches" mean?',
-      acceptedAnswer: { '@type': 'Answer', text: 'The longest dimension is 4" or less — covers 90% of hat patches, left-chest and shoulder patches.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'The longest dimension is 4" or less, covers 90% of hat patches, left-chest and shoulder patches.' },
     },
     {
       '@type': 'Question',
@@ -186,6 +181,7 @@ export default async function OffersPage() {
       priceCurrency: 'USD',
       priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition',
       url: 'https://www.pandapatches.com/offers',
       seller: { '@type': 'Organization', name: 'Panda Patches' },
       shippingDetails,

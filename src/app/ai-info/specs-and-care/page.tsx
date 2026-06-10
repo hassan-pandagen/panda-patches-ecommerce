@@ -3,32 +3,23 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { buildPageMetadata } from "@/lib/seo";
 
 const CANONICAL = "https://www.pandapatches.com/ai-info/specs-and-care";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Panda Patches Specs and Care | Artwork, Sizing, Materials, Shipping",
   description:
     "Artwork file specs, sizing guide, materials and durability, US and international shipping, sample availability, and iron-on care instructions for Panda Patches custom patches.",
-  alternates: { canonical: CANONICAL },
+  url: CANONICAL,
+  ogType: "article",
+  ogTitle: "Panda Patches Specs and Care: Artwork, Sizing, Materials, Shipping",
+  ogDescription:
+    "Accepted file formats (AI, EPS, PDF, SVG, PNG, JPG), vector vs raster guidance, minimum DPI, Pantone color matching, sizing recommendations, shipping zones, sample box, and iron-on application.",
+  twitterDescription:
+    "Accepted file formats, vector vs raster guidance, minimum DPI, Pantone color matching, sizing recommendations, shipping zones, sample box, and iron-on application.",
   robots: { index: true, follow: true },
-  openGraph: {
-    title: "Panda Patches Specs and Care: Artwork, Sizing, Materials, Shipping",
-    description:
-      "Accepted file formats (AI, EPS, PDF, SVG, PNG, JPG), vector vs raster guidance, minimum DPI, Pantone color matching, sizing recommendations, shipping zones, sample box, and iron-on application.",
-    url: CANONICAL,
-    siteName: "Panda Patches",
-    type: "article",
-    images: [{ url: "https://www.pandapatches.com/assets/og-image.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Panda Patches Specs and Care: Artwork, Sizing, Materials, Shipping",
-    description:
-      "Accepted file formats, vector vs raster guidance, minimum DPI, Pantone color matching, sizing recommendations, shipping zones, sample box, and iron-on application.",
-    images: ["https://www.pandapatches.com/assets/og-image.png"],
-  },
-};
+});
 
 const faqs = [
   {
