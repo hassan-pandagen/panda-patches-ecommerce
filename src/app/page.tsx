@@ -6,6 +6,7 @@ import { client, urlFor } from "@/lib/sanity";
 import Hero from "@/components/home/Hero";
 import Promises from "@/components/home/Promises";
 import ProductGrid from "@/components/home/ProductGrid";
+import AiGeneratorTeaser from "@/components/ai-patch/AiGeneratorTeaser";
 
 // Navbar is "use client" — dynamic import defers its JS bundle from critical path
 // SSR: true ensures it still renders in the initial HTML
@@ -186,6 +187,13 @@ export default function Home() {
       {/* Timeline/Zig-Zag Section */}
       <div className="cv-auto">
         <TimelineSection />
+      </div>
+
+      {/* Panda AI teaser — discovery band for /ai-patch-generator. Mid-low
+          placement on purpose: the CEO wants the tool visible for SEO and
+          credibility without competing with the primary quote-form funnel. */}
+      <div className="cv-auto">
+        <AiGeneratorTeaser />
       </div>
 
       {/* FAQ Section with Accordion */}

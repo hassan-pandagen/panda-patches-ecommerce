@@ -9,7 +9,9 @@ import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 
 export default function HeroForm({ productSlug }: { productSlug?: string }) {
   const isKeychains = productSlug === 'keychains';
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
+  const watchHearAbout = watch("hearAbout", "");
+  const [hearAboutOther, setHearAboutOther] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const partialSaved = useRef(false);
   const formLoadedAt = useRef(Date.now());
@@ -120,7 +122,7 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
             width: isCustomSize ? sanitizeNumber(customSize) || 1 : sanitizeNumber(data.size),
             height: isCustomSize ? sanitizeNumber(customSize) || 1 : sanitizeNumber(data.size),
             backing: sanitizeString(data.backing || 'iron'),
-            instructions: sanitizeString([data.instructions || '', isCustomSize && customSize ? `Custom Size: ${customSize}` : ''].filter(Boolean).join(' | ')),
+            instructions: sanitizeString([data.instructions || '', isCustomSize && customSize ? `Custom Size: ${customSize}` : '', data.hearAbout ? `Source: ${data.hearAbout === 'Other' ? (hearAboutOther.trim() || 'Other') : data.hearAbout}` : ''].filter(Boolean).join(' | ')),
             patchType: sanitizeString(data.type || ''),
           },
           artworkUrl: uploadedFiles[0]?.url || null,
@@ -369,6 +371,38 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
             </select>
             <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
           </div>
+        )}
+
+        {/* How did you hear about us */}
+        <div className="relative">
+          <select
+            {...register("hearAbout")}
+            defaultValue=""
+            aria-label="How did you hear about us"
+            className="form-input appearance-none text-gray-500 cursor-pointer pr-10"
+          >
+            <option value="" disabled hidden>How did you hear about us? (optional)</option>
+            <option value="Google Search">Google Search</option>
+            <option value="Google Ads">Google Ads</option>
+            <option value="Facebook / Instagram">Facebook / Instagram</option>
+            <option value="ChatGPT / Claude">ChatGPT / Claude</option>
+            <option value="YouTube">YouTube</option>
+            <option value="Reddit">Reddit</option>
+            <option value="Friend / Word of mouth">Friend / Word of mouth</option>
+            <option value="Returning customer">Returning customer</option>
+            <option value="Other">Other</option>
+          </select>
+          <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
+        </div>
+        {watchHearAbout === "Other" && (
+          <input
+            type="text"
+            value={hearAboutOther}
+            onChange={(e) => setHearAboutOther(e.target.value)}
+            placeholder="Please tell us where you heard about us"
+            className="form-input"
+            autoFocus
+          />
         )}
 
         {/* Instructions */}

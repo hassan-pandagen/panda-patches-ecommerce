@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AiGeneratorTeaser from "@/components/ai-patch/AiGeneratorTeaser";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import WorkGallery from "@/components/bulk/WorkGallery";
 import Image from "next/image";
@@ -626,6 +627,10 @@ export default async function PartnersPage() {
             </div>
           </div>
         </section>
+
+        {/* Panda AI teaser — partners pitch their clients with concept art;
+            the generator gives them instant visuals to close with. */}
+        <AiGeneratorTeaser />
 
       </main>
       <Footer />

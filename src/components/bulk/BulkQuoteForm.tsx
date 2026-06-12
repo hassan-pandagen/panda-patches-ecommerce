@@ -8,7 +8,9 @@ import FormFeedback from "@/components/feedback/FormFeedback";
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 
 export default function BulkQuoteForm() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
+  const watchHearAbout = watch("hearAbout", "");
+  const [hearAboutOther, setHearAboutOther] = useState("");
   const partialSaved = useRef(false);
   const formLoadedAt = useRef(Date.now());
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -123,7 +125,7 @@ export default function BulkQuoteForm() {
             height: Math.min(parseFloat(data.size?.toLowerCase().split(/\s*x\s*/i)[1]) || 3, 50),
             backing: sanitizeString(data.backing || "iron"),
             instructions: sanitizeString(
-              `[BULK ORDER] Company: ${data.company || "N/A"} | Qty Range: ${data.quantityRange || "N/A"} | Patch Type: ${data.patchType || "N/A"} | Size: ${data.size || "N/A"} | Needed By: ${data.neededBy || "N/A"} | Budget: ${data.budget || "N/A"} | Notes: ${data.notes || "None"}`
+              `[BULK ORDER] Company: ${data.company || "N/A"} | Qty Range: ${data.quantityRange || "N/A"} | Patch Type: ${data.patchType || "N/A"} | Size: ${data.size || "N/A"} | Needed By: ${data.neededBy || "N/A"} | Budget: ${data.budget || "N/A"} | Notes: ${data.notes || "None"} | Source: ${data.hearAbout === "Other" ? (hearAboutOther.trim() || "Other") : (data.hearAbout || "N/A")}`
             ),
             patchType: sanitizeString(data.patchType || ""),
           },
@@ -348,6 +350,38 @@ export default function BulkQuoteForm() {
           placeholder="Design details, color requirements, special instructions..."
           className="bulk-field h-[80px] resize-none pt-3"
         />
+
+        {/* How did you hear about us */}
+        <div className="relative">
+          <select
+            {...register("hearAbout")}
+            defaultValue=""
+            aria-label="How did you hear about us"
+            className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500"
+          >
+            <option value="" disabled hidden>How did you hear about us? (optional)</option>
+            <option value="Google Search">Google Search</option>
+            <option value="Google Ads">Google Ads</option>
+            <option value="Facebook / Instagram">Facebook / Instagram</option>
+            <option value="ChatGPT / Claude">ChatGPT / Claude</option>
+            <option value="YouTube">YouTube</option>
+            <option value="Reddit">Reddit</option>
+            <option value="Friend / Word of mouth">Friend / Word of mouth</option>
+            <option value="Returning customer">Returning customer</option>
+            <option value="Other">Other</option>
+          </select>
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-[10px]">&#9660;</div>
+        </div>
+        {watchHearAbout === "Other" && (
+          <input
+            type="text"
+            value={hearAboutOther}
+            onChange={(e) => setHearAboutOther(e.target.value)}
+            placeholder="Please tell us where you heard about us"
+            className="bulk-field"
+            autoFocus
+          />
+        )}
 
         {/* File Upload — up to 2 files with delete */}
         {uploadedFiles.length > 0 && (

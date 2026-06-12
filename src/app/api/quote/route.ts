@@ -67,6 +67,9 @@ function deriveLeadSource(pageUrl: string | undefined, isBulkOrder: boolean | un
   }
 
   if (path === '/' || path === '') return 'Homepage Hero Form';
+  // Panda AI generator funnel (WEBSIT_4.MD G6). Checked before the generic
+  // /custom- prefix so it never falls into "Industry Page".
+  if (path.startsWith('/ai-patch-generator')) return 'AI Patch Generator';
   if (path.startsWith('/custom-patches/')) {
     const type = path.replace('/custom-patches/', '').replace(/\/$/, '').split('/')[0];
     if (type) return `${type.charAt(0).toUpperCase() + type.slice(1)} Product Page`;

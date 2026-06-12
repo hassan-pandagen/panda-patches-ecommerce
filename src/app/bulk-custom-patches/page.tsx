@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { cache } from 'react';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AiGeneratorTeaser from "@/components/ai-patch/AiGeneratorTeaser";
 import BulkHero from "@/components/bulk/BulkHero";
 import BulkPricingTable from "@/components/bulk/BulkPricingTable";
 import BulkCaseStudies from "@/components/bulk/BulkCaseStudies";
@@ -516,6 +517,10 @@ export default async function BulkCustomPatchesPage() {
           </div>
         </div>
       </section>
+
+      {/* Panda AI teaser — bulk buyers often arrive without final artwork.
+          Letting them sketch a concept here feeds the quote funnel. */}
+      <AiGeneratorTeaser />
 
       {/* 12. CTA */}
       <CTASection />

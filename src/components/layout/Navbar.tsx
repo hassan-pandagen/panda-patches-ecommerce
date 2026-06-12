@@ -50,7 +50,7 @@ const navLinks = [
       { name: "Fixed-Price Offers", href: "/offers" },
       { name: "Embroidery Digitizing", href: "/embroidery-digitizing" },
       { name: "Raster to Vector Conversion", href: "/raster-to-vector-conversion" },
-      { name: "Free Sample Box", href: "/sample-box" },
+      { name: "Sample Box", href: "/sample-box" },
     ]
   } as any,
   { name: "BULK ORDER", href: "/bulk-custom-patches" },
@@ -148,6 +148,7 @@ export default function Navbar() {
                     {hasDropdown && (
                       <ChevronDown
                         size={14}
+                        suppressHydrationWarning
                         className={`ml-1 transition-transform duration-300 group-hover:rotate-180 ${isActive ? "text-[#DFFF00]" : "text-gray-500"}`}
                       />
                     )}

@@ -170,6 +170,8 @@ export default function ComplexCalculator({
 
   // Special Instructions State
   const [specialInstructions, setSpecialInstructions] = useState("");
+  const [hearAbout, setHearAbout] = useState("");
+  const [hearAboutOther, setHearAboutOther] = useState("");
 
   // Add-ons State
   const [showAddons, setShowAddons] = useState(false);
@@ -525,7 +527,7 @@ export default function ComplexCalculator({
           discount: discount > 0 ? `${(discount * 100).toFixed(0)}% Economy Delivery Discount (16-18 business days)` : null,
           artworkUrl: files[0]?.url || null,
           addons: selectedAddons.length > 0 ? selectedAddons.map(id => ADDON_OPTIONS.find(opt => opt.id === id)?.name).filter(Boolean) : null,
-          specialInstructions: [shape ? `Shape: ${SHAPES.find(s => s.id === shape)?.name}` : null, patchIdea ? `Patch Idea: ${patchIdea}` : null, specialInstructions || null].filter(Boolean).join(' | ') || null,
+          specialInstructions: [shape ? `Shape: ${SHAPES.find(s => s.id === shape)?.name}` : null, patchIdea ? `Patch Idea: ${patchIdea}` : null, specialInstructions || null, hearAbout ? `Source: ${hearAbout === "Other" ? (hearAboutOther.trim() || "Other") : hearAbout}` : null].filter(Boolean).join(' | ') || null,
           paymentMethod: paymentMethod, // Pass payment method to backend
           attribution: checkoutAttribution,
           initiateCheckoutEventId,
@@ -1325,6 +1327,41 @@ export default function ComplexCalculator({
                 className="w-full h-[90px] rounded-[12px] px-5 py-3 font-medium text-base text-black outline-none focus:border-black transition-all resize-none"
                 style={{ border: '2px solid #9CA3AF' }}
               />
+            </div>
+
+            {/* HOW DID YOU HEAR ABOUT US */}
+            <div>
+              <label className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
+                How Did You Hear About Us? (Optional)
+              </label>
+              <select
+                value={hearAbout}
+                onChange={(e) => { setHearAbout(e.target.value); if (e.target.value !== "Other") setHearAboutOther(""); }}
+                className="w-full rounded-[12px] px-5 py-3 font-medium text-base text-black outline-none focus:border-black transition-all appearance-none cursor-pointer"
+                style={{ border: '2px solid #9CA3AF' }}
+              >
+                <option value="">Select one</option>
+                <option value="Google Search">Google Search</option>
+                <option value="Google Ads">Google Ads</option>
+                <option value="Facebook / Instagram">Facebook / Instagram</option>
+                <option value="ChatGPT / Claude">ChatGPT / Claude</option>
+                <option value="YouTube">YouTube</option>
+                <option value="Reddit">Reddit</option>
+                <option value="Friend / Word of mouth">Friend / Word of mouth</option>
+                <option value="Returning customer">Returning customer</option>
+                <option value="Other">Other</option>
+              </select>
+              {hearAbout === "Other" && (
+                <input
+                  type="text"
+                  value={hearAboutOther}
+                  onChange={(e) => setHearAboutOther(e.target.value)}
+                  placeholder="Please tell us where you heard about us"
+                  className="w-full rounded-[12px] px-5 py-3 font-medium text-base text-black outline-none focus:border-black transition-all mt-2"
+                  style={{ border: '2px solid #9CA3AF' }}
+                  autoFocus
+                />
+              )}
             </div>
 
           </>
