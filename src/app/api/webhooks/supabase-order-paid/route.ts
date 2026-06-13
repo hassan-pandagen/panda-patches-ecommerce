@@ -53,6 +53,19 @@ function parseZipFromAddress(addr: string | null | undefined): string | undefine
   return match?.[1];
 }
 
+// Conservative city/state extraction to lift Meta EMQ. Only matches the
+// unambiguous US pattern "..., City, ST 12345" (state = 2-letter code right
+// before the zip). Returns nothing if the pattern is not clean, since a wrong
+// hashed ct/st adds noise rather than a usable signal.
+function parseCityStateFromAddress(
+  addr: string | null | undefined
+): { city?: string; state?: string } {
+  if (!addr) return {};
+  const m = addr.match(/,\s*([A-Za-z .'-]{2,}),\s*([A-Za-z]{2})\s+\d{5}(?:-\d{4})?\b/);
+  if (!m) return {};
+  return { city: m[1].trim(), state: m[2].trim() };
+}
+
 export async function POST(req: Request) {
   if (!WEBHOOK_SECRET) {
     console.error('[META CAPI] SUPABASE_WEBHOOK_SECRET not configured');
@@ -100,6 +113,7 @@ export async function POST(req: Request) {
 
   const { firstName, lastName } = splitName(n.customer_name);
   const zip = parseZipFromAddress(n.shipping_address);
+  const { city, state } = parseCityStateFromAddress(n.shipping_address);
 
   const eventIdBase = n.order_number || `order_${n.id}`;
   const eventId = `${eventIdBase}_purchase`;
@@ -113,8 +127,12 @@ export async function POST(req: Request) {
     phone: n.customer_phone,
     firstName,
     lastName,
+    city,
+    state,
     zip,
-    externalId: eventIdBase,
+    // external_id = hashed email (normalized in metaCapi) for Customer Match
+    // across repeat orders, consistent with the other Purchase paths.
+    externalId: n.customer_email,
     attribution: n.attribution || undefined,
     value: Number(n.amount_paid),
     currency: 'USD',

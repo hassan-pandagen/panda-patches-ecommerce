@@ -201,6 +201,7 @@ async function handlePaymentCaptured(event: PayPalEvent) {
           phone: order.customer_phone || null,
           firstName,
           lastName: lastParts.join(' ') || undefined,
+          externalId: order.customer_email,
           attribution: (order.attribution as Attribution) || undefined,
           value: amountPaid,
           currency: 'USD',

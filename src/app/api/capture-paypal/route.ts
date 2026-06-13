@@ -419,6 +419,7 @@ export async function POST(req: Request) {
           phone: orderData.customer_phone || null,
           firstName,
           lastName: lastParts.join(' ') || undefined,
+          externalId: orderData.customer_email,
           attribution: orderData.attribution || undefined,
           value: amountPaid,
           currency: 'USD',

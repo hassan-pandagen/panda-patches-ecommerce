@@ -1,6 +1,9 @@
 import crypto from 'crypto';
 
-const META_GRAPH_VERSION = 'v21.0';
+// Aligned to v25.0 to match the CRM/backend CAPI (send-meta-* edge functions).
+// Keep both sides on the same Graph version so event schema and EMQ behavior
+// stay consistent across the website and the order-database integration.
+const META_GRAPH_VERSION = 'v25.0';
 const PIXEL_ID = process.env.META_PIXEL_ID || '1515101469424765';
 const ACCESS_TOKEN = process.env.META_ACCESS_TOKEN;
 const TEST_EVENT_CODE = process.env.META_TEST_EVENT_CODE;
@@ -17,8 +20,13 @@ export function hashEmail(email: string | undefined | null) {
 
 export function hashPhone(phone: string | undefined | null) {
   if (!phone) return undefined;
-  const digits = phone.replace(/\D/g, '');
+  let digits = phone.replace(/\D/g, '');
   if (!digits) return undefined;
+  // Meta spec: hash the phone with country code, digits only, no "+" or symbols.
+  // A bare 10-digit US/CA number hashes to a value Meta can't match against its
+  // graph (which stores country-code-prefixed). Prepend "1" for 10-digit numbers;
+  // 11+ digit numbers are assumed to already carry a country code.
+  if (digits.length === 10) digits = '1' + digits;
   return sha256(digits);
 }
 
@@ -81,7 +89,10 @@ export async function sendMetaEvent(input: MetaEventInput): Promise<{ success: b
     ct: hashName(input.city),
     st: hashName(input.state),
     zp: sha256(input.zip?.trim().toLowerCase()),
-    external_id: input.externalId ? sha256(input.externalId) : undefined,
+    // external_id is normalized (trim + lowercase) before hashing so a
+    // customer's hashed email matches across every event and repeat order
+    // (Customer Match). Callers should pass the customer email here.
+    external_id: input.externalId ? sha256(input.externalId.trim().toLowerCase()) : undefined,
     client_ip_address: attr.client_ip,
     client_user_agent: attr.client_ua,
     fbp: attr.fbp,

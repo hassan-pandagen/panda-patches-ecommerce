@@ -407,6 +407,7 @@ export async function POST(req: Request) {
           phone: meta.customer_phone || null,
           firstName,
           lastName: lastParts.join(' ') || undefined,
+          externalId: validEmail,
           attribution: attribution || undefined,
           value: amountPaid,
           currency: 'USD',

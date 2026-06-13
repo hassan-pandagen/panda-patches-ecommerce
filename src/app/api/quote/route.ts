@@ -425,6 +425,7 @@ export async function POST(req: Request) {
       phone: customer.phone || null,
       firstName,
       lastName,
+      externalId: customer.email,
       attribution,
       eventSourceUrl: pageUrl || attribution.page_url,
       // Always send value AND currency together. Meta rejects partial pairs (48% of Lead events were failing this).
