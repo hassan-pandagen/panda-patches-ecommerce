@@ -56,14 +56,18 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
   return buildPageMetadata({
-    title: "Bulk Custom Patches for 100+ Pieces | Volume Pricing",
-    description: "Bulk custom patches at wholesale prices. Volume discounts on embroidered, PVC, woven & more. Free design, no setup fees, 1M+ delivered.",
+    // CTR rewrite (June 2026): the page ranked ~pos 10 with 0.25% CTR. The old
+    // "for 100+ Pieces" title excluded the large 5-50 piece + "no minimum"
+    // demand and buried the price. New title leads with wholesale + per-piece
+    // price + "no setup fees" hook, and stays honest on the 5-piece minimum.
+    title: "Bulk Custom Patches: Wholesale Pricing from $0.85/pc",
+    description: "Bulk custom patches at wholesale prices from $0.85/pc. Full per-piece pricing, no setup or digitizing fees, free US shipping, mockup in 24 hours. From 5 pieces.",
     url: "https://www.pandapatches.com/bulk-custom-patches",
     image: { url: ogImage, alt: "Panda Patches - Bulk Custom Patches" },
-    ogTitle: "Bulk Custom Patches for 100+ Pieces | Volume Pricing | Panda Patches",
+    ogTitle: "Bulk Custom Patches | Wholesale Per-Piece Pricing from $0.85 | Panda Patches",
     ogDescription:
-      "Order bulk custom patches at wholesale prices. Embroidered, PVC, chenille, woven, leather. Mockup in 12-24 hours, 2-week delivery, pricing from $0.85/pc.",
-    twitterDescription: "Order bulk custom patches at wholesale prices. Mockup in 12-24 hours, 2-week delivery, from $0.85/pc.",
+      "Order bulk custom patches at wholesale prices from $0.85/pc. Embroidered, PVC, chenille, woven, leather. No setup fees, free US shipping, mockup in 12-24 hours.",
+    twitterDescription: "Bulk custom patches at wholesale prices from $0.85/pc. No setup fees, free US shipping, mockup in 12-24 hours.",
   });
 }
 
