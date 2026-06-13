@@ -10,7 +10,7 @@ const nextConfig = {
   },
   // Tell Next.js NOT to bundle these packages — load them natively via Node.js require().
   // Prevents dev-server worker crashes caused by bundler incompatibilities with the PayPal SDK.
-  serverExternalPackages: ['@paypal/paypal-server-sdk'],
+  serverExternalPackages: ['@paypal/paypal-server-sdk', 'sharp'],
   images: {
     remotePatterns: [
       {
