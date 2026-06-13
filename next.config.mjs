@@ -151,6 +151,21 @@ const nextConfig = {
         permanent: true,
       },
 
+      // NO-MINIMUM CLUSTER CONSOLIDATION (June 2026)
+      // /custom-patches-no-minimum-5-pieces-2026 is an old renamed slug with no
+      // live document (458 GSC impressions over 3 months, soft-404). 301 to the
+      // canonical no-minimum page to recover the equity and kill the dead URL.
+      {
+        source: '/custom-patches-no-minimum-5-pieces-2026',
+        destination: '/custom-patches-no-minimum-order',
+        permanent: true,
+      },
+      {
+        source: '/custom-patches-no-minimum-5-pieces-2026/',
+        destination: '/custom-patches-no-minimum-order',
+        permanent: true,
+      },
+
       // OLD BLOG URL → NEW BLOGS URL
       {
         source: '/blog',
