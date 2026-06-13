@@ -1,6 +1,14 @@
 import { MetadataRoute } from 'next';
 import { client } from '@/lib/sanity';
 
+// Revalidate hourly so newly published Sanity content (blogs, products,
+// location pages) appears in the sitemap without waiting for a redeploy.
+// Without this the sitemap is generated once at build time and goes stale,
+// which is how the 250th-anniversary post landed with inSitemap:false even
+// though the query already includes it. Hourly matches /[slug] and the
+// homepage so a fresh deadline page is discoverable fast.
+export const revalidate = 3600;
+
 interface SanitySlugItem {
   slug: string;
   _updatedAt: string;

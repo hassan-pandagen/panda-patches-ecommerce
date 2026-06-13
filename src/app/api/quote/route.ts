@@ -192,6 +192,18 @@ export async function POST(req: Request) {
     const attribution = getAttributionFromRequest(req, bodyAttribution);
 
     const sizeLabel = details.width > 0 ? `${details.width}" x ${details.height}"` : 'Custom / See instructions';
+
+    // Extract "How did you hear about us?" from the instructions string.
+    // Forms append it as "Source: X" or "| Source: X" at the end.
+    // We pull it out so it renders as its own email row, not buried in instructions.
+    const rawInstructions = details.instructions || '';
+    const sourceMatch = rawInstructions.match(/Source:\s*(.+?)(?:\s*$)/m);
+    const hearAboutUs = sourceMatch ? sourceMatch[1].trim() : null;
+    const cleanInstructions = rawInstructions
+      .replace(/\s*\|\s*Source:[^\n]*/g, '')
+      .replace(/\s*Source:[^\n]*/g, '')
+      .trim();
+
     const leadSource = deriveLeadSource(pageUrl, isBulkOrder, basePrice != null);
     const trafficSource = deriveTrafficSource(attribution as any);
     const subject = isBulkOrder
@@ -229,6 +241,7 @@ export async function POST(req: Request) {
     <table style="width:100%;border-collapse:collapse;font-size:14px;border:1px solid #e0e0e0;border-top:none;">
       <tr><td style="padding:9px 14px;color:#666;width:140px;background:#fafafa;">Source</td><td style="padding:9px 14px;font-weight:600;color:#0a7d2a;">${esc(leadSource)}</td></tr>
       <tr><td style="padding:9px 14px;color:#666;width:140px;background:#fafafa;">Traffic</td><td style="padding:9px 14px;font-weight:600;color:#1a73e8;">${esc(trafficSource)}</td></tr>
+      ${hearAboutUs ? `<tr><td style="padding:9px 14px;color:#666;width:140px;background:#fafafa;">Heard about us</td><td style="padding:9px 14px;font-weight:600;color:#7c3aed;">${esc(hearAboutUs)}</td></tr>` : ''}
       <tr><td style="padding:9px 14px;color:#666;width:140px;background:#fafafa;">Name</td><td style="padding:9px 14px;font-weight:600;color:#fb6e1d;">${esc(customer.name)}</td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Email</td><td style="padding:9px 14px;"><a href="mailto:${esc(customer.email)}" style="color:#333;">${esc(customer.email)}</a></td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Phone</td><td style="padding:9px 14px;">${esc(customer.phone || 'Not provided')}</td></tr>
@@ -241,7 +254,7 @@ export async function POST(req: Request) {
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Size</td><td style="padding:9px 14px;">${esc(sizeLabel)}</td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Quantity</td><td style="padding:9px 14px;font-weight:600;">${details.quantity} pcs</td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Backing</td><td style="padding:9px 14px;">${esc(details.backing)}</td></tr>
-      ${details.instructions ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;vertical-align:top;">Instructions</td><td style="padding:9px 14px;white-space:pre-wrap;">${esc(details.instructions)}</td></tr>` : ''}
+      ${cleanInstructions ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;vertical-align:top;">Instructions</td><td style="padding:9px 14px;white-space:pre-wrap;">${esc(cleanInstructions)}</td></tr>` : ''}
       ${artworkUrl ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Artwork 1</td><td style="padding:9px 14px;"><a href="${artworkUrl}" style="color:#fb6e1d;font-weight:600;">View File</a></td></tr>` : ''}
       ${artworkUrl2 ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Artwork 2</td><td style="padding:9px 14px;"><a href="${artworkUrl2}" style="color:#fb6e1d;font-weight:600;">View File</a></td></tr>` : ''}
       ${pageUrl ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Page</td><td style="padding:9px 14px;"><a href="${esc(pageUrl)}" style="color:#333;">${esc(pageUrl)}</a></td></tr>` : ''}
@@ -385,7 +398,7 @@ export async function POST(req: Request) {
         design_backing: details.backing,
         patches_quantity: details.quantity,
         design_size: sizeLabel,
-        instructions: details.instructions || details.placement || '',
+        instructions: cleanInstructions || details.placement || '',
         customer_attachment_urls: [artworkUrl, artworkUrl2].filter(Boolean) as string[],
         sales_agent: 'WEBSITE_BOT',
         lead_source: leadSource,
