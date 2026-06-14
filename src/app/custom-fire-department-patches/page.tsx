@@ -247,7 +247,7 @@ export default async function FireDepartmentPatchesPage() {
           </h2>
           <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
             <p>
-              Order the best firefighter patches in the US, where excellence meets craftsmanship. Our fire department patch designs are meticulously crafted to stand out, combining durability with detailed artistry. As a leading fire department patch creator, we offer unique fire dept patch designs that capture the spirit and pride of your team. Our patches are known for their high quality materials, vibrant colors, and long lasting wear, making them the go-to choice for fire departments nationwide. Choose us for unmatched quality and service that ensures your patches make a statement.
+              Order the best firefighter patches in the US, where excellence meets craftsmanship. Our fire department patch designs are meticulously crafted to stand out, combining durability with detailed artistry. As a leading fire department patch creator, we offer unique fire dept patch designs that capture the spirit and pride of your team. Our patches are known for their high quality materials, vibrant colors, and long lasting wear, making them the go-to choice for fire departments nationwide. Choose us for unmatched quality and service that ensures your patches make a statement. For July 4, 2026, many departments also order commemorative <a href="/custom-250th-anniversary-patches" className="text-panda-green font-semibold underline">250th anniversary patches</a> for America&apos;s semiquincentennial.
             </p>
           </div>
         </div>

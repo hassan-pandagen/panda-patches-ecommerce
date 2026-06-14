@@ -347,7 +347,7 @@ export default async function BulkCustomPatchesPage() {
 
             <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
               <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Military, Veteran & Motorcycle Organizations</h3>
-              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">From unit insignia to motorcycle club back patches, we serve communities that take their patches seriously. <Link href="/custom-patches/pvc" className="text-panda-green font-semibold underline">PVC with Velcro backing</Link> for tactical applications, large embroidered back patches for riding clubs, and small patches for caps and vests.</p>
+              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">From unit insignia to motorcycle club back patches, we serve communities that take their patches seriously. <Link href="/custom-patches/pvc" className="text-panda-green font-semibold underline">PVC with Velcro backing</Link> for tactical applications, large embroidered back patches for riding clubs, and small patches for caps and vests. Veterans groups, VFW posts, and departments also order commemorative runs for <Link href="/custom-250th-anniversary-patches" className="text-panda-green font-semibold underline">America&apos;s 250th anniversary in 2026</Link>.</p>
             </div>
 
             <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">

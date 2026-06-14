@@ -11,6 +11,21 @@ const nextConfig = {
   // Tell Next.js NOT to bundle these packages — load them natively via Node.js require().
   // Prevents dev-server worker crashes caused by bundler incompatibilities with the PayPal SDK.
   serverExternalPackages: ['@paypal/paypal-server-sdk', 'sharp'],
+  // Watermark (sharp) crashed on Vercel: "libvips-cpp.so.8.18.3: cannot open
+  // shared object file". sharp 0.33+ splits native code into @img/sharp-linux-x64
+  // (the .node loader) and @img/sharp-libvips-linux-x64 (libvips-cpp.so, dlopen'd
+  // at runtime). Next's file tracing follows the .node but not the dlopen'd .so,
+  // so libvips was missing from the serverless function. This is the documented
+  // fix (Next.js output docs list sharp under native-asset includes); the doc's
+  // "node_modules/sharp/**/*" alone is NOT enough for 0.33+, so we add the two
+  // @img packages. Key = route path without "/route" (vercel/next.js #55228).
+  outputFileTracingIncludes: {
+    '/api/ai-patch/generate': [
+      './node_modules/sharp/**/*',
+      './node_modules/@img/sharp-linux-x64/**/*',
+      './node_modules/@img/sharp-libvips-linux-x64/**/*',
+    ],
+  },
   images: {
     remotePatterns: [
       {
@@ -553,12 +568,12 @@ const nextConfig = {
       { source: '/shop/:path*',         destination: '/custom-patches',      permanent: true },
       { source: '/product/:path*',      destination: '/custom-patches',      permanent: true },
       { source: '/product-category/:path*', destination: '/custom-patches', permanent: true },
-      { source: '/cart',                destination: '/',                    permanent: true },
-      { source: '/cart/',               destination: '/',                    permanent: true },
-      { source: '/checkout',            destination: '/',                    permanent: true },
-      { source: '/checkout/',           destination: '/',                    permanent: true },
-      { source: '/my-account',          destination: '/',                    permanent: true },
-      { source: '/my-account/',         destination: '/',                    permanent: true },
+      // T1: /cart and /checkout are not real pages here (ordering happens on
+      // /offers and the product calculators). 301-ing them to the homepage made
+      // Google treat them as soft-404 homepage duplicates, so they are removed
+      // and now return a proper 404. /my-account 301s to the real /account page.
+      { source: '/my-account',          destination: '/account',             permanent: true },
+      { source: '/my-account/',         destination: '/account',             permanent: true },
 
       // CATCH-ALL TRAILING SLASH — must be LAST (handles any remaining /:slug/ paths)
       {

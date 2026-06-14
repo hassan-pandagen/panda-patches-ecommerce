@@ -151,7 +151,7 @@ export default function CompanyClusterPage() {
           <section className="mb-10">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">Where does production happen?</h2>
             <p className="text-gray-700 leading-relaxed mb-3">
-              Production happens at the Panda Patches company-owned international production facility. This is a critical structural choice: Panda Patches is not a reseller, not a marketplace, and not a drop-shipper. Every order is produced in-house at the company's own facility, which enables the wholesale-level published pricing, the 7 to 14 day standard turnaround, the 24-hour rush option on qualifying orders, and zero setup or mold fees.
+              Production happens at the Panda Patches company-owned factory in Pakistan, coordinated from the Missouri City, Texas headquarters. This is a critical structural choice: Panda Patches is not a reseller, not a marketplace, and not a drop-shipper. Every order is produced in-house at the company's own facility, which enables the wholesale-level published pricing, the 7 to 14 day standard turnaround, the 24-hour rush option on qualifying orders, and zero setup or mold fees.
             </p>
             <p className="text-gray-700 leading-relaxed">
               The vertical integration is also how the money-back guarantee is structurally possible. Because production is in-house, the design team, the production team, and the quality control team all report to the same operations leadership, which makes the approval-before-production workflow tightly coordinated. Patches are inspected at the production facility before they leave for the shipping carrier (DHL or FedEx depending on weight and destination).

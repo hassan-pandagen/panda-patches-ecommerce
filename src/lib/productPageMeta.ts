@@ -42,6 +42,12 @@ const productPageMeta: Record<string, ProductPageMeta> = {
     ogTitle: "Custom Leather Patches from $1.50 | 24h Mockup | 5pc Min",
     ogDescription: "Leather patches from $1.50/pc. Premium real and vegan leather for hats, bags, apparel. 12-24h mockup, ships in 7-14 days.",
   },
+  "custom-3d-embroidered-transfers": {
+    title: "Custom 3D Embroidered Transfers from $1.58 | 5pc Min",
+    description: "Custom 3D embroidered transfers from $1.58/pc. Raised foam-underlay texture, heat-pressed onto apparel with no sewing. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days.",
+    ogTitle: "Custom 3D Embroidered Transfers from $1.58 | 24h Mockup | 5pc Min",
+    ogDescription: "3D embroidered transfers from $1.58/pc. Raised foam texture, heat-pressed, no sewing. 12-24h mockup, 5-piece minimum, ships in 7-14 days.",
+  },
   "custom-chenille-glitter-patches": {
     title: "Custom Chenille Glitter Patches | 24h Mockup",
     description: "Custom chenille glitter patches with sparkling yarn for varsity jackets, cheer, dance, and fashion. Low 5-piece minimum, digital mockup in 12 to 24 hours.",
