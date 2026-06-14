@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { client, urlFor } from "@/lib/sanity";
+import { getFromPrice, FROM_PRICE_QUALIFIER } from "@/lib/pricingCalculator";
 
 async function getProducts() {
   try {
@@ -80,20 +81,26 @@ function getProductDescription(title: string, sanityDesc: string): string {
   return descMap[title] || sanityDesc;
 }
 
-// Map product titles to their starting prices
-function getProductPrice(title: string): string {
-  const priceMap: { [key: string]: string } = {
-    'Custom Embroidered Patches': '0.85',
-    'Custom PVC Patches': '0.50',
-    'Custom Chenille Patches': '2.50',
-    'Custom Woven Patches': '1.20',
-    'Custom Leather Patches': '1.50',
-    'Custom Printed Patches': '0.75',
-    'Custom No Background 3D Embroidery': '1.00',
-    'Custom Sequin Patches': '2.00',
-  };
+// Patch product titles that carry per-piece pricing. Everything else in the
+// grid (pins, coins, keychains, PVC charms) is quote-only and shows no
+// per-piece price, so we never display a misleading number for them.
+const PATCH_PRODUCT_TITLES = new Set([
+  'Custom Embroidered Patches',
+  'Custom PVC Patches',
+  'Custom Chenille Patches',
+  'Custom Woven Patches',
+  'Custom Leather Patches',
+  'Custom Printed Patches',
+  'Custom No Background 3D Embroidery',
+  'Custom Sequin Patches',
+]);
 
-  return priceMap[title] || '0.99';
+// "From" price at the canonical 2"x2"/1,000-pc basis, from the single pricing
+// source so it always matches the calculator (PAE792). Returns null for
+// non-patch products.
+function getProductFromPrice(title: string): number | null {
+  if (!PATCH_PRODUCT_TITLES.has(title)) return null;
+  return getFromPrice(title);
 }
 
 export default async function ProductGrid() {
@@ -106,9 +113,11 @@ export default async function ProductGrid() {
         {/* HEADER TEXT */}
         <div className="text-center mb-16 space-y-6">
           <h2 className="text-[26px] md:text-[40px] font-semibold text-panda-dark uppercase leading-tight tracking-tight">
-            PICK YOUR PATCH TYPE. <br />
-            FROM $0.85/PIECE
+            PICK YOUR PATCH TYPE
           </h2>
+          <p className="text-[13px] md:text-[15px] text-gray-500 font-medium max-w-[760px] mx-auto -mt-2">
+            Transparent USD pricing. The per-piece price drops as quantity rises, so smaller orders cost more per piece. Each &ldquo;from&rdquo; price is for {FROM_PRICE_QUALIFIER}. Enter your size and quantity for your exact price.
+          </p>
           <p className="text-[14px] md:text-[17px] text-gray-800 leading-[1.8] max-w-[1020px] mx-auto font-medium">
             From personalized logo patches, to <Link href="/custom-name-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">personalized name patch</Link>, from <Link href="/custom-tactical-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">military patches</Link>, to <Link href="/custom-jacket-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">personalized patches for jackets</Link>, and custom <Link href="/custom-velcro-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">Velcro patches</Link>,
             our tailored selection ensures a lasting impression, showcasing your unique style. At Panda Patches, we&apos;re dedicated to providing personalized iron on
@@ -167,7 +176,7 @@ function CustomGridPlusIcon({ className }: { className?: string }) {
 // === PRODUCT CARD ===
 function ProductCard({ item, showTag, priority }: { item: any; showTag?: boolean; priority?: boolean }) {
   const href = getProductUrl(item.title);
-  const price = getProductPrice(item.title);
+  const fromPrice = getProductFromPrice(item.title);
   const description = getProductDescription(item.title, item.description);
 
   return (
@@ -220,10 +229,20 @@ function ProductCard({ item, showTag, priority }: { item: any; showTag?: boolean
           {description}
         </p>
 
-        {/* Pricing */}
-        <p className="text-[16px] font-bold text-panda-dark">
-          From ${price}/piece
-        </p>
+        {/* Pricing — always carries its 2"x2"/1,000-pc qualifier; never a bare
+            per-piece figure. Quote-only products show no per-piece price. */}
+        {fromPrice !== null ? (
+          <div>
+            <p className="text-[16px] font-bold text-panda-dark">
+              From ${fromPrice.toFixed(2)}/pc
+            </p>
+            <p className="text-[11px] text-gray-400 font-medium leading-tight">
+              {FROM_PRICE_QUALIFIER}
+            </p>
+          </div>
+        ) : (
+          <p className="text-[16px] font-bold text-panda-dark">Get a quote</p>
+        )}
       </div>
 
       {/* 

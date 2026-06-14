@@ -53,7 +53,7 @@ const ironOnFAQs = [
   {
     question: "How much do custom iron-on patches cost?",
     answer:
-      "Iron-on patches are priced as base patch price plus zero backing upcharge. Iron-on is standard backing on all eligible patch types. Embroidered iron-on patches start at $1.20 per piece at 1,000 quantity under 4 inches, $2.40 per piece at 100 quantity, and $3.60 per piece at the 50-piece starter pack. Woven iron-on starts at $2.00 per piece at 1,000 quantity. Printed iron-on starts at $0.71 per piece at 5,000 quantity (2-inch reference). The published per-piece price includes free worldwide shipping, the digital mockup in 12 to 24 hours, and unlimited free revisions.",
+      "Iron-on is standard backing on all eligible patch types, so iron-on patches are priced the same as the base patch with no backing upcharge. Embroidered iron-on starts at $0.91 per piece at 2x2 inches and 1,000 pieces; smaller orders cost more per piece (about $2.55 each at 100 pieces and $3.92 each at 50, for a 3-inch patch). Woven iron-on starts at $1.54 per piece and printed iron-on at $0.74 per piece, both at 2x2 inches and 1,000 pieces. The published per-piece price includes free worldwide shipping, the digital mockup in 12 to 24 hours, and unlimited free revisions.",
   },
 ];
 
@@ -96,9 +96,9 @@ export const metadata: Metadata = buildPageMetadata({
   ogType: "article",
   ogTitle: "Custom Iron-On Patches: Heat-Seal Backing, 5-Piece Min, Free Worldwide Shipping",
   ogDescription:
-    "Iron-on patches in embroidered, woven, printed, and leather. Application steps, wash-care, backing compatibility, and pricing on the standard quantity+size basis. From $0.85/pc at volume.",
+    "Iron-on patches in embroidered, woven, printed, and leather. Application steps, wash-care, backing compatibility, and pricing on the standard quantity and size basis. From $0.91/pc at 2x2 inches and 1,000 pieces; smaller orders cost more per piece.",
   twitterDescription:
-    "Iron-on patches in embroidered, woven, printed, and leather. From $0.85/pc at volume. Mockup in 12-24 hours, money-back guarantee.",
+    "Iron-on patches in embroidered, woven, printed, and leather. From $0.91/pc at 2x2 inches and 1,000 pieces. Mockup in 12-24 hours, money-back guarantee.",
   robots: { index: true, follow: true },
 });
 
@@ -131,7 +131,7 @@ const productSchema = {
     "@type": "AggregateOffer",
     priceCurrency: "USD",
     itemCondition: "https://schema.org/NewCondition",
-    lowPrice: "1.20",
+    lowPrice: "0.91",
     highPrice: "3.60",
     offerCount: "4",
     seller: { "@type": "Organization", name: "Panda Patches" },

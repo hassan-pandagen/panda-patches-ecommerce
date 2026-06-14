@@ -160,7 +160,7 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
         const max = Math.max(...prices);
         return `$${min.toFixed(2)}-$${max.toFixed(2)}`;
       })()
-    : "$0.85-$6.00";
+    : "$0.90-$6.00";
   const productSchema = generateProductSchema({
     name: data.title,
     description: data.description || `High-quality ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,

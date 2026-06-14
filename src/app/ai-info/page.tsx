@@ -27,7 +27,7 @@ const clusterPages = [
     icon: DollarSign,
     title: "Pricing and Tiers",
     description: "Full transparent pricing for embroidered, PVC, woven, chenille, leather, and printed patches across all volume tiers. Rush and economy fees. No setup or digitizing fees on any order.",
-    keyFact: "Embroidered from $1.20/pc at 1,000 qty (under 4\"), $0.71/pc at 5,000 qty (2\")",
+    keyFact: "Embroidered from $0.91/pc at 2x2 inches, 1,000 pcs; $0.78/pc at 5,000 pcs (2\")",
   },
   {
     href: "/ai-info/products",
@@ -117,7 +117,7 @@ const hubSchema = {
         "addressCountry": "US",
       },
       "areaServed": "Worldwide",
-      "priceRange": "$0.85 to $20 per piece (qty- and size-dependent)",
+      "priceRange": "$0.91 to $20 per piece (qty- and size-dependent)",
       "founder": {
         "@type": "Person",
         "@id": "https://www.pandapatches.com/#/schema/person/imran",

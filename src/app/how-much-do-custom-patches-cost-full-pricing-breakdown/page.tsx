@@ -19,12 +19,12 @@ const BASE = 'https://www.pandapatches.com';
 const CANONICAL = `${BASE}/how-much-do-custom-patches-cost-full-pricing-breakdown`;
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'How Much Do Custom Patches Cost? $0.85 to $7/pc (2026)',
+  title: 'How Much Do Custom Patches Cost? $0.91/pc at 1,000 (2026)',
   description:
-    'Custom patches cost $0.85 to $7 per piece in 2026. Full pricing tables for embroidered, woven, PVC, chenille, and leather patches by quantity and size. Free shipping included.',
+    'Custom patches cost from $0.91/pc at 1,000 pieces; smaller orders cost more per piece. Full 2026 price tables for embroidered, woven, PVC, chenille, and leather by quantity and size. Free shipping included.',
   url: CANONICAL,
   ogDescription:
-    'Custom patch pricing in 2026. From $0.85/pc at volume to $80 flat for a single patch. Full tables by type and quantity. Mockup in 12-24 hours, free shipping.',
+    'Custom patch pricing in 2026. From $0.91/pc at 1,000 pieces up to $80 flat for a single patch. Smaller orders cost more per piece. Full tables by type and quantity. Free shipping.',
   image: { url: `${BASE}/assets/og-image.png`, width: 1200, height: 630, alt: 'Custom Patch Pricing' },
   robots: { index: true, follow: true },
 });
@@ -130,7 +130,7 @@ const faqSchema = {
       name: 'What affects the price of custom patches?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Three main factors affect patch price: (1) Quantity — more patches means a lower per-piece price. (2) Size — larger patches cost more. (3) Patch type — woven patches are typically cheaper per piece at volume than embroidered; PVC and chenille cost slightly more. Velcro backing adds $30 to the order.',
+        text: 'Three main factors affect patch price: (1) Quantity, since more patches means a lower per-piece price. (2) Size, since larger patches cost more. (3) Patch type: embroidered is typically the most affordable per piece, while woven, PVC, and chenille cost more depending on size and quantity. Velcro backing adds $30 to the order.',
       },
     },
     {
@@ -154,7 +154,7 @@ const faqSchema = {
       name: 'What is the cheapest custom patch option?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Woven patches are the lowest-cost option at volume, starting at $1.49/pc at 5,000 pieces for a 3-inch patch. Embroidered patches start at $0.71/pc at 5,000 pieces and are the most popular choice.',
+        text: 'Embroidered patches are the lowest-cost of the popular options at volume, starting at about $0.90/pc at 5,000 pieces for a 3-inch patch, and are the most-ordered choice. Woven patches cost more, around $2.49/pc at the same volume, because of the tighter weave.',
       },
     },
   ],
@@ -207,17 +207,17 @@ export default function PricingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(buildProductSchema(
         'Custom Embroidered Patches',
-        'Custom embroidered patches with mockup in 12-24 hours, free shipping, and a low 5-piece minimum order. From $0.71/pc at volume.',
+        'Custom embroidered patches with mockup in 12-24 hours, free shipping, and a low 5-piece minimum order. From $0.91/pc at 2x2 inches and 1,000 pieces; smaller orders cost more per piece.',
         embTiers
       ))} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(buildProductSchema(
         'Custom Woven Patches',
-        'Custom woven patches with fine-detail thread, minimum 10 pieces. From $1.49/pc at volume.',
+        'Custom woven patches with fine-detail thread, minimum 10 pieces. From $1.54/pc at 2x2 inches and 1,000 pieces; smaller orders cost more per piece.',
         wovenTiers
       ))} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(buildProductSchema(
         'Custom PVC Patches',
-        'Custom PVC patches, waterproof and 3D textured. Low 5-piece minimum. From $1.40/pc at volume.',
+        'Custom PVC patches, waterproof and 3D textured. Low 5-piece minimum. From $1.54/pc at 2x2 inches and 1,000 pieces; smaller orders cost more per piece.',
         pvcTiers
       ))} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(faqSchema)} />
@@ -231,7 +231,7 @@ export default function PricingPage() {
             How Much Do Custom Patches Cost?
           </h1>
           <p className="text-lg text-gray-200 leading-relaxed max-w-3xl">
-            <Link href="/custom-patches/embroidered" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Custom embroidered patches</Link> cost <strong className="text-[#dcff70]">$0.85 to $5.87 per piece</strong> for a 3-inch patch, depending on quantity. A 25-pack runs about $147 total; a 100-pack runs about $255. Free worldwide shipping and a mockup in 12-24 hours are included on every order. No setup fees. <Link href="/custom-patches/woven" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Woven patches</Link> are typically a few cents cheaper at volume.
+            <Link href="/custom-patches/embroidered" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Custom embroidered patches</Link> cost <strong className="text-[#dcff70]">$0.90 to $5.87 per piece</strong> for a 3-inch patch, depending on quantity. A 25-pack runs about $147 total; a 100-pack runs about $255. Smaller orders cost more per piece. Free worldwide shipping and a mockup in 12-24 hours are included on every order. No setup fees. <Link href="/custom-patches/woven" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Woven patches</Link> cost more per piece because of the finer weave.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link

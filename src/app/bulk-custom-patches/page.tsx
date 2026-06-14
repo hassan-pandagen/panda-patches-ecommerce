@@ -60,14 +60,14 @@ export async function generateMetadata(): Promise<Metadata> {
     // "for 100+ Pieces" title excluded the large 5-50 piece + "no minimum"
     // demand and buried the price. New title leads with wholesale + per-piece
     // price + "no setup fees" hook, and stays honest on the 5-piece minimum.
-    title: "Bulk Custom Patches: Wholesale Pricing from $0.85/pc",
-    description: "Bulk custom patches at wholesale prices from $0.85/pc. Full per-piece pricing, no setup or digitizing fees, free US shipping, mockup in 24 hours. From 5 pieces.",
+    title: "Bulk Custom Patches: Real Wholesale Pricing, No Setup Fees",
+    description: "Bulk custom patches at honest wholesale prices. See the full per-piece pricing ladder by quantity, with no setup or digitizing fees, free US shipping, and a mockup in 24 hours. From 5 pieces.",
     url: "https://www.pandapatches.com/bulk-custom-patches",
     image: { url: ogImage, alt: "Panda Patches - Bulk Custom Patches" },
-    ogTitle: "Bulk Custom Patches | Wholesale Per-Piece Pricing from $0.85 | Panda Patches",
+    ogTitle: "Bulk Custom Patches | Real Wholesale Pricing, No Setup Fees | Panda Patches",
     ogDescription:
-      "Order bulk custom patches at wholesale prices from $0.85/pc. Embroidered, PVC, chenille, woven, leather. No setup fees, free US shipping, mockup in 12-24 hours.",
-    twitterDescription: "Bulk custom patches at wholesale prices from $0.85/pc. No setup fees, free US shipping, mockup in 12-24 hours.",
+      "Order bulk custom patches at honest wholesale prices with no setup fees. Embroidered, PVC, chenille, woven, leather. Free US shipping, mockup in 12-24 hours. From 5 pieces.",
+    twitterDescription: "Bulk custom patches at honest wholesale prices. No setup fees, free US shipping, mockup in 12-24 hours.",
   });
 }
 
@@ -94,7 +94,7 @@ const productSchema = {
   offers: {
     "@type": "AggregateOffer",
     priceCurrency: "USD",
-    lowPrice: "0.85",
+    lowPrice: "0.91",
     highPrice: "6.00",
     offerCount: "4",
     availability: "https://schema.org/InStock",
@@ -366,15 +366,15 @@ export default async function BulkCustomPatchesPage() {
             Materials & Patch Types
           </h2>
           <p className="text-center text-gray-500 text-[14px] md:text-[16px] mb-10 md:mb-14 max-w-[560px] mx-auto">
-            Every bulk order can mix patch types. Choose what fits your project.
+            Every bulk order can mix patch types. Prices shown are per piece at 2x2 inches and 1,000 pieces; smaller orders cost more per piece.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
-              { type: "Embroidered", best: "Uniforms, teams, classic logos", from: "$0.85/pc", note: "Most popular for bulk" },
-              { type: "PVC / Rubber", best: "Outdoor gear, tactical, waterproof use", from: "$1.10/pc", note: "Extremely durable" },
-              { type: "Woven", best: "Fine detail, small text, labels", from: "$0.90/pc", note: "Thin and lightweight" },
-              { type: "Chenille", best: "Varsity jackets, colleges, retro brands", from: "$2.50/pc", note: "Premium textured look" },
-              { type: "Leather", best: "Motorcycle clubs, luxury branding", from: "$1.80/pc", note: "Real or faux leather" },
+              { type: "Embroidered", best: "Uniforms, teams, classic logos", from: "$0.91/pc", note: "Most popular for bulk" },
+              { type: "PVC / Rubber", best: "Outdoor gear, tactical, waterproof use", from: "$1.54/pc", note: "Extremely durable" },
+              { type: "Woven", best: "Fine detail, small text, labels", from: "$1.54/pc", note: "Thin and lightweight" },
+              { type: "Chenille", best: "Varsity jackets, colleges, retro brands", from: "$1.31/pc", note: "Premium textured look" },
+              { type: "Leather", best: "Motorcycle clubs, luxury branding", from: "$1.55/pc", note: "Real or faux leather" },
               { type: "Custom Die-Cut", best: "Any shape, any size, any style", from: "Custom quote", note: "Fully bespoke" },
             ].map((item, idx) => (
               <div key={idx} className="border border-gray-200 rounded-[14px] p-5 hover:border-panda-green hover:shadow-md transition-all">

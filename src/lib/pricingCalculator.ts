@@ -147,13 +147,15 @@ const pvcPricing = {
 
 // Woven Pricing - 10% below previous benchmark (additional 5% off competitor-benchmarked prices)
 // Minimum order: 10 patches | Qty breaks: 10, 25, 50, 100, 200, 500, 1000, 5000 | Sizes 1-8
+// Sizes 1-2 at 1,000 and 5,000 qty set to 1.40 base ($1.54/pc) to match PVC at volume
+// per CEO, June 2026. Keeps the advertised 2"x2"/1,000 "from" price level with PVC.
 const wovenPricing = {
   qtyBreaks: [10, 25, 50, 100, 200, 500, 1000, 5000],
   minQty: 10,
   prices: {
     //         10      25      50     100    200    500   1000   5000
-    1:  [12.50,  5.60,  4.51,  2.62,  2.46,  1.63,  1.49,  1.49],
-    2:  [13.00,  6.00,  4.51,  3.38,  3.11,  2.54,  1.98,  1.98],
+    1:  [12.50,  5.60,  4.51,  2.62,  2.46,  1.63,  1.40,  1.40],
+    2:  [13.00,  6.00,  4.51,  3.38,  3.11,  2.54,  1.40,  1.40],
     3:  [13.54,  7.33,  4.87,  3.61,  3.51,  2.82,  2.26,  2.26],
     4:  [15.80,  7.89,  5.08,  3.95,  3.67,  3.11,  2.54,  2.54],
     5:  [18.05,  9.25,  5.87,  4.63,  4.07,  3.61,  2.94,  2.94],
@@ -337,6 +339,36 @@ export function calculatePatchPrice(
     totalPrice,
     patchSize: lookupSize
   };
+}
+
+/**
+ * Canonical advertised "from" price (PAE792 anti-misleading-pricing).
+ *
+ * Every user-facing "from $X" must use this single basis: a 2"x2" patch at
+ * 1,000 pieces. Driving cards, titles, and hero copy from this one function
+ * means the advertised number always equals what the calculator returns at the
+ * stated basis, and the qualifier ("2x2, 1,000 pcs") must always travel with
+ * it. NEVER render a bare "from $X/pc" without that qualifier.
+ *
+ * Returns the per-piece price (with the global uplift already applied), rounded
+ * to cents.
+ */
+export const FROM_PRICE_BASIS = { width: 2, height: 2, quantity: 1000 } as const;
+export const FROM_PRICE_QUALIFIER = '2" x 2", 1,000 pcs';
+
+export function getFromPrice(productName: string): number {
+  const { unitPrice } = calculatePatchPrice(
+    productName,
+    FROM_PRICE_BASIS.width,
+    FROM_PRICE_BASIS.height,
+    FROM_PRICE_BASIS.quantity
+  );
+  return Math.round(unitPrice * 100) / 100;
+}
+
+/** Formatted "$X.XX" for the 2"x2"/1,000-pc basis. */
+export function getFromPriceLabel(productName: string): string {
+  return `$${getFromPrice(productName).toFixed(2)}`;
 }
 
 /**

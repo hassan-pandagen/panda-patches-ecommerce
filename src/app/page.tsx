@@ -41,19 +41,19 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   // Title 60 chars, meta 155 chars per WEBSIT_1.MD T8. Canonical "from"
-  // price is $0.85/pc (CEO confirmed June 2026, WEBSIT_1.MD T2) and applies
-  // to homepage card, section header, and page title. This is the lowest
-  // bulk embroidered price and matches what the configurator quotes at
-  // larger volumes, so any AI engine or human visitor verifying the number
-  // against the live cart will see consistency.
+  // price is $0.91/pc, the embroidered rate the calculator returns at the
+  // 2"x2", 1,000-pc basis (getFromPrice in pricingCalculator.ts). PAE792
+  // supersedes the earlier $0.85 teaser: every advertised "from" price now
+  // states that 2x2/1,000 basis so it can never be misread as a 5-piece
+  // price, and it equals what the live configurator quotes at that basis.
   return buildPageMetadata({
-    title: "Custom Patches from $0.85/pc | 24h Mockup, 5pc Min",
-    description: "Custom embroidered, PVC, woven, chenille and leather patches from $0.85/pc. 5-piece minimum, digital mockup in 12 to 24 hours, free worldwide shipping.",
+    title: "Custom Patches from $0.91/pc (1k) | Free Design, 24h Mockup",
+    description: "Custom embroidered, PVC, woven & leather patches from $0.91/pc (2x2, 1,000 pcs). Smaller orders cost more per piece. 5-piece minimum, free worldwide shipping.",
     url: "https://www.pandapatches.com",
-    image: { url: ogImageUrl, alt: "Panda Patches custom embroidered, PVC, and woven patches from $0.85 per piece" },
-    ogTitle: "Custom Patches from $0.85/pc. Free Design. 24h Mockup.",
-    ogDescription: "1,000,000+ patches delivered. Custom embroidered, PVC, chenille and woven from $0.85/pc with free artwork, no setup fees, mockup in 12 to 24 hours.",
-    twitterDescription: "1,000,000+ patches delivered. From $0.85/pc. Free artwork, no setup fees, mockup in 12-24 hours.",
+    image: { url: ogImageUrl, alt: "Panda Patches custom embroidered, PVC, and woven patches from $0.91 per piece at 2x2 inches and 1,000 pieces" },
+    ogTitle: "Custom Patches from $0.91/pc (1k). Free Design. 24h Mockup.",
+    ogDescription: "1,000,000+ patches delivered. Custom embroidered, PVC, chenille and woven from $0.91/pc (2x2, 1,000 pcs) with free artwork, no setup fees, mockup in 12 to 24 hours.",
+    twitterDescription: "1,000,000+ patches delivered. From $0.91/pc (2x2, 1k pcs). Free artwork, no setup fees, mockup in 12-24 hours.",
     robots: {
       index: true,
       follow: true,
@@ -101,7 +101,7 @@ const homeFaqSchema = {
       "name": "How much do custom patches cost at Panda Patches?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Custom embroidered patches cost $3.60 per piece at 50 pieces, $2.40 at 100 pieces, $1.50 at 500 pieces, and $1.20 at 1,000 pieces. PVC patches cost $4.60 at 50 pieces, $3.40 at 100, $2.80 at 500, and $2.20 at 1,000. All prices include free worldwide shipping and a digital mockup in 12 to 24 hours. No setup fees on any order.",
+        "text": "Custom embroidered patches cost about $3.92 per piece at 50 pieces, $2.55 at 100 pieces, $1.18 at 500 pieces, and $1.05 at 1,000 pieces for a 3-inch patch. PVC patches cost about $6.19 at 50 pieces, $4.33 at 100, $3.10 at 500, and $2.78 at 1,000. Smaller orders cost more per piece. All prices include free worldwide shipping and a digital mockup in 12 to 24 hours. No setup fees on any order.",
       },
     },
     {

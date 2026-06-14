@@ -28,7 +28,7 @@ const ProcessSection = dynamic(() => import("@/components/home/ProcessSection"),
 export async function generateMetadata(): Promise<Metadata> {
   const ogImage = await getSanityOgImage();
   return buildPageMetadata({
-    title: "Custom Patches from $0.85/pc | Free Design | Panda Patches",
+    title: "Custom Patches from $0.91/pc (1k) | Free Design | Panda Patches",
     description: "Order custom patches in any style: embroidered, PVC, woven, chenille & leather. As low as 5 patches. Free artwork plus a mockup in 12-24 hours. Ships in 7-14 days. Trusted by 10,000+ brands. Get a free quote!",
     url: "https://www.pandapatches.com/custom-patches",
     image: { url: ogImage, alt: "Panda Patches - Custom Patches" },
@@ -60,7 +60,7 @@ const productSchema = {
   offers: {
     "@type": "AggregateOffer",
     priceCurrency: "USD",
-    lowPrice: "0.85",
+    lowPrice: "0.91",
     highPrice: "6.00",
     offerCount: "6",
     availability: "https://schema.org/InStock",
@@ -77,12 +77,12 @@ const productSchema = {
       },
     },
     offers: [
-      { "@type": "Offer", name: "Embroidered Patches", price: "0.85", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
-      { "@type": "Offer", name: "PVC Patches", price: "1.20", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
-      { "@type": "Offer", name: "Woven Patches", price: "0.95", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
-      { "@type": "Offer", name: "Chenille Patches", price: "2.50", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
-      { "@type": "Offer", name: "Leather Patches", price: "3.00", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
-      { "@type": "Offer", name: "Sequin Patches", price: "6.00", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "Embroidered Patches", price: "0.91", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "PVC Patches", price: "1.54", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "Woven Patches", price: "1.54", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "Chenille Patches", price: "1.31", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "Leather Patches", price: "1.55", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "Sequin Patches", price: "1.44", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
     ],
   },
 };
@@ -165,7 +165,7 @@ const faqSchema = {
       name: "How much do custom patches cost?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Pricing starts from $0.85 per patch for large bulk orders. Small orders of 5-10 patches typically range from $3-5 each. The price depends on patch type, size, and quantity. Get a free instant quote by uploading your design.",
+        text: "Pricing starts from $0.91 per patch for a 2x2-inch design at 1,000 pieces. Smaller orders cost more per piece, so small first runs of 5 to 10 patches typically range from $13 to $24 each. The price depends on patch type, size, and quantity. Get a free instant quote by uploading your design.",
       },
     },
     {
@@ -305,7 +305,7 @@ export default async function ProductLandingPage() {
             Not every patch is made the same way. The right type depends on your design, application, and budget. Here is a quick breakdown of all five custom patch types we produce.
           </p>
           <ul className="space-y-4 mb-8 text-[17px] leading-[1.8] text-gray-600">
-            <li><Link href="/custom-patches/embroidered" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">Embroidered patches</Link> are the most popular choice. Thread is stitched directly onto a twill backing, creating a textured, premium look. Best for logos, text, and bold designs with solid colors. From $0.85/pc at volume.</li>
+            <li><Link href="/custom-patches/embroidered" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">Embroidered patches</Link> are the most popular choice. Thread is stitched directly onto a twill backing, creating a textured, premium look. Best for logos, text, and bold designs with solid colors. From $0.91/pc at 2x2 inches and 1,000 pieces; smaller orders cost more per piece.</li>
             <li><Link href="/custom-patches/woven" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">Woven patches</Link> use thinner thread for a flatter, more detailed result. Ideal when your design has fine lines, small text, or gradient shading that embroidery cannot replicate cleanly.</li>
             <li><Link href="/custom-patches/pvc" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">PVC patches</Link> are made from soft rubber and are fully waterproof. The best option for tactical gear, outdoor equipment, bags, and anything exposed to weather or heavy wear.</li>
             <li><Link href="/custom-patches/chenille" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">Chenille patches</Link> deliver the classic varsity look. A raised, fuzzy pile surface with a felt backing. Standard for letterman jackets, sports teams, and award patches.</li>

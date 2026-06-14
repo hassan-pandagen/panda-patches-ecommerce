@@ -912,7 +912,7 @@ export default function ComplexCalculator({
               {fieldErrors.quantity ? (
                 <p className="text-red-500 text-[12px] mt-1.5 font-semibold">⚠ {fieldErrors.quantity}</p>
               ) : (
-                <p className="text-gray-500 text-[12px] mt-1.5 font-medium">Minimum order: 5 pieces</p>
+                <p className="text-gray-500 text-[12px] mt-1.5 font-medium">Minimum order: 5 pieces. Per-piece price drops as quantity goes up, so smaller orders cost more per piece. This calculator shows your exact price.</p>
               )}
             </div>
 

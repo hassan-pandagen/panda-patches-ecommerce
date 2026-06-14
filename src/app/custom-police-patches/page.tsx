@@ -127,7 +127,7 @@ const productSchema = {
   offers: {
     "@type": "AggregateOffer",
     priceCurrency: "USD",
-    lowPrice: "0.85",
+    lowPrice: "0.91",
     highPrice: "4.50",
     offerCount: "3",
     availability: "https://schema.org/InStock",

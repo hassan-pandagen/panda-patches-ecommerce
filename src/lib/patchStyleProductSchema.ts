@@ -194,7 +194,7 @@ const specificSchemas: Record<string, ProductSchemaData> = {
     name: "Custom Scout Patches",
     description: "Custom scout patches for Cub Scouts, Webelos, Boy Scouts, Girl Scouts, Venturing Crew, and Eagle Scout courts of honor. BSA Insignia Guide compliant. Patrol patches, troop numerals, council strips, segments, and event patches.",
     url: "https://www.pandapatches.com/custom-scout-patches",
-    lowPrice: "0.85",
+    lowPrice: "0.91",
     highPrice: "6.80",
     offerCount: "4",
     offers: [

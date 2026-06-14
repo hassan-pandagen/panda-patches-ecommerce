@@ -97,7 +97,7 @@ const PARTNER_FAQS = [
   },
   {
     question: "Is Panda Patches a wholesale custom patch supplier for resellers?",
-    answer: "Yes. Panda Patches serves wholesale custom patch resellers including distributors, agencies, embroidery shops, and uniform suppliers. Wholesale pricing tiers: 10 percent off at first order, 14 percent at 200 pieces per month, 18 percent at 500 pieces per month. Embroidered patches start at $1.32 per piece at 1,000 pieces for resellers. PVC from $2.20 per piece. All wholesale orders include a digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, no setup fees, no digitizing fees, and blind shipping under your agency name.",
+    answer: "Yes. Panda Patches serves wholesale custom patch resellers including distributors, agencies, embroidery shops, and uniform suppliers. Wholesale pricing tiers: 10 percent off at first order, 14 percent at 200 pieces per month, 18 percent at 500 pieces per month. Embroidered patches start at $1.32 per piece at 1,000 pieces for resellers. PVC from $2.20 per piece at 1,000 pieces. All wholesale orders include a digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, no setup fees, no digitizing fees, and blind shipping under your agency name.",
   },
   {
     question: "What are wholesale patch prices for resellers at Panda Patches?",

@@ -12,23 +12,26 @@ interface ProductPageMeta {
 }
 
 const productPageMeta: Record<string, ProductPageMeta> = {
+  // Prices = 2"x2" @ 1,000 pcs, the canonical basis (must equal getFromPrice()).
+  // "5pc minimum" lives in the description, never adjacent to the price in the
+  // title, to avoid the "5 patches at $X" misread (PAE792).
   "embroidered": {
-    title: "Custom Embroidered Patches from $0.85 | 24h Mockup | 5pc Min",
-    description: "Custom embroidered patches from $0.85/pc. Any size, shape & color. Iron-on, sew-on or velcro backing. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days. Get your free quote!",
-    ogTitle: "Custom Embroidered Patches from $0.85 | 24h Mockup | 5pc Min",
-    ogDescription: "Embroidered patches from $0.85/pc. Any size, shape & color. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days.",
+    title: "Custom Embroidered Patches from $0.91/pc (1k) | 24h Mockup",
+    description: "Custom embroidered patches from $0.91/pc for 2x2 inches at 1,000 pieces; smaller orders cost more per piece. Any size, shape & color. Iron-on, sew-on or velcro backing. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days.",
+    ogTitle: "Custom Embroidered Patches from $0.91/pc (1k) | 24h Mockup",
+    ogDescription: "Embroidered patches from $0.91/pc (2x2, 1,000 pcs); smaller orders cost more per piece. Any size, shape & color. 12-24h mockup, 5-piece minimum, ships in 7-14 days.",
   },
   "pvc": {
-    title: "Custom PVC Patches from $1.20 | Free Design | 5pc Min",
-    description: "Custom PVC patches built to last. Waterproof, flexible & 3D-molded. Perfect for tactical gear, outdoor brands & uniforms. 5-piece minimum, free design. Ships in 7-14 days. Order now!",
-    ogTitle: "Custom PVC Patches from $1.20 | Free Design | 5pc Min",
-    ogDescription: "PVC patches built to last. Waterproof, flexible & 3D-molded. Perfect for tactical gear, outdoor brands & uniforms. Free design, ships in 7-14 days.",
+    title: "Custom PVC Patches from $1.54/pc (1k) | 24h Mockup",
+    description: "Custom PVC patches from $1.54/pc for 2x2 inches at 1,000 pieces; smaller orders cost more per piece. Waterproof, flexible & 3D-molded for tactical gear, outdoor brands & uniforms. 5-piece minimum, free design. Ships in 7-14 days.",
+    ogTitle: "Custom PVC Patches from $1.54/pc (1k) | 24h Mockup",
+    ogDescription: "PVC patches from $1.54/pc (2x2, 1,000 pcs); smaller orders cost more per piece. Waterproof, flexible & 3D-molded for tactical gear & uniforms. Free design, ships in 7-14 days.",
   },
   "woven": {
-    title: "Custom Woven Patches from $0.65 | 5-Piece Min | 24h Mockup",
-    description: "Custom woven patches from $0.65/pc. Ultra-fine detail, thin profile, perfect for small text and complex logos. 5-piece minimum. Digital mockup in 12 to 24 hours. Ships in 7-14 days.",
-    ogTitle: "Custom Woven Patches from $0.65 | 5-Piece Min | 24h Mockup",
-    ogDescription: "Woven patches from $0.65/pc. Ultra-fine detail for small text and complex logos. 12-24h mockup, 5-piece minimum, ships in 7-14 days.",
+    title: "Custom Woven Patches from $1.54/pc (1k) | 24h Mockup",
+    description: "Custom woven patches from $1.54/pc for 2x2 inches at 1,000 pieces; smaller orders cost more per piece. Ultra-fine detail, thin profile, perfect for small text and complex logos. 10-piece minimum. Digital mockup in 12 to 24 hours. Ships in 7-14 days.",
+    ogTitle: "Custom Woven Patches from $1.54/pc (1k) | 24h Mockup",
+    ogDescription: "Woven patches from $1.54/pc (2x2, 1,000 pcs); smaller orders cost more per piece. Ultra-fine detail for small text and complex logos. 12-24h mockup, ships in 7-14 days.",
   },
   "chenille": {
     title: "Custom Chenille Patches | Varsity & Letterman | Free Design",
@@ -37,16 +40,16 @@ const productPageMeta: Record<string, ProductPageMeta> = {
     ogDescription: "Chenille patches for varsity and letterman jackets. Soft raised texture, vibrant colors. 12-24h mockup, ships in 7-14 days.",
   },
   "leather": {
-    title: "Custom Leather Patches from $1.50 | 24h Mockup | 5pc Min",
-    description: "Custom leather patches from $1.50/pc. Premium real and vegan leather for hats, bags, and apparel. Debossed or laser-engraved. Digital mockup in 12 to 24 hours. Ships in 7-14 days.",
-    ogTitle: "Custom Leather Patches from $1.50 | 24h Mockup | 5pc Min",
-    ogDescription: "Leather patches from $1.50/pc. Premium real and vegan leather for hats, bags, apparel. 12-24h mockup, ships in 7-14 days.",
+    title: "Custom Leather Patches from $1.55/pc (1k) | 24h Mockup",
+    description: "Custom leather patches from $1.55/pc for 2x2 inches at 1,000 pieces; smaller orders cost more per piece. Premium real and vegan leather for hats, bags, and apparel. Debossed or laser-engraved. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days.",
+    ogTitle: "Custom Leather Patches from $1.55/pc (1k) | 24h Mockup",
+    ogDescription: "Leather patches from $1.55/pc (2x2, 1,000 pcs); smaller orders cost more per piece. Premium real and vegan leather for hats, bags, apparel. 12-24h mockup, ships in 7-14 days.",
   },
   "custom-3d-embroidered-transfers": {
-    title: "Custom 3D Embroidered Transfers from $1.58 | 5pc Min",
-    description: "Custom 3D embroidered transfers from $1.58/pc. Raised foam-underlay texture, heat-pressed onto apparel with no sewing. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days.",
-    ogTitle: "Custom 3D Embroidered Transfers from $1.58 | 24h Mockup | 5pc Min",
-    ogDescription: "3D embroidered transfers from $1.58/pc. Raised foam texture, heat-pressed, no sewing. 12-24h mockup, 5-piece minimum, ships in 7-14 days.",
+    title: "Custom 3D Embroidered Transfers from $1.58/pc (1k)",
+    description: "Custom 3D embroidered transfers from $1.58/pc for 2x2 inches at 1,000 pieces; smaller orders cost more per piece. Raised foam-underlay texture, heat-pressed onto apparel with no sewing. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days.",
+    ogTitle: "Custom 3D Embroidered Transfers from $1.58/pc (1k) | 24h Mockup",
+    ogDescription: "3D embroidered transfers from $1.58/pc (2x2, 1,000 pcs); smaller orders cost more per piece. Raised foam texture, heat-pressed, no sewing. 12-24h mockup, ships in 7-14 days.",
   },
   "custom-chenille-glitter-patches": {
     title: "Custom Chenille Glitter Patches | 24h Mockup",

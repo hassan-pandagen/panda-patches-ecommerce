@@ -6,7 +6,7 @@ export const genericFaqs = [
   },
   {
     question: "Embroidered vs Woven vs Chenille vs PVC. Which should I choose?",
-    answer: "Each material has unique benefits. Embroidered patches offer classic texture at affordable cost, great for sports teams and fashion. Woven patches handle fine details perfectly, ideal for band logos and complex designs. PVC patches are waterproof and durable for outdoor use. Chenille has a luxury fuzzy feel for a premium look. EMBROIDERED: thread stitched onto twill, classic look, 2 to 4 inches ideal, from $0.85 per piece at volume. WOVEN: ultra-thin threads woven together, photo-like clarity, any size, from $0.65 per piece at volume. PVC: waterproof rubber, 3D effects, outdoor durable, from $1.20 per piece at volume. CHENILLE: fuzzy varsity look, raised felt backing, from $3.50 per piece at 100 pieces. Tell us your design and we will recommend the best option."
+    answer: "Each material has unique benefits. Embroidered patches offer classic texture at affordable cost, great for sports teams and fashion. Woven patches handle fine details perfectly, ideal for band logos and complex designs. PVC patches are waterproof and durable for outdoor use. Chenille has a luxury fuzzy feel for a premium look. EMBROIDERED: thread stitched onto twill, classic look, 2 to 4 inches ideal, from $0.91 per piece at 2x2 inches and 1,000 pieces. WOVEN: ultra-thin threads woven together, photo-like clarity, any size, from $1.54 per piece at 2x2 inches and 1,000 pieces. PVC: waterproof rubber, 3D effects, outdoor durable, from $1.54 per piece at 2x2 inches and 1,000 pieces. CHENILLE: fuzzy varsity look, raised felt backing, from $3.50 per piece at 100 pieces. Smaller orders cost more per piece. Tell us your design and we will recommend the best option."
   },
   {
     question: "What size should my patch be?",
@@ -14,7 +14,7 @@ export const genericFaqs = [
   },
   {
     question: "How much do custom patches cost?",
-    answer: "Custom patches start from $0.85 per piece at volume. Pricing depends on patch type, size, and quantity. Examples from the live calculator: 50 embroidered patches under 4 inches cost $3.60 each ($180 total). 100 embroidered = $2.40 each ($240 total). 500 = $1.50 each ($750 total). 1,000 = $1.20 each ($1,200 total). Small first runs of 5 to 10 patches typically land at $3 to $5 each. Free worldwide shipping, digital mockup in 12 to 24 hours, no setup fees. Economy delivery (16 to 18 business days) saves 10 percent off the order total."
+    answer: "Custom patches start from $0.91 per piece for a 2x2-inch embroidered design at 1,000 pieces. Smaller orders cost more per piece. Pricing depends on patch type, size, and quantity. Examples from the live calculator for a 3-inch embroidered patch: 50 pieces cost $3.92 each ($196 total). 100 = $2.55 each ($255 total). 500 = $1.18 each ($590 total). 1,000 = $1.05 each ($1,050 total). Small first runs of 5 to 10 patches typically land at $13 to $24 each. Free worldwide shipping, digital mockup in 12 to 24 hours, no setup fees. Economy delivery (16 to 18 business days) saves 10 percent off the order total."
   },
   {
     question: "What's your turnaround time?",

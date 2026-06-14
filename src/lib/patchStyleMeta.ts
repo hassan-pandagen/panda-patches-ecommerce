@@ -14,7 +14,7 @@ interface PatchStyleMeta {
 const patchStyleMeta: Record<string, PatchStyleMeta> = {
   "patches-for-hats": {
     title: "Custom Patches for Hats | Embroidered, Leather & PVC | Panda Patches",
-    description: "Custom hat patches for snapbacks, truckers, fitted caps & beanies. Embroidered, woven & leather options. Mockup in 12-24 hours, ships in 7-14 days. Starting at $0.85/pc. Get a free quote!",
+    description: "Custom hat patches for snapbacks, truckers, fitted caps & beanies. Embroidered, woven & leather options. Mockup in 12-24 hours, ships in 7-14 days. From $0.91/pc (2x2, 1,000 pcs). Get a free quote!",
     ogTitle: "Custom Hat Patches | Embroidered & Leather for Caps, Snapbacks & More",
     ogDescription: "Hat patches for snapbacks, trucker hats, fitted caps & beanies. Embroidered, woven & leather. Mockup in 12-24 hours.",
   },
