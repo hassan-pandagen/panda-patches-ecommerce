@@ -3,7 +3,6 @@ import { randomUUID } from "node:crypto";
 import { z } from "zod";
 
 import { generateImage } from "@/lib/aiGenerator";
-import { applyWatermark } from "@/lib/watermark";
 import { uploadGenerationAssets } from "@/lib/aiGenStorage";
 import { buildPatchPrompt, scrubPromptInjection } from "@/lib/patchPrompt";
 import { checkBlocklist } from "@/lib/aiGenBlocklist";
@@ -142,27 +141,13 @@ export async function POST(req: Request) {
     );
   }
 
-  // Step 6: watermark + upload. We compute both buffers concurrently with
-  // the upload helper — the watermark CPU work overlaps the storage round-trip.
-  let watermarked: Uint8Array;
-  try {
-    watermarked = await applyWatermark(result.imageBytes);
-  } catch (err) {
-    await supabase
-      .from("ai_generations")
-      .update({
-        provider: result.provider,
-        model: result.model,
-        status: "failed",
-        error_message: `watermark step failed: ${err instanceof Error ? err.message : "unknown"}`,
-        cost_usd: result.costUsd,
-      })
-      .eq("id", generationId);
-    return NextResponse.json(
-      { ok: false, generationId, error: "Could not finalize image" },
-      { status: 500 }
-    );
-  }
+  // Watermark removed (June 2026): the AI concept preview now serves the clean
+  // render. The tiled text watermark could not render on Vercel's serverless
+  // runtime (no system fonts, so sharp drew tofu boxes), and the page already
+  // states the image is an AI concept our designers refine before production.
+  // The browser preview and the team-facing clean file are now the same bytes,
+  // which also removes the sharp watermark step as a point of failure.
+  const watermarked = result.imageBytes;
 
   let upload;
   try {
