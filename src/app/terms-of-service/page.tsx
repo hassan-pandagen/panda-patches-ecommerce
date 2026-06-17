@@ -11,7 +11,7 @@ export const metadata: Metadata = buildPageMetadata({
 });
 
 export default function TermsOfServicePage() {
-  const lastUpdated = "February 18, 2026";
+  const lastUpdated = "June 16, 2026";
 
   return (
     <main className="min-h-screen bg-white">
@@ -44,8 +44,8 @@ export default function TermsOfServicePage() {
               embroidered, iron-on, velcro, woven, PVC, and printed patches, as well as challenge coins, enamel pins, and keychains.
             </p>
             <p className="text-[16px] leading-[1.8]">
-              All products are custom-manufactured to your specifications. As such, all sales are final upon production approval
-              (see Section 7: Refund Policy).
+              All products are custom-manufactured to your specifications. You may cancel for a full refund before you approve
+              your mockup; once you approve it and production begins, all sales are final (see Section 7).
             </p>
           </section>
 
@@ -117,10 +117,16 @@ export default function TermsOfServicePage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">7. Refund and Replacement Policy</h2>
+            <h2 className="text-[26px] font-black text-panda-dark mb-4">7. Cancellations, Refunds and Replacements</h2>
             <p className="text-[16px] leading-[1.8] mb-4">
-              Because all products are custom-manufactured to your specifications, <strong>we do not accept returns or offer
-              refunds</strong> unless the error is ours.
+              <strong>Cancelling before production:</strong> You may cancel your order for a full refund at any time before
+              you approve the final mockup and production begins. Just email us and we will refund you in full, no questions
+              asked. Once you approve the mockup, production starts and your patches are custom-made to your specifications,
+              so the terms below apply.
+            </p>
+            <p className="text-[16px] leading-[1.8] mb-4">
+              Because all products are custom-manufactured to your specifications, once production has begun <strong>we do
+              not accept returns or offer refunds</strong> unless the error is ours.
             </p>
             <p className="text-[16px] leading-[1.8] mb-3 font-semibold">We will replace or refund your order if:</p>
             <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8] mb-4">

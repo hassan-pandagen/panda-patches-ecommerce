@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { client } from '@/lib/sanity';
+import { getPublishedCaseStudies } from '@/lib/caseStudies';
 
 // Revalidate hourly so newly published Sanity content (blogs, products,
 // location pages) appears in the sitemap without waiting for a redeploy.
@@ -238,7 +239,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/case-studies`,
+      lastModified: new Date('2026-06-16'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ];
+
+  // Case study detail pages (code-driven via src/lib/caseStudies.ts)
+  const caseStudyPages: MetadataRoute.Sitemap = getPublishedCaseStudies().map((cs) => ({
+    url: `${baseUrl}/case-studies/${cs.slug}`,
+    lastModified: new Date(cs.isoDate),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
 
   // Product pages (highest priority for SEO)
   const productPages: MetadataRoute.Sitemap = (data.products || []).map((product: SanitySlugItem) => ({
@@ -305,6 +320,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Combine all pages
   return [
     ...staticPages,
+    ...caseStudyPages,
     ...productPages,
     ...customProductPages,
     ...blogPages,

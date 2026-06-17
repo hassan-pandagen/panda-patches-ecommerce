@@ -14,6 +14,8 @@ function getReferrerSource(): string {
   if (referrer.includes("bing.com/chat") || referrer.includes("copilot.microsoft.com")) return "v-Copilot";
   if (referrer.includes("you.com")) return "v-YouAI";
   if (referrer.includes("phind.com")) return "v-Phind";
+  if (referrer.includes("meta.ai")) return "v-MetaAI";
+  if (referrer.includes("deepseek.com")) return "v-DeepSeek";
 
   // Search engines (before social to avoid google.com matching YouTube referrals)
   if (referrer.includes("google.com")) return "v-Google";

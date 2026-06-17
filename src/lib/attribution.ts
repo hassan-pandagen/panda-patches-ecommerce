@@ -119,6 +119,8 @@ export function resolveLeadSource(
     [/perplexity\.ai/i, 'Perplexity'],
     [/claude\.ai|anthropic/i, 'Claude'],
     [/gemini\.google|bard\.google/i, 'Gemini'],
+    [/meta\.ai/i, 'Meta AI'],
+    [/deepseek\.com/i, 'DeepSeek'],
     [/facebook\.com|fb\.com|m\.facebook/i, 'Facebook'],
     [/instagram\.com/i, 'Instagram'],
     [/tiktok\.com/i, 'TikTok'],

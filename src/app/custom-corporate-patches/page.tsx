@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { cache } from 'react';
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
@@ -264,6 +265,9 @@ export default async function CorporatePatchesPage() {
             </p>
             <p>
               Ready to get started? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> today. We respond to all inquiries within 2 business hours and include a complimentary digital mockup with every quote.
+            </p>
+            <p>
+              See a real example: <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-bold underline">how we delivered 16,000 custom patches for Wise&apos;s Nasdaq Times Square activation</Link> on a two-week deadline.
             </p>
           </div>
         </div>

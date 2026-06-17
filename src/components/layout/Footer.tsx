@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
+import TrackedEmailLink from "@/components/TrackedEmailLink";
 
 // TikTok SVG icon component (same as Navbar)
 const TikTokIcon = () => (
@@ -69,9 +70,9 @@ export default function Footer() {
              {/* SUPPORT */}
              <div className="space-y-1 lg:pt-24">
                <h3 className="font-bold text-lg text-panda-dark text-left">Need Live Support</h3>
-               <a href="mailto:hello@pandapatches.com" className="underline decoration-1 underline-offset-2 block">
+               <TrackedEmailLink className="underline decoration-1 underline-offset-2 block">
                  hello@pandapatches.com
-               </a>
+               </TrackedEmailLink>
              </div>
 
              {/* FOLLOW US */}
@@ -117,6 +118,7 @@ export default function Footer() {
                  <li><Link prefetch={false} href="/about">About Us</Link></li>
                  <li><Link prefetch={false} href="/contact">Contact</Link></li>
                  <li><Link prefetch={false} href="/reviews">Reviews</Link></li>
+                 <li><Link prefetch={false} href="/case-studies">Case Studies</Link></li>
                  <li><Link prefetch={false} href="/blogs">Blog</Link></li>
                  <li><Link prefetch={false} href="/sample-box">Sample Box</Link></li>
                  <li><Link prefetch={false} href="/partners">Partners</Link></li>

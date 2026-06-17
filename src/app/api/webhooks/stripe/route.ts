@@ -238,7 +238,8 @@ export async function POST(req: Request) {
               amount_paid: amountPaid,
               stripe_session_id: session.id,
               stripe_payment_intent_id: session.payment_intent as string | null,
-              status: 'PAID',
+              // Pipeline stage, not 'PAID'; payment is tracked via payment_status (CRM dev, Jun 2026)
+              status: 'NEW_ORDER',
               paid_at: new Date().toISOString(),
             })
             .eq('id', orderId);
@@ -314,7 +315,8 @@ export async function POST(req: Request) {
             amount_paid: amountPaid,
             stripe_session_id: session.id,
             stripe_payment_intent_id: session.payment_intent as string | null,
-            status: 'PAID',
+            // Pipeline stage, not 'PAID'; payment is tracked via payment_status (CRM dev, Jun 2026)
+            status: 'NEW_ORDER',
             payment_status: 'paid',
             paid_at: paidAtIso,
             // lead_source resolved from attribution UTM + referrer (June 2026,
@@ -341,7 +343,7 @@ export async function POST(req: Request) {
         }
 
         // === CUSTOMER PAYMENT CONFIRMATION EMAIL ===========================
-        // Stripe-paid orders are INSERTed already at status='PAID'. The CRM's
+        // Stripe-paid orders are INSERTed at status='NEW_ORDER'. The CRM's
         // email flow only fires on subsequent UPDATEs, so without this block
         // the customer would get nothing from us until an agent manually opens
         // and saves the order. We send CUSTOMER_PAYMENT_CONFIRMATION here

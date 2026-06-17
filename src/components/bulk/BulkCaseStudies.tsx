@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Flame, Shield, Trophy, Building2, Shirt, Music } from "lucide-react";
 import { client, urlFor } from "@/lib/sanity";
 
@@ -122,6 +123,17 @@ export default async function BulkCaseStudies() {
             ))
           )}
 
+        </div>
+
+        {/* Featured real case study — internal link that passes authority to the case study page */}
+        <div className="text-center mt-10 md:mt-12">
+          <Link
+            href="/case-studies/wise-nasdaq-times-square-activation"
+            className="inline-flex items-center gap-2 bg-panda-dark text-white font-black text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:bg-panda-green transition-all"
+          >
+            See a full case study: 16,000 patches for Wise&apos;s Nasdaq activation
+            <span aria-hidden>&rarr;</span>
+          </Link>
         </div>
       </div>
     </section>

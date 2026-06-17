@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { Metadata } from 'next';
 import { generateLocalBusinessSchema, generateSchemaScript } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
@@ -168,6 +169,18 @@ export default function Home() {
       {/* Customer Reviews — social proof immediately after craftsmanship */}
       <div className="min-h-[400px] md:min-h-[500px] cv-auto">
         <ReviewsSection />
+      </div>
+
+      {/* Featured case study — internal link from the homepage (highest-authority page) */}
+      <div className="px-6 py-5 text-center bg-panda-light">
+        <Link
+          href="/case-studies/wise-nasdaq-times-square-activation"
+          className="inline-flex items-center gap-2 text-[14px] md:text-[15px] font-bold text-panda-dark hover:text-panda-green transition-colors"
+        >
+          <span className="text-panda-green font-black">&#9733;</span>
+          See how we delivered 16,000 patches for Wise&apos;s Nasdaq Times Square activation
+          <span aria-hidden>&rarr;</span>
+        </Link>
       </div>
 
       <div className="cv-auto">
