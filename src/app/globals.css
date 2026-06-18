@@ -5,6 +5,17 @@
 /* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind utilities;
 
+/* Nicer line breaks site-wide: avoid orphans in body copy, balance headings.
+   Progressive enhancement, so unsupported browsers fall back to normal wrapping. */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
 /* Below-fold sections skip layout/paint work until near viewport.
    contain-intrinsic-size reserves space so CLS stays clean on unrendered content.
    Browsers without support ignore both props and render normally. */

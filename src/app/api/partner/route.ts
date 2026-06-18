@@ -3,11 +3,13 @@ import { z } from 'zod';
 import { SendMailClient } from 'zeptomail';
 
 const PartnerSchema = z.object({
+  partnerType: z.string().max(60).optional().or(z.literal('')),
   fullName: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name too long'),
   businessEmail: z.string().email({ message: 'Invalid email address' }),
   phone: z.string().regex(/^[\d\s\-()+ ]+$/, 'Invalid phone number format').min(7, 'Phone too short').max(30, 'Phone too long'),
   businessName: z.string().min(2, 'Business name required').max(150, 'Business name too long'),
   businessWebsite: z.string().max(200).optional().or(z.literal('')),
+  socialHandles: z.string().max(300).optional().or(z.literal('')),
   productsInterest: z.string().max(1000).optional().or(z.literal('')),
   monthlyVolume: z.string().max(50).optional().or(z.literal('')),
   hearAboutUs: z.string().max(50).optional().or(z.literal('')),
@@ -45,11 +47,13 @@ export async function POST(req: Request) {
     }
 
     const {
+      partnerType,
       fullName,
       businessEmail,
       phone,
       businessName,
       businessWebsite,
+      socialHandles,
       productsInterest,
       monthlyVolume,
       hearAboutUs,
@@ -74,7 +78,7 @@ export async function POST(req: Request) {
       from: { address: 'hello@pandapatches.com', name: 'Panda Patches Partner Program' },
       to: [{ email_address: { address: 'lance@pandapatches.com', name: 'Lance' } }],
       reply_to: [{ address: businessEmail, name: fullName }],
-      subject: `[PARTNER APPLICATION] ${businessName} - ${fullName}`,
+      subject: `[PARTNER APPLICATION${partnerType ? ` · ${partnerType}` : ''}] ${businessName} - ${fullName}`,
       htmlbody: `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;padding:0;background:#f4f4f4;">
 <div style="max-width:640px;margin:0 auto;font-family:${FONT};">
   <div style="background:#000;padding:20px 32px;text-align:center;">
@@ -89,11 +93,13 @@ export async function POST(req: Request) {
       <span style="color:#dcff70;font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">Applicant Information</span>
     </div>
     <table style="width:100%;border-collapse:collapse;font-size:14px;border:1px solid #e0e0e0;border-top:none;">
+      ${partnerType ? `<tr><td style="padding:9px 14px;color:#666;width:160px;background:#fafafa;">Partner Type</td><td style="padding:9px 14px;font-weight:700;color:#0a7d2a;">${esc(partnerType)}</td></tr>` : ''}
       <tr><td style="padding:9px 14px;color:#666;width:160px;background:#fafafa;">Full Name</td><td style="padding:9px 14px;font-weight:600;color:#fb6e1d;">${esc(fullName)}</td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Business Email</td><td style="padding:9px 14px;"><a href="mailto:${esc(businessEmail)}" style="color:#333;">${esc(businessEmail)}</a></td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Phone</td><td style="padding:9px 14px;"><a href="tel:${esc(phone)}" style="color:#333;">${esc(phone)}</a></td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Business Name</td><td style="padding:9px 14px;font-weight:600;">${esc(businessName)}</td></tr>
       ${businessWebsite ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Business Website</td><td style="padding:9px 14px;"><a href="${esc(businessWebsite)}" target="_blank" style="color:#0a7d2a;">${esc(businessWebsite)}</a></td></tr>` : ''}
+      ${socialHandles ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Social / Audience</td><td style="padding:9px 14px;">${esc(socialHandles)}</td></tr>` : ''}
       ${monthlyVolume ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Expected Monthly Volume</td><td style="padding:9px 14px;font-weight:600;color:#0a7d2a;">${esc(monthlyVolume)} pieces/month</td></tr>` : ''}
       ${hearAboutUs ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Heard About Us From</td><td style="padding:9px 14px;">${esc(hearAboutUs)}</td></tr>` : ''}
     </table>

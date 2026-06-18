@@ -119,6 +119,7 @@ export default function Footer() {
                  <li><Link prefetch={false} href="/contact">Contact</Link></li>
                  <li><Link prefetch={false} href="/reviews">Reviews</Link></li>
                  <li><Link prefetch={false} href="/case-studies">Case Studies</Link></li>
+                 <li><Link prefetch={false} href="/ai-patch-generator">AI Patch Generator</Link></li>
                  <li><Link prefetch={false} href="/blogs">Blog</Link></li>
                  <li><Link prefetch={false} href="/sample-box">Sample Box</Link></li>
                  <li><Link prefetch={false} href="/partners">Partners</Link></li>
@@ -162,6 +163,17 @@ export default function Footer() {
               <li><Link prefetch={false} href="/custom-patches/custom-silicone-labels">Custom Silicone Labels</Link></li>
               <li><Link prefetch={false} href="/custom-patches/sequin">Custom Sequin Patch</Link></li>
               <li><Link prefetch={false} href="/how-much-do-custom-patches-cost-full-pricing-breakdown">Patch Pricing Guide</Link></li>
+            </ul>
+
+            <h3 className="font-bold text-lg text-panda-dark text-left pt-2">Patch Options</h3>
+            <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-3">
+              <li><Link prefetch={false} href="/custom-patches/backing-options">Backing Options</Link></li>
+              <li><Link prefetch={false} href="/sew-on-patches">Sew-On Patches</Link></li>
+              <li><Link prefetch={false} href="/adhesive-patches">Adhesive Patches</Link></li>
+              <li><Link prefetch={false} href="/magnetic-patches">Magnetic Patches</Link></li>
+              <li><Link prefetch={false} href="/button-loop-patches">Button-Loop Patches</Link></li>
+              <li><Link prefetch={false} href="/patch-borders">Patch Borders</Link></li>
+              <li><Link prefetch={false} href="/patch-threads-and-twills">Threads &amp; Twills</Link></li>
             </ul>
           </div>
 
@@ -207,6 +219,10 @@ export default function Footer() {
               <li><Link prefetch={false} href="/custom-velcro-patches">Velcro Patches</Link></li>
               <li><Link prefetch={false} href="/custom-police-patches">Tactical Patches</Link></li>
               <li><Link prefetch={false} href="/custom-police-patches">Morale Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-airsoft-patches">Airsoft Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-martial-arts-patches">Martial Arts &amp; BJJ Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-ems-patches">EMS Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-letterman-patches">Letterman Patches</Link></li>
             </ul>
           </div>
 

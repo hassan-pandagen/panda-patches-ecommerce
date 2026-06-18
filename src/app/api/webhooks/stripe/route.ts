@@ -5,6 +5,7 @@ import { SendMailClient } from 'zeptomail';
 import { sendMetaEvent, type Attribution } from '@/lib/metaCapi';
 import { resolveLeadSource } from '@/lib/attribution';
 import { sendCustomerEmail } from '@/lib/sendCustomerEmail';
+import { ensureCustomerAccount } from '@/lib/ensureCustomerAccount';
 
 // Initialize Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -394,6 +395,21 @@ export async function POST(req: Request) {
             );
           }
         }
+
+        // Auto-provision a customer account from this order so the buyer can log
+        // in, track, and reorder. Non-blocking: fired and forgotten, so a failure
+        // here can never affect the order or the payment. Website orders only;
+        // CRM-created orders are handled on the CRM side (see CRM handoff doc).
+        ensureCustomerAccount({
+          email: validEmail,
+          fullName: validName,
+          phone: meta.customer_phone || null,
+          orderNumber:
+            inserted?.order_number ||
+            (inserted?.id ? `PP-${String(inserted.id).padStart(5, '0')}` : null),
+        }).catch((e) =>
+          console.error('[stripe webhook] ensureCustomerAccount failed (non-blocking):', e),
+        );
 
         // Fire Meta CAPI Purchase (non-blocking). Direct-Stripe orders are inserted
         // already PAID so the Supabase UPDATE webhook never sees the transition — we

@@ -26,11 +26,13 @@ export default function PartnerApplicationForm() {
     const resolvedHearAboutUs = hearAboutUs === 'Other' ? hearOther.trim() : hearAboutUs;
 
     const payload = {
+      partnerType: String(fd.get('partnerType') || '').trim(),
       fullName: String(fd.get('fullName') || '').trim(),
       businessEmail: String(fd.get('businessEmail') || '').trim(),
       phone: String(fd.get('phone') || '').trim(),
       businessName: String(fd.get('businessName') || '').trim(),
       businessWebsite: String(fd.get('businessWebsite') || '').trim(),
+      socialHandles: String(fd.get('socialHandles') || '').trim(),
       productsInterest: String(fd.get('productsInterest') || '').trim(),
       monthlyVolume: resolvedVolume,
       hearAboutUs: resolvedHearAboutUs,
@@ -107,6 +109,17 @@ export default function PartnerApplicationForm() {
       {/* Form Fields */}
       <div className="px-8 pb-2 space-y-5">
 
+        {/* Partner track — lets creators, affiliates, and resellers self-identify */}
+        <div>
+          <label htmlFor="partnerType" className={labelCls}>I&apos;m applying as <span className="text-red-500">*</span></label>
+          <select id="partnerType" name="partnerType" required defaultValue="" className={inputCls}>
+            <option value="" disabled hidden>Select partner type</option>
+            <option value="Creator / Influencer">Creator / Influencer (gifting collab)</option>
+            <option value="Affiliate / Referral">Affiliate / Referral (earn per sale)</option>
+            <option value="B2B / Reseller / Agency">B2B / Reseller / Agency</option>
+          </select>
+        </div>
+
         {/* Row 1 */}
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -114,8 +127,8 @@ export default function PartnerApplicationForm() {
             <input id="fullName" name="fullName" type="text" required autoComplete="name" className={inputCls} placeholder="Jane Smith" />
           </div>
           <div>
-            <label htmlFor="businessName" className={labelCls}>Business name <span className="text-red-500">*</span></label>
-            <input id="businessName" name="businessName" type="text" required autoComplete="organization" className={inputCls} placeholder="Your Agency" />
+            <label htmlFor="businessName" className={labelCls}>Business / brand name <span className="text-red-500">*</span></label>
+            <input id="businessName" name="businessName" type="text" required autoComplete="organization" className={inputCls} placeholder="Agency, brand, or @handle" />
           </div>
         </div>
 
@@ -192,6 +205,14 @@ export default function PartnerApplicationForm() {
             Website <span className="text-gray-400 normal-case font-normal">(optional)</span>
           </label>
           <input id="businessWebsite" name="businessWebsite" type="url" autoComplete="url" className={inputCls} placeholder="https://youragency.com" />
+        </div>
+
+        {/* Social handles + audience — for creators and affiliates */}
+        <div>
+          <label htmlFor="socialHandles" className={labelCls}>
+            Social handles &amp; audience size <span className="text-gray-400 normal-case font-normal">(creators &amp; affiliates)</span>
+          </label>
+          <input id="socialHandles" name="socialHandles" type="text" className={inputCls} placeholder="@yourhandle · 25k IG, 10k TikTok" />
         </div>
 
         {/* Products */}

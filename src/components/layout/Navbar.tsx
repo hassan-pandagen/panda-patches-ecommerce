@@ -14,7 +14,15 @@ const AnnouncementBar = dynamic(() => import("@/components/layout/AnnouncementBa
 // CONFIGURATION: Define your menus here
 const navLinks = [
   { name: "HOME", href: "/" },
-  { name: "ABOUT", href: "/about" },
+  {
+    name: "ABOUT",
+    href: "/about",
+    dropdown: [
+      { name: "About Us", href: "/about" },
+      { name: "Reviews", href: "/reviews" },
+      { name: "Case Studies", href: "/case-studies" },
+    ]
+  },
   {
     name: "CUSTOM PATCHES",
     href: "/custom-patches",
@@ -48,18 +56,25 @@ const navLinks = [
     highlight: true,
     dropdown: [
       { name: "Fixed-Price Offers", href: "/offers" },
+      { name: "Bulk Order", href: "/bulk-custom-patches" },
+      { name: "Sample Box", href: "/sample-box" },
       { name: "Embroidery Digitizing", href: "/embroidery-digitizing" },
       { name: "Raster to Vector Conversion", href: "/raster-to-vector-conversion" },
-      { name: "Sample Box", href: "/sample-box" },
     ]
   } as any,
-  { name: "BULK ORDER", href: "/bulk-custom-patches" },
-  // ASSETS and PARTNERS moved to the footer in June 2026 (WEBSIT_1.MD T10).
-  // The nav had 11 top-level items plus 2 right-side CTAs which clipped the
-  // Sample Box / Login pill off screen at ~1568px viewport width. Both items
-  // are still reachable from the footer Company column and the footer
-  // sitemap; removing them from the nav keeps every CTA visible at 1280px
-  // and above without sacrificing discoverability.
+  { name: "PARTNERS", href: "/partners" },
+  {
+    name: "RESOURCES",
+    href: "/assets/thread-color-chart",
+    dropdown: [
+      { name: "Thread Color Chart", href: "/assets/thread-color-chart" },
+      { name: "Iron-On Instructions", href: "/assets/iron-on-instructions" },
+    ]
+  },
+  // BULK ORDER moved into the OFFERS dropdown (June 2026) to keep the top nav
+  // compact; it stays reachable there and in the footer. RESOURCES is its own
+  // top-level dropdown after OFFERS, surfacing the Thread Color Chart and
+  // Iron-On Instructions (also still linked in the footer).
   { name: "BLOGS", href: "/blogs" },
   { name: "CONTACT US", href: "/contact" },
 ];
@@ -207,7 +222,7 @@ export default function Navbar() {
               -mr-6 pushes the pills right by the same amount the logo block
               is pulled left (-ml-6), so the visual gap from the page edge
               matches on both sides. */}
-          <div className="hidden xl:flex items-center gap-2.5 lg:gap-3 -mr-6">
+          <div className="hidden xl:flex items-center gap-2.5 lg:gap-3 -mr-6 ml-3">
 
             {/* Chat Now Button */}
             <button

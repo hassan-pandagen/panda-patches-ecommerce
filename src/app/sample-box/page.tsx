@@ -5,6 +5,7 @@ import SampleBoxHero from "@/components/samplebox/SampleBoxHero";
 import SampleBoxForm from "@/components/samplebox/SampleBoxForm";
 import ProductSwiper from "@/components/samplebox/ProductSwiper";
 import SampleBoxMedia from "@/components/samplebox/SampleBoxMedia";
+import FreeSamplePackBanner from "@/components/samplebox/FreeSamplePackBanner";
 import { Check } from "lucide-react";
 import { client, urlFor } from "@/lib/sanity";
 
@@ -86,6 +87,11 @@ export default async function SampleBoxPage() {
     <main className="min-h-screen bg-white">
       <Navbar />
       <SampleBoxHero />
+
+      {/* Free-sample-with-first-order offer (PAC949 Part 2) — sits above the
+          paid $45 box so both options are clear: buy the box now, or get a
+          free pack automatically with your first production order. */}
+      <FreeSamplePackBanner />
 
       <section className="w-full py-16 bg-white">
         <div className="container mx-auto px-6 max-w-[1350px]">

@@ -239,11 +239,87 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    // Free AI Patch Generator tool. Re-added to the sitemap June 2026 after it
+    // was pulled while the route ran on the mock provider; now live + indexable.
+    {
+      url: `${baseUrl}/ai-patch-generator`,
+      lastModified: new Date('2026-06-18'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     {
       url: `${baseUrl}/case-studies`,
       lastModified: new Date('2026-06-16'),
       changeFrequency: 'monthly',
       priority: 0.7,
+    },
+    // SEO cluster pages (PAC949 Part 1): backing options hub + spokes, borders,
+    // threads/twills, and niche audience pages. Added June 2026.
+    {
+      url: `${baseUrl}/custom-patches/backing-options`,
+      lastModified: new Date('2026-06-18'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/sew-on-patches`,
+      lastModified: new Date('2026-06-18'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/adhesive-patches`,
+      lastModified: new Date('2026-06-18'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/magnetic-patches`,
+      lastModified: new Date('2026-06-18'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/button-loop-patches`,
+      lastModified: new Date('2026-06-18'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/patch-borders`,
+      lastModified: new Date('2026-06-18'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/patch-threads-and-twills`,
+      lastModified: new Date('2026-06-18'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/custom-airsoft-patches`,
+      lastModified: new Date('2026-06-18'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/custom-martial-arts-patches`,
+      lastModified: new Date('2026-06-18'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/custom-ems-patches`,
+      lastModified: new Date('2026-06-18'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/custom-letterman-patches`,
+      lastModified: new Date('2026-06-18'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
   ];
 

@@ -5,6 +5,7 @@ import { SendMailClient } from 'zeptomail';
 import { sendMetaEvent } from '@/lib/metaCapi';
 import { resolveLeadSource } from '@/lib/attribution';
 import { sendCustomerEmail } from '@/lib/sendCustomerEmail';
+import { ensureCustomerAccount } from '@/lib/ensureCustomerAccount';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -360,6 +361,17 @@ export async function POST(req: Request) {
             amountPaid,
           });
         }
+
+        // Auto-provision a customer account from this order (non-blocking).
+        // Website orders only; CRM-created orders handled on the CRM side.
+        ensureCustomerAccount({
+          email: String(orderData.customer_email || ''),
+          fullName: String(orderData.customer_name || ''),
+          phone: orderData.customer_phone ? String(orderData.customer_phone) : null,
+          orderNumber: insertedRow?.order_number || null,
+        }).catch((e) =>
+          console.error('[capture-paypal] ensureCustomerAccount failed (non-blocking):', e),
+        );
       } else {
         // Fallback: create minimal order from PayPal data
         await supabase

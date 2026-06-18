@@ -2,6 +2,7 @@ import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 import { Shield, Clock, Gift, Award } from "lucide-react";
 import BulkQuoteForm from "./BulkQuoteForm";
+import HeroForm from "@/components/home/HeroForm";
 
 interface BulkHeroProps {
   heroImage?: string | null;
@@ -9,6 +10,8 @@ interface BulkHeroProps {
   customHeading?: string;
   customSubheading?: string;
   customDescription?: string;
+  /** Use the simple homepage quote form instead of the full bulk quote form. */
+  simpleForm?: boolean;
 }
 
 export default function BulkHero({
@@ -16,7 +19,8 @@ export default function BulkHero({
   trustBadges = [],
   customHeading,
   customSubheading,
-  customDescription
+  customDescription,
+  simpleForm = false,
 }: BulkHeroProps) {
   return (
     <section className="w-full pt-8 md:pt-12 pb-6 md:pb-10 bg-white">
@@ -113,9 +117,9 @@ export default function BulkHero({
             })()}
           </div>
 
-          {/* RIGHT - Full Quote Form */}
+          {/* RIGHT - Quote Form (simple homepage form or full bulk form) */}
           <div className="w-full lg:w-[520px] flex-shrink-0">
-            <BulkQuoteForm />
+            {simpleForm ? <HeroForm /> : <BulkQuoteForm />}
           </div>
 
         </div>

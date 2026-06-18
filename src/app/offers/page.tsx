@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo';
 import Navbar from '@/components/layout/Navbar';
+import FreeSamplePackBanner from '@/components/samplebox/FreeSamplePackBanner';
 import Footer from '@/components/layout/Footer';
 import OffersClient from '@/components/offers/OffersClient';
 import Craftsmanship from '@/components/home/Craftsmanship';
@@ -199,6 +200,9 @@ export default async function OffersPage() {
       ))}
       <Navbar />
       <OffersClient categoryImages={categoryImages} ctaImageUrl={ctaImageUrl ?? undefined} industryImages={industryImages} craftmanshipSlot={<Craftsmanship />} />
+      {/* Free-sample-with-first-order offer (PAC949 Part 2), surfaced on the
+          primary buy page below the offer cards. */}
+      <FreeSamplePackBanner />
       <Footer />
     </main>
   );

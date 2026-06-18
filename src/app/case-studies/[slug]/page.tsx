@@ -37,6 +37,7 @@ export async function generateMetadata({
     description: cs.metaDescription,
     url: `${BASE}/case-studies/${cs.slug}`,
     ogType: "article",
+    robots: { index: true, follow: true },
     image: cs.heroImage?.src
       ? { url: cs.heroImage.src, alt: cs.heroImage.alt }
       : undefined,

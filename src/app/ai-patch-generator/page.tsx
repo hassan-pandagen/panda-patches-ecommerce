@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PatchGeneratorClient from "@/components/ai-patch/PatchGeneratorClient";
 import { buildPageMetadata } from "@/lib/seo";
-import { generateSchemaScript, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { generateSchemaScript, generateBreadcrumbSchema, generateFAQSchema, generateWebApplicationSchema } from "@/lib/schemas";
 
 /**
  * WEBSIT_4.MD G7 — SEO landing wrapper for /ai-patch-generator.
@@ -89,11 +89,14 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 
 const faqSchema = generateFAQSchema(FAQS);
 
+const webAppSchema = generateWebApplicationSchema();
+
 export default function AiPatchGeneratorPage() {
   return (
     <main className="min-h-screen bg-[#F9FAF5]">
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(faqSchema)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(webAppSchema)} />
 
       <Navbar />
 

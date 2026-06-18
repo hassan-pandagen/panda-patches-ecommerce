@@ -81,16 +81,37 @@ async function getWorkSamples() {
   }
 }
 
+const partnersBreadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.pandapatches.com" },
+    { "@type": "ListItem", position: 2, name: "Partners", item: "https://www.pandapatches.com/partners" },
+  ],
+};
+
 export const metadata: Metadata = buildPageMetadata({
-  title: "Partner Program for Agencies & Resellers | Panda Patches",
-  description: "Wholesale and white-label patch manufacturing for promotional agencies, uniform suppliers, and embroidery shops. 10-18% partner margins, dedicated account manager, low 5-piece minimums.",
+  title: "Partner Program: Creators, Affiliates & Agencies | Panda Patches",
+  description: "Join the Panda Patches partner program: creator and influencer gifting collabs, an affiliate referral program, and wholesale white-label manufacturing for agencies. Free patches, referral rewards, 10-18% partner margins.",
   url: "https://www.pandapatches.com/partners",
-  ogTitle: "Panda Patches Agency Partner Program",
-  ogDescription: "Sell custom patches under your brand. We handle production. 10-18% margins, dedicated account manager, blind shipping.",
+  ogTitle: "Partner with Panda Patches: Creator, Affiliate & Agency Program",
+  ogDescription: "Three ways to partner: creator gifting collabs, affiliate referrals, and wholesale white-label production. Free custom patches, referral rewards, and agency margins.",
   robots: { index: true, follow: true },
 });
 
 const PARTNER_FAQS = [
+  {
+    question: "Does Panda Patches have an affiliate or referral program?",
+    answer: "Yes. Our affiliate and referral program lets creators, bloggers, and patch enthusiasts earn a reward for every customer they send our way. Once approved, you get a unique referral link or code to share with your audience; when someone orders through it, you earn a referral reward. Apply through the partner form on this page with your website and social handles, and we set up your link. Exact reward rates are confirmed on approval.",
+  },
+  {
+    question: "Do you offer influencer or creator gifting collaborations?",
+    answer: "Yes. Qualifying creators and influencers receive free custom patches, a gifting batch of your own design, in exchange for a post, a tag, and a link. It is a fit for tactical, military, streetwear, sports, scouting, biker, and maker creators whose audience buys patches. Apply with your handles and audience size and our team reaches out to scope a collaboration.",
+  },
+  {
+    question: "How do I become a Panda Patches partner, affiliate, or creator?",
+    answer: "Apply through the form on this page. Tell us which track fits, creator gifting, affiliate referral, or B2B reseller, and share your website and social handles, audience size, and niche. We review applications and reach out to approved partners with next steps: your referral link or collaboration details, plus a Proud Partner of Panda Patches badge you can place on your site or bio.",
+  },
   {
     question: "Is Panda Patches a white-label custom patch manufacturer for promotional product agencies?",
     answer: "Yes. Panda Patches is a white-label custom patch manufacturer for promotional product agencies, uniform suppliers, embroidery shops, and branding agencies. Partners receive 10 to 18 percent below retail pricing, dedicated account managers, blind shipping with no Panda Patches branding on packaging or packing slips, unbranded white-label mockup PDFs on request, Net 15 and Net 30 payment terms after three completed projects, NDA signing on request, and priority production queue. Apply at pandapatches.com/partners or email lance@pandapatches.com. No account minimum to activate partner pricing.",
@@ -174,6 +195,7 @@ export default async function PartnersPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(faqSchema)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(partnersBreadcrumbSchema)} />
       <Navbar />
       <main className="bg-white overflow-x-hidden">
 
@@ -197,15 +219,14 @@ export default async function PartnersPage() {
 
           <div className="relative z-10 text-center px-6 pt-16 pb-16 max-w-[800px] mx-auto">
             <span className="inline-block bg-panda-yellow text-panda-dark text-[11px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] mb-5">
-              For Agencies &amp; Resellers
+              Creator · Affiliate · Agency Program
             </span>
             <h1 className="text-[38px] md:text-[58px] lg:text-[72px] font-black leading-[1.05] tracking-tight mb-5 text-panda-dark">
-              Sell custom patches<br />
-              <span className="text-panda-green">under your brand.</span><br />
-              We handle production.
+              Partner with Panda Patches.<br />
+              <span className="text-panda-green">Create. Refer. Resell.</span>
             </h1>
-            <p className="text-[16px] md:text-[18px] text-gray-800 leading-relaxed max-w-[560px] mx-auto mb-8">
-              Trusted by promotional agencies, uniform suppliers, and embroidery shops across the US and UK. 10–18% partner margins. Dedicated account manager from day one. Low 5-piece minimums, no setup fees.
+            <p className="text-[16px] md:text-[18px] text-gray-800 leading-relaxed max-w-[600px] mx-auto mb-8">
+              Three ways to work together: creator and influencer gifting collabs, an affiliate referral program, and wholesale white-label production for agencies. Free patches for creators, referral rewards, and 10–18% margins for resellers.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <PartnerApplicationModal
@@ -244,6 +265,65 @@ export default async function PartnersPage() {
                 <p className="text-[11px] font-black text-panda-dark/60 mt-1 uppercase tracking-[0.18em]">{s.label}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════
+            2b. THREE PARTNER TRACKS (PAC949 Part 4)
+        ═══════════════════════════════════════════════════ */}
+        <section className="py-20 px-6 bg-white border-b border-gray-100">
+          <div className="max-w-[1100px] mx-auto">
+            <div className="text-center mb-12">
+              <p className="text-panda-green text-[11px] font-black uppercase tracking-[0.25em] mb-3">Three ways to partner</p>
+              <h2 className="text-[40px] md:text-[56px] font-black text-panda-dark leading-[1.05] mb-4">
+                Pick the track that fits you.
+              </h2>
+              <p className="text-[18px] text-gray-700 font-medium max-w-[640px] mx-auto leading-relaxed">
+                Whether you create content, send referrals, or resell to clients, there is a partner lane built for you.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="border-2 border-gray-200 rounded-3xl p-8 hover:border-panda-yellow hover:shadow-lg transition-all">
+                <span className="text-[34px]" aria-hidden="true">🎨</span>
+                <h3 className="text-[22px] font-black text-panda-dark mt-3 mb-2">Creator &amp; Influencer</h3>
+                <p className="text-[14px] text-gray-600 leading-relaxed mb-4">A free gifting batch of your own custom patches in exchange for a post, a tag, and a link. Built for tactical, streetwear, sports, scouting, biker, and maker creators.</p>
+                <ul className="space-y-2 text-[14px] text-gray-700">
+                  <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Free custom patches you design</li>
+                  <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Keep the patches, no cost</li>
+                  <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Optional affiliate link on top</li>
+                </ul>
+              </div>
+              <div className="relative border-2 border-panda-yellow rounded-3xl p-8 shadow-lg">
+                <span className="absolute -top-3.5 left-6 bg-panda-dark text-panda-yellow text-[11px] font-black uppercase tracking-widest px-3 py-1 rounded-full">Earn per sale</span>
+                <span className="text-[34px]" aria-hidden="true">🔗</span>
+                <h3 className="text-[22px] font-black text-panda-dark mt-3 mb-2">Affiliate &amp; Referral</h3>
+                <p className="text-[14px] text-gray-600 leading-relaxed mb-4">Share a unique referral link or code with your audience and earn a reward on every order it brings in. Reward rates confirmed on approval.</p>
+                <ul className="space-y-2 text-[14px] text-gray-700">
+                  <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Unique link and discount code</li>
+                  <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Referral reward per sale</li>
+                  <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Proud Partner badge to embed</li>
+                </ul>
+              </div>
+              <div className="border-2 border-gray-200 rounded-3xl p-8 hover:border-panda-yellow hover:shadow-lg transition-all">
+                <span className="text-[34px]" aria-hidden="true">🏭</span>
+                <h3 className="text-[22px] font-black text-panda-dark mt-3 mb-2">B2B &amp; Reseller</h3>
+                <p className="text-[14px] text-gray-600 leading-relaxed mb-4">Agencies, uniform suppliers, embroidery shops, and event partners buy at 10-18% partner margins with blind shipping and a dedicated account manager.</p>
+                <ul className="space-y-2 text-[14px] text-gray-700">
+                  <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> 10-18% partner margins</li>
+                  <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Blind shipping and white-label</li>
+                  <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Net terms after 3 projects</li>
+                </ul>
+              </div>
+            </div>
+            <div className="text-center mt-10">
+              <PartnerApplicationModal
+                trigger={
+                  <button type="button" className="bg-panda-dark text-panda-yellow px-8 py-4 rounded-[100px] font-black text-[16px] hover:bg-panda-green transition-colors">
+                    Apply to the Program →
+                  </button>
+                }
+              />
+            </div>
           </div>
         </section>
 
@@ -502,6 +582,47 @@ export default async function PartnersPage() {
                   <p className="text-[14px] text-gray-300 leading-relaxed">{step.body}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════
+            8b. AFFILIATE LINK + PROUD PARTNER BADGE (PAC949 Part 4)
+        ═══════════════════════════════════════════════════ */}
+        <section className="py-20 px-6 bg-white">
+          <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-panda-green text-[11px] font-black uppercase tracking-[0.25em] mb-3">How affiliates earn</p>
+              <h2 className="text-[36px] md:text-[52px] font-black text-panda-dark leading-[1.05] mb-5">
+                Your link. Your badge. Your cut.
+              </h2>
+              <p className="text-[17px] text-gray-700 leading-relaxed mb-6">
+                Approved affiliates get a unique referral link and discount code to share, plus a &quot;Proud Partner of Panda Patches&quot; badge to place on your site, blog, or bio. When your audience orders through your link, you earn a referral reward and they get a warm welcome.
+              </p>
+              <ol className="space-y-3">
+                {[
+                  ["Apply", "Send your site and socials through the form. We review for fit."],
+                  ["Get your link and badge", "Approved partners receive a unique link, a code, and a Proud Partner badge to embed."],
+                  ["Share and earn", "Post, link, or refer. You earn a reward on every order your link brings in."],
+                ].map(([t, b], i) => (
+                  <li key={t} className="flex gap-4">
+                    <span className="flex-shrink-0 w-8 h-8 rounded-full bg-panda-dark text-panda-yellow font-black flex items-center justify-center text-[14px]">{i + 1}</span>
+                    <p className="text-[15px] text-gray-700 leading-snug"><strong className="text-panda-dark">{t}.</strong> {b}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div className="bg-panda-light border-2 border-panda-green/20 rounded-3xl p-8 text-center">
+              <div className="inline-flex items-center gap-2 bg-panda-dark rounded-2xl px-5 py-3 mb-5">
+                <span className="text-panda-yellow font-black text-[15px]">★ Proud Partner</span>
+                <span className="text-[13px] text-gray-300">of Panda Patches</span>
+              </div>
+              <p className="text-[14px] text-gray-600 leading-relaxed mb-4">
+                A clean badge and embed snippet, supplied on approval, links back to Panda Patches from your site. It builds your credibility and our shared reach.
+              </p>
+              <p className="text-[13px] text-gray-500 leading-relaxed">
+                Reward rates and badge assets are confirmed with you on approval. Apply above to get started.
+              </p>
             </div>
           </div>
         </section>

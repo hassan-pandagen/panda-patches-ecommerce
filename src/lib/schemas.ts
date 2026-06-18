@@ -761,6 +761,33 @@ export function generateCollectionPageSchema(posts: { title: string; url: string
 }
 
 // ============================================
+// 15. WEB APPLICATION SCHEMA (browser-based tools, e.g. AI Patch Generator)
+// ============================================
+
+export function generateWebApplicationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free AI Patch Generator",
+    "url": "https://www.pandapatches.com/ai-patch-generator",
+    "description": "Describe a patch in plain English and get an instant AI concept preview in embroidered, chenille, PVC, and woven styles. Free, no signup, refine until you love it.",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Web",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Panda Patches",
+      "url": "https://www.pandapatches.com"
+    }
+  };
+}
+
+// ============================================
 // USAGE EXAMPLES
 // ============================================
 

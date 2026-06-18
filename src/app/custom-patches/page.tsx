@@ -373,6 +373,10 @@ export default async function ProductLandingPage() {
             Need a precise quote? Use our free quote form above, upload your design, and receive a detailed price breakdown within 24 hours.
           </p>
 
+          <p className="text-[15px] leading-[1.8] text-gray-500 mt-8 pt-6 border-t border-gray-200">
+            Explore the details: <Link href="/custom-patches/backing-options" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">backing options</Link> (including <Link href="/sew-on-patches" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">sew-on</Link>, <Link href="/adhesive-patches" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">adhesive</Link>, and <Link href="/magnetic-patches" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">magnetic</Link>), <Link href="/patch-borders" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">patch borders</Link>, and <Link href="/patch-threads-and-twills" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">threads &amp; twills</Link>. Popular niche patches: <Link href="/custom-airsoft-patches" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">airsoft</Link>, <Link href="/custom-martial-arts-patches" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">martial arts &amp; BJJ</Link>, <Link href="/custom-ems-patches" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">EMS</Link>, and <Link href="/custom-letterman-patches" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">letterman</Link>.
+          </p>
+
         </div>
       </section>
 

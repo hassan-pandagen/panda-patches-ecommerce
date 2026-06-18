@@ -19,6 +19,7 @@ export const metadata: Metadata = buildPageMetadata({
     "Real brands, real events, real patches. See how Panda Patches delivers custom patches at scale, on deadline, for brand activations, teams, and organizations.",
   url: CANONICAL,
   ogType: "website",
+  robots: { index: true, follow: true },
 });
 
 export default function CaseStudiesPage() {
