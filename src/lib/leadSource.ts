@@ -102,7 +102,7 @@ export function deriveTrafficSource(attribution: Record<string, any> | undefined
     if (host.includes('claude.ai') || host.includes('anthropic.')) return 'Claude';
     if (host.includes('perplexity.')) return 'Perplexity';
     if (host.includes('gemini.google.') || host.includes('bard.google.')) return 'Gemini';
-    if (host.includes('copilot.microsoft.') || host.includes('bing.com/chat')) return 'Bing Copilot';
+    if (host.includes('copilot') || host.includes('edgeservices.bing')) return 'Microsoft Copilot';
     if (host.includes('you.com')) return 'You.com';
     if (host.includes('grok.x.') || host.includes('grok.com')) return 'Grok';
     if (host.includes('meta.ai')) return 'Meta AI';

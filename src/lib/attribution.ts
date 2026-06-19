@@ -103,6 +103,7 @@ export function resolveLeadSource(
     ig: 'Instagram',
     google: 'Google',
     bing: 'Bing',
+    copilot: 'Microsoft Copilot',
     tiktok: 'TikTok',
     youtube: 'YouTube',
     linkedin: 'LinkedIn',
@@ -127,6 +128,7 @@ export function resolveLeadSource(
     [/youtube\.com|youtu\.be/i, 'YouTube'],
     [/linkedin\.com/i, 'LinkedIn'],
     [/reddit\.com/i, 'Reddit'],
+    [/copilot|edgeservices\.bing|bing\.com\/(chat|copilot)/i, 'Microsoft Copilot'],
     [/google\.[a-z.]+/i, 'Google'],
     [/bing\.com/i, 'Bing'],
   ];

@@ -11,7 +11,7 @@ function getReferrerSource(): string {
   if (referrer.includes("claude.ai")) return "v-Claude";
   if (referrer.includes("perplexity.ai")) return "v-Perplexity";
   if (referrer.includes("bard.google.com") || referrer.includes("gemini.google.com")) return "v-Gemini";
-  if (referrer.includes("bing.com/chat") || referrer.includes("copilot.microsoft.com")) return "v-Copilot";
+  if (referrer.includes("copilot") || referrer.includes("bing.com/chat") || referrer.includes("edgeservices.bing")) return "v-Copilot";
   if (referrer.includes("you.com")) return "v-YouAI";
   if (referrer.includes("phind.com")) return "v-Phind";
   if (referrer.includes("meta.ai")) return "v-MetaAI";
