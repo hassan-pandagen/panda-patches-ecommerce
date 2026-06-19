@@ -241,6 +241,24 @@ export default function ProductsClusterPage() {
             </div>
           </section>
 
+          {/* PATCHES BY USE CASE — niche audience cluster pages (PAC949) */}
+          <section className="mb-12 bg-white border-2 border-gray-200 rounded-2xl p-6 md:p-8">
+            <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">Patches by use case and audience</h2>
+            <p className="text-gray-600 text-[14px] leading-relaxed mb-4">
+              Dedicated pages covering the recommended patch type, backing, and design notes for specific communities:
+            </p>
+            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-gray-700 leading-relaxed">
+              <li>&middot; <Link href="/custom-airsoft-patches" prefetch={false} className="text-panda-green font-bold underline">Airsoft patches</Link> &mdash; morale, team &amp; IFF, Velcro + camo twill</li>
+              <li>&middot; <Link href="/custom-martial-arts-patches" prefetch={false} className="text-panda-green font-bold underline">Martial arts &amp; BJJ gi patches</Link> &mdash; academy, rank, sponsor</li>
+              <li>&middot; <Link href="/custom-ems-patches" prefetch={false} className="text-panda-green font-bold underline">EMS &amp; paramedic patches</Link> &mdash; shoulder, rank, reflective</li>
+              <li>&middot; <Link href="/custom-letterman-patches" prefetch={false} className="text-panda-green font-bold underline">Letterman &amp; varsity patches</Link> &mdash; chenille letters &amp; awards</li>
+              <li>&middot; <Link href="/custom-tactical-patches" prefetch={false} className="text-panda-green font-bold underline">Tactical patches</Link> &mdash; military &amp; law enforcement</li>
+              <li>&middot; <Link href="/custom-fire-department-patches" prefetch={false} className="text-panda-green font-bold underline">Fire department patches</Link></li>
+              <li>&middot; <Link href="/custom-police-patches" prefetch={false} className="text-panda-green font-bold underline">Police patches</Link></li>
+              <li>&middot; <Link href="/custom-patches/backing-options" prefetch={false} className="text-panda-green font-bold underline">Backing options guide</Link> &mdash; all six backings compared</li>
+            </ul>
+          </section>
+
           {/* Sibling pages CTA */}
           <section className="mb-12 bg-panda-dark text-white rounded-2xl p-7 md:p-9">
             <h2 className="text-2xl font-black text-panda-yellow mb-3">Keep exploring</h2>

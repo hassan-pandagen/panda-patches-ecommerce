@@ -28,8 +28,14 @@ export default async function Hero() {
   const data = await getHeroData();
 
   return (
-    // Mobile and desktop responsive heights
-    <section className="hero-section relative w-full min-h-screen md:min-h-[850px] bg-white overflow-hidden flex flex-col justify-start md:justify-center">
+    <>
+      {/* Preload the LCP hero image, media-scoped so only one variant downloads.
+          Targets the ~540ms resource-load-delay PageSpeed flagged on LCP: the
+          browser starts the fetch from <head> instead of after CSS. */}
+      <link rel="preload" as="image" href="/assets/hero-product-mobile.webp" media="(max-width: 767px)" fetchPriority="high" />
+      <link rel="preload" as="image" href="/assets/hero-product.webp" media="(min-width: 768px)" fetchPriority="high" />
+      {/* Mobile and desktop responsive heights */}
+      <section className="hero-section relative w-full min-h-screen md:min-h-[850px] bg-white overflow-hidden flex flex-col justify-start md:justify-center">
 
       {/*
          FIX 1: GREEN BLOB (Exact Dimensions Logic)
@@ -165,6 +171,7 @@ export default async function Hero() {
         </div>
       </div>
 
-    </section>
+      </section>
+    </>
   );
 }

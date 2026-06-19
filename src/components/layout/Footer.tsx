@@ -259,8 +259,23 @@ export default function Footer() {
 
         </div>
 
+        {/* INTERNATIONAL SHIPPING (PA005D): country landing pages */}
+        <div className="border-t border-gray-200 mt-16 pt-8 text-center">
+          <p className="text-[16px] md:text-[18px] font-black text-panda-dark">
+            🌍 We Ship Worldwide, Free and Duty-Paid (DDP)
+          </p>
+          <p className="text-[13px] md:text-[14px] text-gray-500 mt-1.5 max-w-[660px] mx-auto leading-relaxed">
+            The price you see is the price you pay. No VAT, GST, or customs on arrival.
+          </p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
+            <Link prefetch={false} href="/custom-patches-uk" className="inline-flex items-center bg-[#F9FAF5] border border-gray-200 hover:border-panda-green hover:text-panda-green text-panda-dark font-bold text-[13px] px-5 py-2 rounded-full transition-colors">United Kingdom</Link>
+            <Link prefetch={false} href="/custom-patches-australia" className="inline-flex items-center bg-[#F9FAF5] border border-gray-200 hover:border-panda-green hover:text-panda-green text-panda-dark font-bold text-[13px] px-5 py-2 rounded-full transition-colors">Australia</Link>
+            <Link prefetch={false} href="/custom-patches-canada" className="inline-flex items-center bg-[#F9FAF5] border border-gray-200 hover:border-panda-green hover:text-panda-green text-panda-dark font-bold text-[13px] px-5 py-2 rounded-full transition-colors">Canada</Link>
+          </div>
+        </div>
+
         {/* REVIEWS LINKS */}
-        <div className="border-t border-gray-200 mt-16 pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+        <div className="border-t border-gray-200 mt-10 pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
           <Link prefetch={false} href="/reviews" className="text-sm font-semibold text-gray-700 hover:text-panda-green transition-colors underline underline-offset-2 whitespace-nowrap">
             Read all customer reviews →
           </Link>

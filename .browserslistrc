@@ -1,11 +1,14 @@
-# Target modern browsers only — eliminates unnecessary polyfills
-# Minimum versions that natively support Array.prototype.at, Object.hasOwn, etc.
+# Target modern browsers only, eliminates unnecessary legacy polyfills.
+# Minimums are the first versions that natively support every Baseline feature
+# our bundle uses (Array.prototype.at, Array.flat/flatMap, Object.fromEntries,
+# Object.hasOwn, String.trimStart/End). Object.hasOwn is the binding constraint:
+# it needs Chromium 93 (Chrome/Edge 93, Opera 79), Firefox 92, Safari 15.4.
 [production]
-chrome >= 92
+chrome >= 93
 firefox >= 92
 safari >= 15.4
-edge >= 92
-opera >= 78
+edge >= 93
+opera >= 79
 samsung >= 17
 
 [development]

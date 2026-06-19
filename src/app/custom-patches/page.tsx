@@ -7,6 +7,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { generateSchemaScript } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
+import { COUNTRY_HREFLANG } from "@/lib/countryHreflang";
 
 // COMPONENTS
 import ProductHero from "@/components/product/ProductHero";
@@ -35,6 +36,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ogTitle: "Custom Patches - All Types | Panda Patches",
     ogDescription: "Browse all custom patch types with low minimums and fast delivery. Embroidered, PVC, woven, chenille, and leather patches available.",
     twitterDescription: "Browse all custom patch types with low minimums and fast delivery. Embroidered, PVC, woven, chenille, and leather patches.",
+    // en-US / x-default anchor of the international hreflang cluster (UK/AU/CA).
+    alternates: { languages: COUNTRY_HREFLANG },
   });
 }
 

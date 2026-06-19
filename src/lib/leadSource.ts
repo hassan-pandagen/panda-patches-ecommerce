@@ -53,15 +53,38 @@ export function deriveTrafficSource(attribution: Record<string, any> | undefined
     const campaign = utm_campaign ? ` (${utm_campaign})` : '';
     return `Google Ads${campaign}`;
   }
+  // fbclid means the click came from a Meta property (Facebook / Instagram /
+  // Messenger). Meta stamps it on BOTH organic and paid links, so it alone does
+  // NOT prove "ad". The only reliable paid signal is a UTM tag on the ad URL
+  // (utm_medium=paid/cpc, or a utm_source like "fb"/"..._ads"). With that we
+  // call it Ads; without it we treat it as organic instead of the old vague
+  // "Facebook Click". Platform (Facebook vs Instagram) comes from utm_source or
+  // the referrer.
   if (fbclid) {
-    const medium = utm_medium === 'paid' || utm_source?.toLowerCase().includes('fb') ? 'Ads' : 'Click';
+    const src = (utm_source || '').toLowerCase();
+    const med = (utm_medium || '').toLowerCase();
+    const isPaid =
+      med === 'paid' || med.includes('cpc') || med.includes('ppc') || med === 'paid_social' ||
+      src.includes('fb') || src.includes('paid');
+    let refHost = '';
+    try { refHost = new URL(referrer || '').hostname.toLowerCase(); } catch { refHost = (referrer || '').toLowerCase(); }
+    const platform = src.includes('insta') || refHost.includes('instagram') ? 'Instagram' : 'Facebook';
     const campaign = utm_campaign ? ` (${utm_campaign})` : '';
-    return `Facebook ${medium}${campaign}`;
+    return isPaid ? `${platform} Ads${campaign}` : `${platform} (Organic)`;
   }
   if (utm_source) {
     const src = utm_source.toLowerCase();
     const medium = (utm_medium || '').toLowerCase();
-    let label = utm_source.charAt(0).toUpperCase() + utm_source.slice(1);
+    // Proper display names so "tiktok"/"linkedin" read correctly, and a paid
+    // medium (cpc/paid/ppc) yields "<Channel> Ads" for TikTok, LinkedIn,
+    // Pinterest, etc. exactly like Facebook/Google.
+    const NICE: Record<string, string> = {
+      facebook: 'Facebook', fb: 'Facebook', meta: 'Meta', instagram: 'Instagram', ig: 'Instagram',
+      google: 'Google', youtube: 'YouTube', tiktok: 'TikTok', linkedin: 'LinkedIn',
+      pinterest: 'Pinterest', bing: 'Bing', microsoft: 'Microsoft', reddit: 'Reddit',
+      twitter: 'Twitter / X', x: 'Twitter / X', snapchat: 'Snapchat',
+    };
+    let label = NICE[src] || (utm_source.charAt(0).toUpperCase() + utm_source.slice(1));
     if (medium.includes('cpc') || medium.includes('paid') || medium === 'ppc') label += ' Ads';
     else if (medium === 'email') label += ' Email';
     else if (medium === 'social') label += ' Social';

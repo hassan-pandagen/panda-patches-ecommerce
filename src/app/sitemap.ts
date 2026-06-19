@@ -321,6 +321,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    // International country landing pages (PA005D), added June 2026.
+    {
+      url: `${baseUrl}/custom-patches-uk`,
+      lastModified: new Date('2026-06-19'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/custom-patches-australia`,
+      lastModified: new Date('2026-06-19'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/custom-patches-canada`,
+      lastModified: new Date('2026-06-19'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ];
 
   // Case study detail pages (code-driven via src/lib/caseStudies.ts)

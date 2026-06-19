@@ -319,6 +319,25 @@ export default function SpecsAndCareClusterPage() {
             </div>
           </section>
 
+          {/* DETAILED GUIDES — backing / border / thread cluster pages (PAC949) */}
+          <section className="mb-6 bg-white border-2 border-gray-200 rounded-2xl p-6 md:p-8">
+            <h2 className="text-xl md:text-2xl font-black text-panda-dark mb-3">Detailed backing, border, and thread guides</h2>
+            <p className="text-gray-600 text-[14px] leading-relaxed mb-4">
+              Dedicated pages with full specs, compatibility by patch type, application, and care for each construction option:
+            </p>
+            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-gray-700 leading-relaxed">
+              <li>&middot; <Link href="/custom-patches/backing-options" prefetch={false} className="text-panda-green font-bold underline">All backing options</Link> &mdash; compare the six backings</li>
+              <li>&middot; <Link href="/sew-on-patches" prefetch={false} className="text-panda-green font-bold underline">Sew-on patches</Link> &mdash; the most durable backing</li>
+              <li>&middot; <Link href="/custom-iron-on-patches" prefetch={false} className="text-panda-green font-bold underline">Iron-on patches</Link> &mdash; heat-seal application</li>
+              <li>&middot; <Link href="/custom-velcro-patches" prefetch={false} className="text-panda-green font-bold underline">Velcro patches</Link> &mdash; hook-and-loop, swappable</li>
+              <li>&middot; <Link href="/adhesive-patches" prefetch={false} className="text-panda-green font-bold underline">Adhesive patches</Link> &mdash; peel-and-stick for events</li>
+              <li>&middot; <Link href="/magnetic-patches" prefetch={false} className="text-panda-green font-bold underline">Magnetic patches</Link> &mdash; no-hole name badges</li>
+              <li>&middot; <Link href="/button-loop-patches" prefetch={false} className="text-panda-green font-bold underline">Button-loop patches</Link> &mdash; traditional hang loop</li>
+              <li>&middot; <Link href="/patch-borders" prefetch={false} className="text-panda-green font-bold underline">Patch borders</Link> &mdash; merrowed, satin, hot-cut</li>
+              <li>&middot; <Link href="/patch-threads-and-twills" prefetch={false} className="text-panda-green font-bold underline">Threads &amp; twills</Link> &mdash; metallic, glow, camo twill</li>
+            </ul>
+          </section>
+
           {/* CROSS-LINK to other AI cluster pages */}
           <section className="mb-4 bg-[#F7F7F7] rounded-2xl p-6 md:p-8">
             <h2 className="text-xl md:text-2xl font-black text-panda-dark mb-3">More on Panda Patches</h2>

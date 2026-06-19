@@ -67,6 +67,7 @@ export default function AiGeneratorTeaser() {
                 />
                 <button
                   type="submit"
+                  aria-label="Generate patch concept"
                   className="inline-flex items-center gap-1.5 bg-panda-dark text-panda-yellow font-black text-[12px] px-4 py-3 rounded-[10px] uppercase tracking-wider hover:bg-black transition-colors flex-shrink-0"
                 >
                   <Sparkles size={14} />

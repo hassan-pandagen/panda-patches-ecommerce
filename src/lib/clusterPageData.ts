@@ -16,6 +16,41 @@ import { client } from "@/lib/sanity";
  *   the galleries rotate instead of repeating (e.g. chenille -> letterman,
  *   custom-military-patches -> EMS / airsoft, pvc -> airsoft).
  */
+/**
+ * Fetch one representative image per topic slug, for the country-page use-case
+ * cards (PA005D). Each card maps to the matching page (military, soccer,
+ * motorcycle, school, hockey, fire, logo, etc.) so every card shows a relevant
+ * patch photo pulled from that page's own gallery. Handles categoryPage and
+ * productPage (workSamples) plus patchStyle (gallery). Returns a slug -> image
+ * map; never throws (a Sanity blip just yields an empty map and text-only
+ * cards).
+ */
+export const getUseCaseImages = cache(async (slugs: string[]) => {
+  const out: Record<string, unknown> = {};
+  try {
+    const data = await client.fetch(
+      `{
+        "bySlug": *[slug.current in $slugs && _type in ["categoryPage","productPage","patchStyle"]]{
+          "slug": slug.current,
+          "img": coalesce(workSamples[0], gallery[0])
+        },
+        "industrySports": *[_type == "industry"][0].cards[title match "Sports*"][0].image
+      }`,
+      { slugs },
+    );
+    for (const r of data?.bySlug || []) {
+      if (r?.slug && r?.img && !out[r.slug]) out[r.slug] = r.img;
+    }
+    // "industry-sports": the football "Sports Patches" product image from the
+    // industry singleton, used by the football/rugby use-case card so it shows
+    // an actual sports patch instead of a generic soccer-gallery entry.
+    if (data?.industrySports) out["industry-sports"] = data.industrySports;
+  } catch (error) {
+    console.error("Use-case image fetch error:", error);
+  }
+  return out;
+});
+
 export const getClusterPageData = cache(
   async (slug: string = "custom-school-patches") => {
     try {

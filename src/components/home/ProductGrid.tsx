@@ -236,7 +236,7 @@ function ProductCard({ item, showTag, priority }: { item: any; showTag?: boolean
             <p className="text-[16px] font-bold text-panda-dark">
               From ${fromPrice.toFixed(2)}/pc
             </p>
-            <p className="text-[11px] text-gray-400 font-medium leading-tight">
+            <p className="text-[11px] text-gray-600 font-medium leading-tight">
               {FROM_PRICE_QUALIFIER}
             </p>
           </div>
