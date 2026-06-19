@@ -209,6 +209,19 @@ export default async function CustomEmsPatchesPage() {
         </div>
       </section>
 
+      <section className="w-full pb-10 bg-[#F9FAF5]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+          <p className="text-[14px] text-gray-500 leading-relaxed">
+            <span className="font-bold text-panda-dark">Related:</span>{" "}
+            <Link href="/types-of-patches-complete-guide" prefetch={false} className="text-panda-green underline font-semibold">Types of Patches Guide</Link>
+            {" · "}
+            <Link href="/custom-patches/embroidered" prefetch={false} className="text-panda-green underline font-semibold">Embroidered patches</Link>
+            {" · "}
+            <Link href="/custom-fire-department-patches" prefetch={false} className="text-panda-green underline font-semibold">Fire department patches</Link>
+          </p>
+        </div>
+      </section>
+
       <CategoryFAQ title="EMS Patches FAQ" faqs={emsFAQs} />
       <CTASection />
       <Footer />

@@ -213,6 +213,19 @@ export default async function MagneticPatchesPage() {
         </div>
       </section>
 
+      <section className="w-full pb-10 bg-[#F9FAF5]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+          <p className="text-[14px] text-gray-500 leading-relaxed">
+            <span className="font-bold text-panda-dark">Related:</span>{" "}
+            <Link href="/how-to-choose-the-right-custom-patch-size-type-backing-guide" prefetch={false} className="text-panda-green underline font-semibold">How to Choose the Right Patch</Link>
+            {" · "}
+            <Link href="/custom-patches/embroidered" prefetch={false} className="text-panda-green underline font-semibold">Embroidered patches</Link>
+            {" · "}
+            <Link href="/custom-patches/backing-options" prefetch={false} className="text-panda-green underline font-semibold">All backing options</Link>
+          </p>
+        </div>
+      </section>
+
       <CategoryFAQ title="Magnetic Patches FAQ" faqs={magneticFAQs} />
       <CTASection />
       <Footer />

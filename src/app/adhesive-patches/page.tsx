@@ -208,6 +208,19 @@ export default async function AdhesivePatchesPage() {
         </div>
       </section>
 
+      <section className="w-full pb-10 bg-[#F9FAF5]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+          <p className="text-[14px] text-gray-500 leading-relaxed">
+            <span className="font-bold text-panda-dark">Related:</span>{" "}
+            <Link href="/comparing-patch-backings-which-one-is-right-for-you" prefetch={false} className="text-panda-green underline font-semibold">Comparing Patch Backings</Link>
+            {" · "}
+            <Link href="/custom-patches/printed" prefetch={false} className="text-panda-green underline font-semibold">Printed patches</Link>
+            {" · "}
+            <Link href="/custom-patches/backing-options" prefetch={false} className="text-panda-green underline font-semibold">All backing options</Link>
+          </p>
+        </div>
+      </section>
+
       <CategoryFAQ title="Adhesive Patches FAQ" faqs={adhesiveFAQs} />
       <CTASection />
       <Footer />

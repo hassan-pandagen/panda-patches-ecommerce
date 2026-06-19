@@ -216,6 +216,19 @@ export default async function CustomAirsoftPatchesPage() {
         </div>
       </section>
 
+      <section className="w-full pb-10 bg-[#F9FAF5]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+          <p className="text-[14px] text-gray-500 leading-relaxed">
+            <span className="font-bold text-panda-dark">Related:</span>{" "}
+            <Link href="/custom-tactical-patches-guide" prefetch={false} className="text-panda-green underline font-semibold">Tactical Patches Guide</Link>
+            {" · "}
+            <Link href="/custom-patches/pvc" prefetch={false} className="text-panda-green underline font-semibold">PVC patches</Link>
+            {" · "}
+            <Link href="/custom-morale-patches" prefetch={false} className="text-panda-green underline font-semibold">Morale patches</Link>
+          </p>
+        </div>
+      </section>
+
       <CategoryFAQ title="Airsoft Patches FAQ" faqs={airsoftFAQs} />
       <CTASection />
       <Footer />
