@@ -136,7 +136,8 @@ export default function ProductGallery({ images }: { images: any[] }) {
         </Swiper>
       )}
 
-      {/* LIGHTBOX */}
+      {/* LIGHTBOX: mounted-gated so it is never part of the server render */}
+      {mounted && (
       <Lightbox
         open={lightboxOpen}
         close={() => setLightboxOpen(false)}
@@ -209,7 +210,7 @@ export default function ProductGallery({ images }: { images: any[] }) {
           }
         }}
       />
-
+      )}
 
     </div>
   );

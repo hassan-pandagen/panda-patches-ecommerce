@@ -152,17 +152,30 @@ export default function RootLayout({
           {`(function(){var s=document.createElement('style');s.textContent='.faq-wrapper{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease,opacity .3s ease;opacity:0}.faq-wrapper.open{grid-template-rows:1fr;opacity:1}.faq-inner{overflow:hidden;min-height:0}::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#051C05}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#DFFF00,#3B7E00);border-radius:10px}::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#e8ff33,#4a9e00)}@keyframes fade-in{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.animate-fade-in{animation:fade-in .3s ease-out}';document.head.appendChild(s)})();`}
         </Script>
 
-        {/* GTM + Meta Pixel: fire on pageload (afterInteractive) so PageView is captured
-            even when users bounce within 5 seconds. Required for accurate attribution on
-            paid traffic, retargeting audiences, and lookalikes. Industry standard. */}
-        <Script id="gtm-loader" strategy="afterInteractive">
-          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-try{(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;if(f&&f.parentNode){f.parentNode.insertBefore(j,f);}else{document.head.appendChild(j);}})(window,document,'script','dataLayer','GTM-KQQQ674D');}catch(e){}`}
+        {/* gtag + dataLayer stub defined immediately (afterInteractive) so every
+            conversion/event call (PurchaseConversion, Tawk chat, form Leads) has a
+            target and queues into dataLayer safely. This is near-zero work; the heavy
+            gtm.js load itself is deferred below. */}
+        <Script id="gtm-stub" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}`}
         </Script>
-        <Script id="meta-pixel" strategy="afterInteractive">
+        {/* PA259A T2: marketing/analytics tags deferred to lazyOnload (after window
+            load) so GA4, the Meta Pixel and the OpenAI pixel run off the critical
+            hydration path, which cuts INP. Conversion EVENTS are unaffected: Lead,
+            InitiateCheckout and Purchase fire on user actions (well past load) and are
+            mirrored server-side via Meta CAPI, and PurchaseConversion polls for both
+            gtag and fbq. Only the anonymous PageView for sub-load, no-interaction
+            bounces is dropped, which is acceptable. */}
+        <Script id="gtm-loader" strategy="lazyOnload">
+          {`try{(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;if(f&&f.parentNode){f.parentNode.insertBefore(j,f);}else{document.head.appendChild(j);}})(window,document,'script','dataLayer','GTM-KQQQ674D');}catch(e){}`}
+        </Script>
+        <Script id="meta-pixel" strategy="lazyOnload">
           {`try{!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];if(s&&s.parentNode){s.parentNode.insertBefore(t,s);}else{document.head.appendChild(t);}}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1515101469424765');fbq('track','PageView');}catch(e){}`}
         </Script>
-        <Script id="openai-pixel" strategy="afterInteractive">
+        {/* OpenAI Conversions pixel, deferred to lazyOnload. Not running ChatGPT ads
+            right now, so it stays off the critical path. Kept (not removed) so the
+            attribution is ready if OpenAI ads resume. */}
+        <Script id="openai-pixel" strategy="lazyOnload">
           {`try{!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments);};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];if(f&&f.parentNode){f.parentNode.insertBefore(j,f);}else{document.head.appendChild(j);}}(window,document,'script','https://bzrcdn.openai.com/sdk/oaiq.min.js');oaiq('init',{pixelId:'CHMS7gNcUNe5Tcv3CMpX8B'});}catch(e){}`}
         </Script>
         {/* Pinterest tag bumped from afterInteractive to lazyOnload (June 2026).

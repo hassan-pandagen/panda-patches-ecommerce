@@ -43,29 +43,36 @@ export default function PurchaseConversion() {
     const lastName = sessionStorage.getItem('ec_last') || '';
 
     async function fireGoogleAds() {
-      if (!(window as any).gtag) return;
-
-      // Build hashed user_data for Enhanced Conversions — normalize BEFORE hashing
+      // Build hashed user_data for Enhanced Conversions. Normalize BEFORE hashing.
       const user_data: Record<string, string> = {};
       if (rawEmail) user_data['sha256_email_address'] = await sha256(normalizeEmail(rawEmail));
       if (rawPhone) user_data['sha256_phone_number'] = await sha256(normalizePhone(rawPhone));
       if (firstName) user_data['sha256_first_name'] = await sha256(normalizeName(firstName));
       if (lastName) user_data['sha256_last_name'] = await sha256(normalizeName(lastName));
 
-      // Set user_data globally before the conversion event
-      if (Object.keys(user_data).length > 0) {
-        (window as any).gtag('set', 'user_data', user_data);
-      }
-
-      (window as any).gtag('event', 'conversion', {
-        send_to: 'AW-11221237770/BGrrCMHi3oEcEIqA2uYp',
-        currency: 'USD',
-        ...(value && { value }),
-        ...(orderId && { transaction_id: orderId }),
-      });
-
-      // Clear sessionStorage PII after use
-      ['ec_email', 'ec_phone', 'ec_first', 'ec_last'].forEach(k => sessionStorage.removeItem(k));
+      // GTM now loads via a deferred (lazyOnload) loader, so gtag may not be ready on
+      // mount. Poll every 300ms for up to 15s, the same way the Meta pixel is handled
+      // below, so the purchase conversion is never lost on a fast confirmation view.
+      let gaAttempts = 0;
+      const sendGoogleAds = () => {
+        if (!(window as any).gtag) {
+          if (gaAttempts < 50) { gaAttempts++; setTimeout(sendGoogleAds, 300); }
+          return;
+        }
+        // Set user_data globally before the conversion event
+        if (Object.keys(user_data).length > 0) {
+          (window as any).gtag('set', 'user_data', user_data);
+        }
+        (window as any).gtag('event', 'conversion', {
+          send_to: 'AW-11221237770/BGrrCMHi3oEcEIqA2uYp',
+          currency: 'USD',
+          ...(value && { value }),
+          ...(orderId && { transaction_id: orderId }),
+        });
+        // Clear sessionStorage PII after use
+        ['ec_email', 'ec_phone', 'ec_first', 'ec_last'].forEach(k => sessionStorage.removeItem(k));
+      };
+      sendGoogleAds();
     }
 
     fireGoogleAds();
