@@ -114,7 +114,7 @@ export default function Footer() {
              {/* COMPANY / QUICK LINKS */}
              <div className="space-y-2">
                <h3 className="font-bold text-lg text-panda-dark text-left">Company</h3>
-               <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-2">
+               <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-3">
                  <li><Link prefetch={false} href="/about">About Us</Link></li>
                  <li><Link prefetch={false} href="/contact">Contact</Link></li>
                  <li><Link prefetch={false} href="/reviews">Reviews</Link></li>
@@ -127,7 +127,7 @@ export default function Footer() {
                </ul>
 
                <h3 className="font-bold text-lg text-panda-dark text-left pt-4">Compare</h3>
-               <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-2">
+               <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-3">
                  <li><Link prefetch={false} href="/panda-patches-vs-monterey-company">vs Monterey Company</Link></li>
                  <li><Link prefetch={false} href="/panda-patches-vs-signature-patches">vs Signature Patches</Link></li>
                  <li><Link prefetch={false} href="/panda-patches-vs-everlighten">vs EverLighten</Link></li>
@@ -137,7 +137,7 @@ export default function Footer() {
                    (WEBSIT_1.MD T10) to reduce nav width. Reachable via the
                    footer Resources column without crowding the main nav. */}
                <h3 className="font-bold text-lg text-panda-dark text-left pt-4">Resources</h3>
-               <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-2">
+               <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-3">
                  <li><Link prefetch={false} href="/assets/thread-color-chart">Thread Color Chart</Link></li>
                  <li><Link prefetch={false} href="/assets/iron-on-instructions">Iron-On Instructions</Link></li>
                </ul>
@@ -299,7 +299,7 @@ export default function Footer() {
             </Link>
             <span className="text-gray-300" aria-hidden="true">·</span>
             <Link prefetch={false} href="/ai-info/products" className="text-gray-600 hover:text-panda-green hover:underline transition-colors">
-              Products
+              Product Info
             </Link>
             <span className="text-gray-300" aria-hidden="true">·</span>
             <Link prefetch={false} href="/ai-info/guarantees" className="text-gray-600 hover:text-panda-green hover:underline transition-colors">
