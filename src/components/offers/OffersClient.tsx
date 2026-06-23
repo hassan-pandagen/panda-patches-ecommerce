@@ -564,7 +564,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
         if (np.length > 1) sessionStorage.setItem('ec_last', np.slice(1).join(' '));
       } catch { /* noop */ }
 
-      const res = await fetch('/api/checkout-offers', {
+      const res = await fetch('/api/checkout-offers-square', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

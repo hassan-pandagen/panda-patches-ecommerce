@@ -506,8 +506,9 @@ export default function ComplexCalculator({
         if (nameParts.length > 1) sessionStorage.setItem('ec_last', nameParts.slice(1).join(' '));
       } catch { /* noop */ }
 
-      // Choose API endpoint based on payment method
-      const endpoint = paymentMethod === 'paypal' ? '/api/checkout-paypal' : '/api/checkout';
+      // Choose API endpoint based on payment method. Card/wallet checkout runs on
+      // Square (migrated off Stripe, June 2026); PayPal stays on its own route.
+      const endpoint = paymentMethod === 'paypal' ? '/api/checkout-paypal' : '/api/checkout-square';
 
       const response = await fetch(endpoint, {
         method: 'POST',

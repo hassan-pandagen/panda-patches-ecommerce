@@ -31,6 +31,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'cohere-ai', allow: '/' },               // Cohere training
       { userAgent: 'Amazonbot', allow: '/' },               // Amazon Alexa / AI
       { userAgent: 'Bytespider', allow: '/' },              // ByteDance / TikTok
+      { userAgent: 'Bravebot', allow: '/' },                // Brave Search index (also feeds some AI answers)
     ],
     sitemap: 'https://www.pandapatches.com/sitemap.xml',
   };

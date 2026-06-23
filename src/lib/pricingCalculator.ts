@@ -7,6 +7,13 @@
 // Set to 1.0 to revert to the raw table values.
 const PRICE_MULTIPLIER = 1.10;
 
+// Per-type uplift layered ON TOP of PRICE_MULTIPLIER. Chenille and Leather were
+// raised 12% (June 2026, per CEO) without editing their base tables, so the increase
+// lives in one auditable place and reverts by setting this to 1.0. Applies to the
+// plain Chenille and Leather lines only. The Chenille TPU/Glitter/Sequin variants use
+// their own tables (tpuPricing) and are intentionally NOT affected.
+const CHENILLE_LEATHER_UPLIFT = 1.12;
+
 // Embroidery Pricing
 // Qty breaks: 1-9 (graduated: $80 flat at 1pc, $100 total at 2pc, then linear toward 10pc total),
 //             then 10, 25, 50, 100, 200, 500, 1000, 2500, 5000
@@ -286,6 +293,12 @@ function getPricingTable(productName: string): PricingTable {
   return embroideryPricing;
 }
 
+// Resolve the per-type uplift for an already-resolved pricing table. Only the plain
+// Chenille and Leather tables carry the 12% increase; everything else returns 1.0.
+function getTypeUplift(pricing: PricingTable): number {
+  return (pricing === chenillePricing || pricing === leatherPricing) ? CHENILLE_LEATHER_UPLIFT : 1.0;
+}
+
 interface PriceResult {
   unitPrice: number;
   totalPrice: number;
@@ -330,8 +343,8 @@ export function calculatePatchPrice(
     }
   }
 
-  // Get unit price (apply global 10% uplift)
-  const unitPrice = pricing.prices[lookupSize][tierIndex] * PRICE_MULTIPLIER;
+  // Get unit price (apply global 10% uplift + any per-type uplift)
+  const unitPrice = pricing.prices[lookupSize][tierIndex] * PRICE_MULTIPLIER * getTypeUplift(pricing);
   const totalPrice = unitPrice * quantity;
 
   return {
@@ -401,13 +414,13 @@ export function getUpsellTiers(
 
   if (currentTierIndex < 0) return [];
 
-  const currentUnitPrice = pricing.prices[lookupSize][currentTierIndex] * PRICE_MULTIPLIER;
+  const currentUnitPrice = pricing.prices[lookupSize][currentTierIndex] * PRICE_MULTIPLIER * getTypeUplift(pricing);
 
   // Get next 2 tiers
   const upsells: UpsellTier[] = [];
   for (let i = currentTierIndex + 1; i < pricing.qtyBreaks.length && upsells.length < 2; i++) {
     const nextQty = pricing.qtyBreaks[i];
-    const nextUnitPrice = pricing.prices[lookupSize][i] * PRICE_MULTIPLIER;
+    const nextUnitPrice = pricing.prices[lookupSize][i] * PRICE_MULTIPLIER * getTypeUplift(pricing);
     const savingsPercent = Math.round(((currentUnitPrice - nextUnitPrice) / currentUnitPrice) * 100);
 
     if (savingsPercent > 0) {
@@ -436,6 +449,6 @@ export function getSchemaPricingTiers(productName: string): { minQuantity: numbe
     .filter(qty => pricing.qtyBreaks.includes(qty))
     .map(qty => {
       const tierIndex = pricing.qtyBreaks.indexOf(qty);
-      return { minQuantity: qty, unitPrice: pricing.prices[lookupSize][tierIndex] * PRICE_MULTIPLIER };
+      return { minQuantity: qty, unitPrice: pricing.prices[lookupSize][tierIndex] * PRICE_MULTIPLIER * getTypeUplift(pricing) };
     });
 }

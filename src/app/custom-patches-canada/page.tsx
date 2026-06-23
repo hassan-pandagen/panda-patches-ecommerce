@@ -98,7 +98,7 @@ const productSchema = {
     "@type": "AggregateRating",
     ratingValue: TRUSTPILOT_RATING,
     bestRating: "5",
-    ratingCount: "69",
+    ratingCount: "72",
   },
   offers: {
     "@type": "AggregateOffer",

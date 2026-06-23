@@ -11,8 +11,8 @@
  *   3. Update TRUSTPILOT_REVIEWS.md "last updated" date
  *   4. Ship the change
  *
- * Source of truth as of 2026-06-10 (verified live against the Trustpilot
- * profile widget): rating 4.8, count 69.
+ * Source of truth as of 2026-06-22 (verified live against the Trustpilot
+ * profile widget): rating 4.8, count 72.
  *
  * Trustpilot free plan constraints (do not violate):
  *   - No widgets, no Trustpilot logo, no star imagery that mimics theirs
@@ -20,7 +20,7 @@
  */
 
 export const TRUSTPILOT_RATING = "4.8";
-export const TRUSTPILOT_REVIEW_COUNT = 69;
+export const TRUSTPILOT_REVIEW_COUNT = 72;
 export const TRUSTPILOT_REVIEW_COUNT_STR = String(TRUSTPILOT_REVIEW_COUNT);
 export const TRUSTPILOT_PROFILE_URL =
   "https://www.trustpilot.com/review/pandapatches.com";

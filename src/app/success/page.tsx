@@ -6,6 +6,7 @@ import { CheckCircle2, AlertCircle } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PurchaseConversion from "@/components/PurchaseConversion";
+import { createClient } from "@supabase/supabase-js";
 
 export const metadata: Metadata = {
   title: "Order Confirmed | Panda Patches",
@@ -20,9 +21,16 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2026-02-25.clover',
 });
 
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+);
+
 interface SuccessSearchParams {
   session_id?: string;        // Stripe checkout session ID
   paypal_order_id?: string;   // PayPal order ID (post-capture)
+  provider?: string;          // 'square' for Square hosted-checkout returns
+  ref?: string;               // Square: our square_pending_orders token
   value?: string;             // Pre-formatted amount for analytics
 }
 
@@ -36,6 +44,28 @@ async function verifyPayment(params: SuccessSearchParams): Promise<{ verified: b
   // We trust paypal_order_id because the only way to get here is via capture-paypal route.
   if (params.paypal_order_id) {
     return { verified: true };
+  }
+
+  // Square path: Square only redirects to our success URL AFTER a completed payment
+  // (same trust model as PayPal). We additionally confirm the token belongs to a real
+  // checkout so a fabricated ?provider=square&ref= cannot show a fake receipt.
+  if (params.provider === 'square' && params.ref) {
+    try {
+      const { data } = await supabase
+        .from('square_pending_orders')
+        .select('order_data')
+        .eq('token', params.ref)
+        .maybeSingle();
+      if (data) {
+        const amt = params.value
+          ? parseFloat(params.value)
+          : ((data.order_data as { order_amount?: number })?.order_amount ?? undefined);
+        return { verified: true, amount: amt };
+      }
+    } catch {
+      // fall through to unverified
+    }
+    return { verified: false };
   }
 
   // Stripe path: verify the session ID is real AND payment_status === 'paid'

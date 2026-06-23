@@ -33,7 +33,11 @@ export default function PurchaseConversion() {
     const value = parseFloat(params.get('value') || '0') || 0;
     const sessionId = params.get('session_id') || undefined;
     const paypalOrderId = params.get('paypal_order_id') || undefined;
-    const orderId = sessionId || paypalOrderId;
+    // Square hosted checkout returns ?provider=square&ref=<token>. Use the token as
+    // the order id so the browser Purchase event id (`${token}_purchase`) matches the
+    // Square webhook's CAPI event id and Meta dedups instead of double-counting.
+    const squareRef = params.get('ref') || undefined;
+    const orderId = sessionId || paypalOrderId || squareRef;
 
     // Build Enhanced Conversions user_data from sessionStorage set at checkout time
     // Keys written by ComplexCalculator/checkout flow: ec_email, ec_phone, ec_first, ec_last

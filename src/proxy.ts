@@ -139,7 +139,7 @@ export async function proxy(request: NextRequest) {
   // ============================================
   // RATE LIMITING (UPSTASH REDIS)
   // ============================================
-  if (pathname === '/api/checkout' && checkoutLimiter) {
+  if ((pathname === '/api/checkout' || pathname === '/api/checkout-square') && checkoutLimiter) {
     const ip = request.headers.get('x-forwarded-for') || 'anonymous';
     const { success, limit, reset, remaining } = await checkoutLimiter.limit(ip);
 
