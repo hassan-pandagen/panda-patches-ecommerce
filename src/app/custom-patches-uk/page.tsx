@@ -30,7 +30,7 @@ const ukFAQs = [
   {
     question: "What currency are your prices in?",
     answer:
-      "All prices are in US dollars (USD), and the USD figure is the complete, delivered price. We do not bill in GBP, but your card or PayPal will convert at the day's rate, and what you see quoted in USD is exactly what reaches us; there are no separate shipping, VAT, or handling charges added at any stage.",
+      "All prices are in US dollars (USD), and the USD figure is the complete, delivered price. We do not bill in GBP, but your card will convert at the day's rate, and what you see quoted in USD is exactly what reaches us; there are no separate shipping, VAT, or handling charges added at any stage.",
   },
   {
     question: "How long does delivery to the UK take?",

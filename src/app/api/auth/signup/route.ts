@@ -12,6 +12,10 @@ const SignupSchema = z.object({
   phone: z.string().max(40).optional(),
   returnTo: z.string().max(200).optional(),
   origin: z.string().url().optional(),
+  // Bot traps (validated below). website = honeypot (hidden field, must be empty);
+  // elapsedMs = time from form render to submit.
+  website: z.string().max(200).optional(),
+  elapsedMs: z.number().optional(),
 });
 
 /**
@@ -41,7 +45,37 @@ export async function POST(req: Request) {
     );
   }
 
-  const { email, password, firstName, lastName, phone, returnTo, origin } = parsed.data;
+  const { email, password, firstName, lastName, phone, returnTo, origin, website, elapsedMs } = parsed.data;
+
+  // Bot traps: honeypot + time-to-submit. A real user never fills the hidden
+  // "website" field, and never completes the 5-field form in under 1.5s. When a
+  // trap trips we return a FAKE success and create nothing — the bot believes it
+  // worked, so no account is made and no confirmation email is sent (the thing
+  // that was email-bombing harvested addresses). Logged so we can see it working.
+  if ((website && website.trim() !== "") || (typeof elapsedMs === "number" && elapsedMs < 1500)) {
+    console.warn(
+      `[signup] bot trap tripped (honeypot=${Boolean(website && website.trim())}, elapsedMs=${elapsedMs}) email=${email}`,
+    );
+    return NextResponse.json({ ok: true });
+  }
+
+  // Gibberish-name detection — same heuristic as /api/quote. Catches bot-generated
+  // random-string names (e.g. "TRYhbcMPvSHFNSoWAWBcwvO") even when a bot POSTs this
+  // API directly and never touches the honeypot. Fake success, creates nothing.
+  const looksGibberish = (str: string) => {
+    if (!str || str.length < 6) return false;
+    const word = str.trim().split(/\s+/)[0];
+    if (word.length < 6) return false;
+    const consonantCluster = /[bcdfghjklmnpqrstvwxyz]{4,}/i;
+    const mixedCaseNoSpace =
+      /^[^\s]+$/.test(word) && /[a-z]/.test(word) && /[A-Z]/.test(word.slice(1));
+    return consonantCluster.test(word) && mixedCaseNoSpace;
+  };
+  if (looksGibberish(firstName) || looksGibberish(lastName)) {
+    console.warn(`[signup] gibberish name rejected: "${firstName} ${lastName}" email=${email}`);
+    return NextResponse.json({ ok: true });
+  }
+
   const baseUrl = resolveAuthBaseUrl(origin, req.headers.get("origin"));
   const redirectTo = `${baseUrl}/auth/callback${returnTo ? `?next=${encodeURIComponent(returnTo)}` : ""}`;
 

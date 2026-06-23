@@ -61,7 +61,7 @@ const corporateFAQs = [
   },
   {
     question: "Can you issue a formal invoice and accept a purchase order?",
-    answer: "Yes. We issue formal invoices with PO number reference and accommodate Net-15 and Net-30 payment terms for established corporate accounts. We also accept ACH bank transfer, Visa, Mastercard, Amex, and PayPal. Email lance@pandapatches.com with your procurement requirements before ordering."
+    answer: "Yes. We issue formal invoices with PO number reference and accommodate Net-15 and Net-30 payment terms for established corporate accounts. We also accept ACH bank transfer, Visa, Mastercard, and Amex. Email lance@pandapatches.com with your procurement requirements before ordering."
   },
   {
     question: "How do you ensure color consistency when we reorder months later?",

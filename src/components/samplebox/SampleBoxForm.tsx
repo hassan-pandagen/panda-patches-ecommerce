@@ -32,7 +32,7 @@ export default function SampleBoxForm() {
         throw new Error(result.message || 'Failed to submit order');
       }
 
-      // Redirect to Stripe Checkout
+      // Redirect to Square Checkout
       if (result.checkoutUrl) {
         window.location.href = result.checkoutUrl;
       }
@@ -111,10 +111,10 @@ export default function SampleBoxForm() {
         <div className="pt-4 border-t border-gray-200">
           <p className="text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
             <span className="text-panda-green">✓</span>
-            Secure payment powered by Stripe
+            Secure payment powered by Square
           </p>
           <p className="text-xs text-gray-500">
-            You will be redirected to Stripe to complete your payment securely.
+            You will be redirected to Square to complete your payment securely.
           </p>
         </div>
 

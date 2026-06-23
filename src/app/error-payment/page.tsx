@@ -109,7 +109,7 @@ export default function PaymentErrorPage() {
 
           {/* Security Note */}
           <p className="text-sm text-gray-500 mt-8">
-            🔒 All payments are secured with 256-bit SSL encryption via Stripe
+            🔒 All payments are secured with 256-bit SSL encryption via Square
           </p>
 
         </div>

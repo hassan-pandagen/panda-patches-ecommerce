@@ -61,7 +61,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'What payment methods do you accept?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Visa, Mastercard, Amex, Apple Pay, AfterPay, Klarna, Cash App. All 256-bit SSL encrypted via Stripe.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Visa, Mastercard, Amex, Apple Pay, Google Pay, Cash App, AfterPay. All 256-bit SSL encrypted via Square.' },
     },
   ],
 };

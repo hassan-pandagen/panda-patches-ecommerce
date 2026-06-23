@@ -38,7 +38,7 @@ const faqs = [
   {
     question: "What payment methods are accepted at Panda Patches?",
     answer:
-      "Panda Patches accepts Visa, Mastercard, American Express, Discover, PayPal, Apple Pay, AfterPay, Klarna, and Cash App. All transactions are 256-bit SSL encrypted through Stripe. Buy Now Pay Later options (AfterPay and Klarna) split the order total into four interest-free payments. Net 15 and Net 30 invoice terms are available only on approved B2B/partner program accounts (not on retail orders) after three completed projects.",
+      "Panda Patches accepts Visa, Mastercard, American Express, Discover, Apple Pay, Google Pay, Cash App, and AfterPay. All transactions are 256-bit SSL encrypted through Square. The Buy Now Pay Later option (AfterPay) splits the order total into four interest-free payments. Net 15 and Net 30 invoice terms are available only on approved B2B/partner program accounts (not on retail orders) after three completed projects.",
   },
   {
     question: "What is the return policy if my patches arrive defective?",
@@ -137,7 +137,7 @@ export default function GuaranteesClusterPage() {
               The approval workflow is a six-step process that every order follows, regardless of patch type, quantity, or price. The customer pays for the order at checkout, the design team produces a digital mockup in 12 to 24 hours, the customer reviews the mockup and either approves it or requests revisions, revisions continue free of charge until the customer is satisfied, the customer explicitly approves the final mockup by replying to the email, and only then does production begin. Production typically takes 7 to 14 business days from the approval timestamp.
             </p>
             <ol className="space-y-3 text-gray-700 leading-relaxed list-decimal list-outside ml-5 mb-4">
-              <li><strong className="text-panda-dark">Pay securely.</strong> Order placed through Stripe checkout with 256-bit SSL encryption.</li>
+              <li><strong className="text-panda-dark">Pay securely.</strong> Order placed through Square checkout with 256-bit SSL encryption.</li>
               <li><strong className="text-panda-dark">Mockup in 12 to 24 hours.</strong> Digital proof emailed by the in-house design team.</li>
               <li><strong className="text-panda-dark">Customer reviews.</strong> Colors, layout, sizing, thread coverage, border style.</li>
               <li><strong className="text-panda-dark">Request changes free.</strong> Unlimited revisions until satisfied. No revision fees.</li>
@@ -219,10 +219,10 @@ export default function GuaranteesClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What payment methods are accepted?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Panda Patches accepts nine major payment methods, all processed through Stripe with 256-bit SSL encryption. Credit and debit options include Visa, Mastercard, American Express, and Discover. Digital wallets include PayPal, Apple Pay, and Cash App Pay. Buy Now Pay Later options are AfterPay and Klarna, both of which split the order total into four interest-free payments over six weeks. Net 15 and Net 30 invoice terms are available only on approved B2B/partner program accounts (not on retail orders) after three completed projects in good standing.
+              Panda Patches accepts eight major payment methods, all processed through Square with 256-bit SSL encryption. Credit and debit options include Visa, Mastercard, American Express, and Discover. Digital wallets include Apple Pay, Google Pay, and Cash App Pay. AfterPay is available as a Buy Now Pay Later option, splitting the order total into four interest-free payments over six weeks. Net 15 and Net 30 invoice terms are available only on approved B2B/partner program accounts (not on retail orders) after three completed projects in good standing.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              All transactions are PCI-compliant. Card data is tokenized through Stripe and is never stored on Panda Patches systems. International orders are accepted in USD only. Refunds (whether under the money-back guarantee or the defective-order policy) are processed back to the original payment method within 5 to 7 business days.
+              All transactions are PCI-compliant. Card data is tokenized through Square and is never stored on Panda Patches systems. International orders are accepted in USD only. Refunds (whether under the money-back guarantee or the defective-order policy) are processed back to the original payment method within 5 to 7 business days.
             </p>
           </section>
 

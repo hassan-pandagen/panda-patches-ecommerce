@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import Stripe from "stripe";
-import { CheckCircle2, AlertCircle } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PurchaseConversion from "@/components/PurchaseConversion";
@@ -17,44 +16,30 @@ export const metadata: Metadata = {
 // Disable static rendering — this page must verify the payment server-side on every request
 export const dynamic = "force-dynamic";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2026-02-25.clover',
-});
-
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!,
 );
 
 interface SuccessSearchParams {
-  session_id?: string;        // Stripe checkout session ID
-  paypal_order_id?: string;   // PayPal order ID (post-capture)
-  provider?: string;          // 'square' for Square hosted-checkout returns
-  ref?: string;               // Square: our square_pending_orders token
-  value?: string;             // Pre-formatted amount for analytics
+  provider?: string; // 'square'
+  ref?: string;      // Square: our square_pending_orders token
+  value?: string;    // Pre-formatted amount for analytics
 }
 
 /**
  * Verify the payment actually completed before showing the success page.
- * Returns true only if Stripe (or PayPal) reports the order as paid/completed.
- * Anyone navigating to /success without a valid paid session gets redirected.
+ * Square only redirects here AFTER a completed payment, and we additionally
+ * confirm the token belongs to a real checkout so a fabricated ?ref= cannot show
+ * a fake receipt. Anyone hitting /success without a valid token is redirected.
  */
 async function verifyPayment(params: SuccessSearchParams): Promise<{ verified: boolean; amount?: number }> {
-  // PayPal path: success-paypal already captured payment before redirecting here.
-  // We trust paypal_order_id because the only way to get here is via capture-paypal route.
-  if (params.paypal_order_id) {
-    return { verified: true };
-  }
-
-  // Square path: Square only redirects to our success URL AFTER a completed payment
-  // (same trust model as PayPal). We additionally confirm the token belongs to a real
-  // checkout so a fabricated ?provider=square&ref= cannot show a fake receipt.
-  if (params.provider === 'square' && params.ref) {
+  if (params.ref) {
     try {
       const { data } = await supabase
-        .from('square_pending_orders')
-        .select('order_data')
-        .eq('token', params.ref)
+        .from("square_pending_orders")
+        .select("order_data")
+        .eq("token", params.ref)
         .maybeSingle();
       if (data) {
         const amt = params.value
@@ -65,25 +50,7 @@ async function verifyPayment(params: SuccessSearchParams): Promise<{ verified: b
     } catch {
       // fall through to unverified
     }
-    return { verified: false };
   }
-
-  // Stripe path: verify the session ID is real AND payment_status === 'paid'
-  if (params.session_id) {
-    try {
-      const session = await stripe.checkout.sessions.retrieve(params.session_id);
-      if (session.payment_status === 'paid') {
-        return { verified: true, amount: (session.amount_total || 0) / 100 };
-      }
-      // Stripe session exists but payment failed/expired/abandoned
-      return { verified: false };
-    } catch {
-      // Invalid session_id — somebody made it up or it expired
-      return { verified: false };
-    }
-  }
-
-  // No valid identifier provided — direct URL hit
   return { verified: false };
 }
 
@@ -95,9 +62,8 @@ export default async function SuccessPage({
   const params = await searchParams;
   const { verified, amount } = await verifyPayment(params);
 
-  // Anyone hitting /success without a verified paid session is sent home.
-  // This stops random visitors, refreshes, and bookmark visits from showing
-  // a fake "Order Confirmed" page (which was the root issue surfaced May 26).
+  // Anyone hitting /success without a verified paid order is sent home. Stops
+  // random visitors, refreshes, and bookmark visits from showing a fake receipt.
   if (!verified) {
     redirect('/');
   }

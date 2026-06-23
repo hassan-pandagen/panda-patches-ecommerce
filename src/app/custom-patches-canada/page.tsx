@@ -30,7 +30,7 @@ const caFAQs = [
   {
     question: "What currency are your prices in?",
     answer:
-      "All prices are in US dollars (USD), and that USD figure is the complete, delivered price. We do not bill in CAD, but your card or PayPal converts at the day's rate. There are no separate shipping, GST/HST, duty, or brokerage charges added at any point; the USD number you approve is exactly what reaches us.",
+      "All prices are in US dollars (USD), and that USD figure is the complete, delivered price. We do not bill in CAD, but your card converts at the day's rate. There are no separate shipping, GST/HST, duty, or brokerage charges added at any point; the USD number you approve is exactly what reaches us.",
   },
   {
     question: "How long does delivery to Canada take?",

@@ -58,14 +58,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Invalid offer selection' }, { status: 400 });
     }
     const { basePrice, qty, categoryType } = offer;
-    let finalPrice = calculateOfferTotal(basePrice, qty, backing, delivery, upgrades ?? []);
-
-    // TEMP (Square go-live test) — REMOVE after the live test order is confirmed.
-    // Same $5 test-email override as checkout-square. Grep SQUARE_TEST_EMAILS.
-    const SQUARE_TEST_EMAILS = ['hassanjamal5004@gmail.com'];
-    if (SQUARE_TEST_EMAILS.includes(customer.email.trim().toLowerCase())) {
-      finalPrice = 5.0;
-    }
+    const finalPrice = calculateOfferTotal(basePrice, qty, backing, delivery, upgrades ?? []);
 
     const cat = OFFER_CATEGORIES.find((c) => c.id === categoryId);
     const productName = `${cat?.type ?? categoryType} - ${packName} Pack (${qty} pcs)`;

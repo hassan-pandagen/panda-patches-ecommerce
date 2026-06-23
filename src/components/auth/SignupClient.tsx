@@ -13,6 +13,8 @@ export default function SignupClient({ returnTo, initialEmail }: SignupClientPro
   const [email, setEmail] = useState(initialEmail || "");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot — must stay empty for humans
+  const [loadedAt] = useState(() => Date.now()); // time-to-submit bot trap
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState<{ type: "error" | "success"; text: string } | null>(null);
 
@@ -39,6 +41,8 @@ export default function SignupClient({ returnTo, initialEmail }: SignupClientPro
           phone,
           returnTo,
           origin: typeof window !== "undefined" ? window.location.origin : undefined,
+          website, // honeypot (hidden field)
+          elapsedMs: Date.now() - loadedAt,
         }),
       });
 
@@ -87,6 +91,24 @@ export default function SignupClient({ returnTo, initialEmail }: SignupClientPro
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+        {/* Honeypot: positioned off-screen so humans never see or tab to it, but
+            form-filling bots auto-populate it. A non-empty value makes the server
+            silently drop the signup. Do not remove. */}
+        <div
+          aria-hidden="true"
+          style={{ position: "absolute", left: "-9999px", top: "-9999px", width: 1, height: 1, overflow: "hidden" }}
+        >
+          <label htmlFor="website-hp">Website</label>
+          <input
+            id="website-hp"
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+          />
+        </div>
         {/* First + Last on one row */}
         <div className="grid grid-cols-2 gap-3">
           <div>

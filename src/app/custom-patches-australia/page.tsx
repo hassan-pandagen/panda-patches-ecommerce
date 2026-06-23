@@ -30,7 +30,7 @@ const auFAQs = [
   {
     question: "What currency are your prices in?",
     answer:
-      "All prices are in US dollars (USD), and that USD figure is the complete, delivered price. We do not bill in AUD, but your card or PayPal converts at the day's rate. There are no separate shipping, GST, or handling charges added at any point; the USD number you approve is exactly what reaches us.",
+      "All prices are in US dollars (USD), and that USD figure is the complete, delivered price. We do not bill in AUD, but your card converts at the day's rate. There are no separate shipping, GST, or handling charges added at any point; the USD number you approve is exactly what reaches us.",
   },
   {
     question: "How long does delivery to Australia take?",

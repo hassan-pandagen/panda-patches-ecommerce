@@ -38,7 +38,7 @@ const faqs = [
   {
     question: "What payment terms are available for partners?",
     answer:
-      "Net 15 and Net 30 payment terms become available to partner program accounts after three completed projects in good standing. Before the three-project threshold, partners pay at order placement using the same Stripe-secured checkout as retail customers. For approved Net terms accounts, an invoice is issued at order completion and payment is due within 15 or 30 days. Larger partners can request custom terms on a case-by-case basis.",
+      "Net 15 and Net 30 payment terms become available to partner program accounts after three completed projects in good standing. Before the three-project threshold, partners pay at order placement using the same Square-secured checkout as retail customers. For approved Net terms accounts, an invoice is issued at order completion and payment is due within 15 or 30 days. Larger partners can request custom terms on a case-by-case basis.",
   },
   {
     question: "Does Panda Patches work with ASI, PPAI, or SAGE distributors?",
@@ -178,7 +178,7 @@ export default function WholesaleClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What payment terms are available?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              New partner accounts pay at order placement using the same Stripe-secured checkout as retail customers. Card and PayPal are accepted. After three completed projects in good standing, partners can apply for Net 15 or Net 30 payment terms. Approved Net terms accounts receive an invoice at order completion with payment due within 15 or 30 days. Larger partners (Scale and Volume tiers) can request custom terms on a case-by-case basis through their dedicated account manager.
+              New partner accounts pay at order placement using the same Square-secured checkout as retail customers. Card, Apple Pay, Google Pay, Cash App, and AfterPay are accepted. After three completed projects in good standing, partners can apply for Net 15 or Net 30 payment terms. Approved Net terms accounts receive an invoice at order completion with payment due within 15 or 30 days. Larger partners (Scale and Volume tiers) can request custom terms on a case-by-case basis through their dedicated account manager.
             </p>
             <p className="text-gray-700 leading-relaxed">
               All Net terms require a completed credit application and ACH or wire details on file. Late payments incur a 1.5 percent monthly service charge on the unpaid balance. Repeated late payments revert the account to prepaid-only terms. The three-project threshold is industry-standard and exists to verify the partner's order patterns before extending credit.

@@ -195,7 +195,7 @@ export default function ComplexCalculator({
   const [showPatchIdea, setShowPatchIdea] = useState(false);
 
   // Payment Method State
-  const [paymentMethod, setPaymentMethod] = useState<"card" | "paypal" | "cashapp" | "afterpay" | "applepay" | "klarna">("card");
+  const [paymentMethod, setPaymentMethod] = useState<"card" | "cashapp" | "afterpay" | "applepay">("card");
 
   // Checkout Loading State
   const [checkoutLoading, setCheckoutLoading] = useState(false);
@@ -506,9 +506,8 @@ export default function ComplexCalculator({
         if (nameParts.length > 1) sessionStorage.setItem('ec_last', nameParts.slice(1).join(' '));
       } catch { /* noop */ }
 
-      // Choose API endpoint based on payment method. Card/wallet checkout runs on
-      // Square (migrated off Stripe, June 2026); PayPal stays on its own route.
-      const endpoint = paymentMethod === 'paypal' ? '/api/checkout-paypal' : '/api/checkout-square';
+      // All checkout runs on Square (Stripe + PayPal removed June 2026).
+      const endpoint = '/api/checkout-square';
 
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -538,10 +537,6 @@ export default function ComplexCalculator({
       const data = await response.json();
 
       if (data.url) {
-        // For PayPal: store order data so capture route can create the order on payment
-        if (data.orderData && data.paypalOrderId) {
-          try { localStorage.setItem('pp_paypal_order', JSON.stringify({ paypalOrderId: data.paypalOrderId, orderData: data.orderData })); } catch {}
-        }
         try { localStorage.removeItem(storageKey); } catch {}
         window.location.href = data.url;
       } else {
@@ -1410,13 +1405,7 @@ export default function ComplexCalculator({
                 <img src="/assets/payments/applepay.svg" alt="Apple Pay" style={{height: '50px', width: 'auto'}} />
               </button>
 
-              {/* Klarna */}
-              <button type="button" onClick={() => setPaymentMethod("klarna")}
-                className="h-[72px] rounded-xl transition-all duration-150 flex items-center justify-center px-1"
-                style={{ border: paymentMethod === "klarna" ? '2px solid #000' : '2px solid #9CA3AF', background: paymentMethod === "klarna" ? '#fff' : '#F9FAFB' }}
-              >
-                <img src="/assets/payments/klarna.svg" alt="Klarna" style={{width: '100%', height: 'auto'}} />
-              </button>
+              {/* Klarna removed June 2026, not supported via Square */}
 
             </div>
 

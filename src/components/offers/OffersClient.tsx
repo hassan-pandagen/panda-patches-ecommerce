@@ -424,10 +424,10 @@ function Step4({ formData, setFormData, onNext, onBack }: {
 
 function Step5({
   offer, formData, total, loading, error,
-  onBack, onStripe, onPayPal,
+  onBack, onStripe,
 }: {
   offer: SelectedOffer; formData: FormData; total: number; loading: boolean; error: string | null;
-  onBack: () => void; onStripe: () => void; onPayPal: () => void;
+  onBack: () => void; onStripe: () => void;
 }) {
   const w = parseFloat(formData.width);
   const h = parseFloat(formData.height);
@@ -480,10 +480,10 @@ function Step5({
       {/* Payment logos */}
       <div className="flex flex-wrap items-center gap-2 text-xs text-gray-400">
         <span className="font-semibold text-gray-600">Pay with:</span>
-        {['Visa', 'Mastercard', 'Amex', 'Apple Pay', 'AfterPay', 'Klarna'].map(p => (
+        {['Visa', 'Mastercard', 'Amex', 'Apple Pay', 'Google Pay', 'Cash App', 'AfterPay'].map(p => (
           <span key={p} className="px-2 py-1 bg-gray-100 rounded font-medium text-gray-600">{p}</span>
         ))}
-        <span className="ml-auto text-[11px] text-gray-400">256-bit SSL. Powered by Stripe.</span>
+        <span className="ml-auto text-[11px] text-gray-400">256-bit SSL. Powered by Square.</span>
       </div>
 
       {error && (
@@ -594,62 +594,6 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
       }
     } catch {
       setError('Checkout failed. Please try again.');
-      setLoading(false);
-    }
-  };
-
-  const handlePayPalCheckout = async () => {
-    if (!selectedOffer) return;
-    setLoading(true);
-    setError(null);
-    const attribution = getStoredAttribution();
-    // Shared event ID so browser pixel + server CAPI can dedupe (fixes May 26 Meta diagnostic)
-    const initiateCheckoutEventId = generateEventId('initcheckout');
-    try {
-      try {
-        if (typeof (window as any).fbq === 'function') {
-          (window as any).fbq('track', 'InitiateCheckout', {
-            content_name: selectedOffer.packName,
-            content_category: selectedOffer.categoryId,
-            value: total,
-            currency: 'USD',
-          }, { eventID: initiateCheckoutEventId });
-        }
-      } catch { /* noop */ }
-      const res = await fetch('/api/checkout-offers-paypal', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          categoryId: selectedOffer.categoryId,
-          packName: selectedOffer.packName,
-          backing: formData.backing,
-          delivery: formData.delivery,
-          upgrades: formData.upgrades,
-          customer: { name: formData.name, email: formData.email, phone: formData.phone },
-          shippingAddress: `${formData.street}${formData.apt ? ', ' + formData.apt : ''}, ${formData.city}, ${formData.state} ${formData.zip}`,
-          width: parseFloat(formData.width) || 3,
-          height: parseFloat(formData.height) || 3,
-          artworkUrl: formData.artworkUrl || null,
-          designDescription: formData.designDescription,
-          specialInstructions: formData.specialInstructions,
-          company: formData.company,
-          attribution,
-          initiateCheckoutEventId,
-        }),
-      });
-      const data = await res.json();
-      if (data.url) {
-        try {
-          localStorage.setItem('paypal_order_data', JSON.stringify(data.orderData));
-          localStorage.setItem('paypal_order_id', data.paypalOrderId);
-        } catch {}
-        window.location.href = data.url;
-      } else {
-        setError(data.error || 'PayPal checkout failed. Please try again.');
-        setLoading(false);
-      }
-    } catch {
-      setError('PayPal checkout failed. Please try again.');
       setLoading(false);
     }
   };
@@ -858,7 +802,6 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
                           loading={loading} error={error}
                           onBack={() => setStep(3)}
                           onStripe={handleStripeCheckout}
-                          onPayPal={handlePayPalCheckout}
                         />
                       )}
                     </div>
@@ -926,7 +869,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
               },
               {
                 q: 'What payment methods do you accept?',
-                a: 'Visa, Mastercard, Amex, Apple Pay, AfterPay, Klarna, Cash App. All 256-bit SSL encrypted via Stripe.',
+                a: 'Visa, Mastercard, Amex, Apple Pay, Google Pay, Cash App, AfterPay. All 256-bit SSL encrypted via Square.',
               },
               {
                 q: 'Can I order a different quantity?',

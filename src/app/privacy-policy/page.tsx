@@ -56,7 +56,7 @@ export default function PrivacyPolicyPage() {
             <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8] mb-6">
               <li><strong>Name and contact details</strong> — name, email address, phone number</li>
               <li><strong>Shipping address</strong> — for order delivery</li>
-              <li><strong>Payment information</strong> — processed securely via Stripe; we do not store card numbers</li>
+              <li><strong>Payment information</strong>: processed securely via Square; we do not store card numbers</li>
               <li><strong>Order details</strong> — patch specifications, artwork files, special instructions</li>
               <li><strong>Communications</strong> — messages sent through our chat widget (Tawk.to) or email</li>
             </ul>
@@ -85,7 +85,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-[26px] font-black text-panda-dark mb-4">4. Sharing Your Information</h2>
             <p className="text-[16px] leading-[1.8] mb-4">We do not sell your personal information. We share data only with:</p>
             <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8]">
-              <li><strong>Stripe</strong> — payment processing (PCI-DSS compliant)</li>
+              <li><strong>Square</strong>: payment processing (PCI-DSS compliant)</li>
               <li><strong>Supabase</strong> — order management database (encrypted at rest)</li>
               <li><strong>Google Analytics / GTM</strong> — aggregated website analytics</li>
               <li><strong>Meta (Facebook/Instagram)</strong> — ad performance tracking</li>
@@ -147,7 +147,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-[26px] font-black text-panda-dark mb-4">9. Security</h2>
             <p className="text-[16px] leading-[1.8]">
               We implement industry-standard security measures to protect your data, including SSL/TLS encryption, secure payment
-              processing via Stripe, and encrypted database storage via Supabase. However, no method of transmission over the
+              processing via Square, and encrypted database storage via Supabase. However, no method of transmission over the
               internet is 100% secure, and we cannot guarantee absolute security.
             </p>
           </section>

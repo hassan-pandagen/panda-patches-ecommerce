@@ -51,6 +51,18 @@ const sampleBoxLimiter = redis
     })
   : null;
 
+// Account signups: real users sign up once. A tight per-IP cap throttles the
+// signup-spam bot (random-name accounts that email-bomb harvested addresses).
+// This is a baseline; CAPTCHA on the form is the real fix for IP-rotating bots.
+const signupLimiter = redis
+  ? new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(5, '1 h'), // 5 signups per hour per IP
+      analytics: true,
+      prefix: 'ratelimit:signup',
+    })
+  : null;
+
 // Allowed origins for API requests
 const ALLOWED_ORIGINS = [
   'https://www.pandapatches.com',
@@ -162,6 +174,17 @@ export async function proxy(request: NextRequest) {
             'Retry-After': Math.ceil((reset - Date.now()) / 1000).toString(),
           },
         }
+      );
+    }
+  }
+
+  if (pathname === '/api/auth/signup' && signupLimiter) {
+    const ip = request.headers.get('x-forwarded-for') || 'anonymous';
+    const { success, reset } = await signupLimiter.limit(ip);
+    if (!success) {
+      return NextResponse.json(
+        { ok: false, error: 'Too many signups from this network. Please try again later.' },
+        { status: 429, headers: { 'Retry-After': Math.ceil((reset - Date.now()) / 1000).toString() } },
       );
     }
   }

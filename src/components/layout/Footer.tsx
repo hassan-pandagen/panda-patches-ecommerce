@@ -103,7 +103,7 @@ export default function Footer() {
                <div className="relative w-full h-8">
                   <Image
                     src="/assets/payment-methods.png"
-                    alt="Visa Mastercard Paypal"
+                    alt="Visa Mastercard Apple Pay Google Pay Cash App"
                     width={250}
                     height={30}
                     className="object-contain object-left"

@@ -98,16 +98,7 @@ export async function POST(req: Request) {
     const velcroAdjusted = applyVelcroPricing(priceResult.totalPrice, backing, quantity);
     const patchSubtotal = applyEconomyDiscount(velcroAdjusted, deliveryOption);
     const rushSurcharge = deliveryOption === 'rush' ? getRushSurcharge(quantity) : 0;
-    let finalPrice = Math.round((patchSubtotal + rushSurcharge) * 100) / 100;
-
-    // TEMP (Square go-live test) — REMOVE after the live test order is confirmed.
-    // Orders placed with these emails are charged a flat $5 so the CEO can run a real
-    // card end-to-end test cheaply. Every other customer pays the normal price, so
-    // this is safe for the short test window. Grep SQUARE_TEST_EMAILS to remove.
-    const SQUARE_TEST_EMAILS = ['hassanjamal5004@gmail.com'];
-    if (SQUARE_TEST_EMAILS.includes(customer.email.trim().toLowerCase())) {
-      finalPrice = 5.0;
-    }
+    const finalPrice = Math.round((patchSubtotal + rushSurcharge) * 100) / 100;
 
     const origin =
       req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/');

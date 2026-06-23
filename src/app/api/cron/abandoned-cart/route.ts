@@ -29,7 +29,7 @@ interface CheckoutAttempt {
   delivery_option: string | null;
   cart_value: number;
   artwork_url: string | null;
-  payment_provider: 'stripe' | 'paypal' | null;
+  payment_provider: 'stripe' | 'paypal' | 'square' | null;
   provider_session_id: string | null;
   return_url: string | null;
   fbp: string | null;

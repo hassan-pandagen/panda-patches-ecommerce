@@ -61,7 +61,7 @@ export default function TermsOfServicePage() {
                 By approving the mockup, you confirm all details (size, color, quantity, backing) are correct.
               </li>
               <li>
-                <strong>Payment:</strong> Full payment is required before production begins, processed securely via Stripe.
+                <strong>Payment:</strong> Full payment is required before production begins, processed securely via Square.
               </li>
               <li>
                 <strong>Production:</strong> Standard production time is 7-14 business days from approval. Rush options
@@ -75,8 +75,8 @@ export default function TermsOfServicePage() {
             <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8]">
               <li>All prices are in US Dollars (USD) unless otherwise stated.</li>
               <li>Prices are subject to change without notice. Your quoted price is honored for 30 days.</li>
-              <li>Payment is processed securely via Stripe. We accept all major credit cards.</li>
-              <li>We do not store credit card numbers — all payment data is handled by Stripe (PCI-DSS Level 1 compliant).</li>
+              <li>Payment is processed securely via Square. We accept all major credit cards.</li>
+              <li>We do not store credit card numbers. All payment data is handled by Square (PCI-DSS Level 1 compliant).</li>
               <li>Rush fees, shipping costs, and any applicable taxes are displayed at checkout.</li>
             </ul>
           </section>
