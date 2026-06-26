@@ -82,10 +82,10 @@ const ww = (domain: string) => `wss://${W}.${domain}`;
 const cspHeader = [
   "default-src 'self'",
 
-  // Scripts: Google (GTM, GA4, Ads), Stripe, PayPal, Tawk.to, Facebook, Bing, Vercel, Pinterest
-  `script-src 'self' 'unsafe-inline' 'unsafe-eval' ${w('googletagmanager.com')} ${w('google-analytics.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} https://js.stripe.com ${w('paypal.com')} ${w('paypalobjects.com')} ${w('tawk.to')} https://cdn.jsdelivr.net ${w('vercel-scripts.com')} ${w('vercel-insights.com')} ${w('facebook.net')} ${w('facebook.com')} https://bat.bing.com https://s.pinimg.com https://ct.pinterest.com ${w('pinterest.com')} https://bzrcdn.openai.com`,
+  // Scripts: Google (GTM, GA4, Ads), PayPal, Tawk.to, Facebook, Bing, Vercel, Pinterest
+  `script-src 'self' 'unsafe-inline' 'unsafe-eval' ${w('googletagmanager.com')} ${w('google-analytics.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} ${w('paypal.com')} ${w('paypalobjects.com')} ${w('tawk.to')} https://cdn.jsdelivr.net ${w('vercel-scripts.com')} ${w('vercel-insights.com')} ${w('facebook.net')} ${w('facebook.com')} https://bat.bing.com https://s.pinimg.com https://ct.pinterest.com ${w('pinterest.com')} https://bzrcdn.openai.com`,
 
-  `script-src-elem 'self' 'unsafe-inline' ${w('googletagmanager.com')} ${w('google-analytics.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} https://js.stripe.com ${w('paypal.com')} ${w('paypalobjects.com')} ${w('tawk.to')} https://cdn.jsdelivr.net ${w('vercel-scripts.com')} ${w('vercel-insights.com')} ${w('facebook.net')} ${w('facebook.com')} https://bat.bing.com https://s.pinimg.com https://ct.pinterest.com ${w('pinterest.com')} https://bzrcdn.openai.com`,
+  `script-src-elem 'self' 'unsafe-inline' ${w('googletagmanager.com')} ${w('google-analytics.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} ${w('paypal.com')} ${w('paypalobjects.com')} ${w('tawk.to')} https://cdn.jsdelivr.net ${w('vercel-scripts.com')} ${w('vercel-insights.com')} ${w('facebook.net')} ${w('facebook.com')} https://bat.bing.com https://s.pinimg.com https://ct.pinterest.com ${w('pinterest.com')} https://bzrcdn.openai.com`,
 
   // Styles
   `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${w('tawk.to')}`,
@@ -97,13 +97,13 @@ const cspHeader = [
   `img-src 'self' data: blob: https://cdn.sanity.io ${w('supabase.co')} ${w('google-analytics.com')} ${w('googletagmanager.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} ${w('google.com')} ${w('google.co.uk')} ${w('google.ca')} ${w('google.com.au')} ${w('google.com.pk')} ${w('paypalobjects.com')} ${w('tawk.to')} ${w('tawk.link')} https://tawk.link ${w('amazonaws.com')} ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://bat.bing.com ${w('bing.com')} ${w('bing.net')} https://bat.bing.net https://cdn.jsdelivr.net https://ct.pinterest.com ${w('pinimg.com')} ${w('openai.com')}`,
 
   // Connect: API calls, websockets, beacons
-  `connect-src 'self' ${w('sanity.io')} ${w('google-analytics.com')} ${w('analytics.google.com')} ${w('googletagmanager.com')} ${w('doubleclick.net')} ${w('googleadservices.com')} ${w('google.com')} ${w('google.co.uk')} ${w('google.ca')} ${w('google.com.au')} ${w('google.com.pk')} https://api.stripe.com ${w('supabase.co')} ${w('tawk.to')} ${ww('tawk.to')} https://mpc-prod-24-s6uit34pua-uw.a.run.app https://api.zeptomail.com ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://demo-1.conversionsapigateway.com https://bat.bing.com ${w('bing.com')} ${w('bing.net')} https://bat.bing.net ${w('paypal.com')} ${w('vercel-insights.com')} ${w('vercel-scripts.com')} https://ct.pinterest.com ${w('pinterest.com')} ${w('pinimg.com')} ${w('openai.com')}`,
+  `connect-src 'self' ${w('sanity.io')} ${w('google-analytics.com')} ${w('analytics.google.com')} ${w('googletagmanager.com')} ${w('doubleclick.net')} ${w('googleadservices.com')} ${w('google.com')} ${w('google.co.uk')} ${w('google.ca')} ${w('google.com.au')} ${w('google.com.pk')} ${w('supabase.co')} ${w('tawk.to')} ${ww('tawk.to')} https://mpc-prod-24-s6uit34pua-uw.a.run.app https://api.zeptomail.com ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://demo-1.conversionsapigateway.com https://bat.bing.com ${w('bing.com')} ${w('bing.net')} https://bat.bing.net ${w('paypal.com')} ${w('vercel-insights.com')} ${w('vercel-scripts.com')} https://ct.pinterest.com ${w('pinterest.com')} ${w('pinimg.com')} ${w('openai.com')}`,
 
   // Media
   `media-src 'self' data: https://cdn.sanity.io ${w('tawk.to')}`,
 
-  // Frames: Stripe, PayPal, GTM, Tawk.to, Facebook, Google Ads
-  `frame-src 'self' https://js.stripe.com https://hooks.stripe.com ${w('paypal.com')} ${w('googletagmanager.com')} ${w('tawk.to')} ${w('facebook.com')} ${w('doubleclick.net')} ${w('google.com')} https://ct.pinterest.com ${w('pinterest.com')}`,
+  // Frames: PayPal, GTM, Tawk.to, Facebook, Google Ads
+  `frame-src 'self' ${w('paypal.com')} ${w('googletagmanager.com')} ${w('tawk.to')} ${w('facebook.com')} ${w('doubleclick.net')} ${w('google.com')} https://ct.pinterest.com ${w('pinterest.com')}`,
 
   "worker-src 'self' blob:",
   "object-src 'none'",

@@ -8,9 +8,9 @@ const nextConfig = {
     // used by /studio, /offers, etc. Shrinks the render-blocking CSS chunk.
     cssChunking: 'strict',
   },
-  // Tell Next.js NOT to bundle these packages — load them natively via Node.js require().
-  // Prevents dev-server worker crashes caused by bundler incompatibilities with the PayPal SDK.
-  serverExternalPackages: ['@paypal/paypal-server-sdk', 'sharp'],
+  // Tell Next.js NOT to bundle sharp — load it natively via Node.js require()
+  // (native binary; can't be bundled).
+  serverExternalPackages: ['sharp'],
   // Watermark (sharp) crashed on Vercel: "libvips-cpp.so.8.18.3: cannot open
   // shared object file". sharp 0.33+ splits native code into @img/sharp-linux-x64
   // (the .node loader) and @img/sharp-libvips-linux-x64 (libvips-cpp.so, dlopen'd

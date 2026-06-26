@@ -51,7 +51,7 @@ All ordering happens entirely on `/offers`. Prices here are lower than the calcu
 /components
   TawkToWidget.tsx    ← Live chat + conversion tracking
   HeroForm.tsx        ← Quote form (existing)
-/middleware.ts        ← CSP headers (be careful editing)
+/src/proxy.ts         ← CSP headers + rate limiting (Next 16 middleware; be careful editing)
 ```
 
 ---
@@ -395,8 +395,8 @@ All via `window.gtag()` — GTM container GTM-KQQQ674D already loaded.
 
 ## CSP NOTES
 
-CSP is managed in `middleware.ts` — NOT `next.config.mjs`.
-If you add any new third-party scripts, add their domains to middleware.ts.
+CSP is managed in `src/proxy.ts` (Next.js 16 renamed `middleware.ts` → `proxy.ts`) — NOT `next.config.mjs`.
+If you add any new third-party scripts, add their domains to `src/proxy.ts`.
 Do not edit next.config.mjs for CSP changes.
 
 ---
@@ -414,7 +414,7 @@ Do not edit next.config.mjs for CSP changes.
 ## DO NOT TOUCH
 
 - `/custom-patches/*` pages — separate product pages, different pricing
-- `middleware.ts` CSP without understanding existing rules
+- `src/proxy.ts` CSP without understanding existing rules
 - Conversion tracking labels — already set up correctly
 - `Tawk_API` initialization — must use backtick template literals (known bug fixed)
 
