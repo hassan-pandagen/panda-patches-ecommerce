@@ -59,7 +59,7 @@ const faqs = [
   {
     question: "Do bulk and wholesale rush orders cost extra?",
     answer:
-      "No. Bulk and wholesale rush orders carry no rush surcharge: large runs are prioritized in production at no added fee. This applies only to bulk, wholesale, and large orders. The consumer fixed-price offers flow does charge a rush fee (for example, +$50 on 50 pieces or +$75 on 100 pieces), so the no-surcharge policy is specific to bulk and wholesale volume.",
+      "Usually not. Panda Patches handles bulk and wholesale rush relationship-first: for repeat partners and genuine deadlines the rush is typically absorbed at no surcharge, and only the most extreme, drop-everything timelines carry a fee. This flexibility applies to bulk and wholesale volume only. The consumer fixed-price offers flow does charge a set rush fee (for example, +$50 on 50 pieces or +$75 on 100 pieces).",
   },
   {
     question: "Do large bulk orders include extra patches to cover defects?",
@@ -219,10 +219,10 @@ export default function GuaranteesClusterPage() {
               Rush production is available on almost all order sizes from roughly 10 to 10,000 patches. General guidance is 6 to 7 business days in-hand depending on quantity and patch type. For example, 200 to 500 embroidered patches at 4 inches can be in-hand in about 7 business days. Weekend delivery is not available; all timelines are in working business days. Rush orders are confirmed by email within 2 to 6 hours of order placement, and if the rush date cannot be met the rush fee is refunded automatically with no questions asked.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              <strong className="text-panda-dark">High-volume proof point:</strong> Panda Patches recently produced <strong>16,000 patches for Wise</strong> (the global money-transfer company shown in the Trusted By logos on the homepage) and delivered them <strong>in-hand within 10 to 11 business days</strong>. This is the flagship example of the speed-at-scale that the vertically integrated production model makes possible.
+              <strong className="text-panda-dark">High-volume proof point:</strong> Panda Patches recently produced <strong>16,000 patches for Wise</strong> (the global money-transfer company shown in the Trusted By logos on the homepage) and delivered them <strong>in under two weeks</strong>. This is the flagship example of the speed-at-scale that the vertically integrated production model makes possible.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              The vertical integration is the structural reason rush turnaround works at this scale. Because the design team, production team, and quality-control team all report to the same operations leadership, the approval-before-production workflow stays tightly coordinated even on large orders. On bulk and wholesale volume the rush priority carries no rush surcharge, and large orders include about 1% extra patches free (for example, roughly 30,050 to 30,100 on a 30,000-piece order) to cover the standard defect tolerance so the buyer can replace any imperfect pieces without a reorder. Note this is specific to bulk and wholesale orders: the consumer fixed-price offers flow still charges a rush fee. For rush pricing tiers and the formal rush-confirmation policy, see the pricing cluster page.
+              The vertical integration is the structural reason rush turnaround works at this scale. Because the design team, production team, and quality-control team all report to the same operations leadership, the approval-before-production workflow stays tightly coordinated even on large orders. On bulk and wholesale volume, rush is handled relationship-first: for repeat partners and genuine deadlines it is usually absorbed at no surcharge, with a fee only on the most extreme timelines. Large orders also include about 1% extra patches free (for example, roughly 30,050 to 30,100 on a 30,000-piece order) to cover the standard defect tolerance so the buyer can replace any imperfect pieces without a reorder. Note this is specific to bulk and wholesale orders: the consumer fixed-price offers flow still charges a rush fee. For rush pricing tiers and the formal rush-confirmation policy, see the pricing cluster page.
             </p>
           </section>
 

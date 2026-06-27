@@ -49,7 +49,7 @@ const faqs = [
   {
     question: "Can Panda Patches handle large or event-scale orders, like 30,000 patches?",
     answer:
-      "Yes. Panda Patches produces from a 5-piece minimum up to event scale, and large runs can ship in one go. For Wise's Nasdaq Times Square listing activation, Panda Patches delivered 16,000 custom patches from first enquiry to delivery in under two weeks, with every design approved before production and no rush surcharge. Bulk and wholesale rush orders carry no rush surcharge. Every account is assigned a dedicated account manager reachable for that account's queries.",
+      "Yes. Panda Patches produces from a 5-piece minimum up to event scale, and large runs can ship in one go. For Wise's Nasdaq Times Square listing activation, Panda Patches delivered 16,000 custom patches from first enquiry to delivery in under two weeks, with every design approved before production and no rush surcharge. For repeat partners and genuine deadlines, bulk and wholesale rush is usually absorbed at no surcharge, with a fee only on the most extreme timelines. Every account is assigned a dedicated account manager reachable for that account's queries.",
   },
   {
     question: "What happens if some patches in a large bulk order are defective?",
@@ -155,7 +155,7 @@ export default function WholesaleClusterPage() {
               </table>
             </div>
             <p className="text-gray-700 leading-relaxed">
-              The pricing tiers stack with the published economy delivery discount of 10 percent (16 to 18 day production), which means Volume-tier partners running economy production can land at roughly 25 to 27 percent off retail on the patch line item. Rush production on bulk and wholesale partner orders carries no rush surcharge.
+              The pricing tiers stack with the published economy delivery discount of 10 percent (16 to 18 day production), which means Volume-tier partners running economy production can land at roughly 25 to 27 percent off retail on the patch line item. Rush on bulk and wholesale partner orders is usually absorbed at no surcharge for repeat partners, with a fee only on the most extreme timelines.
             </p>
           </section>
 

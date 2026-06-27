@@ -443,7 +443,7 @@ export default async function PartnersPage() {
                     Owned facility. Faster, tighter, better margins.
                   </h3>
                   <p className="text-[16px] text-gray-700 leading-relaxed mb-3">
-                    Most patch companies broker to Asia and add a markup. We own our production, which means we control lead times, quality, and your margin. When something goes wrong we fix it same day, and rush orders carry no extra charge &mdash; we delivered 16,000 patches for <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-semibold underline">Wise&apos;s Nasdaq launch</Link> in under two weeks with no rush surcharge.
+                    Most patch companies broker to Asia and add a markup. We own our production, which means we control lead times, quality, and your margin. When something goes wrong we fix it same day, and for repeat partners we usually absorb rush at no extra charge &mdash; we delivered 16,000 patches for <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-semibold underline">Wise&apos;s Nasdaq launch</Link> in under two weeks with no rush fee.
                   </p>
                   <p className="text-[14px] text-gray-500">1,000,000+ patches delivered. Built on 13 years of patch manufacturing experience. Zero middlemen.</p>
                 </div>
