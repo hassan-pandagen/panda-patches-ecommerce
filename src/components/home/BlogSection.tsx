@@ -4,8 +4,10 @@ import { client, urlFor } from "@/lib/sanity";
 import LazyBlogSwiper from "./LazyBlogSwiper";
 
 async function getBlogs() {
-   // Fetch all blogs with only needed fields
-   const query = `*[_type == "blog"] | order(coalesce(publishedAt, _createdAt) desc) {
+   // Homepage shows only the 6 most recent guides; the full archive lives at /blogs.
+   // (Previously fetched ALL ~70 posts, rendering ~70 cards + h3s — that alone pushed
+   // the homepage DOM to ~2,000 nodes / 107 headings. Slicing to 6 is the biggest lever.)
+   const query = `*[_type == "blog"] | order(coalesce(publishedAt, _createdAt) desc) [0...6] {
      _id,
      title,
      excerpt,
@@ -60,6 +62,16 @@ export default async function BlogSection() {
 
         {/* Swiper for both Mobile and Desktop */}
         <LazyBlogSwiper blogs={displayBlogs} />
+
+        {/* Homepage shows a featured subset — link to the full archive */}
+        <div className="text-center mt-8">
+          <Link href="/blogs" className="inline-flex items-center gap-2 text-[14px] font-bold text-panda-dark hover:text-panda-green transition-colors">
+            View all guides
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </Link>
+        </div>
 
       </div>
     </section>

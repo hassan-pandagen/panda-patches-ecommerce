@@ -13,6 +13,7 @@ import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
+import MakerNote from "@/components/seo/MakerNote";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
@@ -255,23 +256,22 @@ export default async function CorporatePatchesPage() {
           </h2>
           <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
             <p>
-              Looking for <strong>custom corporate patches</strong> for your business? Panda Patches is the trusted choice for Fortune 500 companies, retail brands, and organizations that need professional logo patches for uniforms, merchandise, and promotional products.
+              <strong>Custom corporate patches</strong> are one of our most common runs — logo patches for uniforms, merchandise, and promotional products. We produce them in every style (embroidered, PVC, woven, chenille, and leather), and our Pantone color-matching system reproduces your brand colors accurately across all of them, whether you order 50 employee patches or 50,000 for a national campaign.
             </p>
             <p>
-              We produce <strong>custom company logo patches</strong> in every style: embroidered, PVC, woven, chenille, and leather. Our Pantone color-matching system ensures your brand colors are reproduced accurately across all patch types. Whether you need <strong>50 employee uniform patches</strong> or <strong>50,000 promotional patches</strong> for a national campaign, we deliver consistent quality with every order.
+              We&apos;re the maker, not a reseller — most suppliers just want the sale, but we get the mockup right first, send unlimited free revisions until you approve, and remake any patch that isn&apos;t right. Every order also runs through a 5-point quality inspection, with no setup fees, a mockup in 12-24 hours, and a standard 2-week turnaround.
             </p>
             <p>
-              Trusted by brands like Google, Coca-Cola, Microsoft, and Nissan, we understand that brand consistency is non-negotiable. That&apos;s why every <strong>custom corporate patch</strong> goes through our 5-point quality inspection process. With <strong>no setup fees</strong>, <strong>mockup in 12-24 hours</strong>, and a standard <strong>2-week turnaround</strong>, ordering custom patches for your business has never been easier.
+              Brands including Google, Coca-Cola, Microsoft, and Nissan have trusted us with their logo patches. The clearest proof: <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-bold underline">we delivered 16,000 custom patches for Wise&apos;s Nasdaq Times Square activation</Link> on a two-week deadline.
             </p>
             <p>
-              Ready to get started? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> today. We respond to all inquiries within 2 business hours and include a complimentary digital mockup with every quote.
-            </p>
-            <p>
-              See a real example: <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-bold underline">how we delivered 16,000 custom patches for Wise&apos;s Nasdaq Times Square activation</Link> on a two-week deadline.
+              Ready to start? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> — we respond to every inquiry within 2 business hours and include a complimentary digital mockup.
             </p>
           </div>
         </div>
       </section>
+
+      <MakerNote />
 
       {/* 7. CTA */}
       <CTASection />

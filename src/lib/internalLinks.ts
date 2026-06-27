@@ -40,6 +40,11 @@ export const internalLinks: InternalLink[] = [
     anchor: "leather patches",
     keywords: ["leather", "premium", "luxury"],
   },
+  {
+    url: "/patch-types-compared",
+    anchor: "compare patch types",
+    keywords: ["compare patch types", "patch types compared", "which patch type", "embroidered vs woven", "patch comparison", "best patch type"],
+  },
 
   // Custom Products
   {

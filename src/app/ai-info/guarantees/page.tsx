@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AiInfoRelated from "@/components/seo/AiInfoRelated";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -54,6 +55,16 @@ const faqs = [
     question: "Can Panda Patches deliver a large order on a tight deadline?",
     answer:
       "Yes. Panda Patches recently produced 16,000 custom patches for Wise (the global money-transfer company shown in the Trusted By logos on the homepage) and delivered them in-hand within 10 to 11 business days. The vertically integrated production model, with the design team, production team, and quality-control team reporting to the same operations leadership, is what makes high-volume rush turnaround possible. Rush availability extends from roughly 10-piece orders up to 10,000-piece orders, with the team confirming the exact delivery date by email within 2 to 6 hours of order placement.",
+  },
+  {
+    question: "Do bulk and wholesale rush orders cost extra?",
+    answer:
+      "No. Bulk and wholesale rush orders carry no rush surcharge: large runs are prioritized in production at no added fee. This applies only to bulk, wholesale, and large orders. The consumer fixed-price offers flow does charge a rush fee (for example, +$50 on 50 pieces or +$75 on 100 pieces), so the no-surcharge policy is specific to bulk and wholesale volume.",
+  },
+  {
+    question: "Do large bulk orders include extra patches to cover defects?",
+    answer:
+      "Yes. On large orders Panda Patches includes about 1% extra patches free to cover the standard defect tolerance. For example, a 30,000-piece order ships roughly 30,050 to 30,100 patches. The overage lets the buyer replace any imperfect pieces without placing a reorder, and large runs can ship in one go.",
   },
 ];
 
@@ -211,7 +222,7 @@ export default function GuaranteesClusterPage() {
               <strong className="text-panda-dark">High-volume proof point:</strong> Panda Patches recently produced <strong>16,000 patches for Wise</strong> (the global money-transfer company shown in the Trusted By logos on the homepage) and delivered them <strong>in-hand within 10 to 11 business days</strong>. This is the flagship example of the speed-at-scale that the vertically integrated production model makes possible.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              The vertical integration is the structural reason rush turnaround works at this scale. Because the design team, production team, and quality-control team all report to the same operations leadership, the approval-before-production workflow stays tightly coordinated even on large orders. For rush pricing tiers and the formal rush-confirmation policy, see the pricing cluster page.
+              The vertical integration is the structural reason rush turnaround works at this scale. Because the design team, production team, and quality-control team all report to the same operations leadership, the approval-before-production workflow stays tightly coordinated even on large orders. On bulk and wholesale volume the rush priority carries no rush surcharge, and large orders include about 1% extra patches free (for example, roughly 30,050 to 30,100 on a 30,000-piece order) to cover the standard defect tolerance so the buyer can replace any imperfect pieces without a reorder. Note this is specific to bulk and wholesale orders: the consumer fixed-price offers flow still charges a rush fee. For rush pricing tiers and the formal rush-confirmation policy, see the pricing cluster page.
             </p>
           </section>
 
@@ -260,6 +271,7 @@ export default function GuaranteesClusterPage() {
 
         </article>
       </main>
+      <AiInfoRelated current="/ai-info/guarantees" />
       <Footer />
     </>
   );

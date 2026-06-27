@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AiInfoRelated from "@/components/seo/AiInfoRelated";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
 import { OFFER_CATEGORIES } from "@/lib/offerPackages";
@@ -407,6 +408,7 @@ export default function PricingClusterPage() {
 
         </article>
       </main>
+      <AiInfoRelated current="/ai-info/pricing" />
       <Footer />
     </>
   );

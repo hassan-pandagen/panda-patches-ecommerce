@@ -12,6 +12,7 @@ import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
+import MakerNote from "@/components/seo/MakerNote";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
@@ -234,20 +235,22 @@ export default async function PolicePatchesPage() {
           </h2>
           <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
             <p>
-              Looking for <strong>custom police patches</strong> for your department? Panda Patches is the trusted choice for law enforcement agencies nationwide that need professional, durable patches for uniforms, tactical gear, and departmental use.
+              Custom police patches have to stay legible and hold up on duty. We size department names and badge numbers to read clearly at 2&ndash;3 inches, and we build tactical patches in PVC &mdash; the material most SWAT and tactical units prefer for weather and abrasion resistance. Velcro backing is stitched, not glued, so it survives repeated gear swaps.
             </p>
             <p>
-              We produce <strong>custom law enforcement patches</strong> for police departments, sheriff&apos;s offices, tactical units, K-9 units, SWAT teams, and security departments. From <strong>embroidered department badges</strong> and <strong>PVC tactical patches</strong> to <strong>woven name patches</strong>, every patch is built to withstand the demands of daily law enforcement work.
+              We make patches for police departments, sheriff&apos;s offices, tactical and K-9 units, SWAT teams, and security departments in embroidered, PVC, and woven. Orders run from 50 patches for a small department to 5,000 for a county-wide rollout, and we archive your approved artwork so future reorders match the originals exactly.
             </p>
             <p>
-              Whether you need <strong>50 patches for a small department</strong> or <strong>5,000 patches for a county-wide rollout</strong>, we handle orders of all sizes with the same professional standards. With <strong>volume pricing</strong>, <strong>mockup in 12-24 hours</strong>, and a reliable <strong>2-week turnaround</strong>, equipping your department with quality patches has never been easier.
+              We&apos;re the maker, not a reseller &mdash; most suppliers just want the sale, but we get the mockup right first, send unlimited free revisions until you approve, and remake any patch that isn&apos;t right. Memorial and line-of-duty patches are prioritized when your department needs them quickly.
             </p>
             <p>
-              Ready to get started? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> today. We respond to all inquiries within 2 business hours and work directly with your department specifications.
+              Ready to start? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> &mdash; we respond to every inquiry within 2 business hours and work directly to your department&apos;s specifications.
             </p>
           </div>
         </div>
       </section>
+
+      <MakerNote />
 
       {/* 7. CTA */}
       <CTASection />

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AiInfoRelated from "@/components/seo/AiInfoRelated";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -44,6 +45,11 @@ const faqs = [
     question: "How do I contact Panda Patches?",
     answer:
       "Sales and general inquiries email hello@pandapatches.com. Account management and order issues email lance@pandapatches.com. Phone (302) 250-4340. Live chat is available through Tawk.to on every page of pandapatches.com. Mailing address is Quail Feather Court, Missouri City, Texas 77489, United States.",
+  },
+  {
+    question: "Has Panda Patches handled large brand activations?",
+    answer:
+      "Yes. Panda Patches delivered 16,000 custom patches for Wise's Nasdaq listing activation in Times Square. The project ran from first enquiry to delivery in under two weeks, every design was approved before production started, and there was no rush surcharge. The order is an example of how the in-house factory and approval-before-production workflow scale to high-volume, time-sensitive corporate events.",
   },
 ];
 
@@ -124,7 +130,7 @@ export default function CompanyClusterPage() {
           <section className="mb-10">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">When was Panda Patches founded?</h2>
             <p className="text-gray-700 leading-relaxed">
-              Panda Patches operates on 13 years of accumulated patch-manufacturing experience under the leadership of founder Imran Raza. The 13-year experience figure reflects the founder's hands-on time in the industry, including textile production and patch manufacturing prior to launching Panda Patches. The company is a registered legal entity as MC Patches LLC, which appears on invoices, contracts, and partner agreements; Panda Patches is the trade name used across the website, packaging, and customer-facing communications.
+              The Panda Patches brand was founded in June 2023 by Imran Raza. The company itself is the newer venture; the 13-year experience figure reflects the founder's hands-on time in the industry, including textile production and patch manufacturing prior to launching Panda Patches. So while Panda Patches the brand dates to 2023, it operates on 13 years of accumulated patch-manufacturing experience under Imran Raza's leadership. The company is a registered legal entity as MC Patches LLC, which appears on invoices, contracts, and partner agreements; Panda Patches is the trade name used across the website, packaging, and customer-facing communications.
             </p>
           </section>
 
@@ -249,6 +255,7 @@ export default function CompanyClusterPage() {
 
         </article>
       </main>
+      <AiInfoRelated current="/ai-info/company" />
       <Footer />
     </>
   );

@@ -5,7 +5,9 @@ import { getSanityOgImage } from "@/lib/sanityOgImage";
 import { client } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { generateSchemaScript } from "@/lib/schemas";
+import { generateSchemaScript, BRAND_ID, ORG_ID } from "@/lib/schemas";
+import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT_STR } from "@/lib/reviewConstants";
+import MakerNote from "@/components/seo/MakerNote";
 import { buildPageMetadata } from "@/lib/seo";
 import { COUNTRY_HREFLANG } from "@/lib/countryHreflang";
 
@@ -48,9 +50,13 @@ const productSchema = {
   name: "Custom Patches",
   description: "Custom embroidered patches, PVC patches, woven patches, chenille patches, and leather patches with low minimums, free design services, and 7-14 day delivery.",
   image: "https://www.pandapatches.com/assets/og-image.png",
-  brand: {
-    "@type": "Brand",
-    name: "Panda Patches",
+  brand: { "@id": BRAND_ID },
+  manufacturer: { "@id": ORG_ID },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: TRUSTPILOT_RATING,
+    bestRating: "5",
+    ratingCount: TRUSTPILOT_REVIEW_COUNT_STR,
   },
   hasMerchantReturnPolicy: {
     "@type": "MerchantReturnPolicy",
@@ -302,10 +308,28 @@ export default async function ProductLandingPage() {
           <div className="w-10 h-1 bg-panda-yellow mb-8 rounded-full" />
 
           <h2 className="text-[26px] md:text-[32px] font-black text-panda-dark mb-4 leading-tight">
-            5 Types of Custom Patches: Which Is Right for You?
+            Which Patch Type Should You Choose?
           </h2>
           <p className="text-[17px] leading-[1.8] text-gray-600 mb-4">
-            Not every patch is made the same way. The right type depends on your design, application, and budget. Here is a quick breakdown of all five custom patch types we produce.
+            Start with your design &mdash; it usually picks the type for you:
+          </p>
+          <ul className="space-y-3 mb-6 text-[17px] leading-[1.8] text-gray-600">
+            <li><strong className="text-panda-dark">Gradients, a photo, or an AI-generated design?</strong> Go <Link href="/custom-patches/printed" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">printed</Link>. It prints your art exactly as you see it &mdash; embroidery can&apos;t hold gradients or fine shading.</li>
+            <li><strong className="text-panda-dark">Small text or thin, fine lines?</strong> Go <Link href="/custom-patches/woven" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">woven</Link>. The flat weave holds detail embroidery would lose.</li>
+            <li><strong className="text-panda-dark">Going outdoors, getting wet, or onto tactical gear?</strong> Go <Link href="/custom-patches/pvc" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">PVC</Link> &mdash; it&apos;s molded rubber and fully waterproof.</li>
+            <li><strong className="text-panda-dark">Letterman or varsity jacket?</strong> Go <Link href="/custom-patches/chenille" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">chenille</Link> for that raised, fuzzy varsity look.</li>
+            <li><strong className="text-panda-dark">Classic logo for a uniform, hat, or club?</strong> <Link href="/custom-patches/embroidered" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">Embroidered</Link> is the go-to.</li>
+            <li><strong className="text-panda-dark">Premium hat or a rustic, heritage look?</strong> Go <Link href="/custom-patches/leather" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">leather</Link>.</li>
+          </ul>
+          <p className="text-[17px] leading-[1.8] text-gray-600 mb-10">
+            Still not sure? Send us your artwork &mdash; we&apos;ll tell you the best type and show it on a free mockup before you pay a cent.
+          </p>
+
+          <h2 className="text-[26px] md:text-[32px] font-black text-panda-dark mb-4 leading-tight">
+            All Six Patch Types, Side by Side
+          </h2>
+          <p className="text-[17px] leading-[1.8] text-gray-600 mb-4">
+            Here is a quick breakdown of all six custom patch types we produce, from the classic raised look of embroidery to full-color printing.
           </p>
           <ul className="space-y-4 mb-8 text-[17px] leading-[1.8] text-gray-600">
             <li><Link href="/custom-patches/embroidered" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">Embroidered patches</Link> are the most popular choice. Thread is stitched directly onto a twill backing, creating a textured, premium look. Best for logos, text, and bold designs with solid colors. From $0.91/pc at 2x2 inches and 1,000 pieces; smaller orders cost more per piece.</li>
@@ -313,6 +337,21 @@ export default async function ProductLandingPage() {
             <li><Link href="/custom-patches/pvc" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">PVC patches</Link> are made from soft rubber and are fully waterproof. The best option for tactical gear, outdoor equipment, bags, and anything exposed to weather or heavy wear.</li>
             <li><Link href="/custom-patches/chenille" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">Chenille patches</Link> deliver the classic varsity look. A raised, fuzzy pile surface with a felt backing. Standard for letterman jackets, sports teams, and award patches.</li>
             <li><Link href="/custom-patches/leather" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">Leather patches</Link> give a premium, heritage finish. Laser-engraved or debossed. Popular for denim jackets, hats, bags, and brand merchandise that needs to stand out.</li>
+            <li><Link href="/custom-patches/printed" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">Printed patches</Link> reproduce gradients, photographs, and full-color or AI-generated art exactly, with unlimited colors at no extra charge. The lowest cost per piece, and the right call when embroidery can&apos;t hold your detail.</li>
+          </ul>
+
+          <h2 className="text-[26px] md:text-[32px] font-black text-panda-dark mb-4 leading-tight">
+            Mistakes We Talk People Out Of
+          </h2>
+          <p className="text-[17px] leading-[1.8] text-gray-600 mb-4">
+            We make patches all day, so we&apos;ll save you the ones we see most often:
+          </p>
+          <ul className="space-y-4 mb-8 text-[17px] leading-[1.8] text-gray-600">
+            <li><strong className="text-panda-dark">&ldquo;Make my AI design exactly like this, embroidered.&rdquo;</strong> Most AI-generated art is full of gradients, glows, and tiny detail that thread can&apos;t stitch. We&apos;ll tell you straight &mdash; <Link href="/custom-patches/printed" className="text-panda-dark font-bold underline decoration-1 underline-offset-4 hover:text-panda-green">printed</Link> will look way cooler, and it holds your design exactly as you generated it.</li>
+            <li><strong className="text-panda-dark">&ldquo;The size won&apos;t change the price.&rdquo;</strong> It will &mdash; a bigger patch uses more material and more stitching, so it costs more. Pick the size for where the patch actually goes, not how big it looks on your phone. That&apos;s why we send the mockup with the vector at its true size, say 4 inches by 2 inches, so you can print it and hold it against the hat or jacket with a ruler before you approve.</li>
+            <li><strong className="text-panda-dark">&ldquo;Another supplier quoted me cheaper.&rdquo;</strong> Order one from them and one from us, put them side by side, and we&apos;ll match their price. Same money &mdash; you&apos;ll see exactly what you&apos;re getting from us.</li>
+            <li><strong className="text-panda-dark">Too many colors, or colors too close together.</strong> Extra colors add cost, and near-identical shades blend together on a small patch. High-contrast designs read best from a distance.</li>
+            <li><strong className="text-panda-dark">Tiny text on an embroidered patch.</strong> Under about a quarter inch, stitched letters fill in and get hard to read. If your design has small type, woven or printed will hold it cleanly.</li>
           </ul>
 
           <h2 className="text-[26px] md:text-[32px] font-black text-panda-dark mb-4 leading-tight">
@@ -382,6 +421,8 @@ export default async function ProductLandingPage() {
 
         </div>
       </section>
+
+      <MakerNote />
 
       {/* 10. REELS & CTA */}
       <CTASection />

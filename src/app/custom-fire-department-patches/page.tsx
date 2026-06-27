@@ -12,6 +12,7 @@ import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
+import MakerNote from "@/components/seo/MakerNote";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
@@ -230,11 +231,14 @@ export default async function FireDepartmentPatchesPage() {
       <section className="w-full py-8 md:py-12 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
           <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
-            Order The Best Custom Fire Department Patches In The US
+            What Makes a Fire Department Patch Last
           </h2>
           <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
             <p>
-              For top notch custom fire department patches, trust a reliable fire department patch maker like us, specializing in custom designs. Whether you need a firefighter Velcro name patch or a unique fire department patch design, our products are crafted with precision and durability in mind. We ensure your patches reflect the honor and pride of your department, providing high quality materials and craftsmanship that stand up to the toughest conditions. Perfect for uniforms, gear, and more, our patches are designed to last.
+              Fire department patches take a beating, so the materials matter. We stitch ours in 100% polyester thread, rated for industrial wash temperatures of 160&ndash;180&deg;F and repeated high-heat cycles &mdash; the rayon thread cheaper suppliers use degrades and fades under the same conditions.
+            </p>
+            <p>
+              Backing is matched to the job: sew-on for Class A and B uniforms, hook-and-loop Velcro for turnout gear and bags, and iron-on for department t-shirts. Every piece is mocked up for your approval before we cut a single thread.
             </p>
           </div>
         </div>
@@ -243,15 +247,20 @@ export default async function FireDepartmentPatchesPage() {
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
         <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
           <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
-            Get High-Quality Firefighter Patches
+            Memorials, Ranks, and Union Orders
           </h2>
           <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
             <p>
-              Order the best firefighter patches in the US, where excellence meets craftsmanship. Our fire department patch designs are meticulously crafted to stand out, combining durability with detailed artistry. As a leading fire department patch creator, we offer unique fire dept patch designs that capture the spirit and pride of your team. Our patches are known for their high quality materials, vibrant colors, and long lasting wear, making them the go-to choice for fire departments nationwide. Choose us for unmatched quality and service that ensures your patches make a statement. For July 4, 2026, many departments also order commemorative <a href="/custom-250th-anniversary-patches" className="text-panda-green font-semibold underline">250th anniversary patches</a> for America&apos;s semiquincentennial.
+              We&apos;re the maker, not a reseller &mdash; most suppliers just want the sale, but we get the mockup right first, send unlimited free revisions until you approve, and remake any patch that isn&apos;t right. That matters most on memorial and line-of-duty patches, which we can rush in 4&ndash;7 business days when your department needs them quickly.
+            </p>
+            <p>
+              We also handle rank insignia by bugle count and recurring orders for IAFF locals. For July 4, 2026, many departments add commemorative <a href="/custom-250th-anniversary-patches" className="text-panda-green font-semibold underline">250th anniversary patches</a> for America&apos;s semiquincentennial.
             </p>
           </div>
         </div>
       </section>
+
+      <MakerNote />
 
       {/* 7. CTA */}
       <CTASection />

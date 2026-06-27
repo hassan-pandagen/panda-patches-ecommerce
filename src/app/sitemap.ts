@@ -298,6 +298,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/patch-types-compared`,
+      lastModified: new Date('2026-06-27'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/custom-airsoft-patches`,
       lastModified: new Date('2026-06-18'),
       changeFrequency: 'monthly',

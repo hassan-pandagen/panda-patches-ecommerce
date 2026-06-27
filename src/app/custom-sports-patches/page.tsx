@@ -12,6 +12,7 @@ import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
+import MakerNote from "@/components/seo/MakerNote";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
@@ -250,16 +251,13 @@ export default async function SportsPatchesPage() {
           </h2>
           <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
             <p>
-              Looking for <strong>custom sports team patches</strong> for your league or club? Panda Patches is the trusted choice for youth sports leagues, high school teams, college athletics, and professional organizations that need high-quality embroidered patches for uniforms and gear.
+              Custom sports patches come down to the right material for the job. <strong>Chenille</strong> is the classic varsity and letterman award patch &mdash; raised, fuzzy, and built for jackets. <strong>Embroidered</strong> suits team logos on uniforms and hats, and <strong>woven</strong> holds the fine detail in a small or intricate crest. We make them for football, baseball, basketball, soccer, hockey, wrestling, swimming, tennis, and more &mdash; team logos, jersey numbers, varsity letters, and championship patches that hold up to game-day wear and washing.
             </p>
             <p>
-              We produce <strong>custom sports patches</strong> for all sports: football, baseball, basketball, soccer, hockey, wrestling, swimming, tennis, and more. From <strong>team logo patches</strong> and <strong>jersey numbers</strong> to <strong>varsity letters</strong> and <strong>championship patches</strong>, we deliver consistent quality that stands up to game-day wear and washing.
+              We&apos;re the maker, not a reseller &mdash; most suppliers just want the sale, but we get the mockup right first, send unlimited free revisions until you approve, and remake any patch that isn&apos;t right. Orders run from 50 patches for a youth team to 5,000 for a full league, with no setup fees, a mockup in 12-24 hours, and a standard 2-week turnaround.
             </p>
             <p>
-              Whether you need <strong>50 patches for a youth team</strong> or <strong>5,000 patches for an entire league</strong>, we handle orders of all sizes with the same attention to detail. With <strong>no setup fees</strong>, <strong>mockup in 12-24 hours</strong>, and a standard <strong>2-week turnaround</strong>, getting custom patches for your team has never been easier.
-            </p>
-            <p>
-              Ready to get started? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> today. We respond to all inquiries within 2 business hours and include a complimentary digital mockup with every quote.
+              Ready to start? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> &mdash; we respond to every inquiry within 2 business hours and include a complimentary digital mockup.
             </p>
             <h3 className="text-[20px] font-black text-panda-dark mt-8 mb-3">Custom Patches for School Spirit Wear — Low 5-Piece Minimum</h3>
             <p>
@@ -268,6 +266,8 @@ export default async function SportsPatchesPage() {
           </div>
         </div>
       </section>
+
+      <MakerNote />
 
       {/* 7. CTA */}
       <CTASection />

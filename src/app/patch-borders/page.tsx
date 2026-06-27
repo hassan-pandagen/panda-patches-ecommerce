@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Footer from "@/components/layout/Footer";
+import MakerNote from "@/components/seo/MakerNote";
 import BulkHero from "@/components/bulk/BulkHero";
 import WorkGallery from "@/components/bulk/WorkGallery";
 import CategoryFAQ from "@/components/bulk/CategoryFAQ";
@@ -236,6 +237,7 @@ export default async function PatchBordersPage() {
       </section>
 
       <CategoryFAQ title="Patch Borders FAQ" faqs={borderFAQs} />
+      <MakerNote />
       <CTASection />
       <Footer />
     </main>

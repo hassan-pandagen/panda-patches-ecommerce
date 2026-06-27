@@ -14,6 +14,7 @@ import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
+import MakerNote from "@/components/seo/MakerNote";
 import { generateSchemaScript, generateServiceSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
@@ -453,8 +454,8 @@ export default async function BulkCustomPatchesPage() {
           <h2 className="text-[24px] md:text-[34px] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
             Why Businesses Choose Panda Patches for Bulk Orders
           </h2>
-          <p className="text-center text-gray-500 text-[15px] md:text-[16px] mb-10 md:mb-14 max-w-[600px] mx-auto">
-            We are not a startup figuring things out. Here is why brands, agencies, and organizations keep coming back.
+          <p className="text-center text-gray-500 text-[15px] md:text-[16px] mb-10 md:mb-14 max-w-[680px] mx-auto">
+            When <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">Wise rang the Nasdaq bell in Times Square</Link>, the 16,000 patches in the giveaway came from us &mdash; designed, approved, and delivered in under two weeks for a date that could not move, with no rush surcharge. That is the standard we hold whether your order is 50 pieces or 50,000.
           </p>
           <div className="space-y-5">
             {[
@@ -522,9 +523,28 @@ export default async function BulkCustomPatchesPage() {
         </div>
       </section>
 
+      {/* Mistakes we talk bulk buyers out of — B2B first-hand layer */}
+      <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+            Mistakes We Talk Bulk Buyers Out Of
+          </h2>
+          <ul className="space-y-4 text-[15px] md:text-[16px] text-gray-600 leading-[1.8]">
+            <li><strong className="text-panda-dark">Ordering short to &ldquo;test,&rdquo; then reordering.</strong> Per-piece price drops fast with volume &mdash; a 50-piece run and a 1,000-piece run are very different prices. If you know you need 1,000, order 1,000; splitting it into small reorders just costs you more. Want to check quality first? That is what the free pre-production sample is for, on orders of 500 or more.</li>
+            <li><strong className="text-panda-dark">Approving a screen mockup instead of a real sample.</strong> On a few thousand pieces, signing off on a digital proof alone is a gamble. For 500+ we send a finished sample so you hold the color, backing, and size in your hand before we run the full batch.</li>
+            <li><strong className="text-panda-dark">Forcing a detailed or AI-generated design onto embroidery at scale.</strong> Gradients and fine detail that thread cannot hold look worse multiplied across thousands of patches. We will tell you when <Link href="/custom-patches/printed" className="text-panda-dark font-bold underline decoration-1 underline-offset-2 hover:text-panda-green">printed</Link> or <Link href="/custom-patches/woven" className="text-panda-dark font-bold underline decoration-1 underline-offset-2 hover:text-panda-green">woven</Link> will hold your art better &mdash; before it is 10,000 pieces too late.</li>
+            <li><strong className="text-panda-dark">Chasing the cheapest quote.</strong> Order one sample from them and one from us, put them side by side, and we will match their price. Same money &mdash; you will see exactly what you are getting at volume.</li>
+            <li><strong className="text-panda-dark">Not locking the artwork for reorders.</strong> We keep your approved files on record so the next run matches the first &mdash; same color, same size, no re-proofing from scratch.</li>
+            <li><strong className="text-panda-dark">Assuming you have to eat the defects.</strong> A roughly 1% defect rate is normal at volume, so we cover it for you &mdash; order 30,000 and we ship 30,050 to 30,100 at no extra cost, so you can swap any that aren&apos;t perfect without a reorder. Large runs can ship in one go.</li>
+          </ul>
+        </div>
+      </section>
+
       {/* Panda AI teaser — bulk buyers often arrive without final artwork.
           Letting them sketch a concept here feeds the quote funnel. */}
       <AiGeneratorTeaser />
+
+      <MakerNote />
 
       {/* 12. CTA */}
       <CTASection />

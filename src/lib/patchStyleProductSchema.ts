@@ -1,6 +1,8 @@
 // Product schema data for patchStyle pages
 // Used by src/app/[slug]/page.tsx to inject Product schema for all patchStyle pages
 
+import { BRAND_ID, ORG_ID } from "./schemas";
+
 interface ProductSchemaData {
   name: string;
   description: string;
@@ -245,7 +247,8 @@ export function getPatchStyleProductSchema(slug: string, styleName: string) {
     "name": data.name,
     "description": data.description,
     "image": "https://www.pandapatches.com/assets/og-image.png",
-    "brand": { "@type": "Brand", "name": "Panda Patches" },
+    "brand": { "@id": BRAND_ID },
+    "manufacturer": { "@id": ORG_ID },
     "url": data.url,
     // itemCondition added June 2026 (WEBSIT_1.MD T7). Required by Google
     // Merchant for shopping snippet eligibility. Missing it on the inner

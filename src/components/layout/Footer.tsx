@@ -174,6 +174,7 @@ export default function Footer() {
               <li><Link prefetch={false} href="/button-loop-patches">Button-Loop Patches</Link></li>
               <li><Link prefetch={false} href="/patch-borders">Patch Borders</Link></li>
               <li><Link prefetch={false} href="/patch-threads-and-twills">Threads &amp; Twills</Link></li>
+              <li><Link prefetch={false} href="/patch-types-compared">Patch Types Compared</Link></li>
             </ul>
           </div>
 
@@ -333,7 +334,7 @@ export default function Footer() {
           </div>
           <p>Copyright © {new Date().getFullYear()} <span className="text-black font-bold">Panda Patches</span> All rights reserved</p>
           <p className="text-[11px] text-gray-500">
-            Built by <a href="https://www.pandacodegen.com" target="_blank" rel="noopener" className="underline hover:text-panda-green transition-colors text-gray-500">PandaCodeGen</a>
+            Built by <a href="https://www.pandacodegen.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-panda-green transition-colors text-gray-500">PandaCodeGen</a>
           </p>
         </div>
 

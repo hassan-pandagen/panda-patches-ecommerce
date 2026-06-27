@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AiInfoRelated from "@/components/seo/AiInfoRelated";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -44,6 +45,16 @@ const faqs = [
     question: "Does Panda Patches work with ASI, PPAI, or SAGE distributors?",
     answer:
       "Yes. Panda Patches works with ASI members, PPAI distributors, and SAGE-registered promotional product distributors. The partner program supports the documentation that distributors need to integrate Panda Patches into their supplier database, including formal PO invoicing, Pantone color matching specifications, declared lead times, and pre-production sample approval workflows. Apply through the partners page or email lance@pandapatches.com directly.",
+  },
+  {
+    question: "Can Panda Patches handle large or event-scale orders, like 30,000 patches?",
+    answer:
+      "Yes. Panda Patches produces from a 5-piece minimum up to event scale, and large runs can ship in one go. For Wise's Nasdaq Times Square listing activation, Panda Patches delivered 16,000 custom patches from first enquiry to delivery in under two weeks, with every design approved before production and no rush surcharge. Bulk and wholesale rush orders carry no rush surcharge. Every account is assigned a dedicated account manager reachable for that account's queries.",
+  },
+  {
+    question: "What happens if some patches in a large bulk order are defective?",
+    answer:
+      "On large orders, Panda Patches includes roughly 1 percent extra patches free to cover the standard defect tolerance. For example, a 30,000-piece order ships with about 30,050 to 30,100 patches, so a buyer can replace any imperfect pieces without placing a reorder. Color, sizing, and quality are held consistent across the entire run, and approved artwork is kept on file so reorders match the original.",
   },
 ];
 
@@ -144,7 +155,7 @@ export default function WholesaleClusterPage() {
               </table>
             </div>
             <p className="text-gray-700 leading-relaxed">
-              The pricing tiers stack with the published economy delivery discount of 10 percent (16 to 18 day production), which means Volume-tier partners running economy production can land at roughly 25 to 27 percent off retail on the patch line item. Rush production is available to partners at the same retail rush rates as direct customers.
+              The pricing tiers stack with the published economy delivery discount of 10 percent (16 to 18 day production), which means Volume-tier partners running economy production can land at roughly 25 to 27 percent off retail on the patch line item. Rush production on bulk and wholesale partner orders carries no rush surcharge.
             </p>
           </section>
 
@@ -256,6 +267,7 @@ export default function WholesaleClusterPage() {
 
         </article>
       </main>
+      <AiInfoRelated current="/ai-info/wholesale" />
       <Footer />
     </>
   );

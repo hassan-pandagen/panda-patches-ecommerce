@@ -1,11 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 
 const reviews = [
   {
@@ -69,11 +65,27 @@ function ReviewCard({ review }: { review: typeof reviews[0] }) {
 }
 
 export default function ReviewsSection() {
-  const [mounted, setMounted] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const last = reviews.length - 1;
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // Map horizontal scroll progress (0 → max) onto the dot index. Robust to the
+  // container's edge padding and inter-card gaps. Desktop is a grid (no overflow),
+  // so this no-ops there and the dots are hidden via md:hidden.
+  const onScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    if (max <= 0) return;
+    setActive(Math.round((el.scrollLeft / max) * last));
+  };
+
+  const goTo = (i: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    el.scrollTo({ left: (i / last) * max, behavior: "smooth" });
+  };
 
   return (
     <section className="w-full py-8 md:py-12 bg-panda-light overflow-hidden">
@@ -89,33 +101,32 @@ export default function ReviewsSection() {
           </p>
         </div>
 
-        {/* Mobile: Swiper (1 card at a time) - only after mount to avoid hydration mismatch from loop */}
-        <div className="md:hidden">
-          {mounted ? (
-            <Swiper
-              modules={[Pagination, Autoplay]}
-              slidesPerView={1}
-              spaceBetween={16}
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 4000, disableOnInteraction: true }}
-              loop={true}
-              className="!pb-10 [&_.swiper-button-next]:!hidden [&_.swiper-button-prev]:!hidden"
-            >
-              {reviews.map((review, idx) => (
-                <SwiperSlide key={idx} className="h-auto">
-                  <ReviewCard review={review} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          ) : (
-            <ReviewCard review={reviews[0]} />
-          )}
+        {/* Reviews — rendered ONCE. Mobile: native CSS scroll-snap row (swipeable,
+            no Swiper library, no duplicate DOM) with dot indicators below. Desktop:
+            4-column grid. */}
+        <div
+          ref={scrollRef}
+          onScroll={onScroll}
+          className="flex md:grid md:grid-cols-4 gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none -mx-4 px-4 md:mx-0 md:px-0 pb-2 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {reviews.map((review, idx) => (
+            <div key={idx} className="snap-center shrink-0 w-[85%] sm:w-[55%] md:w-auto">
+              <ReviewCard review={review} />
+            </div>
+          ))}
         </div>
 
-        {/* Desktop: all 4 in one row */}
-        <div className="hidden md:grid md:grid-cols-4 gap-5">
-          {reviews.map((review, idx) => (
-            <ReviewCard key={idx} review={review} />
+        {/* Mobile dot indicators — tap to jump, active dot elongates */}
+        <div className="flex md:hidden justify-center items-center gap-2 mt-5">
+          {reviews.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => goTo(i)}
+              aria-label={`Go to review ${i + 1} of ${reviews.length}`}
+              aria-current={i === active}
+              className={`h-2 rounded-full transition-all duration-300 ${i === active ? "w-6 bg-panda-dark" : "w-2 bg-gray-300"}`}
+            />
           ))}
         </div>
 
@@ -133,12 +144,6 @@ export default function ReviewsSection() {
         </div>
 
       </div>
-
-      {/* Swiper pagination dot styling */}
-      <style>{`
-        .swiper-pagination-bullet { background: #051C05; opacity: 0.25; }
-        .swiper-pagination-bullet-active { background: #051C05; opacity: 1; }
-      `}</style>
     </section>
   );
 }

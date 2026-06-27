@@ -12,6 +12,7 @@ import TrustStrip from "@/components/products/TrustStrip";
 import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
+import MakerNote from "@/components/seo/MakerNote";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
 import { getClusterPageData } from "@/lib/clusterPageData";
@@ -223,6 +224,7 @@ export default async function CustomEmsPatchesPage() {
       </section>
 
       <CategoryFAQ title="EMS Patches FAQ" faqs={emsFAQs} />
+      <MakerNote />
       <CTASection />
       <Footer />
     </main>

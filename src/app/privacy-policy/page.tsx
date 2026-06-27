@@ -64,7 +64,7 @@ export default function PrivacyPolicyPage() {
             <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8]">
               <li><strong>Usage data</strong> — pages visited, time on site, referring URLs</li>
               <li><strong>Device data</strong> — browser type, IP address, operating system</li>
-              <li><strong>Cookies and tracking</strong> — via Google Tag Manager, Meta Pixel, and Bing UET (see Section 5)</li>
+              <li><strong>Cookies and tracking</strong> — via Google Tag Manager and Meta Pixel (see Section 5)</li>
             </ul>
           </section>
 
@@ -100,7 +100,7 @@ export default function PrivacyPolicyPage() {
             <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8] mb-4">
               <li><strong>Essential cookies</strong> — required for the site to function</li>
               <li><strong>Analytics cookies</strong> — Google Analytics via GTM (aggregate traffic data)</li>
-              <li><strong>Advertising cookies</strong> — Meta Pixel and Bing UET for ad measurement and remarketing</li>
+              <li><strong>Advertising cookies</strong> — Meta Pixel for ad measurement and remarketing</li>
               <li><strong>Chat cookies</strong> — Tawk.to live chat persistence</li>
             </ul>
             <p className="text-[16px] leading-[1.8]">

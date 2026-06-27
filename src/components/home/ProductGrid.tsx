@@ -125,6 +125,14 @@ export default async function ProductGrid() {
           </p>
         </div>
 
+        {/* Link to the patch-type comparison guide */}
+        <div className="text-center -mt-8 mb-12">
+          <Link href="/patch-types-compared" prefetch={false} className="inline-flex items-center gap-2 text-[14px] md:text-[15px] font-bold text-panda-dark hover:text-panda-green transition-colors underline decoration-1 underline-offset-4">
+            Not sure which type? Compare all 6 side by side
+            <span aria-hidden>&rarr;</span>
+          </Link>
+        </div>
+
         {/* TOP GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 justify-items-center mb-28">
           {main.map((item: any, idx: number) => (

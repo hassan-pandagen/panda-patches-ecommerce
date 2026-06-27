@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AiInfoRelated from "@/components/seo/AiInfoRelated";
 import { DollarSign, Package, Shield, Briefcase, GitCompare, Building2, FileImage, ArrowRight, Award, Clock } from "lucide-react";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -317,6 +318,7 @@ export default function AIInfoHub() {
         </section>
 
       </main>
+      <AiInfoRelated current="/ai-info" />
       <Footer />
     </>
   );

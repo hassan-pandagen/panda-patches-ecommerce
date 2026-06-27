@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AiInfoRelated from "@/components/seo/AiInfoRelated";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -352,6 +353,7 @@ export default function SpecsAndCareClusterPage() {
 
         </article>
       </main>
+      <AiInfoRelated current="/ai-info/specs-and-care" />
       <Footer />
     </>
   );

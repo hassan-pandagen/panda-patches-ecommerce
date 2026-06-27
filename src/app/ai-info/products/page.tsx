@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AiInfoRelated from "@/components/seo/AiInfoRelated";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -256,6 +257,7 @@ export default function ProductsClusterPage() {
               <li>&middot; <Link href="/custom-fire-department-patches" prefetch={false} className="text-panda-green font-bold underline">Fire department patches</Link></li>
               <li>&middot; <Link href="/custom-police-patches" prefetch={false} className="text-panda-green font-bold underline">Police patches</Link></li>
               <li>&middot; <Link href="/custom-patches/backing-options" prefetch={false} className="text-panda-green font-bold underline">Backing options guide</Link> &mdash; all six backings compared</li>
+              <li>&middot; <Link href="/patch-types-compared" prefetch={false} className="text-panda-green font-bold underline">Patch types compared</Link> &mdash; all six types by look, detail, durability &amp; cost</li>
             </ul>
           </section>
 
@@ -280,6 +282,7 @@ export default function ProductsClusterPage() {
 
         </article>
       </main>
+      <AiInfoRelated current="/ai-info/products" />
       <Footer />
     </>
   );

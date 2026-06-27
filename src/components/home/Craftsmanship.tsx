@@ -63,6 +63,7 @@ export default async function Craftsmanship() {
              <Link 
                href="https://www.instagram.com/pandapatchesofficial/" 
                target="_blank"
+               rel="noopener noreferrer"
                className="px-6 md:px-8 py-2.5 md:py-3 rounded-full bg-panda-dark text-white text-xs md:text-sm font-bold flex items-center gap-2 hover:bg-black hover:shadow-lg transition-all"
              >
                <Instagram size={16} className="text-panda-yellow flex-shrink-0" />

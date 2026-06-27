@@ -137,6 +137,176 @@ export function generateOrganizationSchema() {
 }
 
 // ============================================
+// 1b. ENTITY GRAPH (Global — consolidated @graph for layout.tsx)
+//
+// Connects Organization <-> Brand <-> WebSite <-> Person (founder) through stable
+// @id URIs so engines and LLMs resolve ONE entity instead of four isolated islands.
+// knowsAbout + makesOffer encode the brand's core semantic triples (Subject ->
+// Predicate -> Object) as machine-readable facts, and knowsAbout points at canonical
+// Wikipedia URIs for entity validation. This is the authoritative entity node every
+// page inherits from the root layout.
+// ============================================
+
+const SITE_URL = "https://www.pandapatches.com";
+export const ORG_ID = `${SITE_URL}/#organization`;
+export const BRAND_ID = `${SITE_URL}/#brand`;
+export const WEBSITE_ID = `${SITE_URL}/#website`;
+export const PERSON_ID = `${SITE_URL}/#person/imran-raza`;
+
+function makesOfferEntry(name: string, path: string, category: string) {
+  return {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Product",
+      "name": name,
+      "category": category,
+      "url": `${SITE_URL}${path}`,
+    },
+    "seller": { "@id": ORG_ID },
+  };
+}
+
+export function generateEntityGraph() {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": ORG_ID,
+        "name": "Panda Patches",
+        "alternateName": "Panda Patches - Custom Embroidered Patches",
+        "legalName": "MC Patches LLC",
+        "url": SITE_URL,
+        "logo": {
+          "@type": "ImageObject",
+          "@id": `${SITE_URL}/#logo`,
+          "url": `${SITE_URL}/assets/logo-panda.svg`,
+          "caption": "Panda Patches",
+        },
+        "image": `${SITE_URL}/assets/og-image.png`,
+        "description":
+          "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 13+ years of expertise.",
+        "email": "hello@pandapatches.com",
+        "telephone": "+1-302-250-4340",
+        "brand": { "@id": BRAND_ID },
+        "founder": { "@id": PERSON_ID },
+        "foundingDate": "2023-06",
+        // Subject -> knowsAbout -> Object, validated against canonical Wikipedia entities
+        "knowsAbout": [
+          { "@type": "Thing", "name": "Embroidered patch", "sameAs": "https://en.wikipedia.org/wiki/Embroidered_patch" },
+          { "@type": "Thing", "name": "Embroidery", "sameAs": "https://en.wikipedia.org/wiki/Embroidery" },
+          { "@type": "Thing", "name": "Woven label", "sameAs": "https://en.wikipedia.org/wiki/Woven_label" },
+          { "@type": "Thing", "name": "Chenille fabric", "sameAs": "https://en.wikipedia.org/wiki/Chenille_fabric" },
+          { "@type": "Thing", "name": "Polyvinyl chloride", "sameAs": "https://en.wikipedia.org/wiki/Polyvinyl_chloride" },
+          { "@type": "Thing", "name": "Challenge coin", "sameAs": "https://en.wikipedia.org/wiki/Challenge_coin" },
+          { "@type": "Thing", "name": "Lapel pin", "sameAs": "https://en.wikipedia.org/wiki/Lapel_pin" },
+          "Custom patch manufacturing",
+          "Velcro / hook-and-loop backing",
+          "Pantone color matching",
+          "Embroidery digitizing",
+        ],
+        // Subject -> makesOffer -> Object: the brand's product lines as discrete facts
+        "makesOffer": [
+          makesOfferEntry("Custom Embroidered Patches", "/custom-patches/embroidered", "Embroidered Patches"),
+          makesOfferEntry("Custom Woven Patches", "/custom-patches/woven", "Woven Patches"),
+          makesOfferEntry("Custom PVC Patches", "/custom-patches/pvc", "PVC Patches"),
+          makesOfferEntry("Custom Chenille Patches", "/custom-patches/chenille", "Chenille Patches"),
+          makesOfferEntry("Custom Leather Patches", "/custom-patches/leather", "Leather Patches"),
+          makesOfferEntry("Custom Printed Patches", "/custom-patches/printed", "Printed Patches"),
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1914 Quail Feather Ct",
+          "addressLocality": "Missouri City",
+          "addressRegion": "TX",
+          "postalCode": "77489",
+          "addressCountry": "US",
+        },
+        "areaServed": [
+          { "@type": "Country", "name": "United States" },
+          { "@type": "Country", "name": "Canada" },
+          { "@type": "Country", "name": "United Kingdom" },
+          { "@type": "Country", "name": "Australia" },
+        ],
+        "sameAs": [
+          "https://www.facebook.com/pandapatchesofficial",
+          "https://www.instagram.com/pandapatchesofficial",
+          "https://www.linkedin.com/company/pandapatchesofficial",
+          "https://www.youtube.com/@PandaPatchesOfficial",
+          "https://www.tiktok.com/@pandapatchesofficial",
+          "https://www.provenexpert.com/en-us/panda-patches/",
+          "https://www.yelp.com/biz/panda-patches",
+          "https://www.crunchbase.com/organization/panda-patches",
+          "https://maps.app.goo.gl/i5yZ6n2wUMJVAdUb7",
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-302-250-4340",
+          "contactType": "Customer Service",
+          "email": "hello@pandapatches.com",
+          "availableLanguage": ["English"],
+          "areaServed": ["US", "CA", "GB", "AU"],
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "11:00",
+          "closes": "19:00",
+        },
+      },
+      {
+        "@type": "Brand",
+        "@id": BRAND_ID,
+        "name": "Panda Patches",
+        "logo": `${SITE_URL}/assets/logo-panda.svg`,
+        "slogan": "Custom patches with low minimums, free mockups, and no setup fees.",
+      },
+      {
+        "@type": "WebSite",
+        "@id": WEBSITE_ID,
+        "name": "Panda Patches",
+        "url": SITE_URL,
+        "description":
+          "Custom embroidered patches, iron-on patches, PVC patches with low minimums, free design services, and fast 7-14 day delivery.",
+        "inLanguage": "en-US",
+        "publisher": { "@id": ORG_ID },
+        "about": { "@id": ORG_ID },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": `${SITE_URL}/custom-patches?search={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
+        },
+      },
+      {
+        "@type": "Person",
+        "@id": PERSON_ID,
+        "name": "Imran Raza",
+        "jobTitle": "Founder & CEO",
+        "description":
+          "Founder of Panda Patches with 13 years of hands-on experience in embroidered patches and textile manufacturing.",
+        "url": `${SITE_URL}/about`,
+        "worksFor": { "@id": ORG_ID },
+        "sameAs": [
+          "https://www.linkedin.com/in/imran-raza-ladhani/",
+          "https://www.behance.net/imranraza1",
+        ],
+        "knowsAbout": [
+          "Custom Embroidered Patches",
+          "Textile Manufacturing",
+          "Custom Patch Design",
+          "Wholesale Patches",
+          "Embroidery Production",
+          "Military & Tactical Patches",
+        ],
+      },
+    ],
+  };
+}
+
+// ============================================
 // 2. PRODUCT SCHEMA (for product pages)
 // ============================================
 
@@ -238,10 +408,8 @@ export function generateProductSchema(params: ProductSchemaParams) {
     "image": image,
     "url": url,
     "sku": sku,
-    "brand": {
-      "@type": "Brand",
-      "name": brand
-    },
+    "brand": brand === "Panda Patches" ? { "@id": BRAND_ID } : { "@type": "Brand", "name": brand },
+    "manufacturer": { "@id": ORG_ID },
     "hasMerchantReturnPolicy": merchantReturnPolicy,
     // itemCondition is REQUIRED by Google Merchant for product rich results
     // and shopping snippets. Custom patches are made-to-order so every offer
@@ -408,22 +576,16 @@ export function generateArticleSchema(params: ArticleSchemaParams) {
     "image": image,
     "datePublished": datePublished,
     "dateModified": dateModified,
-    "author": {
-      "@type": "Person",
-      "name": authorName,
-      "url": authorUrl,
-      "sameAs": "https://www.linkedin.com/in/imran-raza-ladhani/",
-      "jobTitle": "Founder & CEO, Panda Patches",
-      "description": "13 years of expertise in embroidered patches and textile manufacturing"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Panda Patches",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.pandapatches.com/assets/logo-panda.svg"
-      }
-    },
+    // Default author (Imran Raza) references the global Person entity by @id so
+    // founder E-E-A-T authority flows through the graph; custom authors stay inline.
+    "author": authorName === "Imran Raza"
+      ? { "@id": PERSON_ID }
+      : {
+          "@type": "Person",
+          "name": authorName,
+          "url": authorUrl,
+        },
+    "publisher": { "@id": ORG_ID },
     "inLanguage": "en",
     "mainEntityOfPage": {
       "@type": "WebPage",

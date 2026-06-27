@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import "./globals.css";
 import Script from "next/script";
 import dynamic from "next/dynamic";
-import { generateOrganizationSchema, generateWebSiteSchema, generateSchemaScript } from "@/lib/schemas";
+import { generateEntityGraph, generateSchemaScript } from "@/lib/schemas";
 import AttributionCapture from "@/components/AttributionCapture";
 
 // Lazy load non-critical components
@@ -121,26 +121,12 @@ export default function RootLayout({
           />
         </noscript>
 
-        {/* Pinterest Tag Noscript Fallback */}
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: 'none' }}
-            alt=""
-            src="https://ct.pinterest.com/v3/?event=init&tid=2612823226033&noscript=1"
-          />
-        </noscript>
-
-        {/* Global Organization Schema for SEO */}
+        {/* Global entity graph — Organization + Brand + WebSite + Person (founder)
+            linked by @id so engines/LLMs resolve one entity, not four islands.
+            knowsAbout + makesOffer encode the brand's core semantic triples. */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={generateSchemaScript(generateOrganizationSchema())}
-        />
-        {/* WebSite Schema for Sitelinks + Search Box */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={generateSchemaScript(generateWebSiteSchema())}
+          dangerouslySetInnerHTML={generateSchemaScript(generateEntityGraph())}
         />
 
         {children}
@@ -159,46 +145,27 @@ export default function RootLayout({
         <Script id="gtm-stub" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}`}
         </Script>
-        {/* PA259A T2: marketing/analytics tags deferred to lazyOnload (after window
-            load) so GA4, the Meta Pixel and the OpenAI pixel run off the critical
-            hydration path, which cuts INP. Conversion EVENTS are unaffected: Lead,
-            InitiateCheckout and Purchase fire on user actions (well past load) and are
-            mirrored server-side via Meta CAPI, and PurchaseConversion polls for both
-            gtag and fbq. Only the anonymous PageView for sub-load, no-interaction
-            bounces is dropped, which is acceptable. */}
-        <Script id="gtm-loader" strategy="lazyOnload">
-          {`try{(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;if(f&&f.parentNode){f.parentNode.insertBefore(j,f);}else{document.head.appendChild(j);}})(window,document,'script','dataLayer','GTM-KQQQ674D');}catch(e){}`}
-        </Script>
-        <Script id="meta-pixel" strategy="lazyOnload">
-          {`try{!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];if(s&&s.parentNode){s.parentNode.insertBefore(t,s);}else{document.head.appendChild(t);}}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1515101469424765');fbq('track','PageView');}catch(e){}`}
-        </Script>
-        {/* OpenAI Conversions pixel, deferred to lazyOnload. Not running ChatGPT ads
-            right now, so it stays off the critical path. Kept (not removed) so the
-            attribution is ready if OpenAI ads resume. */}
-        <Script id="openai-pixel" strategy="lazyOnload">
-          {`try{!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments);};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];if(f&&f.parentNode){f.parentNode.insertBefore(j,f);}else{document.head.appendChild(j);}}(window,document,'script','https://bzrcdn.openai.com/sdk/oaiq.min.js');oaiq('init',{pixelId:'CHMS7gNcUNe5Tcv3CMpX8B'});}catch(e){}`}
-        </Script>
-        {/* Pinterest tag bumped from afterInteractive to lazyOnload (June 2026).
-            core.js dynamically loads ct/token_create.js which was flagged as
-            render-blocking in WEBSIT_1.MD T17. lazyOnload defers both until
-            the page is fully loaded so neither blocks interactive paint. */}
-        <Script id="pinterest-tag" strategy="lazyOnload">
-          {`try{!function(e){if(!window.pintrk){window.pintrk=function(){window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var n=window.pintrk;n.queue=[],n.version="3.0";var t=document.createElement("script");t.async=!0,t.src=e;var r=document.getElementsByTagName("script")[0];if(r&&r.parentNode){r.parentNode.insertBefore(t,r);}else{document.head.appendChild(t);}}}("https://s.pinimg.com/ct/core.js");pintrk('load','2612823226033');pintrk('page');}catch(e){}`}
-        </Script>
-
-        {/* Bing UET: deferred until user interaction or 16s fallback. */}
-        <Script id="staggered-loader" strategy="lazyOnload">
-          {`var _3pLoaded=false;
-function load3p(){
-if(_3pLoaded)return;_3pLoaded=true;
-['scroll','click','touchstart','keydown'].forEach(function(e){document.removeEventListener(e,load3p,{capture:true});});
-var ric=window.requestIdleCallback||function(cb){setTimeout(cb,1)};
-ric(function(){
-try{(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97147013"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0];if(i&&i.parentNode){i.parentNode.insertBefore(n,i);}else{document.head.appendChild(n);}})(window,document,"script","//bat.bing.com/bat.js","uetq");}catch(e){}
-});
-}
-['scroll','click','touchstart','keydown'].forEach(function(e){document.addEventListener(e,load3p,{capture:true,once:true,passive:true});});
-setTimeout(load3p,16000);`}
+        {/* Deferred marketing/analytics tags — interaction-gated to protect the critical
+            LCP/INP window without losing tracking on fast bounces:
+              • GTM (GA4 + Google Ads):                first interaction OR 2s
+              • Meta Pixel: first interaction OR 3s
+            A single interaction handler (scroll/click/touchstart/mousemove/keydown) fires
+            BOTH groups immediately, so any active user beats both timers. With no
+            interaction, GTM lands at 2s (fast bounces still count in GA4) and the heavier
+            retargeting pixels hold until 3s. Each group has its own once-guard so the timer
+            and interaction paths never double-load, and the heavy script injection runs
+            inside requestIdleCallback. Conversion EVENTS (Lead, InitiateCheckout, Purchase)
+            still fire on user actions and are mirrored server-side via Meta CAPI. Tawk.to is
+            intentionally excluded (loads on its own, unchanged). No CSP change (same domains). */}
+        <Script id="deferred-tags" strategy="afterInteractive">
+          {`(function(){var w=window,d=document;var ric=w.requestIdleCallback||function(cb){return setTimeout(cb,1)};var gtmDone=false,pxDone=false;
+function loadGtm(){if(gtmDone)return;gtmDone=true;ric(function(){try{(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;if(f&&f.parentNode){f.parentNode.insertBefore(j,f);}else{d.head.appendChild(j);}})(w,d,'script','dataLayer','GTM-KQQQ674D');}catch(e){}});}
+function loadPixels(){if(pxDone)return;pxDone=true;ric(function(){try{!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];if(s&&s.parentNode){s.parentNode.insertBefore(t,s);}else{b.head.appendChild(t);}}(w,d,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1515101469424765');fbq('track','PageView');}catch(e){}});}
+function fireAll(){loadGtm();loadPixels();}
+var evts=['scroll','click','touchstart','mousemove','keydown'];
+function onInteract(){evts.forEach(function(e){d.removeEventListener(e,onInteract,{capture:true});});fireAll();}
+evts.forEach(function(e){d.addEventListener(e,onInteract,{capture:true,once:true,passive:true});});
+setTimeout(loadGtm,2000);setTimeout(loadPixels,3000);})();`}
         </Script>
 
         {/* Captures Meta/Google attribution (fbp, fbc, gclid, utm_*) on every page load */}

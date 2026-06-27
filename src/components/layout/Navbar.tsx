@@ -67,6 +67,7 @@ const navLinks = [
     name: "RESOURCES",
     href: "/assets/thread-color-chart",
     dropdown: [
+      { name: "Patch Types Compared", href: "/patch-types-compared" },
       { name: "Thread Color Chart", href: "/assets/thread-color-chart" },
       { name: "Iron-On Instructions", href: "/assets/iron-on-instructions" },
     ]
