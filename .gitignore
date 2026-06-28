@@ -50,3 +50,7 @@ blog-drafts/
 /*.md
 !CLAUDE.md
 !README.md
+
+# Playwright MCP verification artifacts (local-only)
+.playwright-mcp/
+verify-home.jpeg

@@ -47,6 +47,10 @@ export interface Attribution {
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  msclkid?: string;
+  ttclid?: string;
 }
 
 export interface MetaEventInput {

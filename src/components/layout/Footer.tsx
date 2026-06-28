@@ -138,6 +138,7 @@ export default function Footer() {
                    footer Resources column without crowding the main nav. */}
                <h3 className="font-bold text-lg text-panda-dark text-left pt-4">Resources</h3>
                <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-3">
+                 <li><Link prefetch={false} href="/patch-types-compared">Patch Types Compared</Link></li>
                  <li><Link prefetch={false} href="/assets/thread-color-chart">Thread Color Chart</Link></li>
                  <li><Link prefetch={false} href="/assets/iron-on-instructions">Iron-On Instructions</Link></li>
                </ul>
@@ -174,7 +175,6 @@ export default function Footer() {
               <li><Link prefetch={false} href="/button-loop-patches">Button-Loop Patches</Link></li>
               <li><Link prefetch={false} href="/patch-borders">Patch Borders</Link></li>
               <li><Link prefetch={false} href="/patch-threads-and-twills">Threads &amp; Twills</Link></li>
-              <li><Link prefetch={false} href="/patch-types-compared">Patch Types Compared</Link></li>
             </ul>
           </div>
 

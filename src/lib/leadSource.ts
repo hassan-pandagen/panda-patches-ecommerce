@@ -124,3 +124,25 @@ export function deriveTrafficSource(attribution: Record<string, any> | undefined
   }
   return 'Direct / Unknown';
 }
+
+/**
+ * Compact, human-readable summary of the raw attribution signals for notification
+ * emails (so the team can see utm tags + click IDs at a glance). Returns '' when
+ * there is nothing useful. Caller must HTML-escape before embedding in an email.
+ */
+export function attributionSummary(attribution: Record<string, any> | undefined | null): string {
+  if (!attribution) return '';
+  const a = attribution;
+  return [
+    a.utm_source && `utm_source=${a.utm_source}`,
+    a.utm_medium && `utm_medium=${a.utm_medium}`,
+    a.utm_campaign && `utm_campaign=${a.utm_campaign}`,
+    a.utm_term && `utm_term=${a.utm_term}`,
+    a.utm_content && `utm_content=${a.utm_content}`,
+    a.gclid && 'gclid',
+    a.fbclid && 'fbclid',
+    a.msclkid && 'msclkid',
+    a.ttclid && 'ttclid',
+    a.referrer && `ref: ${a.referrer}`,
+  ].filter(Boolean).join(' · ');
+}

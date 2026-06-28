@@ -154,10 +154,16 @@ export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const PERSON_ID = `${SITE_URL}/#person/imran-raza`;
 
 function makesOfferEntry(name: string, path: string, category: string) {
+  // itemOffered is a Service (made-to-order custom-patch production), NOT a Product.
+  // A nested Product here has no offers/price of its own, which trips Google's
+  // "Product snippets" validator ("Either offers, review or aggregateRating should be
+  // specified") on EVERY page this global entity graph renders on. Real Product schema
+  // with offers lives on the product pages that actually transact. Do not change back
+  // to Product without giving each one its own offers.
   return {
     "@type": "Offer",
     "itemOffered": {
-      "@type": "Product",
+      "@type": "Service",
       "name": name,
       "category": category,
       "url": `${SITE_URL}${path}`,

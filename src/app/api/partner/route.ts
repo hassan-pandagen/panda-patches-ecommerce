@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { SendMailClient } from 'zeptomail';
+import { getAttributionFromRequest } from '@/lib/attribution';
+import { deriveTrafficSource, attributionSummary } from '@/lib/leadSource';
 
 const PartnerSchema = z.object({
   partnerType: z.string().max(60).optional().or(z.literal('')),
@@ -60,6 +62,11 @@ export async function POST(req: Request) {
       pageUrl,
     } = validation.data;
 
+    // Lead attribution — resolved channel + raw signals for the team / CRM.
+    const attribution = getAttributionFromRequest(req, body.attribution);
+    const channel = deriveTrafficSource(attribution as any);
+    const attrSummary = attributionSummary(attribution);
+
     const token = process.env.ZEPTOMAIL_TOKEN;
     if (!token) {
       console.error('Partner route: ZEPTOMAIL_TOKEN missing');
@@ -102,6 +109,7 @@ export async function POST(req: Request) {
       ${socialHandles ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Social / Audience</td><td style="padding:9px 14px;">${esc(socialHandles)}</td></tr>` : ''}
       ${monthlyVolume ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Expected Monthly Volume</td><td style="padding:9px 14px;font-weight:600;color:#0a7d2a;">${esc(monthlyVolume)} pieces/month</td></tr>` : ''}
       ${hearAboutUs ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Heard About Us From</td><td style="padding:9px 14px;">${esc(hearAboutUs)}</td></tr>` : ''}
+      <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Lead Source</td><td style="padding:9px 14px;font-weight:600;color:#0a7d2a;">${esc(channel)}${attrSummary ? ` <span style="color:#999;font-weight:400;font-size:12px;">(${esc(attrSummary)})</span>` : ''}</td></tr>
     </table>
     ${productsInterest ? `
     <div style="background:#000;padding:12px 18px;border-radius:4px 4px 0 0;margin-top:20px;">

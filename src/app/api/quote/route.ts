@@ -5,6 +5,7 @@ import { SendMailClient } from 'zeptomail';
 import { sendMetaEvent } from '@/lib/metaCapi';
 import { getAttributionFromRequest } from '@/lib/attribution';
 import { deriveLeadSource, deriveTrafficSource } from '@/lib/leadSource';
+import { canonicalPatchType, canonicalBacking, canonicalBorder, extractBorderFromText } from '@/lib/canonicalFields';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -25,6 +26,8 @@ const QuoteSchema = z.object({
     placement: z.string().max(200).optional().or(z.literal('')),
     instructions: z.string().max(2000).optional().or(z.literal('')),
     patchType: z.string().max(100).optional().or(z.literal('')),
+    border: z.string().max(60).optional().or(z.literal('')),
+    country: z.string().max(80).optional().or(z.literal('')),
   }),
   artworkUrl: z.string().url().optional().or(z.null()),
   artworkUrl2: z.string().url().optional().or(z.null()),
@@ -39,6 +42,10 @@ const QuoteSchema = z.object({
     utm_source: z.string().optional(),
     utm_medium: z.string().optional(),
     utm_campaign: z.string().optional(),
+    utm_term: z.string().optional(),
+    utm_content: z.string().optional(),
+    msclkid: z.string().optional(),
+    ttclid: z.string().optional(),
     page_url: z.string().optional(),
     referrer: z.string().max(500).optional(),
     first_seen_at: z.string().optional(),
@@ -120,6 +127,24 @@ export async function POST(req: Request) {
 
     const leadSource = deriveLeadSource(pageUrl, isBulkOrder, basePrice != null);
     const trafficSource = deriveTrafficSource(attribution as any);
+
+    // Canonical product fields for the CRM (discrete values, not free-form).
+    const patchesType = canonicalPatchType(details.patchType) || 'Custom Patch';
+    const designBacking = canonicalBacking(details.backing);
+    const borderType = (details.border && canonicalBorder(details.border)) || extractBorderFromText(rawInstructions);
+    const country = (details.country && details.country.trim()) || null;
+
+    // The CRM derives lead_source from `attribution`, so the form/page name never
+    // goes in lead_source. We carry the website-resolved channel + the form name +
+    // the canonical border/country as metadata inside the attribution jsonb until
+    // border_type/country get their own columns on the quotes table.
+    const enrichedAttribution = {
+      ...attribution,
+      traffic_source: trafficSource,
+      form_name: leadSource,
+      border_type: borderType || undefined,
+      country: country || undefined,
+    };
     const subject = isBulkOrder
       ? `New Bulk Quote Request from ${customer.name}`
       : `New Quote Request from ${customer.name}`;
@@ -308,18 +333,20 @@ export async function POST(req: Request) {
         customer_name: customer.name,
         customer_email: customer.email,
         customer_phone: customer.phone,
-        patches_type: details.patchType || 'Custom Patch',
-        design_backing: details.backing,
+        patches_type: patchesType,
+        design_backing: designBacking,
         patches_quantity: details.quantity,
         design_size: sizeLabel,
         instructions: cleanInstructions || details.placement || '',
         customer_attachment_urls: [artworkUrl, artworkUrl2].filter(Boolean) as string[],
         sales_agent: 'WEBSITE_BOT',
-        lead_source: leadSource,
+        // Real marketing channel, NOT the form/page name (deriveLeadSource was the
+        // bug). The CRM can also re-derive this from `attribution`.
+        lead_source: trafficSource,
         page_url: pageUrl || null,
         quote_amount: basePrice ?? null,
         email_sent_at: (token && basePrice != null && !internalOnly) ? new Date().toISOString() : null,
-        attribution,
+        attribution: enrichedAttribution,
       });
 
     if (dbError) {

@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { client } from "@/lib/sanity";
 import TrustpilotRatingLine from "@/components/reviews/TrustpilotRatingLine";
 
@@ -11,6 +12,8 @@ async function getHeroData() {
     const query = `*[_type == "hero"][0] {
       title,
       subtitle,
+      "imageUrl": heroImage.asset->url,
+      "imageAlt": heroImage.alt,
       "trustBadges": trustBadges[] {
         "ref": image,
         "alt": alt
@@ -29,11 +32,6 @@ export default async function Hero() {
 
   return (
     <>
-      {/* Preload the LCP hero image, media-scoped so only one variant downloads.
-          Targets the ~540ms resource-load-delay PageSpeed flagged on LCP: the
-          browser starts the fetch from <head> instead of after CSS. */}
-      <link rel="preload" as="image" href="/assets/hero-product-mobile.webp" media="(max-width: 767px)" fetchPriority="high" />
-      <link rel="preload" as="image" href="/assets/hero-product.webp" media="(min-width: 768px)" fetchPriority="high" />
       {/* Mobile and desktop responsive heights */}
       <section className="hero-section relative w-full min-h-screen md:min-h-[850px] bg-white overflow-hidden flex flex-col justify-start md:justify-center">
 
@@ -93,19 +91,33 @@ export default async function Hero() {
           <div
             className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-2 md:-mt-4 mx-auto md:mx-0"
           >
-               {/* Hero image — browser picks mobile or desktop, never downloads both */}
-               <picture>
-                 <source media="(min-width: 768px)" srcSet="/assets/hero-product.webp" />
-                 <img
-                   src="/assets/hero-product-mobile.webp"
-                   alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"
-                   width={630}
-                   height={379}
-                   fetchPriority="high"
-                   decoding="sync"
-                   style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
+               {/* Hero/LCP image — Sanity source via Next/Image: AVIF + responsive
+                   srcset, optimized at Vercel's edge, priority so Next emits the LCP
+                   preload. Falls back to the static export if Sanity has no image. */}
+               {data?.imageUrl ? (
+                 <Image
+                   src={data.imageUrl}
+                   alt={data?.imageAlt || "Custom iron on patches, embroidered, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"}
+                   fill
+                   priority
+                   quality={85}
+                   sizes="(max-width: 768px) 100vw, 630px"
+                   style={{ objectFit: 'contain', objectPosition: 'center' }}
                  />
-               </picture>
+               ) : (
+                 <picture>
+                   <source media="(min-width: 768px)" srcSet="/assets/hero-product.webp" />
+                   <img
+                     src="/assets/hero-product-mobile.webp"
+                     alt="Custom iron on patches, embroidered patches, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"
+                     width={630}
+                     height={379}
+                     fetchPriority="high"
+                     decoding="sync"
+                     style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center' }}
+                   />
+                 </picture>
+               )}
 
              {/* 1 Million Badge - Hidden on mobile */}
              <div className="hidden md:flex absolute bottom-16 right-20 bg-white shadow-xl rounded-xl p-3 items-center gap-3 animate-bounce-slow border border-gray-100">

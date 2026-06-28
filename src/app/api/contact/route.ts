@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { SendMailClient } from 'zeptomail';
+import { getAttributionFromRequest } from '@/lib/attribution';
+import { deriveTrafficSource, attributionSummary } from '@/lib/leadSource';
 
 const contactSchema = z.object({
   name: z.string().min(1, 'Name is required').max(100),
@@ -28,6 +30,12 @@ export async function POST(request: Request) {
 
     const { name, email, message } = parsed.data;
     const pageUrl = typeof body.pageUrl === 'string' ? body.pageUrl.slice(0, 500) : '';
+
+    // Lead attribution — surface the resolved channel + raw signals so the team
+    // (and the CRM inbox) can see where this contact came from.
+    const attribution = getAttributionFromRequest(request, body.attribution);
+    const channel = deriveTrafficSource(attribution as any);
+    const attrSummary = attributionSummary(attribution);
 
     // Escape HTML to prevent injection in email body
     const esc = (s: string) => s
@@ -86,6 +94,7 @@ export async function POST(request: Request) {
               <td style="padding: 10px 0; color: #1a1a1a; white-space: pre-wrap;">${safeMessage}</td>
             </tr>
             ${pageUrl ? `<tr><td style="padding: 10px 0; font-weight: bold; color: #555;">Page:</td><td style="padding: 10px 0;"><a href="${esc(pageUrl)}" style="color: #2563eb;">${esc(pageUrl)}</a></td></tr>` : ''}
+            <tr><td style="padding: 10px 0; font-weight: bold; color: #555;">Source:</td><td style="padding: 10px 0; color: #1a1a1a;">${esc(channel)}${attrSummary ? ` <span style="color:#999;font-size:12px;">(${esc(attrSummary)})</span>` : ''}</td></tr>
           </table>
           <p style="margin-top: 24px; font-size: 12px; color: #999;">
             Sent from pandapatches.com contact form. Reply directly to this email to respond to ${safeName}.

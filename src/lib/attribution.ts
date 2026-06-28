@@ -31,12 +31,16 @@ export function getAttributionFromRequest(
 
   const fbclidFromUrl = url?.searchParams.get('fbclid') || undefined;
   const gclidFromUrl = url?.searchParams.get('gclid') || undefined;
+  const msclkidFromUrl = url?.searchParams.get('msclkid') || undefined;
+  const ttclidFromUrl = url?.searchParams.get('ttclid') || undefined;
 
   const attr: Attribution = {
     fbp: bodyAttribution?.fbp || cookies['_fbp'] || undefined,
     fbc: bodyAttribution?.fbc || cookies['_fbc'] || fbclidToFbc(bodyAttribution?.fbclid || fbclidFromUrl),
     gclid: bodyAttribution?.gclid || gclidFromUrl || undefined,
     fbclid: bodyAttribution?.fbclid || fbclidFromUrl || undefined,
+    msclkid: bodyAttribution?.msclkid || msclkidFromUrl || undefined,
+    ttclid: bodyAttribution?.ttclid || ttclidFromUrl || undefined,
     client_ip: ip,
     client_ua: ua,
     page_url: bodyAttribution?.page_url || referer,
@@ -44,6 +48,8 @@ export function getAttributionFromRequest(
     utm_source: bodyAttribution?.utm_source,
     utm_medium: bodyAttribution?.utm_medium,
     utm_campaign: bodyAttribution?.utm_campaign,
+    utm_term: bodyAttribution?.utm_term,
+    utm_content: bodyAttribution?.utm_content,
   };
 
   for (const k of Object.keys(attr) as (keyof Attribution)[]) {

@@ -7,7 +7,6 @@ import { client, urlFor } from "@/lib/sanity";
 import Hero from "@/components/home/Hero";
 import Promises from "@/components/home/Promises";
 import ProductGrid from "@/components/home/ProductGrid";
-import AiGeneratorTeaser from "@/components/ai-patch/AiGeneratorTeaser";
 
 // Navbar is "use client" — dynamic import defers its JS bundle from critical path
 // SSR: true ensures it still renders in the initial HTML
@@ -23,6 +22,8 @@ const FAQ = dynamic(() => import("@/components/home/FAQ"), { ssr: true });
 const BlogSection = dynamic(() => import("@/components/home/BlogSection"), { ssr: true });
 const ContentSection = dynamic(() => import("@/components/home/ContentSection"), { ssr: true });
 const CTASection = dynamic(() => import("@/components/home/CTASection"), { ssr: true });
+// Below-fold AI teaser — split its JS chunk out of the initial bundle (ssr:true keeps SSR markup)
+const AiGeneratorTeaser = dynamic(() => import("@/components/ai-patch/AiGeneratorTeaser"), { ssr: true });
 const Footer = dynamic(() => import("@/components/layout/Footer"), { ssr: true });
 
 // ISR: Revalidate homepage every hour

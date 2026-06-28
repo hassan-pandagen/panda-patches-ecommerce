@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 import TrackedEmailLink from "@/components/TrackedEmailLink";
+import { getStoredAttribution } from "@/lib/clientAttribution";
 
 type FormData = {
   name: string;
@@ -29,7 +30,7 @@ export default function ContactHero() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: data.name, email: data.email, message: data.message, website: data.website || '', pageUrl: window.location.href }),
+        body: JSON.stringify({ name: data.name, email: data.email, message: data.message, website: data.website || '', pageUrl: window.location.href, attribution: getStoredAttribution() }),
       });
       if (res.ok) {
         setStatus('success');

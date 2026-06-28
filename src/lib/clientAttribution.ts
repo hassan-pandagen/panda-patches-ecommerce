@@ -3,7 +3,7 @@
  * and retrieve it when a form is submitted. Runs in browser only.
  *
  * Strategy: on every page load read cookies + URL params, merge with any
- * previously-stored attribution, and stash in sessionStorage. Forms and
+ * previously-stored attribution, and stash in localStorage. Forms and
  * chat widgets call `getStoredAttribution()` to include it in payloads.
  */
 
@@ -17,6 +17,10 @@ export interface ClientAttribution {
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  msclkid?: string;
+  ttclid?: string;
   page_url?: string;
   referrer?: string;
   first_seen_at?: string;
@@ -39,7 +43,7 @@ export function captureAttribution(): ClientAttribution {
 
   let existing: ClientAttribution = {};
   try {
-    const raw = sessionStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) existing = JSON.parse(raw) as ClientAttribution;
   } catch {
     // ignore
@@ -48,22 +52,32 @@ export function captureAttribution(): ClientAttribution {
   const params = new URLSearchParams(window.location.search);
   const fbclid = params.get('fbclid') || undefined;
   const gclid = params.get('gclid') || undefined;
+  const msclkid = params.get('msclkid') || undefined;
+  const ttclid = params.get('ttclid') || undefined;
   const utm_source = params.get('utm_source') || undefined;
   const utm_medium = params.get('utm_medium') || undefined;
   const utm_campaign = params.get('utm_campaign') || undefined;
+  const utm_term = params.get('utm_term') || undefined;
+  const utm_content = params.get('utm_content') || undefined;
 
   const fbp = readCookie('_fbp');
   const fbc = readCookie('_fbc') || (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
 
+  // First-touch wins (existing values kept) so the utm tags + click IDs survive
+  // if the customer browses other pages before they submit.
   const merged: ClientAttribution = {
     first_seen_at: existing.first_seen_at || new Date().toISOString(),
     fbp: fbp || existing.fbp,
     fbc: fbc || existing.fbc,
     fbclid: fbclid || existing.fbclid,
     gclid: gclid || existing.gclid,
+    msclkid: msclkid || existing.msclkid,
+    ttclid: ttclid || existing.ttclid,
     utm_source: utm_source || existing.utm_source,
     utm_medium: utm_medium || existing.utm_medium,
     utm_campaign: utm_campaign || existing.utm_campaign,
+    utm_term: utm_term || existing.utm_term,
+    utm_content: utm_content || existing.utm_content,
     page_url: existing.page_url || window.location.href,
     referrer: existing.referrer || document.referrer || undefined,
   };
@@ -73,7 +87,7 @@ export function captureAttribution(): ClientAttribution {
   }
 
   try {
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
   } catch {
     // ignore
   }
@@ -83,7 +97,7 @@ export function captureAttribution(): ClientAttribution {
 export function getStoredAttribution(): ClientAttribution {
   if (typeof window === 'undefined') return {};
   try {
-    const raw = sessionStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) return JSON.parse(raw) as ClientAttribution;
   } catch {
     // ignore
