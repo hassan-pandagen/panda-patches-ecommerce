@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { trackPurchase } from '@/lib/ga4';
 
 // SHA-256 hash helper — input must already be normalized before calling
 async function sha256(normalized: string): Promise<string> {
@@ -35,6 +36,13 @@ export default function PurchaseConversion() {
     // order id and matches the Square webhook's CAPI event id (`${token}_purchase`)
     // so Meta dedups the browser Purchase against the server-side one.
     const orderId = params.get('ref') || undefined;
+
+    // GA4 purchase (dataLayer → GTM → GA4) so revenue attributes by channel.
+    // Gated on a real order id (transaction_id) to avoid phantom purchases on
+    // direct visits to the confirmation URL.
+    if (orderId) {
+      trackPurchase({ transaction_id: orderId, value, currency: 'USD' });
+    }
 
     // Build Enhanced Conversions user_data from sessionStorage set at checkout time
     // Keys written by ComplexCalculator/checkout flow: ec_email, ec_phone, ec_first, ec_last

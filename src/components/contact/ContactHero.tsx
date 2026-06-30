@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 import TrackedEmailLink from "@/components/TrackedEmailLink";
 import { getStoredAttribution } from "@/lib/clientAttribution";
+import { trackLead } from "@/lib/ga4";
 
 type FormData = {
   name: string;
@@ -34,6 +35,8 @@ export default function ContactHero() {
       });
       if (res.ok) {
         setStatus('success');
+        // GA4 lead event (dataLayer → GTM → GA4)
+        trackLead({ form_name: 'contact', lead_source: window.location.pathname });
         reset();
       } else {
         setStatus('error');

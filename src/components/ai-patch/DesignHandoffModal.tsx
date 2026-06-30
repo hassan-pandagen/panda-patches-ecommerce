@@ -6,6 +6,7 @@ import Link from "next/link";
 import { X, Sparkles, ArrowRight, CheckCircle, FileText, Zap } from "lucide-react";
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 import { trackAiGen } from "@/lib/aiGenAnalytics";
+import { trackLead } from "@/lib/ga4";
 
 /**
  * WEBSIT_4.MD G6 — Conversion funnel modal.
@@ -154,6 +155,9 @@ export default function DesignHandoffModal({
         generation_count: generationCount,
         intent,
       });
+
+      // GA4 lead event (dataLayer → GTM → GA4)
+      trackLead({ form_name: 'ai_generator', patch_type: design.style, lead_source: window.location.pathname });
 
       if (intent === "order") {
         // Ready to order: skip the success screen, go straight to the

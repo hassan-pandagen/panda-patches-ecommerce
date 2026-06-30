@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Check, X } from "lucide-react";
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
+import { trackLead } from "@/lib/ga4";
 
 interface QuoteModalProps {
   show: boolean;
@@ -107,6 +108,8 @@ export default function QuoteModal({
             currency: 'USD',
           });
         }
+        // GA4 lead event (dataLayer → GTM → GA4) — conversions + value by channel
+        trackLead({ form_name: 'quote', patch_type: productType, lead_source: window.location.pathname, value: 50 });
         // Tawk.to — tag visitor as quote lead
         if (typeof window !== 'undefined' && (window as any).Tawk_API?.setAttributes) {
           (window as any).Tawk_API.setAttributes({

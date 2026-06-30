@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
 import FormFeedback from "@/components/feedback/FormFeedback";
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
+import { trackLead } from "@/lib/ga4";
 
 export default function BulkQuoteForm() {
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
@@ -161,6 +162,8 @@ export default function BulkQuoteForm() {
           send_to: "AW-11221237770/qTWjCNnZ3oEcEIqA2uYp",
         });
       }
+      // GA4 lead event (dataLayer → GTM → GA4)
+      trackLead({ form_name: 'bulk_quote', lead_source: window.location.pathname });
     } catch (error) {
       console.error("Bulk quote error:", error);
       setMessage({ type: "error", text: "Failed to submit. Please try again or call us at (302) 250-4340." });

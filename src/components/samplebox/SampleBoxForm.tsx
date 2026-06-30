@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
+import { trackLead } from "@/lib/ga4";
 
 export default function SampleBoxForm() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -31,6 +32,10 @@ export default function SampleBoxForm() {
       if (!response.ok) {
         throw new Error(result.message || 'Failed to submit order');
       }
+
+      // GA4 lead event (dataLayer → GTM → GA4) — fire before the Square redirect;
+      // the actual purchase fires on the Square return via PurchaseConversion.
+      trackLead({ form_name: 'sample_box', lead_source: window.location.pathname, value: 45 });
 
       // Redirect to Square Checkout
       if (result.checkoutUrl) {

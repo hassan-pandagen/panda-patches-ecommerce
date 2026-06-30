@@ -6,6 +6,7 @@ import { useState, useRef } from "react";
 import { sanitizeString, sanitizeEmail, sanitizePhone, sanitizeInteger, sanitizeNumber } from "@/lib/sanitize";
 import FormFeedback from "@/components/feedback/FormFeedback";
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
+import { trackLead } from "@/lib/ga4";
 
 export default function HeroForm({ productSlug }: { productSlug?: string }) {
   const isKeychains = productSlug === 'keychains';
@@ -167,6 +168,8 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
           currency: 'USD',
         });
       }
+      // GA4 lead event (dataLayer → GTM → GA4) — conversions + value by channel
+      trackLead({ form_name: 'quote', lead_source: window.location.pathname, value: 50 });
       // OpenAI Conversions (ChatGPT/AI search attribution) — Fill Quote Form
       try {
         if (typeof (window as any).oaiq === 'function') {
