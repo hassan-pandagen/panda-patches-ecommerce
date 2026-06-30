@@ -81,9 +81,15 @@ export default function RootLayout({
           @media(min-width:768px){.container{padding-left:1.5rem;padding-right:1.5rem}}
           @media(min-width:1024px){.container{padding-left:3rem;padding-right:3rem}}
           header{position:sticky;top:0;z-index:50;width:100%;background:#fff;border-bottom:1px solid #e5e7eb}
+          html.ann-dismissed #announcement-bar{display:none}
           .hero-section{position:relative;width:100%;min-height:100vh;background:#fff;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start}
           @media(min-width:768px){.hero-section{min-height:850px;justify-content:center}}
         ` }} />
+         {/* No-flash: hide the announcement bar PRE-PAINT for users who already
+             dismissed it, so the SSR'd bar never has to be removed client-side
+             (which would shift the page). New users keep it from first paint.
+             Mirrors the next-themes no-flash pattern; runs synchronously in head. */}
+         <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('announcement_dismissed_v4'))document.documentElement.classList.add('ann-dismissed')}catch(e){}` }} />
          {/* DNS prefetch to Sanity image CDN (preconnect dropped, unused on home) */}
          <link rel="dns-prefetch" href="https://cdn.sanity.io" />
          {/* Preconnect to Tawk.to embed (va.tawk.to preconnect dropped, unused on home) */}

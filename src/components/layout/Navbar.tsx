@@ -9,7 +9,11 @@ import dynamic from "next/dynamic";
 import TrustBar from "@/components/layout/TrustBar";
 import NavbarAuth from "@/components/auth/NavbarAuth";
 
-const AnnouncementBar = dynamic(() => import("@/components/layout/AnnouncementBar"), { ssr: false });
+// SSR the bar (ssr:true) so it ships in the server HTML and reserves its height
+// from first paint — the previous ssr:false inserted it post-hydration, shoving
+// the page down (large after-paint CLS on slow mobile). Still code-split so its
+// JS stays out of the critical bundle.
+const AnnouncementBar = dynamic(() => import("@/components/layout/AnnouncementBar"), { ssr: true });
 
 // CONFIGURATION: Define your menus here
 const navLinks = [
