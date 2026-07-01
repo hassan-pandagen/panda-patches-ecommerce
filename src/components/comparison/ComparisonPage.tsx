@@ -397,11 +397,11 @@ export default function ComparisonPage({
               <span>Get 12-24h Mockup</span>
             </Link>
             <a
-              href="tel:+13022504340"
+              href="tel:+13027738982"
               className="flex items-center justify-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap border-2 border-[#DFFF00]/30"
             >
               <Phone size={18} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" />
-              <span>Call (302) 250-4340</span>
+              <span>Call (302) 773-8982</span>
             </a>
           </div>
         </div>

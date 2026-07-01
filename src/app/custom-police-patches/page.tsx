@@ -16,6 +16,7 @@ import MakerNote from "@/components/seo/MakerNote";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
+import { calculatePatchPrice } from "@/lib/pricingCalculator";
 
 // Police-specific FAQs
 const policeFAQs = [
@@ -47,7 +48,27 @@ const policeFAQs = [
     question: "Do you handle county-wide orders with different designs per unit?",
     answer: "Yes. County-wide orders covering multiple departments, sheriff offices, and municipalities are common. Volume pricing applies to the total order quantity across all designs, not per design. Each unit's artwork is reviewed and approved independently before production begins."
   },
+  {
+    question: "How much do custom police patches cost?",
+    answer: "Custom embroidered police patches cost about $3.92 per piece at 50, $2.55 at 100, $1.18 at 500, and $1.05 at 1,000 for a 3-inch patch — all-in, with no setup or digitizing fees and free worldwide shipping. Small K-9 or unit runs start at a low 5-piece minimum, and Velcro backing adds a flat $30 per order.",
+  },
+  {
+    question: "What is the minimum order for police patches?",
+    answer: "The minimum is 5 pieces — low enough for a K-9 team, detective division, or SWAT unit, not the 50-piece minimums many law-enforcement suppliers require. There are no setup or digitizing fees at any size, and county-wide orders scale down to about $1 per piece at 1,000.",
+  },
+  {
+    question: "What artwork do you need, and what file formats do you accept?",
+    answer: "Send your department badge, shield, or seal as a vector file (AI, EPS, SVG, PDF) or a high-resolution image (PNG, JPG). No artwork yet? Send a photo of your badge or describe it and our design team drafts it free. You approve a digital mockup in 12 to 24 hours, with unlimited free revisions, before production starts.",
+  },
 ];
+
+// Live embroidered pricing (3" reference) pulled from the calculator so the police
+// pricing block never drifts from the checkout price.
+function policePrice(qty: number): string {
+  const r = calculatePatchPrice('Custom Embroidered Patches', 3, 3, qty);
+  return r.error || !r.unitPrice ? '—' : `$${r.unitPrice.toFixed(2)}`;
+}
+const POLICE_PRICE_ROWS = [50, 100, 250, 500, 1000].map((q) => ({ qty: q.toLocaleString('en-US'), per: policePrice(q) }));
 
 // ISR: Revalidate every 24 hours
 export const revalidate = 86400;
@@ -247,6 +268,54 @@ export default async function PolicePatchesPage() {
               Ready to start? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> &mdash; we respond to every inquiry within 2 business hours and work directly to your department&apos;s specifications.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="w-full py-8 md:py-12 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-3">
+            How Much Do Police Patches Cost?
+          </h2>
+          <p className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] mb-6">
+            Embroidered police patches run about <strong>$3.92/pc at 50</strong>, <strong>$2.55 at 100</strong>, and down to <strong>$1.05 at 1,000</strong> for a 3&quot; patch &mdash; all-in, with <strong>no setup or digitizing fees</strong> and free worldwide shipping. Unlike the 50-piece minimums common in law enforcement, K-9 and specialty-unit runs start at a low <strong>5-piece minimum</strong>; Velcro backing adds a flat $30 per order.
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gray-200 max-w-md">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-panda-dark text-white">
+                  <th className="text-left px-5 py-3 font-bold">Quantity</th>
+                  <th className="text-right px-5 py-3 font-bold">Price per patch</th>
+                </tr>
+              </thead>
+              <tbody>
+                {POLICE_PRICE_ROWS.map((row, i) => (
+                  <tr key={row.qty} className={i % 2 === 0 ? "bg-white" : "bg-[#F9FAF5]"}>
+                    <td className="px-5 py-3 font-semibold text-panda-dark">{row.qty}</td>
+                    <td className="px-5 py-3 text-right text-gray-700">{row.per}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-gray-400 mt-3">
+            3&quot; embroidered patch, free US shipping included. Subdued/PVC tactical priced separately.{" "}
+            <a href="/how-much-do-custom-patches-cost-full-pricing-breakdown" className="text-panda-green underline">Full pricing breakdown &rarr;</a>
+          </p>
+        </div>
+      </section>
+
+      {/* How to order */}
+      <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+            How to Order Police Patches
+          </h2>
+          <ol className="space-y-3 text-[15px] md:text-[16px] text-gray-700 leading-[1.7] list-decimal pl-5">
+            <li><strong>Send your badge or idea.</strong> Upload your department shield, seal, or badge as a vector (AI, EPS, SVG, PDF) or high-resolution image (PNG, JPG) &mdash; or send a photo and we draft it free.</li>
+            <li><strong>Approve your mockup.</strong> You get a digital mockup in 12&ndash;24 hours with unlimited free revisions. Nothing is produced until you sign off.</li>
+            <li><strong>We produce &amp; ship.</strong> Standard production is 7&ndash;14 business days; line-of-duty memorial patches rush in 4&ndash;7. Free worldwide shipping, low 5-piece minimum.</li>
+          </ol>
         </div>
       </section>
 

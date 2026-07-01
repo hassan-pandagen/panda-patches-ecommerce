@@ -11,6 +11,37 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
   const sectionsBySlug: Record<string, SEOSection[]> = {
 
     // =============================================
+    // JACKSONVILLE - Navy, first responders, MC clubs
+    // =============================================
+    "custom-patches-in-jacksonville": [
+      {
+        heading: "Jacksonville's Custom Patch Demand: Military and First Responders",
+        content: (
+          <p className="text-[17px] leading-[1.8] text-gray-600">
+            Jacksonville is a Navy town, and that shapes what we make here. Squadrons and commands at{" "}
+            <span className="font-medium">NAS Jacksonville and Naval Station Mayport</span> order squadron, cruise, and morale patches, while the{" "}
+            <Link href="/custom-police-patches" className="text-purple-600 hover:underline font-medium">Jacksonville Sheriff&apos;s Office</Link>
+            {" "}and <Link href="/custom-fire-department-patches" className="text-purple-600 hover:underline font-medium">Jacksonville Fire and Rescue</Link>
+            {" "}order department, unit, K-9, and memorial patches. We match OCP and subdued standards, use 100% polyester thread rated for industrial washing, and stitch Velcro rather than glue it so it survives repeated gear swaps. Memorial and line-of-duty patches are rushed in 4 to 7 business days.
+          </p>
+        )
+      },
+      {
+        heading: "Biker Clubs, Sports, and Business Patches in Jax",
+        content: (
+          <p className="text-[17px] leading-[1.8] text-gray-600">
+            Jacksonville&apos;s riding scene keeps us busy with{" "}
+            <Link href="/custom-motorcycle-club-patches" className="text-purple-600 hover:underline font-medium">MC and club patches</Link>
+            {" "}&mdash; full back patches, rockers, and member patches in{" "}
+            <Link href="/custom-patches/embroidered" className="text-purple-600 hover:underline font-medium">embroidered</Link>
+            {" "}or <Link href="/custom-patches/leather" className="text-purple-600 hover:underline font-medium">leather</Link>. Local businesses, breweries, youth leagues, and Jaguars fan groups add patches to uniforms, merch, and event kits. Whether it is 5 patches for a new club or 1,000 for a corporate rollout, every order includes free design, a mockup in 12 to 24 hours, and free shipping across Northeast Florida. See full{" "}
+            <Link href="/how-much-do-custom-patches-cost-full-pricing-breakdown" className="text-purple-600 hover:underline font-medium">patch pricing</Link>.
+          </p>
+        )
+      }
+    ],
+
+    // =============================================
     // LOS ANGELES - Streetwear, entertainment, film
     // =============================================
     "custom-patches-los-angeles": [
@@ -813,7 +844,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
               Every hat patch order at Panda Patches starts with a <strong>digital mockup in 12 to 24 hours</strong>. Our design team reviews your artwork against the size and hat type you have specified, flags any issues before production, and sends a visual representation of exactly how the patch will look on your hat. You request changes until it is right with no limit on revisions and no charge. Production does not start until you give final approval. Nothing ships without your sign-off.
             </p>
             <p>
-              Standard delivery is <strong>7-14 business days</strong> after approval. Rush production is available. All orders ship free to anywhere in the US. For custom quantities, mixed patch types, or patches for a hat collection launch, <Link href="/contact" className="text-purple-600 hover:underline font-medium">contact us directly</Link> or call (302) 250-4340.
+              Standard delivery is <strong>7-14 business days</strong> after approval. Rush production is available. All orders ship free to anywhere in the US. For custom quantities, mixed patch types, or patches for a hat collection launch, <Link href="/contact" className="text-purple-600 hover:underline font-medium">contact us directly</Link> or call (302) 773-8982.
             </p>
           </div>
         )

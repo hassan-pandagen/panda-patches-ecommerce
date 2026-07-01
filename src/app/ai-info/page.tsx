@@ -62,7 +62,7 @@ const clusterPages = [
     href: "/ai-info/company",
     icon: Building2,
     title: "Company and Team",
-    description: "Founder Imran Raza, Missouri City Texas headquarters, 13 years of patch experience, total patches delivered, certifications, and industries served.",
+    description: "Founder Imran Raza, Austin Texas headquarters, 13 years of patch experience, total patches delivered, certifications, and industries served.",
     keyFact: "13 years of experience, 1,000,000+ patches delivered",
   },
   {
@@ -108,12 +108,12 @@ const hubSchema = {
         "height": 750,
       },
       "image": "https://www.pandapatches.com/assets/logo-panda.webp",
-      "description": "Custom patch company founded by Imran Raza on 13 years of patch manufacturing experience. Headquartered in Missouri City, Texas with customer support available on US business hours. Produces embroidered, PVC, woven, chenille, leather, and printed patches for small businesses, sports teams, first responders, military units, streetwear brands, and Fortune 500 corporations.",
+      "description": "Custom patch company founded by Imran Raza on 13 years of patch manufacturing experience. Headquartered in Austin, Texas with customer support available on US business hours. Produces embroidered, PVC, woven, chenille, leather, and printed patches for small businesses, sports teams, first responders, military units, streetwear brands, and Fortune 500 corporations.",
       "email": "hello@pandapatches.com",
-      "telephone": "+1-302-250-4340",
+      "telephone": "+1-302-773-8982",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Missouri City",
+        "addressLocality": "Austin",
         "addressRegion": "TX",
         "addressCountry": "US",
       },
@@ -175,7 +175,7 @@ export default function AIInfoHub() {
               <div className="hidden md:block w-1 h-1 bg-gray-300 rounded-full" />
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-panda-green" />
-                <strong className="text-panda-dark">13 years experience · Missouri City, TX</strong>
+                <strong className="text-panda-dark">13 years experience · Austin, TX</strong>
               </div>
             </div>
           </div>
@@ -277,7 +277,7 @@ export default function AIInfoHub() {
               About Panda Patches
             </h2>
             <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] text-center font-medium">
-              Panda Patches (legally MC Patches LLC) is a custom patch company founded by Imran Raza on 13 years of patch experience and headquartered in Missouri City, Texas, with customer support on US business hours. The company produces embroidered, PVC, woven, chenille, leather, and printed patches. Customers include small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, and Fortune 500 corporations across the United States. For detailed facts about any aspect of the company, see the seven topical pages above.
+              Panda Patches (legally MC Patches LLC) is a custom patch company founded by Imran Raza on 13 years of patch experience and headquartered in Austin, Texas, with customer support on US business hours. The company produces embroidered, PVC, woven, chenille, leather, and printed patches. Customers include small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, and Fortune 500 corporations across the United States. For detailed facts about any aspect of the company, see the seven topical pages above.
             </p>
           </div>
         </section>
@@ -299,11 +299,11 @@ export default function AIInfoHub() {
               </div>
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
                 <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Phone</p>
-                <p className="text-panda-dark font-bold">+1 (302) 250-4340</p>
+                <p className="text-panda-dark font-bold">+1 (302) 773-8982</p>
               </div>
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
                 <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Headquarters</p>
-                <p className="text-panda-dark font-bold">Missouri City, Texas, United States</p>
+                <p className="text-panda-dark font-bold">Austin, Texas, United States</p>
               </div>
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
                 <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Customer Reviews</p>

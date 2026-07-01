@@ -12,6 +12,8 @@ interface BulkHeroProps {
   customDescription?: string;
   /** Use the simple homepage quote form instead of the full bulk quote form. */
   simpleForm?: boolean;
+  /** Extra backing options appended to the simpleForm backing dropdown (page-specific). */
+  extraBackingOptions?: { value: string; label: string }[];
 }
 
 export default function BulkHero({
@@ -21,6 +23,7 @@ export default function BulkHero({
   customSubheading,
   customDescription,
   simpleForm = false,
+  extraBackingOptions,
 }: BulkHeroProps) {
   return (
     <section className="w-full pt-8 md:pt-12 pb-6 md:pb-10 bg-white">
@@ -119,7 +122,7 @@ export default function BulkHero({
 
           {/* RIGHT - Quote Form (simple homepage form or full bulk form) */}
           <div className="w-full lg:w-[520px] flex-shrink-0">
-            {simpleForm ? <HeroForm /> : <BulkQuoteForm />}
+            {simpleForm ? <HeroForm extraBackingOptions={extraBackingOptions} /> : <BulkQuoteForm />}
           </div>
 
         </div>

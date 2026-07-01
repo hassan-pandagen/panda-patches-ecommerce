@@ -16,6 +16,7 @@ import MakerNote from "@/components/seo/MakerNote";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
+import { calculatePatchPrice } from "@/lib/pricingCalculator";
 
 // Fire Department-specific FAQs
 const fireFAQs = [
@@ -47,7 +48,27 @@ const fireFAQs = [
     question: "Can you match our existing patches for a reorder?",
     answer: "Yes. Bring a sample of your current patch or your previous order number and we reproduce thread colors from the same palette. Consistency matters when new patches sit next to existing ones on a uniform, and we archive your color specs for 12 months. Reorders typically ship within 10-14 business days."
   },
+  {
+    question: "How much do custom fire department patches cost?",
+    answer: "Custom embroidered fire department patches cost about $3.92 per piece at 50, $2.55 at 100, $1.18 at 500, and $1.05 at 1,000 for a 3-inch patch — all-in, with no setup or digitizing fees and free worldwide shipping. Memorial or single-station runs start at a low 5-piece minimum. Velcro backing adds a flat $30 per order.",
+  },
+  {
+    question: "What is the minimum order for fire department patches?",
+    answer: "The minimum is 5 pieces on embroidered fire department patches — low enough for a single station, a memorial run, or a rank set. There are no setup or digitizing fees at any size, and department-wide or IAFF orders scale down to about $1 per piece at 1,000.",
+  },
+  {
+    question: "What artwork do you need, and what file formats do you accept?",
+    answer: "Send your department seal, Maltese cross, or badge as a vector file (AI, EPS, SVG, PDF) or a high-resolution image (PNG, JPG). No artwork yet? Describe it and our design team drafts it free. You approve a digital mockup in 12 to 24 hours, with unlimited free revisions, before production starts.",
+  },
 ];
+
+// Live embroidered pricing (3" reference) pulled from the calculator so the fire
+// pricing block never drifts from the checkout price.
+function firePrice(qty: number): string {
+  const r = calculatePatchPrice('Custom Embroidered Patches', 3, 3, qty);
+  return r.error || !r.unitPrice ? '—' : `$${r.unitPrice.toFixed(2)}`;
+}
+const FIRE_PRICE_ROWS = [50, 100, 250, 500, 1000].map((q) => ({ qty: q.toLocaleString('en-US'), per: firePrice(q) }));
 
 // ISR: Revalidate every 24 hours
 export const revalidate = 86400;
@@ -257,6 +278,54 @@ export default async function FireDepartmentPatchesPage() {
               We also handle rank insignia by bugle count and recurring orders for IAFF locals. For July 4, 2026, many departments add commemorative <a href="/custom-250th-anniversary-patches" className="text-panda-green font-semibold underline">250th anniversary patches</a> for America&apos;s semiquincentennial.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="w-full py-8 md:py-12 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-3">
+            How Much Do Fire Department Patches Cost?
+          </h2>
+          <p className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] mb-6">
+            Embroidered fire department patches run about <strong>$3.92/pc at 50</strong>, <strong>$2.55 at 100</strong>, and down to <strong>$1.05 at 1,000</strong> for a 3&quot; patch &mdash; all-in, with <strong>no setup or digitizing fees</strong> and free worldwide shipping. Memorial and single-station runs start at a low <strong>5-piece minimum</strong>; Velcro backing adds a flat $30 per order.
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gray-200 max-w-md">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-panda-dark text-white">
+                  <th className="text-left px-5 py-3 font-bold">Quantity</th>
+                  <th className="text-right px-5 py-3 font-bold">Price per patch</th>
+                </tr>
+              </thead>
+              <tbody>
+                {FIRE_PRICE_ROWS.map((row, i) => (
+                  <tr key={row.qty} className={i % 2 === 0 ? "bg-white" : "bg-[#F9FAF5]"}>
+                    <td className="px-5 py-3 font-semibold text-panda-dark">{row.qty}</td>
+                    <td className="px-5 py-3 text-right text-gray-700">{row.per}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-gray-400 mt-3">
+            3&quot; embroidered patch, free US shipping included.{" "}
+            <a href="/how-much-do-custom-patches-cost-full-pricing-breakdown" className="text-panda-green underline">Full pricing breakdown &rarr;</a>
+          </p>
+        </div>
+      </section>
+
+      {/* How to order */}
+      <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+            How to Order Fire Department Patches
+          </h2>
+          <ol className="space-y-3 text-[15px] md:text-[16px] text-gray-700 leading-[1.7] list-decimal pl-5">
+            <li><strong>Send your artwork or idea.</strong> Upload your department seal, Maltese cross, or badge as a vector (AI, EPS, SVG, PDF) or high-resolution image (PNG, JPG) &mdash; or just describe it and we draft it free.</li>
+            <li><strong>Approve your mockup.</strong> You get a digital mockup in 12&ndash;24 hours with unlimited free revisions. Nothing is produced until you sign off.</li>
+            <li><strong>We produce &amp; ship.</strong> Standard production is 7&ndash;14 business days; line-of-duty memorial patches rush in 4&ndash;7. Free worldwide shipping, low 5-piece minimum.</li>
+          </ol>
         </div>
       </section>
 

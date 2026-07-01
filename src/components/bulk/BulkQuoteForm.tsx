@@ -166,7 +166,7 @@ export default function BulkQuoteForm() {
       trackLead({ form_name: 'bulk_quote', lead_source: window.location.pathname });
     } catch (error) {
       console.error("Bulk quote error:", error);
-      setMessage({ type: "error", text: "Failed to submit. Please try again or call us at (302) 250-4340." });
+      setMessage({ type: "error", text: "Failed to submit. Please try again or call us at (302) 773-8982." });
     } finally {
       setIsSubmitting(false);
     }
@@ -193,7 +193,7 @@ export default function BulkQuoteForm() {
           </button>
           <div className="flex items-center justify-center gap-2 mt-4">
             <Phone className="w-3.5 h-3.5 text-panda-green" />
-            <span className="text-[12px] text-gray-500 font-medium">Need it faster? Call (302) 250-4340</span>
+            <span className="text-[12px] text-gray-500 font-medium">Need it faster? Call (302) 773-8982</span>
           </div>
           <FormFeedback formType="bulk_quote" />
         </div>
@@ -469,7 +469,7 @@ export default function BulkQuoteForm() {
         </div>
         <div className="flex items-center gap-1.5">
           <Phone className="w-3.5 h-3.5 text-panda-green" />
-          <span className="text-[11px] text-gray-500 font-medium">(302) 250-4340</span>
+          <span className="text-[11px] text-gray-500 font-medium">(302) 773-8982</span>
         </div>
       </div>
 

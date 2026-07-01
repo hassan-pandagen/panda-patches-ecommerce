@@ -128,6 +128,56 @@ export const internalLinks: InternalLink[] = [
     anchor: "bulk custom patches",
     keywords: ["bulk order", "volume pricing", "wholesale"],
   },
+
+  // Core money pages (added July 2026 from GSC internal-link audit)
+  {
+    url: "/custom-patches",
+    anchor: "custom patches",
+    keywords: ["custom patches", "custom patch", "patch maker", "patch company", "order patches", "scout", "boy scout", "bsa", "troop", "patch placement", "uniform patch"],
+  },
+  {
+    url: "/how-much-do-custom-patches-cost-full-pricing-breakdown",
+    anchor: "custom patch pricing",
+    keywords: ["cost", "price", "pricing", "how much", "per piece", "cheap patches", "affordable"],
+  },
+  {
+    url: "/offers",
+    anchor: "patch deals & packages",
+    keywords: ["patch packages", "patch deals", "fixed price", "offers", "no minimum", "low minimum"],
+  },
+  {
+    url: "/custom-military-patches",
+    anchor: "military patches",
+    keywords: ["military", "army", "navy", "air force", "ocp", "acu", "deployment", "unit patch", "squadron", "combat"],
+  },
+  {
+    url: "/custom-morale-patches",
+    anchor: "morale patches",
+    keywords: ["morale patch", "morale", "funny patch"],
+  },
+  {
+    url: "/custom-motorcycle-club-patches",
+    anchor: "motorcycle club patches",
+    keywords: ["motorcycle club", "mc patch", "biker club", "back patch", "rocker", "riding club"],
+  },
+  {
+    url: "/partners",
+    anchor: "wholesale & reseller program",
+    keywords: ["wholesale", "reseller", "distributor", "partner program", "resell", "bulk buyer"],
+  },
+];
+
+/**
+ * High-value money pages used to top up results when a post doesn't match enough
+ * keywords, so EVERY blog post links to commercial pages. GSC (July 2026) showed the
+ * big guides pull 56k+ impressions but weren't consistently passing authority to
+ * money pages (e.g. the scout guide matched no keyword and showed zero links).
+ */
+const DEFAULT_LINKS: InternalLink[] = [
+  { url: "/custom-patches", anchor: "custom patches", keywords: [] },
+  { url: "/bulk-custom-patches", anchor: "bulk custom patches", keywords: [] },
+  { url: "/how-much-do-custom-patches-cost-full-pricing-breakdown", anchor: "custom patch pricing", keywords: [] },
+  { url: "/offers", anchor: "patch deals & packages", keywords: [] },
 ];
 
 /**
@@ -158,9 +208,24 @@ export function findRelevantLinks(text: string, maxLinks: number = 3): InternalL
   }
 
   // Sort by score (most relevant first) and return top N
-  return relevantLinks
+  const matched = relevantLinks
     .sort((a, b) => b.score - a.score)
     .slice(0, maxLinks)
     .map(({ url, anchor, keywords }) => ({ url, anchor, keywords }));
+
+  // Top up with default money pages so every page passes authority to commercial
+  // pages even when the content matches few or no keywords.
+  if (matched.length < maxLinks) {
+    const have = new Set(matched.map((l) => l.url));
+    for (const d of DEFAULT_LINKS) {
+      if (matched.length >= maxLinks) break;
+      if (!have.has(d.url)) {
+        matched.push(d);
+        have.add(d.url);
+      }
+    }
+  }
+
+  return matched;
 }
 

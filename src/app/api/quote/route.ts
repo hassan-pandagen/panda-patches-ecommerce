@@ -202,7 +202,7 @@ export async function POST(req: Request) {
   </div>
   <div style="background:#000;padding:14px 32px;text-align:center;">
     <hr style="border:none;border-top:1px solid #b8975a;margin:0 0 12px;">
-    <p style="color:#aaa;font-size:12px;margin:0;">Panda Patches | pandapatches.com | (302) 250-4340</p>
+    <p style="color:#aaa;font-size:12px;margin:0;">Panda Patches | pandapatches.com | (302) 773-8982</p>
   </div>
 </div>
 </body></html>`,
@@ -255,7 +255,7 @@ export async function POST(req: Request) {
     </div>
 
     <p style="color:#555555;font-size:14px;margin-top:24px;line-height:1.6;">
-      Questions? Simply reply to this email or call us at <a href="tel:+13022504340" style="color:#fb6e1d;font-weight:bold;">(302) 250-4340</a>.
+      Questions? Simply reply to this email or call us at <a href="tel:+13027738982" style="color:#fb6e1d;font-weight:bold;">(302) 773-8982</a>.
     </p>
     <p style="color:#333333;font-size:14px;margin-bottom:0;">
       Warm regards,<br>
@@ -272,8 +272,8 @@ export async function POST(req: Request) {
   <div style="background:#000000;padding:20px 32px;text-align:center;">
     <hr style="border:none;border-top:1px solid #b8975a;margin:0 0 16px;">
     <p style="color:#ffffff;font-size:12px;margin:0 0 6px;letter-spacing:1px;">PANDA PATCHES</p>
-    <p style="color:#aaaaaa;font-size:11px;margin:0;">Quail Feather Ct, Missouri City, TX 77489</p>
-    <p style="color:#aaaaaa;font-size:11px;margin:4px 0 0;">(302) 250-4340 | <a href="https://www.pandapatches.com" style="color:#aaaaaa;">pandapatches.com</a></p>
+    <p style="color:#aaaaaa;font-size:11px;margin:0;">701 Tillery St Ste 12, Austin, TX 78702</p>
+    <p style="color:#aaaaaa;font-size:11px;margin:4px 0 0;">(302) 773-8982 | <a href="https://www.pandapatches.com" style="color:#aaaaaa;">pandapatches.com</a></p>
   </div>
 </div>
 </body></html>`,
@@ -301,7 +301,7 @@ export async function POST(req: Request) {
       Thank you for reaching out! We have received your quote request and our team will get back to you within <strong>2 hours</strong> with the best price for your custom patches.
     </p>
     <p style="color:#555555;font-size:14px;margin-top:24px;line-height:1.6;">
-      Questions? Reply to this email or call us at <a href="tel:+13022504340" style="color:#fb6e1d;font-weight:bold;">(302) 250-4340</a>.
+      Questions? Reply to this email or call us at <a href="tel:+13027738982" style="color:#fb6e1d;font-weight:bold;">(302) 773-8982</a>.
     </p>
     <p style="color:#333333;font-size:14px;margin-bottom:0;">
       Warm regards,<br>
@@ -311,7 +311,7 @@ export async function POST(req: Request) {
   <div style="background:#000000;padding:20px 32px;text-align:center;">
     <hr style="border:none;border-top:1px solid #b8975a;margin:0 0 16px;">
     <p style="color:#ffffff;font-size:12px;margin:0 0 6px;letter-spacing:1px;">PANDA PATCHES</p>
-    <p style="color:#aaaaaa;font-size:11px;margin:0;">(302) 250-4340 | <a href="https://www.pandapatches.com" style="color:#aaaaaa;">pandapatches.com</a></p>
+    <p style="color:#aaaaaa;font-size:11px;margin:0;">(302) 773-8982 | <a href="https://www.pandapatches.com" style="color:#aaaaaa;">pandapatches.com</a></p>
   </div>
 </div>
 </body></html>`,
@@ -383,7 +383,7 @@ export async function POST(req: Request) {
   } catch (error: unknown) {
     console.error('Quote submission error:', error);
     return NextResponse.json(
-      { error: 'Quote submission failed. Please try again or call us at (302) 250-4340.' },
+      { error: 'Quote submission failed. Please try again or call us at (302) 773-8982.' },
       { status: 500 }
     );
   }

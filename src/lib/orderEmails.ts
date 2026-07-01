@@ -93,8 +93,8 @@ export async function sendOrderEmails(
   </div>
   <div style="background:#000;padding:14px 32px;text-align:center;">
     <hr style="border:none;border-top:1px solid #b8975a;margin:0 0 12px;">
-    <p style="color:#aaa;font-size:12px;margin:0;">Panda Patches | pandapatches.com | (302) 250-4340</p>
-    <p style="color:#555;font-size:11px;margin:6px 0 0;">Quail Feather Ct, Missouri City, TX 77489</p>
+    <p style="color:#aaa;font-size:12px;margin:0;">Panda Patches | pandapatches.com | (302) 773-8982</p>
+    <p style="color:#555;font-size:11px;margin:6px 0 0;">701 Tillery St Ste 12, Austin, TX 78702</p>
   </div>
 </div>
 </body></html>`,
@@ -153,7 +153,7 @@ export async function sendOrderEmails(
     </div>
 
     <p style="color:#555555;font-size:14px;margin-top:24px;line-height:1.6;">
-      Questions? Simply reply to this email or call us at <a href="tel:+13022504340" style="color:#fb6e1d;font-weight:bold;">(302) 250-4340</a>. We are happy to help.
+      Questions? Simply reply to this email or call us at <a href="tel:+13027738982" style="color:#fb6e1d;font-weight:bold;">(302) 773-8982</a>. We are happy to help.
     </p>
     <p style="color:#555555;font-size:14px;line-height:1.6;">
       Thank you for choosing Panda Patches. We look forward to delivering something you will love!
@@ -173,8 +173,8 @@ export async function sendOrderEmails(
   <div style="background:#000000;padding:20px 32px;text-align:center;">
     <hr style="border:none;border-top:1px solid #b8975a;margin:0 0 16px;">
     <p style="color:#ffffff;font-size:12px;margin:0 0 6px;letter-spacing:1px;">PANDA PATCHES</p>
-    <p style="color:#aaaaaa;font-size:11px;margin:0;">Quail Feather Ct, Missouri City, TX 77489</p>
-    <p style="color:#aaaaaa;font-size:11px;margin:4px 0 0;">(302) 250-4340 | <a href="https://www.pandapatches.com" style="color:#aaaaaa;">pandapatches.com</a></p>
+    <p style="color:#aaaaaa;font-size:11px;margin:0;">701 Tillery St Ste 12, Austin, TX 78702</p>
+    <p style="color:#aaaaaa;font-size:11px;margin:4px 0 0;">(302) 773-8982 | <a href="https://www.pandapatches.com" style="color:#aaaaaa;">pandapatches.com</a></p>
     <p style="color:#555555;font-size:10px;margin:12px 0 0;">This is a transactional email confirming your order with Panda Patches.</p>
   </div>
 </div>

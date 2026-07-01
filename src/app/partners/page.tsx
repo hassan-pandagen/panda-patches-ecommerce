@@ -241,10 +241,10 @@ export default async function PartnersPage() {
                 }
               />
               <a
-                href="tel:+13022504340"
+                href="tel:+13027738982"
                 className="bg-panda-dark text-panda-yellow px-8 py-4 rounded-[100px] font-black text-[16px] hover:bg-black transition-all"
               >
-                Call (302) 250-4340
+                Call (302) 773-8982
               </a>
             </div>
           </div>
@@ -711,8 +711,8 @@ export default async function PartnersPage() {
                   </div>
                   <div className="min-w-0">
                     <p className="text-[12px] font-black uppercase tracking-wider text-gray-500 mb-1">Call the partner line</p>
-                    <a href="tel:+13022504340" className="text-[15px] font-bold text-panda-dark hover:text-panda-green transition-colors">
-                      (302) 250-4340
+                    <a href="tel:+13027738982" className="text-[15px] font-bold text-panda-dark hover:text-panda-green transition-colors">
+                      (302) 773-8982
                     </a>
                   </div>
                 </div>

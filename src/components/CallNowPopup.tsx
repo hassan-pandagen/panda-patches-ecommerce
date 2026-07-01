@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { X, Phone } from 'lucide-react';
 
-const PHONE_NUMBER = '+1 (302) 250-4340';
-const PHONE_TEL = 'tel:+13022504340';
+const PHONE_NUMBER = '+1 (302) 773-8982';
+const PHONE_TEL = 'tel:+13027738982';
 const WHATSAPP_URL = 'https://wa.me/14157999969?text=Hi%20I%20need%20help%20placing%20my%20order';
 const DESKTOP_DELAY_MS = 15_000; // desktop: 15 seconds
 const MOBILE_DELAY_MS  = 25_000; // mobile:  25 seconds (avoids clashing with Tawk.to)

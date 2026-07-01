@@ -181,6 +181,34 @@ const nextConfig = {
         permanent: true,
       },
 
+      // CANNIBALIZATION CONSOLIDATION (GSC July 2026) — leftover duplicates still
+      // competing with their canonical in Search Console. 301 to consolidate equity.
+      // No-minimum: /custom-patches-no-minimum-order-5-pieces (pos 24) → canonical (pos 16).
+      {
+        source: '/custom-patches-no-minimum-order-5-pieces',
+        destination: '/custom-patches-no-minimum-order',
+        permanent: true,
+      },
+      {
+        source: '/custom-patches-no-minimum-order-5-pieces/',
+        destination: '/custom-patches-no-minimum-order',
+        permanent: true,
+      },
+      // Soccer: the -2026 year-variant guide duplicates /custom-soccer-patches-guide
+      // (both ~pos 8; -guide has 18 clicks vs the variant's 8) → consolidate the variant.
+      // NOTE: the bare /custom-soccer-patches (commercial) is left live pending a
+      // content check — like velcro, a commercial page may serve distinct buy intent.
+      {
+        source: '/custom-soccer-patches-guide-2026',
+        destination: '/custom-soccer-patches-guide',
+        permanent: true,
+      },
+      {
+        source: '/custom-soccer-patches-guide-2026/',
+        destination: '/custom-soccer-patches-guide',
+        permanent: true,
+      },
+
       // OLD BLOG URL → NEW BLOGS URL
       {
         source: '/blog',

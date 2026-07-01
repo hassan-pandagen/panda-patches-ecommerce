@@ -51,6 +51,16 @@ const magneticFAQs = [
     answer:
       "Magnetic is a specialty backing priced per order because magnet count and strength depend on patch size and weight. The base patch itself follows standard pricing, for example embroidered patches start at " + getFromPriceLabel("Custom Embroidered Patches") + " per piece at 2 by 2 inches and 1,000 pieces. Send your design and quantity for a free exact quote, or use live chat. Every order still includes free worldwide shipping and a mockup in 12 to 24 hours.",
   },
+  {
+    question: "Do you offer safety-pin backing instead of magnetic?",
+    answer:
+      "Yes. If magnetic backing is not suitable, for example for anyone with a pacemaker or for children's wear, we offer safety-pin backing alongside standard pin-back, Velcro, sew-on, iron-on, and sticker. Safety-pin backing attaches a small bar pin with a locking clasp to the back of the patch, so it fastens and removes without a magnet. Choose Safety Pin in the backing dropdown on this page or note it in your quote.",
+  },
+  {
+    question: "Magnetic vs. pin vs. Velcro backing, which should I choose for a name badge?",
+    answer:
+      "For daily-wear name badges on suits and blazers where you cannot mark the fabric, magnetic is the cleanest choice: no hole, reusable, fast to swap. Choose pin or safety-pin backing when budget matters or the wearer has a pacemaker, since magnets are unsafe near implanted medical devices. Choose Velcro when the badge must survive high activity, uniforms washed often, or gear that takes knocks. All are available from a low 5-piece minimum.",
+  },
 ];
 
 export const metadata: Metadata = buildPageMetadata({
@@ -124,6 +134,10 @@ export default async function MagneticPatchesPage() {
 
       <BulkHero
         simpleForm
+        extraBackingOptions={[
+          { value: "magnetic", label: "Magnetic" },
+          { value: "safety-pin", label: "Safety Pin" },
+        ]}
         trustBadges={trustBadges}
         customHeading="Custom Magnetic Patches"
         customSubheading="No Pin, No Hole, No Damage, From 5 Pieces"

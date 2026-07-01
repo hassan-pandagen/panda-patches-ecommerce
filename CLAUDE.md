@@ -265,7 +265,7 @@ Visa · Mastercard · Amex · PayPal · Apple Pay · AfterPay · Klarna · Cash 
 ✏️ Review it, request changes — free and unlimited
 ✅ Production begins only after your approval
 📦 Estimated delivery: [date range]
-📞 Questions? (302) 250-4340
+📞 Questions? (302) 773-8982
 ```
 
 **Fire this Google Ads conversion tag on confirmation:**
@@ -422,7 +422,7 @@ Do not edit next.config.mjs for CSP changes.
 
 ## CONTACTS
 
-Owner: Imran Raza. Email lance@pandapatches.com. Phone (302) 250-4340.
+Owner: Imran Raza. Email lance@pandapatches.com. Phone (302) 773-8982.
 Google Ads: imran.ladhani110@gmail.com
 GTM: GTM-KQQQ674D
 GA4: G-Y391W132NR

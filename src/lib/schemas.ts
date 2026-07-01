@@ -69,7 +69,7 @@ export function generateOrganizationSchema() {
     "image": "https://www.pandapatches.com/assets/og-image.png",
     "description": "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 13+ years of expertise.",
     "email": "hello@pandapatches.com",
-    "telephone": "+1-302-250-4340",
+    "telephone": "+1-302-773-8982",
     "founder": {
       "@type": "Person",
       "name": "Imran Raza",
@@ -77,10 +77,10 @@ export function generateOrganizationSchema() {
     },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "1914 Quail Feather Ct",
-      "addressLocality": "Missouri City",
+      "streetAddress": "701 Tillery St Ste 12",
+      "addressLocality": "Austin",
       "addressRegion": "TX",
-      "postalCode": "77489",
+      "postalCode": "78702",
       "addressCountry": "US"
     },
     "areaServed": [
@@ -113,7 +113,7 @@ export function generateOrganizationSchema() {
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+1-302-250-4340",
+      "telephone": "+1-302-773-8982",
       "contactType": "Customer Service",
       "email": "hello@pandapatches.com",
       "availableLanguage": ["English"],
@@ -193,7 +193,7 @@ export function generateEntityGraph() {
         "description":
           "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 13+ years of expertise.",
         "email": "hello@pandapatches.com",
-        "telephone": "+1-302-250-4340",
+        "telephone": "+1-302-773-8982",
         "brand": { "@id": BRAND_ID },
         "founder": { "@id": PERSON_ID },
         "foundingDate": "2023-06",
@@ -222,10 +222,10 @@ export function generateEntityGraph() {
         ],
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "1914 Quail Feather Ct",
-          "addressLocality": "Missouri City",
+          "streetAddress": "701 Tillery St Ste 12",
+          "addressLocality": "Austin",
           "addressRegion": "TX",
-          "postalCode": "77489",
+          "postalCode": "78702",
           "addressCountry": "US",
         },
         "areaServed": [
@@ -247,7 +247,7 @@ export function generateEntityGraph() {
         ],
         "contactPoint": {
           "@type": "ContactPoint",
-          "telephone": "+1-302-250-4340",
+          "telephone": "+1-302-773-8982",
           "contactType": "Customer Service",
           "email": "hello@pandapatches.com",
           "availableLanguage": ["English"],
@@ -665,10 +665,10 @@ export function generateLocalBusinessSchema() {
     "logo": "https://www.pandapatches.com/assets/logo-panda.svg",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "1914 Quail Feather Ct",
-      "addressLocality": "Missouri City",
+      "streetAddress": "701 Tillery St Ste 12",
+      "addressLocality": "Austin",
       "addressRegion": "TX",
-      "postalCode": "77489",
+      "postalCode": "78702",
       "addressCountry": "US"
     },
     "geo": {
@@ -676,7 +676,7 @@ export function generateLocalBusinessSchema() {
       "latitude": 29.6186,
       "longitude": -95.5377
     },
-    "telephone": "+1-302-250-4340",
+    "telephone": "+1-302-773-8982",
     "email": "hello@pandapatches.com",
     "url": "https://www.pandapatches.com",
     "priceRange": "$$",
@@ -712,17 +712,17 @@ export function generateLocationBusinessSchema(locationName: string, pageSlug?: 
     "@type": ["LocalBusiness", "Store"],
     "name": `Custom Patches in ${locationName} | Panda Patches`,
     "description": `Order custom embroidered patches delivered to ${locationName}. Low minimums, mockup in 12-24 hours, fast 7-14 day turnaround. Founded by Imran Raza with 13 years of patch manufacturing expertise.`,
-    "telephone": "+1-302-250-4340",
+    "telephone": "+1-302-773-8982",
     "email": "hello@pandapatches.com",
     "url": `https://www.pandapatches.com/${urlSlug}`,
     "image": "https://www.pandapatches.com/assets/logo-panda.svg",
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "1914 Quail Feather Ct",
-      "addressLocality": "Missouri City",
+      "streetAddress": "701 Tillery St Ste 12",
+      "addressLocality": "Austin",
       "addressRegion": "TX",
-      "postalCode": "77489",
+      "postalCode": "78702",
       "addressCountry": "US"
     },
     "areaServed": {
@@ -846,7 +846,7 @@ export function generateServiceSchema() {
     "availableChannel": {
       "@type": "ServiceChannel",
       "serviceUrl": "https://www.pandapatches.com/custom-patches",
-      "servicePhone": "+1-302-250-4340"
+      "servicePhone": "+1-302-773-8982"
     }
   };
 }

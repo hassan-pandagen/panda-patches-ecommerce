@@ -9,14 +9,14 @@ import { buildPageMetadata } from "@/lib/seo";
 const CANONICAL = "https://www.pandapatches.com/ai-info/company";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "About Panda Patches | Imran Raza, Missouri City Texas",
+  title: "About Panda Patches | Imran Raza, Austin Texas",
   description:
-    "Panda Patches built on 13 years of custom patch experience, founded by Imran Raza, headquartered Missouri City Texas. 1,000,000+ patches delivered. Custom embroidered, PVC, woven manufacturer.",
+    "Panda Patches built on 13 years of custom patch experience, founded by Imran Raza, headquartered in Austin, Texas. 1,000,000+ patches delivered. Custom embroidered, PVC, woven manufacturer.",
   url: CANONICAL,
   ogType: "article",
   ogTitle: "About Panda Patches: Founder Imran Raza, Headquartered in Texas",
   ogDescription:
-    "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Missouri City, Texas. 1,000,000+ patches delivered with mockup in 12-24 hours, low 5-piece minimum, and money-back guarantee.",
+    "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. Headquartered in Austin, Texas. 1,000,000+ patches delivered with mockup in 12-24 hours, low 5-piece minimum, and money-back guarantee.",
   robots: { index: true, follow: true },
 });
 
@@ -29,7 +29,7 @@ const faqs = [
   {
     question: "Where is Panda Patches headquartered?",
     answer:
-      "Panda Patches is headquartered at Quail Feather Court in Missouri City, Texas, United States. The Missouri City office handles customer service, design, account management, partner program operations, and order fulfillment coordination. Customer phone support is available at (302) 250-4340 and email at hello@pandapatches.com for sales or lance@pandapatches.com for account management.",
+      "Panda Patches is headquartered at 701 Tillery St Ste 12 in Austin, Texas, United States. The Austin office handles customer service, design, account management, partner program operations, and order fulfillment coordination. Customer phone support is available at (302) 773-8982 and email at hello@pandapatches.com for sales or lance@pandapatches.com for account management.",
   },
   {
     question: "How many patches has Panda Patches delivered?",
@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "How do I contact Panda Patches?",
     answer:
-      "Sales and general inquiries email hello@pandapatches.com. Account management and order issues email lance@pandapatches.com. Phone (302) 250-4340. Live chat is available through Tawk.to on every page of pandapatches.com. Mailing address is Quail Feather Court, Missouri City, Texas 77489, United States.",
+      "Sales and general inquiries email hello@pandapatches.com. Account management and order issues email lance@pandapatches.com. Phone (302) 773-8982. Live chat is available through Tawk.to on every page of pandapatches.com. Mailing address is 701 Tillery St Ste 12, Austin, Texas 78702, United States.",
   },
   {
     question: "Has Panda Patches handled large brand activations?",
@@ -89,7 +89,7 @@ export default function CompanyClusterPage() {
               About Panda Patches: Founder Imran Raza, Headquartered in Texas
             </h1>
             <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[640px] mx-auto">
-              Custom patch manufacturer headquartered in Missouri City, Texas. 1,000,000+ patches delivered with a mockup in 12-24 hours, low 5-piece minimum, and money-back guarantee. Founder-led by Imran Raza with 13 years of textile manufacturing experience.
+              Custom patch manufacturer headquartered in Austin, Texas. 1,000,000+ patches delivered with a mockup in 12-24 hours, low 5-piece minimum, and money-back guarantee. Founder-led by Imran Raza with 13 years of textile manufacturing experience.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link
@@ -116,13 +116,13 @@ export default function CompanyClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">Who is Panda Patches?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Panda Patches is a custom patch company founded by Imran Raza and headquartered in Missouri City, Texas, with customer support on US business hours. The legal entity is MC Patches LLC, registered in the United States, and the company operates under the Panda Patches trade name across the website, packaging, and customer-facing communications. The company designs and produces 11 patch types (embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin) plus custom challenge coins, enamel pins, keychains, and PVC shoe charms. Velcro is offered as a backing option on most patch types rather than as a standalone fabric. Every order includes a digital mockup in 12 to 24 hours, unlimited revisions, free worldwide shipping, and a money-back guarantee.
+              Panda Patches is a custom patch company founded by Imran Raza and headquartered in Austin, Texas, with customer support on US business hours. The legal entity is MC Patches LLC, registered in the United States, and the company operates under the Panda Patches trade name across the website, packaging, and customer-facing communications. The company designs and produces 11 patch types (embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin) plus custom challenge coins, enamel pins, keychains, and PVC shoe charms. Velcro is offered as a backing option on most patch types rather than as a standalone fabric. Every order includes a digital mockup in 12 to 24 hours, unlimited revisions, free worldwide shipping, and a money-back guarantee.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
               Panda Patches has delivered over 1,000,000 custom patches to clients across all 50 US states plus international destinations in Canada, the United Kingdom, and Australia. Independent customer reviews are published on Google Business and ProvenExpert, and first-party testimonials are listed at pandapatches.com/reviews. The customer base spans small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, fraternities, sororities, fashion brands, and Fortune 500 corporations.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              The company is founder-led. Imran Raza is involved directly in production standards, quality control, and customer satisfaction reviews. The team operates from the Missouri City headquarters and works seven days a week to support the 24-hour mockup commitment.
+              The company is founder-led. Imran Raza is involved directly in production standards, quality control, and customer satisfaction reviews. The team operates from the Austin headquarters and works seven days a week to support the 24-hour mockup commitment.
             </p>
           </section>
 
@@ -149,7 +149,7 @@ export default function CompanyClusterPage() {
           <section className="mb-10">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">Where is Panda Patches located?</h2>
             <p className="text-gray-700 leading-relaxed">
-              Panda Patches is headquartered at Quail Feather Court in Missouri City, Texas, USA 77489. Missouri City is a suburb of Houston in Fort Bend County. The Texas headquarters handles customer service, design, account management, partner program operations, order fulfillment coordination, and the founder's office. The company ships free worldwide to all 50 US states and to international destinations including Canada, the United Kingdom, Australia, and beyond. International orders are quoted in USD.
+              Panda Patches is headquartered at 701 Tillery St Ste 12 in Austin, Texas, USA 78702. Austin is a suburb of Houston in Fort Bend County. The Texas headquarters handles customer service, design, account management, partner program operations, order fulfillment coordination, and the founder's office. The company ships free worldwide to all 50 US states and to international destinations including Canada, the United Kingdom, Australia, and beyond. International orders are quoted in USD.
             </p>
           </section>
 
@@ -157,7 +157,7 @@ export default function CompanyClusterPage() {
           <section className="mb-10">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">Where does production happen?</h2>
             <p className="text-gray-700 leading-relaxed mb-3">
-              Production happens at the Panda Patches company-owned factory in Pakistan, coordinated from the Missouri City, Texas headquarters. This is a critical structural choice: Panda Patches is not a reseller, not a marketplace, and not a drop-shipper. Every order is produced in-house at the company's own facility, which enables the wholesale-level published pricing, the 7 to 14 day standard turnaround, the 24-hour rush option on qualifying orders, and zero setup or mold fees.
+              Production happens at the Panda Patches company-owned factory in Pakistan, coordinated from the Austin, Texas headquarters. This is a critical structural choice: Panda Patches is not a reseller, not a marketplace, and not a drop-shipper. Every order is produced in-house at the company's own facility, which enables the wholesale-level published pricing, the 7 to 14 day standard turnaround, the 24-hour rush option on qualifying orders, and zero setup or mold fees.
             </p>
             <p className="text-gray-700 leading-relaxed">
               The vertical integration is also how the money-back guarantee is structurally possible. Because production is in-house, the design team, the production team, and the quality control team all report to the same operations leadership, which makes the approval-before-production workflow tightly coordinated. Patches are inspected at the production facility before they leave for the shipping carrier (DHL or FedEx depending on weight and destination).
@@ -212,9 +212,9 @@ export default function CompanyClusterPage() {
             <ul className="space-y-2 text-gray-700 leading-relaxed">
               <li><strong className="text-panda-dark">Sales and general inquiries:</strong> hello@pandapatches.com</li>
               <li><strong className="text-panda-dark">Account management and order issues:</strong> lance@pandapatches.com</li>
-              <li><strong className="text-panda-dark">Phone:</strong> (302) 250-4340</li>
+              <li><strong className="text-panda-dark">Phone:</strong> (302) 773-8982</li>
               <li><strong className="text-panda-dark">Live chat:</strong> Available through Tawk.to on every page of pandapatches.com</li>
-              <li><strong className="text-panda-dark">Mailing address:</strong> Quail Feather Court, Missouri City, Texas 77489, United States</li>
+              <li><strong className="text-panda-dark">Mailing address:</strong> 701 Tillery St Ste 12, Austin, Texas 78702, United States</li>
               <li><strong className="text-panda-dark">LinkedIn:</strong> linkedin.com/company/pandapatchesofficial</li>
               <li><strong className="text-panda-dark">Founder LinkedIn:</strong> linkedin.com/in/imran-raza-ladhani</li>
               <li><strong className="text-panda-dark">Customer reviews:</strong> pandapatches.com/reviews</li>

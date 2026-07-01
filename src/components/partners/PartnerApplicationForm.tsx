@@ -52,7 +52,7 @@ export default function PartnerApplicationForm() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data?.error || 'Submission failed. Please try again or call (302) 250-4340.');
+        throw new Error(data?.error || 'Submission failed. Please try again or call (302) 773-8982.');
       }
 
       setSuccess(true);
@@ -60,7 +60,7 @@ export default function PartnerApplicationForm() {
       trackLead({ form_name: 'partner', partner_type: payload.partnerType, lead_source: window.location.pathname });
       form.reset();
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Submission failed. Please try again or call (302) 250-4340.';
+      const msg = err instanceof Error ? err.message : 'Submission failed. Please try again or call (302) 773-8982.';
       setError(msg);
     } finally {
       setSubmitting(false);
@@ -81,8 +81,8 @@ export default function PartnerApplicationForm() {
         </p>
         <p className="text-[13px] text-gray-400">
           Need us sooner?{' '}
-          <a href="tel:+13022504340" className="text-panda-green font-semibold underline">
-            Call (302) 250-4340
+          <a href="tel:+13027738982" className="text-panda-green font-semibold underline">
+            Call (302) 773-8982
           </a>
         </p>
       </div>

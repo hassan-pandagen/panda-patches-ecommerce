@@ -157,6 +157,62 @@ const faqSchema = {
         text: 'Embroidered patches are the lowest-cost of the popular options at volume, starting at about $0.90/pc at 5,000 pieces for a 3-inch patch, and are the most-ordered choice. Woven patches cost more, around $2.49/pc at the same volume, because of the tighter weave.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'Is there a digitizing fee or setup fee for custom patches?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Panda Patches charges no digitizing fee, no setup fee, and no art or proof fee on any order. Many US patch companies add $10 to $30 for digitizing and $20 to $50 for setup on top of the advertised price; our quoted price is the all-in price you pay, with free worldwide shipping included.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you charge a PVC mould fee?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. There is no PVC mould (mold) fee at Panda Patches. Custom PVC patches elsewhere often carry a one-time mould charge of $50 to $100; our PVC price is all-in with no separate tooling fee. A single PVC patch is a flat $100, and 100 PVC patches cost $340 ($3.40 per piece) for a 3-inch patch.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does rush production cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Rush production is a flat add-on based on quantity: +$50 for 50 pieces, +$75 for 100, +$150 for 500, and +$200 for 1,000. After you order rush, we confirm your exact delivery date by email within 2 to 6 hours. Standard (non-rush) production is 7 to 14 business days after you approve your mockup.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much do custom chenille patches cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Custom chenille patches (the raised varsity and letterman texture) start at about $1.19 per piece at volume for a 3-inch patch and drop as quantity rises. There is no setup or digitizing fee and shipping is free. Use the pricing calculator for the exact price at your size and quantity.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much do custom leather patches cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Custom leather patches start at about $1.29 per piece at volume for a 3-inch patch and are mid-range among patch types — a premium look popular for biker clubs and branded apparel. Prices are all-in with free shipping and no setup fees.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much do 500 custom patches cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'At Panda Patches, 500 custom embroidered patches cost about $590 ($1.18 per piece) for a 3-inch patch. Woven, PVC, chenille, and leather run higher per piece; enter your type and size in the calculator for the exact total. Every order includes free worldwide shipping, a mockup in 12 to 24 hours, and no setup fees.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much do 1,000 custom patches cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'At Panda Patches, 1,000 custom embroidered patches cost about $1,050 ($1.05 per piece) for a 3-inch patch — one of the lowest per-piece rates in the US market. Other patch types cost more per piece. All prices are all-in with free worldwide shipping and no setup or digitizing fees.',
+      },
+    },
   ],
 };
 
@@ -191,12 +247,30 @@ const PVC_TABLE = [
   })),
 ];
 
+// Chenille / Leather / Printed — pulled live from the calculator (3" reference) so
+// these type tables can never drift from the checkout price.
+const OTHER_QTY_BREAKS = [10, 25, 50, 100, 500, 1000];
+const CHENILLE_TABLE = OTHER_QTY_BREAKS.map((q) => ({ qty: q.toLocaleString('en-US'), per: calcPerPc('Custom Chenille Patches', 3, q) }));
+const LEATHER_TABLE = OTHER_QTY_BREAKS.map((q) => ({ qty: q.toLocaleString('en-US'), per: calcPerPc('Custom Leather Patches', 3, q) }));
+const PRINTED_TABLE = OTHER_QTY_BREAKS.map((q) => ({ qty: q.toLocaleString('en-US'), per: calcPerPc('Custom Printed Patches', 3, q) }));
+
 const TYPE_SUMMARY = [
   { type: 'Embroidered', from: '$0.71/pc', at: '5,000 pcs', best: 'Most popular. Durable, detailed.' },
   { type: 'Woven', from: '$1.49/pc', at: '5,000 pcs', best: 'Fine detail, thin profile, low volume min (10 pcs).' },
   { type: 'PVC', from: '$1.40/pc', at: '5,000 pcs', best: 'Waterproof, 3D look, military & outdoor.' },
   { type: 'Chenille', from: '$1.19/pc', at: '5,000 pcs', best: 'Varsity/letterman style, raised texture.' },
   { type: 'Leather', from: '$1.29/pc', at: '5,000 pcs', best: 'Premium look for biker clubs and branded apparel.' },
+];
+
+// Typical US market ranges (from public competitor pricing pages) shown beside our
+// all-in price at 3", 100 pcs. Ranges are the industry norm we differentiate against
+// — NOT our prices; the Panda column is pulled live from the calculator.
+const MARKET_VS_PANDA = [
+  { type: 'Embroidered', market: '$1.50–$6.00/pc', panda: calcPerPc('Custom Embroidered Patches', 3, 100) },
+  { type: 'Woven', market: '$1.75–$5.00/pc', panda: calcPerPc('Custom Woven Patches', 3, 100) },
+  { type: 'PVC', market: '$2.00–$8.00/pc', panda: calcPerPc('Custom PVC Patches', 3, 100) },
+  { type: 'Chenille', market: '$1.75–$7.00/pc', panda: calcPerPc('Custom Chenille Patches', 3, 100) },
+  { type: 'Leather', market: '$1.75–$7.00/pc', panda: calcPerPc('Custom Leather Patches', 3, 100) },
 ];
 
 // ── Page ───────────────────────────────────────────────────────────────────────
@@ -231,7 +305,7 @@ export default function PricingPage() {
             How Much Do Custom Patches Cost?
           </h1>
           <p className="text-lg text-gray-200 leading-relaxed max-w-3xl">
-            <Link href="/custom-patches/embroidered" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Custom embroidered patches</Link> cost <strong className="text-[#dcff70]">$0.90 to $5.87 per piece</strong> for a 3-inch patch, depending on quantity. A 25-pack runs about $147 total; a 100-pack runs about $255. Smaller orders cost more per piece. Free worldwide shipping and a mockup in 12-24 hours are included on every order. No setup fees. <Link href="/custom-patches/woven" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Woven patches</Link> cost more per piece because of the finer weave.
+            <Link href="/custom-patches/embroidered" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Custom embroidered patches</Link> cost <strong className="text-[#dcff70]">$0.90 to $5.87 per piece</strong> for a 3-inch patch, depending on quantity. A 25-pack runs about $147 total; a 100-pack runs about $255. Smaller orders cost more per piece. Free worldwide shipping and a mockup in 12-24 hours are included on every order. No setup fees — your quoted price is all-in, with no digitizing, setup, or PVC mould fees. <Link href="/custom-patches/woven" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Woven patches</Link> cost more per piece because of the finer weave.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
@@ -357,6 +431,141 @@ export default function PricingPage() {
                 </tbody>
               </table>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Chenille / Leather / Printed tables */}
+      <section className="py-14 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-black text-gray-900 mb-1">Chenille, Leather &amp; Printed Patch Pricing</h2>
+          <p className="text-gray-500 text-sm mb-6">3" patch, price per piece. Free shipping included. Low 5-piece minimum.</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { title: 'Chenille', note: 'Varsity / letterman texture', rows: CHENILLE_TABLE },
+              { title: 'Leather', note: 'Premium biker & branded look', rows: LEATHER_TABLE },
+              { title: 'Printed', note: 'Full-color / photographic detail', rows: PRINTED_TABLE },
+            ].map((tbl) => (
+              <div key={tbl.title}>
+                <h3 className="font-black text-gray-900">{tbl.title}</h3>
+                <p className="text-gray-500 text-xs mb-3">{tbl.note}</p>
+                <div className="overflow-x-auto rounded-2xl border border-gray-200">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-black text-white">
+                        <th className="text-left px-4 py-2 font-bold">Qty</th>
+                        <th className="text-right px-4 py-2 font-bold">Per piece</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {tbl.rows.map((row, i) => (
+                        <tr key={row.qty} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                          <td className="px-4 py-2 font-semibold text-gray-900">{row.qty}</td>
+                          <td className="px-4 py-2 text-right text-gray-700">{row.per}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Market comparison */}
+      <section className="py-14 px-6 bg-gray-50 border-t border-b border-gray-200">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-black text-gray-900 mb-2">How Panda Patches Pricing Compares to the US Market</h2>
+          <p className="text-gray-500 text-sm mb-6">Typical US market ranges vs our all-in price for a 3" patch at 100 pieces. Our price is the final price — nothing is added at checkout.</p>
+          <div className="overflow-x-auto rounded-2xl border border-gray-200">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-black text-white">
+                  <th className="text-left px-5 py-3 font-bold">Type</th>
+                  <th className="text-left px-5 py-3 font-bold">Typical US market</th>
+                  <th className="text-left px-5 py-3 font-bold">Panda Patches (all-in)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {MARKET_VS_PANDA.map((row, i) => (
+                  <tr key={row.type} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                    <td className="px-5 py-3 font-semibold text-gray-900">{row.type}</td>
+                    <td className="px-5 py-3 text-gray-500">{row.market}</td>
+                    <td className="px-5 py-3 text-[#00b67a] font-bold">{row.panda}/pc</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-gray-400 mt-3">Market ranges reflect publicly listed prices from other US patch companies and are shown for comparison only.</p>
+        </div>
+      </section>
+
+      {/* Fees others charge that we don't */}
+      <section className="py-14 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-black text-gray-900 mb-4">Fees Other Patch Companies Charge — and Panda Patches Doesn&apos;t</h2>
+          <p className="text-gray-600 leading-relaxed mb-6 max-w-3xl">
+            Most custom patch quotes aren&apos;t the price you actually pay. Across the US market, companies commonly add a <strong>digitizing fee ($10–$30)</strong>, a <strong>PVC mould fee ($50–$100)</strong>, plus art, proof, and setup fees on top of the advertised per-patch price — which is how a &quot;$1 patch&quot; becomes $3–$5 at checkout. <strong className="text-gray-900">At Panda Patches, your quoted price is the all-in price.</strong>
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gray-200">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-black text-white">
+                  <th className="text-left px-5 py-3 font-bold">Fee</th>
+                  <th className="text-left px-5 py-3 font-bold">Typical elsewhere</th>
+                  <th className="text-left px-5 py-3 font-bold">Panda Patches</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { fee: 'Setup fee', other: '$20–$50', panda: '$0' },
+                  { fee: 'Digitizing fee', other: '$10–$30', panda: '$0' },
+                  { fee: 'PVC mould fee', other: '$50–$100', panda: '$0' },
+                  { fee: 'Art / proof fee', other: '$10–$25', panda: '$0' },
+                  { fee: 'Revisions', other: 'Per revision', panda: '$0 — unlimited' },
+                  { fee: 'Iron-on & sew-on backing', other: 'Sometimes extra', panda: '$0 (both free)' },
+                  { fee: 'Velcro backing', other: 'Per patch', panda: '$30 flat / order' },
+                  { fee: 'US shipping', other: '$8–$25', panda: '$0 — free worldwide' },
+                ].map((r, i) => (
+                  <tr key={r.fee} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                    <td className="px-5 py-3 font-semibold text-gray-900">{r.fee}</td>
+                    <td className="px-5 py-3 text-gray-500">{r.other}</td>
+                    <td className="px-5 py-3 text-[#00b67a] font-bold">{r.panda}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Size tiers + Rush */}
+      <section className="py-14 px-6 bg-gray-50 border-t border-b border-gray-200">
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
+          <div>
+            <h2 className="text-xl font-black text-gray-900 mb-3">Price by Patch Size</h2>
+            <p className="text-gray-600 text-sm leading-relaxed mb-4">
+              Patches are priced on the <strong>longest dimension, rounded up to the next inch</strong>. As a rough guide:
+            </p>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li><strong>Small (under 2"):</strong> lowest per-piece cost — hat, sleeve, and pocket patches.</li>
+              <li><strong>Medium (2"–4"):</strong> the most common size — left-chest and cap patches.</li>
+              <li><strong>Large (4"+):</strong> higher per-piece cost — back patches and banners.</li>
+            </ul>
+          </div>
+          <div>
+            <h2 className="text-xl font-black text-gray-900 mb-3">Rush Production Pricing</h2>
+            <p className="text-gray-600 text-sm leading-relaxed mb-4">
+              Need it fast? Rush is a flat add-on by quantity, and we confirm your exact delivery date by email within 2–6 hours:
+            </p>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li>50 pcs — <strong>+$50</strong></li>
+              <li>100 pcs — <strong>+$75</strong></li>
+              <li>500 pcs — <strong>+$150</strong></li>
+              <li>1,000 pcs — <strong>+$200</strong></li>
+            </ul>
           </div>
         </div>
       </section>

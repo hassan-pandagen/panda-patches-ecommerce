@@ -135,7 +135,7 @@ export async function POST(req: Request) {
   } catch (error: unknown) {
     console.error('Partner application error:', error);
     return NextResponse.json(
-      { error: 'Submission failed. Please email lance@pandapatches.com directly or call (302) 250-4340.' },
+      { error: 'Submission failed. Please email lance@pandapatches.com directly or call (302) 773-8982.' },
       { status: 500 }
     );
   }

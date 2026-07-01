@@ -87,7 +87,7 @@ export default function PaymentErrorPage() {
               </div>
               <div className="flex items-center justify-center gap-2 text-gray-700">
                 <Phone size={16} />
-                <a href="tel:+13022504340" className="text-blue-600 font-semibold hover:underline">+1 302 250 4340</a>
+                <a href="tel:+13027738982" className="text-blue-600 font-semibold hover:underline">+1 302 773 8982</a>
               </div>
             </div>
           </div>

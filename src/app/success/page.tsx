@@ -126,7 +126,7 @@ export default async function SuccessPage({
                 Email: <a href="mailto:hello@pandapatches.com" className="text-blue-600 font-semibold hover:underline">hello@pandapatches.com</a>
               </p>
               <p className="text-gray-700">
-                Phone: <a href="tel:+13022504340" className="text-blue-600 font-semibold hover:underline">+1 302 250 4340</a>
+                Phone: <a href="tel:+13027738982" className="text-blue-600 font-semibold hover:underline">+1 302 773 8982</a>
               </p>
             </div>
           </div>

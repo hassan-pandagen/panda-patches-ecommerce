@@ -296,7 +296,7 @@ export default async function OrderDetailPage({
                   Email <a href="mailto:lance@pandapatches.com" className="text-panda-green font-bold hover:underline">lance@pandapatches.com</a> with your order number for support.
                 </p>
                 <p className="text-[13px] text-gray-500 leading-[1.7]">
-                  Or call <a href="tel:+13022504340" className="text-panda-green font-bold hover:underline">(302) 250-4340</a>.
+                  Or call <a href="tel:+13027738982" className="text-panda-green font-bold hover:underline">(302) 773-8982</a>.
                 </p>
               </div>
 

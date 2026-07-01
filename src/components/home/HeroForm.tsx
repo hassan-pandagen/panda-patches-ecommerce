@@ -8,7 +8,7 @@ import FormFeedback from "@/components/feedback/FormFeedback";
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 import { trackLead } from "@/lib/ga4";
 
-export default function HeroForm({ productSlug }: { productSlug?: string }) {
+export default function HeroForm({ productSlug, extraBackingOptions }: { productSlug?: string; extraBackingOptions?: { value: string; label: string }[] }) {
   const isKeychains = productSlug === 'keychains';
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
   const watchHearAbout = watch("hearAbout", "");
@@ -371,6 +371,9 @@ export default function HeroForm({ productSlug }: { productSlug?: string }) {
               <option value="velcro">Velcro (Hook & Loop)</option>
               <option value="sticker">Sticker</option>
               <option value="pin">Pin Back</option>
+              {extraBackingOptions?.map((o) => (
+                <option key={o.value} value={o.value}>{o.label}</option>
+              ))}
             </select>
             <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
           </div>

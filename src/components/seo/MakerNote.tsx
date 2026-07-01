@@ -47,7 +47,7 @@ export default function MakerNote({ intro }: MakerNoteProps) {
               <span className="text-gray-300">·</span>
               <span>{TRUSTPILOT_RATING}/5 from {TRUSTPILOT_REVIEW_COUNT_STR} Trustpilot reviews</span>
               <span className="text-gray-300">·</span>
-              <span>Missouri City, TX</span>
+              <span>Austin, TX</span>
             </div>
 
             <Link

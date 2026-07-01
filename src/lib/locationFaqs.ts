@@ -1,4 +1,26 @@
 const locationFaqs: Record<string, Array<{ question: string; answer: string }>> = {
+  "custom-patches-in-jacksonville": [
+    {
+      question: "Do you make military patches for units at NAS Jacksonville and Naval Station Mayport?",
+      answer: "Yes. Jacksonville is a Navy town, and we regularly produce squadron, command, and morale patches for units at NAS Jacksonville and Naval Station Mayport. We match OCP and subdued color standards, reproduce official insignia precisely, and offer PVC for gear that takes weather and abrasion. Low 5-piece minimum for small unit runs, with a mockup in 12 to 24 hours before anything is produced."
+    },
+    {
+      question: "Can Jacksonville motorcycle clubs order custom biker and club patches?",
+      answer: "Absolutely — MC and riding club patches are one of our most-requested Jacksonville orders. We produce full back patches, rockers, and small club patches in embroidered or leather, in the size, shape, and thread colors your club specifies. Orders start at a 5-piece minimum, artwork and mockups are free, and we keep your design on file so future member patches match exactly."
+    },
+    {
+      question: "Do you work with JSO and Jacksonville Fire and Rescue for department patches?",
+      answer: "Yes. We make patches for the Jacksonville Sheriff's Office, Jacksonville Fire and Rescue, and surrounding Northeast Florida departments — shoulder patches, unit and K-9 patches, and memorial patches. We use 100% polyester thread rated for industrial washing, stitched Velcro (not glued) for tactical gear, and rush memorial and line-of-duty patches in 4 to 7 business days."
+    },
+    {
+      question: "What about Jacksonville businesses, sports teams, and events?",
+      answer: "From small businesses and breweries to youth sports leagues and Jaguars fan groups, Jacksonville businesses use custom patches for uniforms, staff apparel, merch, and events. We handle small runs of 10 to 50 for a new brand just as easily as 1,000-plus for a corporate rollout, all with free design help and free shipping across Jacksonville."
+    },
+    {
+      question: "How fast can I get custom patches delivered in Jacksonville?",
+      answer: "Standard production is 7 to 14 business days after you approve your mockup, with free shipping to all Jacksonville and Northeast Florida ZIP codes. Rush production is available and can bring turnaround to 4 to 7 business days for deadlines like unit deployments, memorial services, or event dates."
+    }
+  ],
   "alabama-patches": [
     {
       question: "Which Alabama industries order custom patches most often?",

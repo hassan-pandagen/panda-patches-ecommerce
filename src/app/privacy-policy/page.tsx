@@ -176,9 +176,9 @@ export default function PrivacyPolicyPage() {
             </p>
             <div className="mt-4 bg-gray-50 rounded-2xl p-6 text-[16px] space-y-2">
               <p><strong>MC Patches LLC (Panda Patches)</strong></p>
-              <p>Missouri City, TX, United States</p>
+              <p>Austin, TX, United States</p>
               <p>Email: <a href="mailto:hello@pandapatches.com" className="text-panda-dark font-semibold underline">hello@pandapatches.com</a></p>
-              <p>Phone: <a href="tel:+13022504340" className="text-panda-dark font-semibold underline">+1 (302) 250-4340</a></p>
+              <p>Phone: <a href="tel:+13027738982" className="text-panda-dark font-semibold underline">+1 (302) 773-8982</a></p>
             </div>
           </section>
 
