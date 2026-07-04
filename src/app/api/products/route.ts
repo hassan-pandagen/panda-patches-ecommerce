@@ -13,10 +13,10 @@ export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
 
-    // Query parameters
+    // Query parameters (limit/offset clamped so NaN or huge values can't break the query)
     const type = searchParams.get('type'); // 'patch' or 'custom'
-    const limit = parseInt(searchParams.get('limit') || '50');
-    const offset = parseInt(searchParams.get('offset') || '0');
+    const limit = Math.min(Math.max(parseInt(searchParams.get('limit') || '50') || 50, 1), 100);
+    const offset = Math.max(parseInt(searchParams.get('offset') || '0') || 0, 0);
     const availability = searchParams.get('availability');
     const material = searchParams.get('material');
 
@@ -31,12 +31,17 @@ export async function GET(request: NextRequest) {
       filters.push('_type in ["product", "customProduct"]');
     }
 
+    // SECURITY (audit P0-6): values are passed as GROQ params, never interpolated
+    // into the query string — raw interpolation allowed query injection.
+    const queryParams: Record<string, string> = {};
     if (availability) {
-      filters.push(`availability == "${availability}"`);
+      filters.push(`availability == $availability`);
+      queryParams.availability = availability;
     }
 
     if (material) {
-      filters.push(`"${material}" in materials`);
+      filters.push(`$material in materials`);
+      queryParams.material = material;
     }
 
     const filterString = filters.length > 0 ? filters.join(' && ') : 'true';
@@ -85,8 +90,8 @@ export async function GET(request: NextRequest) {
 
     const countQuery = `count(*[${filterString}])`;
     const [products, total] = await Promise.all([
-      client.fetch(query),
-      client.fetch(countQuery),
+      client.fetch(query, queryParams),
+      client.fetch(countQuery, queryParams),
     ]);
 
     // Transform products for UCP/API consumption

@@ -24,13 +24,41 @@ h3 {
   contain-intrinsic-size: auto 800px;
 }
 
+/* Global keyboard focus indicator (WCAG 2.4.7 — audit P3). 44 elements site-wide
+   set outline:none with no replacement, or a near-invisible 20%-opacity ring, so
+   keyboard users lose track of focus entirely. :focus-visible only shows this for
+   keyboard/switch navigation, never for a mouse click. */
+:focus-visible {
+  outline: 2px solid #3B7E00;
+  outline-offset: 2px;
+}
+
+/* Skip link (WCAG 2.4.1 — audit P3). Visually hidden until focused, so keyboard
+   users can bypass the announcement bar + trust bar + full nav on every page. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: #051C05;
+  color: #DFFF00;
+  padding: 12px 20px;
+  font-weight: 700;
+  border-radius: 0 0 8px 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
 /* Form inputs — moved from styled-jsx to static CSS to eliminate forced reflow */
 .form-input {
   width: 100%;
   background-color: #F2F4EF;
   padding: 14px 16px;
   border-radius: 10px;
-  font-size: 13px;
+  /* 16px stops iOS Safari zooming the viewport on focus — was 13px, a real
+     abandonment driver on the primary quote form for mobile traffic (audit P3). */
+  font-size: 16px;
   color: #1a1a1a;
   outline: none;
   font-weight: 500;
@@ -47,7 +75,8 @@ h3 {
   background-color: #F2F4EF;
   padding: 12px 14px;
   border-radius: 10px;
-  font-size: 13px;
+  /* 16px stops iOS Safari zooming the viewport on focus (audit P3). */
+  font-size: 16px;
   color: #1a1a1a;
   outline: none;
   font-weight: 500;

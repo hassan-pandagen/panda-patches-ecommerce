@@ -155,7 +155,12 @@ function fireAll(){loadGtm();loadPixels();}
 var evts=['scroll','click','touchstart','mousemove','keydown'];
 function onInteract(){evts.forEach(function(e){d.removeEventListener(e,onInteract,{capture:true});});fireAll();}
 evts.forEach(function(e){d.addEventListener(e,onInteract,{capture:true,once:true,passive:true});});
-setTimeout(loadGtm,2000);setTimeout(loadPixels,3000);})();`}
+// Fallback timers start AFTER window load (audit P2): on throttled mobile the page
+// is still loading at 2s/3s wall-clock, so gtm.js + fbevents.js used to execute
+// mid-trace and dominate TBT/unused-JS. Real users lose nothing (load fires in
+// ~1-2s in the field; any interaction still loads both instantly).
+var startTimers=function(){setTimeout(loadGtm,2000);setTimeout(loadPixels,3000);};
+if(d.readyState==='complete'){startTimers();}else{w.addEventListener('load',startTimers,{once:true});}})();`}
         </Script>
 
         {/* Captures Meta/Google attribution (fbp, fbc, gclid, utm_*) on every page load */}

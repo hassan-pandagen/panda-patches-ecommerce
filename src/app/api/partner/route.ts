@@ -1,8 +1,17 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { SendMailClient } from 'zeptomail';
+import { createClient } from '@supabase/supabase-js';
 import { getAttributionFromRequest } from '@/lib/attribution';
 import { deriveTrafficSource, attributionSummary } from '@/lib/leadSource';
+import { sendMetaEvent } from '@/lib/metaCapi';
+
+// Service-role client — partner applications are persisted to the CRM (audit
+// P0-5: previously email-only, so a ZeptoMail failure destroyed the lead).
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
 
 const PartnerSchema = z.object({
   partnerType: z.string().max(60).optional().or(z.literal('')),
@@ -67,10 +76,57 @@ export async function POST(req: Request) {
     const channel = deriveTrafficSource(attribution as any);
     const attrSummary = attributionSummary(attribution);
 
+    // Persist to the CRM FIRST so the application survives any email failure (P0-5).
+    const partnerSummary = [
+      partnerType ? `Type: ${partnerType}` : null,
+      `Business: ${businessName}`,
+      businessWebsite ? `Site: ${businessWebsite}` : null,
+      monthlyVolume ? `Volume: ${monthlyVolume}/mo` : null,
+      socialHandles ? `Social: ${socialHandles}` : null,
+      productsInterest ? `Products: ${productsInterest}` : null,
+      hearAboutUs ? `Heard: ${hearAboutUs}` : null,
+    ].filter(Boolean).join(' | ');
+    const { error: dbError } = await supabase.from('quotes').insert({
+      customer_name: fullName,
+      customer_email: businessEmail,
+      customer_phone: phone || null,
+      patches_type: 'Custom Patch',
+      instructions: `[PARTNER APPLICATION] ${partnerSummary}`.slice(0, 4000),
+      sales_agent: 'WEBSITE_BOT',
+      lead_source: channel,
+      page_url: pageUrl || null,
+      attribution: { ...attribution, traffic_source: channel, form_name: 'PARTNER_FORM' },
+    });
+    if (dbError) {
+      console.error('Partner: quotes insert failed (non-blocking):', dbError);
+    }
+
+    // Meta CAPI Lead — partner applicants are high-value B2B prospects (P0-5).
+    const [pFirst, ...pLast] = fullName.trim().split(/\s+/);
+    sendMetaEvent({
+      eventName: 'Lead',
+      eventId: `partner_${Date.now()}_${businessEmail.slice(0, 8)}`,
+      actionSource: 'website',
+      email: businessEmail,
+      phone: phone || null,
+      firstName: pFirst,
+      lastName: pLast.join(' ') || undefined,
+      externalId: businessEmail,
+      attribution,
+      eventSourceUrl: pageUrl || attribution.page_url,
+      value: 0,
+      currency: 'USD',
+      contentName: 'Partner Application',
+      contentCategory: 'Partner Program',
+    }).catch((err) => console.error('[META CAPI] Partner Lead send failed (non-blocking):', err));
+
     const token = process.env.ZEPTOMAIL_TOKEN;
     if (!token) {
       console.error('Partner route: ZEPTOMAIL_TOKEN missing');
-      return NextResponse.json({ error: 'Email service unavailable' }, { status: 500 });
+      // The application is already in the CRM — only fail if that failed too.
+      return dbError
+        ? NextResponse.json({ error: 'Submission failed. Please email lance@pandapatches.com directly or call (302) 773-8982.' }, { status: 500 })
+        : NextResponse.json({ success: true });
     }
 
     const mailClient = new SendMailClient({
@@ -81,6 +137,7 @@ export async function POST(req: Request) {
     const LOGO = 'http://cdn.mcauto-images-production.sendgrid.net/cbe49576e8597a6a/213c03ef-699b-4ff5-b568-76cbe38d40d7/1190x571.png';
     const FONT = "'lucida sans unicode','lucida grande',sans-serif";
 
+    try {
     await mailClient.sendMail({
       from: { address: 'hello@pandapatches.com', name: 'Panda Patches Partner Program' },
       to: [{ email_address: { address: 'lance@pandapatches.com', name: 'Lance' } }],
@@ -130,6 +187,12 @@ export async function POST(req: Request) {
 </div>
 </body></html>`,
     });
+    } catch (mailErr) {
+      // Email failed but the application is already in the CRM — don't fail the
+      // user unless the DB insert failed too.
+      console.error('Partner email failed (lead already in CRM):', mailErr);
+      if (dbError) throw mailErr;
+    }
 
     return NextResponse.json({ success: true });
   } catch (error: unknown) {

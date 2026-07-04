@@ -11,7 +11,9 @@ const supabase = createClient(
 const ABANDON_DELAY_MIN = 30;          // First email after 30 min
 const FOLLOW_UP_DELAY_HOURS = 24;      // Second email 24 hours later
 const EXPIRE_AFTER_DAYS = 7;           // Stop trying after a week
-const RECOVERY_DISCOUNT_CODE = 'PANDA10';
+// PANDA10 promo removed July 2026: nothing on the site could redeem it, so the
+// email promised a discount that never applied (audit P0-2). If a discount comes
+// back, checkout must validate + apply it server-side first.
 
 const LOGO = 'http://cdn.mcauto-images-production.sendgrid.net/cbe49576e8597a6a/213c03ef-699b-4ff5-b568-76cbe38d40d7/1190x571.png';
 const IG_BANNER = 'http://cdn.mcauto-images-production.sendgrid.net/cbe49576e8597a6a/4f0fe337-478e-473c-b6aa-baa8b6c94def/1600x406.jpg';
@@ -181,7 +183,7 @@ async function sendSecondEmail(row: CheckoutAttempt) {
   await mail.sendMail({
     from: { address: 'hello@pandapatches.com', name: 'Panda Patches' },
     to: [{ email_address: { address: row.customer_email, name: row.customer_name || '' } }],
-    subject: `${fname}, 10% off if you finish your order today`,
+    subject: `${fname}, last chance to finish your patch order`,
     htmlbody: buildSecondEmailHtml(row, fname),
   });
 
@@ -272,9 +274,7 @@ function buildSecondEmailHtml(row: CheckoutAttempt, fname: string): string {
   const product = row.product_name || 'Custom Patches';
   const qty = row.quantity || 1;
   const value = `$${Number(row.cart_value || 0).toFixed(2)}`;
-  const baseReturn = row.return_url || 'https://www.pandapatches.com/custom-patches';
-  const sep = baseReturn.includes('?') ? '&' : '?';
-  const ctaUrl = `${baseReturn}${sep}promo=${RECOVERY_DISCOUNT_CODE}`;
+  const ctaUrl = row.return_url || 'https://www.pandapatches.com/custom-patches';
 
   return `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;padding:0;background:#f4f4f4;">
 <div style="max-width:620px;margin:0 auto;font-family:${FONT};">
@@ -286,13 +286,11 @@ function buildSecondEmailHtml(row: CheckoutAttempt, fname: string): string {
       Hey <strong style="color:#fb6e1d;">${esc(fname)}</strong>,
     </p>
     <p style="font-size:16px;color:#333333;line-height:1.6;">
-      Last reminder before your cart expires. To say thanks for sticking around, here is <strong>10% off your full order</strong> if you finish today.
+      Last reminder before your cart expires. Your design details are saved and our team is ready — finish today and your <strong>free digital mockup lands in 12 to 24 hours</strong>, with unlimited revisions until you approve.
     </p>
 
-    <div style="background:#dcff70;border:2px dashed #000000;padding:24px 28px;text-align:center;border-radius:8px;margin:24px 0;">
-      <p style="margin:0;font-size:13px;color:#333333;text-transform:uppercase;letter-spacing:2px;font-weight:bold;">Your Code</p>
-      <p style="margin:8px 0 4px;font-size:32px;font-weight:900;letter-spacing:4px;color:#000000;">${RECOVERY_DISCOUNT_CODE}</p>
-      <p style="margin:0;font-size:12px;color:#555555;">10% off any order — expires in 24 hours</p>
+    <div style="background:#dcff70;border:2px dashed #000000;padding:20px 28px;text-align:center;border-radius:8px;margin:24px 0;">
+      <p style="margin:0;font-size:14px;font-weight:900;color:#000000;letter-spacing:1px;">MOCKUP IN 12&ndash;24 HOURS &middot; NO SETUP FEES &middot; MONEY-BACK GUARANTEE</p>
     </div>
 
     <div style="background:#000000;padding:12px 20px;margin-top:28px;border-radius:4px 4px 0 0;">
@@ -305,7 +303,7 @@ function buildSecondEmailHtml(row: CheckoutAttempt, fname: string): string {
     </table>
 
     <div style="text-align:center;margin:32px 0 24px;">
-      <a href="${esc(ctaUrl)}" style="display:inline-block;background:#000000;color:#dcff70;text-decoration:none;padding:16px 40px;border-radius:8px;font-weight:900;font-size:16px;letter-spacing:1px;text-transform:uppercase;">Claim 10% Off Now →</a>
+      <a href="${esc(ctaUrl)}" style="display:inline-block;background:#000000;color:#dcff70;text-decoration:none;padding:16px 40px;border-radius:8px;font-weight:900;font-size:16px;letter-spacing:1px;text-transform:uppercase;">Finish My Order →</a>
     </div>
 
     <p style="color:#555555;font-size:13px;margin-top:24px;line-height:1.6;text-align:center;">

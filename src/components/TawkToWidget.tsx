@@ -191,9 +191,28 @@ export default function TawkToWidget() {
   useEffect(() => {
     if (pathname?.startsWith('/studio')) return;
 
-    // Auto-load Tawk after 2 seconds — fast enough for ads, safe for session/start
-    const timer = setTimeout(loadTawkScript, 2000);
-    return () => clearTimeout(timer);
+    // Load Tawk on FIRST HUMAN INTERACTION (scroll/click/touch/mousemove/keydown)
+    // instead of a flat 2s timer. Two wins (audit P1 + owner report of ~1,300 bot
+    // "visitors" in the Tawk dashboard): JS-executing bots never scroll or move a
+    // mouse, so they stop registering as Tawk visitors; and ~300-600KB of chat JS
+    // no longer lands exactly when real users start interacting (field INP).
+    // No timer fallback ON PURPOSE: any real visitor produces one of these events
+    // within moments, while patient headless bots idling on the page never do.
+    // "Chat Now" buttons still work instantly via window.__loadTawk below.
+    let loaded = false;
+    const fire = () => {
+      if (loaded) return;
+      loaded = true;
+      evts.forEach((e) => document.removeEventListener(e, fire, { capture: true } as any));
+      loadTawkScript();
+    };
+    const evts = ['scroll', 'click', 'touchstart', 'mousemove', 'keydown'];
+    evts.forEach((e) =>
+      document.addEventListener(e, fire, { capture: true, once: true, passive: true })
+    );
+    return () => {
+      evts.forEach((e) => document.removeEventListener(e, fire, { capture: true } as any));
+    };
   }, [pathname]);
 
   // Also allow the Navbar "Chat Now" button to trigger Tawk loading immediately

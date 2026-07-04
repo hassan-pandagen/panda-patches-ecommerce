@@ -52,6 +52,8 @@ const QuoteSchema = z.object({
   }).optional(),
   eventId: z.string().max(100).optional(),
   internalOnly: z.boolean().optional(),
+  // Client-side bot-speed heuristic. Suspicious leads are FLAGGED, never dropped (P0-4).
+  botSignal: z.boolean().optional(),
 });
 
 function esc(s: string) {
@@ -88,9 +90,6 @@ export async function POST(req: Request) {
     };
 
     const name = body.customer?.name || '';
-    if (looksGibberish(name)) {
-      return NextResponse.json({ success: true });
-    }
 
     const validationResult = QuoteSchema.safeParse(body);
 
@@ -108,7 +107,13 @@ export async function POST(req: Request) {
       );
     }
 
-    const { customer, details, artworkUrl, artworkUrl2, isBulkOrder, pageUrl, basePrice, attribution: bodyAttribution, eventId: clientEventId, internalOnly } = validationResult.data;
+    const { customer, details, artworkUrl, artworkUrl2, isBulkOrder, pageUrl, basePrice, attribution: bodyAttribution, eventId: clientEventId, internalOnly, botSignal } = validationResult.data;
+
+    // Audit P0-4: gibberish names (real surnames like VanSchyndel trip the heuristic)
+    // and fast submits (autofill users) used to be silently DROPPED with a fake
+    // success. Now they are inserted + emailed with a [SUSPECTED BOT] flag so the
+    // sales team can triage; only the customer auto-reply and Meta CAPI are skipped.
+    const suspectedBot = looksGibberish(name) || botSignal === true;
 
     const attribution = getAttributionFromRequest(req, bodyAttribution);
 
@@ -124,6 +129,10 @@ export async function POST(req: Request) {
       .replace(/\s*\|\s*Source:[^\n]*/g, '')
       .replace(/\s*Source:[^\n]*/g, '')
       .trim();
+
+    const flaggedInstructions = suspectedBot
+      ? `[SUSPECTED BOT] ${cleanInstructions}`.trim()
+      : cleanInstructions;
 
     const leadSource = deriveLeadSource(pageUrl, isBulkOrder, basePrice != null);
     const trafficSource = deriveTrafficSource(attribution as any);
@@ -145,9 +154,11 @@ export async function POST(req: Request) {
       border_type: borderType || undefined,
       country: country || undefined,
     };
-    const subject = isBulkOrder
-      ? `New Bulk Quote Request from ${customer.name}`
-      : `New Quote Request from ${customer.name}`;
+    const subject = `${suspectedBot ? '[SUSPECTED BOT] ' : ''}${
+      isBulkOrder
+        ? `New Bulk Quote Request from ${customer.name}`
+        : `New Quote Request from ${customer.name}`
+    }`;
 
     // Send email via ZeptoMail (primary delivery)
     const token = process.env.ZEPTOMAIL_TOKEN;
@@ -193,7 +204,7 @@ export async function POST(req: Request) {
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Size</td><td style="padding:9px 14px;">${esc(sizeLabel)}</td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Quantity</td><td style="padding:9px 14px;font-weight:600;">${details.quantity} pcs</td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Backing</td><td style="padding:9px 14px;">${esc(details.backing)}</td></tr>
-      ${cleanInstructions ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;vertical-align:top;">Instructions</td><td style="padding:9px 14px;white-space:pre-wrap;">${esc(cleanInstructions)}</td></tr>` : ''}
+      ${flaggedInstructions ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;vertical-align:top;">Instructions</td><td style="padding:9px 14px;white-space:pre-wrap;">${esc(flaggedInstructions)}</td></tr>` : ''}
       ${artworkUrl ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Artwork 1</td><td style="padding:9px 14px;"><a href="${artworkUrl}" style="color:#fb6e1d;font-weight:600;">View File</a></td></tr>` : ''}
       ${artworkUrl2 ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Artwork 2</td><td style="padding:9px 14px;"><a href="${artworkUrl2}" style="color:#fb6e1d;font-weight:600;">View File</a></td></tr>` : ''}
       ${pageUrl ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Page</td><td style="padding:9px 14px;"><a href="${esc(pageUrl)}" style="color:#333;">${esc(pageUrl)}</a></td></tr>` : ''}
@@ -211,8 +222,8 @@ export async function POST(req: Request) {
         // Customer email: skipped entirely if internalOnly flag set
         // (used by ComplexCalculator's "Check Best Prices" auto-capture
         // to record the lead without prematurely emailing the price).
-        if (internalOnly) {
-          // skip customer email
+        if (internalOnly || suspectedBot) {
+          // skip customer email (internal capture, or flagged as suspected bot)
         } else if (basePrice != null) {
           // ComplexCalculator quote (has price) — send full branded quote with price
           try {
@@ -337,7 +348,7 @@ export async function POST(req: Request) {
         design_backing: designBacking,
         patches_quantity: details.quantity,
         design_size: sizeLabel,
-        instructions: cleanInstructions || details.placement || '',
+        instructions: flaggedInstructions || details.placement || '',
         customer_attachment_urls: [artworkUrl, artworkUrl2].filter(Boolean) as string[],
         sales_agent: 'WEBSITE_BOT',
         // Real marketing channel, NOT the form/page name (deriveLeadSource was the
@@ -358,7 +369,8 @@ export async function POST(req: Request) {
     const leadEventId = clientEventId || `lead_${Date.now()}_${customer.email.slice(0, 8)}`;
     const [firstName, ...lastParts] = customer.name.trim().split(/\s+/);
     const lastName = lastParts.join(' ') || undefined;
-    sendMetaEvent({
+    // Suspected bots never reach Meta — protects ad-optimization signal quality.
+    if (!suspectedBot) sendMetaEvent({
       eventName: 'Lead',
       eventId: leadEventId,
       actionSource: 'website',

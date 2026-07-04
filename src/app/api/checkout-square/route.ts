@@ -186,7 +186,9 @@ export async function POST(req: Request) {
           artwork_url: artworkUrl || null,
           payment_provider: 'square',
           provider_session_id: token,
-          return_url: `${baseUrl}/custom-patches`,
+          // Recovery emails send the buyer back to the exact product page they
+          // checked out from (saved cart auto-restores there); same-origin only.
+          return_url: pageUrl.startsWith(baseUrl) ? pageUrl : `${baseUrl}/custom-patches`,
           fbp: attribution?.fbp || null,
           fbc: attribution?.fbc || null,
           attribution: attribution || null,

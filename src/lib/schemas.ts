@@ -7,16 +7,22 @@
  * <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(generateOrganizationSchema())} />
  */
 
+import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT } from '@/lib/reviewConstants';
+
 // ============================================
 // HELPER FUNCTION
 // ============================================
 
 /**
- * Converts schema object to safe HTML script content
+ * Converts schema object to safe HTML script content.
+ * `<` is escaped to `<` so a `</script>` sequence inside any schema value can
+ * never break out of the JSON-LD block (defense-in-depth — audit P1; JSON.stringify
+ * alone does not neutralize it). Unicode escapes are valid JSON, so parsers and
+ * Google read the schema identically.
  */
 export function generateSchemaScript(schema: Record<string, any>) {
   return {
-    __html: JSON.stringify(schema),
+    __html: JSON.stringify(schema).replace(/</g, '\\u003c'),
   };
 }
 
@@ -252,6 +258,15 @@ export function generateEntityGraph() {
           "email": "hello@pandapatches.com",
           "availableLanguage": ["English"],
           "areaServed": ["US", "CA", "GB", "AU"],
+        },
+        // Trustpilot company-wide rating — org-level only, never on Product
+        // (reviews are company-wide, not product-specific; Google policy).
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": TRUSTPILOT_RATING,
+          "reviewCount": TRUSTPILOT_REVIEW_COUNT,
+          "bestRating": "5",
+          "worstRating": "1",
         },
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
@@ -689,12 +704,23 @@ export function generateLocalBusinessSchema() {
       "https://www.instagram.com/pandapatchesofficial/",
       "https://www.linkedin.com/in/imran-raza-ladhani/"
     ],
+    // Trustpilot company-wide rating — org-level only, never on Product (reviews
+    // are company-wide, not product-specific; Google policy). Schema audit P2.
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": TRUSTPILOT_RATING,
+      "reviewCount": TRUSTPILOT_REVIEW_COUNT,
+      "bestRating": "5",
+      "worstRating": "1",
+    },
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "09:00",
-        "closes": "18:00"
+        // Aligned with the entity graph + real support hours (11am-7pm ET daily);
+        // previously said 9-6 weekdays, contradicting the org schema (audit P2).
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "11:00",
+        "closes": "19:00"
       }
     ]
   };

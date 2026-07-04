@@ -63,6 +63,18 @@ const signupLimiter = redis
     })
   : null;
 
+// AI patch generation: unauthenticated with a PAID provider (fal.ai) behind it.
+// Per-IP cap stops a script from burning provider credits (audit P0-1). Generous
+// enough for a real user iterating on designs.
+const aiGenLimiter = redis
+  ? new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(10, '1 h'), // 10 generations per hour per IP
+      analytics: true,
+      prefix: 'ratelimit:aigen',
+    })
+  : null;
+
 // Allowed origins for API requests
 const ALLOWED_ORIGINS = [
   'https://www.pandapatches.com',
@@ -112,9 +124,35 @@ const cspHeader = [
 // Sanity Studio permissive CSP
 const sanityCspHeader = "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:";
 
+// ============================================
+// BOT SIGNATURE BLOCK (edge-level, July 2026)
+// ============================================
+// Blocks generic scraper/scanner user agents that were hitting the site with
+// spoofed google.com/facebook.com referrers to evade simple referrer-based
+// filters (reported via Tawk dashboard while no ads were even running — ruling
+// out ad-click fraud, pointing to raw scraping instead).
+//
+// IMPORTANT: this list is deliberately narrow and only matches known scraping
+// libraries / vulnerability scanners / SEO-spam crawlers with zero upside for
+// this site. It must NEVER match the AI-answer-engine and search crawlers this
+// site explicitly courts (see robots.ts) — Googlebot, Bingbot, GPTBot,
+// OAI-SearchBot, ChatGPT-User, ClaudeBot/Claude-*, PerplexityBot/Perplexity-User,
+// Google-Extended, CCBot, Applebot, Meta-ExternalAgent, Amazonbot are all
+// unaffected. A missing User-Agent (real browsers always send one) is blocked too.
+const BLOCKED_BOT_UA = /python-requests|python-urllib|curl\/|Go-http-client|libwww-perl|Wget|scrapy|HttpClient|Java\/\d|MJ12bot|SemrushBot|AhrefsBot|DotBot|PetalBot|masscan|zgrab|nikto|sqlmap/i;
+
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const host = request.headers.get('host') || '';
+
+  // Skip the studio and API routes (API has its own rate limiting below; Sanity
+  // Studio auth already gates access) — this check targets public page scraping.
+  if (!pathname.startsWith('/studio') && !pathname.startsWith('/api/')) {
+    const ua = request.headers.get('user-agent') || '';
+    if (!ua || BLOCKED_BOT_UA.test(ua)) {
+      return new NextResponse('Forbidden', { status: 403 });
+    }
+  }
 
   // ============================================
   // TRAILING SLASH CANONICAL REDIRECT
@@ -151,7 +189,14 @@ export async function proxy(request: NextRequest) {
   // ============================================
   // RATE LIMITING (UPSTASH REDIS)
   // ============================================
-  if ((pathname === '/api/checkout' || pathname === '/api/checkout-square') && checkoutLimiter) {
+  // All Square checkout starters share the cap (offers + reorder were previously
+  // unthrottled — audit P0-6; the dead '/api/checkout' path was dropped).
+  if (
+    (pathname === '/api/checkout-square' ||
+      pathname === '/api/checkout-offers-square' ||
+      pathname === '/api/account/reorder') &&
+    checkoutLimiter
+  ) {
     const ip = request.headers.get('x-forwarded-for') || 'anonymous';
     const { success, limit, reset, remaining } = await checkoutLimiter.limit(ip);
 
@@ -184,6 +229,17 @@ export async function proxy(request: NextRequest) {
     if (!success) {
       return NextResponse.json(
         { ok: false, error: 'Too many signups from this network. Please try again later.' },
+        { status: 429, headers: { 'Retry-After': Math.ceil((reset - Date.now()) / 1000).toString() } },
+      );
+    }
+  }
+
+  if (pathname === '/api/ai-patch/generate' && aiGenLimiter) {
+    const ip = request.headers.get('x-forwarded-for') || 'anonymous';
+    const { success, reset } = await aiGenLimiter.limit(ip);
+    if (!success) {
+      return NextResponse.json(
+        { error: 'Too many generations. Please try again in a bit.' },
         { status: 429, headers: { 'Retry-After': Math.ceil((reset - Date.now()) / 1000).toString() } },
       );
     }

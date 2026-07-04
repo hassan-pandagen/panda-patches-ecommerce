@@ -86,11 +86,9 @@ export default function BulkQuoteForm() {
   };
 
   const onSubmit = async (data: any) => {
-    // Bot speed check — humans take at least 3 seconds to fill a form
-    if (Date.now() - formLoadedAt.current < 3000) {
-      setMessage({ type: "success", text: "Your quote request has been submitted!" });
-      return;
-    }
+    // Fast submits (autofill users AND bots) are flagged server-side instead of
+    // silently dropped — the lead is always captured (audit P0-4).
+    const botSignal = Date.now() - formLoadedAt.current < 3000;
 
     setIsSubmitting(true);
     setMessage(null);
@@ -115,6 +113,7 @@ export default function BulkQuoteForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           website: data.website || '',
+          botSignal,
           customer: {
             name: sanitizeString(data.name),
             email: sanitizeEmail(data.email),

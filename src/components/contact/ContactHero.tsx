@@ -20,18 +20,15 @@ export default function ContactHero() {
   const formLoadedAt = useRef(Date.now());
 
   const onSubmit = async (data: FormData) => {
-    // Bot speed check — humans take at least 3 seconds to fill a form
-    if (Date.now() - formLoadedAt.current < 3000) {
-      setStatus('success');
-      return;
-    }
+    // Fast submits are flagged server-side, never dropped (audit P0-4).
+    const botSignal = Date.now() - formLoadedAt.current < 3000;
 
     setStatus('loading');
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: data.name, email: data.email, message: data.message, website: data.website || '', pageUrl: window.location.href, attribution: getStoredAttribution() }),
+        body: JSON.stringify({ name: data.name, email: data.email, message: data.message, website: data.website || '', botSignal, pageUrl: window.location.href, attribution: getStoredAttribution() }),
       });
       if (res.ok) {
         setStatus('success');
@@ -63,7 +60,7 @@ export default function ContactHero() {
               We would love to hear from you.
             </h2>
             <p className="text-gray-500 mb-10 text-[16px]">
-              If you&apos;ve got great products your making or looking to work with us then drop us a line.
+              If you&apos;ve got great products you&apos;re making or you&apos;re looking to work with us, drop us a line.
             </p>
 
             {status === 'success' ? (
@@ -125,14 +122,6 @@ export default function ContactHero() {
                   {errors.message && <p className="text-red-500 text-xs ml-1">{errors.message.message}</p>}
                 </div>
 
-                {/* Checkbox */}
-                <div className="flex items-center gap-3">
-                  <input type="checkbox" id="saveInfo" className="w-5 h-5 accent-panda-green" />
-                  <label htmlFor="saveInfo" className="text-sm text-gray-500 cursor-pointer">
-                    Save my name, email, and website in this browser for the next time I comment.
-                  </label>
-                </div>
-
                 {status === 'error' && (
                   <p className="text-red-500 text-sm">Something went wrong. Please try again or email us directly.</p>
                 )}
@@ -179,13 +168,17 @@ export default function ContactHero() {
             <div>
               <h3 className="text-xl font-bold text-panda-dark mb-4">Social Media</h3>
               <div className="flex gap-3">
-                {[Facebook, Instagram, Linkedin].map((Icon, i) => (
-                  <div key={i} className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-panda-yellow hover:scale-110 transition-transform cursor-pointer">
+                {[
+                  { Icon: Facebook, href: "https://www.facebook.com/pandapatchesofficial", label: "Panda Patches on Facebook" },
+                  { Icon: Instagram, href: "https://www.instagram.com/pandapatchesofficial/", label: "Panda Patches on Instagram" },
+                  { Icon: Linkedin, href: "https://www.linkedin.com/company/pandapatchesofficial", label: "Panda Patches on LinkedIn" },
+                ].map(({ Icon, href, label }) => (
+                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-panda-yellow hover:scale-110 transition-transform">
                     <Icon size={18} />
-                  </div>
+                  </a>
                 ))}
                 {/* TikTok Icon */}
-                <a href="#" className="w-10 h-10 bg-black rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                <a href="https://www.tiktok.com/@pandapatchesofficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on TikTok" className="w-10 h-10 bg-black rounded-full flex items-center justify-center hover:scale-110 transition-transform">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -205,8 +198,8 @@ export default function ContactHero() {
             {/* Hours */}
             <div>
               <h3 className="text-xl font-bold text-panda-dark mb-2">We&apos;re Open</h3>
-              <p className="text-gray-600 mb-1">Our store has re-opened for shopping, exchanges</p>
-              <p className="text-gray-900 font-bold">Every day 11am to 7pm</p>
+              <p className="text-gray-600 mb-1">Our support team is here to help</p>
+              <p className="text-gray-900 font-bold">Every day, 11am&ndash;7pm ET</p>
             </div>
 
           </div>

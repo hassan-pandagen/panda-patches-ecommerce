@@ -36,12 +36,31 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false }, { status: 200 });
     }
 
+    // Whitelist forwarded param keys + bound numeric value so the public relay
+    // can't be used to pollute GA4 with arbitrary dimensions or fake revenue
+    // outside a sane range (audit P1).
+    const ALLOWED_PARAM_KEYS = new Set([
+      'form_name', 'lead_source', 'patch_type', 'partner_type',
+      'value', 'currency', 'session_id', 'transaction_id', 'debug_mode',
+    ]);
+    const safeParams: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(params)) {
+      if (!ALLOWED_PARAM_KEYS.has(k)) continue;
+      if (k === 'value') {
+        const n = Number(v);
+        if (!Number.isFinite(n) || n < 0 || n > 100000) continue;
+        safeParams[k] = n;
+      } else if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') {
+        safeParams[k] = typeof v === 'string' ? v.slice(0, 200) : v;
+      }
+    }
+
     const payload = {
       client_id,
       // engagement_time_msec makes GA4 treat this as an engaged-session event so it
       // counts; session_id (passed through in params when available) lands it in the
       // visitor's current session for correct channel attribution.
-      events: [{ name, params: { engagement_time_msec: 1, ...params } }],
+      events: [{ name, params: { engagement_time_msec: 1, ...safeParams } }],
     };
 
     await fetch(

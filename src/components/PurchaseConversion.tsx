@@ -37,6 +37,15 @@ export default function PurchaseConversion() {
     // so Meta dedups the browser Purchase against the server-side one.
     const orderId = params.get('ref') || undefined;
 
+    // Payment completed — clear all saved calculator carts. Checkout intentionally
+    // leaves pp_checkout_state_* in place so abandoned/failed payments can restore.
+    try {
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('pp_checkout_state_')) localStorage.removeItem(key);
+      }
+    } catch { /* noop */ }
+
     // GA4 purchase (dataLayer → GTM → GA4) so revenue attributes by channel.
     // Gated on a real order id (transaction_id) to avoid phantom purchases on
     // direct visits to the confirmation URL.

@@ -54,7 +54,7 @@ export async function POST(req: Request) {
   // that was email-bombing harvested addresses). Logged so we can see it working.
   if ((website && website.trim() !== "") || (typeof elapsedMs === "number" && elapsedMs < 1500)) {
     console.warn(
-      `[signup] bot trap tripped (honeypot=${Boolean(website && website.trim())}, elapsedMs=${elapsedMs}) email=${email}`,
+      `[signup] bot trap tripped (honeypot=${Boolean(website && website.trim())}, elapsedMs=${elapsedMs}) emailDomain=${(email || '').split('@')[1] || 'unknown'}`,
     );
     return NextResponse.json({ ok: true });
   }
@@ -72,7 +72,8 @@ export async function POST(req: Request) {
     return consonantCluster.test(word) && mixedCaseNoSpace;
   };
   if (looksGibberish(firstName) || looksGibberish(lastName)) {
-    console.warn(`[signup] gibberish name rejected: "${firstName} ${lastName}" email=${email}`);
+    // PII redacted from logs (audit P1) — domain is enough to spot bot patterns.
+    console.warn(`[signup] gibberish name rejected emailDomain=${(email || '').split('@')[1] || 'unknown'}`);
     return NextResponse.json({ ok: true });
   }
 

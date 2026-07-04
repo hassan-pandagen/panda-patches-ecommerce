@@ -113,15 +113,19 @@ const hubSchema = {
       "telephone": "+1-302-773-8982",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "701 Tillery St Ste 12",
         "addressLocality": "Austin",
         "addressRegion": "TX",
+        "postalCode": "78702",
         "addressCountry": "US",
       },
       "areaServed": "Worldwide",
       "priceRange": "$0.91 to $20 per piece (qty- and size-dependent)",
       "founder": {
         "@type": "Person",
-        "@id": "https://www.pandapatches.com/#/schema/person/imran",
+        // Same @id as the global entity graph (schemas.ts PERSON_ID) — a second
+        // id here split the founder into two entities (schema audit P2).
+        "@id": "https://www.pandapatches.com/#person/imran-raza",
         "name": "Imran Raza",
         "jobTitle": "Founder and CEO",
         "url": "https://www.pandapatches.com/about",

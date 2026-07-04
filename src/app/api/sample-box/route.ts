@@ -40,16 +40,15 @@ export async function POST(request: Request) {
     }
     const data = validationResult.data;
 
-    // Gibberish-name guard (same heuristic as /api/quote and signup).
+    // Gibberish-name heuristic — FLAGS the order instead of dropping it (P0-4):
+    // real surnames (VanSchyndel, McKnightly) can trip it, and payment is the
+    // actual bot filter on this route anyway.
     const word = data.fullName.trim().split(/\s+/)[0];
-    if (
+    const suspectedBot =
       word.length >= 6 &&
       /[bcdfghjklmnpqrstvwxyz]{4,}/i.test(word) &&
       /[a-z]/.test(word) &&
-      /[A-Z]/.test(word.slice(1))
-    ) {
-      return NextResponse.json({ success: true, checkoutUrl: null });
-    }
+      /[A-Z]/.test(word.slice(1));
 
     const baseUrl = resolveBaseUrl(request.headers.get('origin'));
 
@@ -66,7 +65,7 @@ export async function POST(request: Request) {
       backing: '',
       design_size: 'N/A',
       artwork_url: '',
-      instructions: 'Custom patch sample box (setup + shipping included)',
+      instructions: `${suspectedBot ? '[SUSPECTED BOT] ' : ''}Custom patch sample box (setup + shipping included)`,
       delivery_option: 'standard',
       rush_date: '',
       website_addons: null,
@@ -94,6 +93,37 @@ export async function POST(request: Request) {
       redirectUrl: `${baseUrl}/success?provider=square&ref=${token}&value=${SAMPLE_BOX_PRICE}`,
       metadata: { type: 'sample_box' },
     });
+
+    // Abandoned-cart tracking (audit P0-3): sample-box abandoners previously got
+    // no recovery email. The shared webhook marks this PURCHASED on payment.
+    await supabase
+      .from('checkout_attempts')
+      .upsert(
+        {
+          customer_email: data.email,
+          customer_name: data.fullName,
+          customer_phone: data.contactNumber || null,
+          product_name: 'Sample Box',
+          quantity: 1,
+          design_size: null,
+          backing: null,
+          delivery_option: 'standard',
+          cart_value: SAMPLE_BOX_PRICE,
+          artwork_url: null,
+          payment_provider: 'square',
+          provider_session_id: token,
+          return_url: `${baseUrl}/sample-box`,
+          fbp: null,
+          fbc: null,
+          attribution: { source: 'sample_box' },
+          status: 'PENDING',
+          initiated_at: new Date().toISOString(),
+        },
+        { onConflict: 'provider_session_id' },
+      )
+      .then(({ error }) => {
+        if (error) console.error('checkout_attempts upsert (sample-box):', error);
+      });
 
     return NextResponse.json({ success: true, checkoutUrl: url });
   } catch (error: unknown) {

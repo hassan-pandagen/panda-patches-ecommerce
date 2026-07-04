@@ -28,28 +28,39 @@ interface SuccessSearchParams {
 }
 
 /**
- * Verify the payment actually completed before showing the success page.
- * Square only redirects here AFTER a completed payment, and we additionally
- * confirm the token belongs to a real checkout so a fabricated ?ref= cannot show
- * a fake receipt. Anyone hitting /success without a valid token is redirected.
+ * Verify the payment ACTUALLY COMPLETED before firing conversions (audit P1).
+ * The Square webhook stamps `consumed_at` on payment — a token alone only proves
+ * a checkout was STARTED, so previously a refresh (or a fabricated value param)
+ * re-fired purchase conversions for unpaid checkouts. We poll briefly to absorb
+ * webhook lag behind Square's redirect; the amount always comes from the stored
+ * order, never the user-editable ?value= param.
  */
-async function verifyPayment(params: SuccessSearchParams): Promise<{ verified: boolean; amount?: number }> {
-  if (params.ref) {
-    try {
+async function verifyPayment(
+  params: SuccessSearchParams
+): Promise<{ verified: boolean; paymentPending?: boolean; amount?: number }> {
+  if (!params.ref) return { verified: false };
+  try {
+    for (let attempt = 0; attempt < 3; attempt++) {
       const { data } = await supabase
         .from("square_pending_orders")
-        .select("order_data")
+        .select("order_data, consumed_at")
         .eq("token", params.ref)
         .maybeSingle();
-      if (data) {
-        const amt = params.value
-          ? parseFloat(params.value)
-          : ((data.order_data as { order_amount?: number })?.order_amount ?? undefined);
-        return { verified: true, amount: amt };
+      if (!data) return { verified: false };
+      const stored = (data.order_data as { order_amount?: number })?.order_amount;
+      const amt = stored ?? (params.value ? parseFloat(params.value) : undefined);
+      if (data.consumed_at) return { verified: true, amount: amt };
+      if (attempt < 2) {
+        await new Promise((r) => setTimeout(r, 1500));
+      } else {
+        // Real checkout token, webhook not yet processed — show the page (Square
+        // did redirect the buyer) but DON'T fire browser conversions; the webhook
+        // fires Meta CAPI + GA4 server-side when it lands.
+        return { verified: true, paymentPending: true, amount: amt };
       }
-    } catch {
-      // fall through to unverified
     }
+  } catch {
+    // fall through to unverified
   }
   return { verified: false };
 }
@@ -60,7 +71,7 @@ export default async function SuccessPage({
   searchParams: Promise<SuccessSearchParams>;
 }) {
   const params = await searchParams;
-  const { verified, amount } = await verifyPayment(params);
+  const { verified, paymentPending, amount } = await verifyPayment(params);
 
   // Anyone hitting /success without a verified paid order is sent home. Stops
   // random visitors, refreshes, and bookmark visits from showing a fake receipt.
@@ -72,8 +83,10 @@ export default async function SuccessPage({
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
       <Navbar />
 
-      {/* Fire Google Ads + Meta purchase conversion only after server-side verification */}
-      <PurchaseConversion />
+      {/* Browser purchase conversions fire ONLY for webhook-confirmed payments;
+          if the webhook is still in flight, the server-side CAPI + GA4 events
+          cover the conversion when it lands (audit P1). */}
+      {!paymentPending && <PurchaseConversion />}
 
       <div className="container mx-auto px-6 py-20">
         <div className="max-w-2xl mx-auto text-center">
@@ -112,7 +125,7 @@ export default async function SuccessPage({
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 size={20} className="text-green-600 mt-1 flex-shrink-0" />
-                <span>Once approved, your custom patches will be produced and shipped within <strong>5-7 business days</strong>.</span>
+                <span>Once approved, your custom patches will be produced and shipped within <strong>7-14 business days</strong> (rush orders in about 6-7).</span>
               </li>
             </ul>
           </div>

@@ -21,7 +21,9 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'ChatGPT-User', allow: '/' },            // ChatGPT browse
       { userAgent: 'anthropic-ai', allow: '/' },            // Anthropic training (legacy name)
       { userAgent: 'ClaudeBot', allow: '/' },               // Anthropic training (current name)
-      { userAgent: 'Claude-Web', allow: '/' },              // Claude browse
+      { userAgent: 'Claude-Web', allow: '/' },              // Claude browse (legacy name)
+      { userAgent: 'Claude-SearchBot', allow: '/' },        // Claude search index (current name)
+      { userAgent: 'Claude-User', allow: '/' },             // Claude user-initiated fetches
       { userAgent: 'PerplexityBot', allow: '/' },           // Perplexity index + browse
       { userAgent: 'Perplexity-User', allow: '/' },         // Perplexity user-initiated browse
       { userAgent: 'Google-Extended', allow: '/' },         // Gemini / AI Overviews training
@@ -29,8 +31,11 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'Applebot-Extended', allow: '/' },       // Apple Intelligence training
       { userAgent: 'Meta-ExternalAgent', allow: '/' },      // Meta AI
       { userAgent: 'cohere-ai', allow: '/' },               // Cohere training
-      { userAgent: 'Amazonbot', allow: '/' },               // Amazon Alexa / AI
-      { userAgent: 'Bytespider', allow: '/' },              // ByteDance / TikTok
+      { userAgent: 'Amazonbot', allow: '/' },               // Amazon Alexa / Rufus shopping answers
+      // Bytespider (ByteDance): aggressive scraper with no citation/answer surface
+      // for us — blocked July 2026 amid heavy bot traffic. Only affects
+      // robots-respecting crawls; the Tawk interaction-gate handles the rest.
+      { userAgent: 'Bytespider', disallow: '/' },
       { userAgent: 'Bravebot', allow: '/' },                // Brave Search index (also feeds some AI answers)
     ],
     sitemap: 'https://www.pandapatches.com/sitemap.xml',

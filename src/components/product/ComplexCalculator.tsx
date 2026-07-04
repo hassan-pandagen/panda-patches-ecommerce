@@ -343,7 +343,7 @@ export default function ComplexCalculator({
     return true;
   };
 
-  const submitLead = async (opts: { internalOnly: boolean }): Promise<boolean> => {
+  const submitLead = async (opts: { internalOnly: boolean; botSignal?: boolean }): Promise<boolean> => {
     if (!email || !name) return false;
     // Silent auto-fire only runs once; the explicit "GET FREE QUOTE" click
     // bypasses this guard so the customer can still receive the email even
@@ -374,6 +374,7 @@ export default function ComplexCalculator({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          botSignal: opts.botSignal === true,
           customer: { name: name || email, email, phone: phone || "" },
           details: {
             width: parseFloat(widthInput) || width,
@@ -415,12 +416,8 @@ export default function ComplexCalculator({
   };
 
   const handleDirectQuote = async () => {
-    // Bot speed check — humans take at least 3 seconds to fill a form
-    if (Date.now() - formLoadedAt.current < 3000) {
-      setQuoteSent(true);
-      setTimeout(() => setQuoteSent(false), 5000);
-      return;
-    }
+    // Fast submits are flagged server-side, never dropped (audit P0-4).
+    const botSignal = Date.now() - formLoadedAt.current < 3000;
 
     if (quantity < 5) {
       setFieldErrors(p => ({ ...p, quantity: 'Minimum order is 5 pieces' }));
@@ -436,7 +433,7 @@ export default function ComplexCalculator({
     }
     setQuoteSending(true);
 
-    const ok = await submitLead({ internalOnly: false });
+    const ok = await submitLead({ internalOnly: false, botSignal });
 
     if (ok) {
       setQuoteSent(true);
@@ -540,7 +537,9 @@ export default function ComplexCalculator({
       const data = await response.json();
 
       if (data.url) {
-        try { localStorage.removeItem(storageKey); } catch {}
+        // Cart state is intentionally KEPT until payment completes — /success clears
+        // all pp_checkout_state_* keys. If payment fails or is abandoned, the saved
+        // state restores on return so the recovery email's "we saved everything" is true.
         window.location.href = data.url;
       } else {
         setCheckoutLoading(false);

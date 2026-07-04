@@ -115,10 +115,8 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
   };
 
   const onSubmit = async (data: any) => {
-    if (Date.now() - formLoadedAt.current < 3000) {
-      setMessage({ type: "success", text: copy.successText });
-      return;
-    }
+    // Fast submits are flagged server-side, never dropped (audit P0-4).
+    const botSignal = Date.now() - formLoadedAt.current < 3000;
 
     setIsSubmitting(true);
     setMessage(null);
@@ -159,6 +157,7 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           website: data.website || "",
+          botSignal,
           customer: {
             name: sanitizeString(data.name),
             email: sanitizeEmail(data.email),

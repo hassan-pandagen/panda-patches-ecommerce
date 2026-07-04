@@ -84,11 +84,9 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
   };
 
   const onSubmit = async (data: any) => {
-    // Bot speed check — humans take at least 3 seconds to fill a form
-    if (Date.now() - formLoadedAt.current < 3000) {
-      setMessage({ type: 'success', text: 'Your quote request has been submitted!' });
-      return;
-    }
+    // Fast submits (browser autofill users AND bots) are flagged server-side
+    // instead of silently dropped — the lead is always captured (audit P0-4).
+    const botSignal = Date.now() - formLoadedAt.current < 3000;
 
     setIsSubmitting(true);
     setMessage(null);
@@ -113,6 +111,8 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          website: data.website || '',
+          botSignal,
           customer: {
             name: sanitizeString(data.name),
             email: sanitizeEmail(data.email),
@@ -235,6 +235,10 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3" noValidate>
+        {/* Honeypot — hidden from humans, bots fill it (audit P0-4: was missing here) */}
+        <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+          <input type="text" {...register('website')} tabIndex={-1} autoComplete="off" />
+        </div>
         {/* Error Message */}
         {message?.type === 'error' && (
           <div className="p-4 rounded-lg text-sm font-semibold bg-red-100 text-red-800 border border-red-300">

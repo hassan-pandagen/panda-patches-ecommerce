@@ -106,7 +106,12 @@ export default function Navbar() {
    }, []);
 
   return (
-    <header
+    <>
+      {/* Skip link (WCAG 2.4.1 — audit P3). Navbar renders first on every page,
+          so this single component gives every template the skip target without
+          touching ~90 individual page files. */}
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+      <header
       suppressHydrationWarning
       className={`
       sticky top-0 z-50 w-full transition-all duration-300
@@ -129,7 +134,9 @@ export default function Navbar() {
               alt="Panda Patches"
               width={130}
               height={130}
-              priority
+              // eager (no preload): loads during initial parse without a <link
+              // rel=preload> competing with the hero LCP request (audit P2).
+              loading="eager"
               className="w-[130px] h-auto md:w-[120px] object-contain"
             />
           </Link>
@@ -174,12 +181,16 @@ export default function Navbar() {
                     )}
                   </Link>
 
-                  {/* === DROPDOWN MENU (Appears on Hover) === */}
+                  {/* === DROPDOWN MENU (Appears on hover OR keyboard focus) ===
+                      group-focus-within reveals this for keyboard/switch users —
+                      it was hover-only, making 23 dropdown destinations
+                      unreachable without a mouse (WCAG 2.1.1 — audit P3). */}
                   {hasDropdown && (
                     <div className="
                       absolute top-full left-0 mt-2 w-[220px]
                       bg-white rounded-xl shadow-xl border border-gray-100
                       opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                      group-focus-within:opacity-100 group-focus-within:visible
                       transition-all duration-300 transform group-hover:translate-y-0 translate-y-2
                       overflow-hidden z-50
                     ">
@@ -414,5 +425,9 @@ export default function Navbar() {
         </div>
       </div>
     </header>
+    {/* Skip-link target — programmatically focusable so activating the link
+        actually moves keyboard focus, not just scroll position. */}
+    <span id="main-content" tabIndex={-1} className="sr-only" />
+    </>
   );
 }

@@ -6,6 +6,7 @@ import { sendCustomerEmail } from '@/lib/sendCustomerEmail';
 import { ensureCustomerAccount } from '@/lib/ensureCustomerAccount';
 import { sendOrderEmails } from '@/lib/orderEmails';
 import { verifySquareWebhookSignature, resolveSquareReference, WEB_REF_PREFIX } from '@/lib/square';
+import { sendGa4Purchase } from '@/lib/ga4Server';
 
 export const runtime = 'nodejs';
 
@@ -189,6 +190,19 @@ export async function POST(req: Request) {
       contentName: d.product_name || 'Custom Patches Order',
       contentCategory: 'Custom Patches',
     }).catch((err) => console.error('[META CAPI] Purchase (Square) failed (non-blocking):', err));
+
+    // GA4 purchase server-side (non-blocking). Fires even when the buyer never
+    // returns from Square's hosted page; GA4 dedupes on transaction_id against
+    // the client-side fire on /success (audit P1).
+    const gaClientId = (d.attribution && d.attribution.ga_client_id) || null;
+    if (gaClientId) {
+      sendGa4Purchase({
+        clientId: String(gaClientId),
+        sessionId: d.attribution?.ga_session_id ? String(d.attribution.ga_session_id) : null,
+        transactionId: orderRef,
+        value: amountPaid,
+      }).catch((err) => console.error('[GA4 MP] Purchase (Square webhook) failed (non-blocking):', err));
+    }
 
     // Mark abandoned-cart row purchased (provider_session_id = token).
     await supabase

@@ -71,8 +71,16 @@ export default function AnnouncementBar() {
     >
       <span className="text-panda-yellow font-black">🛡 Money-Back Guarantee.</span>
       <span className="hidden sm:inline">Save More on Bulk Orders. Free Worldwide Shipping.</span>
-      <Link href="/offers" className="underline font-black text-panda-yellow hover:opacity-80 whitespace-nowrap">
-        Get a Free Quote
+      {/* Relabeled: this pointed to /offers (fixed-price packages) under the label
+          "Get a Free Quote", which has no quote form — mismatched destination
+          (audit P3). tabIndex mirrors `collapsed` so a hidden bar's link can't
+          still be keyboard-focused (WCAG 4.1.2/1.3.2). */}
+      <Link
+        href="/offers"
+        tabIndex={collapsed ? -1 : 0}
+        className="underline font-black text-panda-yellow hover:opacity-80 whitespace-nowrap"
+      >
+        See Fixed-Price Offers
       </Link>
       <button
         onClick={dismiss}

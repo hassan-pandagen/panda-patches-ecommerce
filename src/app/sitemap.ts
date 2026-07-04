@@ -239,6 +239,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    // Rush landing page (PANDAP_1 §5) — target of the Rush search campaign.
+    {
+      url: `${baseUrl}/rush-custom-patches`,
+      lastModified: new Date('2026-07-04'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     // Free AI Patch Generator tool. Re-added to the sitemap June 2026 after it
     // was pulled while the route ran on the mock provider; now live + indexable.
     {

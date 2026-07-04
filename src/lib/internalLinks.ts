@@ -165,6 +165,11 @@ export const internalLinks: InternalLink[] = [
     anchor: "wholesale & reseller program",
     keywords: ["wholesale", "reseller", "distributor", "partner program", "resell", "bulk buyer"],
   },
+  {
+    url: "/rush-custom-patches",
+    anchor: "rush custom patches",
+    keywords: ["rush", "fast turnaround", "urgent", "deadline", "quick delivery", "express"],
+  },
 ];
 
 /**

@@ -72,13 +72,18 @@ export default function QuoteModal({
     } catch { /* noop */ }
 
     try {
+      // Audit P0-4: sending the raw email address as the "name" tripped the server's
+      // gibberish filter (Chris.Schmidt@… looked like a bot and the lead was dropped).
+      // Use a readable version of the email local-part instead.
+      const localPart = quoteEmail.split('@')[0].replace(/[._\-+]+/g, ' ').trim();
+      const leadName = localPart.length >= 2 ? localPart.slice(0, 60) : 'Quote Modal Lead';
       const response = await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           website: hp,
           customer: {
-            name: quoteEmail,
+            name: leadName,
             email: quoteEmail,
             phone: quotePhone || "",
           },

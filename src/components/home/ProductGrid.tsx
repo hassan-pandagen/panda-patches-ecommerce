@@ -135,8 +135,10 @@ export default async function ProductGrid() {
 
         {/* TOP GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 justify-items-center mb-28">
-          {main.map((item: any, idx: number) => (
-            <ProductCard key={item._id} item={item} showTag={true} priority={idx < 3} />
+          {main.map((item: any) => (
+            // No priority: ProductGrid sits ~6 viewports below the fold — its card
+            // preloads were stealing ~170KB of bandwidth from the hero LCP (audit P2).
+            <ProductCard key={item._id} item={item} showTag={true} />
           ))}
         </div>
 

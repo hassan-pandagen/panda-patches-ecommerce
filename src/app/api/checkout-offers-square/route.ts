@@ -132,6 +132,38 @@ export async function POST(req: Request) {
       metadata: { offer: categoryId.substring(0, 40), pack: packName.substring(0, 30) },
     });
 
+    // Abandoned-cart tracking (audit P0-3): offers buyers are the highest-AOV
+    // abandoners and previously got no recovery email. Mirrors checkout-square;
+    // the shared webhook marks provider_session_id PURCHASED on payment.
+    await supabase
+      .from('checkout_attempts')
+      .upsert(
+        {
+          customer_email: customer.email,
+          customer_name: customer.name,
+          customer_phone: customer.phone || null,
+          product_name: productName,
+          quantity: qty,
+          design_size: `${width}" x ${height}"`,
+          backing: backing || null,
+          delivery_option: delivery,
+          cart_value: finalPrice,
+          artwork_url: artworkUrl || null,
+          payment_provider: 'square',
+          provider_session_id: token,
+          return_url: pageUrl.startsWith(baseUrl) ? pageUrl : `${baseUrl}/offers`,
+          fbp: attribution?.fbp || null,
+          fbc: attribution?.fbc || null,
+          attribution: attribution || null,
+          status: 'PENDING',
+          initiated_at: new Date().toISOString(),
+        },
+        { onConflict: 'provider_session_id' },
+      )
+      .then(({ error }) => {
+        if (error) console.error('checkout_attempts upsert (offers):', error);
+      });
+
     if (initiateCheckoutEventId) {
       const [icFirstName, ...icLastParts] = (customer.name || '').trim().split(/\s+/);
       sendMetaEvent({

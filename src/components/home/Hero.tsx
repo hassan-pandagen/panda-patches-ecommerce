@@ -100,7 +100,7 @@ export default async function Hero() {
                    alt={data?.imageAlt || "Custom iron on patches, embroidered, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"}
                    fill
                    priority
-                   quality={85}
+                   quality={65}
                    sizes="(max-width: 768px) 100vw, 630px"
                    style={{ objectFit: 'contain', objectPosition: 'center' }}
                  />
@@ -165,19 +165,19 @@ export default async function Hero() {
           `}</style>
           <div className="panda-trust-grid-hero w-full max-w-5xl mx-auto">
              <div className="flex items-center justify-center">
-               <img src="/assets/logo-google.svg" alt="Google" style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
+               <img src="/assets/logo-google.svg" alt="Google" width={120} height={48} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
              </div>
              <div className="flex items-center justify-center">
-               <img src="/assets/logo-microsoft.svg" alt="Microsoft" style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
+               <img src="/assets/logo-microsoft.svg" alt="Microsoft" width={120} height={48} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
              </div>
              <div className="flex items-center justify-center">
-               <img src="/assets/logo-cocacola.svg" alt="CocaCola" style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
+               <img src="/assets/logo-cocacola.svg" alt="CocaCola" width={120} height={48} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
              </div>
              <div className="flex items-center justify-center">
-               <img src="/assets/logo-nissan.svg" alt="Nissan" style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
+               <img src="/assets/logo-nissan.svg" alt="Nissan" width={120} height={48} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
              </div>
              <div className="flex items-center justify-center">
-               <img src="/assets/logo-wise.svg" alt="Wise" style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
+               <img src="/assets/logo-wise.svg" alt="Wise" width={120} height={48} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
              </div>
           </div>
         </div>

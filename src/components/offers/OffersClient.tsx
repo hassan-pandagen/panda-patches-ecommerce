@@ -606,7 +606,9 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
         {/* Background image — desktop only (hidden on mobile) */}
         {ctaImageUrl && (
           <div className="absolute inset-0 bottom-[88px] hidden md:block">
-            <Image src={ctaImageUrl} alt="Custom patch packages" fill sizes="100vw" className="object-cover object-center" priority />
+            {/* No priority: hidden on mobile yet priority forced a preload there,
+                competing with real critical resources (audit P2). */}
+            <Image src={ctaImageUrl} alt="Custom patch packages" fill sizes="100vw" className="object-cover object-center" />
           </div>
         )}
 
@@ -679,13 +681,9 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
         </div>
       </section>
 
-      {/* CUSTOMER REVIEWS */}
-      <ReviewsSection />
-
-      {/* CRAFTSMANSHIP REELS */}
-      {craftmanshipSlot}
-
-      {/* OFFER CARDS */}
+      {/* OFFER CARDS — moved above reviews/craftsmanship (audit P3/UI-UX): this
+          is the primary buy page, and paid-social visitors with a ~9s attention
+          budget were never reaching a price behind ~3 screens of social proof. */}
       <section className="max-w-6xl mx-auto px-4 py-12 md:py-16">
         <div className="space-y-14 md:space-y-20">
           {(() => {
@@ -814,6 +812,12 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
           })()}
         </div>
       </section>
+
+      {/* CUSTOMER REVIEWS */}
+      <ReviewsSection />
+
+      {/* CRAFTSMANSHIP REELS */}
+      {craftmanshipSlot}
 
       {/* WHAT'S INCLUDED */}
       <section className="bg-[#f9fdf0] py-16 px-4">

@@ -24,6 +24,11 @@ export interface ClientAttribution {
   page_url?: string;
   referrer?: string;
   first_seen_at?: string;
+  /** GA4 ids read live from the _ga cookies at submit time — lets the Square
+   *  webhook fire a server-side GA4 purchase attributed to the buyer's session
+   *  even when they never return from the hosted payment page (audit P1). */
+  ga_client_id?: string;
+  ga_session_id?: string;
 }
 
 function readCookie(name: string): string | undefined {
@@ -94,15 +99,30 @@ export function captureAttribution(): ClientAttribution {
   return merged;
 }
 
+/** GA4 client_id (`_ga`) + session_id (`_ga_<stream>`) read live from cookies. */
+function readGa4Ids(): { ga_client_id?: string; ga_session_id?: string } {
+  if (typeof document === 'undefined') return {};
+  const c = document.cookie || '';
+  const ga = c.match(/(?:^|;\s*)_ga=GA\d\.\d\.([\d.]+)/);
+  const ses = c.match(/(?:^|;\s*)_ga_[A-Za-z0-9]+=GS\d\.\d\.(\d+)/);
+  return {
+    ...(ga?.[1] ? { ga_client_id: ga[1] } : {}),
+    ...(ses?.[1] ? { ga_session_id: ses[1] } : {}),
+  };
+}
+
 export function getStoredAttribution(): ClientAttribution {
   if (typeof window === 'undefined') return {};
+  // GA ids are read fresh every call (not persisted): the _ga cookie often does
+  // not exist yet at first touch but does by the time a form/checkout submits.
+  const gaIds = readGa4Ids();
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw) as ClientAttribution;
+    if (raw) return { ...(JSON.parse(raw) as ClientAttribution), ...gaIds };
   } catch {
     // ignore
   }
-  return captureAttribution();
+  return { ...captureAttribution(), ...gaIds };
 }
 
 export function generateEventId(prefix: string): string {
