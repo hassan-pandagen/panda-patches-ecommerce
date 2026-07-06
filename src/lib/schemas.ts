@@ -878,6 +878,35 @@ export function generateServiceSchema() {
 }
 
 // ============================================
+// 12b. RUSH SERVICE SCHEMA (RUSH-C_1.MD)
+//
+// provider references the entity-graph Organization via @id rather than
+// duplicating name/address/founder/aggregateRating inline — the PANDAP_1 brief's
+// explicit rule is that aggregateRating lives at the org level only, so this
+// avoids re-emitting it (and every other org fact) as a second, disconnected
+// copy on this one page.
+// ============================================
+
+export function generateRushServiceSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Rush Custom Patches",
+    "serviceType": "Rush custom patch manufacturing",
+    "description": "Rush custom patches in hand in as fast as 5 business days, depending on quantity and patch type. From 5 pieces, free 12-24 hour mockup, no setup fees.",
+    "url": "https://www.pandapatches.com/rush-custom-patches",
+    "provider": { "@id": ORG_ID },
+    "areaServed": "Worldwide",
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "USD",
+      "description": "Rush fee from +$50 at 50 pieces; exact pricing shown at checkout"
+    }
+  };
+}
+
+// ============================================
 // 13. VIDEO OBJECT SCHEMA (for homepage reels section)
 // ============================================
 

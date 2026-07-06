@@ -12,14 +12,24 @@ import ProcessSection from "@/components/home/ProcessSection";
 import CategoryFAQ from "@/components/bulk/CategoryFAQ";
 import CTASection from "@/components/home/CTASection";
 import MakerNote from "@/components/seo/MakerNote";
-import { generateSchemaScript, generateFAQSchema, generateBreadcrumbSchema } from "@/lib/schemas";
+import { Award, Shield, Gift, Clock } from "lucide-react";
+import { generateSchemaScript, generateFAQSchema, generateBreadcrumbSchema, generateRushServiceSchema } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
-import { RUSH_DELIVERY, MOCKUP_SLA, STANDARD_DELIVERY } from "@/lib/factConstants";
+import { MOCKUP_SLA, STANDARD_DELIVERY } from "@/lib/factConstants";
+import { addBusinessDays, formatShortDate } from "@/lib/businessDays";
 
-// Rush landing page (PANDAP_1 §5). Built for the live Rush search campaign that was
-// temporarily pointed at the homepage. COMPLIANCE: rush is stated in business days
-// only (~6-7); "24 hours" refers ONLY to the digital mockup; "from 5 pieces", never
-// "no minimum"; no next-day/weekend/date promises; no "Made in USA".
+// Rush landing page (RUSH-C_1.MD, July 2026 rewrite). COMPLIANCE: rush is stated
+// in business days only; "24 hours" refers ONLY to the digital mockup; "from 5
+// pieces", never "no minimum"; no next-day/weekend/date promises; no "Made in USA".
+//
+// SCOPING NOTE: the "in hand in as fast as 5 business days" claim on this page is
+// a page-specific rewrite of this page's own copy, per the brief's own scope
+// ("rewrite the page ... and any shared components [it uses]"). It intentionally
+// does NOT change the sitewide RUSH_DELIVERY constant ("about 6-7 business days")
+// consumed by the offers page / product calculator / wholesale page's rush
+// checkout options — that's a live checkout promise on a different, revenue-
+// critical flow, so changing it sitewide needs its own explicit confirmation
+// rather than being silently pulled in as a side effect of this page rewrite.
 
 const CANONICAL = "https://www.pandapatches.com/rush-custom-patches";
 
@@ -28,15 +38,15 @@ export const revalidate = 86400;
 const rushFAQs = [
   {
     question: "How fast can you make custom patches?",
-    answer: `Rush production completes in ${RUSH_DELIVERY} on qualifying orders, compared to our standard ${STANDARD_DELIVERY}. The clock starts after you approve your digital mockup, which we deliver in ${MOCKUP_SLA}. After you order rush, we confirm your exact delivery date by email within 2-6 hours — and if the date doesn't work, we remove the rush upgrade and refund the rush fee.`,
+    answer: `Rush orders arrive in hand in as fast as 5 business days, depending on quantity and patch type — compared to our standard ${STANDARD_DELIVERY} turnaround. Your free digital mockup arrives in ${MOCKUP_SLA}, and after you order rush we confirm your exact in-hand date by email within 2-6 hours. If the date doesn't work, we remove the rush upgrade and refund the rush fee.`,
   },
   {
     question: "Can you rush large orders?",
-    answer: "Yes. Owning our production facility means rush capacity scales: for Wise's Nasdaq Times Square activation we delivered 16,000 custom patches from first enquiry to delivery in under two weeks, every design approved before production. For event deadlines, uniform rollouts, and line-of-duty memorial patches, tell us your date and we plan production around it.",
+    answer: "Yes. We own our production facility, so rush capacity scales. For Wise's Nasdaq Times Square activation we delivered 16,000 custom patches from first enquiry to delivery in under two weeks, with every design approved before production. For event deadlines, uniform rollouts, and line-of-duty memorial patches, tell us your date and we plan production around it.",
   },
   {
     question: "What is the fastest turnaround for custom patches?",
-    answer: `Rush production runs ${RUSH_DELIVERY} on qualifying orders after mockup approval. The digital mockup itself arrives in ${MOCKUP_SLA} with unlimited free revisions. We state turnaround in business days and confirm your exact date by email before production starts — we don't make next-day promises we can't keep.`,
+    answer: `The fastest realistic turnaround is patches in hand in about 5 business days: mockup in ${MOCKUP_SLA}, your approval, rush production, and tracked express shipping. Smaller quantities and simpler patch types hit the fast end of the range; large or complex orders take longer. We state turnaround in business days and confirm your exact date by email before production starts — we don't make next-day promises we can't keep.`,
   },
   {
     question: "Do rush orders cost more?",
@@ -44,22 +54,26 @@ const rushFAQs = [
   },
   {
     question: "Which patch types can be rushed?",
-    answer: "Embroidered, PVC, chenille, and woven patches all qualify for rush production, from 5 pieces (woven from 10). Backing options — iron-on, sew-on, Velcro, sticker — don't affect the rush timeline.",
+    answer: "Embroidered, PVC, chenille, and woven patches all qualify for rush production, from 5 pieces (woven from 10). Backing options — iron-on, sew-on, Velcro, sticker — don't affect the rush timeline. Patch type does affect how fast we can get patches in hand, which is why we confirm your exact date within 2-6 hours.",
   },
   {
     question: "What do I need to start a rush order?",
-    answer: `Send your artwork (AI, EPS, SVG, PDF, PNG, or JPG — or just describe your idea), your quantity, and your deadline through the quote form. We respond fast, your mockup arrives in ${MOCKUP_SLA}, and production starts the moment you approve.`,
+    answer: `Three things: your artwork (AI, EPS, SVG, PDF, PNG, or JPG — or just describe your idea), your quantity, and the date you need patches in hand. Submit them through the quote form; your mockup arrives in ${MOCKUP_SLA} and production starts the moment you approve.`,
+  },
+  {
+    question: "Can I get custom patches in 5 days?",
+    answer: "Yes — for many quantities and patch types we can put patches in your hands in 5 business days. Submit the quote form with your deadline and we'll confirm within 2-6 hours whether your exact order qualifies, before you pay anything for rush.",
   },
 ];
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Rush Custom Patches in About 6-7 Business Days | Panda Patches",
+  title: "Rush Custom Patches — In Hand in as Fast as 5 Business Days",
   description:
-    "Rush custom patches produced in about 6-7 business days on qualifying orders. From 5 pieces, free 12-24 hour mockup, no setup fees. Embroidered, PVC, chenille, and woven. 16,000 patches delivered in under two weeks for Wise.",
+    "Rush custom patches in hand in as fast as 5 business days, depending on quantity and patch type. From 5 pieces, free 12-24h mockup, no setup fees. Exact delivery date confirmed within 2-6 hours.",
   url: CANONICAL,
-  ogTitle: "Rush Custom Patches — About 6-7 Business Days | Panda Patches",
+  ogTitle: "Rush Custom Patches — In Hand in as Fast as 5 Business Days",
   ogDescription:
-    "Need patches fast? Rush production in about 6-7 business days, mockup in 12-24 hours, from 5 pieces. Free worldwide shipping, no setup fees.",
+    "Need patches fast? In hand in as fast as 5 business days, mockup in 12-24 hours, from 5 pieces. Free worldwide shipping, no setup fees.",
   robots: { index: true, follow: true },
 });
 
@@ -70,12 +84,34 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 ]);
 
 const faqSchema = generateFAQSchema(rushFAQs);
+const serviceSchema = generateRushServiceSchema();
+
+// Rush-specific trust stat replacing "2-Week Turnaround" (RUSH-C_1.MD section 3).
+const rushTrustStats = [
+  { icon: Award, label: "4,000+", sub: "Bulk Orders" },
+  { icon: Shield, label: "ASI", sub: "Verified" },
+  { icon: Gift, label: "Free Sample", sub: "500+ Orders" },
+  { icon: Clock, label: "5-Day In-Hand", sub: "earliest, rush orders" },
+];
+
+// "4 Things Every Order Gets" override — replaces the contradictory "Quick
+// Turnaround" card with a rush-specific one; keeps the other 3 as-is (RUSH-C_1.MD
+// section 6).
+const rushPromises = [
+  { icon: "/assets/icon-money.svg", title: "Money Back Guarantee", desc: "Your satisfaction owns the patch; our promise ensures it's truly yours!" },
+  { icon: "/assets/icon-check.svg", title: "Low Minimums", desc: "Craft your distinct style starting from just 5 patches. Low minimums, maximum creativity!" },
+  { icon: "/assets/icon-mail.svg", title: "Rush When You Need It", desc: "Deadline coming up? Rush orders arrive in hand in as fast as 5 business days, depending on quantity and patch type." },
+  { icon: "/assets/icon-check.svg", title: "Free Sample First", desc: "For orders 500+, get a free physical sample. Verify quality, color, and sizing before full production." },
+];
 
 export default function RushCustomPatchesPage() {
+  const earliestInHand = formatShortDate(addBusinessDays(new Date(), 5));
+
   return (
     <main className="min-h-screen bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(faqSchema)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(serviceSchema)} />
 
       <Navbar />
 
@@ -91,8 +127,16 @@ export default function RushCustomPatchesPage() {
       <BulkHero
         simpleForm
         customHeading="Rush Custom Patches"
-        customSubheading={`Produced in ${RUSH_DELIVERY} on qualifying orders`}
-        customDescription={`Panda Patches makes rush custom patches in about 6-7 business days. Order from 5 pieces, free ${MOCKUP_SLA} mockup, no setup fees. Embroidered, PVC, chenille, and woven — we confirm your exact delivery date by email within 2-6 hours of ordering.`}
+        customSubheading="In hand in as fast as 5 business days — exact date confirmed within 2-6 hours"
+        customDescription="Order from 5 pieces, free 12-24 hour mockup, no setup fees. Embroidered, PVC, chenille, and woven patches all qualify. We confirm your exact in-hand delivery date within 2-6 hours — if we can't hit your deadline, we remove the rush fee."
+        trustStats={rushTrustStats}
+        formNote={`Order today → mockup by tomorrow → in hand as early as ${earliestInHand}.`}
+        heroFormHeadline="Need Patches by a Date?"
+        heroFormSubhead="Get your guaranteed in-hand date in 2-6 hours + free 12-24h mockup"
+        heroFormCtaText="Get My Delivery Date + Free Mockup"
+        heroFormCtaMicrocopy="We reply with your exact in-hand date within 2-6 hours. If we can't make your deadline, there's no rush fee — no questions asked."
+        showDeadlineField
+        showZipField
       />
 
       <TrustStrip />
@@ -101,16 +145,19 @@ export default function RushCustomPatchesPage() {
       <section className="w-full py-10 md:py-14 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
           <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] max-w-[840px]">
-            <strong>Panda Patches makes rush custom patches in about 6-7 business days</strong> on
-            qualifying orders — order from 5 pieces, get a free digital mockup in {MOCKUP_SLA}, and pay
-            no setup or digitizing fees. Embroidered, PVC, chenille, and woven patches all qualify.
-            Because we own our production facility, rush capacity scales: we delivered{" "}
+            <strong>Panda Patches delivers rush custom patches in hand in as fast as 5 business days</strong>,
+            depending on quantity and patch type. Order from just 5 pieces with a free 12-24 hour mockup and
+            no setup fees. <Link href="/custom-patches/embroidered" className="text-panda-green font-semibold underline">Embroidered</Link>,{" "}
+            <Link href="/custom-patches/pvc" className="text-panda-green font-semibold underline">PVC</Link>,{" "}
+            <Link href="/custom-patches/chenille" className="text-panda-green font-semibold underline">chenille</Link>, and{" "}
+            <Link href="/custom-patches/woven" className="text-panda-green font-semibold underline">woven</Link> patches all
+            qualify. Because we own our production facility, rush capacity scales: we delivered{" "}
             <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-semibold underline">
               16,000 patches for Wise&apos;s Nasdaq Times Square activation
             </Link>{" "}
-            from first enquiry to delivery in under two weeks. Your exact delivery date is confirmed by
-            email within 2-6 hours of ordering — if it doesn&apos;t work, we remove the rush upgrade and
-            refund the fee.
+            from first enquiry to delivery in under two weeks. We confirm your exact in-hand delivery date by
+            email within 2-6 hours of ordering — if we can&apos;t hit your deadline, we remove the rush fee, no
+            questions asked.
           </p>
         </div>
       </section>
@@ -122,10 +169,10 @@ export default function RushCustomPatchesPage() {
             How Rush Orders Work
           </h2>
           <ol className="space-y-3 text-[15px] md:text-[16px] text-gray-700 leading-[1.7] list-decimal pl-5">
-            <li><strong>Send your design and deadline.</strong> Upload artwork (AI, EPS, SVG, PDF, PNG, JPG) or describe your idea in the form above — include the date you need patches in hand.</li>
-            <li><strong>We confirm your date within 2-6 hours.</strong> You get your exact delivery date by email before anything is charged for rush. Doesn&apos;t work? We remove the rush fee, no questions asked.</li>
+            <li><strong>Send your design and deadline.</strong> Upload artwork (AI, EPS, SVG, PDF, PNG, JPG) or describe your idea in the form above — and tell us the date you need patches in hand.</li>
+            <li><strong>We confirm your in-hand date within 2-6 hours.</strong> You get your exact delivery date by email before any rush fee is charged. Doesn&apos;t work? We remove the rush fee, no questions asked.</li>
             <li><strong>Approve your mockup in {MOCKUP_SLA}.</strong> Unlimited free revisions — production never starts without your sign-off.</li>
-            <li><strong>Rush production ships in {RUSH_DELIVERY}.</strong> Free worldwide shipping with full tracking.</li>
+            <li><strong>Patches in hand in as fast as 5 business days.</strong> Timing depends on quantity and patch type; free worldwide shipping with full tracking either way.</li>
           </ol>
         </div>
       </section>
@@ -154,12 +201,12 @@ export default function RushCustomPatchesPage() {
 
       <Craftsmanship />
       <ReviewsSection />
-      <Promises bgColor="bg-white" />
+      <Promises bgColor="bg-white" items={rushPromises} />
       <ProcessSection />
 
       <CategoryFAQ title="Rush Custom Patches FAQ" faqs={rushFAQs} />
 
-      <MakerNote />
+      <MakerNote intro="Rush orders run through the same facility with priority scheduling — which is how we can commit to an exact in-hand date within hours, not days." />
       <CTASection />
       <Footer />
     </main>

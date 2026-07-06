@@ -7,9 +7,32 @@ import { sanitizeString, sanitizeEmail, sanitizePhone, sanitizeInteger, sanitize
 import FormFeedback from "@/components/feedback/FormFeedback";
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 import { trackLead } from "@/lib/ga4";
+import { addBusinessDays } from "@/lib/businessDays";
 
-export default function HeroForm({ productSlug, extraBackingOptions }: { productSlug?: string; extraBackingOptions?: { value: string; label: string }[] }) {
+interface HeroFormProps {
+  productSlug?: string;
+  extraBackingOptions?: { value: string; label: string }[];
+  /** Rush page (and similar) customization — all optional, default matches the original homepage form exactly. */
+  headline?: React.ReactNode;
+  subhead?: string;
+  ctaText?: string;
+  ctaMicrocopy?: React.ReactNode;
+  showDeadlineField?: boolean;
+  showZipField?: boolean;
+}
+
+export default function HeroForm({
+  productSlug,
+  extraBackingOptions,
+  headline,
+  subhead,
+  ctaText,
+  ctaMicrocopy,
+  showDeadlineField = false,
+  showZipField = false,
+}: HeroFormProps) {
   const isKeychains = productSlug === 'keychains';
+  const minDeadline = showDeadlineField ? addBusinessDays(new Date(), 3).toISOString().split('T')[0] : undefined;
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
   const watchHearAbout = watch("hearAbout", "");
   const [hearAboutOther, setHearAboutOther] = useState("");
@@ -125,6 +148,8 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
             backing: sanitizeString(data.backing || 'iron'),
             instructions: sanitizeString([data.instructions || '', isCustomSize && customSize ? `Custom Size: ${customSize}` : '', data.hearAbout ? `Source: ${data.hearAbout === 'Other' ? (hearAboutOther.trim() || 'Other') : data.hearAbout}` : ''].filter(Boolean).join(' | ')),
             patchType: sanitizeString(data.type || ''),
+            ...(showDeadlineField ? { deadline: sanitizeString(data.deadline || '') } : {}),
+            ...(showZipField ? { country: sanitizeString(data.zip || '') } : {}),
           },
           artworkUrl: uploadedFiles[0]?.url || null,
           artworkUrl2: uploadedFiles[1]?.url || null,
@@ -222,8 +247,11 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
 
       <div className="text-center mb-6">
         <h2 className="text-[24px] leading-tight font-black text-panda-dark uppercase tracking-tight">
-          Get Your Free Quote & <br/> 12-24h Mockup
+          {headline || <>Get Your Free Quote & <br/> 12-24h Mockup</>}
         </h2>
+        {subhead && (
+          <p className="text-[13px] text-gray-500 font-semibold mt-2">{subhead}</p>
+        )}
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3" noValidate>
@@ -297,6 +325,33 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
             {errors.quantity && <p id="hero-quantity-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.quantity.message)}</p>}
           </div>
         </div>
+
+        {/* Deadline — rush pages only (RUSH-C_1.MD). type="date" inputs ignore
+            placeholder text, unlike the rest of this form's fields, so this one
+            needs a real visible label. */}
+        {showDeadlineField && (
+          <div>
+            <label htmlFor="hero-deadline" className="text-[12px] font-bold text-panda-dark block mb-1">
+              When do you need them in hand? <span className="text-red-500">*</span>
+            </label>
+            <input
+              id="hero-deadline"
+              {...register("deadline", { required: "Please tell us when you need these" })}
+              type="date"
+              min={minDeadline}
+              aria-invalid={!!errors.deadline}
+              aria-describedby={errors.deadline ? "hero-deadline-error" : "hero-deadline-help"}
+              className={`form-input text-gray-500 ${errors.deadline ? 'border-red-400 bg-red-50' : ''}`}
+            />
+            {errors.deadline ? (
+              <p id="hero-deadline-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.deadline.message)}</p>
+            ) : (
+              <p id="hero-deadline-help" className="text-gray-400 text-[11px] mt-1">
+                We confirm whether we can hit this date within 2–6 hours — before you pay any rush fee.
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Row 3 */}
          <div className="grid grid-cols-2 gap-3">
@@ -387,6 +442,19 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
               ))}
             </select>
             <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
+          </div>
+        )}
+
+        {/* Shipping ZIP/Country — rush pages only (RUSH-C_1.MD) */}
+        {showZipField && (
+          <div>
+            <input
+              {...register("zip")}
+              placeholder="Shipping ZIP / Country (optional)"
+              aria-label="Shipping ZIP or Country"
+              className="form-input"
+            />
+            <p className="text-gray-400 text-[11px] mt-1">Helps us confirm your exact delivery date.</p>
           </div>
         )}
 
@@ -505,8 +573,11 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
             disabled:opacity-50 disabled:cursor-not-allowed
           "
         >
-          {isSubmitting ? 'Submitting...' : 'Get My Mockup in 12-24 Hours'}
+          {isSubmitting ? 'Submitting...' : (ctaText || 'Get My Mockup in 12-24 Hours')}
         </button>
+        {ctaMicrocopy && (
+          <p className="text-center text-gray-400 text-[11px] mt-2 leading-relaxed">{ctaMicrocopy}</p>
+        )}
       </form>
 
       </>

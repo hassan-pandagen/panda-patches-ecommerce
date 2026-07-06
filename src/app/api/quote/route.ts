@@ -28,6 +28,9 @@ const QuoteSchema = z.object({
     patchType: z.string().max(100).optional().or(z.literal('')),
     border: z.string().max(60).optional().or(z.literal('')),
     country: z.string().max(80).optional().or(z.literal('')),
+    // Rush landing page's "when do you need them in hand?" field (RUSH-C_1.MD).
+    // ISO date string (yyyy-mm-dd) from a native <input type="date">.
+    deadline: z.string().max(20).optional().or(z.literal('')),
   }),
   artworkUrl: z.string().url().optional().or(z.null()),
   artworkUrl2: z.string().url().optional().or(z.null()),
@@ -154,10 +157,17 @@ export async function POST(req: Request) {
       border_type: borderType || undefined,
       country: country || undefined,
     };
+    // Rush landing page's deadline field, when present, gets its own triage-friendly
+    // subject line so rush requests jump out in the inbox (RUSH-C_1.MD).
+    const deadlineLabel = details.deadline
+      ? new Date(details.deadline + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+      : null;
     const subject = `${suspectedBot ? '[SUSPECTED BOT] ' : ''}${
-      isBulkOrder
-        ? `New Bulk Quote Request from ${customer.name}`
-        : `New Quote Request from ${customer.name}`
+      deadlineLabel
+        ? `RUSH — ${details.quantity} pcs — needed ${deadlineLabel}`
+        : isBulkOrder
+          ? `New Bulk Quote Request from ${customer.name}`
+          : `New Quote Request from ${customer.name}`
     }`;
 
     // Send email via ZeptoMail (primary delivery)
@@ -204,6 +214,7 @@ export async function POST(req: Request) {
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Size</td><td style="padding:9px 14px;">${esc(sizeLabel)}</td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Quantity</td><td style="padding:9px 14px;font-weight:600;">${details.quantity} pcs</td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Backing</td><td style="padding:9px 14px;">${esc(details.backing)}</td></tr>
+      ${deadlineLabel ? `<tr style="background:#fff3e0;"><td style="padding:9px 14px;color:#9a5b00;font-weight:600;">Needed By</td><td style="padding:9px 14px;font-weight:700;color:#9a5b00;">${esc(deadlineLabel)}${country ? ` — ${esc(country)}` : ''}</td></tr>` : ''}
       ${flaggedInstructions ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;vertical-align:top;">Instructions</td><td style="padding:9px 14px;white-space:pre-wrap;">${esc(flaggedInstructions)}</td></tr>` : ''}
       ${artworkUrl ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Artwork 1</td><td style="padding:9px 14px;"><a href="${artworkUrl}" style="color:#fb6e1d;font-weight:600;">View File</a></td></tr>` : ''}
       ${artworkUrl2 ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Artwork 2</td><td style="padding:9px 14px;"><a href="${artworkUrl2}" style="color:#fb6e1d;font-weight:600;">View File</a></td></tr>` : ''}
@@ -348,7 +359,10 @@ export async function POST(req: Request) {
         design_backing: designBacking,
         patches_quantity: details.quantity,
         design_size: sizeLabel,
-        instructions: flaggedInstructions || details.placement || '',
+        instructions: [
+          deadlineLabel ? `[NEEDED BY: ${deadlineLabel}${country ? `, ${country}` : ''}]` : '',
+          flaggedInstructions || details.placement || '',
+        ].filter(Boolean).join(' ').trim(),
         customer_attachment_urls: [artworkUrl, artworkUrl2].filter(Boolean) as string[],
         sales_agent: 'WEBSITE_BOT',
         // Real marketing channel, NOT the form/page name (deriveLeadSource was the

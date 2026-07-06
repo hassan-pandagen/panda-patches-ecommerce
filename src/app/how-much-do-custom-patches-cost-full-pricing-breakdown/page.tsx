@@ -560,12 +560,15 @@ export default function PricingPage() {
             <p className="text-gray-600 text-sm leading-relaxed mb-4">
               Need it fast? Rush is a flat add-on by quantity, and we confirm your exact delivery date by email within 2–6 hours:
             </p>
-            <ul className="space-y-2 text-sm text-gray-700">
+            <ul className="space-y-2 text-sm text-gray-700 mb-4">
               <li>50 pcs — <strong>+$50</strong></li>
               <li>100 pcs — <strong>+$75</strong></li>
               <li>500 pcs — <strong>+$150</strong></li>
               <li>1,000 pcs — <strong>+$200</strong></li>
             </ul>
+            <Link href="/rush-custom-patches" className="text-panda-green font-semibold text-sm underline">
+              See rush custom patches →
+            </Link>
           </div>
         </div>
       </section>

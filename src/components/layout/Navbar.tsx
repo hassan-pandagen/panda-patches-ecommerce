@@ -66,7 +66,7 @@ const navLinks = [
       { name: "Raster to Vector Conversion", href: "/raster-to-vector-conversion" },
     ]
   } as any,
-  { name: "PARTNERS", href: "/partners" },
+  { name: "RUSH ORDER", href: "/rush-custom-patches" },
   {
     name: "RESOURCES",
     href: "/assets/thread-color-chart",
@@ -74,12 +74,15 @@ const navLinks = [
       { name: "Patch Types Compared", href: "/patch-types-compared" },
       { name: "Thread Color Chart", href: "/assets/thread-color-chart" },
       { name: "Iron-On Instructions", href: "/assets/iron-on-instructions" },
+      { name: "Partner Program", href: "/partners" },
     ]
   },
   // BULK ORDER moved into the OFFERS dropdown (June 2026) to keep the top nav
   // compact; it stays reachable there and in the footer. RESOURCES is its own
   // top-level dropdown after OFFERS, surfacing the Thread Color Chart and
-  // Iron-On Instructions (also still linked in the footer).
+  // Iron-On Instructions (also still linked in the footer). PARTNERS moved into
+  // RESOURCES and replaced with RUSH ORDER in the top-level slot (site owner
+  // request, July 2026) — Partners stays reachable in the footer too.
   { name: "BLOGS", href: "/blogs" },
   { name: "CONTACT US", href: "/contact" },
 ];
@@ -174,7 +177,7 @@ export default function Navbar() {
                     suppressHydrationWarning
                     className={`
                       flex items-center gap-1 whitespace-nowrap
-                      text-[12px] font-bold tracking-wide px-4 py-2.5 rounded-full transition-all duration-300
+                      text-[11px] 2xl:text-[12px] font-bold tracking-wide px-2.5 2xl:px-4 py-2.5 rounded-full transition-all duration-300
                       ${isActive
                         ? "bg-[#051C05] text-[#DFFF00] shadow-md"
                         : (link as any).highlight

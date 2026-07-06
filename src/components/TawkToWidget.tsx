@@ -47,7 +47,15 @@ function loadTawkScript() {
   // "Headless" covering both HeadlessChrome and HeadlessChromium.
   const ua = navigator.userAgent;
   const automated = (navigator as any).webdriver === true;
-  if (automated || /Lighthouse|PageSpeed|Google Page Speed|PTST|GTmetrix|Headless/i.test(ua)) return;
+  const isBotUA = /Lighthouse|PageSpeed|Google Page Speed|PTST|GTmetrix|Headless|bot|crawler|spider|scraper/i.test(ua);
+  // TAWKTO_1.MD (July 2026): datacenter/headless-Chrome bots on Linux desktop UAs
+  // were flooding the tawk.to live-visitor dashboard (0 real interactions, google.com
+  // referrer spoofed). Real consumer traffic is overwhelmingly Windows/macOS/iOS/
+  // Android — genuine Linux desktop users are a small trade-off we accept (phone,
+  // WhatsApp, and the contact form stay available to them). Android also reports
+  // "Linux" in its UA, so it's explicitly excluded from this check.
+  const isLinuxDesktop = /Linux/.test(ua) && !/Android/i.test(ua);
+  if (automated || isBotUA || isLinuxDesktop) return;
   (window as any).__tawk_script_injected = true;
 
   const source = getReferrerSource();

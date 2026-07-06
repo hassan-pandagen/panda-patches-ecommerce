@@ -1,8 +1,21 @@
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
-import { Shield, Clock, Gift, Award } from "lucide-react";
+import { Shield, Clock, Gift, Award, LucideIcon } from "lucide-react";
 import BulkQuoteForm from "./BulkQuoteForm";
 import HeroForm from "@/components/home/HeroForm";
+
+interface TrustStat {
+  icon: LucideIcon;
+  label: string;
+  sub: string;
+}
+
+const DEFAULT_TRUST_STATS: TrustStat[] = [
+  { icon: Award, label: "4,000+", sub: "Bulk Orders" },
+  { icon: Shield, label: "ASI", sub: "Verified" },
+  { icon: Gift, label: "Free Sample", sub: "500+ Orders" },
+  { icon: Clock, label: "2-Week", sub: "Turnaround" },
+];
 
 interface BulkHeroProps {
   heroImage?: string | null;
@@ -10,10 +23,21 @@ interface BulkHeroProps {
   customHeading?: string;
   customSubheading?: string;
   customDescription?: string;
+  /** Overrides the default 4-stat trust bar (RUSH-C_1.MD — swaps "2-Week Turnaround" for a rush-specific stat on the rush page, unrelated pages keep the default). */
+  trustStats?: TrustStat[];
+  /** Optional line rendered directly above the form (e.g. a computed delivery-date urgency line). */
+  formNote?: React.ReactNode;
   /** Use the simple homepage quote form instead of the full bulk quote form. */
   simpleForm?: boolean;
   /** Extra backing options appended to the simpleForm backing dropdown (page-specific). */
   extraBackingOptions?: { value: string; label: string }[];
+  /** Pass-through HeroForm customization (only used when simpleForm is true). */
+  heroFormHeadline?: React.ReactNode;
+  heroFormSubhead?: string;
+  heroFormCtaText?: string;
+  heroFormCtaMicrocopy?: React.ReactNode;
+  showDeadlineField?: boolean;
+  showZipField?: boolean;
 }
 
 export default function BulkHero({
@@ -22,9 +46,18 @@ export default function BulkHero({
   customHeading,
   customSubheading,
   customDescription,
+  trustStats,
+  formNote,
   simpleForm = false,
   extraBackingOptions,
+  heroFormHeadline,
+  heroFormSubhead,
+  heroFormCtaText,
+  heroFormCtaMicrocopy,
+  showDeadlineField = false,
+  showZipField = false,
 }: BulkHeroProps) {
+  const stats = trustStats || DEFAULT_TRUST_STATS;
   return (
     <section className="w-full pt-0 md:pt-1 pb-6 md:pb-10 bg-white">
       <div className="container mx-auto px-4 md:px-6 max-w-[1200px]">
@@ -57,12 +90,7 @@ export default function BulkHero({
 
             {/* Trust Bar - Compact */}
             <div className="grid grid-cols-4 gap-2 max-w-[480px] mx-auto lg:mx-0 mb-6">
-              {[
-                { icon: Award, label: "4,000+", sub: "Bulk Orders" },
-                { icon: Shield, label: "ASI", sub: "Verified" },
-                { icon: Gift, label: "Free Sample", sub: "500+ Orders" },
-                { icon: Clock, label: "2-Week", sub: "Turnaround" },
-              ].map((item, idx) => (
+              {stats.map((item, idx) => (
                 <div
                   key={idx}
                   className="flex flex-col items-center text-center bg-panda-light rounded-[10px] py-2.5 px-2 border border-gray-100"
@@ -122,7 +150,22 @@ export default function BulkHero({
 
           {/* RIGHT - Quote Form (simple homepage form or full bulk form) */}
           <div className="w-full lg:w-[520px] flex-shrink-0">
-            {simpleForm ? <HeroForm extraBackingOptions={extraBackingOptions} /> : <BulkQuoteForm />}
+            {formNote && (
+              <div className="mb-3 text-center lg:text-left text-[13px] font-bold text-panda-green bg-panda-green/10 rounded-[10px] px-4 py-2.5">
+                {formNote}
+              </div>
+            )}
+            {simpleForm ? (
+              <HeroForm
+                extraBackingOptions={extraBackingOptions}
+                headline={heroFormHeadline}
+                subhead={heroFormSubhead}
+                ctaText={heroFormCtaText}
+                ctaMicrocopy={heroFormCtaMicrocopy}
+                showDeadlineField={showDeadlineField}
+                showZipField={showZipField}
+              />
+            ) : <BulkQuoteForm />}
           </div>
 
         </div>
