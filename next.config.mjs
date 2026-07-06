@@ -209,6 +209,22 @@ const nextConfig = {
         permanent: true,
       },
 
+      // VECTOR CONVERSION DUPLICATE ROUTE (July 2026 audit P3): /vector-conversion
+      // and /raster-to-vector-conversion were near-identical templated pages (same
+      // 300+ lines, same sections, only keyword swapped). /raster-to-vector-conversion
+      // is the one actually linked from Navbar, sitemap, and embroidery-digitizing —
+      // /vector-conversion had zero internal links. Consolidate onto the linked page.
+      {
+        source: '/vector-conversion',
+        destination: '/raster-to-vector-conversion',
+        permanent: true,
+      },
+      {
+        source: '/vector-conversion/',
+        destination: '/raster-to-vector-conversion',
+        permanent: true,
+      },
+
       // OLD BLOG URL → NEW BLOGS URL
       {
         source: '/blog',

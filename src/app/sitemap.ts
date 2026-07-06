@@ -15,6 +15,16 @@ interface SanitySlugItem {
   _updatedAt: string;
 }
 
+// Slugs that 301 away in next.config.mjs but may still exist as published Sanity
+// docs. Excluded so the sitemap never lists a redirecting URL as canonical
+// (audit P2-3). Keep this in sync with the redirects() block in next.config.mjs.
+const REDIRECTED_SLUGS = new Set([
+  'custom-patches-no-minimum-5-pieces-2026',
+  'custom-patches-no-minimum-order-5-pieces',
+  'custom-soccer-patches-guide-2026',
+  'custom-velcro-patches-styles-uses-and-how-to-order',
+]);
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.pandapatches.com';
 
@@ -130,8 +140,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // location page so crawlers find them faster than depending on the
     // footer alone.
     {
+      // Pinned date (was `new Date()`, which churns the lastModified on every
+      // hourly ISR regeneration — a false freshness signal Google learns to
+      // ignore; audit P2-3). Bump this manually when the hub page content changes.
       url: `${baseUrl}/locations`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-06-20'),
       changeFrequency: 'weekly',
       priority: 0.7,
     },
@@ -379,13 +392,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   }));
 
-  // Blog posts (good for SEO)
-  const blogPages: MetadataRoute.Sitemap = (data.blogs || []).map((blog: SanitySlugItem) => ({
-    url: `${baseUrl}/${blog.slug}`,
-    lastModified: new Date(blog._updatedAt),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }));
+  // Blog posts (good for SEO) — excludes slugs that 301 away in next.config.mjs
+  // (audit P2-3): if the old Sanity doc is still published, the sitemap would
+  // otherwise hand Google a URL that immediately redirects instead of the
+  // canonical target.
+  const blogPages: MetadataRoute.Sitemap = (data.blogs || [])
+    .filter((blog: SanitySlugItem) => !REDIRECTED_SLUGS.has(blog.slug))
+    .map((blog: SanitySlugItem) => ({
+      url: `${baseUrl}/${blog.slug}`,
+      lastModified: new Date(blog._updatedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }));
 
   // Location pages (local SEO)
   const locationPages: MetadataRoute.Sitemap = (data.locations || []).map((location: SanitySlugItem) => ({

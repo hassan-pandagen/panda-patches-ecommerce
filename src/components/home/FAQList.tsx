@@ -24,6 +24,8 @@ export default function FAQList({ questions }: { questions: any[] }) {
             {/* QUESTION HEADER (Clickable) */}
             <button
               onClick={() => toggleFAQ(index)}
+              aria-expanded={isOpen}
+              aria-controls={`faq-answer-${index}`}
               className="w-full px-6 py-5 md:py-6 flex items-center justify-between text-left group"
             >
               {/* Mobile-Optimized Typography: 18px mobile, 22px desktop */}
@@ -36,7 +38,7 @@ export default function FAQList({ questions }: { questions: any[] }) {
 
               {/* Arrow Icon */}
               <div className={`
-                transition-transform duration-300 text-gray-400 group-hover:text-panda-dark flex-shrink-0 ml-4
+                transition-transform duration-300 text-gray-500 group-hover:text-panda-dark flex-shrink-0 ml-4
                 ${isOpen ? 'rotate-180' : 'rotate-0'}
               `}>
                 <ChevronDown className="w-5 h-5 md:w-6 md:h-6" />
@@ -44,7 +46,7 @@ export default function FAQList({ questions }: { questions: any[] }) {
             </button>
 
             {/* ANSWER BODY (CSS Animation) */}
-            <div className={`faq-wrapper ${isOpen ? 'open' : ''}`}>
+            <div id={`faq-answer-${index}`} className={`faq-wrapper ${isOpen ? 'open' : ''}`}>
               <div className="faq-inner border-t border-gray-100">
                 {/* Mobile-Optimized Typography: 15px mobile, 17px desktop */}
                 <p className="text-[15px] md:text-[17px] leading-[24px] md:leading-[28px] font-normal text-gray-600 px-6 py-5 md:py-6">

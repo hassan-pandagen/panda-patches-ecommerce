@@ -79,19 +79,19 @@ export default function Footer() {
              <div className="space-y-2">
                <h3 className="font-bold text-lg text-panda-dark text-left">Follow Us</h3>
                <div className="flex gap-3">
-                 <a href="https://www.facebook.com/pandapatchesofficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on Facebook" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
+                 <a href="https://www.facebook.com/pandapatchesofficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on Facebook" className="w-11 h-11 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
                    <Facebook size={16} />
                  </a>
-                 <a href="https://www.instagram.com/pandapatchesofficial/" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on Instagram" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
+                 <a href="https://www.instagram.com/pandapatchesofficial/" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on Instagram" className="w-11 h-11 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
                    <Instagram size={16} />
                  </a>
-                 <a href="https://www.linkedin.com/company/pandapatchesofficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on LinkedIn" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
+                 <a href="https://www.linkedin.com/company/pandapatchesofficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on LinkedIn" className="w-11 h-11 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
                    <Linkedin size={16} />
                  </a>
-                 <a href="https://www.tiktok.com/@pandapatchesofficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on TikTok" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
+                 <a href="https://www.tiktok.com/@pandapatchesofficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on TikTok" className="w-11 h-11 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
                    <TikTokIcon />
                  </a>
-                 <a href="https://www.youtube.com/@PandaPatchesOfficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on YouTube" className="w-8 h-8 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
+                 <a href="https://www.youtube.com/@PandaPatchesOfficial" target="_blank" rel="noopener noreferrer" aria-label="Panda Patches on YouTube" className="w-11 h-11 rounded-full bg-panda-dark text-white hover:bg-panda-green hover:shadow-lg transition-all flex items-center justify-center">
                    <YouTubeIcon />
                  </a>
                </div>
@@ -192,6 +192,7 @@ export default function Footer() {
               <li><Link prefetch={false} href="/custom-school-patches">School Patches</Link></li>
               <li><Link prefetch={false} href="/custom-fraternity-sorority-patches">Fraternity &amp; Sorority Patches</Link></li>
               <li><Link prefetch={false} href="/offers">Patch Packages</Link></li>
+              <li><Link prefetch={false} href="/rush-custom-patches">Rush Custom Patches</Link></li>
             </ul>
 
             <h3 className="font-bold text-lg text-panda-dark text-left pt-2">Custom Products</h3>
@@ -218,8 +219,11 @@ export default function Footer() {
               <li><Link prefetch={false} href="/custom-name-patches">Name Patches</Link></li>
               <li><Link prefetch={false} href="/custom-rock-band-patches">Rock Band Patches</Link></li>
               <li><Link prefetch={false} href="/custom-velcro-patches">Velcro Patches</Link></li>
-              <li><Link prefetch={false} href="/custom-police-patches">Tactical Patches</Link></li>
-              <li><Link prefetch={false} href="/custom-police-patches">Morale Patches</Link></li>
+              {/* Were both mislinked to /custom-police-patches — each has its own
+                  ranking page in GSC that was getting zero internal-link support
+                  while sending its equity to Police instead (audit P2-2 #4). */}
+              <li><Link prefetch={false} href="/custom-tactical-patches">Tactical Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-morale-patches">Morale Patches</Link></li>
               <li><Link prefetch={false} href="/custom-airsoft-patches">Airsoft Patches</Link></li>
               <li><Link prefetch={false} href="/custom-martial-arts-patches">Martial Arts &amp; BJJ Patches</Link></li>
               <li><Link prefetch={false} href="/custom-ems-patches">EMS Patches</Link></li>

@@ -1,42 +1,58 @@
 import { MetadataRoute } from 'next';
 
-// AI policy (as of May 2026): the /ai-info hub exists specifically to get cited by
-// AI assistants. Blocking the same crawlers would prevent the citations we want.
-// All AI bots (training and browsing) are explicitly allowed below.
+// ── ALLOW-LIST STRATEGY (July 2026) ─────────────────────────────────────────
+// Previous approach: allow everything by default, block a growing list of
+// known-bad scrapers one at a time (AhrefsBot, SemrushBot, MJ12bot, DotBot,
+// PetalBot, Bytespider, ...) — a never-ending game of whack-a-mole.
+//
+// New approach: default DENY. Only the crawlers that actually matter (real
+// search engines, real AI assistants, and social link-preview bots) are
+// explicitly allowed; everything else gets nothing.
+//
+// IMPORTANT: robots.txt is a REQUEST, honored only by well-behaved bots. The
+// crawlers below (Google, OpenAI, Anthropic, etc.) respect it. Data-center
+// scrapers spoofing a "google.com" referrer do NOT read this file at all —
+// stopping those requires the Vercel Firewall / WAF layer, not robots.txt.
+//
+// The /ai-info hub exists specifically to get cited by AI assistants, so every
+// AI crawler below is allowed, not just search engines.
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      // Default: allow everything except admin / api / cart-state endpoints
       {
-        userAgent: '*',
+        // Real search engines — drive organic traffic.
+        userAgent: [
+          'Googlebot', 'Googlebot-Image', 'bingbot', 'Applebot', 'DuckDuckBot',
+          // OpenAI / ChatGPT
+          'GPTBot', 'OAI-SearchBot', 'ChatGPT-User',
+          // Anthropic / Claude
+          'ClaudeBot', 'Claude-SearchBot', 'Claude-User',
+          // Perplexity
+          'PerplexityBot', 'Perplexity-User',
+          // Other major AI assistants
+          'Google-Extended', 'Applebot-Extended', 'Meta-ExternalAgent', 'Meta-ExternalFetcher',
+          'Amazonbot', 'MistralAI-User', 'DuckAssistBot', 'cohere-ai', 'CCBot',
+          // Social / messaging link-preview bots (so shared links get a rich card)
+          'facebookexternalhit', 'Twitterbot', 'LinkedInBot', 'Slackbot', 'Slackbot-LinkExpanding',
+          'WhatsApp', 'Discordbot', 'TelegramBot', 'Pinterestbot', 'redditbot',
+        ],
         allow: '/',
         disallow: [
           '/studio/',
           '/api/',
+          // Image-optimizer endpoint URLs were getting indexed as separate "pages"
+          // (~30 showing up in GSC with impressions/positions) — crawl waste, not
+          // real content (audit P2-3). The canonical cdn.sanity.io originals stay
+          // crawlable for Google Images.
+          '/_next/image',
         ],
       },
-      // Explicit allow for AI bots (some crawlers honor explicit allow over wildcard)
-      { userAgent: 'GPTBot', allow: '/' },                  // OpenAI training
-      { userAgent: 'OAI-SearchBot', allow: '/' },           // OpenAI live search
-      { userAgent: 'ChatGPT-User', allow: '/' },            // ChatGPT browse
-      { userAgent: 'anthropic-ai', allow: '/' },            // Anthropic training (legacy name)
-      { userAgent: 'ClaudeBot', allow: '/' },               // Anthropic training (current name)
-      { userAgent: 'Claude-Web', allow: '/' },              // Claude browse (legacy name)
-      { userAgent: 'Claude-SearchBot', allow: '/' },        // Claude search index (current name)
-      { userAgent: 'Claude-User', allow: '/' },             // Claude user-initiated fetches
-      { userAgent: 'PerplexityBot', allow: '/' },           // Perplexity index + browse
-      { userAgent: 'Perplexity-User', allow: '/' },         // Perplexity user-initiated browse
-      { userAgent: 'Google-Extended', allow: '/' },         // Gemini / AI Overviews training
-      { userAgent: 'CCBot', allow: '/' },                   // Common Crawl
-      { userAgent: 'Applebot-Extended', allow: '/' },       // Apple Intelligence training
-      { userAgent: 'Meta-ExternalAgent', allow: '/' },      // Meta AI
-      { userAgent: 'cohere-ai', allow: '/' },               // Cohere training
-      { userAgent: 'Amazonbot', allow: '/' },               // Amazon Alexa / Rufus shopping answers
-      // Bytespider (ByteDance): aggressive scraper with no citation/answer surface
-      // for us — blocked July 2026 amid heavy bot traffic. Only affects
-      // robots-respecting crawls; the Tawk interaction-gate handles the rest.
-      { userAgent: 'Bytespider', disallow: '/' },
-      { userAgent: 'Bravebot', allow: '/' },                // Brave Search index (also feeds some AI answers)
+      // Everyone else — unknown crawlers, SEO scrapers (AhrefsBot, SemrushBot,
+      // DotBot, MJ12bot, DataForSeoBot), Bytespider, PetalBot, etc. — denied.
+      {
+        userAgent: '*',
+        disallow: '/',
+      },
     ],
     sitemap: 'https://www.pandapatches.com/sitemap.xml',
   };

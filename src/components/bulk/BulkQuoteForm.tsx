@@ -155,13 +155,7 @@ export default function BulkQuoteForm() {
       setUploadedFiles([]);
       reset();
 
-      // Fire Google Ads quote form conversion
-      if (typeof window !== "undefined" && (window as any).gtag) {
-        (window as any).gtag("event", "conversion", {
-          send_to: "AW-11221237770/qTWjCNnZ3oEcEIqA2uYp",
-        });
-      }
-      // GA4 lead event (dataLayer → GTM → GA4)
+      // GA4 lead event, sent server-side via Measurement Protocol
       trackLead({ form_name: 'bulk_quote', lead_source: window.location.pathname });
     } catch (error) {
       console.error("Bulk quote error:", error);
@@ -230,14 +224,18 @@ export default function BulkQuoteForm() {
             <input
               {...register("name", { required: "Name is required" })}
               placeholder="Your Name *"
+              aria-label="Your Name"
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? "bulk-name-error" : undefined}
               className={`bulk-field ${errors.name ? 'border-red-400 bg-red-50' : ''}`}
               autoComplete="name"
             />
-            {errors.name && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.name.message)}</p>}
+            {errors.name && <p id="bulk-name-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.name.message)}</p>}
           </div>
           <input
             {...register("company")}
             placeholder="Company Name"
+            aria-label="Company Name"
             className="bulk-field"
             autoComplete="organization"
           />
@@ -250,27 +248,33 @@ export default function BulkQuoteForm() {
               {...register("email", { required: "Email is required" })}
               type="email"
               placeholder="Email Address *"
+              aria-label="Email Address"
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "bulk-email-error" : undefined}
               className={`bulk-field ${errors.email ? 'border-red-400 bg-red-50' : ''}`}
               autoComplete="email"
               onBlur={handleEmailBlur}
             />
-            {errors.email && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
+            {errors.email && <p id="bulk-email-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
           </div>
           <div>
             <input
               {...register("phone", { required: "Phone is required" })}
               placeholder="Phone Number *"
+              aria-label="Phone Number"
+              aria-invalid={!!errors.phone}
+              aria-describedby={errors.phone ? "bulk-phone-error" : undefined}
               className={`bulk-field ${errors.phone ? 'border-red-400 bg-red-50' : ''}`}
               autoComplete="tel"
             />
-            {errors.phone && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.phone.message)}</p>}
+            {errors.phone && <p id="bulk-phone-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.phone.message)}</p>}
           </div>
         </div>
 
         {/* Row 3: Patch Type + Quantity */}
         <div className="grid grid-cols-2 gap-2.5">
           <div className="relative">
-            <select {...register("patchType")} defaultValue="" className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
+            <select {...register("patchType")} defaultValue="" aria-label="Patch Type" className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
               <option value="" disabled hidden>Patch Type</option>
               <option value="embroidered">Embroidered</option>
               <option value="3d-embroidered">3D Embroidered Transfers</option>
@@ -288,7 +292,7 @@ export default function BulkQuoteForm() {
           </div>
 
           <div className="relative">
-            <select {...register("quantityRange")} defaultValue="" className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
+            <select {...register("quantityRange")} defaultValue="" aria-label="Quantity Range" className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
               <option value="" disabled hidden>Quantity Range</option>
               <option value="50-99">50 - 99 pieces</option>
               <option value="100-299">100 - 299 pieces</option>
@@ -307,13 +311,16 @@ export default function BulkQuoteForm() {
             <input
               {...register("size", { required: "Size is required" })}
               placeholder="Size (e.g. 4 x 3 inches) *"
+              aria-label="Size (e.g. 4 x 3 inches)"
+              aria-invalid={!!errors.size}
+              aria-describedby={errors.size ? "bulk-size-error" : undefined}
               className={`bulk-field ${errors.size ? 'border-red-400 bg-red-50' : ''}`}
             />
-            {errors.size && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.size.message)}</p>}
+            {errors.size && <p id="bulk-size-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.size.message)}</p>}
           </div>
 
           <div className="relative">
-            <select {...register("backing")} defaultValue="" className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
+            <select {...register("backing")} defaultValue="" aria-label="Backing Type" className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
               <option value="" disabled hidden>Backing Type</option>
               <option value="iron">Iron-On</option>
               <option value="velcro">Velcro (Hook & Loop)</option>
@@ -328,8 +335,9 @@ export default function BulkQuoteForm() {
         {/* Row 5: Needed By (date) + Budget (text) */}
         <div className="grid grid-cols-2 gap-2.5">
           <div>
-            <p className="text-[11px] text-gray-700 font-semibold mb-1 pl-1">Needed By</p>
+            <label htmlFor="bulk-needed-by" className="text-[11px] text-gray-700 font-semibold mb-1 pl-1 block">Needed By</label>
             <input
+              id="bulk-needed-by"
               {...register("neededBy")}
               type="date"
               min={minDate || undefined}
@@ -337,10 +345,12 @@ export default function BulkQuoteForm() {
             />
           </div>
           <div>
-            <p className="text-[11px] text-gray-700 font-semibold mb-1 pl-1">Your Budget</p>
+            <label htmlFor="bulk-budget" className="text-[11px] text-gray-700 font-semibold mb-1 pl-1 block">Your Budget</label>
             <input
+              id="bulk-budget"
               {...register("budget")}
               placeholder="e.g. $2,000"
+              aria-label="Your Budget"
               className="bulk-field"
             />
           </div>
@@ -350,6 +360,7 @@ export default function BulkQuoteForm() {
         <textarea
           {...register("notes")}
           placeholder="Design details, color requirements, special instructions..."
+          aria-label="Design details, color requirements, special instructions"
           className="bulk-field h-[80px] resize-none pt-3"
         />
 
@@ -380,6 +391,7 @@ export default function BulkQuoteForm() {
             value={hearAboutOther}
             onChange={(e) => setHearAboutOther(e.target.value)}
             placeholder="Please tell us where you heard about us"
+            aria-label="Please tell us where you heard about us"
             className="bulk-field"
             autoFocus
           />

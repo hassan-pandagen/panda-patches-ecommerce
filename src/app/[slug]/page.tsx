@@ -218,7 +218,11 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       { name: data.blog.title || "Blog Post", url: `https://www.pandapatches.com/${slug}` },
     ]);
 
-    const faqSchema = data.blog.faqItems?.length > 0 ? {
+    // Slugs with a hardcoded FAQPage override below skip the generic
+    // Sanity-driven schema here so the two can never stack on one URL
+    // (audit P2-4 — GSC flags duplicate FAQPage as a schema error).
+    const hasHardcodedFaqOverride = slug === 'top-10-custom-patch-manufacturers-in-the-usa-2026-honest-review';
+    const faqSchema = !hasHardcodedFaqOverride && data.blog.faqItems?.length > 0 ? {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": data.blog.faqItems.map((item: { question: string; answer: string }) => ({
@@ -379,7 +383,18 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
       ],
     };
 
-    const categoryFaqSchema = cp.faqItems?.length > 0 ? generateFAQSchema(cp.faqItems) : null;
+    // These 5 slugs have a hardcoded FAQPage override below (JSX further down);
+    // skip the generic Sanity-driven schema for them so the two never stack on
+    // one URL (audit P2-4 — duplicate FAQPage was flagged as a schema error).
+    // The visible <CategoryFAQ> component still renders cp.faqItems either way.
+    const hardcodedCategoryFaqSlugs = new Set([
+      'custom-woven-patches',
+      'custom-embroidered-patches',
+      'custom-chenille-patches',
+      'custom-leather-patches',
+      'custom-pvc-patches',
+    ]);
+    const categoryFaqSchema = !hardcodedCategoryFaqSlugs.has(slug) && cp.faqItems?.length > 0 ? generateFAQSchema(cp.faqItems) : null;
 
     return (
       <main className="min-h-screen bg-white">

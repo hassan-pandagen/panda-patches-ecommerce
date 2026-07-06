@@ -438,14 +438,7 @@ export default function ComplexCalculator({
     if (ok) {
       setQuoteSent(true);
       setTimeout(() => setQuoteSent(false), 15000);
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'conversion', {
-          send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
-          value: 50.0,
-          currency: 'USD',
-        });
-      }
-      // GA4 lead event (dataLayer → GTM → GA4) — conversions + value by channel
+      // GA4 lead event, sent server-side via Measurement Protocol — conversions + value by channel
       trackLead({ form_name: 'quote', lead_source: window.location.pathname, value: 50 });
       try {
         if (typeof (window as any).oaiq === 'function') {
@@ -801,6 +794,7 @@ export default function ComplexCalculator({
                       inputMode="decimal"
                       min="1"
                       max={maxSize}
+                      aria-label="Width (inches)"
                       value={widthInput}
                       onChange={(e) => {
                         const raw = e.target.value;
@@ -829,6 +823,7 @@ export default function ComplexCalculator({
                       inputMode="decimal"
                       min="1"
                       max={maxSize}
+                      aria-label="Height (inches)"
                       value={heightInput}
                       onChange={(e) => {
                         const raw = e.target.value;
@@ -873,11 +868,14 @@ export default function ComplexCalculator({
 
             {/* 3. QUANTITY */}
             <div>
-              <label className="text-sm font-black text-black uppercase tracking-wide mb-2 block">QUANTITY</label>
+              <label htmlFor="calc-quantity" className="text-sm font-black text-black uppercase tracking-wide mb-2 block">QUANTITY</label>
               <div className="relative">
                 <input
+                  id="calc-quantity"
                   type="text"
                   inputMode="numeric"
+                  aria-invalid={!!fieldErrors.quantity}
+                  aria-describedby={fieldErrors.quantity ? "calc-quantity-error" : undefined}
                   value={quantityInput}
                   onChange={(e) => {
                     const val = e.target.value;
@@ -908,7 +906,7 @@ export default function ComplexCalculator({
                 <div className="absolute right-5 top-1/2 -translate-y-1/2 text-xs text-gray-500 font-bold pointer-events-none uppercase tracking-wide">Pieces</div>
               </div>
               {fieldErrors.quantity ? (
-                <p className="text-red-500 text-[12px] mt-1.5 font-semibold">⚠ {fieldErrors.quantity}</p>
+                <p id="calc-quantity-error" className="text-red-500 text-[12px] mt-1.5 font-semibold">⚠ {fieldErrors.quantity}</p>
               ) : (
                 <p className="text-gray-500 text-[12px] mt-1.5 font-medium">Minimum order: 5 pieces. Per-piece price drops as quantity goes up, so smaller orders cost more per piece. This calculator shows your exact price.</p>
               )}
@@ -932,7 +930,7 @@ export default function ComplexCalculator({
                       <button
                         type="button"
                         onClick={() => removeFile(i)}
-                        className="flex-shrink-0 w-6 h-6 rounded-full bg-red-100 hover:bg-red-200 text-red-600 flex items-center justify-center transition-colors font-black text-xs"
+                        className="flex-shrink-0 w-11 h-11 rounded-full bg-red-100 hover:bg-red-200 text-red-600 flex items-center justify-center transition-colors font-black text-xs"
                         aria-label="Remove file"
                       >✕</button>
                     </div>
@@ -1001,6 +999,7 @@ export default function ComplexCalculator({
                     value={patchIdea}
                     onChange={(e) => setPatchIdea(e.target.value)}
                     placeholder={`Describe your patch idea in detail. Our designers will send a digital mockup in 12 to 24 hours.\n\ne.g. "A fierce eagle with wings spread wide, bold text reading 'IRON PACK' below, dark navy & gold colors, vintage distressed style, circular shape."\n\nTell us: subject / image, any text, colors, style, and any references you like.`}
+                    aria-label="Describe your patch idea"
                     rows={5}
                     className="w-full border-2 border-black rounded-[12px] px-4 py-3 font-medium text-sm text-black outline-none focus:border-black transition-all resize-none placeholder:text-gray-400 leading-relaxed"
                     autoFocus
@@ -1023,23 +1022,29 @@ export default function ComplexCalculator({
                     <input
                       type="text"
                       placeholder="Full Name *"
+                      aria-label="Full Name"
+                      aria-invalid={!!fieldErrors.name}
+                      aria-describedby={fieldErrors.name ? "calc-name-error" : undefined}
                       value={name}
                       onChange={(e) => { setName(e.target.value); setFieldErrors(p => ({ ...p, name: undefined })); }}
                       className={`w-full h-[52px] border-2 rounded-[12px] px-4 font-bold text-base text-black outline-none focus:border-black transition-all ${fieldErrors.name ? 'border-red-400 bg-red-50' : 'border-gray-300'}`}
                       autoComplete="name"
                     />
-                    {fieldErrors.name && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {fieldErrors.name}</p>}
+                    {fieldErrors.name && <p id="calc-name-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {fieldErrors.name}</p>}
                   </div>
                   <div>
                     <input
                       type="email"
                       placeholder="Email Address *"
+                      aria-label="Email Address"
+                      aria-invalid={!!fieldErrors.email}
+                      aria-describedby={fieldErrors.email ? "calc-email-error" : undefined}
                       value={email}
                       onChange={(e) => { setEmail(e.target.value); setFieldErrors(p => ({ ...p, email: undefined })); }}
                       className={`w-full h-[52px] border-2 rounded-[12px] px-4 font-bold text-base text-black outline-none focus:border-black transition-all ${fieldErrors.email ? 'border-red-400 bg-red-50' : 'border-gray-300'}`}
                       autoComplete="email"
                     />
-                    {fieldErrors.email && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {fieldErrors.email}</p>}
+                    {fieldErrors.email && <p id="calc-email-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {fieldErrors.email}</p>}
                   </div>
                 </div>
                 {quoteError && <p className="text-red-500 text-[12px] mt-1 font-semibold">⚠ {quoteError}</p>}
@@ -1187,10 +1192,11 @@ export default function ComplexCalculator({
               {/* Rush date picker — shown below grid when rush is selected */}
               {deliveryOption === "rush" && (
                 <div className="mt-3">
-                  <label className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 block">
+                  <label htmlFor="calc-rush-date" className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 block">
                     Select Rush Date <span className="normal-case font-medium text-gray-400">(Mon - Fri only)</span>
                   </label>
                   <input
+                    id="calc-rush-date"
                     type="date"
                     value={rushDate}
                     min={getMinRushDate()}
@@ -1282,10 +1288,11 @@ export default function ComplexCalculator({
 
             {/* PHONE NUMBER */}
             <div>
-              <label className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
+              <label htmlFor="calc-phone" className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
                 Phone Number <span className="normal-case font-medium text-gray-400">(Optional)</span>
               </label>
               <input
+                id="calc-phone"
                 type="tel"
                 placeholder="+1 (555) 000-0000"
                 value={phone}
@@ -1297,28 +1304,32 @@ export default function ComplexCalculator({
 
             {/* SHIPPING ADDRESS */}
             <div>
-              <label className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
+              <label htmlFor="calc-address" className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
                 Shipping Address
               </label>
               <textarea
+                id="calc-address"
                 placeholder="Street, City, State/Province, ZIP/Postal Code, Country"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 rows={2}
+                aria-invalid={!!fieldErrors.address}
+                aria-describedby={fieldErrors.address ? "calc-address-error" : undefined}
                 className="w-full rounded-[12px] px-5 py-3 font-bold text-base text-black outline-none focus:border-black transition-all resize-none"
                 style={{ border: fieldErrors.address ? '2px solid #f87171' : '2px solid #9CA3AF', background: fieldErrors.address ? '#fef2f2' : '#fff' }}
               />
               {fieldErrors.address && (
-                <p className="text-red-500 text-[12px] mt-2 font-semibold">⚠ {fieldErrors.address}</p>
+                <p id="calc-address-error" className="text-red-500 text-[12px] mt-2 font-semibold">⚠ {fieldErrors.address}</p>
               )}
             </div>
 
             {/* SPECIAL INSTRUCTIONS */}
             <div>
-              <label className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
+              <label htmlFor="calc-special-instructions" className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
                 Special Instructions (Optional)
               </label>
               <textarea
+                id="calc-special-instructions"
                 value={specialInstructions}
                 onChange={(e) => setSpecialInstructions(e.target.value)}
                 placeholder={'e.g. "Please use metallic gold thread", "Add text on back side", "Match Pantone color 123C"'}
@@ -1329,10 +1340,11 @@ export default function ComplexCalculator({
 
             {/* HOW DID YOU HEAR ABOUT US */}
             <div>
-              <label className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
+              <label htmlFor="calc-hear-about" className="text-sm font-black text-black uppercase tracking-wide mb-2 block">
                 How Did You Hear About Us? (Optional)
               </label>
               <select
+                id="calc-hear-about"
                 value={hearAbout}
                 onChange={(e) => { setHearAbout(e.target.value); if (e.target.value !== "Other") setHearAboutOther(""); }}
                 className="w-full rounded-[12px] px-5 py-3 font-medium text-base text-black outline-none focus:border-black transition-all appearance-none cursor-pointer"
@@ -1355,6 +1367,7 @@ export default function ComplexCalculator({
                   value={hearAboutOther}
                   onChange={(e) => setHearAboutOther(e.target.value)}
                   placeholder="Please tell us where you heard about us"
+                  aria-label="Please tell us where you heard about us"
                   className="w-full rounded-[12px] px-5 py-3 font-medium text-base text-black outline-none focus:border-black transition-all mt-2"
                   style={{ border: '2px solid #9CA3AF' }}
                   autoFocus

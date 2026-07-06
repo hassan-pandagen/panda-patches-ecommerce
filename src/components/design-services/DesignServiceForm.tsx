@@ -196,12 +196,7 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
       setUploadedFiles([]);
       reset();
 
-      if (typeof window !== "undefined" && (window as any).gtag) {
-        (window as any).gtag("event", "conversion", {
-          send_to: "AW-11221237770/qTWjCNnZ3oEcEIqA2uYp",
-        });
-      }
-      // GA4 lead event (dataLayer → GTM → GA4)
+      // GA4 lead event, sent server-side via Measurement Protocol
       trackLead({ form_name: 'design_service', lead_source: window.location.pathname });
     } catch (error) {
       console.error("Design service quote error:", error);
@@ -261,10 +256,13 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
               <input
                 {...register("name", { required: "Name is required" })}
                 placeholder="Your Name *"
+                aria-label="Your Name"
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? "design-name-error" : undefined}
                 className={`bulk-field ${errors.name ? "border-red-400 bg-red-50" : ""}`}
                 autoComplete="name"
               />
-              {errors.name && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.name.message)}</p>}
+              {errors.name && <p id="design-name-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.name.message)}</p>}
             </div>
 
             {/* Email + Phone */}
@@ -274,20 +272,26 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
                   {...register("email", { required: "Email is required" })}
                   type="email"
                   placeholder="Email Address *"
+                  aria-label="Email Address"
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "design-email-error" : undefined}
                   className={`bulk-field ${errors.email ? "border-red-400 bg-red-50" : ""}`}
                   autoComplete="email"
                   onBlur={handleEmailBlur}
                 />
-                {errors.email && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
+                {errors.email && <p id="design-email-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
               </div>
               <div>
                 <input
                   {...register("phone", { required: "Phone is required" })}
                   placeholder="Phone Number *"
+                  aria-label="Phone Number"
+                  aria-invalid={!!errors.phone}
+                  aria-describedby={errors.phone ? "design-phone-error" : undefined}
                   className={`bulk-field ${errors.phone ? "border-red-400 bg-red-50" : ""}`}
                   autoComplete="tel"
                 />
-                {errors.phone && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.phone.message)}</p>}
+                {errors.phone && <p id="design-phone-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.phone.message)}</p>}
               </div>
             </div>
 
@@ -297,17 +301,23 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
                 <input
                   {...register("size", { required: "Size is required" })}
                   placeholder="Size (e.g. 4 x 3 inches) *"
+                  aria-label="Size (e.g. 4 x 3 inches)"
+                  aria-invalid={!!errors.size}
+                  aria-describedby={errors.size ? "design-size-error" : undefined}
                   className={`bulk-field ${errors.size ? "border-red-400 bg-red-50" : ""}`}
                 />
-                {errors.size && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.size.message)}</p>}
+                {errors.size && <p id="design-size-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.size.message)}</p>}
               </div>
               <div>
                 <input
                   {...register("formatRequired", { required: "Format is required" })}
                   placeholder={`${copy.formatPlaceholder} *`}
+                  aria-label={copy.formatPlaceholder}
+                  aria-invalid={!!errors.formatRequired}
+                  aria-describedby={errors.formatRequired ? "design-format-error" : undefined}
                   className={`bulk-field ${errors.formatRequired ? "border-red-400 bg-red-50" : ""}`}
                 />
-                {errors.formatRequired && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.formatRequired.message)}</p>}
+                {errors.formatRequired && <p id="design-format-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.formatRequired.message)}</p>}
               </div>
             </div>
 

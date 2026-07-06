@@ -105,6 +105,23 @@ export default function Navbar() {
      return () => window.removeEventListener('scroll', handleScroll);
    }, []);
 
+   // Mobile drawer: lock body scroll while open and close on Escape (WCAG 2.1.2 /
+   // 2.1.3 — audit P3). The page was scrollable behind the drawer with no way to
+   // close via keyboard.
+   useEffect(() => {
+     if (!isMobileMenuOpen) return;
+     const previousOverflow = document.body.style.overflow;
+     document.body.style.overflow = 'hidden';
+     const handleKeyDown = (e: KeyboardEvent) => {
+       if (e.key === 'Escape') setIsMobileMenuOpen(false);
+     };
+     window.addEventListener('keydown', handleKeyDown);
+     return () => {
+       document.body.style.overflow = previousOverflow;
+       window.removeEventListener('keydown', handleKeyDown);
+     };
+   }, [isMobileMenuOpen]);
+
   return (
     <>
       {/* Skip link (WCAG 2.4.1 — audit P3). Navbar renders first on every page,
@@ -271,7 +288,11 @@ export default function Navbar() {
       )}
 
       {/* === MOBILE MENU DRAWER === */}
-      <div className={`
+      <div
+        role="dialog"
+        aria-modal={isMobileMenuOpen}
+        aria-label="Mobile navigation menu"
+        className={`
         xl:hidden fixed top-0 right-0 h-full w-[85%] max-w-[400px] bg-white z-50
         transform transition-transform duration-300 ease-in-out
         ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}
@@ -283,7 +304,7 @@ export default function Navbar() {
           <span className="text-[#DFFF00] font-bold text-lg uppercase tracking-wide">Menu</span>
           <button
             onClick={() => setIsMobileMenuOpen(false)}
-            className="w-[40px] h-[40px] bg-[#DFFF00] rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+            className="w-[44px] h-[44px] bg-[#DFFF00] rounded-full flex items-center justify-center hover:scale-110 transition-transform"
             aria-label="Close menu"
           >
             <X size={20} className="text-[#051C05]" strokeWidth={2.5} />

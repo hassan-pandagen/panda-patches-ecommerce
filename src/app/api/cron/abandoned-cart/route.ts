@@ -8,7 +8,10 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-const ABANDON_DELAY_MIN = 30;          // First email after 30 min
+const ABANDON_DELAY_MIN = 45;          // First email after 45 min (was 30 — audit P1-5:
+                                        // BNPL approval + a slow final review can run
+                                        // past 30 min, firing "did you abandon?" on a
+                                        // customer still actively completing payment)
 const FOLLOW_UP_DELAY_HOURS = 24;      // Second email 24 hours later
 const EXPIRE_AFTER_DAYS = 7;           // Stop trying after a week
 // PANDA10 promo removed July 2026: nothing on the site could redeem it, so the
@@ -58,6 +61,32 @@ function deliveryLabel(opt: string | null): string {
   if (opt === 'economy') return 'Economy (16-18 business days)';
   if (opt === 'rush') return 'Rush';
   return 'Standard (7-14 business days)';
+}
+
+/**
+ * Defensive re-check before EVERY reminder send (audit P1-5). checkout_attempts
+ * SHOULD already be 'PURCHASED' by the webhook, so this should normally find
+ * nothing — but if that specific (non-blocking) webhook update ever silently
+ * fails, this catches it: never email someone who already paid, and never
+ * pollute Meta with an "abandoned" Lead for a completed buyer.
+ */
+async function hasCompletedOrder(email: string): Promise<boolean> {
+  const since = new Date(Date.now() - EXPIRE_AFTER_DAYS * 86_400_000).toISOString();
+  const { data } = await supabase
+    .from('orders')
+    .select('id')
+    .eq('customer_email', email)
+    .gte('created_at', since)
+    .limit(1);
+  return !!data?.length;
+}
+
+/** Self-heal a desynced row so future cron runs stop re-checking it. */
+async function markPurchasedAndSkip(id: string): Promise<void> {
+  await supabase
+    .from('checkout_attempts')
+    .update({ status: 'PURCHASED', purchased_at: new Date().toISOString() })
+    .eq('id', id);
 }
 
 /**
@@ -136,6 +165,11 @@ async function sendFirstEmail(row: CheckoutAttempt) {
   if (!token) throw new Error('ZEPTOMAIL_TOKEN not set');
   if (!row.customer_email) throw new Error('No email');
 
+  if (await hasCompletedOrder(row.customer_email)) {
+    await markPurchasedAndSkip(row.id);
+    return;
+  }
+
   const mail = new SendMailClient({ url: 'https://api.zeptomail.com/v1.1/email', token });
   const fname = firstNameOf(row.customer_name);
 
@@ -176,6 +210,11 @@ async function sendSecondEmail(row: CheckoutAttempt) {
   const token = process.env.ZEPTOMAIL_TOKEN;
   if (!token) throw new Error('ZEPTOMAIL_TOKEN not set');
   if (!row.customer_email) throw new Error('No email');
+
+  if (await hasCompletedOrder(row.customer_email)) {
+    await markPurchasedAndSkip(row.id);
+    return;
+  }
 
   const mail = new SendMailClient({ url: 'https://api.zeptomail.com/v1.1/email', token });
   const fname = firstNameOf(row.customer_name);

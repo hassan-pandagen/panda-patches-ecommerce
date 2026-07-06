@@ -120,7 +120,7 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
         {/* Work Samples Gallery - Centered with Lightbox */}
         {currentSamples.length > 0 && (
           <div className="mb-10">
-            <p className="text-[12px] md:text-[13px] font-bold text-gray-400 uppercase tracking-widest text-center mb-5">
+            <p className="text-[12px] md:text-[13px] font-bold text-gray-500 uppercase tracking-widest text-center mb-5">
               Our {activeType} Work
             </p>
             <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 max-w-[1100px] mx-auto">
@@ -205,7 +205,7 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
                 </div>
                 <div className="py-4 px-6 text-center">
                   <span className="text-[20px] font-black text-panda-green">{price}</span>
-                  <span className="text-[13px] text-gray-400 ml-1">/ patch</span>
+                  <span className="text-[13px] text-gray-500 ml-1">/ patch</span>
                 </div>
                 <div className="py-4 px-6 text-center">
                   {savings > 0 ? (
@@ -213,7 +213,7 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
                       Save {savings}%
                     </span>
                   ) : (
-                    <span className="text-[12px] text-gray-400">Base Price</span>
+                    <span className="text-[12px] text-gray-500">Base Price</span>
                   )}
                 </div>
                 <div className="py-4 px-6 text-right">
@@ -252,7 +252,7 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
                 <div className="flex items-center gap-3">
                   <div className="text-right">
                     <span className="text-[20px] font-black text-panda-green">{price}</span>
-                    <span className="text-[11px] text-gray-400 block">per patch</span>
+                    <span className="text-[11px] text-gray-500 block">per patch</span>
                   </div>
                   <a
                     href={idx >= 3 ? "#bulk-quote" : orderLinks[activeType]}
@@ -271,7 +271,7 @@ export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableP
         </div>
 
         {/* Disclaimer */}
-        <p className="text-center text-[12px] text-gray-400 mt-6 font-medium">
+        <p className="text-center text-[12px] text-gray-500 mt-6 font-medium">
           * Pricing varies by size, color count, and backing type. Table shows starting prices for standard 3-inch patches.
           Contact us for exact quote.
         </p>

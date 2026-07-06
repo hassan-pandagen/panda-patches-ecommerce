@@ -13,23 +13,15 @@ interface BreadcrumbsProps {
 
 export default function Breadcrumbs({ items, currentPage }: BreadcrumbsProps) {
   return (
-    <nav aria-label="Breadcrumb" className="w-full py-4 px-4 md:px-6">
+    <nav aria-label="Breadcrumb" className="w-full pt-2 pb-2 px-4 md:px-6">
       <div className="container mx-auto max-w-[1200px]">
         <ol className="flex items-center gap-2 text-sm md:text-base">
-          {/* Home Link */}
-          <li>
-            <Link
-              href="/"
-              className="text-gray-500 hover:text-panda-green transition-colors"
-            >
-              Home
-            </Link>
-          </li>
-
-          {/* Breadcrumb Items */}
+          {/* Breadcrumb Items — every caller already passes "Home" as items[0],
+              so this no longer hardcodes its own Home link (was rendering
+              "Home > Home > ..." on all 27 pages that use this component). */}
           {items.map((item, index) => (
             <li key={index} className="flex items-center gap-2">
-              <ChevronRight className="w-4 h-4 text-gray-400" />
+              {index > 0 && <ChevronRight className="w-4 h-4 text-gray-400" />}
               <Link
                 href={item.href}
                 className="text-gray-500 hover:text-panda-green transition-colors"

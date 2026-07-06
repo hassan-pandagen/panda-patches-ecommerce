@@ -160,15 +160,7 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
         throw new Error('Failed to submit quote');
       }
 
-      // Google Ads — Quote Form Lead conversion
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'conversion', {
-          send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
-          value: 50.0,
-          currency: 'USD',
-        });
-      }
-      // GA4 lead event (dataLayer → GTM → GA4) — conversions + value by channel
+      // GA4 lead event, sent server-side via Measurement Protocol — conversions + value by channel
       trackLead({ form_name: 'quote', lead_source: window.location.pathname, value: 50 });
       // OpenAI Conversions (ChatGPT/AI search attribution) — Fill Quote Form
       try {
@@ -252,21 +244,27 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
             <input
               {...register("name", { required: "Name is required" })}
               placeholder="Name *"
+              aria-label="Name"
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? "hero-name-error" : undefined}
               className={`form-input ${errors.name ? 'border-red-400 bg-red-50' : ''}`}
               autoComplete="name"
             />
-            {errors.name && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.name.message)}</p>}
+            {errors.name && <p id="hero-name-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.name.message)}</p>}
           </div>
           <div>
             <input
               {...register("email", { required: "Email is required" })}
               placeholder="Email *"
               type="email"
+              aria-label="Email"
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "hero-email-error" : undefined}
               className={`form-input ${errors.email ? 'border-red-400 bg-red-50' : ''}`}
               autoComplete="email"
               onBlur={handleEmailBlur}
             />
-            {errors.email && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
+            {errors.email && <p id="hero-email-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
           </div>
         </div>
 
@@ -277,10 +275,13 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
               {...register("phone", { required: "Phone is required" })}
               placeholder="Phone Number *"
               type="tel"
+              aria-label="Phone Number"
+              aria-invalid={!!errors.phone}
+              aria-describedby={errors.phone ? "hero-phone-error" : undefined}
               className={`form-input ${errors.phone ? 'border-red-400 bg-red-50' : ''}`}
               autoComplete="tel"
             />
-            {errors.phone && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.phone.message)}</p>}
+            {errors.phone && <p id="hero-phone-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.phone.message)}</p>}
           </div>
           <div>
             <input
@@ -288,9 +289,12 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
               placeholder="Quantity (min 5) *"
               type="number"
               min="5"
+              aria-label="Quantity (min 5)"
+              aria-invalid={!!errors.quantity}
+              aria-describedby={errors.quantity ? "hero-quantity-error" : undefined}
               className={`form-input ${errors.quantity ? 'border-red-400 bg-red-50' : ''}`}
             />
-            {errors.quantity && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.quantity.message)}</p>}
+            {errors.quantity && <p id="hero-quantity-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.quantity.message)}</p>}
           </div>
         </div>
 
@@ -298,7 +302,7 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
          <div className="grid grid-cols-2 gap-3">
            <div className="relative">
              {isKeychains ? (
-               <select {...register("size", { required: "Please select a side" })} defaultValue="" aria-label="Select single or double side" className={`form-input appearance-none text-gray-500 cursor-pointer pr-10 ${errors.size ? 'border-red-400 bg-red-50' : ''}`}>
+               <select {...register("size", { required: "Please select a side" })} defaultValue="" aria-label="Select single or double side" aria-invalid={!!errors.size} aria-describedby={errors.size ? "hero-size-error" : undefined} className={`form-input appearance-none text-gray-500 cursor-pointer pr-10 ${errors.size ? 'border-red-400 bg-red-50' : ''}`}>
                  <option value="" disabled hidden>Single or Double Side?</option>
                  <option value="single-side">Single Side</option>
                  <option value="double-side">Double Side</option>
@@ -308,6 +312,8 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
                  {...register("size", { required: "Please select a size" })}
                  defaultValue=""
                  aria-label="Select patch size or placement"
+                 aria-invalid={!!errors.size}
+                 aria-describedby={errors.size ? "hero-size-error" : undefined}
                  className={`form-input appearance-none text-gray-500 cursor-pointer pr-10 ${errors.size ? 'border-red-400 bg-red-50' : ''}`}
                  onChange={(e) => setIsCustomSize(e.target.value === 'custom')}
                >
@@ -322,7 +328,7 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
                </select>
              )}
              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
-             {errors.size && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.size.message)}</p>}
+             {errors.size && <p id="hero-size-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.size.message)}</p>}
            </div>
 
            <div className="relative">
@@ -361,6 +367,7 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
             value={customSize}
             onChange={(e) => setCustomSize(e.target.value)}
             placeholder='Enter your size e.g. 5" x 3"'
+            aria-label='Enter your size e.g. 5" x 3"'
             className="form-input w-full"
           />
         )}
@@ -410,6 +417,7 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
             value={hearAboutOther}
             onChange={(e) => setHearAboutOther(e.target.value)}
             placeholder="Please tell us where you heard about us"
+            aria-label="Please tell us where you heard about us"
             className="form-input"
             autoFocus
           />
@@ -419,6 +427,7 @@ export default function HeroForm({ productSlug, extraBackingOptions }: { product
         <textarea
           {...register("instructions")}
           placeholder="Instructions: Text 'Panda Patches' White background..."
+          aria-label="Instructions"
           className="form-input h-[80px] resize-none leading-relaxed pt-3"
         />
 

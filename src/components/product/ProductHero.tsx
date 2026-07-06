@@ -45,7 +45,7 @@ export default async function ProductHero({ productData, isMainPage = false }: P
           <div className="flex-1 w-full">
 
             {/* Title and description scroll normally above the sticky region. */}
-            <h1 className="text-[20px] sm:text-[22px] md:text-[26px] lg:text-[30px] xl:text-[34px] font-extrabold text-panda-dark leading-tight mb-4 md:mb-6 w-full tracking-tight text-center md:text-left whitespace-nowrap overflow-hidden">
+            <h1 className="text-[20px] sm:text-[22px] md:text-[26px] lg:text-[30px] xl:text-[34px] font-extrabold text-panda-dark leading-tight mb-4 md:mb-6 w-full tracking-tight text-center md:text-left">
               {title}
             </h1>
 

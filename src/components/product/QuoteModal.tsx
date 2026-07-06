@@ -41,6 +41,21 @@ export default function QuoteModal({
     if (show) setQuoteSubmitted(false);
   }, [show]);
 
+  // Lock body scroll and close on Escape while open (WCAG 2.1.2 — audit P3).
+  useEffect(() => {
+    if (!show) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [show, onClose]);
+
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
 
@@ -106,14 +121,7 @@ export default function QuoteModal({
 
       if (response.ok) {
         setQuoteSubmitted(true);
-        if (typeof window !== 'undefined' && (window as any).gtag) {
-          (window as any).gtag('event', 'conversion', {
-            send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
-            value: 50.0,
-            currency: 'USD',
-          });
-        }
-        // GA4 lead event (dataLayer → GTM → GA4) — conversions + value by channel
+        // GA4 lead event, sent server-side via Measurement Protocol — conversions + value by channel
         trackLead({ form_name: 'quote', patch_type: productType, lead_source: window.location.pathname, value: 50 });
         // Tawk.to — tag visitor as quote lead
         if (typeof window !== 'undefined' && (window as any).Tawk_API?.setAttributes) {
@@ -139,18 +147,24 @@ export default function QuoteModal({
       className="fixed inset-0 bg-black/90 z-[99999] flex items-end sm:items-center justify-center p-0 sm:p-4"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="bg-white w-full sm:max-w-md rounded-t-[24px] sm:rounded-[24px] shadow-2xl overflow-hidden">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="quote-modal-title"
+        className="bg-white w-full sm:max-w-md rounded-t-[24px] sm:rounded-[24px] shadow-2xl overflow-hidden"
+      >
 
         {/* Modal Header */}
         <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-gray-100">
           <div>
-            <h2 className="text-xl font-black text-black uppercase tracking-wide">Get Free Quote</h2>
+            <h2 id="quote-modal-title" className="text-xl font-black text-black uppercase tracking-wide">Get Free Quote</h2>
             <p className="text-sm text-gray-500 font-medium mt-0.5">We&apos;ll get back to you within 2 hours</p>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+            aria-label="Close dialog"
+            className="w-11 h-11 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
           >
             <X size={20} className="text-gray-600" />
           </button>
@@ -183,7 +197,7 @@ export default function QuoteModal({
             {/* Patch Summary */}
             <div className="bg-gray-50 rounded-[12px] px-4 py-3 flex items-center justify-between">
               <div>
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-wide">{productType}</p>
+                <p className="text-xs font-bold text-gray-500 uppercase tracking-wide">{productType}</p>
                 <p className="text-sm font-black text-black">
                   {width}&quot; × {height}&quot; · {quantity} pcs
                   {backingName ? ` · ${backingName}` : ""}
@@ -191,7 +205,7 @@ export default function QuoteModal({
               </div>
               {!priceError && (
                 <div className="text-right">
-                  <p className="text-xs text-gray-400 font-medium">Est. Price</p>
+                  <p className="text-xs text-gray-500 font-medium">Est. Price</p>
                   <p className="text-lg font-black text-black">${basePrice.toFixed(2)}</p>
                 </div>
               )}
@@ -199,10 +213,11 @@ export default function QuoteModal({
 
             {/* Email */}
             <div>
-              <label className="text-xs font-black text-black uppercase tracking-wide mb-1.5 block">
+              <label htmlFor="quote-modal-email" className="text-xs font-black text-black uppercase tracking-wide mb-1.5 block">
                 Email Address <span className="text-red-500">*</span>
               </label>
               <input
+                id="quote-modal-email"
                 type="email"
                 placeholder="your@email.com"
                 value={quoteEmail}
@@ -215,10 +230,11 @@ export default function QuoteModal({
 
             {/* Phone */}
             <div>
-              <label className="text-xs font-black text-black uppercase tracking-wide mb-1.5 block">
-                Phone Number <span className="text-gray-400 font-medium normal-case">(Optional)</span>
+              <label htmlFor="quote-modal-phone" className="text-xs font-black text-black uppercase tracking-wide mb-1.5 block">
+                Phone Number <span className="text-gray-500 font-medium normal-case">(Optional)</span>
               </label>
               <input
+                id="quote-modal-phone"
                 type="tel"
                 placeholder="+1 (555) 000-0000"
                 value={quotePhone}
@@ -229,10 +245,11 @@ export default function QuoteModal({
 
             {/* Message */}
             <div>
-              <label className="text-xs font-black text-black uppercase tracking-wide mb-1.5 block">
-                What are you making? <span className="text-gray-400 font-medium normal-case">(Optional)</span>
+              <label htmlFor="quote-modal-message" className="text-xs font-black text-black uppercase tracking-wide mb-1.5 block">
+                What are you making? <span className="text-gray-500 font-medium normal-case">(Optional)</span>
               </label>
               <textarea
+                id="quote-modal-message"
                 placeholder="e.g. Patches for our school sports team, company uniforms, custom gifts..."
                 value={quoteMessage}
                 onChange={(e) => setQuoteMessage(e.target.value)}
@@ -257,7 +274,7 @@ export default function QuoteModal({
               )}
             </button>
 
-            <p className="text-center text-xs text-gray-400 font-medium pb-1">
+            <p className="text-center text-xs text-gray-500 font-medium pb-1">
               No spam. We&apos;ll only contact you about your quote.
             </p>
           </form>

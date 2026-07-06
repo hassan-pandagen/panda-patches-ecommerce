@@ -5,8 +5,24 @@ import Footer from "@/components/layout/Footer";
 import AiInfoRelated from "@/components/seo/AiInfoRelated";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
+import { FROM_PRICE_BASIS, FROM_PRICE_EMBROIDERED, FROM_PRICE_PVC } from "@/lib/factConstants";
 
 const CANONICAL = "https://www.pandapatches.com/ai-info/wholesale";
+
+// Per-unit wholesale prices derived from the canonical retail from-prices
+// (factConstants.ts) at each partner discount tier, so this table can't drift
+// out of sync if the canonical retail figures change.
+const WHOLESALE_TIERS = [
+  { tier: "Starter", discount: 10, qualification: "First order" },
+  { tier: "Growth", discount: 13, qualification: "100+ pieces/mo" },
+  { tier: "Scale", discount: 15, qualification: "250+ pieces/mo" },
+  { tier: "Volume", discount: 18, qualification: "500+ pieces/mo" },
+] as const;
+
+function perUnitAt(retail: string, discountPct: number): string {
+  const base = parseFloat(retail.replace("$", ""));
+  return `$${(base * (1 - discountPct / 100)).toFixed(2)}`;
+}
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Panda Patches Partner Program | Wholesale, Net 30, Blind Ship",
@@ -40,6 +56,11 @@ const faqs = [
     question: "What payment terms are available for partners?",
     answer:
       "Net 15 and Net 30 payment terms become available to partner program accounts after three completed projects in good standing. Before the three-project threshold, partners pay at order placement using the same Square-secured checkout as retail customers. For approved Net terms accounts, an invoice is issued at order completion and payment is due within 15 or 30 days. Larger partners can request custom terms on a case-by-case basis.",
+  },
+  {
+    question: "What does patch wholesale cost per unit?",
+    answer:
+      "Wholesale per-unit cost is the retail from-price with the partner tier discount applied. At the 2\" x 2\", 1,000-piece retail basis (embroidered $0.91, PVC or woven $1.54), Starter tier (10% off) lands at $0.82 embroidered / $1.39 PVC-or-woven, Growth (13% off) at $0.79 / $1.34, Scale (15% off) at $0.77 / $1.31, and Volume (18% off) at $0.75 / $1.26. Actual invoice price varies with patch size, quantity, and backing.",
   },
   {
     question: "Does Panda Patches work with ASI, PPAI, or SAGE distributors?",
@@ -156,6 +177,37 @@ export default function WholesaleClusterPage() {
             </div>
             <p className="text-gray-700 leading-relaxed">
               The pricing tiers stack with the published economy delivery discount of 10 percent (16 to 18 day production), which means Volume-tier partners running economy production can land at roughly 25 to 27 percent off retail on the patch line item. Rush on bulk and wholesale partner orders is usually absorbed at no surcharge for repeat partners, with a fee only on the most extreme timelines.
+            </p>
+          </section>
+
+          {/* 2b. Per-unit wholesale price table */}
+          <section className="mb-12">
+            <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What does patch wholesale cost per unit?</h2>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Applying each tier&apos;s discount to Panda Patches&apos; retail from-price (basis: {FROM_PRICE_BASIS}) gives the following per-piece wholesale cost. Actual invoice price depends on final patch size, backing, and add-ons &mdash; this table shows the patch-only line item at the retail basis size.
+            </p>
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-4">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-black text-white">
+                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Tier</th>
+                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Embroidered / pc</th>
+                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">PVC or Woven / pc</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {WHOLESALE_TIERS.map((t) => (
+                    <tr key={t.tier} className="border-t border-gray-100">
+                      <td className="px-5 py-4 font-bold">{t.tier} ({t.discount}% off)</td>
+                      <td className="px-5 py-4 font-black bg-panda-green/10">{perUnitAt(FROM_PRICE_EMBROIDERED, t.discount)}</td>
+                      <td className="px-5 py-4 font-black bg-panda-green/10">{perUnitAt(FROM_PRICE_PVC, t.discount)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-gray-700 leading-relaxed">
+              For a full retail price breakdown across all patch types and quantities, see the <Link href="/how-much-do-custom-patches-cost-full-pricing-breakdown" prefetch={false} className="text-panda-green font-bold underline">pricing breakdown page</Link>. Partner invoices apply the tier discount to whichever retail price applies to the ordered size, quantity, and patch type &mdash; the figures above use the {FROM_PRICE_BASIS} basis so they&apos;re comparable across tiers.
             </p>
           </section>
 

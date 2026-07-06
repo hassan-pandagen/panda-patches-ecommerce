@@ -6,8 +6,7 @@ import { X, Phone } from 'lucide-react';
 const PHONE_NUMBER = '+1 (302) 773-8982';
 const PHONE_TEL = 'tel:+13027738982';
 const WHATSAPP_URL = 'https://wa.me/14157999969?text=Hi%20I%20need%20help%20placing%20my%20order';
-const DESKTOP_DELAY_MS = 15_000; // desktop: 15 seconds
-const MOBILE_DELAY_MS  = 25_000; // mobile:  25 seconds (avoids clashing with Tawk.to)
+const DESKTOP_DELAY_MS = 15_000; // desktop only — mobile returns early below, avoids clashing with Tawk.to
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15">

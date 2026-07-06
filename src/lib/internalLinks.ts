@@ -48,7 +48,11 @@ export const internalLinks: InternalLink[] = [
 
   // Custom Products
   {
-    url: "/custom-products/challenge-coins",
+    // Was "/custom-products/challenge-coins" (plural) — every other reference
+    // site-wide (Footer, Navbar, ProductGrid, llms.txt) uses the singular slug;
+    // this typo was silently generating broken auto-suggested links in blog
+    // posts (audit P2-3).
+    url: "/custom-products/challenge-coin",
     anchor: "challenge coins",
     keywords: ["challenge coin", "military coin", "commemorative coin"],
   },

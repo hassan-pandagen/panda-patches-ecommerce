@@ -101,52 +101,13 @@ function loadTawkScript() {
     } catch { /* noop */ }
   }
 
-  // Fire Google Ads conversion + Meta Contact when visitor sends first message.
-  // Meta Contact only fires if email/phone present (guarded inside fireMetaContact).
+  // Fire Meta Contact when visitor sends first message. Only fires if
+  // email/phone present (guarded inside fireMetaContact). The Google Ads
+  // gtag conversion block that used to live here was removed (audit P3) —
+  // ad spend is Meta-only, so it was dead code with no active AW- account.
   Tawk_API.onChatMessageVisitor = function () {
     if (sessionStorage.getItem('tawk_conv_fired')) return;
     sessionStorage.setItem('tawk_conv_fired', '1');
-
-    // Google Ads conversion with Enhanced Conversions user_data
-    if (typeof (window as any).gtag === 'function') {
-      const tawkVisitor = (window as any).Tawk_API?.visitor || {};
-      const ecEmail = tawkVisitor.email || sessionStorage.getItem('ec_email') || '';
-      const ecPhone = tawkVisitor.phone || sessionStorage.getItem('ec_phone') || '';
-
-      if (ecEmail || ecPhone) {
-        // Hash PII for Enhanced Conversions
-        const hashStr = async (normalized: string) => {
-          const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(normalized));
-          return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-        };
-        const normalizePhone = (p: string) => {
-          const d = p.replace(/\D/g, '');
-          if (d.length === 10) return `+1${d}`;
-          if (d.length === 11 && d.startsWith('1')) return `+${d}`;
-          return `+${d}`;
-        };
-        (async () => {
-          const user_data: Record<string, string> = {};
-          if (ecEmail) user_data['sha256_email_address'] = await hashStr(ecEmail.toLowerCase().trim());
-          if (ecPhone) user_data['sha256_phone_number'] = await hashStr(normalizePhone(ecPhone));
-          if (Object.keys(user_data).length > 0) {
-            (window as any).gtag('set', 'user_data', user_data);
-          }
-          (window as any).gtag('event', 'conversion', {
-            send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
-            value: 10.0,
-            currency: 'USD',
-          });
-        })();
-      } else {
-        (window as any).gtag('event', 'conversion', {
-          send_to: 'AW-11221237770/sWV1CNm--IMcEIqA2uYp',
-          value: 10.0,
-          currency: 'USD',
-        });
-      }
-    }
-
     fireMetaContact();
   };
 

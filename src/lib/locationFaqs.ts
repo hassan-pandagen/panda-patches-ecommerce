@@ -36,7 +36,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How fast can I get custom patches delivered to Alabama?",
-      answer: "Standard production is 10-14 days after design approval, with delivery to all Alabama cities including Birmingham, Huntsville, Mobile, Montgomery, and Tuscaloosa. Rush orders are available for an additional fee and can cut turnaround to 5-7 days when needed for events or deployments."
+      answer: "Standard production is 7-14 business days after design approval, with delivery to all Alabama cities including Birmingham, Huntsville, Mobile, Montgomery, and Tuscaloosa. Rush orders are available for an additional fee and can cut turnaround to 5-7 days when needed for events or deployments."
     },
     {
       question: "Do Alabama churches and civic organizations qualify for bulk patch discounts?",
@@ -84,7 +84,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How are custom patches shipped to Boston and surrounding areas?",
-      answer: "We ship to all Boston neighborhoods and the Greater Boston region including Cambridge, Somerville, Quincy, Newton, and Braintree. Standard delivery takes 10-14 days from proof approval. Expedited shipping upgrades are available at checkout for time-sensitive Boston events like the Boston Marathon, Head of the Charles, or graduation ceremonies."
+      answer: "We ship to all Boston neighborhoods and the Greater Boston region including Cambridge, Somerville, Quincy, Newton, and Braintree. Standard delivery takes 7-14 business days from proof approval. Expedited shipping upgrades are available at checkout for time-sensitive Boston events like the Boston Marathon, Head of the Charles, or graduation ceremonies."
     }
   ],
   "custom-california-patches": [
@@ -150,7 +150,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How quickly can patches be delivered to Denver, Colorado Springs, or Boulder?",
-      answer: "Standard delivery to any Colorado city — Denver, Colorado Springs, Boulder, Fort Collins, Pueblo — is 10-14 days after design approval. Rush production (5-7 days) is available for urgent orders. We can ship directly to business addresses, ski lodges, or military base APO/FPO addresses with proper documentation."
+      answer: "Standard delivery to any Colorado city — Denver, Colorado Springs, Boulder, Fort Collins, Pueblo — is 7-14 business days after design approval. Rush production (5-7 days) is available for urgent orders. We can ship directly to business addresses, ski lodges, or military base APO/FPO addresses with proper documentation."
     }
   ],
   "custom-patches-dallas": [
@@ -172,7 +172,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How do you ship to the entire Dallas-Fort Worth Metroplex?",
-      answer: "We ship to all DFW Metroplex cities — Dallas, Fort Worth, Plano, Frisco, McKinney, Irving, Arlington, Garland, and beyond. Standard delivery is 10-14 days after approval. For corporate event deadlines or game-day delivery needs, rush production with expedited shipping can compress turnaround to 5-7 business days."
+      answer: "We ship to all DFW Metroplex cities — Dallas, Fort Worth, Plano, Frisco, McKinney, Irving, Arlington, Garland, and beyond. Standard delivery is 7-14 business days after approval. For corporate event deadlines or game-day delivery needs, rush production with expedited shipping can compress turnaround to 5-7 business days."
     }
   ],
   "custom-denver-patches": [
@@ -208,7 +208,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can Florida youth sports leagues order custom patches for baseball and soccer?",
-      answer: "Yes. Florida's year-round sports culture means youth baseball, soccer, football, and lacrosse leagues operate continuously. We produce tournament patches, participation patches, and achievement patches for leagues from Pensacola to Key West. A low 5-piece minimum, free design, and fast 10-14 day turnaround makes us a reliable partner for league coordinators."
+      answer: "Yes. Florida's year-round sports culture means youth baseball, soccer, football, and lacrosse leagues operate continuously. We produce tournament patches, participation patches, and achievement patches for leagues from Pensacola to Key West. A low 5-piece minimum, free design, and fast 7-14 business day turnaround makes us a reliable partner for league coordinators."
     },
     {
       question: "Do Florida law enforcement and corrections departments order from Panda Patches?",
@@ -216,7 +216,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How do you ship custom patches to South Florida, the Panhandle, and rural areas?",
-      answer: "We ship to all Florida zip codes — Miami, Orlando, Tampa, Jacksonville, Tallahassee, Fort Lauderdale, Naples, and rural communities throughout the state. Standard shipping is included with all orders. Florida orders ship coast to coast within the state in 1-2 business days after our standard 10-14 day production window."
+      answer: "We ship to all Florida zip codes — Miami, Orlando, Tampa, Jacksonville, Tallahassee, Fort Lauderdale, Naples, and rural communities throughout the state. Standard shipping is included with all orders. Florida orders ship coast to coast within the state in 1-2 business days after our standard 7-14 business day production window."
     }
   ],
   "custom-patches-houston": [
@@ -260,7 +260,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How fast can custom patches be delivered to Louisville, Lexington, and rural Kentucky?",
-      answer: "Standard production is 10-14 days after design approval, with shipping to all Kentucky addresses including Louisville, Lexington, Bowling Green, Owensboro, and rural eastern and western Kentucky communities. Rush production is available for time-sensitive needs like the Kentucky Derby in early May or Kentucky State Fair events in August."
+      answer: "Standard production is 7-14 business days after design approval, with shipping to all Kentucky addresses including Louisville, Lexington, Bowling Green, Owensboro, and rural eastern and western Kentucky communities. Rush production is available for time-sensitive needs like the Kentucky Derby in early May or Kentucky State Fair events in August."
     }
   ],
   "custom-patches-los-angeles": [
@@ -282,7 +282,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How quickly can patches be delivered to Los Angeles for production deadlines?",
-      answer: "Standard production is 10-14 days. For entertainment productions or retail launches with firm deadlines, rush production of 5-7 days is available. We ship directly to production offices, costume departments at studios in Burbank and Culver City, or warehouse addresses throughout Greater LA. Same-day courier delivery within LA County is available on request."
+      answer: "Standard production is 7-14 business days. For entertainment productions or retail launches with firm deadlines, rush production of 5-7 days is available. We ship directly to production offices, costume departments at studios in Burbank and Culver City, or warehouse addresses throughout Greater LA. Same-day courier delivery within LA County is available on request."
     }
   ],
   "custom-miami-patches": [
@@ -326,7 +326,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How fast can patches be delivered to Manhattan, Brooklyn, Queens, the Bronx, and Staten Island?",
-      answer: "We ship to all five boroughs and the greater New York metropolitan area including Long Island, Westchester, and Northern New Jersey. Standard production is 10-14 days after proof approval. For Broadway productions, fashion week submissions, or NYPD/FDNY event deadlines, rush production can reduce turnaround to 5-7 business days."
+      answer: "We ship to all five boroughs and the greater New York metropolitan area including Long Island, Westchester, and Northern New Jersey. Standard production is 7-14 business days after proof approval. For Broadway productions, fashion week submissions, or NYPD/FDNY event deadlines, rush production can reduce turnaround to 5-7 business days."
     }
   ],
   "custom-ohio-state-patches": [
@@ -348,7 +348,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How quickly can custom patches be delivered to Cleveland, Columbus, Cincinnati, and Dayton?",
-      answer: "Standard production is 10-14 days from proof approval, with delivery to all major Ohio cities and rural communities. Rush orders ship in 5-7 days for urgent needs like game-day presentations or unit ceremonies at Wright-Patterson. We ship to all Ohio addresses via standard ground and expedited air freight on request."
+      answer: "Standard production is 7-14 business days from proof approval, with delivery to all major Ohio cities and rural communities. Rush orders ship in 5-7 days for urgent needs like game-day presentations or unit ceremonies at Wright-Patterson. We ship to all Ohio addresses via standard ground and expedited air freight on request."
     }
   ],
   "custom-patches-portland": [
@@ -370,7 +370,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How do you handle shipping to Portland and the wider Pacific Northwest?",
-      answer: "We ship to Portland and all Oregon communities including Eugene, Salem, Bend, Medford, and Astoria. Standard delivery is 10-14 days after proof approval. Portland's proximity to Washington state means we also serve Vancouver, WA customers with the same timeline. Rush orders are available for deadline-sensitive Portland events like Pickathon or Portland Rose Festival."
+      answer: "We ship to Portland and all Oregon communities including Eugene, Salem, Bend, Medford, and Astoria. Standard delivery is 7-14 business days after proof approval. Portland's proximity to Washington state means we also serve Vancouver, WA customers with the same timeline. Rush orders are available for deadline-sensitive Portland events like Pickathon or Portland Rose Festival."
     }
   ],
   "custom-patches-in-san-francisco": [
@@ -392,7 +392,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How quickly can custom patches reach the San Francisco Bay Area?",
-      answer: "We ship to San Francisco, Oakland, Berkeley, San Jose, Palo Alto, and all Bay Area communities. Standard delivery is 10-14 days from proof approval. Rush orders of 5-7 days are available for tech conference deadlines or Pride festival merchandise needs. Expedited delivery can be requested at checkout to ensure timely arrival for your Bay Area event."
+      answer: "We ship to San Francisco, Oakland, Berkeley, San Jose, Palo Alto, and all Bay Area communities. Standard delivery is 7-14 business days from proof approval. Rush orders of 5-7 days are available for tech conference deadlines or Pride festival merchandise needs. Expedited delivery can be requested at checkout to ensure timely arrival for your Bay Area event."
     }
   ],
   "custom-patches-in-texas": [
@@ -414,7 +414,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How do you ship to the entire state of Texas — including rural West Texas?",
-      answer: "Texas is enormous and we ship everywhere — from El Paso to Beaumont, from Amarillo to Brownsville, including rural West Texas communities, Rio Grande Valley towns, and remote ranch addresses. Standard delivery is 10-14 days after proof approval. We understand Texas's scale and route all in-state shipments for reliable delivery regardless of how remote your address."
+      answer: "Texas is enormous and we ship everywhere — from El Paso to Beaumont, from Amarillo to Brownsville, including rural West Texas communities, Rio Grande Valley towns, and remote ranch addresses. Standard delivery is 7-14 business days after proof approval. We understand Texas's scale and route all in-state shipments for reliable delivery regardless of how remote your address."
     }
   ],
   "custom-utah-patches": [
@@ -436,7 +436,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How quickly can custom patches reach Salt Lake City, Provo, Ogden, and rural Utah?",
-      answer: "Standard production is 10-14 days after proof approval with shipping to all Utah communities. Salt Lake City, Provo, Ogden, St. George, Logan, and rural communities all receive standard ground delivery within 2-3 business days after production completes. Rush orders are available for time-sensitive needs like resort opening weekends or sports events."
+      answer: "Standard production is 7-14 business days after proof approval with shipping to all Utah communities. Salt Lake City, Provo, Ogden, St. George, Logan, and rural communities all receive standard ground delivery within 2-3 business days after production completes. Rush orders are available for time-sensitive needs like resort opening weekends or sports events."
     }
   ],
   "custom-patches-in-washington": [
@@ -458,7 +458,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How fast can custom patches be delivered to Seattle, Tacoma, Spokane, and rural Washington?",
-      answer: "We ship to all Washington State addresses — Seattle, Tacoma, Bellevue, Spokane, Olympia, Yakima, and rural eastern and western Washington communities. Standard delivery is 10-14 days after proof approval. Rush orders are available for Boeing production deadlines, JBLM unit events, or Seahawks game-day giveaways."
+      answer: "We ship to all Washington State addresses — Seattle, Tacoma, Bellevue, Spokane, Olympia, Yakima, and rural eastern and western Washington communities. Standard delivery is 7-14 business days after proof approval. Rush orders are available for Boeing production deadlines, JBLM unit events, or Seahawks game-day giveaways."
     }
   ],
   "custom-anime-patches": [
@@ -512,7 +512,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How early should I order Christmas patches to guarantee delivery before the holiday?",
-      answer: "For guaranteed pre-Christmas delivery, order by December 1 for standard production (10-14 days). Rush orders placed by December 10 can typically arrive before December 25 with expedited shipping. For large orders of 100+ pieces, we recommend ordering by November 15 to allow comfortable production time and shipping buffer. Contact us in early November for bulk corporate Christmas gift orders."
+      answer: "For guaranteed pre-Christmas delivery, order by December 1 for standard production (7-14 business days). Rush orders placed by December 10 can typically arrive before December 25 with expedited shipping. For large orders of 100+ pieces, we recommend ordering by November 15 to allow comfortable production time and shipping buffer. Contact us in early November for bulk corporate Christmas gift orders."
     },
     {
       question: "Can Christmas patches be applied to stockings, tree skirts, and holiday decor fabric?",
@@ -846,7 +846,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How long does a biker cut set take to produce?",
-      answer: "A standard three-piece biker cut set takes 10-14 days from artwork approval to shipping. Rush production of 5-7 days is available for prospecting or patching ceremonies with firm dates. We recommend sharing reference artwork or a description of your club colors and emblem 2-3 weeks before your patching ceremony to allow time for proof approval and any design adjustments."
+      answer: "A standard three-piece biker cut set takes 7-14 business days from artwork approval to shipping. Rush production of 5-7 days is available for prospecting or patching ceremonies with firm dates. We recommend sharing reference artwork or a description of your club colors and emblem 2-3 weeks before your patching ceremony to allow time for proof approval and any design adjustments."
     },
     {
       question: "Do you produce the small chest and pin patches worn on the front of a cut?",
