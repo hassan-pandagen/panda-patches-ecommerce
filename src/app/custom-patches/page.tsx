@@ -6,7 +6,6 @@ import { client } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, BRAND_ID, ORG_ID } from "@/lib/schemas";
-import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT_STR } from "@/lib/reviewConstants";
 import MakerNote from "@/components/seo/MakerNote";
 import { buildPageMetadata } from "@/lib/seo";
 import { COUNTRY_HREFLANG } from "@/lib/countryHreflang";
@@ -52,12 +51,11 @@ const productSchema = {
   image: "https://www.pandapatches.com/assets/og-image.png",
   brand: { "@id": BRAND_ID },
   manufacturer: { "@id": ORG_ID },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: TRUSTPILOT_RATING,
-    bestRating: "5",
-    ratingCount: TRUSTPILOT_REVIEW_COUNT_STR,
-  },
+  // No aggregateRating: Trustpilot reviews are company-wide, not specific to
+  // this landing page's "Custom Patches" Product entity. The org-level
+  // rating already renders via generateEntityGraph() in the root layout —
+  // duplicating it here is the same "multiple aggregate ratings" pattern
+  // Google flagged on /reviews (GSC Review snippets, 2026-07-07).
   hasMerchantReturnPolicy: {
     "@type": "MerchantReturnPolicy",
     applicableCountry: "US",

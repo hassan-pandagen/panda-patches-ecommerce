@@ -32,7 +32,10 @@ export default async function ProductHero({ productData, isMainPage = false }: P
 
   return (
     <section id="quote-form" className="w-full pt-2 md:pt-4 pb-8 md:pb-14 bg-white">
-      <div className="container mx-auto px-4 md:px-6 max-w-[1400px]">
+      {/* wide: only fires above a standard 1920px display, so every
+          width up to and including 1920px keeps the original 1400px cap —
+          only genuinely large/wide monitors get the wider container. */}
+      <div className="container mx-auto px-4 md:px-6 max-w-[1400px] wide:max-w-[1920px] wide:px-16">
 
         <div className="flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-20 items-start">
 
@@ -45,11 +48,11 @@ export default async function ProductHero({ productData, isMainPage = false }: P
           <div className="flex-1 w-full">
 
             {/* Title and description scroll normally above the sticky region. */}
-            <h1 className="text-[20px] sm:text-[22px] md:text-[26px] lg:text-[30px] xl:text-[34px] font-extrabold text-panda-dark leading-tight mb-4 md:mb-6 w-full tracking-tight text-center md:text-left">
+            <h1 className="text-[20px] sm:text-[22px] md:text-[26px] lg:text-[30px] xl:text-[34px] wide:text-[40px] font-extrabold text-panda-dark leading-tight mb-4 md:mb-6 w-full tracking-tight text-center md:text-left">
               {title}
             </h1>
 
-            <p className="text-[14px] md:text-[16px] text-gray-600 leading-[1.6] md:leading-[1.7] font-medium mb-6 md:mb-10 max-w-[600px] text-center md:text-left mx-auto md:mx-0">
+            <p className="text-[14px] md:text-[16px] wide:text-[18px] text-gray-600 leading-[1.6] md:leading-[1.7] font-medium mb-6 md:mb-10 max-w-[600px] wide:max-w-[700px] text-center md:text-left mx-auto md:mx-0">
               <AutoLinker text={desc} />
             </p>
 
@@ -64,7 +67,7 @@ export default async function ProductHero({ productData, isMainPage = false }: P
 
           {/* === RIGHT COLUMN === */}
           <div className={`
-             w-full max-w-[600px]
+             w-full max-w-[600px] wide:max-w-[680px]
              ${isMainPage ? 'mt-4 md:mt-8 lg:mt-16' : 'mt-0'}
           `}>
              {isMainPage ? (

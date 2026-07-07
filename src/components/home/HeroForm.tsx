@@ -187,6 +187,19 @@ export default function HeroForm({
 
       // GA4 lead event, sent server-side via Measurement Protocol — conversions + value by channel
       trackLead({ form_name: 'quote', lead_source: window.location.pathname, value: 50 });
+
+      // Google Ads conversion — "Quote Form Sub - Ver". Fired on confirmed
+      // submit (not raw click) so failed/rejected submissions don't inflate
+      // the conversion count. GTM-KQQQ674D's gtag() stub is defined in the
+      // root layout, so this queues correctly even before gtm.js finishes loading.
+      try {
+        if (typeof (window as any).gtag === 'function') {
+          (window as any).gtag('event', 'conversion', {
+            send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
+          });
+        }
+      } catch { /* noop */ }
+
       // OpenAI Conversions (ChatGPT/AI search attribution) — Fill Quote Form
       try {
         if (typeof (window as any).oaiq === 'function') {

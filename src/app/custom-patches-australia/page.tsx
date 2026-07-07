@@ -94,12 +94,11 @@ const productSchema = {
   description:
     "Custom embroidered, PVC, woven, chenille and leather patches shipped free across Australia on a DDP basis with no GST or customs. All-in USD pricing, low 5-piece minimum, free 24-hour mockup.",
   brand: { "@type": "Brand", name: "Panda Patches" },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: TRUSTPILOT_RATING,
-    bestRating: "5",
-    ratingCount: "72",
-  },
+  // No aggregateRating: Trustpilot reviews are company-wide, not specific to
+  // this Product entity. The org-level rating already renders via
+  // generateEntityGraph() in the root layout — duplicating it here is the
+  // same "multiple aggregate ratings" pattern Google flagged on /reviews
+  // (GSC Review snippets, 2026-07-07).
   offers: {
     "@type": "AggregateOffer",
     priceCurrency: "USD",

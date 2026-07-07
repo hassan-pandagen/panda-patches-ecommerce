@@ -8,6 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        // Standard "1K" 1920px monitors must render identically to the
+        // 1536px (2xl) breakpoint — this only activates on genuinely
+        // large/wide monitors above a normal 1920px display.
+        wide: "1921px",
+      },
       colors: {
         panda: {
           green: "#3B7E00",

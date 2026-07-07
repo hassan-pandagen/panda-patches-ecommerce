@@ -50,11 +50,11 @@ const rushFAQs = [
   },
   {
     question: "Do rush orders cost more?",
-    answer: "Rush adds a flat fee based on quantity — for example +$50 at 50 pieces, +$75 at 100, +$150 at 500, and +$200 at 1,000 on fixed-price packs (the calculator shows exact rush pricing for custom sizes at checkout). Everything else stays the same: free digital mockup, no setup or digitizing fees, and free worldwide shipping.",
+    answer: "Rush adds a flat fee based on quantity — for example +$50 at 50 pieces, +$75 at 100, +$150 at 500, and +$200 at 1,000 on fixed-price packs (the calculator shows exact rush pricing for custom sizes at checkout). That's a flat fee, not a percentage of your order — a 1,000-piece rush costs the same +$200 whether your patches total $2,000 or $20,000, unlike rush surcharges elsewhere that scale with order value. Everything else stays the same: free digital mockup, no setup or digitizing fees, and free worldwide shipping.",
   },
   {
     question: "Which patch types can be rushed?",
-    answer: "Embroidered, PVC, chenille, and woven patches all qualify for rush production, from 5 pieces (woven from 10). Backing options — iron-on, sew-on, Velcro, sticker — don't affect the rush timeline. Patch type does affect how fast we can get patches in hand, which is why we confirm your exact date within 2-6 hours.",
+    answer: "Embroidered, PVC, chenille, and woven patches all qualify for rush production, from 5 pieces (woven from 10). Backing options — iron-on, sew-on, Velcro, sticker — don't affect the rush timeline. Patch type affects speed because of the production steps involved: simpler, single-technique designs in smaller quantities move fastest, while multi-step techniques like chenille and 3D puff embroidery — or very large quantities — need more production passes. That's why we confirm your exact date within 2-6 hours instead of quoting one number for every order.",
   },
   {
     question: "What do I need to start a rush order?",
@@ -86,6 +86,35 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 const faqSchema = generateFAQSchema(rushFAQs);
 const serviceSchema = generateRushServiceSchema();
 
+// dateModified: bump whenever RECENT_RUSH_ORDERS entries change (RECENT_1.MD's
+// freshness-signal ask). WebPage is the correct schema.org type for this
+// property — not bolted onto the Service schema above.
+const RUSH_ORDERS_LAST_UPDATED = "2026-07-07";
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "url": CANONICAL,
+  "name": "Rush Custom Patches",
+  "dateModified": RUSH_ORDERS_LAST_UPDATED,
+};
+
+// Recent Rush Orders — real, dated CRM-verified deliveries (RECENT_1.MD, July
+// 2026). Privacy rule: no customer/business names, emails, phones, or dollar
+// amounts. Order IDs, patch type, quantity, dates, and destination city/state
+// only.
+//
+// <!-- To add a new entry: pick a DELIVERED rush order from
+// portal.pandapatches.com, verify created date and delivered date in the
+// order's activity log, count business days, add row, remove the oldest row.
+// Keep 4-6 rows. Never publish names or amounts. -->
+const RECENT_RUSH_ORDERS = [
+  { id: "PP-11017", desc: "200 PVC patches", dest: "Balch Springs, TX", ordered: "Jun 24, 2026", inHand: "Jul 3, 2026", turnaround: "7 business days" },
+  { id: "PP-10788", desc: "4 oversized 3D puff patches (up to 12\")", dest: "Gardiner, MT", ordered: "May 12, 2026", inHand: "Shipped May 14 via FedEx", turnaround: "Produced in 2 days" },
+  { id: "PP-10241", desc: "100 patches (embroidered + leather)", dest: "Las Vegas, NV", ordered: "Jan 28, 2026", inHand: "Feb 4, 2026", turnaround: "5 business days" },
+  { id: "PP-10231", desc: "12 embroidered patches", dest: "Woodmere, NY", ordered: "Jan 22, 2026", inHand: "Jan 28, 2026", turnaround: "~5 business days" },
+  { id: "PP-10091", desc: "200 embroidered patches", dest: "Miami, FL", ordered: "Dec 18, 2025", inHand: "Dec 26, 2025", turnaround: "5 business days (over Christmas)" },
+];
+
 // Rush-specific trust stat replacing "2-Week Turnaround" (RUSH-C_1.MD section 3).
 const rushTrustStats = [
   { icon: Award, label: "4,000+", sub: "Bulk Orders" },
@@ -112,6 +141,7 @@ export default function RushCustomPatchesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(faqSchema)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(serviceSchema)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(webPageSchema)} />
 
       <Navbar />
 
@@ -174,6 +204,44 @@ export default function RushCustomPatchesPage() {
             <li><strong>Approve your mockup in {MOCKUP_SLA}.</strong> Unlimited free revisions — production never starts without your sign-off.</li>
             <li><strong>Patches in hand in as fast as 5 business days.</strong> Timing depends on quantity and patch type; free worldwide shipping with full tracking either way.</li>
           </ol>
+        </div>
+      </section>
+
+      {/* RECENT RUSH ORDERS — real, dated CRM-verified proof (RECENT_1.MD).
+          First-party evidence like this is exactly what AI Overviews/assistants
+          cite over generic competitor copy — semantic <table>, not an image. */}
+      <section className="w-full py-10 md:py-14 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+          <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-2">
+            Recent Rush Orders
+          </h2>
+          <p className="text-[14px] text-gray-500 mb-1">Real orders from our production log — updated monthly.</p>
+          <p className="text-[12px] text-gray-400 mb-6">Last updated: July 2026</p>
+          <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-black text-white">
+                  <th className="text-left px-4 py-3 font-bold text-[11px] uppercase tracking-wider">Order</th>
+                  <th className="text-left px-4 py-3 font-bold text-[11px] uppercase tracking-wider">What</th>
+                  <th className="text-left px-4 py-3 font-bold text-[11px] uppercase tracking-wider">Ordered</th>
+                  <th className="text-left px-4 py-3 font-bold text-[11px] uppercase tracking-wider">In Hand</th>
+                  <th className="text-left px-4 py-3 font-bold text-[11px] uppercase tracking-wider">Turnaround</th>
+                </tr>
+              </thead>
+              <tbody>
+                {RECENT_RUSH_ORDERS.map((o) => (
+                  <tr key={o.id} className="border-t border-gray-100">
+                    <td className="px-4 py-3 font-mono text-[13px] text-gray-500">{o.id}</td>
+                    <td className="px-4 py-3 font-semibold text-panda-dark">{o.desc} → {o.dest}</td>
+                    <td className="px-4 py-3 text-gray-600">{o.ordered}</td>
+                    <td className="px-4 py-3 text-gray-600">{o.inHand}</td>
+                    <td className="px-4 py-3 font-bold text-green-700">{o.turnaround}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-[12px] text-gray-400 mt-3">Turnaround counted in business days from order to delivery confirmation.</p>
         </div>
       </section>
 

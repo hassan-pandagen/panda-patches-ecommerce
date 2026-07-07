@@ -704,15 +704,13 @@ export function generateLocalBusinessSchema() {
       "https://www.instagram.com/pandapatchesofficial/",
       "https://www.linkedin.com/in/imran-raza-ladhani/"
     ],
-    // Trustpilot company-wide rating — org-level only, never on Product (reviews
-    // are company-wide, not product-specific; Google policy). Schema audit P2.
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": TRUSTPILOT_RATING,
-      "reviewCount": TRUSTPILOT_REVIEW_COUNT,
-      "bestRating": "5",
-      "worstRating": "1",
-    },
+    // No aggregateRating here: this LocalBusiness (@id: #localbusiness) renders
+    // on the homepage and /contact alongside the Organization entity (@id:
+    // #organization) from the root layout's generateEntityGraph(), which
+    // already carries the one authoritative Trustpilot rating. A second
+    // aggregateRating here — same name/address, different @id — is exactly
+    // the "multiple aggregate ratings" pattern Google flagged on /reviews
+    // (GSC Review snippets, 2026-07-07); removed before it got flagged here too.
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",

@@ -125,7 +125,7 @@ export default function BulkQuoteForm() {
             height: Math.min(parseFloat(data.size?.toLowerCase().split(/\s*x\s*/i)[1]) || 3, 50),
             backing: sanitizeString(data.backing || "iron"),
             instructions: sanitizeString(
-              `[BULK ORDER] Company: ${data.company || "N/A"} | Qty Range: ${data.quantityRange || "N/A"} | Patch Type: ${data.patchType || "N/A"} | Size: ${data.size || "N/A"} | Needed By: ${data.neededBy || "N/A"} | Budget: ${data.budget || "N/A"} | Notes: ${data.notes || "None"} | Source: ${data.hearAbout === "Other" ? (hearAboutOther.trim() || "Other") : (data.hearAbout || "N/A")}`
+              `[BULK ORDER] Company: ${data.company || "N/A"} | Qty Range: ${data.quantityRange || "N/A"} | Patch Type: ${data.patchType || "N/A"} | Size: ${data.size || "N/A"} | Needed By: ${data.neededBy || "N/A"} | Delivery Speed: ${data.deliverySpeed ? data.deliverySpeed.charAt(0).toUpperCase() + data.deliverySpeed.slice(1) : "N/A"} | Budget: ${data.budget || "N/A"} | Notes: ${data.notes || "None"} | Source: ${data.hearAbout === "Other" ? (hearAboutOther.trim() || "Other") : (data.hearAbout || "N/A")}`
             ),
             patchType: sanitizeString(data.patchType || ""),
           },
@@ -157,6 +157,16 @@ export default function BulkQuoteForm() {
 
       // GA4 lead event, sent server-side via Measurement Protocol
       trackLead({ form_name: 'bulk_quote', lead_source: window.location.pathname });
+
+      // Google Ads conversion — "Quote Form Sub - Ver" (same conversion action
+      // as HeroForm's quote form; fired on confirmed submit, not raw click).
+      try {
+        if (typeof (window as any).gtag === 'function') {
+          (window as any).gtag('event', 'conversion', {
+            send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
+          });
+        }
+      } catch { /* noop */ }
     } catch (error) {
       console.error("Bulk quote error:", error);
       setMessage({ type: "error", text: "Failed to submit. Please try again or call us at (302) 773-8982." });
@@ -354,6 +364,17 @@ export default function BulkQuoteForm() {
               className="bulk-field"
             />
           </div>
+        </div>
+
+        {/* Delivery speed preference */}
+        <div className="relative">
+          <select {...register("deliverySpeed")} defaultValue="" aria-label="Preferred delivery speed" className="bulk-field appearance-none cursor-pointer pr-8 text-gray-500">
+            <option value="" disabled hidden>Preferred Delivery Speed (optional)</option>
+            <option value="standard">Standard (7–14 business days) — Free</option>
+            <option value="rush">Rush (faster) — Fee applies</option>
+            <option value="economy">Economy (16–18 business days) — Save 10%</option>
+          </select>
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-[10px]">&#9660;</div>
         </div>
 
         {/* Notes */}

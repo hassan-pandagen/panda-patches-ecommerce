@@ -52,13 +52,12 @@ export default async function Hero() {
       />
 
       {/* MAIN CONTENT
-          Widened past Tailwind's default 1536px container ceiling (PANDAP_1
-          brief, July 2026): on 2560px+ monitors the old `container mx-auto`
-          cap left ~512px of dead margin per side instead of scaling with the
-          viewport. max-w-[1800px]/2xl:max-w-[1920px] lets it keep growing on
-          large screens while staying bounded below the current 1536px
-          breakpoint (no change to 1440px and below). */}
-      <div className="w-full max-w-[1800px] 2xl:max-w-[1920px] mx-auto px-4 md:px-6 lg:px-12 2xl:px-24 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 items-center flex-grow pt-0 md:pt-8 lg:justify-items-start justify-items-center">
+          Tailwind's own `container` class caps at 1536px and never grows past
+          it, so on 2560px+ monitors it left ~512px of dead margin per side.
+          wide: only fires above a standard 1920px display, so every
+          width up to and including 1920px renders exactly as `container`
+          always has — only genuinely large/wide monitors get the wider cap. */}
+      <div className="container mx-auto px-4 md:px-6 lg:px-12 wide:max-w-[1920px] wide:px-24 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 items-center flex-grow pt-0 md:pt-8 lg:justify-items-start justify-items-center">
         
         {/* === LEFT SIDE (Text & Patches) === */}
         <div className="flex flex-col justify-center h-full text-center lg:text-left w-full lg:w-auto">
@@ -70,7 +69,7 @@ export default async function Hero() {
              - Weight: SemiBold (600)
              - Color: Dark (No Yellow)
           */}
-          <h1 className="text-[28px] md:text-[40px] xl:text-[48px] 2xl:text-[56px] leading-[1.2] font-semibold text-panda-dark tracking-tight mb-2 md:mb-4 max-w-full md:max-w-[550px] 2xl:max-w-[680px]">
+          <h1 className="text-[28px] md:text-[40px] wide:text-[56px] leading-[1.2] font-semibold text-panda-dark tracking-tight mb-2 md:mb-4 max-w-full md:max-w-[550px] wide:max-w-[680px]">
             {data?.title || "Custom Patches | Embroidered, Woven, PVC & More"}
           </h1>
 
@@ -80,7 +79,7 @@ export default async function Hero() {
              - Mobile: Font Size 16px
              - Width constrained to force 3 lines
           */}
-          <p className="text-[16px] md:text-[20px] xl:text-[22px] 2xl:text-[24px] text-gray-600 font-medium leading-[1.5] max-w-full md:max-w-[520px] 2xl:max-w-[640px] mb-3 md:mb-4">
+          <p className="text-[16px] md:text-[20px] wide:text-[24px] text-gray-600 font-medium leading-[1.5] max-w-full md:max-w-[520px] wide:max-w-[640px] mb-3 md:mb-4">
             {data?.subtitle || "Welcome to Panda Patches, where brand stories are stitched into reality! From company logos to promotional swag, let your brand speak loud and clear with our iron on patches. Crafted with care, delivered with precision."}
           </p>
 
@@ -95,7 +94,7 @@ export default async function Hero() {
              - Mobile: Responsive with full width
           */}
           <div
-            className="relative w-full max-w-full md:max-w-[630px] 2xl:max-w-[760px] h-[250px] md:h-[379px] 2xl:h-[458px] -mt-2 md:-mt-4 mx-auto md:mx-0"
+            className="relative w-full max-w-full md:max-w-[630px] wide:max-w-[760px] h-[250px] md:h-[379px] wide:h-[458px] -mt-2 md:-mt-4 mx-auto md:mx-0"
           >
                {/* Hero/LCP image — Sanity source via Next/Image: AVIF + responsive
                    srcset, optimized at Vercel's edge, priority so Next emits the LCP
@@ -142,7 +141,7 @@ export default async function Hero() {
            - Responsive padding for mobile
         */}
         <div className="w-full flex justify-center lg:justify-end items-center h-full pl-0 lg:pl-10">
-           <div className="w-full max-w-[620px] 2xl:max-w-[720px] px-2 sm:px-0">
+           <div className="w-full max-w-[620px] wide:max-w-[720px] px-2 sm:px-0">
               <HeroForm />
            </div>
         </div>
@@ -151,7 +150,7 @@ export default async function Hero() {
 
       {/* === GLOBAL BRANDS (On Hero Background) === */}
       <div className="relative z-20 w-full pb-6 md:pb-8 pt-4 md:pt-6 bg-transparent">
-        <div className="w-full max-w-[1800px] 2xl:max-w-[1920px] mx-auto px-4 md:px-6 2xl:px-24 text-center">
+        <div className="container mx-auto px-4 md:px-6 wide:max-w-[1920px] wide:px-24 text-center">
 
           <p className="text-[11px] md:text-[13px] font-black text-black text-center uppercase tracking-[0.15em] md:tracking-[0.2em] mb-5 md:mb-7 opacity-100">
             Trusted by Teams At

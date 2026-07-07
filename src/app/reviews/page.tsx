@@ -5,7 +5,6 @@ import Footer from "@/components/layout/Footer";
 import ReviewCard from "@/components/reviews/ReviewCard";
 import TrustpilotRatingLine from "@/components/reviews/TrustpilotRatingLine";
 import { generateSchemaScript, generateBreadcrumbSchema } from "@/lib/schemas";
-import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT_STR } from "@/lib/reviewConstants";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -303,28 +302,17 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "Reviews", url: "https://www.pandapatches.com/reviews" },
 ]);
 
-// AggregateRating attached to the brand entity by @id, sourced from the single
-// source-of-truth Trustpilot constants. Lives on /reviews — the page that actually
-// displays the reviews — so the rating signal is contextually backed.
-const ratingSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://www.pandapatches.com/#organization",
-  name: "Panda Patches",
-  url: "https://www.pandapatches.com",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: TRUSTPILOT_RATING,
-    bestRating: "5",
-    ratingCount: TRUSTPILOT_REVIEW_COUNT_STR,
-  },
-};
+// The org-level aggregateRating (@id: #organization) already renders on every
+// page via generateEntityGraph() in the root layout. A second Organization
+// block here with its own aggregateRating shared the same @id, so Google
+// merged them into one entity and flagged "multiple aggregate ratings" for
+// this URL (GSC Review snippets, first detected 2026-07-07). Removed rather
+// than duplicated — the layout's entity graph is the single source of truth.
 
 export default function ReviewsPage() {
   return (
     <main className="min-h-screen bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(ratingSchema)} />
 
       <Navbar />
 
