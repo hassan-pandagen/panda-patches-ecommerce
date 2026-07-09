@@ -13,6 +13,14 @@ export interface ClientAttribution {
   fbp?: string;
   fbc?: string;
   gclid?: string;
+  /** iOS web-to-app Google click id (URL param or _gcl_gb cookie fallback). */
+  wbraid?: string;
+  /** iOS app-to-web Google click id. */
+  gbraid?: string;
+  /** ISO timestamp of when the current Google click id was captured. Approximates
+   *  click time so the CRM's google-ads-conversions function can drop click ids
+   *  older than 90 days (Google rejects those) and fall back to hashed email/phone. */
+  gclid_captured_at?: string;
   fbclid?: string;
   utm_source?: string;
   utm_medium?: string;
@@ -43,6 +51,33 @@ function readCookie(name: string): string | undefined {
   return undefined;
 }
 
+/**
+ * Resolve Google click ids for this page load: the URL param wins, then the
+ * Google tag's _gcl_aw (gclid) / _gcl_gb (gbraid) cookie as a fallback.
+ * Cookie format is `GCL.<timestamp>.<clickId>`.
+ */
+function readGoogleClickIds(params: URLSearchParams): {
+  gclid?: string;
+  wbraid?: string;
+  gbraid?: string;
+} {
+  const ids: { gclid?: string; wbraid?: string; gbraid?: string } = {
+    gclid: params.get('gclid') || undefined,
+    wbraid: params.get('wbraid') || undefined, // iOS web-to-app
+    gbraid: params.get('gbraid') || undefined, // iOS app-to-web
+  };
+  const cookie = typeof document === 'undefined' ? '' : document.cookie || '';
+  if (!ids.gclid) {
+    const m = cookie.match(/(?:^|;\s*)_gcl_aw=GCL\.\d+\.([^;]+)/);
+    if (m) ids.gclid = m[1];
+  }
+  if (!ids.gbraid) {
+    const m = cookie.match(/(?:^|;\s*)_gcl_gb=GCL\.\d+\.([^;]+)/);
+    if (m) ids.gbraid = m[1];
+  }
+  return ids;
+}
+
 export function captureAttribution(): ClientAttribution {
   if (typeof window === 'undefined') return {};
 
@@ -56,7 +91,6 @@ export function captureAttribution(): ClientAttribution {
 
   const params = new URLSearchParams(window.location.search);
   const fbclid = params.get('fbclid') || undefined;
-  const gclid = params.get('gclid') || undefined;
   const msclkid = params.get('msclkid') || undefined;
   const ttclid = params.get('ttclid') || undefined;
   const utm_source = params.get('utm_source') || undefined;
@@ -68,6 +102,22 @@ export function captureAttribution(): ClientAttribution {
   const fbp = readCookie('_fbp');
   const fbc = readCookie('_fbc') || (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
 
+  // Google click ids: like fbc, a fresh non-null value (URL param, then cookie)
+  // wins and null never clears a stored id. gclid_captured_at is refreshed ONLY
+  // when a genuinely new click id is seen this load (not on every page view of an
+  // unchanged id) so it stays a faithful proxy for click time for the 90-day check.
+  const freshG = readGoogleClickIds(params);
+  const gclid = freshG.gclid || existing.gclid;
+  const wbraid = freshG.wbraid || existing.wbraid;
+  const gbraid = freshG.gbraid || existing.gbraid;
+  const newClick =
+    (!!freshG.gclid && freshG.gclid !== existing.gclid) ||
+    (!!freshG.wbraid && freshG.wbraid !== existing.wbraid) ||
+    (!!freshG.gbraid && freshG.gbraid !== existing.gbraid);
+  const gclid_captured_at = newClick
+    ? new Date().toISOString()
+    : (gclid || wbraid || gbraid ? existing.gclid_captured_at : undefined);
+
   // First-touch wins (existing values kept) so the utm tags + click IDs survive
   // if the customer browses other pages before they submit.
   const merged: ClientAttribution = {
@@ -75,7 +125,10 @@ export function captureAttribution(): ClientAttribution {
     fbp: fbp || existing.fbp,
     fbc: fbc || existing.fbc,
     fbclid: fbclid || existing.fbclid,
-    gclid: gclid || existing.gclid,
+    gclid,
+    wbraid,
+    gbraid,
+    gclid_captured_at,
     msclkid: msclkid || existing.msclkid,
     ttclid: ttclid || existing.ttclid,
     utm_source: utm_source || existing.utm_source,

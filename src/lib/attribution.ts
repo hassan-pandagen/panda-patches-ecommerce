@@ -31,6 +31,8 @@ export function getAttributionFromRequest(
 
   const fbclidFromUrl = url?.searchParams.get('fbclid') || undefined;
   const gclidFromUrl = url?.searchParams.get('gclid') || undefined;
+  const wbraidFromUrl = url?.searchParams.get('wbraid') || undefined;
+  const gbraidFromUrl = url?.searchParams.get('gbraid') || undefined;
   const msclkidFromUrl = url?.searchParams.get('msclkid') || undefined;
   const ttclidFromUrl = url?.searchParams.get('ttclid') || undefined;
 
@@ -38,6 +40,11 @@ export function getAttributionFromRequest(
     fbp: bodyAttribution?.fbp || cookies['_fbp'] || undefined,
     fbc: bodyAttribution?.fbc || cookies['_fbc'] || fbclidToFbc(bodyAttribution?.fbclid || fbclidFromUrl),
     gclid: bodyAttribution?.gclid || gclidFromUrl || undefined,
+    wbraid: bodyAttribution?.wbraid || wbraidFromUrl || undefined,
+    gbraid: bodyAttribution?.gbraid || gbraidFromUrl || undefined,
+    // Client-captured proxy for click time (no URL equivalent) — used by the CRM's
+    // google-ads-conversions function to drop click ids older than 90 days.
+    gclid_captured_at: bodyAttribution?.gclid_captured_at || undefined,
     fbclid: bodyAttribution?.fbclid || fbclidFromUrl || undefined,
     msclkid: bodyAttribution?.msclkid || msclkidFromUrl || undefined,
     ttclid: bodyAttribution?.ttclid || ttclidFromUrl || undefined,

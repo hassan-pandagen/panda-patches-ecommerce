@@ -158,14 +158,19 @@ export default function BulkQuoteForm() {
       // GA4 lead event, sent server-side via Measurement Protocol
       trackLead({ form_name: 'bulk_quote', lead_source: window.location.pathname });
 
-      // Google Ads conversion — "Quote Form Sub - Ver" (same conversion action
-      // as HeroForm's quote form; fired on confirmed submit, not raw click).
+      // Google Ads "Quote Form Sub" conversion fires from GTM (GTM-KQQQ674D) off
+      // this single dataLayer event, with Enhanced Conversions — same conversion
+      // action as HeroForm, one firing path so it can't double-count. Raw
+      // email/phone in user_data; Google's tag hashes them client-side.
       try {
-        if (typeof (window as any).gtag === 'function') {
-          (window as any).gtag('event', 'conversion', {
-            send_to: 'AW-11221237770/qTWjCNnZ3oEcEIqA2uYp',
-          });
-        }
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: 'quote_form_submit',
+          user_data: {
+            email: data.email,
+            phone_number: data.phone || '',
+          },
+        });
       } catch { /* noop */ }
     } catch (error) {
       console.error("Bulk quote error:", error);

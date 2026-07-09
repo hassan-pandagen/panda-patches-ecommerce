@@ -41,6 +41,11 @@ const QuoteSchema = z.object({
     fbp: z.string().optional(),
     fbc: z.string().optional(),
     gclid: z.string().optional(),
+    // Google click ids + capture time for the CRM's google-ads-conversions
+    // function. Without these in the schema, Zod strips them before the DB insert.
+    wbraid: z.string().optional(),
+    gbraid: z.string().optional(),
+    gclid_captured_at: z.string().optional(),
     fbclid: z.string().optional(),
     utm_source: z.string().optional(),
     utm_medium: z.string().optional(),

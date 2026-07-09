@@ -39,6 +39,11 @@ export interface Attribution {
   fbp?: string;
   fbc?: string;
   gclid?: string;
+  wbraid?: string;
+  gbraid?: string;
+  /** ISO capture time of the Google click id — read by the CRM's
+   *  google-ads-conversions edge function for the 90-day click-age check. */
+  gclid_captured_at?: string;
   fbclid?: string;
   client_ip?: string;
   client_ua?: string;
