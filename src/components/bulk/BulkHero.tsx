@@ -60,17 +60,14 @@ export default function BulkHero({
   const stats = trustStats || DEFAULT_TRUST_STATS;
   return (
     <section className="w-full pt-0 md:pt-1 pb-6 md:pb-10 bg-white">
-      {/* wide: only fires above a standard 1920px display, so every
-          width up to and including 1920px keeps the original 1200px cap —
-          only genuinely large/wide monitors get the wider container. */}
-      <div className="container mx-auto px-4 md:px-6 max-w-[1200px] wide:max-w-[1920px] wide:px-16">
+      <div className="container mx-auto px-4 md:px-6 max-w-[1200px]">
 
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
 
           {/* LEFT - Content */}
           <div className="flex-1 text-center lg:text-left">
             {/* H1 */}
-            <h1 className="text-[28px] md:text-[42px] lg:text-[48px] wide:text-[56px] font-black text-panda-dark leading-[1.1] tracking-tight mb-4">
+            <h1 className="text-[28px] md:text-[42px] lg:text-[48px] font-black text-panda-dark leading-[1.1] tracking-tight mb-4">
               {customHeading || (
                 <>
                   Bulk Custom Patches —{" "}
@@ -81,13 +78,13 @@ export default function BulkHero({
 
             {/* Subheadline */}
             {customSubheading && (
-              <p className="text-[16px] md:text-[19px] wide:text-[21px] font-bold text-panda-dark leading-[1.3] mb-3 max-w-[560px] wide:max-w-[680px] mx-auto lg:mx-0">
+              <p className="text-[16px] md:text-[19px] font-bold text-panda-dark leading-[1.3] mb-3 max-w-[560px] mx-auto lg:mx-0">
                 {customSubheading}
               </p>
             )}
 
             {/* Description */}
-            <p className="text-[15px] md:text-[17px] wide:text-[19px] text-gray-600 leading-[1.6] font-medium mb-5 max-w-[560px] wide:max-w-[680px] mx-auto lg:mx-0">
+            <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.6] font-medium mb-5 max-w-[560px] mx-auto lg:mx-0">
               {customDescription || "Trusted by brands, sports teams, fire departments, and Fortune 500 companies. 2-week turnaround, no setup fees, mockup in 12-24 hours."}
             </p>
 
@@ -152,7 +149,7 @@ export default function BulkHero({
           </div>
 
           {/* RIGHT - Quote Form (simple homepage form or full bulk form) */}
-          <div className="w-full lg:w-[520px] wide:w-[600px] flex-shrink-0">
+          <div className="w-full lg:w-[520px] flex-shrink-0">
             {formNote && (
               <div className="mb-3 text-center lg:text-left text-[13px] font-bold text-panda-green bg-panda-green/10 rounded-[10px] px-4 py-2.5">
                 {formNote}
