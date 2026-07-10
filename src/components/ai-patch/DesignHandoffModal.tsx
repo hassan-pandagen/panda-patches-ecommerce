@@ -7,6 +7,7 @@ import { X, Sparkles, ArrowRight, CheckCircle, FileText, Zap } from "lucide-reac
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 import { trackAiGen } from "@/lib/aiGenAnalytics";
 import { trackLead } from "@/lib/ga4";
+import { trackGoogleAdsLead } from "@/lib/googleAds";
 
 /**
  * WEBSIT_4.MD G6 — Conversion funnel modal.
@@ -158,6 +159,8 @@ export default function DesignHandoffModal({
 
       // GA4 lead event (dataLayer → GTM → GA4)
       trackLead({ form_name: 'ai_generator', patch_type: design.style, lead_source: window.location.pathname });
+      // Google Ads "Quote Form Sub" conversion (GTM → Enhanced Conversions). Fires before the order-intent redirect.
+      trackGoogleAdsLead({ formName: 'ai_generator', email, phone });
 
       if (intent === "order") {
         // Ready to order: skip the success screen, go straight to the

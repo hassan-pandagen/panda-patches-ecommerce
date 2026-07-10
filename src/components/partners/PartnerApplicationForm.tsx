@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { getStoredAttribution } from '@/lib/clientAttribution';
 import { trackLead } from '@/lib/ga4';
+import { trackGoogleAdsLead } from '@/lib/googleAds';
 
 const inputCls = 'w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-panda-green focus:border-transparent transition';
 const labelCls = 'block text-[12px] font-semibold text-gray-500 mb-1.5 tracking-wide uppercase';
@@ -58,6 +59,8 @@ export default function PartnerApplicationForm() {
       setSuccess(true);
       // GA4 lead event (dataLayer → GTM → GA4)
       trackLead({ form_name: 'partner', partner_type: payload.partnerType, lead_source: window.location.pathname });
+      // Google Ads "Quote Form Sub" conversion (GTM → Enhanced Conversions).
+      trackGoogleAdsLead({ formName: 'partner', email: payload.businessEmail, phone: payload.phone });
       form.reset();
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Submission failed. Please try again or call (302) 773-8982.';

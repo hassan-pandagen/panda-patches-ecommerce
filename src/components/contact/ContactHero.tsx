@@ -6,6 +6,7 @@ import { Facebook, Instagram, Linkedin } from "lucide-react";
 import TrackedEmailLink from "@/components/TrackedEmailLink";
 import { getStoredAttribution } from "@/lib/clientAttribution";
 import { trackLead } from "@/lib/ga4";
+import { trackGoogleAdsLead } from "@/lib/googleAds";
 
 type FormData = {
   name: string;
@@ -34,6 +35,8 @@ export default function ContactHero() {
         setStatus('success');
         // GA4 lead event (dataLayer → GTM → GA4)
         trackLead({ form_name: 'contact', lead_source: window.location.pathname });
+        // Google Ads "Quote Form Sub" conversion (GTM → Enhanced Conversions). No phone field on this form.
+        trackGoogleAdsLead({ formName: 'contact', email: data.email });
         reset();
       } else {
         setStatus('error');

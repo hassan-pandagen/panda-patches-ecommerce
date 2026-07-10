@@ -12,6 +12,7 @@ import { usePriceCalculation } from "@/hooks/usePriceCalculation";
 import FormFeedback from "@/components/feedback/FormFeedback";
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 import { trackLead } from "@/lib/ga4";
+import { trackGoogleAdsLead } from "@/lib/googleAds";
 
 
 // Default backing options if none provided
@@ -440,6 +441,8 @@ export default function ComplexCalculator({
       setTimeout(() => setQuoteSent(false), 15000);
       // GA4 lead event, sent server-side via Measurement Protocol — conversions + value by channel
       trackLead({ form_name: 'quote', lead_source: window.location.pathname, value: 50 });
+      // Google Ads "Quote Form Sub" conversion (GTM → Enhanced Conversions).
+      trackGoogleAdsLead({ formName: 'quote', email, phone });
       try {
         if (typeof (window as any).oaiq === 'function') {
           (window as any).oaiq('measure', 'registration_completed', {

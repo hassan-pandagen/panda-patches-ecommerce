@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { trackPurchase } from '@/lib/ga4';
+import { trackGoogleAdsPurchase } from '@/lib/googleAds';
 
 export default function PurchaseConversion() {
   useEffect(() => {
@@ -26,10 +27,12 @@ export default function PurchaseConversion() {
     // direct visits to the confirmation URL.
     if (orderId) {
       trackPurchase({ transaction_id: orderId, value, currency: 'USD' });
+      // Google Ads Purchase conversion (GTM). Re-enabled now that Google Ads is
+      // active again — mirrors the GA4 purchase above, keyed on the order id so
+      // GTM can record revenue. Enhanced-Conversions email/phone matching for
+      // orders is done server-side from the CRM (which has the buyer's details).
+      trackGoogleAdsPurchase({ transactionId: orderId, value });
     }
-
-    // Google Ads Enhanced Conversions fire used to live here — removed (audit P3),
-    // ad spend is Meta-only so it was dead code with no active AW- account.
 
     if (!orderId) return;
 

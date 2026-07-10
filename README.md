@@ -287,6 +287,17 @@ META_PIXEL_ID=<pixel-id>
 META_ACCESS_TOKEN=<capi-token>
 META_TEST_EVENT_CODE=<test-code>                   # optional, sandbox only
 
+# ── Google Ads (server-side offline conversion upload, Square webhook) ──
+# All optional — sendGoogleAdsPurchase() no-ops until every one of these is set.
+# GADS_ACTION_ID_ORDER and GADS_CUSTOMER_ID are shared with the CRM's own
+# google-ads-conversions edge function (Supabase secrets) — same values, copy them.
+GADS_CUSTOMER_ID=8947440123                        # optional, this is the default
+GADS_CLIENT_ID=<oauth-client-id>
+GADS_CLIENT_SECRET=<oauth-client-secret>
+GADS_REFRESH_TOKEN=<refresh-token>
+GADS_DEVELOPER_TOKEN=<developer-token>
+GADS_ACTION_ID_ORDER=<conversion-action-id>        # "Quote Converted to Order (CRM)"
+
 # ── Infra ──
 UPSTASH_REDIS_REST_URL=<url>
 UPSTASH_REDIS_REST_TOKEN=<token>

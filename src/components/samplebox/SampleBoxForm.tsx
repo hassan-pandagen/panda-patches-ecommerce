@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
 import { trackLead } from "@/lib/ga4";
+import { trackGoogleAdsLead } from "@/lib/googleAds";
 
 export default function SampleBoxForm() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -36,6 +37,8 @@ export default function SampleBoxForm() {
       // GA4 lead event (dataLayer → GTM → GA4) — fire before the Square redirect;
       // the actual purchase fires on the Square return via PurchaseConversion.
       trackLead({ form_name: 'sample_box', lead_source: window.location.pathname, value: 45 });
+      // Google Ads "Quote Form Sub" conversion (GTM → Enhanced Conversions).
+      trackGoogleAdsLead({ formName: 'sample_box', email: data.email, phone: data.contactNumber });
 
       // Redirect to Square Checkout
       if (result.checkoutUrl) {

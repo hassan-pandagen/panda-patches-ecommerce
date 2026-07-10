@@ -7,6 +7,7 @@ import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
 import FormFeedback from "@/components/feedback/FormFeedback";
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 import { trackLead } from "@/lib/ga4";
+import { trackGoogleAdsLead } from "@/lib/googleAds";
 
 export default function BulkQuoteForm() {
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
@@ -158,20 +159,8 @@ export default function BulkQuoteForm() {
       // GA4 lead event, sent server-side via Measurement Protocol
       trackLead({ form_name: 'bulk_quote', lead_source: window.location.pathname });
 
-      // Google Ads "Quote Form Sub" conversion fires from GTM (GTM-KQQQ674D) off
-      // this single dataLayer event, with Enhanced Conversions — same conversion
-      // action as HeroForm, one firing path so it can't double-count. Raw
-      // email/phone in user_data; Google's tag hashes them client-side.
-      try {
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({
-          event: 'quote_form_submit',
-          user_data: {
-            email: data.email,
-            phone_number: data.phone || '',
-          },
-        });
-      } catch { /* noop */ }
+      // Google Ads "Quote Form Sub" conversion (GTM → Enhanced Conversions).
+      trackGoogleAdsLead({ formName: 'bulk_quote', email: data.email, phone: data.phone });
     } catch (error) {
       console.error("Bulk quote error:", error);
       setMessage({ type: "error", text: "Failed to submit. Please try again or call us at (302) 773-8982." });

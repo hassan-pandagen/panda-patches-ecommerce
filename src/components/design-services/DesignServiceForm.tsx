@@ -7,6 +7,7 @@ import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
 import FormFeedback from "@/components/feedback/FormFeedback";
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 import { trackLead } from "@/lib/ga4";
+import { trackGoogleAdsLead } from "@/lib/googleAds";
 
 type ServiceType = "digitizing" | "vector";
 
@@ -198,6 +199,8 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
 
       // GA4 lead event, sent server-side via Measurement Protocol
       trackLead({ form_name: 'design_service', lead_source: window.location.pathname });
+      // Google Ads "Quote Form Sub" conversion (GTM → Enhanced Conversions).
+      trackGoogleAdsLead({ formName: 'design_service', email: data.email, phone: data.phone });
     } catch (error) {
       console.error("Design service quote error:", error);
       setMessage({ type: "error", text: "Failed to submit. Please try again or call us at (302) 773-8982." });
