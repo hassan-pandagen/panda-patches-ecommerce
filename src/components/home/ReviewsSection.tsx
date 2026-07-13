@@ -116,8 +116,10 @@ export default function ReviewsSection() {
           ))}
         </div>
 
-        {/* Mobile dot indicators — tap to jump, active dot elongates */}
-        <div className="flex md:hidden justify-center items-center gap-2 mt-5">
+        {/* Mobile dot indicators — tap to jump, active dot elongates. The button
+            is the touch target (p-2 → ≥24px tap area, WCAG 2.5.8 / Lighthouse
+            "touch targets" audit); the inner span is the small visual dot. */}
+        <div className="flex md:hidden justify-center items-center gap-1 mt-3">
           {reviews.map((_, i) => (
             <button
               key={i}
@@ -125,8 +127,13 @@ export default function ReviewsSection() {
               onClick={() => goTo(i)}
               aria-label={`Go to review ${i + 1} of ${reviews.length}`}
               aria-current={i === active}
-              className={`h-2 rounded-full transition-all duration-300 ${i === active ? "w-6 bg-panda-dark" : "w-2 bg-gray-300"}`}
-            />
+              className="p-2 flex items-center justify-center"
+            >
+              <span
+                aria-hidden="true"
+                className={`block h-2 rounded-full transition-all duration-300 ${i === active ? "w-6 bg-panda-dark" : "w-2 bg-gray-300"}`}
+              />
+            </button>
           ))}
         </div>
 

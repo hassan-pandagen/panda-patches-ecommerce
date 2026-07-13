@@ -13,6 +13,8 @@ import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { getProductReviewSchema } from "@/lib/productReviews";
+import ProductReviews from "@/components/reviews/ProductReviews";
 import { buildPageMetadata } from "@/lib/seo";
 import { getClusterPageData } from "@/lib/clusterPageData";
 import { getFromPriceLabel } from "@/lib/pricingCalculator";
@@ -100,6 +102,9 @@ const productSchema = {
     offerCount: "2",
     seller: { "@type": "Organization", name: "Panda Patches" },
   },
+  // Product-specific aggregateRating + review[] (only when enough genuine reviews exist).
+  // The same reviews render on-page via <ProductReviews> below.
+  ...(getProductReviewSchema("custom-martial-arts-patches") ?? {}),
 };
 
 export default async function CustomMartialArtsPatchesPage() {
@@ -196,6 +201,8 @@ export default async function CustomMartialArtsPatchesPage() {
 
       <Promises bgColor="bg-[#F9FAF5]" />
       <ReviewsSection />
+      {/* Product reviews backing this page's Product.aggregateRating (must be visible). */}
+      <ProductReviews productKey="custom-martial-arts-patches" productName="Custom Martial Arts & BJJ Gi Patches" />
       <ProcessSection />
 
       {/* SEO CONTENT */}

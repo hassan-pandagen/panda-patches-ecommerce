@@ -789,6 +789,12 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     {
       question: "What minimum order applies to custom Velcro PVC patches?",
       answer: "Our minimum order at Panda Patches is just 5 pieces, so small custom Velcro PVC patch orders are fully welcome. That said, per-unit cost drops significantly at 10, 25, and 50 pieces. For military units, first responder companies, or retailer restocking, ordering at the 25-50 piece tier provides the best balance of price and quantity. Free design and a digital proof are included regardless of order size."
+    },
+    // Merged from the retired custom-velcro-patches-guide blog (301'd here,
+    // July 2026 cannibalization fix) — the one FAQ this page lacked.
+    {
+      question: "How many times can I attach and detach a velcro patch before it stops holding?",
+      answer: "Stitched velcro backing holds for 10,000 or more attach-detach cycles in controlled testing. In real-world use on a backpack or jacket, expect several years of daily use before any reduction in grip. Glued velcro (used by some competitors) begins peeling after 100-200 cycles. Panda Patches only uses stitched velcro."
     }
   ],
   "custom-hat-patches": [

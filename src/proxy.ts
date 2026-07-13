@@ -91,6 +91,26 @@ const W = String.fromCharCode(42); // '*' character — assembled at runtime, no
 const w = (domain: string) => `https://${W}.${domain}`;
 const ww = (domain: string) => `wss://${W}.${domain}`;
 
+// Google Ads fires its remarketing/user-list pixel (/pagead/1p-user-list/...)
+// against the VISITOR'S local Google domain — google.nl for a Dutch visitor,
+// google.de for a German one — not just google.com. CSP cannot wildcard TLDs,
+// so every ship-to market's Google domain must be listed or that visitor's
+// conversion/remarketing pixel is silently blocked (seen as a CSP console
+// error in PageSpeed, July 2026, google.nl). Used in img-src AND connect-src.
+const GOOGLE_ADS_DOMAINS = [
+  'google.com', 'google.co.uk', 'google.ca', 'google.com.au', 'google.com.pk',
+  // EU / EEA
+  'google.nl', 'google.de', 'google.fr', 'google.es', 'google.it', 'google.ie',
+  'google.be', 'google.at', 'google.ch', 'google.se', 'google.dk', 'google.no',
+  'google.fi', 'google.pl', 'google.pt', 'google.cz', 'google.gr', 'google.ro',
+  'google.hu',
+  // Rest of world (free worldwide shipping — major markets)
+  'google.co.nz', 'google.co.in', 'google.com.br', 'google.com.mx', 'google.ae',
+  'google.com.sa', 'google.co.jp', 'google.co.kr', 'google.com.sg', 'google.com.hk',
+  'google.com.tw', 'google.co.za', 'google.com.tr', 'google.com.my', 'google.com.ph',
+  'google.co.th', 'google.co.id', 'google.com.vn',
+].map(w).join(' ');
+
 const cspHeader = [
   "default-src 'self'",
 
@@ -106,10 +126,10 @@ const cspHeader = [
   `font-src 'self' https://fonts.gstatic.com ${w('tawk.to')}`,
 
   // Images: everything that might serve pixels/images
-  `img-src 'self' data: blob: https://cdn.sanity.io ${w('supabase.co')} ${w('google-analytics.com')} ${w('googletagmanager.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} ${w('google.com')} ${w('google.co.uk')} ${w('google.ca')} ${w('google.com.au')} ${w('google.com.pk')} ${w('paypalobjects.com')} ${w('tawk.to')} ${w('tawk.link')} https://tawk.link ${w('amazonaws.com')} ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://cdn.jsdelivr.net`,
+  `img-src 'self' data: blob: https://cdn.sanity.io ${w('supabase.co')} ${w('google-analytics.com')} ${w('googletagmanager.com')} ${w('googleadservices.com')} ${w('googlesyndication.com')} ${w('doubleclick.net')} ${GOOGLE_ADS_DOMAINS} ${w('paypalobjects.com')} ${w('tawk.to')} ${w('tawk.link')} https://tawk.link ${w('amazonaws.com')} ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://cdn.jsdelivr.net`,
 
   // Connect: API calls, websockets, beacons
-  `connect-src 'self' ${w('sanity.io')} ${w('google-analytics.com')} ${w('analytics.google.com')} ${w('googletagmanager.com')} ${w('doubleclick.net')} ${w('googleadservices.com')} ${w('google.com')} ${w('google.co.uk')} ${w('google.ca')} ${w('google.com.au')} ${w('google.com.pk')} ${w('supabase.co')} ${w('tawk.to')} ${ww('tawk.to')} https://mpc-prod-24-s6uit34pua-uw.a.run.app https://api.zeptomail.com ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://demo-1.conversionsapigateway.com ${w('paypal.com')} ${w('vercel-insights.com')} ${w('vercel-scripts.com')}`,
+  `connect-src 'self' ${w('sanity.io')} ${w('google-analytics.com')} ${w('analytics.google.com')} ${w('googletagmanager.com')} ${w('doubleclick.net')} ${w('googleadservices.com')} ${GOOGLE_ADS_DOMAINS} ${w('supabase.co')} ${w('tawk.to')} ${ww('tawk.to')} https://mpc-prod-24-s6uit34pua-uw.a.run.app https://api.zeptomail.com ${w('facebook.com')} ${w('facebook.net')} https://tr.facebook.com https://demo-1.conversionsapigateway.com ${w('paypal.com')} ${w('vercel-insights.com')} ${w('vercel-scripts.com')}`,
 
   // Media
   `media-src 'self' data: https://cdn.sanity.io ${w('tawk.to')}`,

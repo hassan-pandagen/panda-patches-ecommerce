@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema, generateSchemaScript } from "@/lib/schemas";
+import ProductReviews from "@/components/reviews/ProductReviews";
 import { getSchemaPricingTiers } from "@/lib/pricingCalculator";
 import { genericFaqs } from "@/lib/genericFaqs";
 import { slugFaqMap } from "@/lib/slugFaqs";
@@ -168,6 +169,10 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
     url: `https://www.pandapatches.com/custom-patches/${slug}`,
     priceRange: computedPriceRange,
     pricingTiers: pricingTiers.length > 0 ? pricingTiers : undefined,
+    // These slugs are all patch types, so genuine patch-order reviews apply.
+    // Merges a product aggregateRating only when enough real reviews exist;
+    // the same reviews render below via <ProductReviews>.
+    reviewKey: slug,
   });
 
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -214,6 +219,9 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
 
       {/* 3. Craftsmanship + Reviews */}
       <Craftsmanship />
+      {/* Product-specific reviews backing this page's Product.aggregateRating
+          (must be visible for the rating markup to be valid). */}
+      <ProductReviews productKey={slug} productName={data.title} />
       <ReviewsSection />
 
       {/* 4. PANDA PROMISE */}

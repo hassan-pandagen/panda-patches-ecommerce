@@ -32,6 +32,10 @@ export default function robots(): MetadataRoute.Robots {
           // Other major AI assistants
           'Google-Extended', 'Applebot-Extended', 'Meta-ExternalAgent', 'Meta-ExternalFetcher',
           'Amazonbot', 'MistralAI-User', 'DuckAssistBot', 'cohere-ai', 'CCBot',
+          // Internet Archive / Wayback Machine — allowed so the site keeps a
+          // public archival history (July 2026; also clears the PageSpeed
+          // "blocked bot user agents" warning).
+          'archive.org_bot', 'ia_archiver',
           // Social / messaging link-preview bots (so shared links get a rich card)
           'facebookexternalhit', 'Twitterbot', 'LinkedInBot', 'Slackbot', 'Slackbot-LinkExpanding',
           'WhatsApp', 'Discordbot', 'TelegramBot', 'Pinterestbot', 'redditbot',

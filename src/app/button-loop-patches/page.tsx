@@ -12,6 +12,8 @@ import TrustStrip from "@/components/products/TrustStrip";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { getProductReviewSchema } from "@/lib/productReviews";
+import ProductReviews from "@/components/reviews/ProductReviews";
 import { buildPageMetadata } from "@/lib/seo";
 import { getClusterPageData } from "@/lib/clusterPageData";
 import { getFromPriceLabel } from "@/lib/pricingCalculator";
@@ -95,6 +97,9 @@ const productSchema = {
     offerCount: "2",
     seller: { "@type": "Organization", name: "Panda Patches" },
   },
+  // Product-specific aggregateRating + review[] (only when enough genuine reviews exist).
+  // The same reviews render on-page via <ProductReviews> below.
+  ...(getProductReviewSchema("button-loop-patches") ?? {}),
 };
 
 export default async function ButtonLoopPatchesPage() {
@@ -168,6 +173,8 @@ export default async function ButtonLoopPatchesPage() {
 
       <Promises bgColor="bg-white" />
       <ReviewsSection />
+      {/* Product reviews backing this page's Product.aggregateRating (must be visible). */}
+      <ProductReviews productKey="button-loop-patches" productName="Custom Button-Loop Patches" />
       <ProcessSection />
 
       {/* SEO CONTENT */}

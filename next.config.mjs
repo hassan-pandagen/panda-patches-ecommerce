@@ -315,15 +315,17 @@ const nextConfig = {
         permanent: true,
       },
 
-      // IRON-ON INSTRUCTIONS - Static WordPress page, redirect to relevant blog post
+      // IRON-ON INSTRUCTIONS - Static WordPress page. Points at the complete
+      // guide directly (was /how-to-iron-on-patches, itself 301'd July 2026 —
+      // avoids a redirect chain).
       {
         source: '/iron-on-instructions',
-        destination: '/how-to-iron-on-patches',
+        destination: '/the-complete-guide-to-iron-on-patches-care-application-and-longevity',
         permanent: true,
       },
       {
         source: '/iron-on-instructions/',
-        destination: '/how-to-iron-on-patches',
+        destination: '/the-complete-guide-to-iron-on-patches-care-application-and-longevity',
         permanent: true,
       },
 
@@ -339,10 +341,12 @@ const nextConfig = {
         permanent: true,
       },
 
-      // SLUG CHANGES - Old WordPress slugs that changed during migration
+      // SLUG CHANGES - Old WordPress slugs that changed during migration.
+      // Destination updated July 2026: /varsity-jacket-patches-or-what-can-be-done
+      // is itself 301'd to /custom-letterman-patches now — point directly.
       {
         source: '/varsity-jacket-patches-winter-trend-2024',
-        destination: '/varsity-jacket-patches-or-what-can-be-done',
+        destination: '/custom-letterman-patches',
         permanent: true,
       },
 
@@ -390,14 +394,34 @@ const nextConfig = {
       },
       {
         source: '/custom-chenille-patches-varsity-jacket-patches-winter-trend',
-        destination: '/varsity-jacket-patches-or-what-can-be-done',
+        destination: '/custom-letterman-patches',
         permanent: true,
       },
       {
         source: '/custom-chenille-patches-varsity-jacket-patches-winter-trend/',
-        destination: '/varsity-jacket-patches-or-what-can-be-done',
+        destination: '/custom-letterman-patches',
         permanent: true,
       },
+
+      // CANNIBALIZATION CONSOLIDATION (July 2026 keyword audit) — overlapping
+      // blog posts merged into their canonical page, then 301'd. The unique
+      // content (FAQs, sections) was ported into each canonical BEFORE these
+      // redirects went live; the Sanity docs are deleted after deploy so the
+      // sitemap drops them automatically.
+      { source: '/custom-velcro-patches-guide', destination: '/custom-velcro-patches', permanent: true },
+      { source: '/custom-velcro-patches-guide/', destination: '/custom-velcro-patches', permanent: true },
+      { source: '/types-of-patches-complete-guide', destination: '/patch-types-compared', permanent: true },
+      { source: '/types-of-patches-complete-guide/', destination: '/patch-types-compared', permanent: true },
+      { source: '/a-deep-dive-into-every-type-of-patch-including-explaining-all-of-its-options', destination: '/patch-types-compared', permanent: true },
+      { source: '/a-deep-dive-into-every-type-of-patch-including-explaining-all-of-its-options/', destination: '/patch-types-compared', permanent: true },
+      { source: '/how-to-iron-on-patches', destination: '/the-complete-guide-to-iron-on-patches-care-application-and-longevity', permanent: true },
+      { source: '/how-to-iron-on-patches/', destination: '/the-complete-guide-to-iron-on-patches-care-application-and-longevity', permanent: true },
+      { source: '/comparing-patch-backings-which-one-is-right-for-you', destination: '/patch-backings-101-iron-on-vs-sew-on-vs-velcro', permanent: true },
+      { source: '/comparing-patch-backings-which-one-is-right-for-you/', destination: '/patch-backings-101-iron-on-vs-sew-on-vs-velcro', permanent: true },
+      { source: '/custom-printed-patches-what-they-are-when-to-use-them-and-how-to-order-right', destination: '/custom-printed-patches-when-to-choose-print-over-embroidery', permanent: true },
+      { source: '/custom-printed-patches-what-they-are-when-to-use-them-and-how-to-order-right/', destination: '/custom-printed-patches-when-to-choose-print-over-embroidery', permanent: true },
+      { source: '/varsity-jacket-patches-or-what-can-be-done', destination: '/custom-letterman-patches', permanent: true },
+      { source: '/varsity-jacket-patches-or-what-can-be-done/', destination: '/custom-letterman-patches', permanent: true },
 
       // MISSING CITY PAGES — Google discovered these from old backlinks but we
       // have not built them yet. 301 to main products page until location added.

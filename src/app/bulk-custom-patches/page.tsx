@@ -16,6 +16,8 @@ import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import MakerNote from "@/components/seo/MakerNote";
 import { generateSchemaScript, generateServiceSchema } from "@/lib/schemas";
+import { getProductReviewSchema } from "@/lib/productReviews";
+import ProductReviews from "@/components/reviews/ProductReviews";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -112,6 +114,9 @@ const productSchema = {
       },
     },
   },
+  // Product-scoped aggregateRating + review[] from genuine, on-page reviews
+  // (productReviews.ts), rendered visibly below via <ProductReviews>.
+  ...(getProductReviewSchema("bulk-custom-patches") ?? {}),
 };
 
 // Breadcrumb schema
@@ -261,6 +266,8 @@ export default async function BulkCustomPatchesPage() {
       <TrustStrip />
       <Craftsmanship />
       <ReviewsSection />
+      {/* Product reviews backing this page's Product.aggregateRating (must be visible). */}
+      <ProductReviews productKey="bulk-custom-patches" productName="Custom Patches Bulk Order" />
 
       {/* 2. BULK PRICING TABLE */}
       <BulkPricingTable workSamples={workSamples} />

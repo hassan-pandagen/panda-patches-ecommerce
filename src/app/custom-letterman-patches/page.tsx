@@ -13,6 +13,8 @@ import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { getProductReviewSchema } from "@/lib/productReviews";
+import ProductReviews from "@/components/reviews/ProductReviews";
 import { buildPageMetadata } from "@/lib/seo";
 import { getClusterPageData } from "@/lib/clusterPageData";
 import { getFromPriceLabel } from "@/lib/pricingCalculator";
@@ -100,6 +102,9 @@ const productSchema = {
     offerCount: "3",
     seller: { "@type": "Organization", name: "Panda Patches" },
   },
+  // Product-specific aggregateRating + review[] (only when enough genuine reviews exist).
+  // The same reviews render on-page via <ProductReviews> below.
+  ...(getProductReviewSchema("custom-letterman-patches") ?? {}),
 };
 
 export default async function CustomLettermanPatchesPage() {
@@ -191,6 +196,8 @@ export default async function CustomLettermanPatchesPage() {
 
       <Promises bgColor="bg-[#F9FAF5]" />
       <ReviewsSection />
+      {/* Product reviews backing this page's Product.aggregateRating (must be visible). */}
+      <ProductReviews productKey="custom-letterman-patches" productName="Custom Letterman & Varsity Patches" />
       <ProcessSection />
 
       {/* SEO CONTENT */}

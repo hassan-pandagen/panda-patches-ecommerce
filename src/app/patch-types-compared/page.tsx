@@ -119,6 +119,23 @@ const typeFAQs = [
     answer:
       "Printed (sublimation) patches are best for full-color, gradient, and photographic designs because the dye-sublimation process reproduces unlimited colors and smooth transitions that thread cannot. Woven is the next best for detailed multi-color logos. Embroidered and chenille are limited to solid thread colors, so they suit bold, simple color palettes rather than photo-real artwork.",
   },
+  // Merged from the retired types-of-patches-complete-guide blog (301'd here,
+  // July 2026 cannibalization fix) — its three FAQ answers this page lacked.
+  {
+    question: "What are the 11 types of custom patches?",
+    answer:
+      "The 11 custom patch types are embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed (sublimation), silicone labels, and sequin. Embroidered and PVC together account for roughly 80 percent of orders at Panda Patches. Velcro is a backing option, not a patch type.",
+  },
+  {
+    question: "Can I combine multiple patch types in one order?",
+    answer:
+      "Yes. Each patch type and each design counts as its own production run because each requires its own digitizing and machine setup, but you can ship multiple types in a single combined shipment to save on freight. The 5-piece minimum applies per type per design. Two designs at 5 pieces each is treated as two 5-piece orders.",
+  },
+  {
+    question: "Is Velcro a patch type?",
+    answer:
+      "No. Velcro is a backing option, not a patch type. The hook-and-loop attachment is added to embroidered, PVC, woven, or leather patches at +$30 flat per order. It is the industry standard for tactical morale patches and uniform name tapes that need to be removable, but it does not change the underlying patch construction.",
+  },
 ];
 
 export const metadata: Metadata = buildPageMetadata({

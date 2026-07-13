@@ -21,6 +21,7 @@ import { client } from "@/lib/sanity";
 import locationFaqs from "@/lib/locationFaqs";
 import StickyMobileCTA from "@/components/locations/StickyMobileCTA";
 import ReviewSnippet from "@/components/layout/ReviewSnippet";
+import ProductReviews from "@/components/reviews/ProductReviews";
 import locationDescriptions from "@/lib/locationDescriptions";
 import { generateFAQSchema, generateBreadcrumbSchema, generateSchemaScript } from "@/lib/schemas";
 
@@ -234,6 +235,15 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
           {/* 11. HARDCODED SEO SECTIONS */}
           {slug && <LocationSEOSections slug={slug} />}
         </>
+      )}
+
+      {/* Product reviews — patchStyle pages only. Renders the SAME genuine reviews
+          that back this product's Product.aggregateRating (patchStyleProductSchema
+          -> productReviews.ts), satisfying Google's "rated reviews must be visible
+          on the page" rule. Location pages carry no product rating, so it no-ops
+          for them. Renders nothing when a product lacks enough real reviews. */}
+      {data.isPatchStyle && slug && (
+        <ProductReviews productKey={slug} productName={data.locationName} />
       )}
 
       <CTASection />

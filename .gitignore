@@ -50,6 +50,9 @@ blog-drafts/
 /*.md
 !CLAUDE.md
 !README.md
+# Living review log — version-controlled source of truth for reviewConstants.ts
+# + productReviews.ts (updated whenever new Trustpilot reviews come in).
+!TRUSTPILOT_REVIEWS.md
 
 # Playwright MCP verification artifacts (local-only)
 .playwright-mcp/

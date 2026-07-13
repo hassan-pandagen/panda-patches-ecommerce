@@ -15,6 +15,8 @@ import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import MakerNote from "@/components/seo/MakerNote";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
+import { getProductReviewSchema } from "@/lib/productReviews";
+import ProductReviews from "@/components/reviews/ProductReviews";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -166,6 +168,9 @@ const productSchema = {
       },
     },
   },
+  // Product-specific aggregateRating + review[] (only when enough genuine reviews exist).
+  // The same reviews render on-page via <ProductReviews> below.
+  ...(getProductReviewSchema("custom-corporate-patches") ?? {}),
 };
 
 // Breadcrumb schema (3-level matching visual breadcrumb)
@@ -238,6 +243,8 @@ export default async function CorporatePatchesPage() {
       <TrustStrip />
       <Craftsmanship />
       <ReviewsSection />
+      {/* Product reviews backing this page's Product.aggregateRating (must be visible). */}
+      <ProductReviews productKey="custom-corporate-patches" productName="Custom Corporate Logo Patches" />
 
       {/* 3. WHY CHOOSE PANDA */}
       <Promises bgColor="bg-white" />

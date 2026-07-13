@@ -11,6 +11,8 @@ import CategoryFAQ from "@/components/bulk/CategoryFAQ";
 import ProcessSection from "@/components/home/ProcessSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { getProductReviewSchema } from "@/lib/productReviews";
+import ProductReviews from "@/components/reviews/ProductReviews";
 import { buildPageMetadata } from "@/lib/seo";
 import { getClusterPageData, getUseCaseImages } from "@/lib/clusterPageData";
 import { getFromPriceLabel } from "@/lib/pricingCalculator";
@@ -94,11 +96,6 @@ const productSchema = {
   description:
     "Custom embroidered, PVC, woven, chenille and leather patches shipped free to the UK on a DDP basis with no VAT or customs. All-in USD pricing, low 5-piece minimum, free 24-hour mockup.",
   brand: { "@type": "Brand", name: "Panda Patches" },
-  // No aggregateRating: Trustpilot reviews are company-wide, not specific to
-  // this Product entity. The org-level rating already renders via
-  // generateEntityGraph() in the root layout — duplicating it here is the
-  // same "multiple aggregate ratings" pattern Google flagged on /reviews
-  // (GSC Review snippets, 2026-07-07).
   offers: {
     "@type": "AggregateOffer",
     priceCurrency: "USD",
@@ -114,6 +111,11 @@ const productSchema = {
       shippingDestination: { "@type": "DefinedRegion", addressCountry: "GB" },
     },
   },
+  // Product-scoped aggregateRating + review[] from genuine, on-page reviews
+  // (productReviews.ts), rendered visibly below via <ProductReviews>. This is a
+  // product-specific rating backed by shown reviews — NOT the company-wide org
+  // number — so it does not recreate the "multiple aggregate ratings" pattern.
+  ...(getProductReviewSchema("custom-patches-uk") ?? {}),
 };
 
 const UK_USE_CASES = [
@@ -343,6 +345,8 @@ export default async function CustomPatchesUKPage() {
       </section>
 
       <CategoryFAQ title="Custom Patches UK: FAQ" faqs={ukFAQs} />
+      {/* Product reviews backing this page's Product.aggregateRating (must be visible). */}
+      <ProductReviews productKey="custom-patches-uk" productName="Custom Patches" />
       <CTASection />
       <Footer />
     </main>

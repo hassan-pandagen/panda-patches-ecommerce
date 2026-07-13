@@ -12,7 +12,7 @@ async function getHeroData() {
     const query = `*[_type == "hero"][0] {
       title,
       subtitle,
-      "imageUrl": heroImage.asset->url,
+      "imageUrl": heroImage.asset->url + "?w=1134&auto=format&q=85",
       "imageAlt": heroImage.alt,
       "trustBadges": trustBadges[] {
         "ref": image,

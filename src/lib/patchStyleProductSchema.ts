@@ -2,6 +2,7 @@
 // Used by src/app/[slug]/page.tsx to inject Product schema for all patchStyle pages
 
 import { BRAND_ID, ORG_ID } from "./schemas";
+import { getProductReviewSchema } from "./productReviews";
 
 interface ProductSchemaData {
   name: string;
@@ -241,6 +242,10 @@ function buildGenericSchema(styleName: string, slug: string): ProductSchemaData 
 
 export function getPatchStyleProductSchema(slug: string, styleName: string) {
   const data = specificSchemas[slug] ?? buildGenericSchema(styleName, slug);
+  // Per-product aggregateRating + review[] — only present when enough genuine,
+  // on-page reviews back it (productReviews.ts). The same reviews are rendered
+  // visibly by <ProductReviews> on the page, as Google requires.
+  const reviewSchema = getProductReviewSchema(slug);
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -250,6 +255,7 @@ export function getPatchStyleProductSchema(slug: string, styleName: string) {
     "brand": { "@id": BRAND_ID },
     "manufacturer": { "@id": ORG_ID },
     "url": data.url,
+    ...(reviewSchema ?? {}),
     // itemCondition added June 2026 (WEBSIT_1.MD T7). Required by Google
     // Merchant for shopping snippet eligibility. Missing it on the inner
     // Offers was the likely cause of the listings drop from pos 4.0 to 0.

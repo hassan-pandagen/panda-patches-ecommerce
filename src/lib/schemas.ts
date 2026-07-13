@@ -8,6 +8,7 @@
  */
 
 import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT } from '@/lib/reviewConstants';
+import { getProductReviewSchema } from '@/lib/productReviews';
 
 // ============================================
 // HELPER FUNCTION
@@ -360,6 +361,11 @@ interface ProductSchemaParams {
   materials?: string[];
   weight?: { value: number; unit: string };
   dimensions?: { width?: number; height?: number; depth?: number };
+  // Product-review key (e.g. "pvc"). When set AND enough genuine reviews exist,
+  // a product-specific aggregateRating + review[] is merged in (productReviews.ts).
+  // The SAME reviews must be shown on the page via <ProductReviews>. Omit for
+  // products with no real reviews (e.g. challenge coins) so no rating is emitted.
+  reviewKey?: string;
 }
 
 export function generateProductSchema(params: ProductSchemaParams) {
@@ -379,6 +385,7 @@ export function generateProductSchema(params: ProductSchemaParams) {
     materials,
     weight,
     dimensions,
+    reviewKey,
   } = params;
 
   // Calculate price range from pricing tiers if available
@@ -557,6 +564,15 @@ export function generateProductSchema(params: ProductSchemaParams) {
         "sku": `${sku}-VARIANT-${index + 1}`
       }))
     };
+  }
+
+  // Product-specific aggregateRating + review[] — merged ONLY when reviewKey is set
+  // and enough genuine reviews back it. These MUST be rendered on the page too
+  // (<ProductReviews productKey={reviewKey}>), or Google treats the markup as invalid.
+  const reviewSchema = reviewKey ? getProductReviewSchema(reviewKey) : null;
+  if (reviewSchema) {
+    productSchema.aggregateRating = reviewSchema.aggregateRating;
+    productSchema.review = reviewSchema.review;
   }
 
   return productSchema;

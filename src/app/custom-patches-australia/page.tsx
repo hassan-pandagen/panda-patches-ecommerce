@@ -11,6 +11,8 @@ import CategoryFAQ from "@/components/bulk/CategoryFAQ";
 import ProcessSection from "@/components/home/ProcessSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { getProductReviewSchema } from "@/lib/productReviews";
+import ProductReviews from "@/components/reviews/ProductReviews";
 import { buildPageMetadata } from "@/lib/seo";
 import { getClusterPageData, getUseCaseImages } from "@/lib/clusterPageData";
 import { getFromPriceLabel } from "@/lib/pricingCalculator";
@@ -94,11 +96,6 @@ const productSchema = {
   description:
     "Custom embroidered, PVC, woven, chenille and leather patches shipped free across Australia on a DDP basis with no GST or customs. All-in USD pricing, low 5-piece minimum, free 24-hour mockup.",
   brand: { "@type": "Brand", name: "Panda Patches" },
-  // No aggregateRating: Trustpilot reviews are company-wide, not specific to
-  // this Product entity. The org-level rating already renders via
-  // generateEntityGraph() in the root layout — duplicating it here is the
-  // same "multiple aggregate ratings" pattern Google flagged on /reviews
-  // (GSC Review snippets, 2026-07-07).
   offers: {
     "@type": "AggregateOffer",
     priceCurrency: "USD",
@@ -114,6 +111,9 @@ const productSchema = {
       shippingDestination: { "@type": "DefinedRegion", addressCountry: "AU" },
     },
   },
+  // Product-scoped aggregateRating + review[] from genuine, on-page reviews
+  // (productReviews.ts), rendered visibly below via <ProductReviews>.
+  ...(getProductReviewSchema("custom-patches-australia") ?? {}),
 };
 
 const AU_USE_CASES = [
@@ -341,6 +341,8 @@ export default async function CustomPatchesAustraliaPage() {
       </section>
 
       <CategoryFAQ title="Custom Patches Australia: FAQ" faqs={auFAQs} />
+      {/* Product reviews backing this page's Product.aggregateRating (must be visible). */}
+      <ProductReviews productKey="custom-patches-australia" productName="Custom Patches" />
       <CTASection />
       <Footer />
     </main>

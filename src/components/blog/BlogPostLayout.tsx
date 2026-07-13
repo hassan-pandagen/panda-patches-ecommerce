@@ -7,6 +7,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
 import RelatedLinks from "@/components/seo/RelatedLinks";
+import CategoryFAQ from "@/components/bulk/CategoryFAQ";
 
 function slugifyBlock(value: any): string {
   const text = (value?.children || []).map((c: any) => c.text || '').join('');
@@ -287,6 +288,16 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
         </div>
 
       </article>
+
+      {/* Visible FAQ — every post with faqItems already emits FAQPage JSON-LD
+          (src/app/[slug]/page.tsx); Google requires that markup to reflect
+          content actually shown on the page, so this renders the same
+          question/answer pairs 1:1 (audit 2026-07-12, CLAUDE_3.MD). */}
+      {post.faqItems?.length > 0 && (
+        <div className="cv-auto">
+          <CategoryFAQ title="Frequently Asked Questions" faqs={post.faqItems} />
+        </div>
+      )}
 
       {/* Related Internal Links for SEO */}
       <div className="cv-auto">

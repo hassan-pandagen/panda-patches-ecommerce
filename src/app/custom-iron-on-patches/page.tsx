@@ -14,6 +14,8 @@ import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { getProductReviewSchema } from "@/lib/productReviews";
+import ProductReviews from "@/components/reviews/ProductReviews";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -136,6 +138,9 @@ const productSchema = {
     offerCount: "4",
     seller: { "@type": "Organization", name: "Panda Patches" },
   },
+  // Product-specific aggregateRating + review[] (only when enough genuine reviews exist).
+  // The same reviews render on-page via <ProductReviews> below.
+  ...(getProductReviewSchema("custom-iron-on-patches") ?? {}),
 };
 
 export default async function CustomIronOnPatchesPage() {
@@ -173,6 +178,8 @@ export default async function CustomIronOnPatchesPage() {
       <TrustStrip />
       <Craftsmanship />
       <ReviewsSection />
+      {/* Product reviews backing this page's Product.aggregateRating (must be visible). */}
+      <ProductReviews productKey="custom-iron-on-patches" productName="Custom Iron-On Patches" />
 
       {/* 3. WHY CHOOSE PANDA */}
       <Promises bgColor="bg-white" />
