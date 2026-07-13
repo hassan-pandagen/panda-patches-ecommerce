@@ -423,6 +423,48 @@ const nextConfig = {
       { source: '/varsity-jacket-patches-or-what-can-be-done', destination: '/custom-letterman-patches', permanent: true },
       { source: '/varsity-jacket-patches-or-what-can-be-done/', destination: '/custom-letterman-patches', permanent: true },
 
+      // LOCATION PAGE CONSOLIDATION (July 2026, CLAUDE_4.MD) — 20 templated
+      // location pages linked from the sitewide footer, most with thin/low
+      // traffic (5-18 clicks/quarter). Keeping only the real HQ (Austin), the
+      // state hub (Texas), and the two metros with real separation from the
+      // pack by GSC clicks (New York, Los Angeles). Dallas/Houston route to
+      // the Texas state hub they'd otherwise cannibalize; everything else
+      // consolidates to the general commercial page. Placed before the
+      // LOCATION PAGES trailing-slash block below so both slash variants land
+      // in one hop, not a redirect chain.
+      { source: '/custom-patches-dallas', destination: '/custom-patches-in-texas', permanent: true },
+      { source: '/custom-patches-dallas/', destination: '/custom-patches-in-texas', permanent: true },
+      { source: '/custom-patches-houston', destination: '/custom-patches-in-texas', permanent: true },
+      { source: '/custom-patches-houston/', destination: '/custom-patches-in-texas', permanent: true },
+      { source: '/alabama-patches', destination: '/custom-patches', permanent: true },
+      { source: '/alabama-patches/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-in-boston', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-in-boston/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-california-patches', destination: '/custom-patches', permanent: true },
+      { source: '/custom-california-patches/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-in-chicago', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-in-chicago/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-colorado', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-colorado/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-denver-patches', destination: '/custom-patches', permanent: true },
+      { source: '/custom-denver-patches/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-in-florida', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-in-florida/', destination: '/custom-patches', permanent: true },
+      { source: '/kentucky-patches', destination: '/custom-patches', permanent: true },
+      { source: '/kentucky-patches/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-miami-patches', destination: '/custom-patches', permanent: true },
+      { source: '/custom-miami-patches/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-ohio-state-patches', destination: '/custom-patches', permanent: true },
+      { source: '/custom-ohio-state-patches/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-portland', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-portland/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-in-san-francisco', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-in-san-francisco/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-utah-patches', destination: '/custom-patches', permanent: true },
+      { source: '/custom-utah-patches/', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-in-washington', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches-in-washington/', destination: '/custom-patches', permanent: true },
+
       // MISSING CITY PAGES — Google discovered these from old backlinks but we
       // have not built them yet. 301 to main products page until location added.
       { source: '/custom-patches-atlanta', destination: '/custom-patches', permanent: true },
@@ -588,27 +630,13 @@ const nextConfig = {
       { source: '/custom-products/',     destination: '/custom-products',     permanent: true },
       { source: '/assets/',              destination: '/assets',              permanent: true },
 
-      // LOCATION PAGES — trailing slash
-      { source: '/alabama-patches/',                    destination: '/alabama-patches',                    permanent: true },
+      // LOCATION PAGES — trailing slash (kept pages only; the 16 consolidated
+      // pages' trailing-slash variants are handled by the redirect block
+      // above so they land on the new destination in one hop, not here)
       { source: '/custom-austin-patches/',              destination: '/custom-austin-patches',              permanent: true },
-      { source: '/custom-patches-in-boston/',           destination: '/custom-patches-in-boston',           permanent: true },
-      { source: '/custom-california-patches/',          destination: '/custom-california-patches',          permanent: true },
-      { source: '/custom-patches-in-chicago/',          destination: '/custom-patches-in-chicago',          permanent: true },
-      { source: '/custom-patches-colorado/',            destination: '/custom-patches-colorado',            permanent: true },
-      { source: '/custom-patches-dallas/',              destination: '/custom-patches-dallas',              permanent: true },
-      { source: '/custom-denver-patches/',              destination: '/custom-denver-patches',              permanent: true },
-      { source: '/custom-patches-in-florida/',          destination: '/custom-patches-in-florida',          permanent: true },
-      { source: '/custom-patches-houston/',             destination: '/custom-patches-houston',             permanent: true },
-      { source: '/kentucky-patches/',                   destination: '/kentucky-patches',                   permanent: true },
       { source: '/custom-patches-los-angeles/',         destination: '/custom-patches-los-angeles',         permanent: true },
-      { source: '/custom-miami-patches/',               destination: '/custom-miami-patches',               permanent: true },
       { source: '/custom-patches-in-new-york/',         destination: '/custom-patches-in-new-york',         permanent: true },
-      { source: '/custom-ohio-state-patches/',          destination: '/custom-ohio-state-patches',          permanent: true },
-      { source: '/custom-patches-portland/',            destination: '/custom-patches-portland',            permanent: true },
-      { source: '/custom-patches-in-san-francisco/',    destination: '/custom-patches-in-san-francisco',    permanent: true },
       { source: '/custom-patches-in-texas/',            destination: '/custom-patches-in-texas',            permanent: true },
-      { source: '/custom-utah-patches/',                destination: '/custom-utah-patches',                permanent: true },
-      { source: '/custom-patches-in-washington/',       destination: '/custom-patches-in-washington',       permanent: true },
 
       // PATCH STYLE PAGES — trailing slash
       { source: '/custom-anime-patches/',               destination: '/custom-anime-patches',               permanent: true },

@@ -231,7 +231,10 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* COLUMN 7: Locations (Spans 2) */}
+          {/* COLUMN 7: Locations (Spans 2) — trimmed from 20 individual city
+              links to the hub + the 4 pages kept after the July 2026 location
+              consolidation (CLAUDE_4.MD): real HQ, state hub, and the two
+              metros with real GSC separation from the rest. */}
           <div className="lg:col-span-2 space-y-4">
             <h3 className="font-bold text-lg text-panda-dark text-left">
               <Link prefetch={false} href="/locations" className="hover:text-panda-green transition-colors">
@@ -239,26 +242,10 @@ export default function Footer() {
               </Link>
             </h3>
             <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-3">
-              <li><Link prefetch={false} href="/alabama-patches">Alabama Patches</Link></li>
               <li><Link prefetch={false} href="/custom-austin-patches">Custom Austin Patches</Link></li>
-              <li><Link prefetch={false} href="/custom-patches-in-boston">Custom Patches in Boston</Link></li>
-              <li><Link prefetch={false} href="/custom-california-patches">Custom California Patches</Link></li>
-              <li><Link prefetch={false} href="/custom-patches-in-chicago">Custom Patches in Chicago</Link></li>
-              <li><Link prefetch={false} href="/custom-patches-colorado">Custom Patches Colorado</Link></li>
-              <li><Link prefetch={false} href="/custom-patches-dallas">Custom Patches Dallas</Link></li>
-              <li><Link prefetch={false} href="/custom-denver-patches">Custom Denver Patches</Link></li>
-              <li><Link prefetch={false} href="/custom-patches-in-florida">Custom Patches in Florida</Link></li>
-              <li><Link prefetch={false} href="/custom-patches-houston">Custom Patches Houston</Link></li>
-              <li><Link prefetch={false} href="/kentucky-patches">Kentucky Patches</Link></li>
-              <li><Link prefetch={false} href="/custom-patches-los-angeles">Custom Patches Los Angeles</Link></li>
-              <li><Link prefetch={false} href="/custom-miami-patches">Custom Miami Patches</Link></li>
-              <li><Link prefetch={false} href="/custom-patches-in-new-york">Custom Patches in New York</Link></li>
-              <li><Link prefetch={false} href="/custom-ohio-state-patches">Custom Ohio State Patches</Link></li>
-              <li><Link prefetch={false} href="/custom-patches-portland">Custom Patches Portland</Link></li>
-              <li><Link prefetch={false} href="/custom-patches-in-san-francisco">Custom Patches in San Francisco</Link></li>
               <li><Link prefetch={false} href="/custom-patches-in-texas">Custom Patches in Texas</Link></li>
-              <li><Link prefetch={false} href="/custom-utah-patches">Custom Utah Patches</Link></li>
-              <li><Link prefetch={false} href="/custom-patches-in-washington">Custom Patches in Washington</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-in-new-york">Custom Patches in New York</Link></li>
+              <li><Link prefetch={false} href="/custom-patches-los-angeles">Custom Patches Los Angeles</Link></li>
             </ul>
           </div>
 

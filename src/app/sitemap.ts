@@ -23,6 +23,24 @@ const REDIRECTED_SLUGS = new Set([
   'custom-patches-no-minimum-order-5-pieces',
   'custom-soccer-patches-guide-2026',
   'custom-velcro-patches-styles-uses-and-how-to-order',
+  // Location page consolidation (July 2026, CLAUDE_4.MD) — kept only Austin,
+  // Texas, New York, Los Angeles. These 16 301 away in next.config.mjs.
+  'alabama-patches',
+  'custom-patches-in-boston',
+  'custom-california-patches',
+  'custom-patches-in-chicago',
+  'custom-patches-colorado',
+  'custom-patches-dallas',
+  'custom-denver-patches',
+  'custom-patches-in-florida',
+  'custom-patches-houston',
+  'kentucky-patches',
+  'custom-miami-patches',
+  'custom-ohio-state-patches',
+  'custom-patches-portland',
+  'custom-patches-in-san-francisco',
+  'custom-utah-patches',
+  'custom-patches-in-washington',
 ]);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -405,13 +423,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }));
 
-  // Location pages (local SEO)
-  const locationPages: MetadataRoute.Sitemap = (data.locations || []).map((location: SanitySlugItem) => ({
-    url: `${baseUrl}/${location.slug}`,
-    lastModified: new Date(location._updatedAt),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }));
+  // Location pages (local SEO) — excludes slugs that 301 away in next.config.mjs
+  // (location consolidation, July 2026, CLAUDE_4.MD).
+  const locationPages: MetadataRoute.Sitemap = (data.locations || [])
+    .filter((location: SanitySlugItem) => !REDIRECTED_SLUGS.has(location.slug))
+    .map((location: SanitySlugItem) => ({
+      url: `${baseUrl}/${location.slug}`,
+      lastModified: new Date(location._updatedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    }));
 
   // Patch style pages (category SEO)
   const patchStylePages: MetadataRoute.Sitemap = (data.patchStyles || []).map((style: SanitySlugItem) => ({
