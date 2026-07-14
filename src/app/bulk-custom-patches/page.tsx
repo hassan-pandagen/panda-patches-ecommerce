@@ -18,6 +18,8 @@ import MakerNote from "@/components/seo/MakerNote";
 import { generateSchemaScript, generateServiceSchema } from "@/lib/schemas";
 import { getProductReviewSchema } from "@/lib/productReviews";
 import ProductReviews from "@/components/reviews/ProductReviews";
+import AeoAnswerBlock from "@/components/product/AeoAnswerBlock";
+import { aeoContent } from "@/lib/aeoContent";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -264,6 +266,13 @@ export default async function BulkCustomPatchesPage() {
       {/* 1. HERO */}
       <BulkHero heroImage={heroImage} trustBadges={trustBadges} />
       <TrustStrip />
+
+      {/* 1.5 AEO ANSWER BLOCK — answer-first wholesale pricing + key-facts table
+          + fan-out Q&A in the first-30% extraction zone
+          (AEO-CONTENT-REWORK-SPEC-2026-07.md), so AI shopping answers for
+          "bulk custom patches" can cite our real numbers and 5-piece minimum. */}
+      <AeoAnswerBlock content={aeoContent["bulk-custom-patches"]} />
+
       <Craftsmanship />
       <ReviewsSection />
       {/* Product reviews backing this page's Product.aggregateRating (must be visible). */}

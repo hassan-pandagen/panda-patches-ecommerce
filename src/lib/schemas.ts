@@ -247,6 +247,11 @@ export function generateEntityGraph() {
           "https://www.linkedin.com/company/pandapatchesofficial",
           "https://www.youtube.com/@PandaPatchesOfficial",
           "https://www.tiktok.com/@pandapatchesofficial",
+          // Trustpilot profile — links the entity to its strongest review signal
+          // (4.7/75). Review-platform sameAs is an entity/citation signal for AI
+          // engines (AEO-CONTENT-REWORK-SPEC-2026-07.md). A Wikidata entry is the
+          // remaining entity gap — create off-page, then add its URL here.
+          "https://www.trustpilot.com/review/pandapatches.com",
           "https://www.provenexpert.com/en-us/panda-patches/",
           "https://www.yelp.com/biz/panda-patches",
           "https://www.crunchbase.com/organization/panda-patches",

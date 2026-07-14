@@ -19,6 +19,7 @@ import ProcessSection from "@/components/home/ProcessSection";
 import WorkSamples from "@/components/product/WorkSamples";
 import TimelineSection from "@/components/home/TimelineSection";
 import FAQ from "@/components/home/FAQ";
+import ProductReviews from "@/components/reviews/ProductReviews";
 
 // 1. Fetch Data
 async function getData(slug: string) {
@@ -112,6 +113,7 @@ export default async function CustomProductPage({ params }: { params: Promise<{ 
     image: data.heroImage ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url() : 'https://www.pandapatches.com/assets/og-image.png',
     url: `https://www.pandapatches.com/custom-products/${slug}`,
     priceRange: "$100-$1000", // Typical price range for custom coins/pins/keychains
+    reviewKey: slug,
   });
 
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -213,6 +215,11 @@ export default async function CustomProductPage({ params }: { params: Promise<{ 
 
       {/* 10. FAQ */}
       <FAQ />
+
+      {/* 10.5 PRODUCT REVIEWS — backs the reviewKey aggregateRating above
+          (GSC "Missing field aggregateRating"); Google requires the rated
+          reviews be visible on the page, not just in the schema. */}
+      <ProductReviews productKey={slug} productName={data.title} />
 
       {/* 11. SEO SECTION 2 (Grey Background to separate it) */}
       {data.seoBottom && <SEOText content={data.seoBottom} bgColor="bg-[#F9FAF5]" />}

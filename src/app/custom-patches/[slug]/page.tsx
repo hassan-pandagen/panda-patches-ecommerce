@@ -7,6 +7,8 @@ import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema, generateSchemaScript } from "@/lib/schemas";
 import ProductReviews from "@/components/reviews/ProductReviews";
+import AeoAnswerBlock from "@/components/product/AeoAnswerBlock";
+import { aeoContent } from "@/lib/aeoContent";
 import { getSchemaPricingTiers } from "@/lib/pricingCalculator";
 import { genericFaqs } from "@/lib/genericFaqs";
 import { slugFaqMap } from "@/lib/slugFaqs";
@@ -216,6 +218,12 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
 
       {/* 2. PANDA IS 5 STAR */}
       <TrustStrip />
+
+      {/* 2.5 AEO ANSWER BLOCK — answer-first content in the first-30% extraction
+          zone (AEO-CONTENT-REWORK-SPEC-2026-07.md): direct answer + key-facts
+          table + patch-type comparison + fan-out Q&A, high in the DOM so answer
+          engines can cite it. Only renders for slugs with authored content. */}
+      {aeoContent[slug] && <AeoAnswerBlock content={aeoContent[slug]} />}
 
       {/* 3. Craftsmanship + Reviews */}
       <Craftsmanship />
