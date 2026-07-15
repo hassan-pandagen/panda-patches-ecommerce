@@ -7,7 +7,6 @@ import { ensureCustomerAccount } from '@/lib/ensureCustomerAccount';
 import { sendOrderEmails } from '@/lib/orderEmails';
 import { verifySquareWebhookSignature, resolveSquareReference, WEB_REF_PREFIX } from '@/lib/square';
 import { sendGa4Purchase } from '@/lib/ga4Server';
-import { sendGoogleAdsPurchase } from '@/lib/googleAdsServer';
 
 export const runtime = 'nodejs';
 
@@ -205,23 +204,13 @@ export async function POST(req: Request) {
       }).catch((err) => console.error('[GA4 MP] Purchase (Square webhook) failed (non-blocking):', err));
     }
 
-    // Google Ads Purchase conversion, uploaded directly via the API (non-blocking).
-    // Complements the browser-side fire in PurchaseConversion.tsx — this one lands
-    // even if the buyer never returns to /success. Shares GADS_ACTION_ID_ORDER with
-    // the CRM's edge function (Task 3) — same conversion action, disjoint order
-    // populations. No-ops until GADS_* env vars are set (see README).
-    sendGoogleAdsPurchase({
-      orderId: orderRef,
-      value: amountPaid,
-      currency: 'USD',
-      conversionDateTime: new Date(paidAtIso),
-      email: validEmail,
-      phone: d.customer_phone || null,
-      gclid: attribution.gclid || null,
-      wbraid: attribution.wbraid || null,
-      gbraid: attribution.gbraid || null,
-      gclidCapturedAt: attribution.gclid_captured_at || null,
-    }).catch((err) => console.error('[GOOGLE ADS] Purchase (Square) failed (non-blocking):', err));
+    // Google Ads purchase attribution: NOT sent here. The legacy uploadClickConversions
+    // path is permanently blocked for this account (CUSTOMER_NOT_ALLOWLISTED_FOR_THIS_FEATURE
+    // — no allowlisting path exists, see claude-code-task-datamanager-migration.md).
+    // The `orders` row just inserted above already carries gclid/gbraid/wbraid + email +
+    // phone in `attribution`; Google Ads Data Manager reads matched orders directly from
+    // the `public.google_ads_data_manager_export` Postgres view on its own schedule, so
+    // no per-order call or app-level export job is needed here at all.
 
     // Mark abandoned-cart row purchased (provider_session_id = token).
     await supabase
