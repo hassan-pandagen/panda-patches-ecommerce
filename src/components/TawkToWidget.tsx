@@ -109,13 +109,22 @@ function loadTawkScript() {
     } catch { /* noop */ }
   }
 
-  // Fire Meta Contact when visitor sends first message. Only fires if
-  // email/phone present (guarded inside fireMetaContact). The Google Ads
-  // gtag conversion block that used to live here was removed (audit P3) —
-  // ad spend is Meta-only, so it was dead code with no active AW- account.
+  // Fire conversions when the visitor sends their FIRST message (once per chat):
+  //  - Google Ads "Contact" — pushes `tawk_first_message` to the dataLayer for a
+  //    GTM Google Ads Conversion tag (label AW-11221237770/sWV1CNm--IMcEIqA2uYp).
+  //    gclid-based, so it records even without email/phone. Re-added now that
+  //    Google Ads is active again (claude-code-task-website-conversions.md Fix 1);
+  //    the old direct-gtag block was removed while the AW- account was dormant.
+  //  - Meta Contact — only fires when email/phone is present (guarded inside
+  //    fireMetaContact, to protect EMQ from anonymous chat-open events).
   Tawk_API.onChatMessageVisitor = function () {
     if (sessionStorage.getItem('tawk_conv_fired')) return;
     sessionStorage.setItem('tawk_conv_fired', '1');
+    try {
+      const w = window as unknown as { dataLayer?: unknown[] };
+      w.dataLayer = w.dataLayer || [];
+      w.dataLayer.push({ event: 'tawk_first_message' });
+    } catch { /* never let tracking throw into the UI */ }
     fireMetaContact();
   };
 

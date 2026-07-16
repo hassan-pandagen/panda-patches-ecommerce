@@ -37,7 +37,7 @@ interface SuccessSearchParams {
  */
 async function verifyPayment(
   params: SuccessSearchParams
-): Promise<{ verified: boolean; paymentPending?: boolean; amount?: number }> {
+): Promise<{ verified: boolean; paymentPending?: boolean; amount?: number; orderNumber?: string }> {
   if (!params.ref) return { verified: false };
   try {
     for (let attempt = 0; attempt < 3; attempt++) {
@@ -49,7 +49,24 @@ async function verifyPayment(
       if (!data) return { verified: false };
       const stored = (data.order_data as { order_amount?: number })?.order_amount;
       const amt = stored ?? (params.value ? parseFloat(params.value) : undefined);
-      if (data.consumed_at) return { verified: true, amount: amt };
+      if (data.consumed_at) {
+        // Webhook processed → the order row exists. Resolve its order_number (the
+        // value the PostgreSQL export maps to Transaction ID) so the browser
+        // Google Ads Purchase tag can send a matching transaction_id and Google
+        // dedupes the tag against the Data Manager import — no double-count
+        // (claude-code-task-website-conversions.md Fix 2). The webhook stamps
+        // attribution.checkout_token = this token on the order.
+        const { data: order } = await supabase
+          .from("orders")
+          .select("order_number, amount_paid")
+          .eq("attribution->>checkout_token", params.ref)
+          .maybeSingle();
+        return {
+          verified: true,
+          amount: (order?.amount_paid as number | undefined) ?? amt,
+          orderNumber: (order?.order_number as string | undefined) ?? undefined,
+        };
+      }
       if (attempt < 2) {
         await new Promise((r) => setTimeout(r, 1500));
       } else {
@@ -71,7 +88,7 @@ export default async function SuccessPage({
   searchParams: Promise<SuccessSearchParams>;
 }) {
   const params = await searchParams;
-  const { verified, paymentPending, amount } = await verifyPayment(params);
+  const { verified, paymentPending, amount, orderNumber } = await verifyPayment(params);
 
   // Anyone hitting /success without a verified paid order is sent home. Stops
   // random visitors, refreshes, and bookmark visits from showing a fake receipt.
@@ -86,7 +103,7 @@ export default async function SuccessPage({
       {/* Browser purchase conversions fire ONLY for webhook-confirmed payments;
           if the webhook is still in flight, the server-side CAPI + GA4 events
           cover the conversion when it lands (audit P1). */}
-      {!paymentPending && <PurchaseConversion />}
+      {!paymentPending && <PurchaseConversion orderNumber={orderNumber} amount={amount} />}
 
       <div className="container mx-auto px-6 py-20">
         <div className="max-w-2xl mx-auto text-center">

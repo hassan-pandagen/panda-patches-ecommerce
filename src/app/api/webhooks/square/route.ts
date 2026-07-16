@@ -77,11 +77,16 @@ export async function POST(req: Request) {
     }
 
     // Attribution + Square ids for traceability (square ids live in the JSONB, since
-    // the orders table has no square columns).
+    // the orders table has no square columns). checkout_token stores the
+    // square_pending_orders token (the ?ref= on /success) so the success page can
+    // resolve THIS order's order_number from the token — the Google Ads Purchase
+    // tag must send that order_number as transaction_id to dedupe against the Data
+    // Manager "Direct Purchase" import (claude-code-task-website-conversions.md Fix 2).
     const attribution: Attribution = {
       ...(d.attribution || {}),
       square_payment_id: payment.id,
       square_order_id: payment.order_id || null,
+      checkout_token: token,
     } as Attribution;
 
     const paidAtIso = new Date().toISOString();
