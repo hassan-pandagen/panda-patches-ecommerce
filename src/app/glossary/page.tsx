@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { BookOpen, Database, Quote, ArrowRight } from "lucide-react";
 import { buildPageMetadata } from "@/lib/seo";
+import { liveEntries } from "./entries";
 
 export const dynamic = "force-static";
 
@@ -113,6 +114,7 @@ const glossarySchema = {
 };
 
 export default function GlossaryHub() {
+  const liveBySlugTerm = new Map(liveEntries().map((e) => [e.term, e]));
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(glossarySchema) }} />
@@ -201,11 +203,26 @@ export default function GlossaryHub() {
                     {cat.name}
                   </h3>
                   <ul className="space-y-2">
-                    {cat.terms.map((term) => (
-                      <li key={term} className="text-[13px] md:text-[14px] text-gray-600 font-medium leading-snug">
-                        {term}
-                      </li>
-                    ))}
+                    {cat.terms.map((term) => {
+                      // Live entries link out; the rest render as plain text until
+                      // their entry publishes (term labels must match entries.ts).
+                      const entry = liveBySlugTerm.get(term);
+                      return (
+                        <li key={term} className="text-[13px] md:text-[14px] font-medium leading-snug">
+                          {entry ? (
+                            <Link
+                              href={`/glossary/${entry.slug}`}
+                              prefetch={false}
+                              className="text-panda-green underline font-semibold"
+                            >
+                              {term}
+                            </Link>
+                          ) : (
+                            <span className="text-gray-600">{term}</span>
+                          )}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               ))}

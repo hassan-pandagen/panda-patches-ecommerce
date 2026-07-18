@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { liveEntries as glossaryLiveEntries } from './glossary/entries';
 import { client } from '@/lib/sanity';
 import { getPublishedCaseStudies } from '@/lib/caseStudies';
 
@@ -185,6 +186,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.7,
     },
+    // Published glossary entries (registry-gated: photo + human review).
+    ...glossaryLiveEntries().map((entry) => ({
+      url: `${baseUrl}/glossary/${entry.slug}`,
+      lastModified: new Date(entry.dateModified ?? entry.datePublished ?? '2026-07-18'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
     {
       url: `${baseUrl}/custom-patch-production-data-2026`,
       lastModified: new Date('2026-07-18'),
