@@ -17,6 +17,8 @@ const urls = [
   `${BASE}/about`,
   `${BASE}/contact`,
   `${BASE}/sample-box`,
+  `${BASE}/glossary`,
+  `${BASE}/custom-patch-production-data-2026`,
 
   // Specialty patch pages
   `${BASE}/custom-police-patches`,
