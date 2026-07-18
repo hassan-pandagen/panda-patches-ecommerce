@@ -423,6 +423,25 @@ const nextConfig = {
       { source: '/varsity-jacket-patches-or-what-can-be-done', destination: '/custom-letterman-patches', permanent: true },
       { source: '/varsity-jacket-patches-or-what-can-be-done/', destination: '/custom-letterman-patches', permanent: true },
 
+      // GLOSSARY BATCH 0 CLEANUP (2026-07-18, CL2051_2 audit) — duplicate-route kill.
+      // /custom-patches/custom-patches is a self-canonical duplicate of the /custom-patches
+      // commercial page, served by the /custom-patches/[slug] route from a productPage doc
+      // with slug "custom-patches". 301 to the canonical + drop from sitemap
+      // (productPages filter in src/app/sitemap.ts). Single-hop: /custom-patches is a live page.
+      { source: '/custom-patches/custom-patches', destination: '/custom-patches', permanent: true },
+      { source: '/custom-patches/custom-patches/', destination: '/custom-patches', permanent: true },
+      // Remaining cluster losers (CL2051_2 §2). All three were retitled 2026-07-12/13 but
+      // their bodies still duplicate the cluster winners (verified against Sanity before
+      // 301ing — nothing unique worth porting). Single-hop: all destinations are live pages.
+      // Delete the three Sanity blog docs after this deploys (they're excluded from the
+      // sitemap via REDIRECTED_SLUGS until then).
+      { source: '/know-your-patch-types-which-is-best-for-you', destination: '/patch-types-compared', permanent: true },
+      { source: '/know-your-patch-types-which-is-best-for-you/', destination: '/patch-types-compared', permanent: true },
+      { source: '/how-to-iron-a-patch-on-a-shirt', destination: '/the-complete-guide-to-iron-on-patches-care-application-and-longevity', permanent: true },
+      { source: '/how-to-iron-a-patch-on-a-shirt/', destination: '/the-complete-guide-to-iron-on-patches-care-application-and-longevity', permanent: true },
+      { source: '/embroidery-vs-woven-patches-what-to-choose', destination: '/woven-vs-embroidered-patches-which-is-right-for-you', permanent: true },
+      { source: '/embroidery-vs-woven-patches-what-to-choose/', destination: '/woven-vs-embroidered-patches-which-is-right-for-you', permanent: true },
+
       // LOCATION PAGE CONSOLIDATION (July 2026, CLAUDE_4.MD) — 20 templated
       // location pages linked from the sitewide footer, most with thin/low
       // traffic (5-18 clicks/quarter). Keeping only the real HQ (Austin), the

@@ -23,6 +23,11 @@ const REDIRECTED_SLUGS = new Set([
   'custom-patches-no-minimum-order-5-pieces',
   'custom-soccer-patches-guide-2026',
   'custom-velcro-patches-styles-uses-and-how-to-order',
+  // Glossary Batch 0 (2026-07-18, CL2051_2) — cluster losers 301'd in next.config.mjs;
+  // their Sanity docs stay live until deleted post-deploy, so exclude here.
+  'know-your-patch-types-which-is-best-for-you',
+  'how-to-iron-a-patch-on-a-shirt',
+  'embroidery-vs-woven-patches-what-to-choose',
   // Location page consolidation (July 2026, CLAUDE_4.MD) — kept only Austin,
   // Texas, New York, Los Angeles. These 16 301 away in next.config.mjs.
   'alabama-patches',
@@ -394,13 +399,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  // Product pages (highest priority for SEO)
-  const productPages: MetadataRoute.Sitemap = (data.products || []).map((product: SanitySlugItem) => ({
-    url: `${baseUrl}/custom-patches/${product.slug}`,
-    lastModified: new Date(product._updatedAt),
-    changeFrequency: 'weekly' as const,
-    priority: 0.9,
-  }));
+  // Product pages (highest priority for SEO) — exclude the self-canonical duplicate
+  // /custom-patches/custom-patches (a productPage with slug "custom-patches" that
+  // duplicates the /custom-patches commercial page); it 301s away in next.config.mjs
+  // (glossary Batch 0, 2026-07-18), so the sitemap must not list the redirecting URL.
+  const productPages: MetadataRoute.Sitemap = (data.products || [])
+    .filter((product: SanitySlugItem) => product.slug !== 'custom-patches')
+    .map((product: SanitySlugItem) => ({
+      url: `${baseUrl}/custom-patches/${product.slug}`,
+      lastModified: new Date(product._updatedAt),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    }));
 
   // Custom product pages (coins, pins, keychains)
   const customProductPages: MetadataRoute.Sitemap = (data.customProducts || []).map((product: SanitySlugItem) => ({

@@ -219,7 +219,7 @@ export default async function AdhesivePatchesPage() {
         <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
           <p className="text-[14px] text-gray-500 leading-relaxed">
             <span className="font-bold text-panda-dark">Related:</span>{" "}
-            <Link href="/comparing-patch-backings-which-one-is-right-for-you" prefetch={false} className="text-panda-green underline font-semibold">Comparing Patch Backings</Link>
+            <Link href="/patch-backings-101-iron-on-vs-sew-on-vs-velcro" prefetch={false} className="text-panda-green underline font-semibold">Patch Backings 101</Link>
             {" · "}
             <Link href="/custom-patches/printed" prefetch={false} className="text-panda-green underline font-semibold">Printed patches</Link>
             {" · "}
