@@ -177,6 +177,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    // Glossary hub + production-data anchor asset (Batch 0, CL2051, 2026-07-18).
+    // Bump lastModified when entries publish or a new data edition ships.
+    {
+      url: `${baseUrl}/glossary`,
+      lastModified: new Date('2026-07-18'),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/custom-patch-production-data-2026`,
+      lastModified: new Date('2026-07-18'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     {
       url: `${baseUrl}/privacy-policy`,
       lastModified: new Date('2025-01-01'),

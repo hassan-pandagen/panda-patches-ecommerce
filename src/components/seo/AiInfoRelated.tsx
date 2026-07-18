@@ -16,6 +16,8 @@ const EXPLORE_LINKS: RelatedLink[] = [
   { url: "/offers", anchor: "Fixed-Price Offers" },
   { url: "/bulk-custom-patches", anchor: "Bulk Custom Patches" },
   { url: "/how-much-do-custom-patches-cost-full-pricing-breakdown", anchor: "Patch Pricing Guide" },
+  { url: "/glossary", anchor: "Custom Patch Glossary" },
+  { url: "/custom-patch-production-data-2026", anchor: "Production Data 2026" },
   { url: "/reviews", anchor: "Customer Reviews" },
   { url: "/contact", anchor: "Get a Free Quote" },
 ];
