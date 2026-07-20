@@ -189,8 +189,9 @@ export async function POST(req: Request) {
         const FONT = "'lucida sans unicode','lucida grande',sans-serif";
 
         await mailClient.sendMail({
-          from: { address: 'hello@pandapatches.com', name: 'Panda Patches Website' },
-          to: [{ email_address: { address: 'lance@pandapatches.com', name: 'Lance' } }],
+          from: { address: 'sales@pandapatches.com', name: 'Panda Patches Website' },
+          to: [{ email_address: { address: 'sales@pandapatches.com', name: 'Panda Patches Sales' } }],
+          cc: [{ email_address: { address: 'lance@pandapatches.com', name: 'Lance' } }],
           reply_to: [{ address: customer.email, name: customer.name }],
           subject,
           htmlbody: `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;padding:0;background:#f4f4f4;">
@@ -244,7 +245,7 @@ export async function POST(req: Request) {
           // ComplexCalculator quote (has price) — send full branded quote with price
           try {
             await mailClient.sendMail({
-              from: { address: 'hello@pandapatches.com', name: 'Panda Patches' },
+              from: { address: 'sales@pandapatches.com', name: 'Panda Patches' },
               to: [{ email_address: { address: customer.email, name: customer.name } }],
               subject: `Your Price Quote - Panda Patches`,
               htmlbody: `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;padding:0;background:#f4f4f4;">
@@ -312,7 +313,7 @@ export async function POST(req: Request) {
           // Home/Bulk form (no price) — simple acknowledgment only
           try {
             await mailClient.sendMail({
-              from: { address: 'hello@pandapatches.com', name: 'Panda Patches' },
+              from: { address: 'sales@pandapatches.com', name: 'Panda Patches' },
               to: [{ email_address: { address: customer.email, name: customer.name } }],
               subject: 'We received your quote request - Panda Patches',
               htmlbody: `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;padding:0;background:#f4f4f4;">

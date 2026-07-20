@@ -174,7 +174,7 @@ async function sendFirstEmail(row: CheckoutAttempt) {
   const fname = firstNameOf(row.customer_name);
 
   await mail.sendMail({
-    from: { address: 'hello@pandapatches.com', name: 'Panda Patches' },
+    from: { address: 'sales@pandapatches.com', name: 'Panda Patches' },
     to: [{ email_address: { address: row.customer_email, name: row.customer_name || '' } }],
     subject: `${fname}, your custom patches are waiting`,
     htmlbody: buildFirstEmailHtml(row, fname),
@@ -220,7 +220,7 @@ async function sendSecondEmail(row: CheckoutAttempt) {
   const fname = firstNameOf(row.customer_name);
 
   await mail.sendMail({
-    from: { address: 'hello@pandapatches.com', name: 'Panda Patches' },
+    from: { address: 'sales@pandapatches.com', name: 'Panda Patches' },
     to: [{ email_address: { address: row.customer_email, name: row.customer_name || '' } }],
     subject: `${fname}, last chance to finish your patch order`,
     htmlbody: buildSecondEmailHtml(row, fname),
@@ -303,7 +303,7 @@ function buildFirstEmailHtml(row: CheckoutAttempt, fname: string): string {
     <p style="color:#ffffff;font-size:12px;margin:0 0 6px;letter-spacing:1px;">PANDA PATCHES</p>
     <p style="color:#aaaaaa;font-size:11px;margin:0;">701 Tillery St Ste 12, Austin, TX 78702</p>
     <p style="color:#aaaaaa;font-size:11px;margin:4px 0 0;">(302) 250-4340 | <a href="https://www.pandapatches.com" style="color:#aaaaaa;">pandapatches.com</a></p>
-    <p style="color:#555555;font-size:10px;margin:12px 0 0;">You started a custom patch order at pandapatches.com. <a href="mailto:hello@pandapatches.com?subject=Unsubscribe" style="color:#777777;">Unsubscribe</a></p>
+    <p style="color:#555555;font-size:10px;margin:12px 0 0;">You started a custom patch order at pandapatches.com. <a href="mailto:sales@pandapatches.com?subject=Unsubscribe" style="color:#777777;">Unsubscribe</a></p>
   </div>
 </div>
 </body></html>`;
@@ -355,7 +355,7 @@ function buildSecondEmailHtml(row: CheckoutAttempt, fname: string): string {
     <p style="color:#ffffff;font-size:12px;margin:0 0 6px;letter-spacing:1px;">PANDA PATCHES</p>
     <p style="color:#aaaaaa;font-size:11px;margin:0;">701 Tillery St Ste 12, Austin, TX 78702</p>
     <p style="color:#aaaaaa;font-size:11px;margin:4px 0 0;">(302) 250-4340 | <a href="https://www.pandapatches.com" style="color:#aaaaaa;">pandapatches.com</a></p>
-    <p style="color:#555555;font-size:10px;margin:12px 0 0;"><a href="mailto:hello@pandapatches.com?subject=Unsubscribe" style="color:#777777;">Unsubscribe from these reminders</a></p>
+    <p style="color:#555555;font-size:10px;margin:12px 0 0;"><a href="mailto:sales@pandapatches.com?subject=Unsubscribe" style="color:#777777;">Unsubscribe from these reminders</a></p>
   </div>
 </div>
 </body></html>`;

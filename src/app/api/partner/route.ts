@@ -139,8 +139,9 @@ export async function POST(req: Request) {
 
     try {
     await mailClient.sendMail({
-      from: { address: 'hello@pandapatches.com', name: 'Panda Patches Partner Program' },
-      to: [{ email_address: { address: 'lance@pandapatches.com', name: 'Lance' } }],
+      from: { address: 'sales@pandapatches.com', name: 'Panda Patches Partner Program' },
+      to: [{ email_address: { address: 'sales@pandapatches.com', name: 'Panda Patches Sales' } }],
+      cc: [{ email_address: { address: 'lance@pandapatches.com', name: 'Lance' } }],
       reply_to: [{ address: businessEmail, name: fullName }],
       subject: `[PARTNER APPLICATION${partnerType ? ` · ${partnerType}` : ''}] ${businessName} - ${fullName}`,
       htmlbody: `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;padding:0;background:#f4f4f4;">

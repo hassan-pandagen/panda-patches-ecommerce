@@ -1,8 +1,18 @@
 /**
- * Transactional order emails for paid website orders: an internal new-order
- * notification to the team and a branded customer confirmation.
+ * Internal new-order notification for paid website orders.
  *
- * Extracted so the Square webhook sends exactly what the Stripe webhook sends.
+ * Ownership split (owner decision, 2026-07-21): sales@ owns PRE-sale, hello@ (the
+ * CRM) owns POST-sale. The customer-facing order confirmation was REMOVED from the
+ * website — the CRM already sends the authoritative payment confirmation from
+ * hello@ off the same verified Square payment webhook, covering all three payment
+ * flows (Buy-Now checkout, payment-form links, quote payments), so a website
+ * confirmation would double-email every customer. Square is the only live gateway
+ * (PayPal has zero orders), so nothing falls through.
+ *
+ * DO NOT re-add any post-payment CUSTOMER email here without checking the CRM
+ * first. This function now sends only the INTERNAL team heads-up (to sales@,
+ * cc lance@) — no customer email.
+ *
  * Provider-agnostic: callers pass the order fields as a flat `meta` map plus the
  * amount paid and a payment reference (Stripe session id, Square payment id, etc).
  */
@@ -35,7 +45,6 @@ export async function sendOrderEmails(
   const instructions = meta.instructions || '';
   const shipping = meta.shipping_address || '';
   const source = meta.order_source || 'WEBSITE';
-  const orderNo = meta.order_number || paymentRef;
 
   const deliveryLabel =
     delivery === 'economy'
@@ -48,15 +57,16 @@ export async function sendOrderEmails(
 
   const LOGO =
     'http://cdn.mcauto-images-production.sendgrid.net/cbe49576e8597a6a/213c03ef-699b-4ff5-b568-76cbe38d40d7/1190x571.png';
-  const IG_BANNER =
-    'http://cdn.mcauto-images-production.sendgrid.net/cbe49576e8597a6a/4f0fe337-478e-473c-b6aa-baa8b6c94def/1600x406.jpg';
   const FONT = "'lucida sans unicode','lucida grande',sans-serif";
 
   // Internal notification to lance
   try {
     await mail.sendMail({
-      from: { address: 'hello@pandapatches.com', name: 'Panda Patches Website' },
-      to: [{ email_address: { address: 'lance@pandapatches.com', name: 'Lance' } }],
+      from: { address: 'sales@pandapatches.com', name: 'Panda Patches Website' },
+      // Leads go to the shared sales inbox; Lance stays copied so nothing that
+      // used to reach him stops reaching him.
+      to: [{ email_address: { address: 'sales@pandapatches.com', name: 'Panda Patches Sales' } }],
+      cc: [{ email_address: { address: 'lance@pandapatches.com', name: 'Lance' } }],
       subject: `[NEW ORDER] ${product} - ${qty} pcs - $${amountPaid.toFixed(2)} - ${source}`,
       htmlbody: `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;padding:0;background:#f4f4f4;">
 <div style="max-width:640px;margin:0 auto;font-family:${FONT};">
@@ -103,84 +113,7 @@ export async function sendOrderEmails(
     console.error('Internal order email error:', e);
   }
 
-  // Customer confirmation
-  if (!email) return;
-  try {
-    await mail.sendMail({
-      from: { address: 'hello@pandapatches.com', name: 'Panda Patches' },
-      to: [{ email_address: { address: email, name: name } }],
-      subject: 'Order Confirmation - Panda Patches',
-      htmlbody: `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;padding:0;background:#f4f4f4;">
-<div style="max-width:620px;margin:0 auto;font-family:${FONT};">
-  <div style="background:#000000;padding:24px 32px;text-align:center;">
-    <img src="${LOGO}" alt="Panda Patches" width="220" style="display:block;margin:0 auto;">
-  </div>
-  <div style="background:#ffffff;padding:32px 32px 24px;">
-    <p style="font-size:15px;color:#333333;margin-top:0;line-height:1.6;">
-      Hello <strong style="color:#fb6e1d;">${esc(name)}</strong>,
-    </p>
-    <p style="font-size:15px;color:#333333;line-height:1.6;">
-      Thank you for your order! Your payment has been confirmed and we are excited to get started on your custom patches. Our design team will send you a digital mockup within <strong>24 hours</strong> for your review and approval.
-    </p>
-    <p style="font-size:14px;color:#555555;line-height:1.6;">
-      Production begins only after you approve the mockup. You can request unlimited revisions at no extra charge. If we cannot get it right, we offer a full money-back guarantee.
-    </p>
-
-    <div style="background:#000000;padding:12px 20px;margin-top:28px;border-radius:4px 4px 0 0;">
-      <span style="color:#dcff70;font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:2px;">Order Information</span>
-    </div>
-    <table style="width:100%;border-collapse:collapse;font-size:14px;border:1px solid #e0e0e0;border-top:none;">
-      <tr><td style="padding:10px 16px;color:#666666;width:130px;background:#f9f9f9;">Order No.</td><td style="padding:10px 16px;font-weight:700;color:#fb6e1d;">${esc(String(orderNo).substring(0, 18).toUpperCase())}</td></tr>
-      <tr><td style="padding:10px 16px;color:#666666;background:#f9f9f9;">Product</td><td style="padding:10px 16px;font-weight:600;color:#222222;">${esc(product)}</td></tr>
-      <tr><td style="padding:10px 16px;color:#666666;background:#f9f9f9;">Quantity</td><td style="padding:10px 16px;font-weight:600;color:#222222;">${esc(qty)} pieces</td></tr>
-      <tr><td style="padding:10px 16px;color:#666666;background:#f9f9f9;">Size</td><td style="padding:10px 16px;color:#222222;">${esc(size)}</td></tr>
-      <tr><td style="padding:10px 16px;color:#666666;background:#f9f9f9;">Backing</td><td style="padding:10px 16px;color:#222222;">${esc(backing)}</td></tr>
-      <tr><td style="padding:10px 16px;color:#666666;background:#f9f9f9;">Delivery</td><td style="padding:10px 16px;color:#222222;">${esc(deliveryLabel)}</td></tr>
-      ${addons ? `<tr><td style="padding:10px 16px;color:#666666;background:#f9f9f9;">Upgrades</td><td style="padding:10px 16px;color:#222222;">${esc(addons)}</td></tr>` : ''}
-      ${shipping ? `<tr><td style="padding:10px 16px;color:#666666;background:#f9f9f9;">Ship To</td><td style="padding:10px 16px;color:#222222;">${esc(shipping)}</td></tr>` : ''}
-      <tr style="background:#000000;"><td style="padding:12px 16px;color:#aaaaaa;font-size:13px;">Amount Paid</td><td style="padding:12px 16px;color:#dcff70;font-size:22px;font-weight:900;">$${amountPaid.toFixed(2)}</td></tr>
-    </table>
-
-    <div style="margin-top:28px;padding:20px 24px;background:#f9f9f9;border-left:4px solid #fb6e1d;border-radius:0 4px 4px 0;">
-      <p style="margin:0 0 10px;font-weight:bold;color:#222222;font-size:14px;">What happens next?</p>
-      <p style="margin:0;color:#444444;font-size:14px;line-height:1.8;">
-        1. Our design team creates your mockup within 24 hours.<br>
-        2. We email the mockup to <strong>${esc(email)}</strong>.<br>
-        3. You review and request any changes - all free, no limits.<br>
-        4. You approve - production starts immediately.<br>
-        5. Your patches ship with full tracking to your door.
-      </p>
-    </div>
-
-    <p style="color:#555555;font-size:14px;margin-top:24px;line-height:1.6;">
-      Questions? Simply reply to this email or call us at <a href="tel:+13022504340" style="color:#fb6e1d;font-weight:bold;">(302) 250-4340</a>. We are happy to help.
-    </p>
-    <p style="color:#555555;font-size:14px;line-height:1.6;">
-      Thank you for choosing Panda Patches. We look forward to delivering something you will love!
-    </p>
-    <p style="color:#333333;font-size:14px;margin-bottom:0;">
-      Warm regards,<br>
-      <strong>The Panda Patches Team</strong>
-    </p>
-  </div>
-
-  <div style="background:#ffffff;padding:0 32px 24px;">
-    <a href="https://www.instagram.com/pandapatchesofficial/" target="_blank">
-      <img src="${IG_BANNER}" alt="Follow Panda Patches on Instagram" width="556" style="display:block;width:100%;border-radius:4px;">
-    </a>
-  </div>
-
-  <div style="background:#000000;padding:20px 32px;text-align:center;">
-    <hr style="border:none;border-top:1px solid #b8975a;margin:0 0 16px;">
-    <p style="color:#ffffff;font-size:12px;margin:0 0 6px;letter-spacing:1px;">PANDA PATCHES</p>
-    <p style="color:#aaaaaa;font-size:11px;margin:0;">701 Tillery St Ste 12, Austin, TX 78702</p>
-    <p style="color:#aaaaaa;font-size:11px;margin:4px 0 0;">(302) 250-4340 | <a href="https://www.pandapatches.com" style="color:#aaaaaa;">pandapatches.com</a></p>
-    <p style="color:#555555;font-size:10px;margin:12px 0 0;">This is a transactional email confirming your order with Panda Patches.</p>
-  </div>
-</div>
-</body></html>`,
-    });
-  } catch (e) {
-    console.error('Customer confirmation email error:', e);
-  }
+  // NO customer order-confirmation email here — the CRM sends the authoritative
+  // payment confirmation from hello@ on the same Square webhook (owner decision
+  // 2026-07-21). Adding one back would double-email every customer.
 }

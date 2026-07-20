@@ -117,6 +117,14 @@ export async function POST(request: Request) {
         to: [
           {
             email_address: {
+              address: 'sales@pandapatches.com',
+              name: 'Panda Patches Sales',
+            },
+          },
+        ],
+        cc: [
+          {
+            email_address: {
               address: 'lance@pandapatches.com',
               name: 'Lance',
             },
