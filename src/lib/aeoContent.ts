@@ -234,7 +234,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Turnaround", value: "10–14 business days; rush available; 3–4 wks for 10,000+" },
       { label: "Shipping", value: "Free US shipping with tracking" },
       { label: "B2B terms", value: "Distributor/ASI pricing, white-label, Net 15/30 for qualified accounts" },
-      { label: "Proof", value: "16,000 patches for Wise's Nasdaq/Times Square activation in under 2 weeks" },
+      { label: "Proof", value: "9,600 woven patches across 16 designs for Wise's Nasdaq/Times Square activation, delivered on the contractual dates" },
       { label: "Rating", value: "4.7★ on Trustpilot (75 reviews), 4,000+ bulk orders" },
     ],
     comparison: PATCH_TYPE_COMPARISON,
@@ -253,7 +253,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       },
       {
         q: "What is the turnaround for large bulk patch orders?",
-        a: `Standard bulk turnaround is 10 to 14 business days from mockup approval regardless of quantity, with rush production available for tighter deadlines. Orders above 10,000 pieces may take 3 to 4 weeks depending on complexity. Because Panda Patches delivers the digital mockup within 12 to 24 hours, the production clock effectively starts the day you approve, which is how immovable dates get met: when Wise needed 16,000 patches for their Nasdaq bell-ringing and Times Square activation, they were designed, approved, and delivered in under two weeks with no rush surcharge. Returning bulk clients get even faster 7-to-10-day turnaround thanks to saved artwork and locked-in specs. Every order ships with full door-to-door tracking and free US shipping, so you can plan event and launch dates around a firm delivery window.`,
+        a: `Standard bulk turnaround is 10 to 14 business days from mockup approval regardless of quantity, with rush production available for tighter deadlines. Orders above 10,000 pieces may take 3 to 4 weeks depending on complexity. Because Panda Patches delivers the digital mockup within 12 to 24 hours, the production clock effectively starts the day you approve, which is how immovable dates get met: when Wise needed 9,600 patches for their Nasdaq bell-ringing and Times Square activation, they were designed, approved, and delivered in two shipments on May 4 and May 7, both on their contractual dates with no rush surcharge. Returning bulk clients get even faster 7-to-10-day turnaround thanks to saved artwork and locked-in specs. Every order ships with full door-to-door tracking and free US shipping, so you can plan event and launch dates around a firm delivery window.`,
       },
       {
         q: "Do you offer distributor, ASI, or reseller wholesale pricing?",

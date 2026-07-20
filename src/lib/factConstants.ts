@@ -30,13 +30,16 @@ export const ECONOMY_DELIVERY = '16-18 business days';
 // ── Minimums ────────────────────────────────────────────────────────────────
 /** Default minimum order (most patch types). */
 export const MIN_ORDER_DEFAULT = 5;
-/** Exceptions enforced by the pricing calculator. */
+/**
+ * Exceptions enforced by the pricing calculator.
+ * 3D transfers corrected 10 → 5 per SEDAA3_1 §A.4 (owner decision, 2026-07-20);
+ * woven remains the only 10-piece minimum.
+ */
 export const MIN_ORDER_EXCEPTIONS: Record<string, number> = {
   'Custom Woven Patches': 10,
-  'Custom 3D Embroidered Transfers': 10,
 };
 /** Compliance-safe phrasing for generic copy. */
-export const MIN_ORDER_COPY = 'from 5 pieces on most patch types (woven and 3D transfers: 10)';
+export const MIN_ORDER_COPY = 'from 5 pieces on most patch types (woven: 10)';
 
 // ── Canonical "from" prices (option A — live calculator basis, July 2026) ──
 /** The basis EVERY advertised from-price must state. */
@@ -46,10 +49,26 @@ export const FROM_PRICE_PVC = '$1.54';
 export const FROM_PRICE_WOVEN = '$1.54';
 
 // ── Support ────────────────────────────────────────────────────────────────
-export const PHONE_DISPLAY = '+1 (302) 773-8982';
-export const PHONE_TEL = 'tel:+13027738982';
+/** Main line. Replaced (302) 773-8982 per SEDAA3_1 §A.3 — the old number must
+ *  not appear on any public surface. */
+export const PHONE_DISPLAY = '+1 (302) 250-4340';
+export const PHONE_TEL = 'tel:+13022504340';
 export const SUPPORT_HOURS = 'Every day, 11am-7pm ET';
 
-// ── Social proof (update together with reviewConstants.ts) ─────────────────
-export const TRUSTPILOT_RATING = '4.8';
-export const TRUSTPILOT_REVIEWS = 72;
+// ── Social proof ───────────────────────────────────────────────────────────
+/**
+ * Trustpilot figures live in reviewConstants.ts — the single source of truth,
+ * kept in sync with TRUSTPILOT_REVIEWS.md. These re-exports previously held
+ * their own copies and drifted stale (4.8/72 vs the real 4.7/75), which is the
+ * exact class of contradiction this file exists to prevent. Do not re-add
+ * literals here; import from reviewConstants instead.
+ *
+ * Note (SEDAA3_1 §A.2): third-party-sourced, so these may NOT feed an
+ * Organization/LocalBusiness aggregateRating.
+ */
+export {
+  TRUSTPILOT_RATING,
+  TRUSTPILOT_REVIEW_COUNT as TRUSTPILOT_REVIEWS,
+  TRUSTPILOT_LAST_CHECKED as TRUSTPILOT_CHECKED,
+  TRUSTPILOT_PROFILE_URL as TRUSTPILOT_URL,
+} from './reviewConstants';

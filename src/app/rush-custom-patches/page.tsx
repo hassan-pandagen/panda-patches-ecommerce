@@ -42,7 +42,7 @@ const rushFAQs = [
   },
   {
     question: "Can you rush large orders?",
-    answer: "Yes. We own our production facility, so rush capacity scales. For Wise's Nasdaq Times Square activation we delivered 16,000 custom patches from first enquiry to delivery in under two weeks, with every design approved before production. For event deadlines, uniform rollouts, and line-of-duty memorial patches, tell us your date and we plan production around it.",
+    answer: "Yes. We own our production facility, so rush capacity scales. For Wise's Nasdaq Times Square activation we delivered 9,600 woven patches across 16 designs in two shipments on May 4 and May 7 — both on the contractual dates, with every design approved before production. For event deadlines, uniform rollouts, and line-of-duty memorial patches, tell us your date and we plan production around it.",
   },
   {
     question: "What is the fastest turnaround for custom patches?",
@@ -183,9 +183,9 @@ export default function RushCustomPatchesPage() {
             <Link href="/custom-patches/woven" className="text-panda-green font-semibold underline">woven</Link> patches all
             qualify. Because we own our production facility, rush capacity scales: we delivered{" "}
             <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-semibold underline">
-              16,000 patches for Wise&apos;s Nasdaq Times Square activation
+              9,600 patches for Wise&apos;s Nasdaq Times Square activation
             </Link>{" "}
-            from first enquiry to delivery in under two weeks. We confirm your exact in-hand delivery date by
+            in two shipments, both on the contractual dates. We confirm your exact in-hand delivery date by
             email within 2-6 hours of ordering — if we can&apos;t hit your deadline, we remove the rush fee, no
             questions asked.
           </p>
@@ -253,7 +253,7 @@ export default function RushCustomPatchesPage() {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { title: "Events & activations", body: "Trade shows, launches, and brand activations — like Wise's 16,000-patch Nasdaq event, delivered in under two weeks." },
+              { title: "Events & activations", body: "Trade shows, launches, and brand activations — like Wise's 9,600-patch Nasdaq event, delivered on the contractual dates." },
               { title: "Memorial patches", body: "Line-of-duty memorial patches for fire and police departments are treated as our highest priority." },
               { title: "Team deadlines", body: "Tournament weekends, season openers, and jersey deadlines for sports teams and schools." },
               { title: "Uniform rollouts", body: "New-hire batches and company rebrands that can't wait for standard production." },

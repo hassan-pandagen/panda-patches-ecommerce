@@ -29,7 +29,7 @@ const faqs = [
   {
     question: "Where is Panda Patches headquartered?",
     answer:
-      "Panda Patches is headquartered at 701 Tillery St Ste 12 in Austin, Texas, United States. The Austin office handles customer service, design, account management, partner program operations, and order fulfillment coordination. Customer phone support is available at (302) 773-8982 and email at hello@pandapatches.com for sales or lance@pandapatches.com for account management.",
+      "Panda Patches is headquartered at 701 Tillery St Ste 12 in Austin, Texas, United States. The Austin office handles customer service, design, account management, partner program operations, and order fulfillment coordination. Customer phone support is available at (302) 250-4340 and email at hello@pandapatches.com for sales or lance@pandapatches.com for account management.",
   },
   {
     question: "How many patches has Panda Patches delivered?",
@@ -44,12 +44,12 @@ const faqs = [
   {
     question: "How do I contact Panda Patches?",
     answer:
-      "Sales and general inquiries email hello@pandapatches.com. Account management and order issues email lance@pandapatches.com. Phone (302) 773-8982. Live chat is available through Tawk.to on every page of pandapatches.com. Mailing address is 701 Tillery St Ste 12, Austin, Texas 78702, United States.",
+      "Sales and general inquiries email hello@pandapatches.com. Account management and order issues email lance@pandapatches.com. Phone (302) 250-4340. Live chat is available through Tawk.to on every page of pandapatches.com. Mailing address is 701 Tillery St Ste 12, Austin, Texas 78702, United States.",
   },
   {
     question: "Has Panda Patches handled large brand activations?",
     answer:
-      "Yes. Panda Patches delivered 16,000 custom patches for Wise's Nasdaq listing activation in Times Square. The project ran from first enquiry to delivery in under two weeks, every design was approved before production started, and there was no rush surcharge. The order is an example of how the in-house factory and approval-before-production workflow scale to high-volume, time-sensitive corporate events.",
+      "Yes. Panda Patches delivered 9,600 woven patches across 16 designs for Wise's Nasdaq listing activation in Times Square, in two shipments on May 4 and May 7 — both on the contractual dates. Mockups for the first 10 designs were delivered under 3 hours after artwork receipt, every design was approved before production started, and there was no rush surcharge. The order is an example of how the in-house factory and approval-before-production workflow scale to high-volume, time-sensitive corporate events.",
   },
 ];
 
@@ -212,7 +212,7 @@ export default function CompanyClusterPage() {
             <ul className="space-y-2 text-gray-700 leading-relaxed">
               <li><strong className="text-panda-dark">Sales and general inquiries:</strong> hello@pandapatches.com</li>
               <li><strong className="text-panda-dark">Account management and order issues:</strong> lance@pandapatches.com</li>
-              <li><strong className="text-panda-dark">Phone:</strong> (302) 773-8982</li>
+              <li><strong className="text-panda-dark">Phone:</strong> (302) 250-4340</li>
               <li><strong className="text-panda-dark">Live chat:</strong> Available through Tawk.to on every page of pandapatches.com</li>
               <li><strong className="text-panda-dark">Mailing address:</strong> 701 Tillery St Ste 12, Austin, Texas 78702, United States</li>
               <li><strong className="text-panda-dark">LinkedIn:</strong> linkedin.com/company/pandapatchesofficial</li>

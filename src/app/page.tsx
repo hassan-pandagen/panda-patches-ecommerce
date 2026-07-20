@@ -179,7 +179,7 @@ export default function Home() {
           className="inline-flex items-center gap-2 text-[14px] md:text-[15px] font-bold text-panda-dark hover:text-panda-green transition-colors"
         >
           <span className="text-panda-green font-black">&#9733;</span>
-          See how we delivered 16,000 patches for Wise&apos;s Nasdaq Times Square activation
+          See how we delivered 9,600 patches for Wise&apos;s Nasdaq Times Square activation
           <span aria-hidden>&rarr;</span>
         </Link>
       </div>

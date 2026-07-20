@@ -125,7 +125,7 @@ export async function POST(req: Request) {
       console.error('Partner route: ZEPTOMAIL_TOKEN missing');
       // The application is already in the CRM — only fail if that failed too.
       return dbError
-        ? NextResponse.json({ error: 'Submission failed. Please email lance@pandapatches.com directly or call (302) 773-8982.' }, { status: 500 })
+        ? NextResponse.json({ error: 'Submission failed. Please email lance@pandapatches.com directly or call (302) 250-4340.' }, { status: 500 })
         : NextResponse.json({ success: true });
     }
 
@@ -198,7 +198,7 @@ export async function POST(req: Request) {
   } catch (error: unknown) {
     console.error('Partner application error:', error);
     return NextResponse.json(
-      { error: 'Submission failed. Please email lance@pandapatches.com directly or call (302) 773-8982.' },
+      { error: 'Submission failed. Please email lance@pandapatches.com directly or call (302) 250-4340.' },
       { status: 500 }
     );
   }

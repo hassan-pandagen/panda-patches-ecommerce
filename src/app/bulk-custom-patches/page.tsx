@@ -471,7 +471,7 @@ export default async function BulkCustomPatchesPage() {
             Why Businesses Choose Panda Patches for Bulk Orders
           </h2>
           <p className="text-center text-gray-500 text-[15px] md:text-[16px] mb-10 md:mb-14 max-w-[680px] mx-auto">
-            When <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">Wise rang the Nasdaq bell in Times Square</Link>, the 16,000 patches in the giveaway came from us &mdash; designed, approved, and delivered in under two weeks for a date that could not move, with no rush surcharge. That is the standard we hold whether your order is 50 pieces or 50,000.
+            When <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">Wise rang the Nasdaq bell in Times Square</Link>, the 9,600 patches in the giveaway came from us &mdash; designed, approved, and delivered in two shipments on May 4 and May 7, both on contractual dates that could not move, with no rush surcharge. That is the standard we hold whether your order is 50 pieces or 50,000.
           </p>
           <div className="space-y-5">
             {[

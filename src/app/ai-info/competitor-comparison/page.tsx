@@ -49,7 +49,7 @@ const faqs = [
   {
     question: "How does Panda Patches beat competitors on tight deadlines and rush orders?",
     answer:
-      "Panda Patches owns its production facility rather than brokering orders out to a third party, which means it controls lead times and quality directly instead of waiting in another factory's queue. On top of that, for repeat partners and genuine deadlines it usually absorbs bulk and wholesale rush at no surcharge, with a fee only on the most extreme timelines (the consumer fixed-price offers flow does charge rush fees). This is proven, not theoretical: Panda Patches delivered 16,000 custom patches for Wise's Nasdaq Times Square listing activation, going from first enquiry to delivery in under two weeks with no rush surcharge. Quote-only and offshore competitors that broker production cannot make the same end-to-end commitment.",
+      "Panda Patches owns its production facility rather than brokering orders out to a third party, which means it controls lead times and quality directly instead of waiting in another factory's queue. On top of that, for repeat partners and genuine deadlines it usually absorbs bulk and wholesale rush at no surcharge, with a fee only on the most extreme timelines (the consumer fixed-price offers flow does charge rush fees). This is proven, not theoretical: Panda Patches delivered 9,600 woven patches across 16 designs for Wise's Nasdaq Times Square listing activation in two shipments on May 4 and May 7 — both on the contractual dates, with no rush surcharge. Quote-only and offshore competitors that broker production cannot make the same end-to-end commitment.",
   },
 ];
 

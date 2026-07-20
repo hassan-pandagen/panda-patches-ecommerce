@@ -241,10 +241,10 @@ export default async function PartnersPage() {
                 }
               />
               <a
-                href="tel:+13027738982"
+                href="tel:+13022504340"
                 className="bg-panda-dark text-panda-yellow px-8 py-4 rounded-[100px] font-black text-[16px] hover:bg-black transition-all"
               >
-                Call (302) 773-8982
+                Call (302) 250-4340
               </a>
             </div>
           </div>
@@ -443,7 +443,7 @@ export default async function PartnersPage() {
                     Owned facility. Faster, tighter, better margins.
                   </h3>
                   <p className="text-[16px] text-gray-700 leading-relaxed mb-3">
-                    Most patch companies broker to Asia and add a markup. We own our production, which means we control lead times, quality, and your margin. When something goes wrong we fix it same day, and for repeat partners we usually absorb rush at no extra charge &mdash; we delivered 16,000 patches for <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-semibold underline">Wise&apos;s Nasdaq launch</Link> in under two weeks with no rush fee.
+                    Most patch companies broker to Asia and add a markup. We own our production, which means we control lead times, quality, and your margin. When something goes wrong we fix it same day, and for repeat partners we usually absorb rush at no extra charge &mdash; we delivered 9,600 patches for <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-semibold underline">Wise&apos;s Nasdaq launch</Link> on the contractual dates with no rush fee.
                   </p>
                   <p className="text-[14px] text-gray-500">1,000,000+ patches delivered. Built on 13 years of patch manufacturing experience. Zero middlemen.</p>
                 </div>
@@ -711,8 +711,8 @@ export default async function PartnersPage() {
                   </div>
                   <div className="min-w-0">
                     <p className="text-[12px] font-black uppercase tracking-wider text-gray-500 mb-1">Call the partner line</p>
-                    <a href="tel:+13027738982" className="text-[15px] font-bold text-panda-dark hover:text-panda-green transition-colors">
-                      (302) 773-8982
+                    <a href="tel:+13022504340" className="text-[15px] font-bold text-panda-dark hover:text-panda-green transition-colors">
+                      (302) 250-4340
                     </a>
                   </div>
                 </div>

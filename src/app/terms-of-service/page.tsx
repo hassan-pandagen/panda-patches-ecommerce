@@ -195,7 +195,7 @@ export default function TermsOfServicePage() {
               <p><strong>MC Patches LLC (Panda Patches)</strong></p>
               <p>Austin, TX, United States</p>
               <p>Email: <a href="mailto:hello@pandapatches.com" className="text-panda-dark font-semibold underline">hello@pandapatches.com</a></p>
-              <p>Phone: <a href="tel:+13027738982" className="text-panda-dark font-semibold underline">+1 (302) 773-8982</a></p>
+              <p>Phone: <a href="tel:+13022504340" className="text-panda-dark font-semibold underline">+1 (302) 250-4340</a></p>
             </div>
           </section>
 

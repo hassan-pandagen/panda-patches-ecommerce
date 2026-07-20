@@ -203,7 +203,7 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
       trackGoogleAdsLead({ formName: 'design_service', email: data.email, phone: data.phone });
     } catch (error) {
       console.error("Design service quote error:", error);
-      setMessage({ type: "error", text: "Failed to submit. Please try again or call us at (302) 773-8982." });
+      setMessage({ type: "error", text: "Failed to submit. Please try again or call us at (302) 250-4340." });
     } finally {
       setIsSubmitting(false);
     }
@@ -227,7 +227,7 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
           </button>
           <div className="flex items-center justify-center gap-2 mt-4">
             <Phone className="w-3.5 h-3.5 text-panda-green" />
-            <span className="text-[12px] text-gray-500 font-medium">Need it faster? Call (302) 773-8982</span>
+            <span className="text-[12px] text-gray-500 font-medium">Need it faster? Call (302) 250-4340</span>
           </div>
           <FormFeedback formType="bulk_quote" />
         </div>
@@ -416,7 +416,7 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
             </div>
             <div className="flex items-center gap-1.5">
               <Phone className="w-3.5 h-3.5 text-panda-green" />
-              <span className="text-[11px] text-gray-500 font-medium">(302) 773-8982</span>
+              <span className="text-[11px] text-gray-500 font-medium">(302) 250-4340</span>
             </div>
           </div>
         </>

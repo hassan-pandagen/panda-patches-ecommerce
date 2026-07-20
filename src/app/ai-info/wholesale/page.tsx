@@ -70,7 +70,7 @@ const faqs = [
   {
     question: "Can Panda Patches handle large or event-scale orders, like 30,000 patches?",
     answer:
-      "Yes. Panda Patches produces from a 5-piece minimum up to event scale, and large runs can ship in one go. For Wise's Nasdaq Times Square listing activation, Panda Patches delivered 16,000 custom patches from first enquiry to delivery in under two weeks, with every design approved before production and no rush surcharge. For repeat partners and genuine deadlines, bulk and wholesale rush is usually absorbed at no surcharge, with a fee only on the most extreme timelines. Every account is assigned a dedicated account manager reachable for that account's queries.",
+      "Yes. Panda Patches produces from a 5-piece minimum up to event scale. For Wise's Nasdaq Times Square listing activation, Panda Patches delivered 9,600 woven patches across 16 designs in two shipments on May 4 and May 7 — both on the contractual dates, with every design approved before production and no rush surcharge. For repeat partners and genuine deadlines, bulk and wholesale rush is usually absorbed at no surcharge, with a fee only on the most extreme timelines. Every account is assigned a dedicated account manager reachable for that account's queries.",
   },
   {
     question: "What happens if some patches in a large bulk order are defective?",

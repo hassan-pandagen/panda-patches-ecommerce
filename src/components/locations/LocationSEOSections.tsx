@@ -844,7 +844,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
               Every hat patch order at Panda Patches starts with a <strong>digital mockup in 12 to 24 hours</strong>. Our design team reviews your artwork against the size and hat type you have specified, flags any issues before production, and sends a visual representation of exactly how the patch will look on your hat. You request changes until it is right with no limit on revisions and no charge. Production does not start until you give final approval. Nothing ships without your sign-off.
             </p>
             <p>
-              Standard delivery is <strong>7-14 business days</strong> after approval. Rush production is available. All orders ship free to anywhere in the US. For custom quantities, mixed patch types, or patches for a hat collection launch, <Link href="/contact" className="text-purple-600 hover:underline font-medium">contact us directly</Link> or call (302) 773-8982.
+              Standard delivery is <strong>7-14 business days</strong> after approval. Rush production is available. All orders ship free to anywhere in the US. For custom quantities, mixed patch types, or patches for a hat collection launch, <Link href="/contact" className="text-purple-600 hover:underline font-medium">contact us directly</Link> or call (302) 250-4340.
             </p>
           </div>
         )

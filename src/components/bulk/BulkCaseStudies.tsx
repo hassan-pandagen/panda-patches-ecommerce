@@ -131,7 +131,7 @@ export default async function BulkCaseStudies() {
             href="/case-studies/wise-nasdaq-times-square-activation"
             className="inline-flex items-center gap-2 bg-panda-dark text-white font-black text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:bg-panda-green transition-all"
           >
-            See a full case study: 16,000 patches for Wise&apos;s Nasdaq activation
+            See a full case study: 9,600 patches for Wise&apos;s Nasdaq activation
             <span aria-hidden>&rarr;</span>
           </Link>
         </div>

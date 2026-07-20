@@ -108,11 +108,11 @@ export const caseStudies: CaseStudy[] = [
     clientUrl: "https://wise.com",
     title: "Wise rang the Nasdaq bell in Times Square. We were proud to make the patches.",
     cardTitle: "Wise: Nasdaq Times Square Activation",
-    metaTitle: "Wise Nasdaq Times Square Activation: 16,000 Custom Patches | Case Study",
+    metaTitle: "Wise Nasdaq Times Square Activation: 9,600 Custom Patches | Case Study",
     metaDescription:
-      "Congratulations to Wise on its Nasdaq listing. See how Panda Patches delivered 16,000 custom patches for the Times Square activation, from first enquiry to delivery in under two weeks.",
+      "Congratulations to Wise on its Nasdaq listing. See how Panda Patches delivered 9,600 woven patches across 16 designs for the Times Square activation, in two shipments that both landed on their contractual dates.",
     summary:
-      "Congratulations to Wise on going public. When the global money platform celebrated its Nasdaq listing with a brand activation in Times Square, the 16,000 custom patches in the giveaway came from Panda Patches, designed, approved, and delivered in under two weeks to hit a date that could not move.",
+      "Congratulations to Wise on going public. When the global money platform celebrated its Nasdaq listing with a brand activation in Times Square, the 9,600 custom patches in the giveaway came from Panda Patches, designed, approved, and delivered in two shipments on May 4 and May 7, both on contractual dates that could not move.",
     event: "Nasdaq Listing Brand Activation",
     location: "Times Square, New York",
     date: "May 11, 2026",
@@ -125,16 +125,16 @@ export const caseStudies: CaseStudy[] = [
       alt: "Wise team in Times Square at the Nasdaq MarketSite for the company's listing",
     },
     stats: [
-      { value: "16,000", label: "custom patches delivered" },
-      { value: "Under 2 weeks", label: "enquiry to delivery" },
-      { value: "Times Square", label: "Nasdaq listing activation" },
+      { value: "9,600", label: "woven patches delivered" },
+      { value: "16", label: "designs produced" },
+      { value: "Both on time", label: "May 4 and May 7 shipments" },
     ],
     keyFacts: [
       "Client: Wise, the global money platform, celebrating its Nasdaq listing.",
       "Event: a brand activation in Times Square at the Nasdaq MarketSite, produced by IDEKO Productions.",
-      "Maker: Panda Patches, a US custom patch manufacturer.",
-      "Product: 16,000 custom patches in multiple die-cut designs, in Wise's signature green.",
-      "Timeline: first enquiry April 21, mockups approved April 24, all 16,000 delivered by May 4, under two weeks.",
+      "Maker: Panda Patches, a US-headquartered custom patch company producing at its own overseas facility.",
+      "Product: 9,600 woven patches across 16 designs, in Wise's signature green.",
+      "Timeline: mockups for the first 10 designs sent under 3 hours after artwork arrived; delivered in two shipments on May 4 and May 7, both on their contractual dates.",
       "Use: giveaway patches handed to the crowd at the opening-bell activation.",
     ],
     tags: ["Brand Activation", "Giveaway", "Event"],
@@ -155,23 +155,23 @@ export const caseStudies: CaseStudy[] = [
           "For the giveaway, Wise needed patches that matched their brand exactly, at event scale, and ready before a date that could not move. An opening bell does not wait on a production queue. That meant the artwork had to be right the first time, the color had to be true Wise green, and several thousand finished patches had to arrive before the event, not after it.",
       },
       {
-        heading: "What we delivered: 16,000 custom patches",
+        heading: "What we delivered: 9,600 woven patches",
         body:
-          "Panda Patches delivered 16,000 custom patches across multiple Wise designs in the brand's signature green, in custom die-cut shapes made for the giveaway, with backing that presses straight onto a hat, jacket, or tote.\n\nLike every Panda Patches order, each design went out as a digital mockup first and only moved into production once Wise approved it, so nothing was made until the brand signed off on the artwork and the color.",
+          "Panda Patches delivered 9,600 woven patches across 16 Wise designs in the brand's signature green, made for the giveaway with backing that presses straight onto a hat, jacket, or tote. Woven construction was the right call for artwork this detailed — it holds fine line work and small type that embroidery thread would blur.\n\nLike every Panda Patches order, each design went out as a digital mockup first and only moved into production once Wise approved it, so nothing was made until the brand signed off on the artwork and the color.",
         image: {
           src: "/assets/case-studies/wise-patches.png",
           alt: "The custom Wise patch designs Panda Patches produced for the Nasdaq activation",
         },
       },
       {
-        heading: "Sixteen thousand patches in under two weeks",
+        heading: "Two shipments, two contractual dates, both met",
         body:
-          "The timeline was tight. Wise's first enquiry came in on April 21. Mockups went back and forth, and final approval landed on April 24. From there, all 16,000 patches were delivered by May 4, the date they had to be ready. Enquiry to doorstep in under two weeks, with the brand approving every design before a single patch was made.",
+          "The timeline was tight and the dates were fixed. The first batch of artwork arrived on April 21 and mockups for those 10 designs went back under 3 hours later. Approvals came through on April 23 and 24, and the finished patches went out in two shipments, delivered on May 4 and May 7 — each on the date it had been promised for.\n\nNothing entered production before Wise approved the design and the color, and no rush surcharge was applied.",
       },
       {
         heading: "On the day",
         body:
-          "The patches went into Wise's green giveaway bags in Times Square, in the hands of the crowd celebrating the listing. A publicly-listed global brand, on one of its biggest days, trusted Panda Patches to deliver brand-exact quality at scale, on a deadline that could not slip. That is the same standard we hold whether an order is 5 patches or, like this one, 16,000.",
+          "The patches went into Wise's green giveaway bags in Times Square, in the hands of the crowd celebrating the listing. A publicly-listed global brand, on one of its biggest days, trusted Panda Patches to deliver brand-exact quality at scale, on dates that could not slip. That is the same standard we hold whether an order is 5 patches or, like this one, 9,600.",
         image: {
           src: "/assets/case-studies/wise-times-square.png",
           alt: "Wise patches and merch being handed out at the Times Square activation tables",
@@ -182,22 +182,22 @@ export const caseStudies: CaseStudy[] = [
       {
         question: "Who made the patches for Wise's Nasdaq Times Square activation?",
         answer:
-          "Panda Patches, a US custom patch manufacturer, delivered the 16,000 custom patches for the giveaway at Wise's Nasdaq listing brand activation in Times Square, produced by IDEKO Productions.",
+          "Panda Patches, a US-headquartered custom patch company, delivered the 9,600 woven patches for the giveaway at Wise's Nasdaq listing brand activation in Times Square, produced by IDEKO Productions.",
       },
       {
         question: "How many patches did Wise order for the activation?",
         answer:
-          "16,000 custom patches, made across multiple Wise designs in the brand's signature green.",
+          "9,600 woven patches, made across 16 Wise designs in the brand's signature green.",
       },
       {
         question: "What type of patches were used at the Wise Nasdaq event?",
         answer:
-          "Custom die-cut patches in multiple designs in Wise's signature green, made for the activation giveaway and easy to apply to bags, jackets, and apparel.",
+          "Woven patches in 16 designs in Wise's signature green, made for the activation giveaway and easy to apply to bags, jackets, and apparel.",
       },
       {
         question: "Can Panda Patches produce custom patches at event scale on a deadline?",
         answer:
-          "Yes. Panda Patches produces custom patches from a 5-piece minimum up to event scale. The Wise activation was 16,000 patches, delivered in under two weeks for a fixed deadline, with mockups approved before production.",
+          "Yes. Panda Patches produces custom patches from a 5-piece minimum up to event scale. The Wise activation was 9,600 woven patches across 16 designs, delivered in two shipments on May 4 and May 7 against fixed contractual dates, with mockups approved before production.",
       },
     ],
     gallery: [
@@ -205,10 +205,24 @@ export const caseStudies: CaseStudy[] = [
       { src: "/assets/case-studies/wise-event-2.png", alt: "Wise tote bags handed out at the Nasdaq listing activation" },
       { src: "/assets/case-studies/wise-event-3.png", alt: "Crowds at the Wise giveaway tables during the Times Square activation" },
     ],
-    // Facts verified from the client correspondence (Apr 21 enquiry, Apr 24 approval,
-    // May 4 delivery, 16,000 custom patches total). The emails themselves
-    // and Wise's private details (address, VAT, PO, bank) are confidential and must NOT
-    // be published. Event/billboard photos need Wise/Nasdaq permission before going live.
+    // Claims corrected 2026-07-20 per SEDAA3_1 §E, which supersedes the earlier
+    // draft: total is 9,600 woven patches across 16 designs (not 16,000), delivered
+    // in TWO shipments (May 4 + May 7), both on their contractual dates.
+    //
+    // Do NOT reintroduce, all explicitly prohibited by §E:
+    //   - "16,000"
+    //   - "under two weeks from first enquiry" (the real span is 19 days: Apr 15 → May 4)
+    //   - any project-wide "in-hand in 13 days" phrasing implying one shipment
+    //   - "US custom patch manufacturer" (contradicts the overseas-production disclosure)
+    //   - payment-timing commentary, client logos, endorsement wording
+    // GATED until an airway bill or packing list ties each quantity to its shipment:
+    // the 6,000 / 3,600 per-shipment split (currently inferred from deadlines, not documented).
+    // Client naming itself remains pending written permission (§A.7) — owner's call.
+    //
+    // Source correspondence (Apr 15 enquiry, Apr 21/23 artwork, Apr 23/24 approvals,
+    // May 4 + May 7 PODs) and Wise's private details (address, VAT, PO, bank) are
+    // confidential and must NOT be published. Event/billboard photos are credited to
+    // Nasdaq, Inc./Vanja Savic — link or official embed only, never copy the file.
   },
 
   // ---------------------------------------------------------------------------

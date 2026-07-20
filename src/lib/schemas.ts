@@ -76,7 +76,7 @@ export function generateOrganizationSchema() {
     "image": "https://www.pandapatches.com/assets/og-image.png",
     "description": "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 13+ years of expertise.",
     "email": "hello@pandapatches.com",
-    "telephone": "+1-302-773-8982",
+    "telephone": "+1-302-250-4340",
     "founder": {
       "@type": "Person",
       "name": "Imran Raza",
@@ -120,7 +120,7 @@ export function generateOrganizationSchema() {
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+1-302-773-8982",
+      "telephone": "+1-302-250-4340",
       "contactType": "Customer Service",
       "email": "hello@pandapatches.com",
       "availableLanguage": ["English"],
@@ -200,7 +200,7 @@ export function generateEntityGraph() {
         "description":
           "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 13+ years of expertise.",
         "email": "hello@pandapatches.com",
-        "telephone": "+1-302-773-8982",
+        "telephone": "+1-302-250-4340",
         "brand": { "@id": BRAND_ID },
         "founder": { "@id": PERSON_ID },
         "foundingDate": "2023-06",
@@ -259,21 +259,20 @@ export function generateEntityGraph() {
         ],
         "contactPoint": {
           "@type": "ContactPoint",
-          "telephone": "+1-302-773-8982",
+          "telephone": "+1-302-250-4340",
           "contactType": "Customer Service",
           "email": "hello@pandapatches.com",
           "availableLanguage": ["English"],
           "areaServed": ["US", "CA", "GB", "AU"],
         },
-        // Trustpilot company-wide rating — org-level only, never on Product
-        // (reviews are company-wide, not product-specific; Google policy).
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": TRUSTPILOT_RATING,
-          "reviewCount": TRUSTPILOT_REVIEW_COUNT,
-          "bestRating": "5",
-          "worstRating": "1",
-        },
+        // NO aggregateRating on this Organization (removed per SEDAA3_1 §A.2):
+        // the Trustpilot score is self-serving AND third-party-sourced, which
+        // makes it ineligible under Google's Review Snippet guidelines. The
+        // rating stays visible on-page as exact, dated, linked text instead —
+        // see reviewConstants.ts. The Trustpilot profile remains in sameAs
+        // above, which is the legitimate way to associate the entity with it.
+        // Product-level aggregateRating is still fine where genuine, on-page
+        // product reviews back it (productReviews.ts).
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
@@ -712,7 +711,7 @@ export function generateLocalBusinessSchema() {
       "latitude": 29.6186,
       "longitude": -95.5377
     },
-    "telephone": "+1-302-773-8982",
+    "telephone": "+1-302-250-4340",
     "email": "hello@pandapatches.com",
     "url": "https://www.pandapatches.com",
     "priceRange": "$$",
@@ -757,7 +756,7 @@ export function generateLocationBusinessSchema(locationName: string, pageSlug?: 
     "@type": ["LocalBusiness", "Store"],
     "name": `Custom Patches in ${locationName} | Panda Patches`,
     "description": `Order custom embroidered patches delivered to ${locationName}. Low minimums, mockup in 12-24 hours, fast 7-14 day turnaround. Founded by Imran Raza with 13 years of patch manufacturing expertise.`,
-    "telephone": "+1-302-773-8982",
+    "telephone": "+1-302-250-4340",
     "email": "hello@pandapatches.com",
     "url": `https://www.pandapatches.com/${urlSlug}`,
     "image": "https://www.pandapatches.com/assets/logo-panda.svg",
@@ -891,7 +890,7 @@ export function generateServiceSchema() {
     "availableChannel": {
       "@type": "ServiceChannel",
       "serviceUrl": "https://www.pandapatches.com/custom-patches",
-      "servicePhone": "+1-302-773-8982"
+      "servicePhone": "+1-302-250-4340"
     }
   };
 }

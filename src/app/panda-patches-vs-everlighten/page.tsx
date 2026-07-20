@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     question: `Where is ${COMPETITOR} based?`,
-    answer: `EverLighten manufactures in China and serves international customers, which can introduce communication and timezone friction for US buyers. Panda Patches is headquartered in Texas with English-language support on US business hours and US phone support at (302) 773-8982.`,
+    answer: `EverLighten manufactures in China and serves international customers, which can introduce communication and timezone friction for US buyers. Panda Patches is headquartered in Texas with English-language support on US business hours and US phone support at (302) 250-4340.`,
   },
   {
     question: `What is the price difference at 1000 pieces?`,
@@ -103,7 +103,7 @@ export default function PandaVsEverLighten() {
           comparisonRows={[
             { category: "Headquarters and support", feature: "Headquarters", panda: "Austin, Texas (US)", competitor: "China", pandaWin: true },
             { category: "Headquarters and support", feature: "Customer support timezone", panda: "US business hours", competitor: "China time, ~12 hour offset for US East Coast", pandaWin: true },
-            { category: "Headquarters and support", feature: "US phone support", panda: "(302) 773-8982", competitor: "Email-primary, no published US number", pandaWin: true },
+            { category: "Headquarters and support", feature: "US phone support", panda: "(302) 250-4340", competitor: "Email-primary, no published US number", pandaWin: true },
 
             { category: "Order requirements", feature: "Minimum order", panda: "5 pieces", competitor: "50 pieces", pandaWin: true },
             { category: "Order requirements", feature: "Setup or mold fees", panda: "None", competitor: "Not publicly disclosed", pandaWin: true },
