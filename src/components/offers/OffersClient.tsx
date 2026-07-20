@@ -342,7 +342,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
               'Production starts only after your written approval',
               'Free shipping on every order anywhere in the US',
               'Zero setup fees and zero hidden charges',
-              'Choice of backing type. Velcro hook and loop costs $30 extra',
+              'Choice of backing type. Velcro hook and loop is charged separately',
               '7 to 14 day standard delivery. Rush production available',
               'Over 1,000,000 patches delivered to brands across the US',
               '100% money-back guarantee. No questions asked',
@@ -373,7 +373,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
               },
               {
                 q: 'Why is Velcro backing extra?',
-                a: 'Velcro needs hook and loop both sides — more materials and labor. +$30 is the industry standard. Best for tactical, military, and uniform patches.',
+                a: 'Velcro needs hook and loop both sides — more materials and labor, so it is charged separately. Best for tactical, military, and uniform patches.',
               },
               {
                 q: 'What delivery options are there?',

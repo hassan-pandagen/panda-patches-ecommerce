@@ -379,7 +379,11 @@ function Step5({
     { label: 'Patch Type', value: `${offer.type} (${offer.subtitle})` },
     { label: 'Pack', value: `${offer.packName} — ${offer.qty} pieces` },
     { label: 'Base Price', value: `$${offer.basePrice.toFixed(2)}` },
-    { label: 'Backing', value: `${formData.backing}${formData.backing === 'Velcro' ? ' (+$30)' : ' (FREE)'}` },
+    // Velcro's amount stays visible here and on the backing selector: this is the
+    // purchase flow, the fee is added to the order total (calculateOfferTotal), and
+    // a charge the customer is about to pay must be itemised, not described vaguely.
+    // Reads VELCRO_FEE rather than a hardcoded figure so the label cannot drift.
+    { label: 'Backing', value: `${formData.backing}${formData.backing === 'Velcro' ? ` (+$${VELCRO_FEE})` : ' (FREE)'}` },
     {
       label: 'Delivery',
       value: formData.delivery === 'economy' ? 'Economy 16-18 days (-10%)' :
