@@ -188,6 +188,10 @@ export const glossaryEntries: GlossaryEntry[] = [
       "Choose PVC for morale patches that live outdoors on plate carriers and packs: it shrugs off rain, mud, and abrasion, and holds crisp small detail.",
       "Choose embroidery instead when you want the traditional textured look, or when the design is a straightforward logo. Either way, specify Velcro backing — a sewn-down morale patch defeats the point of the format.",
     ],
+    photo: {
+      src: "/assets/glossary/morale-patch.webp",
+      alt: "Round embroidered morale patch reading \"No Luck, All Discipline\" with a helmeted skull and crossed knives, finished with a merrowed border",
+    },
     fullGuide: { href: "/custom-morale-patches", label: "Custom Morale Patches" },
     related: [
       { href: "/custom-patches/pvc", label: "Custom PVC patches" },
