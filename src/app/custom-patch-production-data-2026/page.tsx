@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AuthorByline from "@/components/seo/AuthorByline";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-static";
@@ -245,6 +246,9 @@ export default function ProductionData2026() {
         {/* CITE THIS */}
         <section className="w-full py-12 md:py-16 px-6 bg-white">
           <div className="container mx-auto max-w-[820px]">
+            <div className="mb-10">
+              <AuthorByline datePublished="2026-07-18" dateModified="2026-07-18" />
+            </div>
             <h2 className="text-[20px] md:text-[26px] font-black text-panda-dark uppercase tracking-wide mb-4">
               Cite This Data
             </h2>

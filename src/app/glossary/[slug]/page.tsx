@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ArrowRight } from "lucide-react";
+import AuthorByline from "@/components/seo/AuthorByline";
 import { buildPageMetadata } from "@/lib/seo";
 import { getEntry, isLive, liveEntries } from "../entries";
 
@@ -181,6 +182,13 @@ export default async function GlossaryEntryPage({ params }: { params: Promise<{ 
                 </span>
               ))}
             </p>
+          </div>
+        </section>
+
+        {/* BYLINE — E-E-A-T: named author on every published entry */}
+        <section className="w-full py-6 px-4 md:px-6 bg-white">
+          <div className="container mx-auto max-w-[820px]">
+            <AuthorByline datePublished={entry.datePublished} dateModified={entry.dateModified} />
           </div>
         </section>
 
