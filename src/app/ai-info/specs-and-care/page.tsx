@@ -143,6 +143,10 @@ export default function SpecsAndCareClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What artwork files does Panda Patches accept?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
+              For the production limits that decide whether a design actually reproduces — minimum text height, line weight, color counts, and gradient support by patch type — see the{" "}
+              <Link href="/patch-manufacturability-specs" prefetch={false} className="text-panda-green underline font-semibold">Patch Manufacturability Specifications</Link>.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-4">
               Panda Patches accepts vector files (AI, EPS, PDF, SVG) and raster files (PNG, JPG). Vector is preferred because it scales to any patch size without quality loss and converts cleanly into the stitch file or PVC mold. Raster files are accepted at a minimum of 300 DPI at the final patch size. Files larger than 20MB can be transferred via Google Drive or WeTransfer link in the design notes. There is no minimum or maximum number of colors at the artwork submission stage. Color count limits apply at the production stage and vary by patch type.
             </p>
             <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-3">

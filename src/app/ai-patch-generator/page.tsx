@@ -112,6 +112,11 @@ export default function AiPatchGeneratorPage() {
           <p className="text-[15px] md:text-[17px] text-gray-500 leading-[1.6] max-w-[560px] mx-auto">
             Describe a patch, pick a style, see it in seconds. Refine until you love it, then order the real thing from 5 pieces.
           </p>
+          <p className="text-[13px] md:text-[14px] text-gray-500 leading-[1.6] max-w-[560px] mx-auto mt-3">
+            Want it to come out crisp in thread? Our{" "}
+            <Link href="/patch-manufacturability-specs" prefetch={false} className="text-panda-green underline font-semibold">manufacturability specs</Link>{" "}
+            include copy-paste prompts that keep AI artwork inside real production limits.
+          </p>
         </div>
       </section>
 

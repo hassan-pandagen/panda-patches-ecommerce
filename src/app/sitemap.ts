@@ -199,6 +199,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    // Named standard (CL9F69 Workstream D). Bump lastModified only on a spec
+    // version bump — the page's value is that citations stay traceable.
+    {
+      url: `${baseUrl}/patch-manufacturability-specs`,
+      lastModified: new Date('2026-07-20'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     {
       url: `${baseUrl}/privacy-policy`,
       lastModified: new Date('2025-01-01'),

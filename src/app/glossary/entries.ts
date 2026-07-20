@@ -58,6 +58,10 @@ export const glossaryEntries: GlossaryEntry[] = [
       "Choose woven when your design has small text, thin lines, or tight detail that embroidery thread would swallow — logos with fine print are the classic case.",
       "Skip it when you want dimension and texture: a woven face is flat by nature, so bold chest or jacket designs usually read richer as embroidered or 3D puff. For heavy outdoor abrasion, PVC outlasts both.",
     ],
+    photo: {
+      src: "/assets/glossary/woven-patch.webp",
+      alt: "Shield-shaped woven patch holding fine detail — individual insect legs and a thin keyline that embroidery thread could not reproduce at this size",
+    },
     fullGuide: { href: "/custom-patches/woven", label: "Custom Woven Patches" },
     related: [
       { href: "/woven-vs-embroidered-patches-which-is-right-for-you", label: "Woven vs embroidered — full comparison" },
@@ -80,6 +84,10 @@ export const glossaryEntries: GlossaryEntry[] = [
       "Choose chenille for letterman jackets, varsity letters, and any design where a big, soft, retro-textured shape is the whole point.",
       "Skip it for logos with small text, thin outlines, or color gradients — embroidered, woven, or printed patches reproduce those; chenille pile physically cannot.",
     ],
+    photo: {
+      src: "/assets/glossary/chenille-patch.webp",
+      alt: "Chenille patch with raised looped yarn pile in blue, green and orange, showing the plush varsity-style texture",
+    },
     fullGuide: { href: "/custom-patches/chenille", label: "Custom Chenille Patches" },
     related: [
       { href: "/custom-letterman-patches", label: "Custom letterman patches" },
@@ -102,6 +110,10 @@ export const glossaryEntries: GlossaryEntry[] = [
       "Choose Velcro when patches need to rotate — between uniforms, plate carriers, or bags — or must come off before heavy washing.",
       "Skip it for one-time permanent placement: iron-on or sew-on sits flatter, costs less, and cannot fall off with the hook field. Note most tactical gear ships with the loop side built in; garments usually need the loop panel sewn on first.",
     ],
+    photo: {
+      src: "/assets/glossary/velcro-backing.webp",
+      alt: "Embroidered bear patch shown front and back beside a close-up of the black hook-side Velcro backing",
+    },
     fullGuide: { href: "/custom-velcro-patches", label: "Custom Velcro Patches" },
     related: [
       { href: "/custom-morale-patches", label: "Custom morale patches" },
@@ -124,6 +136,10 @@ export const glossaryEntries: GlossaryEntry[] = [
       "Choose iron-on for jackets, shirts, bags, and hats that get normal wear — it is fast to apply at home, sits flat, and costs nothing extra.",
       "Skip it on nylon, waterproof shells, and heavily textured or stretchy fabrics, which either cannot take the heat or will not hold the bond. Choose sew-on for workwear washed weekly, and Velcro when the patch has to come off.",
     ],
+    photo: {
+      src: "/assets/glossary/iron-on-patch.webp",
+      alt: "Iron-on patch shown front and back, with a close-up of the white heat-seal adhesive layer on the reverse",
+    },
     fullGuide: { href: "/custom-iron-on-patches", label: "Custom Iron-On Patches" },
     related: [
       { href: "/the-complete-guide-to-iron-on-patches-care-application-and-longevity", label: "Iron-on application and care guide" },
@@ -146,6 +162,10 @@ export const glossaryEntries: GlossaryEntry[] = [
       "Choose embroidery when you want the classic look and feel: logos, crests, team names, and anything where visible thread texture is part of the appeal.",
       "Skip it when your artwork carries tiny lettering or photographic gradients — woven handles fine detail, printed and sublimated handle full-colour imagery. Very high stitch counts on small patches also stiffen the finished piece.",
     ],
+    photo: {
+      src: "/assets/glossary/embroidered-patch.webp",
+      alt: "Round embroidered patch with dense stitched detail and a gold merrowed border, showing visible thread direction",
+    },
     fullGuide: { href: "/custom-patches/embroidered", label: "Custom Embroidered Patches" },
     related: [
       { href: "/woven-vs-embroidered-patches-which-is-right-for-you", label: "Woven vs embroidered" },
@@ -190,6 +210,10 @@ export const glossaryEntries: GlossaryEntry[] = [
       "Choose PVC for gear that gets wet, dirty, or abraded: tactical kit, outdoor packs, marine and industrial use, plus any design with fine detail that thread would blur.",
       "Skip it when you want a traditional textile look or a soft hand on clothing — PVC reads modern and feels rubbery, and it is the wrong choice for formal or heritage-style apparel.",
     ],
+    photo: {
+      src: "/assets/glossary/pvc-patch.webp",
+      alt: "Triangular moulded PVC patch in black and cream, showing the raised rubber layers and crisp fine lettering",
+    },
     fullGuide: { href: "/custom-patches/pvc", label: "Custom PVC Patches" },
     related: [
       { href: "/custom-pvc-patches-guide", label: "PVC patch ordering guide" },
@@ -212,6 +236,10 @@ export const glossaryEntries: GlossaryEntry[] = [
       "Choose puff for cap fronts, bold monogram lettering, and anywhere physical height makes a design read from a distance.",
       "Skip it for detailed logos, thin script, or small text — the foam needs a wide stitch path to stay covered, and fine elements either flatten or split. Flat embroidery reproduces those cleanly.",
     ],
+    photo: {
+      src: "/assets/glossary/3d-puff-embroidery.webp",
+      alt: "3D puff embroidered lettering in copper thread, the foam underlay raising each letter into a rounded relief",
+    },
     fullGuide: { href: "/custom-patches/custom-3d-embroidered-transfers", label: "Custom 3D Embroidered Transfers" },
     related: [
       { href: "/custom-patches/embroidered", label: "Custom embroidered patches" },
@@ -234,6 +262,10 @@ export const glossaryEntries: GlossaryEntry[] = [
       "Match the backing to the garment's life: iron-on for normal wear, sew-on for workwear and uniforms washed constantly, Velcro when the patch must be swapped or removed, adhesive for temporary event and display use.",
       "When unsure, iron-on plus a few stitches around the edge is the most durable combination — heat bonds it flat, thread keeps it there through years of washing.",
     ],
+    photo: {
+      src: "/assets/glossary/patch-backing.webp",
+      alt: "One embroidered patch shown with five backing options side by side: iron-on, sew-on, Velcro, sticker and pin back",
+    },
     fullGuide: { href: "/custom-patches/backing-options", label: "All Backing Options" },
     related: [
       { href: "/sew-on-patches", label: "Sew-on patches" },
@@ -256,6 +288,10 @@ export const glossaryEntries: GlossaryEntry[] = [
       "Every embroidered patch needs digitizing — the question is only who does it and what they charge. Supply vector artwork (AI, EPS, PDF, SVG) where possible; it digitizes cleaner than a low-resolution raster.",
       "Expect a proof before production. A design digitized well at one size does not automatically scale — resizing a stitch file significantly usually means redigitizing it.",
     ],
+    photo: {
+      src: "/assets/glossary/embroidery-digitizing.webp",
+      alt: "Digitized embroidery proof on a measurement grid, showing stitch paths and the finished patch dimensions in inches",
+    },
     fullGuide: { href: "/embroidery-digitizing", label: "Embroidery Digitizing" },
     related: [
       { href: "/custom-patches/embroidered", label: "Custom embroidered patches" },
