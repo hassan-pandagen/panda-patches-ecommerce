@@ -50,7 +50,7 @@ const faqs = [
   {
     question: "Is the price per piece on Panda Patches all-inclusive?",
     answer:
-      "Yes. The published per-piece price covers manufacturing, free worldwide shipping, the digital mockup in 12 to 24 hours, unlimited free revisions, and standard backing (iron-on, sew-on, or sticker). The only optional add-ons are Velcro backing (+$30 flat per order), rush production (scaled by quantity), or premium upgrades like metallic thread, glow in the dark, or 3D puff embroidery. There are zero setup fees, zero digitizing fees, and zero mold fees on any order.",
+      "Yes. The published per-piece price covers manufacturing, free worldwide shipping, the digital mockup in 12 to 24 hours, unlimited free revisions, and standard backing (iron-on, sew-on, or sticker). The only optional add-ons are Velcro backing (charged separately on every order), rush production (scaled by quantity), or premium upgrades like metallic thread, glow in the dark, or 3D puff embroidery. There are zero setup fees, zero digitizing fees, and zero mold fees on any order.",
   },
   {
     question: "What is the minimum order at Panda Patches?",
@@ -135,7 +135,7 @@ export default function PricingClusterPage() {
               Custom patches at Panda Patches start at $0.91 per piece for embroidered patches at 2x2 inches and 1,000 pieces. At smaller quantities the per-piece cost rises: a 50-piece embroidered order under 4 inches costs about $196 total ($3.92 each), a 100-piece order costs $255 ($2.55 each), and a 500-piece order costs $590 ($1.18 each). PVC patches start at $1.54 per piece, woven at $1.54 per piece, and leather at $1.55 per piece at the same 2x2-inch, 1,000-piece basis. Chenille patches are the premium tier and start at $3.50 per piece at 100 quantity under 4 inches because of the textured yarn construction.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Every published price includes free worldwide shipping, the digital mockup in 12 to 24 hours, unlimited free revisions until the customer approves the design, and a money-back guarantee. There are no setup fees, no digitizing fees, no mold fees, and no art charges. The only optional add-ons are Velcro backing (+$30 flat per order), rush production (scaled by quantity), and premium upgrades like metallic thread, glow in the dark, or 3D puff embroidery.
+              Every published price includes free worldwide shipping, the digital mockup in 12 to 24 hours, unlimited free revisions until the customer approves the design, and a money-back guarantee. There are no setup fees, no digitizing fees, no mold fees, and no art charges. The only optional add-ons are Velcro backing (charged separately on every order), rush production (scaled by quantity), and premium upgrades like metallic thread, glow in the dark, or 3D puff embroidery.
             </p>
             <p className="text-gray-700 leading-relaxed">
               The tier tables below show the exact published prices for each patch type at 50, 100, 500, and 1,000-piece quantities. Pricing is identical to the pandapatches.com/offers page and is updated in real time when the offers change.

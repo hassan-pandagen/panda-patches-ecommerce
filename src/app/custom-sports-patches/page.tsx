@@ -55,7 +55,7 @@ const sportsFAQs = [
   },
   {
     question: "Does Panda Patches make custom PVC patches for college and sports teams?",
-    answer: "Yes. Panda Patches makes custom PVC patches for college athletic departments and sports teams. PVC patches are waterproof, UV-resistant, and durable — ideal for equipment bags, helmets, staff jackets, booster club gear, and outdoor athletic equipment. Available in 2D and 3D molded designs with Pantone color matching for exact school colors. Hook-and-loop Velcro backing (+$30), sew-on, or iron-on. Low 5-piece minimum, free digital artwork and a mockup in 12 to 24 hours, free worldwide shipping, 7-14 business day standard delivery. NCAA 2026 commercial patch rule compliant — patches up to 4 square inches available for sponsor logos on D1 uniforms and apparel."
+    answer: "Yes. Panda Patches makes custom PVC patches for college athletic departments and sports teams. PVC patches are waterproof, UV-resistant, and durable — ideal for equipment bags, helmets, staff jackets, booster club gear, and outdoor athletic equipment. Available in 2D and 3D molded designs with Pantone color matching for exact school colors. Hook-and-loop Velcro backing (charged separately), sew-on, or iron-on. Low 5-piece minimum, free digital artwork and a mockup in 12 to 24 hours, free worldwide shipping, 7-14 business day standard delivery. NCAA 2026 commercial patch rule compliant — patches up to 4 square inches available for sponsor logos on D1 uniforms and apparel."
   },
   {
     question: "Where can I get custom patches for school spirit wear with a low minimum order?",

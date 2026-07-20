@@ -84,7 +84,7 @@ const USE_CASES = [
   { use: "Left chest", size: '3" – 3.5"', backing: "Iron-on", type: "Embroidered, woven" },
   { use: "Jacket back", size: '10" – 12"', backing: "Sew-on", type: "Embroidered, chenille" },
   { use: "Bag / backpack", size: '3" – 5"', backing: "Sew-on or velcro", type: "PVC, embroidered" },
-  { use: "Tactical / uniform", size: '2" – 4"', backing: "Velcro (+$30)", type: "PVC, embroidered" },
+  { use: "Tactical / uniform", size: '2" – 4"', backing: "Velcro (charged separately)", type: "PVC, embroidered" },
   { use: "Letterman / varsity", size: '4" – 12"', backing: "Sew-on", type: "Chenille" },
 ];
 
@@ -112,7 +112,7 @@ const typeFAQs = [
   {
     question: "What size and backing should I use for hats, jackets, and bags?",
     answer:
-      "Hat patches are typically 2 to 2.5 inches with iron-on or sew-on backing. Left-chest patches are about 3 to 3.5 inches, usually iron-on. Jacket-back patches run 10 to 12 inches and should be sew-on for security. Bags and tactical gear often use velcro (hook-and-loop, +$30) so patches can be swapped. See the size and backing chart above for the full breakdown.",
+      "Hat patches are typically 2 to 2.5 inches with iron-on or sew-on backing. Left-chest patches are about 3 to 3.5 inches, usually iron-on. Jacket-back patches run 10 to 12 inches and should be sew-on for security. Bags and tactical gear often use velcro (hook-and-loop, charged separately) so patches can be swapped. See the size and backing chart above for the full breakdown.",
   },
   {
     question: "Which patch type is best for full-color or photo designs?",
@@ -134,7 +134,7 @@ const typeFAQs = [
   {
     question: "Is Velcro a patch type?",
     answer:
-      "No. Velcro is a backing option, not a patch type. The hook-and-loop attachment is added to embroidered, PVC, woven, or leather patches at +$30 flat per order. It is the industry standard for tactical morale patches and uniform name tapes that need to be removable, but it does not change the underlying patch construction.",
+      "No. Velcro is a backing option, not a patch type. The hook-and-loop attachment is added to embroidered, PVC, woven, or leather patches and is charged separately on every order. It is the industry standard for tactical morale patches and uniform name tapes that need to be removable, but it does not change the underlying patch construction.",
   },
 ];
 
@@ -299,7 +299,7 @@ export default async function PatchTypesComparedPage() {
             </table>
           </div>
           <p className="text-gray-500 text-sm leading-relaxed text-center mt-4">
-            Backing is free (iron-on, sew-on, sticker); velcro adds $30 flat. See all options on the{" "}
+            Backing is free (iron-on, sew-on, sticker); velcro is charged separately. See all options on the{" "}
             <Link href="/custom-patches/backing-options" prefetch={false} className="text-panda-green underline font-semibold">backing guide</Link>.
           </p>
         </div>

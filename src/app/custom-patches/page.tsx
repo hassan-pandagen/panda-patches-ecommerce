@@ -361,7 +361,7 @@ export default async function ProductLandingPage() {
           <ul className="space-y-3 mb-8 text-[17px] leading-[1.8] text-gray-600">
             <li><strong className="text-panda-dark">Iron-on (heat seal):</strong> A thermoplastic adhesive backing that bonds to fabric with a household iron or heat press. Quick to apply, permanent, and included free on all orders.</li>
             <li><strong className="text-panda-dark">Sew-on:</strong> No adhesive. The patch is stitched directly onto fabric for the most secure, long-lasting attachment. Required for performance wear and technical fabrics.</li>
-            <li><strong className="text-panda-dark">Velcro (hook and loop):</strong> Both hook and loop sides included. Allows the patch to be removed and repositioned. Standard for military, law enforcement, and tactical vests. Velcro backing adds $30 to any order.</li>
+            <li><strong className="text-panda-dark">Velcro (hook and loop):</strong> Both hook and loop sides included. Allows the patch to be removed and repositioned. Standard for military, law enforcement, and tactical vests. Velcro backing is charged separately on every order.</li>
             <li><strong className="text-panda-dark">Sticker (self-adhesive):</strong> Peel-and-stick for temporary applications, helmets, notebooks, and promotional use.</li>
           </ul>
 

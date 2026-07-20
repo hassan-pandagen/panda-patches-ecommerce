@@ -46,7 +46,7 @@ const sewOnFAQs = [
   {
     question: "Do PVC and chenille patches come with sew-on backing?",
     answer:
-      "Yes. Sew-on is the default backing for PVC and chenille because neither can take the heat of an iron-on press: PVC rubber distorts and chenille yarn is too textured for adhesive to bond. Both come with a stitch channel or border suited to sewing. Hook-and-loop Velcro (+$30 per order) is also available on both for a removable option.",
+      "Yes. Sew-on is the default backing for PVC and chenille because neither can take the heat of an iron-on press: PVC rubber distorts and chenille yarn is too textured for adhesive to bond. Both come with a stitch channel or border suited to sewing. Hook-and-loop Velcro (charged separately on every order) is also available on both for a removable option.",
   },
   {
     question: "What is the minimum order for sew-on patches?",

@@ -513,7 +513,7 @@ export default async function PartnersPage() {
               </table>
             </div>
             <p className="text-[12px] text-gray-400 mt-4">
-              Prices in USD. Sizes under 4 inches. Velcro backing +$30 flat per design. Custom sizes quoted within 4 hours by your account manager.
+              Prices in USD. Sizes under 4 inches. Velcro backing is charged separately on every order. Custom sizes quoted within 4 hours by your account manager.
             </p>
           </div>
         </section>

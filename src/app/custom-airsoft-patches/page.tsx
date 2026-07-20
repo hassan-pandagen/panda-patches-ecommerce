@@ -37,7 +37,7 @@ const airsoftFAQs = [
   {
     question: "Do airsoft patches come with Velcro backing?",
     answer:
-      "Yes. Hook-and-loop Velcro is the standard backing for airsoft because plate carriers and rigs have loop panels built in. We attach the hook side to the patch so it presses straight onto your gear and pulls off in seconds. Velcro is a flat +$30 per order. Sew-on is also available if you want a patch fixed permanently to a uniform.",
+      "Yes. Hook-and-loop Velcro is the standard backing for airsoft because plate carriers and rigs have loop panels built in. We attach the hook side to the patch so it presses straight onto your gear and pulls off in seconds. Velcro is charged separately on every order. Sew-on is also available if you want a patch fixed permanently to a uniform.",
   },
   {
     question: "Can you make team or squad patches in bulk?",
@@ -52,7 +52,7 @@ const airsoftFAQs = [
   {
     question: "How much do custom airsoft patches cost?",
     answer:
-      "Pricing depends on type, size, and quantity. PVC airsoft patches start at " + getFromPriceLabel("Custom PVC Patches") + " per piece and embroidered at " + getFromPriceLabel("Custom Embroidered Patches") + " per piece at 2 by 2 inches and 1,000 pieces; smaller squad runs cost more per piece. Velcro backing adds a flat $30 per order. Every order includes free worldwide shipping, a mockup in 12 to 24 hours, and a money-back guarantee.",
+      "Pricing depends on type, size, and quantity. PVC airsoft patches start at " + getFromPriceLabel("Custom PVC Patches") + " per piece and embroidered at " + getFromPriceLabel("Custom Embroidered Patches") + " per piece at 2 by 2 inches and 1,000 pieces; smaller squad runs cost more per piece. Velcro backing is charged separately on every order. Every order includes free worldwide shipping, a mockup in 12 to 24 hours, and a money-back guarantee.",
   },
 ];
 
@@ -184,7 +184,7 @@ export default async function CustomAirsoftPatchesPage() {
             </div>
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
               <h3 className="text-[16px] font-black text-panda-dark mb-2">Backing</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]"><Link href="/custom-velcro-patches" prefetch={false} className="text-panda-green underline font-semibold">Hook-and-loop Velcro</Link> so patches swap between rigs and caps in seconds. Flat +$30 per order.</p>
+              <p className="text-[14px] text-gray-600 leading-[1.6]"><Link href="/custom-velcro-patches" prefetch={false} className="text-panda-green underline font-semibold">Hook-and-loop Velcro</Link> so patches swap between rigs and caps in seconds. Charged separately on every order.</p>
             </div>
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
               <h3 className="text-[16px] font-black text-panda-dark mb-2">Background</h3>

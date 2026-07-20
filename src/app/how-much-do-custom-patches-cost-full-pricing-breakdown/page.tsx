@@ -90,7 +90,7 @@ const faqSchema = {
       name: 'How much do 100 custom embroidered patches cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'At Panda Patches, 100 custom embroidered patches cost $240 total ($2.40 per piece) for a 3-inch patch. This includes free worldwide shipping, digital mockup in 12 to 24 hours, unlimited free revisions, and no setup fees or digitizing fees. Backing options: iron-on (free), sew-on (free), Velcro (+$30 flat). Standard delivery 7-14 business days after approval.',
+        text: 'At Panda Patches, 100 custom embroidered patches cost $240 total ($2.40 per piece) for a 3-inch patch. This includes free worldwide shipping, digital mockup in 12 to 24 hours, unlimited free revisions, and no setup fees or digitizing fees. Backing options: iron-on (free), sew-on (free), Velcro (charged separately). Standard delivery 7-14 business days after approval.',
       },
     },
     {
@@ -106,7 +106,7 @@ const faqSchema = {
       name: 'How much do custom embroidered patches cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'At Panda Patches, custom embroidered patches cost $3.92/pc for 50 pieces ($196 total), $2.55/pc for 100 pieces ($255 total), $1.18/pc for 500 pieces ($590 total), and $1.05/pc for 1,000 pieces ($1,050 total) — all for a 3-inch patch. Free worldwide shipping, digital mockup in 12 to 24 hours, and no setup fees are included on every order. Velcro backing adds a flat $30. Standard delivery is 7-14 business days.',
+        text: 'At Panda Patches, custom embroidered patches cost $3.92/pc for 50 pieces ($196 total), $2.55/pc for 100 pieces ($255 total), $1.18/pc for 500 pieces ($590 total), and $1.05/pc for 1,000 pieces ($1,050 total) — all for a 3-inch patch. Free worldwide shipping, digital mockup in 12 to 24 hours, and no setup fees are included on every order. Velcro backing is charged separately on every order. Standard delivery is 7-14 business days.',
       },
     },
     {
@@ -130,7 +130,7 @@ const faqSchema = {
       name: 'What affects the price of custom patches?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Three main factors affect patch price: (1) Quantity, since more patches means a lower per-piece price. (2) Size, since larger patches cost more. (3) Patch type: embroidered is typically the most affordable per piece, while woven, PVC, and chenille cost more depending on size and quantity. Velcro backing adds $30 to the order.',
+        text: 'Three main factors affect patch price: (1) Quantity, since more patches means a lower per-piece price. (2) Size, since larger patches cost more. (3) Patch type: embroidered is typically the most affordable per piece, while woven, PVC, and chenille cost more depending on size and quantity. Velcro backing is charged separately on every order.',
       },
     },
     {
@@ -358,7 +358,7 @@ export default function PricingPage() {
       <section className="py-14 px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-black text-gray-900 mb-1">Embroidered Patch Pricing</h2>
-          <p className="text-gray-500 text-sm mb-6">Price per piece by quantity and size. Includes free shipping. Velcro backing +$30 total.</p>
+          <p className="text-gray-500 text-sm mb-6">Price per piece by quantity and size. Includes free shipping. Velcro backing is charged separately.</p>
           <div className="overflow-x-auto rounded-2xl border border-gray-200">
             <table className="w-full text-sm">
               <thead>
@@ -526,7 +526,7 @@ export default function PricingPage() {
                   { fee: 'Art / proof fee', other: '$10–$25', panda: '$0' },
                   { fee: 'Revisions', other: 'Per revision', panda: '$0 — unlimited' },
                   { fee: 'Iron-on & sew-on backing', other: 'Sometimes extra', panda: '$0 (both free)' },
-                  { fee: 'Velcro backing', other: 'Per patch', panda: '$30 flat / order' },
+                  { fee: 'Velcro backing', other: 'Per patch', panda: 'Charged separately' },
                   { fee: 'US shipping', other: '$8–$25', panda: '$0 — free worldwide' },
                 ].map((r, i) => (
                   <tr key={r.fee} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
@@ -592,7 +592,7 @@ export default function PricingPage() {
               {
                 num: '3',
                 title: 'Patch type',
-                body: 'Embroidered and woven are the most affordable. PVC and chenille cost slightly more. Leather is mid-range. Velcro backing adds a flat $30 to any order.',
+                body: 'Embroidered and woven are the most affordable. PVC and chenille cost slightly more. Leather is mid-range. Velcro backing is charged separately on every order.',
               },
             ].map((item) => (
               <div key={item.num} className="bg-gray-50 rounded-2xl p-6">

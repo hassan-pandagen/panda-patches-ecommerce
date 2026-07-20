@@ -993,7 +993,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can I order hat patches with velcro backing?",
-      answer: "Yes. Velcro-backed hat patches are popular for tactical caps and military-style hats where swapping patches is a regular requirement. The hook side is attached to the patch and you sew or glue the loop panel to the hat front. We supply both hook and loop sides with every velcro order. Velcro adds $30 to any order regardless of quantity."
+      answer: "Yes. Velcro-backed hat patches are popular for tactical caps and military-style hats where swapping patches is a regular requirement. The hook side is attached to the patch and you sew or glue the loop panel to the hat front. We supply both hook and loop sides with every velcro order. Velcro is charged separately on every order."
     },
     {
       question: "What is the minimum order for custom hat patches?",

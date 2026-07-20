@@ -545,7 +545,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I buy custom PVC patches?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches offers custom PVC patches with a low 5-piece minimum. Fully waterproof, flexible 2D or 3D molded PVC in any shape, size, and color. Backing options: sew-on (free), iron-on (free), or hook-and-loop Velcro (+$30). Digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, no setup fees, money-back guarantee. Standard turnaround 7-14 business days. Rush available. Popular for tactical gear, military units, schools, sports teams, motorcycle clubs, and clothing brands."
+                  "text": "Panda Patches offers custom PVC patches with a low 5-piece minimum. Fully waterproof, flexible 2D or 3D molded PVC in any shape, size, and color. Backing options: sew-on (free), iron-on (free), or hook-and-loop Velcro (charged separately). Digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, no setup fees, money-back guarantee. Standard turnaround 7-14 business days. Rush available. Popular for tactical gear, military units, schools, sports teams, motorcycle clubs, and clothing brands."
                 }
               },
               {
@@ -561,7 +561,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
                 "name": "Where can I get custom PVC patches made for tactical gear and military units?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Panda Patches makes custom PVC patches for tactical gear, military units, law enforcement, and first responders. Waterproof, weather-resistant, durable — ideal for plate carriers, rucksacks, uniforms, and outdoor equipment. 2D and 3D molded designs, hook-and-loop Velcro backing (+$30), sew-on, or iron-on. 5-piece minimum, digital mockup in 12 to 24 hours, free worldwide shipping, 7-14 business day turnaround. Common uses: unit insignia, morale patches, name tapes, blood type patches, flag patches, call sign patches."
+                  "text": "Panda Patches makes custom PVC patches for tactical gear, military units, law enforcement, and first responders. Waterproof, weather-resistant, durable — ideal for plate carriers, rucksacks, uniforms, and outdoor equipment. 2D and 3D molded designs, hook-and-loop Velcro backing (charged separately), sew-on, or iron-on. 5-piece minimum, digital mockup in 12 to 24 hours, free worldwide shipping, 7-14 business day turnaround. Common uses: unit insignia, morale patches, name tapes, blood type patches, flag patches, call sign patches."
                 }
               },
               {

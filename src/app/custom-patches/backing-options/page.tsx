@@ -24,7 +24,7 @@ const backingFAQs = [
   {
     question: "What backing options are available for custom patches?",
     answer:
-      "Panda Patches offers six backing options: iron-on (heat-seal adhesive), sew-on (plain fabric edge), hook-and-loop Velcro, peel-and-stick adhesive (sticker), magnetic, and traditional button-loop. Iron-on, sew-on, and peel-and-stick are free. Velcro is a flat +$30 per order. Magnetic and button-loop are specialty backings quoted per order. You choose the backing at checkout or on your quote, and the choice does not change the base patch price for the standard three.",
+      "Panda Patches offers six backing options: iron-on (heat-seal adhesive), sew-on (plain fabric edge), hook-and-loop Velcro, peel-and-stick adhesive (sticker), magnetic, and traditional button-loop. Iron-on, sew-on, and peel-and-stick are free. Velcro is charged separately on every order. Magnetic and button-loop are specialty backings quoted per order. You choose the backing at checkout or on your quote, and the choice does not change the base patch price for the standard three.",
   },
   {
     question: "Which patch backing is the most durable?",
@@ -44,7 +44,7 @@ const backingFAQs = [
   {
     question: "Does the backing change the price of the patch?",
     answer:
-      "Iron-on, sew-on, and peel-and-stick adhesive are free, so the patch costs the same base price regardless of which of those you choose. Hook-and-loop Velcro adds a flat $30 per order (not per piece) because it needs both the hook and loop sides plus extra sewing. Magnetic and button-loop are specialty backings priced per order; request a quote or use live chat for the exact cost. Base patches start at " + getFromPriceLabel("Custom Embroidered Patches") + " per piece for embroidered at 2 by 2 inches and 1,000 pieces.",
+      "Iron-on, sew-on, and peel-and-stick adhesive are free, so the patch costs the same base price regardless of which of those you choose. Hook-and-loop Velcro is charged separately on every order because it needs both the hook and loop sides plus extra sewing. Magnetic and button-loop are specialty backings priced per order; request a quote or use live chat for the exact cost. Base patches start at " + getFromPriceLabel("Custom Embroidered Patches") + " per piece for embroidered at 2 by 2 inches and 1,000 pieces.",
   },
   {
     question: "Which backing should I choose for tactical or military patches?",
@@ -56,7 +56,7 @@ const backingFAQs = [
 export const metadata: Metadata = buildPageMetadata({
   title: "Custom Patch Backing Options Compared | Panda Patches",
   description:
-    "Iron-on, sew-on, Velcro, adhesive, magnetic, and button-loop patch backings compared. Which to choose by garment, durability, and use. Free on the standard three, Velcro +$30/order. 5-piece minimum, free worldwide shipping.",
+    "Iron-on, sew-on, Velcro, adhesive, magnetic, and button-loop patch backings compared. Which to choose by garment, durability, and use. Free on the standard three, Velcro charged separately. 5-piece minimum, free worldwide shipping.",
   url: CANONICAL,
   ogType: "article",
   ogTitle: "Patch Backing Options: Iron-On vs Sew-On vs Velcro vs Adhesive vs Magnetic",
@@ -104,7 +104,7 @@ const productSchema = {
 const SPOKES = [
   { href: "/custom-iron-on-patches", name: "Iron-On", tag: "Free", body: "Heat-seal adhesive. The no-sew standard for hats, denim, and casual apparel." },
   { href: "/sew-on-patches", name: "Sew-On", tag: "Free", body: "Plain fabric edge stitched on for permanent, wash-proof attachment on any garment." },
-  { href: "/custom-velcro-patches", name: "Velcro (Hook & Loop)", tag: "+$30/order", body: "Swap patches between gear in seconds. The tactical and uniform standard." },
+  { href: "/custom-velcro-patches", name: "Velcro (Hook & Loop)", tag: "Charged separately", body: "Swap patches between gear in seconds. The tactical and uniform standard." },
   { href: "/adhesive-patches", name: "Adhesive (Peel & Stick)", tag: "Free", body: "One-time peel-and-stick backing for events, trade shows, and short-term branding." },
   { href: "/magnetic-patches", name: "Magnetic", tag: "Quote", body: "No-hole, no-sew badge backing for suits, blazers, and uniforms you cannot pierce." },
   { href: "/button-loop-patches", name: "Button-Loop", tag: "Quote", body: "Traditional loop that hangs from an existing button. Classic for sashes and vests." },
@@ -142,7 +142,7 @@ export default async function BackingOptionsHubPage() {
             Every custom patch needs a way to attach to its garment, and the right backing depends on the
             fabric, how often it will be washed, and whether you want it permanent or removable. Panda Patches
             offers six backings on a low 5-piece minimum. <strong>Iron-on, sew-on, and peel-and-stick adhesive
-            are free</strong>, hook-and-loop <strong>Velcro is a flat +$30 per order</strong>, and magnetic and
+            are free</strong>, hook-and-loop <strong>Velcro is charged separately on every order</strong>, and magnetic and
             button-loop are specialty backings quoted per order. Here is the full comparison, then a dedicated
             guide for each.
           </p>
@@ -161,7 +161,7 @@ export default async function BackingOptionsHubPage() {
               <tbody>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Iron-On</td><td className="px-5 py-4 font-black bg-panda-green/10">Free</td><td className="px-5 py-4">Hats, denim, casual apparel</td><td className="px-5 py-4">No (semi-permanent)</td><td className="px-5 py-4 text-gray-600">Embroidered, woven, printed, leather</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Sew-On</td><td className="px-5 py-4 font-black bg-panda-green/10">Free</td><td className="px-5 py-4">Uniforms, frequent wash, all garments</td><td className="px-5 py-4">Yes (unpick stitches)</td><td className="px-5 py-4 text-gray-600">All patch types</td></tr>
-                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Velcro (Hook & Loop)</td><td className="px-5 py-4 font-bold">+$30/order</td><td className="px-5 py-4">Tactical, military, swappable kit</td><td className="px-5 py-4">Yes (instant)</td><td className="px-5 py-4 text-gray-600">All types, best on PVC</td></tr>
+                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Velcro (Hook & Loop)</td><td className="px-5 py-4 font-bold">Charged separately</td><td className="px-5 py-4">Tactical, military, swappable kit</td><td className="px-5 py-4">Yes (instant)</td><td className="px-5 py-4 text-gray-600">All types, best on PVC</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Adhesive (Peel & Stick)</td><td className="px-5 py-4 font-black bg-panda-green/10">Free</td><td className="px-5 py-4">Events, trade shows, short-term</td><td className="px-5 py-4">No (one-time)</td><td className="px-5 py-4 text-gray-600">Embroidered, printed, PVC</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Magnetic</td><td className="px-5 py-4">Quote</td><td className="px-5 py-4">Name badges, suits, no-hole uniforms</td><td className="px-5 py-4">Yes (lift off)</td><td className="px-5 py-4 text-gray-600">Embroidered, PVC, leather</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Button-Loop</td><td className="px-5 py-4">Quote</td><td className="px-5 py-4">Scout sashes, biker vests, traditional</td><td className="px-5 py-4">Yes (unbutton)</td><td className="px-5 py-4 text-gray-600">Embroidered, woven</td></tr>
@@ -249,7 +249,7 @@ export default async function BackingOptionsHubPage() {
               The backing is the layer on the back of a custom patch that attaches it to fabric. Panda Patches
               lets you choose from six on every order: iron-on, sew-on, hook-and-loop Velcro, peel-and-stick
               adhesive, magnetic, and button-loop. The three standard choices, iron-on, sew-on, and adhesive,
-              add nothing to the price. Velcro adds a flat $30 per order, and magnetic and button-loop are
+              add nothing to the price. Velcro is charged separately on every order, and magnetic and button-loop are
               quoted per order. Whatever you choose, the patch ships with free worldwide shipping, a digital
               mockup in 12 to 24 hours, unlimited free revisions, and a money-back guarantee.
             </p>

@@ -76,7 +76,7 @@ const faqs = [
   {
     question: "What backings does Panda Patches offer?",
     answer:
-      "Backing options at Panda Patches: iron-on (heat-activated adhesive, included free), sew-on (flat fabric back for stitching, included free), adhesive sticker (peel and stick for short-term wear, included free), and Velcro (hook-and-loop both sides included, +$30 flat per order). Iron-on, sew-on, and sticker are interchangeable on embroidered, woven, leather, and printed patches. Velcro is available on embroidered, PVC, woven, and leather. Iron-on is not available on PVC (rubber cannot tolerate the heat press) or on chenille (the chenille texture interferes with adhesive bond). Sew-on is the default backing on chenille and PVC.",
+      "Backing options at Panda Patches: iron-on (heat-activated adhesive, included free), sew-on (flat fabric back for stitching, included free), adhesive sticker (peel and stick for short-term wear, included free), and Velcro (hook-and-loop both sides included, charged separately on every order). Iron-on, sew-on, and sticker are interchangeable on embroidered, woven, leather, and printed patches. Velcro is available on embroidered, PVC, woven, and leather. Iron-on is not available on PVC (rubber cannot tolerate the heat press) or on chenille (the chenille texture interferes with adhesive bond). Sew-on is the default backing on chenille and PVC.",
   },
 ];
 

@@ -735,7 +735,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
                   {[
                     { backing: "Iron-On", how: "Heat adhesive bonds to fabric", material: "Cotton, canvas, polyester", cost: "FREE" },
                     { backing: "Sew-On", how: "Thread stitched around patch edge", material: "All hat types including wool", cost: "FREE" },
-                    { backing: "Velcro", how: "Hook attaches to loop panel on hat", material: "Tactical, military, outdoor hats", cost: "+$30" },
+                    { backing: "Velcro", how: "Hook attaches to loop panel on hat", material: "Tactical, military, outdoor hats", cost: "Charged separately" },
                     { backing: "Sticker / Peel", how: "Peel and stick adhesive", material: "Temporary use, smooth panels only", cost: "FREE" },
                   ].map((row, i) => (
                     <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>

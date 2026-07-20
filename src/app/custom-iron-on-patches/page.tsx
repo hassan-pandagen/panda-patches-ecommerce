@@ -30,7 +30,7 @@ const ironOnFAQs = [
   {
     question: "Which patch types support iron-on backing?",
     answer:
-      "Iron-on backing is available on embroidered, woven, printed (sublimation), and leather patches. It is not available on PVC (the molded rubber cannot tolerate the heat-press temperature) or on chenille (the textured yarn surface prevents reliable adhesive bond). For PVC and chenille, the default backing is sew-on, and Velcro (hook-and-loop, +$30 flat per order) is available as an alternative.",
+      "Iron-on backing is available on embroidered, woven, printed (sublimation), and leather patches. It is not available on PVC (the molded rubber cannot tolerate the heat-press temperature) or on chenille (the textured yarn surface prevents reliable adhesive bond). For PVC and chenille, the default backing is sew-on, and Velcro (hook-and-loop, charged separately on every order) is available as an alternative.",
   },
   {
     question: "Can I also sew my iron-on patch onto the garment?",
@@ -211,7 +211,7 @@ export default async function CustomIronOnPatchesPage() {
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Woven</td><td className="px-5 py-4 font-black bg-panda-green/10">Yes</td><td className="px-5 py-4">Iron-on or sew-on</td><td className="px-5 py-4 text-gray-600">Fine detail option. Free.</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Printed (Sublimation)</td><td className="px-5 py-4 font-black bg-panda-green/10">Yes</td><td className="px-5 py-4">Iron-on or sew-on</td><td className="px-5 py-4 text-gray-600">Unlimited colors. Free.</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Leather</td><td className="px-5 py-4 font-black bg-panda-green/10">Yes</td><td className="px-5 py-4">Iron-on or sew-on</td><td className="px-5 py-4 text-gray-600">Premium hat brands. Free.</td></tr>
-                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">PVC</td><td className="px-5 py-4 text-red-600 font-bold">No</td><td className="px-5 py-4">Sew-on (default)</td><td className="px-5 py-4 text-gray-600">Heat damages rubber. Use sew-on or Velcro (+$30).</td></tr>
+                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">PVC</td><td className="px-5 py-4 text-red-600 font-bold">No</td><td className="px-5 py-4">Sew-on (default)</td><td className="px-5 py-4 text-gray-600">Heat damages rubber. Use sew-on or Velcro (charged separately).</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Chenille</td><td className="px-5 py-4 text-red-600 font-bold">No</td><td className="px-5 py-4">Sew-on (default)</td><td className="px-5 py-4 text-gray-600">Texture prevents adhesive bond. Use sew-on.</td></tr>
               </tbody>
             </table>

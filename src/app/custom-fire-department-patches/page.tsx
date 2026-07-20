@@ -52,7 +52,7 @@ const fireFAQs = [
   },
   {
     question: "How much do custom fire department patches cost?",
-    answer: "Custom embroidered fire department patches cost about $3.92 per piece at 50, $2.55 at 100, $1.18 at 500, and $1.05 at 1,000 for a 3-inch patch — all-in, with no setup or digitizing fees and free worldwide shipping. Memorial or single-station runs start at a low 5-piece minimum. Velcro backing adds a flat $30 per order.",
+    answer: "Custom embroidered fire department patches cost about $3.92 per piece at 50, $2.55 at 100, $1.18 at 500, and $1.05 at 1,000 for a 3-inch patch — all-in, with no setup or digitizing fees and free worldwide shipping. Memorial or single-station runs start at a low 5-piece minimum. Velcro backing is charged separately on every order.",
   },
   {
     question: "What is the minimum order for fire department patches?",
@@ -295,7 +295,7 @@ export default async function FireDepartmentPatchesPage() {
             How Much Do Fire Department Patches Cost?
           </h2>
           <p className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] mb-6">
-            Embroidered fire department patches run about <strong>$3.92/pc at 50</strong>, <strong>$2.55 at 100</strong>, and down to <strong>$1.05 at 1,000</strong> for a 3&quot; patch &mdash; all-in, with <strong>no setup or digitizing fees</strong> and free worldwide shipping. Memorial and single-station runs start at a low <strong>5-piece minimum</strong>; Velcro backing adds a flat $30 per order.
+            Embroidered fire department patches run about <strong>$3.92/pc at 50</strong>, <strong>$2.55 at 100</strong>, and down to <strong>$1.05 at 1,000</strong> for a 3&quot; patch &mdash; all-in, with <strong>no setup or digitizing fees</strong> and free worldwide shipping. Memorial and single-station runs start at a low <strong>5-piece minimum</strong>; Velcro backing is charged separately on every order.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-gray-200 max-w-md">
             <table className="w-full text-sm">

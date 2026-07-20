@@ -119,7 +119,7 @@ const homeFaqSchema = {
       "name": "What types of custom patches does Panda Patches make?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Panda Patches makes embroidered patches, PVC patches, woven patches, chenille patches, and leather patches. All types are available with iron-on, sew-on, or Velcro backing. Velcro backing adds $30 flat to any order. Every order includes a digital mockup in 12 to 24 hours, free worldwide shipping, and no setup fees.",
+        "text": "Panda Patches makes embroidered patches, PVC patches, woven patches, chenille patches, and leather patches. All types are available with iron-on, sew-on, or Velcro backing. Iron-on and sew-on are included in the patch price; Velcro is charged separately on every order. Every order includes a digital mockup in 12 to 24 hours, free worldwide shipping, and no setup fees.",
       },
     },
     {
