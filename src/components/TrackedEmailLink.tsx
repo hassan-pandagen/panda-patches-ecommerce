@@ -23,7 +23,7 @@ interface Props {
  * upgrades to the tracked one after mount (attribution is client-side only).
  */
 export default function TrackedEmailLink({
-  email = "hello@pandapatches.com",
+  email = "sales@pandapatches.com",
   subject = "Custom Patch Quote Request",
   className,
   children,

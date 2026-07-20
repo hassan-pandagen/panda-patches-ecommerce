@@ -153,7 +153,7 @@ export default async function SuccessPage({
             <p className="text-gray-600 mb-3">Our team is here to help.</p>
             <div className="space-y-2 text-sm">
               <p className="text-gray-700">
-                Email: <a href="mailto:hello@pandapatches.com" className="text-blue-600 font-semibold hover:underline">hello@pandapatches.com</a>
+                Email: <a href="mailto:sales@pandapatches.com" className="text-blue-600 font-semibold hover:underline">sales@pandapatches.com</a>
               </p>
               <p className="text-gray-700">
                 Phone: <a href="tel:+13022504340" className="text-blue-600 font-semibold hover:underline">+1 302 250 4340</a>

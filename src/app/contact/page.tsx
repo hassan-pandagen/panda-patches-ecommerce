@@ -17,7 +17,7 @@ import PickPatch from "@/components/about/PickPatch";
 // SEO Metadata for Contact Page
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact Us - Get Custom Patch Quote | Panda Patches",
-  description: "Contact Panda Patches for custom patch quotes. Phone: +1 302 250 4340. Email: hello@pandapatches.com. Free design consultation available.",
+  description: "Contact Panda Patches for custom patch quotes. Phone: +1 302 250 4340. Email: sales@pandapatches.com. Free design consultation available.",
   url: "https://www.pandapatches.com/contact",
   image: {
     url: "https://www.pandapatches.com/assets/og-image.png",

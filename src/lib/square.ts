@@ -83,7 +83,7 @@ export async function createSquarePaymentLink(
       ? { pre_populated_data: { buyer_email: input.buyerEmail } }
       : {}),
     redirect_url: input.redirectUrl,
-    merchant_support_email: 'hello@pandapatches.com',
+    merchant_support_email: 'sales@pandapatches.com',
     // Offer every wallet + BNPL Square supports. Each only renders when the buyer's
     // device/browser supports it AND the method is enabled on the Square account.
     // Apple Pay: Apple devices/Safari only (Square handles it on their domain, no

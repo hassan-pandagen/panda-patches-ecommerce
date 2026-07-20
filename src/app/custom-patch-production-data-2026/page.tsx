@@ -262,7 +262,7 @@ export default function ProductionData2026() {
             </blockquote>
             <p className="text-[13px] text-gray-500 mt-4 font-medium">
               Questions about the data, or need a cut we have not published? Email{" "}
-              <a href="mailto:hello@pandapatches.com" className="text-panda-green underline font-semibold">hello@pandapatches.com</a>{" "}
+              <a href="mailto:sales@pandapatches.com" className="text-panda-green underline font-semibold">sales@pandapatches.com</a>{" "}
               — if we can source it from real records, we will add it. Part of{" "}
               <Link href="/glossary" prefetch={false} className="text-panda-green underline font-semibold">The Custom Patch Glossary</Link>.
             </p>

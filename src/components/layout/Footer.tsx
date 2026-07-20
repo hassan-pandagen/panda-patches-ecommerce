@@ -71,7 +71,7 @@ export default function Footer() {
              <div className="space-y-1 lg:pt-24">
                <h3 className="font-bold text-lg text-panda-dark text-left">Need Live Support</h3>
                <TrackedEmailLink className="underline decoration-1 underline-offset-2 block">
-                 hello@pandapatches.com
+                 sales@pandapatches.com
                </TrackedEmailLink>
              </div>
 

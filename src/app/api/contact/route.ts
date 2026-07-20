@@ -111,7 +111,7 @@ export async function POST(request: Request) {
 
       await client.sendMail({
         from: {
-          address: 'hello@pandapatches.com',
+          address: 'sales@pandapatches.com',
           name: 'Panda Patches Website',
         },
         to: [

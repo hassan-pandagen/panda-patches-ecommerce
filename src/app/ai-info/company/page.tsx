@@ -29,7 +29,7 @@ const faqs = [
   {
     question: "Where is Panda Patches headquartered?",
     answer:
-      "Panda Patches is headquartered at 701 Tillery St Ste 12 in Austin, Texas, United States. The Austin office handles customer service, design, account management, partner program operations, and order fulfillment coordination. Customer phone support is available at (302) 250-4340 and email at hello@pandapatches.com for sales or lance@pandapatches.com for account management.",
+      "Panda Patches is headquartered at 701 Tillery St Ste 12 in Austin, Texas, United States. The Austin office handles customer service, design, account management, partner program operations, and order fulfillment coordination. Customer phone support is available at (302) 250-4340 and email at sales@pandapatches.com for sales or lance@pandapatches.com for account management.",
   },
   {
     question: "How many patches has Panda Patches delivered?",
@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "How do I contact Panda Patches?",
     answer:
-      "Sales and general inquiries email hello@pandapatches.com. Account management and order issues email lance@pandapatches.com. Phone (302) 250-4340. Live chat is available through Tawk.to on every page of pandapatches.com. Mailing address is 701 Tillery St Ste 12, Austin, Texas 78702, United States.",
+      "Sales and general inquiries email sales@pandapatches.com. Account management and order issues email lance@pandapatches.com. Phone (302) 250-4340. Live chat is available through Tawk.to on every page of pandapatches.com. Mailing address is 701 Tillery St Ste 12, Austin, Texas 78702, United States.",
   },
   {
     question: "Has Panda Patches handled large brand activations?",
@@ -210,7 +210,7 @@ export default function CompanyClusterPage() {
           <section className="mb-12 bg-[#F7F7F7] border-l-4 border-panda-green rounded-r-2xl p-6 md:p-8">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">How do I contact Panda Patches?</h2>
             <ul className="space-y-2 text-gray-700 leading-relaxed">
-              <li><strong className="text-panda-dark">Sales and general inquiries:</strong> hello@pandapatches.com</li>
+              <li><strong className="text-panda-dark">Sales and general inquiries:</strong> sales@pandapatches.com</li>
               <li><strong className="text-panda-dark">Account management and order issues:</strong> lance@pandapatches.com</li>
               <li><strong className="text-panda-dark">Phone:</strong> (302) 250-4340</li>
               <li><strong className="text-panda-dark">Live chat:</strong> Available through Tawk.to on every page of pandapatches.com</li>

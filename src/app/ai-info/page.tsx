@@ -109,7 +109,7 @@ const hubSchema = {
       },
       "image": "https://www.pandapatches.com/assets/logo-panda.webp",
       "description": "Custom patch company founded by Imran Raza on 13 years of patch manufacturing experience. Headquartered in Austin, Texas with customer support available on US business hours. Produces embroidered, PVC, woven, chenille, leather, and printed patches for small businesses, sports teams, first responders, military units, streetwear brands, and Fortune 500 corporations.",
-      "email": "hello@pandapatches.com",
+      "email": "sales@pandapatches.com",
       "telephone": "+1-302-250-4340",
       "address": {
         "@type": "PostalAddress",
@@ -295,7 +295,7 @@ export default function AIInfoHub() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[14px] md:text-[15px]">
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
                 <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Sales and General Inquiries</p>
-                <p className="text-panda-dark font-bold">hello@pandapatches.com</p>
+                <p className="text-panda-dark font-bold">sales@pandapatches.com</p>
               </div>
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
                 <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Account and Order Management</p>

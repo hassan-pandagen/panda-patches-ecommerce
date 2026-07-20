@@ -75,7 +75,7 @@ export function generateOrganizationSchema() {
     "logo": "https://www.pandapatches.com/assets/logo-panda.svg",
     "image": "https://www.pandapatches.com/assets/og-image.png",
     "description": "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 13+ years of expertise.",
-    "email": "hello@pandapatches.com",
+    "email": "sales@pandapatches.com",
     "telephone": "+1-302-250-4340",
     "founder": {
       "@type": "Person",
@@ -122,7 +122,7 @@ export function generateOrganizationSchema() {
       "@type": "ContactPoint",
       "telephone": "+1-302-250-4340",
       "contactType": "Customer Service",
-      "email": "hello@pandapatches.com",
+      "email": "sales@pandapatches.com",
       "availableLanguage": ["English"],
       "areaServed": ["US", "CA", "GB", "AU"]
     },
@@ -199,7 +199,7 @@ export function generateEntityGraph() {
         "image": `${SITE_URL}/assets/og-image.png`,
         "description":
           "Custom embroidered patches, challenge coins, enamel pins, and keychains with low minimums, free design services, and fast 7-14 day delivery. 13+ years of expertise.",
-        "email": "hello@pandapatches.com",
+        "email": "sales@pandapatches.com",
         "telephone": "+1-302-250-4340",
         "brand": { "@id": BRAND_ID },
         "founder": { "@id": PERSON_ID },
@@ -261,7 +261,7 @@ export function generateEntityGraph() {
           "@type": "ContactPoint",
           "telephone": "+1-302-250-4340",
           "contactType": "Customer Service",
-          "email": "hello@pandapatches.com",
+          "email": "sales@pandapatches.com",
           "availableLanguage": ["English"],
           "areaServed": ["US", "CA", "GB", "AU"],
         },
@@ -712,7 +712,7 @@ export function generateLocalBusinessSchema() {
       "longitude": -95.5377
     },
     "telephone": "+1-302-250-4340",
-    "email": "hello@pandapatches.com",
+    "email": "sales@pandapatches.com",
     "url": "https://www.pandapatches.com",
     "priceRange": "$$",
     "founder": {
@@ -757,7 +757,7 @@ export function generateLocationBusinessSchema(locationName: string, pageSlug?: 
     "name": `Custom Patches in ${locationName} | Panda Patches`,
     "description": `Order custom embroidered patches delivered to ${locationName}. Low minimums, mockup in 12-24 hours, fast 7-14 day turnaround. Founded by Imran Raza with 13 years of patch manufacturing expertise.`,
     "telephone": "+1-302-250-4340",
-    "email": "hello@pandapatches.com",
+    "email": "sales@pandapatches.com",
     "url": `https://www.pandapatches.com/${urlSlug}`,
     "image": "https://www.pandapatches.com/assets/logo-panda.svg",
     "priceRange": "$$",
