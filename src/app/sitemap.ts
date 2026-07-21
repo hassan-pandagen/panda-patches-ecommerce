@@ -143,6 +143,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      // Commercial capture page for the scout-cited audience (CL9F69 Workstream C.1).
+      url: `${baseUrl}/custom-scout-patches`,
+      lastModified: new Date('2026-07-21'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/blogs`,
       lastModified: new Date('2026-03-01'),
       changeFrequency: 'daily',

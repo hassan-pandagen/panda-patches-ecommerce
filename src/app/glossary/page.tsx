@@ -51,7 +51,9 @@ const categories = [
   {
     name: "Backings",
     terms: [
-      "Iron-on backing",
+      // Label must equal the entry's `term` for the hub to render it as a live
+      // link (matched by exact string). Entry term is "Iron-on patch".
+      "Iron-on patch",
       "Velcro (hook-and-loop) backing",
       "Sew-on backing",
       "Adhesive (PSA) backing",

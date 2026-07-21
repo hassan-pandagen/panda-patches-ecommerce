@@ -43,7 +43,8 @@ export function isLive(entry: GlossaryEntry): boolean {
 }
 
 export const glossaryEntries: GlossaryEntry[] = [
-  // ── DRAFTS (published: false) — awaiting floor photos + human review ──────────
+  // ── LIVE — all 10 Tier-1 entries published 2026-07-21 (photos wired + owner-reviewed).
+  //    isLive() = published && photo; both satisfied. ──
   {
     slug: "woven-patch",
     term: "Woven patch",
@@ -68,7 +69,9 @@ export const glossaryEntries: GlossaryEntry[] = [
       { href: "/custom-patches/embroidered", label: "Custom embroidered patches" },
       { href: "/patch-types-compared", label: "All patch types compared" },
     ],
-    published: false,
+    published: true,
+    datePublished: "2026-07-21",
+    dateModified: "2026-07-21",
   },
   {
     slug: "chenille-patch",
@@ -94,7 +97,9 @@ export const glossaryEntries: GlossaryEntry[] = [
       { href: "/custom-chenille-patches-guide", label: "Chenille patch ordering guide" },
       { href: "/patch-types-compared", label: "All patch types compared" },
     ],
-    published: false,
+    published: true,
+    datePublished: "2026-07-21",
+    dateModified: "2026-07-21",
   },
   {
     slug: "velcro-backing",
@@ -120,7 +125,9 @@ export const glossaryEntries: GlossaryEntry[] = [
       { href: "/custom-patches/backing-options", label: "All backing options compared" },
       { href: "/custom-tactical-patches", label: "Custom tactical patches" },
     ],
-    published: false,
+    published: true,
+    datePublished: "2026-07-21",
+    dateModified: "2026-07-21",
   },
   {
     slug: "iron-on-patch",
@@ -146,7 +153,9 @@ export const glossaryEntries: GlossaryEntry[] = [
       { href: "/custom-patches/backing-options", label: "All backing options compared" },
       { href: "/sew-on-patches", label: "Sew-on patches" },
     ],
-    published: false,
+    published: true,
+    datePublished: "2026-07-21",
+    dateModified: "2026-07-21",
   },
   {
     slug: "embroidered-patch",
@@ -172,7 +181,9 @@ export const glossaryEntries: GlossaryEntry[] = [
       { href: "/patch-threads-and-twills", label: "Threads and twills" },
       { href: "/patch-types-compared", label: "All patch types compared" },
     ],
-    published: false,
+    published: true,
+    datePublished: "2026-07-21",
+    dateModified: "2026-07-21",
   },
   {
     slug: "morale-patch",
@@ -198,7 +209,9 @@ export const glossaryEntries: GlossaryEntry[] = [
       { href: "/custom-tactical-patches", label: "Custom tactical patches" },
       { href: "/custom-velcro-patches", label: "Velcro patch backing" },
     ],
-    published: false,
+    published: true,
+    datePublished: "2026-07-21",
+    dateModified: "2026-07-21",
   },
   {
     slug: "pvc-patch",
@@ -224,7 +237,9 @@ export const glossaryEntries: GlossaryEntry[] = [
       { href: "/custom-morale-patches", label: "Custom morale patches" },
       { href: "/patch-types-compared", label: "All patch types compared" },
     ],
-    published: false,
+    published: true,
+    datePublished: "2026-07-21",
+    dateModified: "2026-07-21",
   },
   {
     slug: "3d-puff-embroidery",
@@ -250,7 +265,9 @@ export const glossaryEntries: GlossaryEntry[] = [
       { href: "/patches-for-hats", label: "Patches for hats" },
       { href: "/patch-types-compared", label: "All patch types compared" },
     ],
-    published: false,
+    published: true,
+    datePublished: "2026-07-21",
+    dateModified: "2026-07-21",
   },
   {
     slug: "patch-backing",
@@ -276,7 +293,9 @@ export const glossaryEntries: GlossaryEntry[] = [
       { href: "/adhesive-patches", label: "Adhesive patches" },
       { href: "/patch-backings-101-iron-on-vs-sew-on-vs-velcro", label: "Backings 101 guide" },
     ],
-    published: false,
+    published: true,
+    datePublished: "2026-07-21",
+    dateModified: "2026-07-21",
   },
   {
     slug: "embroidery-digitizing",
@@ -302,7 +321,9 @@ export const glossaryEntries: GlossaryEntry[] = [
       { href: "/custom-patch-hidden-fees", label: "Hidden fees to watch for" },
       { href: "/how-much-do-custom-patches-cost-full-pricing-breakdown", label: "Full pricing breakdown" },
     ],
-    published: false,
+    published: true,
+    datePublished: "2026-07-21",
+    dateModified: "2026-07-21",
   },
 ];
 

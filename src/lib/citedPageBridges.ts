@@ -23,6 +23,12 @@ export interface BridgeConfig {
 }
 
 export const CITED_PAGE_BRIDGES: Record<string, BridgeConfig> = {
+  "boy-scout-patch-placements-a-complete-guide": {
+    offer:
+      "Need patches for your unit? Custom troop and patrol patches your scouts design, from 5 pieces.",
+    ctaLabel: "Shop custom scout patches",
+    href: "/custom-scout-patches",
+  },
   "how-to-make-your-own-iron-on-patches": {
     offer:
       "Skip the DIY: professional embroidered iron-on patches from $0.91/pc, backing included.",
