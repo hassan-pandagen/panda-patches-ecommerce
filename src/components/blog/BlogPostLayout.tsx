@@ -8,6 +8,8 @@ import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
 import RelatedLinks from "@/components/seo/RelatedLinks";
 import CategoryFAQ from "@/components/bulk/CategoryFAQ";
+import CitedPageBridge from "@/components/blog/CitedPageBridge";
+import { CITED_PAGE_BRIDGES } from "@/lib/citedPageBridges";
 
 function slugifyBlock(value: any): string {
   const text = (value?.children || []).map((c: any) => c.text || '').join('');
@@ -38,6 +40,137 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
     : null;
   // Only show "Updated" if it's a different day than published
   const showUpdated = updatedDate && publishDate && updatedDate !== publishDate;
+
+  // Commercial bridge (CL9F69 Workstream A): if this slug has a bridge, split the
+  // body and inject the bridge after the first substantial section (the first h2
+  // that sits at least ~15% into the body, so it never crowds the intro). Splitting
+  // only at an h2 boundary means we never break a list or table mid-block. The
+  // bridge lives here, not in the Sanity content, so it can't dilute the copy that
+  // earns the citations and editors can't accidentally delete it.
+  const content: any[] = post.content || [];
+  const bridge = slug ? CITED_PAGE_BRIDGES[slug] : undefined;
+  let bodyHead: any[] = content;
+  let bodyTail: any[] = [];
+  if (bridge && content.length > 6) {
+    const minIdx = Math.max(3, Math.ceil(content.length * 0.15));
+    let splitIdx = content.findIndex((b, i) => i >= minIdx && b?.style === "h2");
+    if (splitIdx === -1) splitIdx = Math.ceil(content.length * 0.4);
+    bodyHead = content.slice(0, splitIdx);
+    bodyTail = content.slice(splitIdx);
+  }
+
+  const bodyComponents = {
+    block: {
+      // H1 converted to H2 for SEO (only one H1 per page - the post title)
+      h1: ({children, value}: any) => <h2 id={slugifyBlock(value)} className="text-4xl font-black text-panda-dark mt-12 mb-6">{children}</h2>,
+
+      // H2 in Body (Like "Conclusion")
+      h2: ({children, value}: any) => <h2 id={slugifyBlock(value)} className="text-3xl font-bold text-panda-dark mt-12 mb-6">{children}</h2>,
+
+      // H3 in Body
+      h3: ({children, value}: any) => <h3 id={slugifyBlock(value)} className="text-2xl font-bold text-panda-dark mt-10 mb-4">{children}</h3>,
+
+      // Standard Paragraph
+      normal: ({children}: any) => <p className="text-[18px] leading-[1.8] text-gray-700 mb-6 font-normal">{children}</p>,
+
+      // Blockquote
+      blockquote: ({children}: any) => <blockquote className="border-l-4 border-panda-yellow pl-6 py-2 my-8 italic text-xl text-gray-600 bg-gray-50 rounded-r-lg">{children}</blockquote>,
+    },
+    marks: {
+      // Links - Auto-convert WordPress URLs to Next.js URLs
+      link: ({value, children}: any) => {
+        const originalHref = value?.href || '';
+        const convertedHref = convertWordPressUrl(originalHref);
+
+        // Check if it's an external link (keeps Instagram, social media, etc.)
+        const isExternal = convertedHref.startsWith('http');
+        const target = isExternal ? '_blank' : undefined;
+        const rel = isExternal ? 'noopener noreferrer' : undefined;
+
+        // Use Next.js Link for internal links, regular <a> for external
+        if (isExternal) {
+          return (
+            <a href={convertedHref} target={target} rel={rel} className="text-blue-600 underline hover:text-blue-800 font-medium">
+              {children}
+            </a>
+          );
+        } else {
+          return (
+            <Link href={convertedHref} className="text-blue-600 underline hover:text-blue-800 font-medium">
+              {children}
+            </Link>
+          );
+        }
+      }
+    },
+    list: {
+      // Bullet Lists
+      bullet: ({children}: any) => <ul className="list-disc pl-6 mb-8 space-y-2 text-[18px] text-gray-700">{children}</ul>,
+      number: ({children}: any) => <ol className="list-decimal pl-6 mb-8 space-y-2 text-[18px] text-gray-700">{children}</ol>,
+    },
+    types: {
+      image: ({value}: {value: any}) => {
+        if (!value?.asset) return null;
+        return (
+          <figure className="my-10">
+            <div className="relative w-full rounded-[16px] overflow-hidden">
+              <Image
+                src={urlFor(value).width(800).format('webp').quality(80).url()}
+                alt={value.alt || ''}
+                width={800}
+                height={500}
+                className="w-full h-auto object-cover"
+                sizes="(max-width: 768px) 100vw, 800px"
+              />
+            </div>
+            {value.caption && (
+              <figcaption className="text-center text-sm text-gray-400 mt-3 italic">{value.caption}</figcaption>
+            )}
+          </figure>
+        );
+      },
+      tableBlock: ({value}: {value: any}) => {
+        if (!value?.rows?.length) return null;
+        return (
+          <div className="overflow-x-auto my-8 rounded-xl border border-gray-200 shadow-sm">
+            <table className="w-full border-collapse text-[15px]">
+              {value.headers?.length > 0 && (
+                <thead>
+                  <tr>
+                    {value.headers.map((h: string, i: number) => (
+                      <th key={i} className="bg-panda-dark text-white px-4 py-3 text-left font-bold text-[14px] whitespace-nowrap">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+              )}
+              <tbody>
+                {value.rows.map((row: any, i: number) => (
+                  <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                    {row.cells?.map((cell: string, j: number) => (
+                      <td key={j} className="px-4 py-3 border-b border-gray-100 text-gray-700 align-top">{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {value.caption && (
+              <p className="text-center text-sm text-gray-400 py-2 italic">{value.caption}</p>
+            )}
+          </div>
+        );
+      },
+      productionFloorCallout: ({value}: {value: any}) => {
+        if (!value?.body) return null;
+        const heading = value.heading || 'From our production floor';
+        return (
+          <aside className="my-10 rounded-xl border-l-4 border-panda-green bg-[#F9FAF5] px-6 py-5 md:px-8 md:py-6">
+            <p className="text-xs font-bold uppercase tracking-widest text-panda-green mb-2">{heading}</p>
+            <p className="text-[16px] leading-[1.75] text-gray-700 m-0">{value.body}</p>
+          </aside>
+        );
+      },
+    },
+  };
 
   return (
     <main className="min-h-screen bg-white">
@@ -133,121 +266,11 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
 
         {/* Content Body - Custom Styling */}
         <div className="text-gray-800">
-          <PortableText
-            value={post.content}
-            components={{
-              block: {
-                // H1 converted to H2 for SEO (only one H1 per page - the post title)
-                h1: ({children, value}) => <h2 id={slugifyBlock(value)} className="text-4xl font-black text-panda-dark mt-12 mb-6">{children}</h2>,
-
-                // H2 in Body (Like "Conclusion")
-                h2: ({children, value}) => <h2 id={slugifyBlock(value)} className="text-3xl font-bold text-panda-dark mt-12 mb-6">{children}</h2>,
-
-                // H3 in Body
-                h3: ({children, value}) => <h3 id={slugifyBlock(value)} className="text-2xl font-bold text-panda-dark mt-10 mb-4">{children}</h3>,
-                
-                // Standard Paragraph
-                normal: ({children}) => <p className="text-[18px] leading-[1.8] text-gray-700 mb-6 font-normal">{children}</p>,
-                
-                // Blockquote
-                blockquote: ({children}) => <blockquote className="border-l-4 border-panda-yellow pl-6 py-2 my-8 italic text-xl text-gray-600 bg-gray-50 rounded-r-lg">{children}</blockquote>,
-              },
-              marks: {
-                // Links - Auto-convert WordPress URLs to Next.js URLs
-                link: ({value, children}) => {
-                  const originalHref = value?.href || '';
-                  const convertedHref = convertWordPressUrl(originalHref);
-
-                  // Check if it's an external link (keeps Instagram, social media, etc.)
-                  const isExternal = convertedHref.startsWith('http');
-                  const target = isExternal ? '_blank' : undefined;
-                  const rel = isExternal ? 'noopener noreferrer' : undefined;
-
-                  // Use Next.js Link for internal links, regular <a> for external
-                  if (isExternal) {
-                    return (
-                      <a href={convertedHref} target={target} rel={rel} className="text-blue-600 underline hover:text-blue-800 font-medium">
-                        {children}
-                      </a>
-                    );
-                  } else {
-                    return (
-                      <Link href={convertedHref} className="text-blue-600 underline hover:text-blue-800 font-medium">
-                        {children}
-                      </Link>
-                    );
-                  }
-                }
-              },
-              list: {
-                // Bullet Lists
-                bullet: ({children}) => <ul className="list-disc pl-6 mb-8 space-y-2 text-[18px] text-gray-700">{children}</ul>,
-                number: ({children}) => <ol className="list-decimal pl-6 mb-8 space-y-2 text-[18px] text-gray-700">{children}</ol>,
-              },
-              types: {
-                image: ({value}: {value: any}) => {
-                  if (!value?.asset) return null;
-                  return (
-                    <figure className="my-10">
-                      <div className="relative w-full rounded-[16px] overflow-hidden">
-                        <Image
-                          src={urlFor(value).width(800).format('webp').quality(80).url()}
-                          alt={value.alt || ''}
-                          width={800}
-                          height={500}
-                          className="w-full h-auto object-cover"
-                          sizes="(max-width: 768px) 100vw, 800px"
-                        />
-                      </div>
-                      {value.caption && (
-                        <figcaption className="text-center text-sm text-gray-400 mt-3 italic">{value.caption}</figcaption>
-                      )}
-                    </figure>
-                  );
-                },
-                tableBlock: ({value}: {value: any}) => {
-                  if (!value?.rows?.length) return null;
-                  return (
-                    <div className="overflow-x-auto my-8 rounded-xl border border-gray-200 shadow-sm">
-                      <table className="w-full border-collapse text-[15px]">
-                        {value.headers?.length > 0 && (
-                          <thead>
-                            <tr>
-                              {value.headers.map((h: string, i: number) => (
-                                <th key={i} className="bg-panda-dark text-white px-4 py-3 text-left font-bold text-[14px] whitespace-nowrap">{h}</th>
-                              ))}
-                            </tr>
-                          </thead>
-                        )}
-                        <tbody>
-                          {value.rows.map((row: any, i: number) => (
-                            <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                              {row.cells?.map((cell: string, j: number) => (
-                                <td key={j} className="px-4 py-3 border-b border-gray-100 text-gray-700 align-top">{cell}</td>
-                              ))}
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                      {value.caption && (
-                        <p className="text-center text-sm text-gray-400 py-2 italic">{value.caption}</p>
-                      )}
-                    </div>
-                  );
-                },
-                productionFloorCallout: ({value}: {value: any}) => {
-                  if (!value?.body) return null;
-                  const heading = value.heading || 'From our production floor';
-                  return (
-                    <aside className="my-10 rounded-xl border-l-4 border-panda-green bg-[#F9FAF5] px-6 py-5 md:px-8 md:py-6">
-                      <p className="text-xs font-bold uppercase tracking-widest text-panda-green mb-2">{heading}</p>
-                      <p className="text-[16px] leading-[1.75] text-gray-700 m-0">{value.body}</p>
-                    </aside>
-                  );
-                },
-              },
-            }}
-          />
+          <PortableText value={bodyHead} components={bodyComponents} />
+          {bridge && bodyTail.length > 0 && (
+            <CitedPageBridge config={bridge} fromPage={`/${slug}`} />
+          )}
+          {bodyTail.length > 0 && <PortableText value={bodyTail} components={bodyComponents} />}
         </div>
 
         {/* Author Bio Card (bottom) */}
