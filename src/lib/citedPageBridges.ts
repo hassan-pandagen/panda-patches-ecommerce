@@ -47,4 +47,12 @@ export const CITED_PAGE_BRIDGES: Record<string, BridgeConfig> = {
     ctaLabel: "Get bulk team pricing",
     href: "/bulk-custom-patches",
   },
+  // Unblocked 2026-07-21 after the CEO-approved claim fixes went live (flag error,
+  // marksmanship, over-claims, tape dimensions). Non-certification wording only.
+  "tactical-and-military-ocp-patch-placement-options": {
+    offer:
+      "Custom unit patches, name tapes, and morale patches for OCP uniforms — velcro-backed, from 5 pieces.",
+    ctaLabel: "Shop custom military patches",
+    href: "/custom-military-patches",
+  },
 };
