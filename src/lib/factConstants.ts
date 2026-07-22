@@ -45,7 +45,7 @@ export const MIN_ORDER_COPY = 'from 5 pieces on most patch types (woven: 10)';
 /** The basis EVERY advertised from-price must state. */
 export const FROM_PRICE_BASIS = '2" x 2", 1,000 pieces';
 export const FROM_PRICE_EMBROIDERED = '$0.91';
-export const FROM_PRICE_PVC = '$1.54';
+export const FROM_PRICE_PVC = '$1.40';
 export const FROM_PRICE_WOVEN = '$1.54';
 
 // ── Support ────────────────────────────────────────────────────────────────
