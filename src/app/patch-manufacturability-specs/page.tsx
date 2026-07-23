@@ -58,7 +58,7 @@ const faqs = [
   {
     question: "Can you reproduce gradients on a patch?",
     answer:
-      "Not as true gradients in thread. Embroidery and woven simulate a gradient by blending or dithering adjacent thread colors, which reads as a blend at a glance but is not a smooth transition up close. PVC blends in solid zones. The exception is UV-printed leather, which prints true gradients and photographic artwork.",
+      "Not as true gradients in thread. Embroidery and woven simulate a gradient by blending or dithering adjacent thread colors, which reads as a blend at a glance but is not a smooth transition up close. PVC blends in solid zones. The exceptions are printed (dye-sublimated) patches and UV-printed leather, both of which reproduce true gradients and photographic artwork.",
   },
   {
     question: "How much does a merrowed border add to the patch size?",
@@ -308,7 +308,7 @@ export default function PatchManufacturabilitySpecs() {
               There is no hard cap on embroidered thread colors — we include up to about 12 and surcharge beyond that, since machines run around 15 needles and thread can be reloaded for more. Woven handles about 8–10 while holding fine detail; PVC uses about 8 Pantone-matched zones.
             </p>
             <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium">
-              <strong className="text-panda-dark">True gradients cannot be stitched.</strong> In embroidery and woven, a gradient is simulated by blending or dithering adjacent thread colors — it reads as a blend at a glance but is not a smooth transition up close. PVC blends in solid zones. The one exception is UV-printed leather, which prints true gradients. If your design leans on smooth color transitions, either simplify to solid colors or ask us about UV print.
+              <strong className="text-panda-dark">True gradients cannot be stitched.</strong> In embroidery and woven, a gradient is simulated by blending or dithering adjacent thread colors — it reads as a blend at a glance but is not a smooth transition up close. PVC blends in solid zones. The exceptions are printed (dye-sublimated) patches and UV-printed leather, both of which reproduce true gradients. If your design leans on smooth color transitions, either simplify to solid colors, choose a printed patch, or ask us about UV print.
             </p>
           </div>
         </section>
