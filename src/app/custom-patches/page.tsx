@@ -85,10 +85,10 @@ const productSchema = {
     },
     offers: [
       { "@type": "Offer", name: "Embroidered Patches", price: "0.91", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
-      { "@type": "Offer", name: "PVC Patches", price: "1.54", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "PVC Patches", price: "1.40", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
       { "@type": "Offer", name: "Woven Patches", price: "1.54", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
       { "@type": "Offer", name: "Chenille Patches", price: "1.31", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
-      { "@type": "Offer", name: "Leather Patches", price: "1.55", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
+      { "@type": "Offer", name: "Leather Patches", price: "1.74", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
       { "@type": "Offer", name: "Sequin Patches", price: "1.44", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition", priceValidUntil: "2027-01-01" },
     ],
   },

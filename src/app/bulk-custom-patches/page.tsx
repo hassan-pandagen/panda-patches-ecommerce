@@ -388,10 +388,10 @@ export default async function BulkCustomPatchesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
               { type: "Embroidered", best: "Uniforms, teams, classic logos", from: "$0.91/pc", note: "Most popular for bulk" },
-              { type: "PVC / Rubber", best: "Outdoor gear, tactical, waterproof use", from: "$1.54/pc", note: "Extremely durable" },
+              { type: "PVC / Rubber", best: "Outdoor gear, tactical, waterproof use", from: "$1.40/pc", note: "Extremely durable" },
               { type: "Woven", best: "Fine detail, small text, labels", from: "$1.54/pc", note: "Thin and lightweight" },
               { type: "Chenille", best: "Varsity jackets, colleges, retro brands", from: "$1.31/pc", note: "Premium textured look" },
-              { type: "Leather", best: "Motorcycle clubs, luxury branding", from: "$1.55/pc", note: "Real or faux leather" },
+              { type: "Leather", best: "Motorcycle clubs, luxury branding", from: "$1.74/pc", note: "Real or faux leather" },
               { type: "Custom Die-Cut", best: "Any shape, any size, any style", from: "Custom quote", note: "Fully bespoke" },
             ].map((item, idx) => (
               <div key={idx} className="border border-gray-200 rounded-[14px] p-5 hover:border-panda-green hover:shadow-md transition-all">

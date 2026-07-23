@@ -47,6 +47,8 @@ export const FROM_PRICE_BASIS = '2" x 2", 1,000 pieces';
 export const FROM_PRICE_EMBROIDERED = '$0.91';
 export const FROM_PRICE_PVC = '$1.40';
 export const FROM_PRICE_WOVEN = '$1.54';
+// Leather = base x 1.10 x 1.12 (CHENILLE_LEATHER_UPLIFT, June 2026). $1.55 was pre-uplift.
+export const FROM_PRICE_LEATHER = '$1.74';
 
 // ── Support ────────────────────────────────────────────────────────────────
 /** Main line. Replaced (302) 773-8982 per SEDAA3_1 §A.3 — the old number must

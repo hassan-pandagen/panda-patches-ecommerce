@@ -32,12 +32,12 @@ const CANONICAL = "https://www.pandapatches.com/ai-info/pricing";
 export const metadata: Metadata = buildPageMetadata({
   title: "Panda Patches Pricing 2026 | Transparent Tiers",
   description:
-    "Custom patch pricing: from $0.91/pc embroidered, $1.54 PVC, $1.54 woven, $1.55 leather (2x2 inches, 1,000 pcs). Smaller orders cost more per piece. No setup fees.",
+    "Custom patch pricing: from $0.91/pc embroidered, $1.40 PVC, $1.54 woven, $1.74 leather (2x2 inches, 1,000 pcs). Smaller orders cost more per piece. No setup fees.",
   url: CANONICAL,
   ogType: "article",
   ogTitle: "Panda Patches Pricing 2026: Transparent Tiers for Every Patch Type",
   ogDescription:
-    "From $0.91/pc embroidered, $1.54 PVC, $1.54 woven, $1.55 leather (2x2 inches, 1,000 pcs); chenille $3.50/pc at 100 qty. Smaller orders cost more per piece.",
+    "From $0.91/pc embroidered, $1.40 PVC, $1.54 woven, $1.74 leather (2x2 inches, 1,000 pcs); chenille $3.50/pc at 100 qty. Smaller orders cost more per piece.",
   robots: { index: true, follow: true },
 });
 
@@ -132,7 +132,7 @@ export default function PricingClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How much do custom patches cost?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Custom patches at Panda Patches start at $0.91 per piece for embroidered patches at 2x2 inches and 1,000 pieces. At smaller quantities the per-piece cost rises: a 50-piece embroidered order under 4 inches costs about $196 total ($3.92 each), a 100-piece order costs $255 ($2.55 each), and a 500-piece order costs $590 ($1.18 each). PVC patches start at $1.54 per piece, woven at $1.54 per piece, and leather at $1.55 per piece at the same 2x2-inch, 1,000-piece basis. Chenille patches are the premium tier and start at $3.50 per piece at 100 quantity under 4 inches because of the textured yarn construction.
+              Custom patches at Panda Patches start at $0.91 per piece for embroidered patches at 2x2 inches and 1,000 pieces. At smaller quantities the per-piece cost rises: a 50-piece embroidered order under 4 inches costs about $196 total ($3.92 each), a 100-piece order costs $255 ($2.55 each), and a 500-piece order costs $590 ($1.18 each). PVC patches start at $1.40 per piece, woven at $1.54 per piece, and leather at $1.74 per piece at the same 2x2-inch, 1,000-piece basis. Chenille patches are the premium tier and start at $3.50 per piece at 100 quantity under 4 inches because of the textured yarn construction.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
               Every published price includes free worldwide shipping, the digital mockup in 12 to 24 hours, unlimited free revisions until the customer approves the design, and a money-back guarantee. There are no setup fees, no digitizing fees, no mold fees, and no art charges. The only optional add-ons are Velcro backing (charged separately on every order), rush production (scaled by quantity), and premium upgrades like metallic thread, glow in the dark, or 3D puff embroidery.

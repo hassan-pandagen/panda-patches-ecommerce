@@ -25,9 +25,9 @@ const PATCH_TYPE_COMPARISON: ComparisonTable = {
   rows: [
     ["Embroidered", "Uniforms, teams, classic logos", "Medium", "High", "$0.91/pc"],
     ["Woven", "Fine detail, small text, labels", "Very high", "High", "$1.54/pc"],
-    ["PVC / Rubber", "Outdoor, tactical, waterproof use", "Medium", "Very high", "$1.54/pc"],
+    ["PVC / Rubber", "Outdoor, tactical, waterproof use", "Medium", "Very high", "$1.40/pc"],
     ["Chenille", "Varsity jackets, letterman, retro", "Low", "Medium", "$1.31/pc"],
-    ["Leather", "Hat lines, luxury branding", "Low-Med", "High", "$1.55/pc"],
+    ["Leather", "Hat lines, luxury branding", "Low-Med", "High", "$1.74/pc"],
     ["Printed / Sublimated", "Full-color art, gradients, photos", "Photographic", "Medium", "from quote"],
   ],
 };
@@ -174,9 +174,9 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
   leather: {
     heading: "Custom Leather Patches: Pricing, Minimums & Turnaround",
     answer:
-      "Custom leather patches from Panda Patches start at $1.55 per piece (2-inch, 1,000 pieces) with a low minimum, a free 12–24 hour mockup, and no setup fees. Real or faux leather with a debossed or printed logo gives a premium, retail-grade look for hat lines, bags, and apparel brands.",
+      "Custom leather patches from Panda Patches start at $1.74 per piece (2-inch, 1,000 pieces) with a low minimum, a free 12–24 hour mockup, and no setup fees. Real or faux leather with a debossed or printed logo gives a premium, retail-grade look for hat lines, bags, and apparel brands.",
     keyFacts: [
-      { label: "Price from", value: "$1.55/pc (2\", 1,000 pc); smaller runs cost more per piece" },
+      { label: "Price from", value: "$1.74/pc (2\", 1,000 pc); smaller runs cost more per piece" },
       { label: "Minimum order", value: "Low minimums; bulk tiers improve at 100, 500, 1,000+" },
       { label: "Turnaround", value: "7–14 business days after mockup approval; rush available" },
       { label: "Mockup", value: "Free digital proof in 12–24 hours, unlimited revisions" },
@@ -188,7 +188,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
     faqs: [
       {
         q: "What are leather patches best for?",
-        a: `Leather patches are best for premium hat lines, motorcycle and heritage brands, and apparel makers who want a retail-grade, label-like aesthetic rather than promotional-looking merchandise. A debossed or laser-engraved logo on real or faux leather reads as high-end, which is why streetwear caps, denim, and bags use leather patches as a signature branding element. They suit clean, bold marks — logos, wordmarks, monograms — more than fine multicolor detail. Panda Patches produces custom leather patches from $1.55 per piece at volume, in real or vegan/faux leather, with iron-on or sew-on backing suited to the garment. Leather is a premium finish, so per-piece cost sits above embroidered, but for brands positioning a product at retail the perceived-value lift is the point. A free mockup previews the emboss, color, and edge before production.`,
+        a: `Leather patches are best for premium hat lines, motorcycle and heritage brands, and apparel makers who want a retail-grade, label-like aesthetic rather than promotional-looking merchandise. A debossed or laser-engraved logo on real or faux leather reads as high-end, which is why streetwear caps, denim, and bags use leather patches as a signature branding element. They suit clean, bold marks — logos, wordmarks, monograms — more than fine multicolor detail. Panda Patches produces custom leather patches from $1.74 per piece at volume, in real or vegan/faux leather, with iron-on or sew-on backing suited to the garment. Leather is a premium finish, so per-piece cost sits above embroidered, but for brands positioning a product at retail the perceived-value lift is the point. A free mockup previews the emboss, color, and edge before production.`,
       },
       ...commonFaqs("leather"),
     ],

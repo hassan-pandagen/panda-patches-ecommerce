@@ -40,10 +40,10 @@ const productPageMeta: Record<string, ProductPageMeta> = {
     ogDescription: "Chenille patches for varsity and letterman jackets. Soft raised texture, vibrant colors. 12-24h mockup, ships in 7-14 days.",
   },
   "leather": {
-    title: "Custom Leather Patches from $1.55/pc (1k) | 24h Mockup",
-    description: "Custom leather patches from $1.55/pc for 2x2 inches at 1,000 pieces; smaller orders cost more per piece. Premium real and vegan leather for hats, bags, and apparel. Debossed or laser-engraved. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days.",
-    ogTitle: "Custom Leather Patches from $1.55/pc (1k) | 24h Mockup",
-    ogDescription: "Leather patches from $1.55/pc (2x2, 1,000 pcs); smaller orders cost more per piece. Premium real and vegan leather for hats, bags, apparel. 12-24h mockup, ships in 7-14 days.",
+    title: "Custom Leather Patches from $1.74/pc (1k) | 24h Mockup",
+    description: "Custom leather patches from $1.74/pc for 2x2 inches at 1,000 pieces; smaller orders cost more per piece. Premium real and vegan leather for hats, bags, and apparel. Debossed or laser-engraved. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days.",
+    ogTitle: "Custom Leather Patches from $1.74/pc (1k) | 24h Mockup",
+    ogDescription: "Leather patches from $1.74/pc (2x2, 1,000 pcs); smaller orders cost more per piece. Premium real and vegan leather for hats, bags, apparel. 12-24h mockup, ships in 7-14 days.",
   },
   "custom-3d-embroidered-transfers": {
     title: "Custom 3D Embroidered Transfers from $1.58/pc (1k)",

@@ -679,7 +679,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
                 best: "Premium hat lines, motorcycle brands",
                 pros: "Luxury feel, debossed or printed logo",
                 cons: "Higher cost per piece",
-                price: "From $1.55/pc",
+                price: "From $1.74/pc",
                 tag: "Premium Look",
                 href: "/custom-patches/leather",
               },
