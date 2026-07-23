@@ -114,7 +114,7 @@ const faqSchema = {
       name: 'How much do custom patches cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Custom embroidered patches cost $0.71 to $5.87 per piece for a 3-inch patch, depending on quantity. 25 patches = ~$5.87/pc ($147 total). 100 patches = ~$2.55/pc ($255 total). 1,000 patches = ~$1.05/pc ($1,050 total). Free shipping and a mockup in 12-24 hours included. No setup fees.',
+        text: `Custom embroidered patches cost ${calcPerPc('Custom Embroidered Patches', 3, 5000)} to ${calcPerPc('Custom Embroidered Patches', 3, 25)} per piece for a 3-inch patch, depending on quantity. 25 patches = ${calcPerPc('Custom Embroidered Patches', 3, 25)}/pc. 100 patches = ${calcPerPc('Custom Embroidered Patches', 3, 100)}/pc. 1,000 patches = ${calcPerPc('Custom Embroidered Patches', 3, 1000)}/pc. Free shipping and a mockup in 12-24 hours included. No setup fees.`,
       },
     },
     {
@@ -186,7 +186,7 @@ const faqSchema = {
       name: 'How much do custom chenille patches cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Custom chenille patches (the raised varsity and letterman texture) start at about $1.19 per piece at volume for a 3-inch patch and drop as quantity rises. There is no setup or digitizing fee and shipping is free. Use the pricing calculator for the exact price at your size and quantity.',
+        text: `Custom chenille patches (the raised varsity and letterman texture) start at about ${calcPerPc('Custom Chenille Patches', 3, 5000)} per piece at volume for a 3-inch patch and drop as quantity rises. There is no setup or digitizing fee and shipping is free. Use the pricing calculator for the exact price at your size and quantity.`,
       },
     },
     {
@@ -194,7 +194,7 @@ const faqSchema = {
       name: 'How much do custom leather patches cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Custom leather patches start at about $1.29 per piece at volume for a 3-inch patch and are mid-range among patch types — a premium look popular for biker clubs and branded apparel. Prices are all-in with free shipping and no setup fees.',
+        text: `Custom leather patches start at about ${calcPerPc('Custom Leather Patches', 3, 5000)} per piece at volume (5,000 pieces, 3-inch) and are mid-range among patch types — a premium look popular for biker clubs and branded apparel. Prices are all-in with free shipping and no setup fees.`,
       },
     },
     {
@@ -254,12 +254,15 @@ const CHENILLE_TABLE = OTHER_QTY_BREAKS.map((q) => ({ qty: q.toLocaleString('en-
 const LEATHER_TABLE = OTHER_QTY_BREAKS.map((q) => ({ qty: q.toLocaleString('en-US'), per: calcPerPc('Custom Leather Patches', 3, q) }));
 const PRINTED_TABLE = OTHER_QTY_BREAKS.map((q) => ({ qty: q.toLocaleString('en-US'), per: calcPerPc('Custom Printed Patches', 3, q) }));
 
+// Starting prices computed live at 3-inch, 5,000 pieces to match this table's
+// caption ("3-inch patch") so they never drift stale. calcPerPc appends no
+// "/pc"; the render adds the unit.
 const TYPE_SUMMARY = [
-  { type: 'Embroidered', from: '$0.71/pc', at: '5,000 pcs', best: 'Most popular. Durable, detailed.' },
-  { type: 'Woven', from: '$1.49/pc', at: '5,000 pcs', best: 'Fine detail, thin profile, low volume min (10 pcs).' },
-  { type: 'PVC', from: '$1.40/pc', at: '5,000 pcs', best: 'Waterproof, 3D look, military & outdoor.' },
-  { type: 'Chenille', from: '$1.19/pc', at: '5,000 pcs', best: 'Varsity/letterman style, raised texture.' },
-  { type: 'Leather', from: '$1.29/pc', at: '5,000 pcs', best: 'Premium look for biker clubs and branded apparel.' },
+  { type: 'Embroidered', from: `${calcPerPc('Custom Embroidered Patches', 3, 5000)}/pc`, at: '5,000 pcs', best: 'Most popular. Durable, detailed.' },
+  { type: 'Woven', from: `${calcPerPc('Custom Woven Patches', 3, 5000)}/pc`, at: '5,000 pcs', best: 'Fine detail, thin profile, low volume min (10 pcs).' },
+  { type: 'PVC', from: `${calcPerPc('Custom PVC Patches', 3, 5000)}/pc`, at: '5,000 pcs', best: 'Waterproof, 3D look, military & outdoor.' },
+  { type: 'Chenille', from: `${calcPerPc('Custom Chenille Patches', 3, 5000)}/pc`, at: '5,000 pcs', best: 'Varsity/letterman style, raised texture.' },
+  { type: 'Leather', from: `${calcPerPc('Custom Leather Patches', 3, 5000)}/pc`, at: '5,000 pcs', best: 'Premium look for biker clubs and branded apparel.' },
 ];
 
 // Typical US market ranges (from public competitor pricing pages) shown beside our

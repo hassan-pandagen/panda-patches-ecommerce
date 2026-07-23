@@ -17,6 +17,7 @@ import CTASection from "@/components/home/CTASection";
 import MakerNote from "@/components/seo/MakerNote";
 import { generateSchemaScript, generateServiceSchema } from "@/lib/schemas";
 import { getProductReviewSchema } from "@/lib/productReviews";
+import { perPc, orderTotal } from "@/lib/priceDisplay";
 import ProductReviews from "@/components/reviews/ProductReviews";
 import AeoAnswerBlock from "@/components/product/AeoAnswerBlock";
 import { aeoContent } from "@/lib/aeoContent";
@@ -25,6 +26,28 @@ import { buildPageMetadata } from "@/lib/seo";
 
 // ISR: Revalidate every 24 hours
 export const revalidate = 86400;
+
+// Server-computed per-piece prices (3-inch) for the interactive bulk table, keyed
+// [type][qtyRange]. Uses the same engine as the product calculators (via perPc) so
+// the numbers can never drift stale the way the old hardcoded table did. The
+// representative quantity per range is the low end (the table shows "starting" prices).
+const BULK_QTY_RANGES: [string, number][] = [
+  ["50-99", 50],
+  ["100-299", 100],
+  ["300-499", 300],
+  ["500-999", 500],
+  ["1,000-4,999", 1000],
+  ["5,000+", 5000],
+];
+const bulkRow = (product: string): Record<string, string> =>
+  Object.fromEntries(BULK_QTY_RANGES.map(([range, qty]) => [range, perPc(product, 3, qty)]));
+const BULK_PRICING = {
+  Embroidered: bulkRow("Custom Embroidered Patches"),
+  PVC: bulkRow("Custom PVC Patches"),
+  Woven: bulkRow("Custom Woven Patches"),
+  Chenille: bulkRow("Custom Chenille Patches"),
+  Leather: bulkRow("Custom Leather Patches"),
+};
 
 // Fetch work samples for all patch categories + hero image
 const getBulkPageData = cache(async () => {
@@ -151,7 +174,7 @@ const faqSchema = {
       name: "Where can I order custom patches in bulk 1000 pieces?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Panda Patches offers bulk custom patches at 1,000 pieces with transparent pricing: embroidered patches $1,200 total ($1.20/pc), woven $2,000 ($2.00/pc), PVC $2,200 ($2.20/pc), leather $2,000 ($2.00/pc). No setup fees, no digitizing fees, digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, money-back guarantee. Production starts only after written approval. Order at pandapatches.com/bulk-custom-patches.",
+        text: `Panda Patches offers bulk custom patches at 1,000 pieces with transparent pricing for a 3-inch patch: embroidered patches ${orderTotal('Custom Embroidered Patches', 3, 1000)} total (${perPc('Custom Embroidered Patches', 3, 1000)}/pc), woven ${orderTotal('Custom Woven Patches', 3, 1000)} (${perPc('Custom Woven Patches', 3, 1000)}/pc), PVC ${orderTotal('Custom PVC Patches', 3, 1000)} (${perPc('Custom PVC Patches', 3, 1000)}/pc), leather ${orderTotal('Custom Leather Patches', 3, 1000)} (${perPc('Custom Leather Patches', 3, 1000)}/pc). No setup fees, no digitizing fees, digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, money-back guarantee. Production starts only after written approval. Order at pandapatches.com/bulk-custom-patches.`,
       },
     },
     {
@@ -159,7 +182,7 @@ const faqSchema = {
       name: "How much do 500 custom patches cost?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "At Panda Patches, 500 custom patches cost: embroidered $750 ($1.50/pc), woven $1,200 ($2.40/pc), PVC $1,400 ($2.80/pc), leather $1,200 ($2.40/pc). All prices include free worldwide shipping, digital mockup in 12 to 24 hours, no setup fees, and no digitizing fees. Standard delivery 7-14 business days after approval.",
+        text: `At Panda Patches, 500 custom patches (3-inch) cost: embroidered ${orderTotal('Custom Embroidered Patches', 3, 500)} (${perPc('Custom Embroidered Patches', 3, 500)}/pc), woven ${orderTotal('Custom Woven Patches', 3, 500)} (${perPc('Custom Woven Patches', 3, 500)}/pc), PVC ${orderTotal('Custom PVC Patches', 3, 500)} (${perPc('Custom PVC Patches', 3, 500)}/pc), leather ${orderTotal('Custom Leather Patches', 3, 500)} (${perPc('Custom Leather Patches', 3, 500)}/pc). All prices include free worldwide shipping, digital mockup in 12 to 24 hours, no setup fees, and no digitizing fees. Standard delivery 7-14 business days after approval.`,
       },
     },
     {
@@ -167,7 +190,7 @@ const faqSchema = {
       name: "What is the price for a bulk custom patch order of 500 pieces?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Panda Patches bulk pricing at 500 pieces: embroidered patches $750 total ($1.50 per piece), woven patches $1,200 ($2.40/pc), PVC patches $1,400 ($2.80/pc), chenille patches (100pc tier) $1,400 ($14.00/pc), leather patches $1,200 ($2.40/pc). Free worldwide shipping, digital mockup in 12 to 24 hours, no setup fees on any order. Minimum order 5 pieces.",
+        text: `Panda Patches bulk pricing at 500 pieces for a 3-inch patch: embroidered patches ${orderTotal('Custom Embroidered Patches', 3, 500)} total (${perPc('Custom Embroidered Patches', 3, 500)} per piece), woven patches ${orderTotal('Custom Woven Patches', 3, 500)} (${perPc('Custom Woven Patches', 3, 500)}/pc), PVC patches ${orderTotal('Custom PVC Patches', 3, 500)} (${perPc('Custom PVC Patches', 3, 500)}/pc), chenille patches (100pc tier, 4-inch) ${orderTotal('Custom Chenille Patches', 4, 100)} (${perPc('Custom Chenille Patches', 4, 100)}/pc), leather patches ${orderTotal('Custom Leather Patches', 3, 500)} (${perPc('Custom Leather Patches', 3, 500)}/pc). Free worldwide shipping, digital mockup in 12 to 24 hours, no setup fees on any order. Minimum order 5 pieces.`,
       },
     },
     {
@@ -279,7 +302,7 @@ export default async function BulkCustomPatchesPage() {
       <ProductReviews productKey="bulk-custom-patches" productName="Custom Patches Bulk Order" />
 
       {/* 2. BULK PRICING TABLE */}
-      <BulkPricingTable workSamples={workSamples} />
+      <BulkPricingTable workSamples={workSamples} pricingData={BULK_PRICING} />
 
       {/* 4. HOW BULK ORDERING WORKS (4-Step Process) */}
       <section className="w-full py-8 md:py-14 bg-white">

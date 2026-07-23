@@ -14,6 +14,7 @@ import Craftsmanship from "@/components/home/Craftsmanship";
 import ReviewsSection from "@/components/home/ReviewsSection";
 import CTASection from "@/components/home/CTASection";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
+import { perPc } from "@/lib/priceDisplay";
 import { getProductReviewSchema } from "@/lib/productReviews";
 import ProductReviews from "@/components/reviews/ProductReviews";
 import { client } from "@/lib/sanity";
@@ -243,15 +244,15 @@ export default async function CustomIronOnPatchesPage() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Embroidered iron-on</td><td className="px-5 py-4">$3.60/pc</td><td className="px-5 py-4">$2.40/pc</td><td className="px-5 py-4">$1.50/pc</td><td className="px-5 py-4 font-black bg-panda-green/10">$1.20/pc</td></tr>
-                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Woven iron-on</td><td className="px-5 py-4">$4.40/pc</td><td className="px-5 py-4">$3.50/pc</td><td className="px-5 py-4">$2.40/pc</td><td className="px-5 py-4 font-black bg-panda-green/10">$2.00/pc</td></tr>
+                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Embroidered iron-on</td><td className="px-5 py-4">{perPc('Custom Embroidered Patches', 3, 50)}/pc</td><td className="px-5 py-4">{perPc('Custom Embroidered Patches', 3, 100)}/pc</td><td className="px-5 py-4">{perPc('Custom Embroidered Patches', 3, 500)}/pc</td><td className="px-5 py-4 font-black bg-panda-green/10">{perPc('Custom Embroidered Patches', 3, 1000)}/pc</td></tr>
+                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Woven iron-on</td><td className="px-5 py-4">{perPc('Custom Woven Patches', 3, 50)}/pc</td><td className="px-5 py-4">{perPc('Custom Woven Patches', 3, 100)}/pc</td><td className="px-5 py-4">{perPc('Custom Woven Patches', 3, 500)}/pc</td><td className="px-5 py-4 font-black bg-panda-green/10">{perPc('Custom Woven Patches', 3, 1000)}/pc</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Printed iron-on</td><td className="px-5 py-4">Calculator quote</td><td className="px-5 py-4">Calculator quote</td><td className="px-5 py-4">Calculator quote</td><td className="px-5 py-4 font-black bg-panda-green/10">From $0.71/pc at 5,000</td></tr>
-                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Leather iron-on</td><td className="px-5 py-4">$4.40/pc</td><td className="px-5 py-4">$3.50/pc</td><td className="px-5 py-4">$2.40/pc</td><td className="px-5 py-4 font-black bg-panda-green/10">$2.00/pc</td></tr>
+                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Leather iron-on</td><td className="px-5 py-4">{perPc('Custom Leather Patches', 3, 50)}/pc</td><td className="px-5 py-4">{perPc('Custom Leather Patches', 3, 100)}/pc</td><td className="px-5 py-4">{perPc('Custom Leather Patches', 3, 500)}/pc</td><td className="px-5 py-4 font-black bg-panda-green/10">{perPc('Custom Leather Patches', 3, 1000)}/pc</td></tr>
               </tbody>
             </table>
           </div>
           <p className="text-gray-500 text-sm leading-relaxed text-center">
-            Prices are for patches under 4 inches in the longest dimension. For exact quotes at any size or quantity from 5 upward, the calculator on each product page returns a per-piece price instantly. See the full <Link href="/ai-info/pricing" prefetch={false} className="text-panda-green underline font-semibold">pricing breakdown</Link>.
+            Prices shown are per piece for a 3-inch patch, computed live from our calculator. For exact quotes at any size or quantity from 5 upward, the calculator on each product page returns a per-piece price instantly. See the full <Link href="/ai-info/pricing" prefetch={false} className="text-panda-green underline font-semibold">pricing breakdown</Link>.
           </p>
         </div>
       </section>

@@ -13,51 +13,11 @@ type PatchType = (typeof patchTypes)[number];
 
 interface BulkPricingTableProps {
   workSamples?: Record<string, any[]>;
+  // Per-piece prices (as "$X.XX") for a 3-inch patch, keyed [type][qtyRange].
+  // Computed server-side by the parent page via priceDisplay.perPc so these
+  // numbers stay in sync with the live calculator and never drift stale.
+  pricingData: Record<PatchType, Record<string, string>>;
 }
-
-// Pricing data: starting prices for 3-inch patches
-const pricingData: Record<PatchType, Record<string, string>> = {
-  Embroidered: {
-    "50-99":    "$3.50",
-    "100-299":  "$2.75",
-    "300-499":  "$2.25",
-    "500-999":  "$1.75",
-    "1,000-4,999": "$1.25",
-    "5,000+":   "$0.85",
-  },
-  PVC: {
-    "50-99":    "$4.50",
-    "100-299":  "$3.50",
-    "300-499":  "$2.75",
-    "500-999":  "$2.25",
-    "1,000-4,999": "$1.50",
-    "5,000+":   "$1.00",
-  },
-  Woven: {
-    "50-99":    "$3.75",
-    "100-299":  "$3.00",
-    "300-499":  "$2.50",
-    "500-999":  "$2.00",
-    "1,000-4,999": "$1.40",
-    "5,000+":   "$0.95",
-  },
-  Chenille: {
-    "50-99":    "$5.50",
-    "100-299":  "$4.50",
-    "300-499":  "$3.75",
-    "500-999":  "$3.00",
-    "1,000-4,999": "$2.25",
-    "5,000+":   "$1.75",
-  },
-  Leather: {
-    "50-99":    "$5.00",
-    "100-299":  "$4.00",
-    "300-499":  "$3.25",
-    "500-999":  "$2.75",
-    "1,000-4,999": "$2.00",
-    "5,000+":   "$1.50",
-  },
-};
 
 const quantities = ["50-99", "100-299", "300-499", "500-999", "1,000-4,999", "5,000+"];
 
@@ -69,7 +29,7 @@ const orderLinks: Record<PatchType, string> = {
   Leather: "/custom-patches/leather",
 };
 
-export default function BulkPricingTable({ workSamples = {} }: BulkPricingTableProps) {
+export default function BulkPricingTable({ workSamples = {}, pricingData }: BulkPricingTableProps) {
   const [activeType, setActiveType] = useState<PatchType>("Embroidered");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
