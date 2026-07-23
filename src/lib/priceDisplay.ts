@@ -19,6 +19,17 @@ export function perPc(productName: string, size: number, qty: number): string {
 }
 
 /**
+ * Live per-piece price minus a discount fraction (0-1), as "$X.XX". Used for the
+ * /partners reseller table: partner cost = live retail x (1 - discount), so the
+ * reseller prices track the calculator instead of drifting stale.
+ */
+export function discountedPerPc(productName: string, size: number, qty: number, discount: number): string {
+  const r = calculatePatchPrice(productName, size, size, qty);
+  if (r.error || !r.unitPrice) return "—";
+  return `$${(r.unitPrice * (1 - discount)).toFixed(2)}`;
+}
+
+/**
  * Live order total as "$X,XXX", same engine/basis as perPc. Uses the DISPLAYED
  * (cent-rounded) per-piece so that shown-per-piece x qty === shown-total and a
  * reader can verify the arithmetic (avoids a float-rounding drift where the raw

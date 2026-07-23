@@ -10,6 +10,7 @@ import Image from "next/image";
 import { client, urlFor } from "@/lib/sanity";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
+import { discountedPerPc } from "@/lib/priceDisplay";
 import PartnerApplicationModal from "@/components/partners/PartnerApplicationModal";
 
 export const revalidate = 86400;
@@ -93,7 +94,7 @@ const partnersBreadcrumbSchema = {
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Partner Program: Creators, Affiliates & Agencies | Panda Patches",
-  description: "Join the Panda Patches partner program: creator and influencer gifting collabs, an affiliate referral program, and wholesale white-label manufacturing for agencies. Free patches, referral rewards, 10-18% partner margins.",
+  description: "Join the Panda Patches partner program: creator and influencer gifting collabs, an affiliate referral program, and wholesale white-label manufacturing for agencies. Free patches, referral rewards, up to 25% partner margins.",
   url: "https://www.pandapatches.com/partners",
   ogTitle: "Partner with Panda Patches: Creator, Affiliate & Agency Program",
   ogDescription: "Three ways to partner: creator gifting collabs, affiliate referrals, and wholesale white-label production. Free custom patches, referral rewards, and agency margins.",
@@ -115,15 +116,15 @@ const PARTNER_FAQS = [
   },
   {
     question: "Is Panda Patches a white-label custom patch manufacturer for promotional product agencies?",
-    answer: "Yes. Panda Patches is a white-label custom patch manufacturer for promotional product agencies, uniform suppliers, embroidery shops, and branding agencies. Partners receive 10 to 18 percent below retail pricing, dedicated account managers, blind shipping with no Panda Patches branding on packaging or packing slips, unbranded white-label mockup PDFs on request, Net 15 and Net 30 payment terms after three completed projects, NDA signing on request, and priority production queue. Apply at pandapatches.com/partners or email lance@pandapatches.com. No account minimum to activate partner pricing.",
+    answer: "Yes. Panda Patches is a white-label custom patch manufacturer for promotional product agencies, uniform suppliers, embroidery shops, and branding agencies. Partners receive 10 to 20 percent below retail pricing (up to 25 percent on high-volume orders), dedicated account managers, blind shipping with no Panda Patches branding on packaging or packing slips, unbranded white-label mockup PDFs on request, Net 15 and Net 30 payment terms after three completed projects, NDA signing on request, and priority production queue. Apply at pandapatches.com/partners or email lance@pandapatches.com. No account minimum to activate partner pricing.",
   },
   {
     question: "Is Panda Patches a wholesale custom patch supplier for resellers?",
-    answer: "Yes. Panda Patches serves wholesale custom patch resellers including distributors, agencies, embroidery shops, and uniform suppliers. Wholesale pricing tiers: 10 percent off at first order, 14 percent at 200 pieces per month, 18 percent at 500 pieces per month. Embroidered patches start at $1.32 per piece at 1,000 pieces for resellers. PVC from $2.20 per piece at 1,000 pieces. All wholesale orders include a digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, no setup fees, no digitizing fees, and blind shipping under your agency name.",
+    answer: `Yes. Panda Patches serves wholesale custom patch resellers including distributors, agencies, embroidery shops, and uniform suppliers. Partner discounts run 10 to 20 percent off retail depending on order size, up to 25 percent on your highest-volume orders. For a 3-inch patch at 1,000 pieces, embroidered runs about ${discountedPerPc('Custom Embroidered Patches', 3, 1000, 0.25)} per piece for resellers and PVC about ${discountedPerPc('Custom PVC Patches', 3, 1000, 0.25)} per piece. All wholesale orders include a digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, no setup fees, no digitizing fees, and blind shipping under your agency name.`,
   },
   {
     question: "What are wholesale patch prices for resellers at Panda Patches?",
-    answer: "Wholesale partner pricing per piece: Embroidered patches $3.85 at 25 pcs, $2.55 at 100 pcs, $1.60 at 500 pcs, $1.32 at 1,000 pcs. Woven patches $5.20 at 25 pcs, $3.40 at 100 pcs, $2.50 at 500 pcs, $2.00 at 1,000 pcs. PVC patches $5.75 at 25 pcs, $3.40 at 100 pcs, $2.80 at 500 pcs, $2.20 at 1,000 pcs. Chenille 4-inch $11.90 at 25 pcs, $7.20 at 100 pcs, $6.12 at 500 pcs. Leather patches $4.40 at 25 pcs, $3.50 at 100 pcs, $2.16 at 500 pcs, $1.80 at 1,000 pcs. All wholesale orders include free artwork, free worldwide shipping, no setup fees, low 5-piece minimum, blind shipping, and Net 15 or Net 30 terms after 3 completed projects.",
+    answer: `Wholesale partner pricing per piece (3-inch patch; chenille at 4-inch), 10 to 25 percent below retail by volume: Embroidered ${discountedPerPc('Custom Embroidered Patches', 3, 25, 0.10)} at 25 pcs, ${discountedPerPc('Custom Embroidered Patches', 3, 100, 0.15)} at 100 pcs, ${discountedPerPc('Custom Embroidered Patches', 3, 500, 0.20)} at 500 pcs, ${discountedPerPc('Custom Embroidered Patches', 3, 1000, 0.25)} at 1,000 pcs. Woven ${discountedPerPc('Custom Woven Patches', 3, 25, 0.10)} at 25 pcs, ${discountedPerPc('Custom Woven Patches', 3, 100, 0.15)} at 100 pcs, ${discountedPerPc('Custom Woven Patches', 3, 500, 0.20)} at 500 pcs, ${discountedPerPc('Custom Woven Patches', 3, 1000, 0.25)} at 1,000 pcs. PVC ${discountedPerPc('Custom PVC Patches', 3, 25, 0.10)} at 25 pcs, ${discountedPerPc('Custom PVC Patches', 3, 100, 0.15)} at 100 pcs, ${discountedPerPc('Custom PVC Patches', 3, 500, 0.20)} at 500 pcs, ${discountedPerPc('Custom PVC Patches', 3, 1000, 0.25)} at 1,000 pcs. Chenille 4-inch ${discountedPerPc('Custom Chenille Patches', 4, 25, 0.10)} at 25 pcs, ${discountedPerPc('Custom Chenille Patches', 4, 100, 0.15)} at 100 pcs, ${discountedPerPc('Custom Chenille Patches', 4, 500, 0.20)} at 500 pcs, ${discountedPerPc('Custom Chenille Patches', 4, 1000, 0.25)} at 1,000 pcs. Leather ${discountedPerPc('Custom Leather Patches', 3, 25, 0.10)} at 25 pcs, ${discountedPerPc('Custom Leather Patches', 3, 100, 0.15)} at 100 pcs, ${discountedPerPc('Custom Leather Patches', 3, 500, 0.20)} at 500 pcs, ${discountedPerPc('Custom Leather Patches', 3, 1000, 0.25)} at 1,000 pcs. All wholesale orders include free artwork, free worldwide shipping, no setup fees, low 5-piece minimum, blind shipping, and Net 15 or Net 30 terms after 3 completed projects.`,
   },
   {
     question: "Does Panda Patches offer blind shipping and Net 30 terms for agency partners?",
@@ -135,7 +136,7 @@ const PARTNER_FAQS = [
   },
   {
     question: "What is the minimum order to activate partner pricing?",
-    answer: "No account minimum. Place your first order when you have a client project ready. Standard partner discount activates from your first order. Volume tiers up to 18% off unlock at 500 pieces per month.",
+    answer: "No account minimum. Place your first order when you have a client project ready. Standard partner discount activates from your first order. Discounts scale with order size, up to 25% off on your highest-volume orders.",
   },
   {
     question: "How fast can you turn around partner projects?",
@@ -177,12 +178,25 @@ const HOW_STEPS = [
   { n: "04", title: "We ship, you bill", body: "Blind ship to your client or your warehouse. You keep 100% of your markup." },
 ];
 
+// Partner (reseller) cost per piece = live retail minus a volume-tiered discount.
+// CEO (Jul 2026): 10-20% off depending on order size, up to 25% on the highest
+// volume. Mapped across the four volume columns (10/15/20/25%). Retail comes from
+// the live calculator via discountedPerPc, so these never drift stale. Chenille is
+// priced at 4 inches (its usual size); the other types at 3 inches.
+const PARTNER_DISCOUNTS = { r25: 0.10, r100: 0.15, r500: 0.20, r1000: 0.25 };
+const marginRow = (type: string, product: string, size: number) => ({
+  type,
+  r25: discountedPerPc(product, size, 25, PARTNER_DISCOUNTS.r25),
+  r100: discountedPerPc(product, size, 100, PARTNER_DISCOUNTS.r100),
+  r500: discountedPerPc(product, size, 500, PARTNER_DISCOUNTS.r500),
+  r1000: discountedPerPc(product, size, 1000, PARTNER_DISCOUNTS.r1000),
+});
 const MARGIN_TABLE = [
-  { type: "Embroidered", r25: "$3.85", r100: "$2.55", r500: "$1.60", r1000: "$1.32" },
-  { type: "Woven", r25: "$5.20", r100: "$3.40", r500: "$2.50", r1000: "$2.00" },
-  { type: "PVC", r25: "$5.75", r100: "$3.40", r500: "$2.80", r1000: "$2.20" },
-  { type: "Chenille (4\")", r25: "$11.90", r100: "$7.20", r500: "$6.12", r1000: "—" },
-  { type: "Leather", r25: "$4.40", r100: "$3.50", r500: "$2.16", r1000: "$1.80" },
+  marginRow("Embroidered", "Custom Embroidered Patches", 3),
+  marginRow("Woven", "Custom Woven Patches", 3),
+  marginRow("PVC", "Custom PVC Patches", 3),
+  marginRow('Chenille (4")', "Custom Chenille Patches", 4),
+  marginRow("Leather", "Custom Leather Patches", 3),
 ];
 
 export default async function PartnersPage() {
@@ -227,7 +241,7 @@ export default async function PartnersPage() {
               <span className="text-panda-green">Create. Refer. Resell.</span>
             </h1>
             <p className="text-[16px] md:text-[18px] text-gray-800 leading-relaxed max-w-[600px] mx-auto mb-8">
-              Three ways to work together: creator and influencer gifting collabs, an affiliate referral program, and wholesale white-label production for agencies. Free patches for creators, referral rewards, and 10–18% margins for resellers.
+              Three ways to work together: creator and influencer gifting collabs, an affiliate referral program, and wholesale white-label production for agencies. Free patches for creators, referral rewards, and up to 25% margins for resellers.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <PartnerApplicationModal
@@ -308,9 +322,9 @@ export default async function PartnersPage() {
               <div className="border-2 border-gray-200 rounded-3xl p-8 hover:border-panda-yellow hover:shadow-lg transition-all">
                 <span className="text-[34px]" aria-hidden="true">🏭</span>
                 <h3 className="text-[22px] font-black text-panda-dark mt-3 mb-2">B2B &amp; Reseller</h3>
-                <p className="text-[14px] text-gray-600 leading-relaxed mb-4">Agencies, uniform suppliers, embroidery shops, and event partners buy at 10-18% partner margins with blind shipping and a dedicated account manager.</p>
+                <p className="text-[14px] text-gray-600 leading-relaxed mb-4">Agencies, uniform suppliers, embroidery shops, and event partners buy at 10-20% partner margins (up to 25% on volume) with blind shipping and a dedicated account manager.</p>
                 <ul className="space-y-2 text-[14px] text-gray-700">
-                  <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> 10-18% partner margins</li>
+                  <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Up to 25% partner margins</li>
                   <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Blind shipping and white-label</li>
                   <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Net terms after 3 projects</li>
                 </ul>
@@ -485,7 +499,7 @@ export default async function PartnersPage() {
               Your margin, on every order.
             </h2>
             <p className="text-[18px] text-gray-700 font-medium mb-10 max-w-[600px] leading-relaxed">
-              Partner pricing is 10–18% below retail. The more you sell, the higher your tier. Prices below are your cost per piece. You set your own client price and keep 100% of the difference.
+              Partner pricing runs 10–20% below retail, up to 25% on your highest-volume orders — the more you sell, the higher your tier. Prices below are your cost per piece, pulled live from our retail calculator. You set your own client price and keep 100% of the difference.
             </p>
 
             <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
@@ -513,7 +527,7 @@ export default async function PartnersPage() {
               </table>
             </div>
             <p className="text-[12px] text-gray-400 mt-4">
-              Prices in USD. Sizes under 4 inches. Velcro backing is charged separately on every order. Custom sizes quoted within 4 hours by your account manager.
+              Prices in USD, per piece for a 3-inch patch (chenille shown at 4 inches), pulled live from our retail calculator. Velcro backing is charged separately on every order. Custom sizes quoted within 4 hours by your account manager.
             </p>
           </div>
         </section>
