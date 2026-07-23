@@ -6,6 +6,7 @@ import AiInfoRelated from "@/components/seo/AiInfoRelated";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
 import { OFFER_CATEGORIES } from "@/lib/offerPackages";
+import { perPc, orderTotal } from "@/lib/priceDisplay";
 
 // Source-of-truth lookup helpers — pull the offer pack list for a category id so
 // we never restate qty/price/per-piece numbers in JSX. If a category id is
@@ -45,7 +46,7 @@ const faqs = [
   {
     question: "How much do custom patches cost at Panda Patches?",
     answer:
-      "Custom patches at Panda Patches start from $0.91 per piece for embroidered patches at 2x2 inches and 1,000 pieces, and range up to $20 per piece (12-inch chenille, 25 quantity). Smaller orders cost more per piece. Embroidered starter packs of 50 pieces under 4 inches cost $180 ($3.60 each). PVC starter packs of 50 under 4 inches cost $230 ($4.60 each). Woven and leather starter packs of 50 under 4 inches cost $220 ($4.40 each). Chenille starter packs of 25 under 4 inches cost $175 ($7.00 each). All prices include free worldwide shipping, digital mockup in 12 to 24 hours, unlimited free revisions, and a money-back guarantee.",
+      `Custom patches at Panda Patches start from ${perPc('Custom Embroidered Patches', 2, 1000)} per piece for embroidered patches at 2x2 inches and 1,000 pieces, and range up to ${perPc('Custom Chenille Patches', 12, 25)} per piece (12-inch chenille, 25 quantity). Smaller orders cost more per piece. Embroidered starter packs of 50 pieces (3-inch) cost ${orderTotal('Custom Embroidered Patches', 3, 50)} (${perPc('Custom Embroidered Patches', 3, 50)} each). PVC starter packs of 50 (3-inch) cost ${orderTotal('Custom PVC Patches', 3, 50)} (${perPc('Custom PVC Patches', 3, 50)} each). Woven starter packs of 50 (3-inch) cost ${orderTotal('Custom Woven Patches', 3, 50)} (${perPc('Custom Woven Patches', 3, 50)} each), and leather ${orderTotal('Custom Leather Patches', 3, 50)} (${perPc('Custom Leather Patches', 3, 50)} each). Chenille starter packs of 25 (4-inch) cost ${orderTotal('Custom Chenille Patches', 4, 25)} (${perPc('Custom Chenille Patches', 4, 25)} each). All prices include free worldwide shipping, digital mockup in 12 to 24 hours, unlimited free revisions, and a money-back guarantee.`,
   },
   {
     question: "Is the price per piece on Panda Patches all-inclusive?",
