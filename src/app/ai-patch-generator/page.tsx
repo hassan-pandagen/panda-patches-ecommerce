@@ -115,7 +115,8 @@ export default function AiPatchGeneratorPage() {
           <p className="text-[13px] md:text-[14px] text-gray-500 leading-[1.6] max-w-[560px] mx-auto mt-3">
             Want it to come out crisp in thread? Our{" "}
             <Link href="/patch-manufacturability-specs" prefetch={false} className="text-panda-green underline font-semibold">manufacturability specs</Link>{" "}
-            include copy-paste prompts that keep AI artwork inside real production limits.
+            include copy-paste prompts that keep AI artwork inside real production limits — and if it turns out too detailed to embroider, here&rsquo;s{" "}
+            <Link href="/ai-patch-design-too-detailed-for-embroidery" prefetch={false} className="text-panda-green underline font-semibold">when to switch it to woven</Link>.
           </p>
         </div>
       </section>

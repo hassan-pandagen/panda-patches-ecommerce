@@ -346,6 +346,29 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
         </div>
       </section>
 
+      {/* 12b. WOVEN-ONLY GUIDE BRIDGE → AI-design blog (CL9F69). Woven is the fix
+          for detailed/AI-generated art that embroidery blurs, so this is the natural cross-link. */}
+      {slug === "woven" && (
+        <section className="w-full py-10 md:py-14 bg-white border-t border-gray-100">
+          <div className="container mx-auto px-4 md:px-6 max-w-[800px] text-center">
+            <p className="text-gray-500 text-[12px] font-semibold uppercase tracking-widest mb-2">Design Guide</p>
+            <h2 className="text-[20px] md:text-[26px] font-black text-panda-dark mb-3 leading-tight">
+              Is your design too detailed to embroider?
+            </h2>
+            <p className="text-gray-600 text-[14px] md:text-[15px] leading-[1.7] mb-5 max-w-[620px] mx-auto">
+              Woven holds fine detail — small text and thin lines — that embroidery blurs at small sizes. If you have an AI-generated or intricate design, our guide explains exactly when to choose woven over embroidered.
+            </p>
+            <Link
+              href="/ai-patch-design-too-detailed-for-embroidery"
+              prefetch={false}
+              className="inline-flex items-center gap-2 text-panda-green font-black text-[13px] uppercase tracking-widest underline underline-offset-4 hover:text-panda-dark transition-colors"
+            >
+              AI design too detailed for embroidery? →
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* 13. SEO & FAQ */}
       <ContentSection />
       <FAQ />
