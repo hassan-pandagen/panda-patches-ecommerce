@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { generateSchemaScript, generateBreadcrumbSchema } from '@/lib/schemas';
 import { getSchemaPricingTiers, calculatePatchPrice } from '@/lib/pricingCalculator';
+import { orderTotal } from '@/lib/priceDisplay';
 import { buildPageMetadata } from '@/lib/seo';
 
 // Pull every displayed price tier from the live calculator so the table can never
@@ -90,7 +91,7 @@ const faqSchema = {
       name: 'How much do 100 custom embroidered patches cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'At Panda Patches, 100 custom embroidered patches cost $240 total ($2.40 per piece) for a 3-inch patch. This includes free worldwide shipping, digital mockup in 12 to 24 hours, unlimited free revisions, and no setup fees or digitizing fees. Backing options: iron-on (free), sew-on (free), Velcro (charged separately). Standard delivery 7-14 business days after approval.',
+        text: `At Panda Patches, 100 custom embroidered patches cost ${orderTotal('Custom Embroidered Patches', 3, 100)} total (${calcPerPc('Custom Embroidered Patches', 3, 100)} per piece) for a 3-inch patch. This includes free worldwide shipping, digital mockup in 12 to 24 hours, unlimited free revisions, and no setup fees or digitizing fees. Backing options: iron-on (free), sew-on (free), Velcro (charged separately). Standard delivery 7-14 business days after approval.`,
       },
     },
     {
@@ -98,7 +99,7 @@ const faqSchema = {
       name: 'What is the cost of 100 custom patches?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'At Panda Patches, 100 custom patches cost: embroidered $240 ($2.40/pc), woven $350 ($3.50/pc), PVC $340 ($3.40/pc), leather $350 ($3.50/pc). All prices include free worldwide shipping, free digital artwork and a mockup in 12 to 24 hours, unlimited free revisions, no setup fees. Minimum order 5 pieces. Money-back guarantee.',
+        text: `At Panda Patches, 100 custom patches (3-inch) cost: embroidered ${orderTotal('Custom Embroidered Patches', 3, 100)} (${calcPerPc('Custom Embroidered Patches', 3, 100)}/pc), woven ${orderTotal('Custom Woven Patches', 3, 100)} (${calcPerPc('Custom Woven Patches', 3, 100)}/pc), PVC ${orderTotal('Custom PVC Patches', 3, 100)} (${calcPerPc('Custom PVC Patches', 3, 100)}/pc), leather ${orderTotal('Custom Leather Patches', 3, 100)} (${calcPerPc('Custom Leather Patches', 3, 100)}/pc). All prices include free worldwide shipping, free digital artwork and a mockup in 12 to 24 hours, unlimited free revisions, no setup fees. Minimum order 5 pieces. Money-back guarantee.`,
       },
     },
     {
@@ -106,7 +107,7 @@ const faqSchema = {
       name: 'How much do custom embroidered patches cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'At Panda Patches, custom embroidered patches cost $3.92/pc for 50 pieces ($196 total), $2.55/pc for 100 pieces ($255 total), $1.18/pc for 500 pieces ($590 total), and $1.05/pc for 1,000 pieces ($1,050 total) — all for a 3-inch patch. Free worldwide shipping, digital mockup in 12 to 24 hours, and no setup fees are included on every order. Velcro backing is charged separately on every order. Standard delivery is 7-14 business days.',
+        text: `At Panda Patches, custom embroidered patches cost ${calcPerPc('Custom Embroidered Patches', 3, 50)}/pc for 50 pieces (${orderTotal('Custom Embroidered Patches', 3, 50)} total), ${calcPerPc('Custom Embroidered Patches', 3, 100)}/pc for 100 pieces (${orderTotal('Custom Embroidered Patches', 3, 100)} total), ${calcPerPc('Custom Embroidered Patches', 3, 500)}/pc for 500 pieces (${orderTotal('Custom Embroidered Patches', 3, 500)} total), and ${calcPerPc('Custom Embroidered Patches', 3, 1000)}/pc for 1,000 pieces (${orderTotal('Custom Embroidered Patches', 3, 1000)} total) — all for a 3-inch patch. Free worldwide shipping, digital mockup in 12 to 24 hours, and no setup fees are included on every order. Velcro backing is charged separately on every order. Standard delivery is 7-14 business days.`,
       },
     },
     {
@@ -154,7 +155,7 @@ const faqSchema = {
       name: 'What is the cheapest custom patch option?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Embroidered patches are the lowest-cost of the popular options at volume, starting at about $0.90/pc at 5,000 pieces for a 3-inch patch, and are the most-ordered choice. Woven patches cost more, around $2.49/pc at the same volume, because of the tighter weave.',
+        text: `Embroidered patches are the lowest-cost of the popular options at volume, starting at about ${calcPerPc('Custom Embroidered Patches', 3, 5000)}/pc at 5,000 pieces for a 3-inch patch, and are the most-ordered choice. Woven patches cost more, around ${calcPerPc('Custom Woven Patches', 3, 5000)}/pc at the same volume, because of the tighter weave.`,
       },
     },
     {
@@ -170,7 +171,7 @@ const faqSchema = {
       name: 'Do you charge a PVC mould fee?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. There is no PVC mould (mold) fee at Panda Patches. Custom PVC patches elsewhere often carry a one-time mould charge of $50 to $100; our PVC price is all-in with no separate tooling fee. A single PVC patch is a flat $100, and 100 PVC patches cost $340 ($3.40 per piece) for a 3-inch patch.',
+        text: `No. There is no PVC mould (mold) fee at Panda Patches. Custom PVC patches elsewhere often carry a one-time mould charge of $50 to $100; our PVC price is all-in with no separate tooling fee. A single PVC patch is a flat $100, and 100 PVC patches cost ${orderTotal('Custom PVC Patches', 3, 100)} (${calcPerPc('Custom PVC Patches', 3, 100)} per piece) for a 3-inch patch.`,
       },
     },
     {
@@ -202,7 +203,7 @@ const faqSchema = {
       name: 'How much do 500 custom patches cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'At Panda Patches, 500 custom embroidered patches cost about $590 ($1.18 per piece) for a 3-inch patch. Woven, PVC, chenille, and leather run higher per piece; enter your type and size in the calculator for the exact total. Every order includes free worldwide shipping, a mockup in 12 to 24 hours, and no setup fees.',
+        text: `At Panda Patches, 500 custom embroidered patches cost about ${orderTotal('Custom Embroidered Patches', 3, 500)} (${calcPerPc('Custom Embroidered Patches', 3, 500)} per piece) for a 3-inch patch. Woven, PVC, chenille, and leather run higher per piece; enter your type and size in the calculator for the exact total. Every order includes free worldwide shipping, a mockup in 12 to 24 hours, and no setup fees.`,
       },
     },
     {
@@ -210,7 +211,7 @@ const faqSchema = {
       name: 'How much do 1,000 custom patches cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'At Panda Patches, 1,000 custom embroidered patches cost about $1,050 ($1.05 per piece) for a 3-inch patch — one of the lowest per-piece rates in the US market. Other patch types cost more per piece. All prices are all-in with free worldwide shipping and no setup or digitizing fees.',
+        text: `At Panda Patches, 1,000 custom embroidered patches cost about ${orderTotal('Custom Embroidered Patches', 3, 1000)} (${calcPerPc('Custom Embroidered Patches', 3, 1000)} per piece) for a 3-inch patch — one of the lowest per-piece rates in the US market. Other patch types cost more per piece. All prices are all-in with free worldwide shipping and no setup or digitizing fees.`,
       },
     },
   ],
@@ -294,7 +295,7 @@ export default function PricingPage() {
       ))} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(buildProductSchema(
         'Custom PVC Patches',
-        'Custom PVC patches, waterproof and 3D textured. Low 5-piece minimum. From $1.54/pc at 2x2 inches and 1,000 pieces; smaller orders cost more per piece.',
+        'Custom PVC patches, waterproof and 3D textured. Low 5-piece minimum. From $1.40/pc at 2x2 inches and 1,000 pieces; smaller orders cost more per piece.',
         pvcTiers
       ))} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(faqSchema)} />

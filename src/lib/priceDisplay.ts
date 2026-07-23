@@ -18,9 +18,18 @@ export function perPc(productName: string, size: number, qty: number): string {
   return `$${r.unitPrice.toFixed(2)}`;
 }
 
-/** Live order total as "$X,XXX" (unit price x qty), same engine/basis as perPc. */
+/**
+ * Live order total as "$X,XXX", same engine/basis as perPc. Uses the DISPLAYED
+ * (cent-rounded) per-piece so that shown-per-piece x qty === shown-total and a
+ * reader can verify the arithmetic (avoids a float-rounding drift where the raw
+ * unit price x qty lands a few dollars off the cent-rounded per-piece).
+ */
 export function orderTotal(productName: string, size: number, qty: number): string {
   const r = calculatePatchPrice(productName, size, size, qty);
   if (r.error || !r.unitPrice) return "—";
-  return `$${Math.round(r.unitPrice * qty).toLocaleString("en-US")}`;
+  // Derive from the SAME cents perPc renders (toFixed), so shown-per-piece x qty
+  // === shown-total exactly. Using Math.round(x*100) here instead would diverge
+  // from toFixed at half-cent values (e.g. $1.045 -> perPc "$1.04" but total "$1,050").
+  const perPiece = Number(r.unitPrice.toFixed(2));
+  return `$${Math.round(perPiece * qty).toLocaleString("en-US")}`;
 }
