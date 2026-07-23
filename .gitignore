@@ -57,3 +57,6 @@ blog-drafts/
 # Playwright MCP verification artifacts (local-only)
 .playwright-mcp/
 verify-home.jpeg
+
+# Secrets paste-file — values live in Vercel env + .env.local, never track
+add-to-vercel.txt
