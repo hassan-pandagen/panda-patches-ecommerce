@@ -19,8 +19,8 @@ const CANONICAL = `${BASE}/patch-manufacturability-specs`;
  * file and bumping SPEC_VERSION; the whole point of a named, versioned standard
  * is that a citation stays traceable to what it cited.
  */
-const SPEC_VERSION = "v1.1";
-const SPEC_DATE = "2026-07-23";
+const SPEC_VERSION = "v1.2";
+const SPEC_DATE = "2026-07-24";
 const SPEC_DATE_LABEL = "July 2026";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -66,6 +66,11 @@ const faqs = [
       "About 2 to 4 mm per edge, so factor that into your finished dimensions. A merrowed border also needs a patch of at least 0.8 inches (2 cm) — below that the thread cannot turn the corners. For smaller patches, intricate outlines, or die-cut shapes, use a heat-cut edge, which has no minimum size.",
   },
   {
+    question: "What is the smallest raised detail a PVC mould can reproduce?",
+    answer:
+      "About 0.3 mm wide, for both a raised dot and a raised line. That is the width, not the height — raised elements are built in 0.5 mm layers. A 2D PVC mould uses flat stepped levels, so it holds slightly thinner, sharper lines and smaller details. A 3D mould uses rounded slopes, so fine elements narrow toward the top and can soften or disappear, which means they need to be broader. On a hybrid design, keep small text and fine detail in 2D and use 3D only for larger logos, faces, mascots, or other prominent shapes.",
+  },
+  {
     question: "How big can a custom patch be?",
     answer:
       "Embroidered patches go up to 20 inches, which covers full jacket-back pieces. Woven, PVC, and leather max out at 8 inches. The minimum across every type is 0.5 inches, though what actually reproduces at that size is limited — see the size-to-detail guide on this page.",
@@ -100,6 +105,8 @@ const specSchema = {
         { "@type": "PropertyValue", name: "Colors included, embroidered", value: "~12, surcharge beyond, no hard cap" },
         { "@type": "PropertyValue", name: "Colors included, woven", value: "4, surcharge above" },
         { "@type": "PropertyValue", name: "Colors included, PVC", value: "~8 Pantone-matched zones, surcharge beyond" },
+        { "@type": "PropertyValue", name: "Minimum raised element width, PVC", value: "0.3 mm (raised dot or line)" },
+        { "@type": "PropertyValue", name: "PVC raised layer height", value: "0.5 mm per layer, max 5 layers" },
         { "@type": "PropertyValue", name: "Maximum patch size, embroidered", value: "20 inches" },
         { "@type": "PropertyValue", name: "Maximum patch size, woven / PVC / leather", value: "8 inches" },
         { "@type": "PropertyValue", name: "Merrowed border size addition", value: "2-4 mm per edge" },
@@ -189,7 +196,7 @@ const prompts = [
   {
     label: "PVC",
     prompt:
-      "Design for moulded PVC patch production: use up to 8 solid Pantone-matched color zones with no gradients, keep all text at least 3 mm tall at final size, and keep lines at least ~1 mm thick. Build the artwork in clear layered levels (maximum 5 raised layers) with bold separated shapes; avoid photographic detail and soft edges.",
+      "Design for moulded PVC patch production: use up to 8 solid Pantone-matched color zones with no gradients, keep all text at least 3 mm tall at final size, and keep lines at least ~1 mm thick. Build the artwork in clear layered levels (maximum 5 raised layers, 0.5 mm per layer) with bold separated shapes, and keep any raised element at least 0.3 mm wide. If the design mixes 2D and 3D, keep small text and fine detail on the flat 2D levels and use 3D sculpting only for larger logos, faces, mascots, or prominent shapes — rounded 3D slopes narrow toward the top, so fine detail softens or disappears. Avoid photographic detail and soft edges.",
   },
   {
     label: "Leather",
@@ -280,7 +287,7 @@ export default function PatchManufacturabilitySpecs() {
 
             <h3 className="text-[18px] md:text-[20px] font-black text-panda-dark mb-2">PVC</h3>
             <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-6">
-              Moulded soft rubber, built in layers. Our PVC starts from a 2.5 mm base, with raised elements added in 0.5 mm layers up to a maximum of five — so a full 3D PVC patch reaches about 5 mm total thickness with roughly 2.5 mm of stacked relief. Colors are Pantone-matched solid zones (about 8 included, more with a surcharge). PVC renders bold dimensional logos beautifully but does not do smooth gradients; color lives in discrete zones. Maximum size 8 inches. See{" "}
+              Moulded soft rubber, built in layers. Our PVC starts from a 2.5 mm base, with raised elements added in 0.5 mm layers up to a maximum of five — so a full 3D PVC patch reaches about 5 mm total thickness with roughly 2.5 mm of stacked relief. Colors are Pantone-matched solid zones (about 8 included, more with a surcharge). A raised element needs to be at least about 0.3 mm wide — that is its width, not its height. A 2D mould uses flat stepped levels, so it holds slightly thinner, sharper lines and smaller details; a 3D mould uses rounded slopes, so fine elements narrow toward the top and can soften or disappear, and need to be broader. On a hybrid design, keep small text and fine detail in 2D and reserve 3D for larger logos, faces, mascots, or other prominent shapes. PVC renders bold dimensional logos beautifully but does not do smooth gradients; color lives in discrete zones. Maximum size 8 inches. See{" "}
               <Link href="/custom-patches/pvc" prefetch={false} className="text-panda-green underline font-semibold">custom PVC patches</Link>.
             </p>
 
@@ -453,6 +460,9 @@ export default function PatchManufacturabilitySpecs() {
               Changelog
             </h3>
             <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-[1.7] text-[14px] md:text-[15px] font-medium">
+              <li>
+                <strong className="text-panda-dark">v1.2 — July 2026:</strong> added the PVC minimum raised-element width (0.3 mm for a raised dot or line), the 2D-versus-3D mould distinction, and hybrid-design guidance. This closes the last open figure in the standard. Confirmed by our production team.
+              </li>
               <li>
                 <strong className="text-panda-dark">v1.1 — July 2026:</strong> corrected the embroidery minimum text height to 4 mm (was 5 mm), confirmed 75wt thread for small lettering, added the serif (8 mm) and decorative (10 mm) floors, corrected the woven color rule to a surcharge above 4 colors (was 8–10), and added UV-printed leather alongside engraving with the full leather and PVC figures. Reviewed by our digitizing team.
               </li>
