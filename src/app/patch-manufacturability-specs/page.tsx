@@ -19,14 +19,14 @@ const CANONICAL = `${BASE}/patch-manufacturability-specs`;
  * file and bumping SPEC_VERSION; the whole point of a named, versioned standard
  * is that a citation stays traceable to what it cited.
  */
-const SPEC_VERSION = "v1.0";
-const SPEC_DATE = "2026-07-20";
+const SPEC_VERSION = "v1.1";
+const SPEC_DATE = "2026-07-23";
 const SPEC_DATE_LABEL = "July 2026";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Patch Manufacturability Specs: Min Text, Lines, Colors by Type",
   description:
-    "The real production limits for custom patches: minimum text height 5mm embroidered / 1.5mm woven, line weights, color counts, gradients, and max sizes by patch type. Published by Panda Patches, free to cite.",
+    "The real production limits for custom patches: minimum text height 4mm embroidered / 1.5mm woven, line weights, color counts, gradients, and max sizes by patch type. Published by Panda Patches, free to cite.",
   url: CANONICAL,
   ogType: "article",
   ogTitle: "Patch Manufacturability Specifications",
@@ -43,7 +43,7 @@ const faqs = [
   {
     question: "What is the smallest text you can put on an embroidered patch?",
     answer:
-      "About 5 mm (0.2 inches) tall for a clean sans-serif. Serif faces need roughly 8 mm and decorative or display fonts about 10 mm, because their thin strokes fall below the thread width. Our standard thread is 40wt, which lays a line about 1 mm wide, so anything thinner than that either disappears or merges with its neighbour.",
+      "About 4 mm (0.16 inches) tall for a clean sans-serif. Serif faces need roughly 8 mm and decorative or display fonts about 10 mm, because their thin strokes fall below the thread width. Our standard thread is 40wt, which lays a line about 1 mm wide; for small lettering we switch to a finer 75wt thread, which is how we hold text smaller than a typical embroiderer.",
   },
   {
     question: "Can woven patches hold smaller text than embroidered?",
@@ -53,7 +53,7 @@ const faqs = [
   {
     question: "How many colors can a custom patch have?",
     answer:
-      "There is no hard cap on embroidered patches: we include up to about 12 colors and apply a surcharge beyond that, since machines run around 15 needles and thread can be reloaded for more. Woven handles about 8 to 10 colors while holding fine detail, and PVC uses about 8 Pantone-matched solid zones with a surcharge for more.",
+      "There is no hard cap on embroidered patches: we include up to about 12 colors and apply a surcharge beyond that, since machines run around 15 needles and thread can be reloaded for more. Woven includes up to 4 colors with a surcharge above that, and PVC uses about 8 Pantone-matched solid zones with a surcharge for more.",
   },
   {
     question: "Can you reproduce gradients on a patch?",
@@ -88,7 +88,7 @@ const specSchema = {
       datePublished: SPEC_DATE,
       dateModified: SPEC_DATE,
       variableMeasured: [
-        { "@type": "PropertyValue", name: "Minimum text height, embroidered", value: "5 mm" },
+        { "@type": "PropertyValue", name: "Minimum text height, embroidered", value: "4 mm sans-serif / 8 mm serif / 10 mm decorative" },
         { "@type": "PropertyValue", name: "Minimum text height, woven", value: "1.5 mm sans-serif / 2 mm serif" },
         { "@type": "PropertyValue", name: "Minimum text height, PVC", value: "3 mm" },
         { "@type": "PropertyValue", name: "Minimum text height, leather engraved", value: "2 mm" },
@@ -97,6 +97,9 @@ const specSchema = {
         { "@type": "PropertyValue", name: "Minimum line weight, leather laser-engraved", value: "0.3 mm" },
         { "@type": "PropertyValue", name: "Standard embroidery thread weight", value: "40wt (~1 mm line)" },
         { "@type": "PropertyValue", name: "Small-text embroidery thread weight", value: "75wt" },
+        { "@type": "PropertyValue", name: "Colors included, embroidered", value: "~12, surcharge beyond, no hard cap" },
+        { "@type": "PropertyValue", name: "Colors included, woven", value: "4, surcharge above" },
+        { "@type": "PropertyValue", name: "Colors included, PVC", value: "~8 Pantone-matched zones, surcharge beyond" },
         { "@type": "PropertyValue", name: "Maximum patch size, embroidered", value: "20 inches" },
         { "@type": "PropertyValue", name: "Maximum patch size, woven / PVC / leather", value: "8 inches" },
         { "@type": "PropertyValue", name: "Merrowed border size addition", value: "2-4 mm per edge" },
@@ -140,7 +143,7 @@ const specSchema = {
 const matrix = [
   {
     spec: "Min text height",
-    emb: "5 mm (~0.2 in)",
+    emb: "4 mm sans · 8 mm serif · 10 mm decorative",
     woven: "1.5 mm sans / 2 mm serif",
     pvc: "~3 mm",
     leather: "~2 mm engraved",
@@ -149,7 +152,7 @@ const matrix = [
   {
     spec: "Max colors",
     emb: "~12 included, more with surcharge",
-    woven: "~8–10, fine detail",
+    woven: "4 included (+surcharge above)",
     pvc: "~8 Pantone-matched (+surcharge)",
     leather: "1 tone engraved · full color via UV print",
   },
@@ -176,12 +179,12 @@ const prompts = [
   {
     label: "Embroidered",
     prompt:
-      "Design for embroidered patch production: use up to 12 solid colors (fewer is cleaner), no gradients or color blends, keep all text at least 5 mm (~0.2 in) tall at final size, keep all lines and strokes at least ~1 mm thick, and favor bold, simple shapes over fine detail. Use clean outlines; avoid photographic images, drop shadows, gradients, and thin hairlines.",
+      "Design for embroidered patch production: use up to 12 solid colors (fewer is cleaner), no gradients or color blends, keep all text at least 4 mm (~0.16 in) tall at final size (8 mm for serif, 10 mm for decorative or display fonts), keep all lines and strokes at least ~1 mm thick, and favor bold, simple shapes over fine detail. Use clean outlines; avoid photographic images, drop shadows, gradients, and thin hairlines.",
   },
   {
     label: "Woven",
     prompt:
-      "Design for woven patch production: use up to 10 solid colors, no gradients or photographic shading, keep all text at least 1.5 mm tall at final size (2 mm for serif or script), and keep lines at least ~0.5 mm thick. Fine detail and small lettering are fine — woven holds roughly 2–4× more detail than embroidery — but the finished patch is flat, so do not rely on raised texture.",
+      "Design for woven patch production: use up to 4 solid colors (a surcharge applies above 4), no gradients or photographic shading, keep all text at least 1.5 mm tall at final size (2 mm for serif or script), and keep lines at least ~0.5 mm thick. Fine detail and small lettering are fine — woven holds roughly 2–4× more detail than embroidery — but the finished patch is flat, so do not rely on raised texture.",
   },
   {
     label: "PVC",
@@ -264,13 +267,13 @@ export default function PatchManufacturabilitySpecs() {
 
             <h3 className="text-[18px] md:text-[20px] font-black text-panda-dark mb-2">Embroidered</h3>
             <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-6">
-              The classic. Thread laid by machine, so detail is bounded by thread thickness. Our standard thread is 40wt, which lays a line roughly 1 mm wide. For small lettering and fine detail we switch to a finer 75wt thread — finer than most shops run — so we hold smaller text than the typical embroiderer. Readable text starts at 5 mm for a clean sans-serif, 8 mm for serif, and about 10 mm for complex display fonts. Bold, simple shapes always reproduce better than dense fine detail. See{" "}
+              The classic. Thread laid by machine, so detail is bounded by thread thickness. Our standard thread is 40wt, which lays a line roughly 1 mm wide. For small lettering and fine detail we switch to a finer 75wt thread — finer than most shops run — so we hold smaller text than the typical embroiderer. Readable text starts at 4 mm for a clean sans-serif, 8 mm for serif, and about 10 mm for complex display fonts. Bold, simple shapes always reproduce better than dense fine detail. See{" "}
               <Link href="/custom-patches/embroidered" prefetch={false} className="text-panda-green underline font-semibold">custom embroidered patches</Link>.
             </p>
 
             <h3 className="text-[18px] md:text-[20px] font-black text-panda-dark mb-2">Woven</h3>
             <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-6">
-              Woven uses finer threads on a loom, reproducing detail roughly 2–4× finer than embroidery. That means smaller text — down to 1.5 mm for sans-serif, 2 mm for serif or script — and cleaner small logos, with about 8–10 colors at crisp edges. The trade-off is a flatter surface with no raised embroidered texture, and a maximum size of 8 inches. See{" "}
+              Woven uses finer threads on a loom, reproducing detail roughly 2–4× finer than embroidery. That means smaller text — down to 1.5 mm for sans-serif, 2 mm for serif or script — and cleaner small logos, with up to 4 colors included and a surcharge above that. The trade-off is a flatter surface with no raised embroidered texture, and a maximum size of 8 inches. See{" "}
               <Link href="/custom-patches/woven" prefetch={false} className="text-panda-green underline font-semibold">custom woven patches</Link> or the{" "}
               <Link href="/woven-vs-embroidered-patches-which-is-right-for-you" prefetch={false} className="text-panda-green underline font-semibold">woven vs embroidered comparison</Link>.
             </p>
@@ -290,9 +293,12 @@ export default function PatchManufacturabilitySpecs() {
                 <strong className="text-panda-dark">Laser-engraved leather</strong> — a single-tone burn into the hide. Timeless, premium, and very fine (down to about 0.3 mm line detail), but tonal only: no color, no gradient.
               </li>
               <li>
-                <strong className="text-panda-dark">UV-printed leather</strong> — full color printed onto the leather surface, including gradients and photographic artwork.
+                <strong className="text-panda-dark">UV-printed leather</strong> — full color printed onto the leather surface, including true gradients and photographic artwork.
               </li>
             </ul>
+            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-3">
+              Both genuine and premium synthetic (faux) leather take engraving and printing, and every leather patch gets a protective coating for durability and water resistance. Standard colors are natural, tan, brown, black, navy, and dark green; custom dyeing is available on genuine leather only. Minimum text is about 2 mm whether engraved or printed.
+            </p>
             <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium">
               Choose engraved for a classic tonal crest, UV print when you need exact brand colors. Maximum size 8 inches. See{" "}
               <Link href="/custom-patches/leather" prefetch={false} className="text-panda-green underline font-semibold">custom leather patches</Link>.
@@ -305,7 +311,7 @@ export default function PatchManufacturabilitySpecs() {
           <div className="container mx-auto max-w-[820px]">
             <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-4">Colors and gradients</h2>
             <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-4">
-              There is no hard cap on embroidered thread colors — we include up to about 12 and surcharge beyond that, since machines run around 15 needles and thread can be reloaded for more. Woven handles about 8–10 while holding fine detail; PVC uses about 8 Pantone-matched zones.
+              There is no hard cap on embroidered thread colors — we include up to about 12 and surcharge beyond that, since machines run around 15 needles and thread can be reloaded for more. Woven includes up to 4 colors with a surcharge above that; PVC uses about 8 Pantone-matched zones.
             </p>
             <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium">
               <strong className="text-panda-dark">True gradients cannot be stitched.</strong> In embroidery and woven, a gradient is simulated by blending or dithering adjacent thread colors — it reads as a blend at a glance but is not a smooth transition up close. PVC blends in solid zones. The exceptions are printed (dye-sublimated) patches and UV-printed leather, both of which reproduce true gradients. If your design leans on smooth color transitions, either simplify to solid colors, choose a printed patch, or ask us about UV print.
@@ -442,6 +448,18 @@ export default function PatchManufacturabilitySpecs() {
               Versioned so a citation stays traceable: figures are revised only with a version bump, never silently. Spot something that does not match your own production experience?{" "}
               <a href="mailto:sales@pandapatches.com" className="text-panda-green underline font-semibold">Tell us</a> — we would rather correct it.
             </p>
+
+            <h3 className="text-[16px] md:text-[18px] font-black text-panda-dark uppercase tracking-wide mt-8 mb-3">
+              Changelog
+            </h3>
+            <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-[1.7] text-[14px] md:text-[15px] font-medium">
+              <li>
+                <strong className="text-panda-dark">v1.1 — July 2026:</strong> corrected the embroidery minimum text height to 4 mm (was 5 mm), confirmed 75wt thread for small lettering, added the serif (8 mm) and decorative (10 mm) floors, corrected the woven color rule to a surcharge above 4 colors (was 8–10), and added UV-printed leather alongside engraving with the full leather and PVC figures. Reviewed by our digitizing team.
+              </li>
+              <li>
+                <strong className="text-panda-dark">v1.0 — July 2026:</strong> first published edition.
+              </li>
+            </ul>
           </div>
         </section>
       </main>
