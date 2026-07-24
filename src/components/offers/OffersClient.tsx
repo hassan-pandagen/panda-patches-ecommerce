@@ -345,7 +345,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
               'Choice of backing type. Velcro hook and loop is charged separately',
               '7 to 14 day standard delivery. Rush production available',
               'Over 1,000,000 patches delivered to brands across the US',
-              '100% money-back guarantee. No questions asked',
+              '100% money-back guarantee',
               'Dedicated support team available 7 days a week',
             ].map(item => (
               <div key={item} className="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">

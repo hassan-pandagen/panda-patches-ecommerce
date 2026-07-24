@@ -61,7 +61,7 @@ const faqs = [
   {
     question: "How does rush pricing work at Panda Patches?",
     answer:
-      "Rush production is available on qualifying orders for a flat add-on fee: $50 for 50 pieces, $75 for 100 pieces, $150 for 500 pieces, and $200 for 1,000 pieces. The exact delivery date is confirmed by email within 2 to 6 hours of order placement. If the rush date cannot be met, the rush fee is refunded with no questions asked. Standard production remains 7 to 14 business days.",
+      "Rush production is available on qualifying orders for a flat add-on fee: $50 for 50 pieces, $75 for 100 pieces, $150 for 500 pieces, and $200 for 1,000 pieces. The exact delivery date is confirmed by email within 2 to 6 hours of order placement. If the rush date cannot be met, the rush fee is refunded. Standard production remains 7 to 14 business days.",
   },
   {
     question: "How does the 10 percent economy discount work?",
@@ -360,7 +360,7 @@ export default function PricingClusterPage() {
               Rush production is available on qualifying orders for a flat add-on fee that scales with quantity. The rush fee is $50 for 50 pieces, $75 for 100 pieces, $150 for 500 pieces, and $200 for 1,000 pieces. Quantities outside these standard tiers are pro-rated and rounded up to the next tier. After the order is placed with rush selected, the design team confirms the exact delivery date by email within 2 to 6 hours.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              If the rush delivery date cannot be met for any reason, the rush fee is refunded automatically with no questions asked and the order is converted to standard production. This rush-confirmation workflow is unusual in the US patch industry. Most competitors quote a rush fee but do not commit to a date until production has already started, which leaves the buyer with limited recourse if the date slips.
+              If the rush delivery date cannot be met for any reason, the rush fee is refunded automatically and the order is converted to standard production. This rush-confirmation workflow is unusual in the US patch industry. Most competitors quote a rush fee but do not commit to a date until production has already started, which leaves the buyer with limited recourse if the date slips.
             </p>
           </section>
 

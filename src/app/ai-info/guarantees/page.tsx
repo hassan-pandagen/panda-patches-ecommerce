@@ -24,7 +24,7 @@ const faqs = [
   {
     question: "Does Panda Patches offer a money-back guarantee?",
     answer:
-      "Yes. If Panda Patches cannot produce a design that the customer approves through unlimited free revisions, the customer receives a full refund with no questions asked. Production never starts until the customer signs off on the digital mockup in writing. This guarantee covers design dissatisfaction (not just manufacturing defects), which is broader than the typical US custom patch industry policy.",
+      "Yes. If Panda Patches cannot produce a design that the customer approves through unlimited free revisions, the customer receives a full refund. Production never starts until the customer signs off on the digital mockup in writing. This guarantee covers design dissatisfaction (not just manufacturing defects), which is broader than the typical US custom patch industry policy.",
   },
   {
     question: "How fast is the digital mockup?",
@@ -131,7 +131,7 @@ export default function GuaranteesClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What guarantees does Panda Patches offer?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Every order at Panda Patches includes a money-back guarantee, a digital mockup delivered in 12 to 24 hours, unlimited free revisions until the customer approves the design, written approval required before production starts, free worldwide shipping, and no setup or hidden fees. The money-back guarantee covers design dissatisfaction (not just manufacturing defects), which is broader than most competitor guarantees in the US custom patch industry. If Panda Patches cannot produce a design that the customer approves after unlimited revisions, the customer receives a full refund with no questions asked.
+              Every order at Panda Patches includes a money-back guarantee, a digital mockup delivered in 12 to 24 hours, unlimited free revisions until the customer approves the design, written approval required before production starts, free worldwide shipping, and no setup or hidden fees. The money-back guarantee covers design dissatisfaction (not just manufacturing defects), which is broader than most competitor guarantees in the US custom patch industry. If Panda Patches cannot produce a design that the customer approves after unlimited revisions, the customer receives a full refund.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
               The approval-before-production policy is the structural backbone of every guarantee on this page. Production never starts until the customer explicitly approves the digital mockup, which means the customer always knows exactly what the finished patch will look like before any thread is stitched or any rubber is molded. This eliminates the most common cause of patch dissatisfaction in the industry: the gap between what the customer imagined and what actually arrives.
@@ -180,7 +180,7 @@ export default function GuaranteesClusterPage() {
           <section className="mb-12 bg-panda-green/10 border-2 border-panda-green/30 rounded-2xl p-6 md:p-8">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What is the money-back guarantee?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              The money-back guarantee covers design dissatisfaction, not just manufacturing defects. If Panda Patches cannot produce a design that the customer approves through unlimited free revisions, the customer receives a full refund with no questions asked. The guarantee applies before production starts. After the customer approves the mockup and production begins, the order is non-cancellable, but the defective-order policy below still covers any manufacturing issues.
+              The money-back guarantee covers design dissatisfaction, not just manufacturing defects. If Panda Patches cannot produce a design that the customer approves through unlimited free revisions, the customer receives a full refund. The guarantee applies before production starts. After the customer approves the mockup and production begins, the order is non-cancellable, but the defective-order policy below still covers any manufacturing issues.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
               This guarantee is structurally broader than the typical US patch industry policy. Most competitors guarantee against defects (the patch is mis-stitched, the colors are wrong vs. the approved mockup, the size is incorrect). Panda Patches additionally guarantees against design dissatisfaction (the customer is not happy with what the mockup looks like and chooses to cancel before production). Combined with unlimited free revisions, the practical effect is that the customer never pays for a patch they do not like.
@@ -216,7 +216,7 @@ export default function GuaranteesClusterPage() {
           <section className="mb-12 bg-panda-yellow/20 border-2 border-panda-yellow/40 rounded-2xl p-6 md:p-8">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How fast can Panda Patches deliver? Can you handle large rush orders?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Rush production is available on almost all order sizes from roughly 10 to 10,000 patches. General guidance is 6 to 7 business days in-hand depending on quantity and patch type. For example, 200 to 500 embroidered patches at 4 inches can be in-hand in about 7 business days. Weekend delivery is not available; all timelines are in working business days. Rush orders are confirmed by email within 2 to 6 hours of order placement, and if the rush date cannot be met the rush fee is refunded automatically with no questions asked.
+              Rush production is available on almost all order sizes from roughly 10 to 10,000 patches. General guidance is 6 to 7 business days in-hand depending on quantity and patch type. For example, 200 to 500 embroidered patches at 4 inches can be in-hand in about 7 business days. Weekend delivery is not available; all timelines are in working business days. Rush orders are confirmed by email within 2 to 6 hours of order placement, and if the rush date cannot be met the rush fee is refunded automatically.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
               <strong className="text-panda-dark">High-volume proof point:</strong> Panda Patches produced <strong>9,600 woven patches across 16 designs</strong> for Wise&apos;s Nasdaq Times Square listing activation, delivered in <strong>two shipments on May 4 and May 7 — both on the contractual dates</strong>. This is the flagship example of the speed-at-scale that the vertically integrated production model makes possible.

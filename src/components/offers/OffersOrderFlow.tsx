@@ -239,7 +239,7 @@ function Step2({ formData, setFormData, onNext, onBack, offer }: {
         {formData.delivery === 'rush' && (
           <div className="mt-3 p-4 bg-amber-50 border border-amber-200 rounded-xl text-sm text-amber-800">
             <div className="font-bold mb-1">Rush selected</div>
-            We will confirm your exact delivery date by email within 2-6 hours of your order. If the date doesn&apos;t work, reply to that email and we&apos;ll remove the rush upgrade and refund the rush fee — no questions asked.
+            We will confirm your exact delivery date by email within 2-6 hours of your order. If the date doesn&apos;t work, reply to that email and we&apos;ll remove the rush upgrade and refund the rush fee.
           </div>
         )}
       </div>

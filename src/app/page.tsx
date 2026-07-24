@@ -135,7 +135,7 @@ const homeFaqSchema = {
       "name": "Does Panda Patches have a money-back guarantee?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Panda Patches offers a full money-back guarantee. If we cannot produce a design you are happy with after unlimited free revisions, you receive a full refund with no questions asked. Production never starts until you approve the mockup, so you are never charged for patches you have not approved.",
+        "text": "Yes. Panda Patches offers a full money-back guarantee. If we cannot produce a design you are happy with after unlimited free revisions, you receive a full refund. Production never starts until you approve the mockup, so you are never charged for patches you have not approved.",
       },
     },
   ],

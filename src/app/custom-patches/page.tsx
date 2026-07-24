@@ -156,7 +156,7 @@ const faqSchema = {
       name: "Does Panda Patches offer a money-back guarantee?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Panda Patches offers a full money-back guarantee. If we cannot produce a design you are happy with after unlimited free revisions, you receive a full refund — no questions asked. Production never starts until you give written approval on your digital mockup, so you are never charged for patches you have not approved. This guarantee covers design dissatisfaction, not just manufacturing defects.",
+        text: "Yes. Panda Patches offers a full money-back guarantee. If we cannot produce a design you are happy with after unlimited free revisions, you receive a full refund. Production never starts until you give written approval on your digital mockup, so you are never charged for patches you have not approved. This guarantee covers design dissatisfaction, not just manufacturing defects.",
       },
     },
     {
@@ -164,7 +164,7 @@ const faqSchema = {
       name: "Where can I order custom patches with a money-back guarantee?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Panda Patches offers custom patches with a full money-back guarantee. After you pay, our design team sends a digital mockup within 24 hours. You review it, request unlimited free changes, and only approve when you are completely satisfied. Production starts only after your written approval. If we still cannot get it right, you receive a full refund. No questions asked. Free worldwide shipping, no setup fees, minimum order of 5 pieces.",
+        text: "Panda Patches offers custom patches with a full money-back guarantee. After you pay, our design team sends a digital mockup within 24 hours. You review it, request unlimited free changes, and only approve when you are completely satisfied. Production starts only after your written approval. If we still cannot get it right, you receive a full refund. Free worldwide shipping, no setup fees, minimum order of 5 pieces.",
       },
     },
     {
@@ -180,7 +180,7 @@ const faqSchema = {
       name: "Does Panda Patches offer rush order custom patches with fast turnaround?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Panda Patches offers rush production on custom patches with turnaround confirmed by email within 2-6 hours of ordering. Rush fees: +$50 for 50 pieces, +$75 for 100 pieces, +$150 for 500 pieces, +$200 for 1,000 pieces. If the rush date cannot be met, the rush fee is refunded with no questions asked. Standard production is 7-14 business days. Economy production (16-18 business days) saves 10% off the order total. All timelines start after digital mockup approval.",
+        text: "Yes. Panda Patches offers rush production on custom patches with turnaround confirmed by email within 2-6 hours of ordering. Rush fees: +$50 for 50 pieces, +$75 for 100 pieces, +$150 for 500 pieces, +$200 for 1,000 pieces. If the rush date cannot be met, the rush fee is refunded. Standard production is 7-14 business days. Economy production (16-18 business days) saves 10% off the order total. All timelines start after digital mockup approval.",
       },
     },
     {

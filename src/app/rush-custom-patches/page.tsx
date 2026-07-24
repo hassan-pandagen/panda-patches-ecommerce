@@ -164,7 +164,7 @@ export default function RushCustomPatchesPage() {
         heroFormHeadline="Need Patches by a Date?"
         heroFormSubhead="Get your guaranteed in-hand date in 2-6 hours + free 12-24h mockup"
         heroFormCtaText="Get My Delivery Date + Free Mockup"
-        heroFormCtaMicrocopy="We reply with your exact in-hand date within 2-6 hours. If we can't make your deadline, there's no rush fee — no questions asked."
+        heroFormCtaMicrocopy="We reply with your exact in-hand date within 2-6 hours. If we can't make your deadline, there's no rush fee."
         showDeadlineField
         showZipField
       />
@@ -200,7 +200,7 @@ export default function RushCustomPatchesPage() {
           </h2>
           <ol className="space-y-3 text-[15px] md:text-[16px] text-gray-700 leading-[1.7] list-decimal pl-5">
             <li><strong>Send your design and deadline.</strong> Upload artwork (AI, EPS, SVG, PDF, PNG, JPG) or describe your idea in the form above — and tell us the date you need patches in hand.</li>
-            <li><strong>We confirm your in-hand date within 2-6 hours.</strong> You get your exact delivery date by email before any rush fee is charged. Doesn&apos;t work? We remove the rush fee, no questions asked.</li>
+            <li><strong>We confirm your in-hand date within 2-6 hours.</strong> You get your exact delivery date by email before any rush fee is charged. Doesn&apos;t work? We remove the rush fee.</li>
             <li><strong>Approve your mockup in {MOCKUP_SLA}.</strong> Unlimited free revisions — production never starts without your sign-off.</li>
             <li><strong>Patches in hand in as fast as 5 business days.</strong> Timing depends on quantity and patch type; free worldwide shipping with full tracking either way.</li>
           </ol>

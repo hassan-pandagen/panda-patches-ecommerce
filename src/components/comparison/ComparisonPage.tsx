@@ -313,7 +313,7 @@ export default function ComparisonPage({
               We don&apos;t start production until you approve in writing
             </h2>
             <p className="text-gray-600 leading-[1.7] text-[15px] md:text-[16px] max-w-[640px] mx-auto mb-7 font-medium">
-              You see a digital mockup in 12 to 24 hours. You request unlimited free revisions. Only when you give written approval do patches get manufactured. If we can&apos;t get the design right after revisions, you receive a full refund. No questions asked.
+              You see a digital mockup in 12 to 24 hours. You request unlimited free revisions. Only when you give written approval do patches get manufactured. If we can&apos;t get the design right after revisions, you receive a full refund.
             </p>
             <Link
               href="/contact"
