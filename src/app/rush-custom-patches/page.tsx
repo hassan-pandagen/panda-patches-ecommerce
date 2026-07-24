@@ -186,8 +186,7 @@ export default function RushCustomPatchesPage() {
               9,600 patches for Wise&apos;s Nasdaq Times Square activation
             </Link>{" "}
             in two shipments, both on the contractual dates. We confirm your exact in-hand delivery date by
-            email within 2-6 hours of ordering — if we can&apos;t hit your deadline, we remove the rush fee, no
-            questions asked.
+            email within 2-6 hours of ordering — if we can&apos;t hit your deadline, we remove the rush fee.
           </p>
         </div>
       </section>

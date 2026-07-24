@@ -120,8 +120,7 @@ export default function TermsOfServicePage() {
             <h2 className="text-[26px] font-black text-panda-dark mb-4">7. Cancellations, Refunds and Replacements</h2>
             <p className="text-[16px] leading-[1.8] mb-4">
               <strong>Cancelling before production:</strong> You may cancel your order for a full refund at any time before
-              you approve the final mockup and production begins. Just email us and we will refund you in full, no questions
-              asked. Once you approve the mockup, production starts and your patches are custom-made to your specifications,
+              you approve the final mockup and production begins. Just email us and we will refund you in full. Once you approve the mockup, production starts and your patches are custom-made to your specifications,
               so the terms below apply.
             </p>
             <p className="text-[16px] leading-[1.8] mb-4">
