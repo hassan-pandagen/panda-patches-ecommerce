@@ -17,7 +17,7 @@ const embroideredFaqs: FAQItem[] = [
   },
   {
     question: "How many thread colors can you use in an embroidered patch?",
-    answer: "Standard embroidered patches include up to 8 thread colors at no extra charge. Additional colors are available for a small fee. We use Pantone-matched threads to replicate your brand colors accurately."
+    answer: "Standard embroidered patches include up to about 12 thread colors at no extra charge, with a surcharge beyond that and no hard cap. We use Pantone-matched threads to replicate your brand colors accurately."
   },
   {
     question: "What is the minimum size for an embroidered patch?",
@@ -79,7 +79,7 @@ const wovenFaqs: FAQItem[] = [
   },
   {
     question: "How many colors can a woven patch include?",
-    answer: "Woven patches typically support up to 8 thread colors. Because threads are woven together, gradients and color transitions are smoother than embroidery, making them ideal for complex multi-color logos."
+    answer: "Woven patches include up to 4 colors, with a surcharge above that. Because the threads are woven together on a fine loom, color transitions and simulated blends look smoother than embroidery, making them ideal for detailed multi-color logos — though true gradients still need a printed patch."
   },
   {
     question: "What is the minimum order for woven patches?",

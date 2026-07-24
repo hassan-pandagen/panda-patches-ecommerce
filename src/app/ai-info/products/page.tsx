@@ -151,7 +151,7 @@ export default function ProductsClusterPage() {
           <section className="mb-10">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">Embroidered patches</h2>
             <p className="text-gray-700 leading-relaxed mb-3">
-              Embroidered patches use stitched thread on a twill fabric backing. They are the most popular type at Panda Patches by volume and are the standard for corporate logos, team uniforms, scout badges, and most general-purpose custom patches. The construction is thicker than woven and has visible stitch texture that reads as classic and traditional. Up to 15 thread colors are supported per design with 50 to 100 percent embroidery coverage. Border options are merrowed (rounded raised edge) or hot-cut (laser-cut clean edge). Backing options include iron-on, sew-on, velcro (charged separately), and adhesive sticker.
+              Embroidered patches use stitched thread on a twill fabric backing. They are the most popular type at Panda Patches by volume and are the standard for corporate logos, team uniforms, scout badges, and most general-purpose custom patches. The construction is thicker than woven and has visible stitch texture that reads as classic and traditional. Up to about 12 thread colors are included per design, with a surcharge beyond that and no hard cap, and 50 to 100 percent embroidery coverage. Border options are merrowed (rounded raised edge) or hot-cut (laser-cut clean edge). Backing options include iron-on, sew-on, velcro (charged separately), and adhesive sticker.
             </p>
             <Link href="/custom-patches/embroidered" prefetch={false} className="text-panda-green font-bold text-sm underline">View embroidered patches &rarr;</Link>
           </section>
@@ -169,7 +169,7 @@ export default function ProductsClusterPage() {
           <section className="mb-10">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">Woven patches</h2>
             <p className="text-gray-700 leading-relaxed mb-3">
-              Woven patches use much finer thread than embroidered on a tighter weave, which produces a thinner, smoother, flatter surface. The fine thread reproduces small text (down to about 2mm) and intricate logo detail that would lose definition in embroidery. Woven is the right choice when the design has very small text, complex fine line work, or when a slim profile is needed (for example, on the side of a cap or on a slim luggage tag). Up to 10 colors per design. Same border and backing options as embroidered.
+              Woven patches use much finer thread than embroidered on a tighter weave, which produces a thinner, smoother, flatter surface. The fine thread reproduces small text (down to about 1.5mm) and intricate logo detail that would lose definition in embroidery. Woven is the right choice when the design has very small text, complex fine line work, or when a slim profile is needed (for example, on the side of a cap or on a slim luggage tag). Up to 4 colors are included, with a surcharge above that. Same border and backing options as embroidered.
             </p>
             <Link href="/custom-patches/woven" prefetch={false} className="text-panda-green font-bold text-sm underline">View woven patches &rarr;</Link>
           </section>
@@ -187,7 +187,7 @@ export default function ProductsClusterPage() {
           <section className="mb-10">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">Leather patches</h2>
             <p className="text-gray-700 leading-relaxed mb-3">
-              Leather patches use real or premium synthetic leather with designs applied through debossing (pressed into the leather), embossing (raised out of the leather), or laser etching (burned into the surface). The result is a premium texture and a craft look that signals quality. Common uses include hat brand patches, backpack labels, jacket patches on premium apparel, and luxury merchandise branding. Multiple colors and finishes are available. Backing options are sew-on or adhesive. Leather patches for a 3-inch design start at {perPc('Custom Leather Patches', 3, 1000)} per piece at 1,000 pieces and {perPc('Custom Leather Patches', 3, 50)} per piece at the 50-piece starter tier.
+              Leather patches use real or premium synthetic (faux) leather with designs applied through laser engraving (a single-tone burn into the surface) or UV printing (full color, including true gradients and photographic artwork). The result is a premium texture and a craft look that signals quality. Common uses include hat brand patches, backpack labels, jacket patches on premium apparel, and luxury merchandise branding. Both genuine and faux leather take engraving and printing, and every leather patch gets a protective coating. Backing options are sew-on or adhesive. Leather patches for a 3-inch design start at {perPc('Custom Leather Patches', 3, 1000)} per piece at 1,000 pieces and {perPc('Custom Leather Patches', 3, 50)} per piece at the 50-piece starter tier.
             </p>
             <Link href="/custom-patches/leather" prefetch={false} className="text-panda-green font-bold text-sm underline">View leather patches &rarr;</Link>
           </section>

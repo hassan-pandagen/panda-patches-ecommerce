@@ -36,7 +36,7 @@ const faqs = [
   {
     question: "How many colors can a patch have?",
     answer:
-      "Embroidered patches support up to 15 thread colors per design. Woven patches support up to 10 colors per design (finer thread, denser weave). Chenille patches support up to 3 colors per design because of the thicker yarn. PVC patches support up to 8 solid colors per design in either 2D layered or 3D sculpted construction. Printed (sublimation) patches support unlimited colors and gradients because the artwork is dye-sublimated rather than rendered in discrete thread or rubber. Pantone color matching is available on every patch type free of charge.",
+      "Embroidered patches include up to about 12 thread colors per design, with a surcharge beyond that and no hard cap. Woven patches include up to 4 colors, with a surcharge above that. Chenille patches support up to 3 colors per design because of the thicker yarn. PVC patches support up to 8 solid Pantone-matched colors per design in either 2D layered or 3D sculpted construction. Printed (sublimation) patches support unlimited colors and gradients because the artwork is dye-sublimated rather than rendered in discrete thread or rubber. Pantone color matching is available on every patch type free of charge.",
   },
   {
     question: "Does Panda Patches Pantone match colors?",
@@ -177,7 +177,7 @@ export default function SpecsAndCareClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How many colors can each patch type have?</h2>
             <p className="text-gray-700 leading-relaxed mb-5">
-              Color count limits vary by patch construction. Embroidered patches support the most thread colors. PVC and printed patches support continuous gradients in their respective ways. Chenille is the most color-constrained because of the thicker yarn.
+              Color count limits vary by patch construction. Embroidered patches support the most thread colors. Printed (sublimation) patches support continuous gradients; PVC renders color in solid Pantone-matched zones rather than gradients. Chenille is the most color-constrained because of the thicker yarn.
             </p>
             <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-3">
               <table className="w-full text-sm">
@@ -189,12 +189,12 @@ export default function SpecsAndCareClusterPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Embroidered</td><td className="px-5 py-4">15 thread colors</td><td className="px-5 py-4">Yes, free</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Woven</td><td className="px-5 py-4">10 thread colors</td><td className="px-5 py-4">Yes, free</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Embroidered</td><td className="px-5 py-4">~12 included (surcharge beyond)</td><td className="px-5 py-4">Yes, free</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Woven</td><td className="px-5 py-4">4 included (surcharge above)</td><td className="px-5 py-4">Yes, free</td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">PVC</td><td className="px-5 py-4">8 solid colors</td><td className="px-5 py-4">Yes, custom dye batch free</td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Chenille</td><td className="px-5 py-4">3 yarn colors</td><td className="px-5 py-4">Yes, free</td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Printed (sublimation)</td><td className="px-5 py-4">Unlimited (gradients OK)</td><td className="px-5 py-4">Yes, free</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Leather</td><td className="px-5 py-4">Up to 4 colors</td><td className="px-5 py-4">Yes, free</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Leather</td><td className="px-5 py-4">1 tone engraved · full color UV print</td><td className="px-5 py-4">Yes, free</td></tr>
                 </tbody>
               </table>
             </div>

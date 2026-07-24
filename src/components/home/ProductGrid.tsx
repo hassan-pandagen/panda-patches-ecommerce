@@ -67,7 +67,7 @@ function getProductDescription(title: string, sanityDesc: string): string {
     'Custom Embroidered Patches':           'We turn your creative vision into beautifully crafted embroidered patches with precision stitching and vivid thread colors.',
     'Custom PVC Patches':                   'The most trending patch type. From intricate details to vibrant colors, our PVC patches are durable, waterproof, and built to last.',
     'Custom Chenille Patches':              'With the timeless appeal of chenille patches, perfect for varsity jackets and winter clothing. Thick, textured, and eye-catching.',
-    'Custom Woven Patches':                 'Whether you need a 0.5-inch patch with text or intricate designs, woven patches have you covered. Up to 10 colors for perfectionists.',
+    'Custom Woven Patches':                 'Whether you need a 0.5-inch patch with text or intricate designs, woven patches have you covered. Up to 4 colors included, more with a surcharge.',
     'Custom Leather Patches':               'We turn your vision into luxurious leather patches with authentic texture and enduring style. Perfect for hats, bags, and premium apparel.',
     'Custom Printed Patches':               'Want to showcase small details? Printed patches with a merrowed border deliver photo-quality designs at unbeatable prices.',
     'Custom No Background 3D Embroidery':   'Embroidered patches without a backing for a clean, floating look. These 3D transfers apply directly to garments for a sleek, modern finish.',
