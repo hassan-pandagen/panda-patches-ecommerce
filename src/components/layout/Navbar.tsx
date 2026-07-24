@@ -177,7 +177,7 @@ export default function Navbar() {
                     suppressHydrationWarning
                     className={`
                       flex items-center gap-1 whitespace-nowrap
-                      text-[11px] 2xl:text-[12px] font-bold tracking-wide px-2.5 2xl:px-4 py-2.5 rounded-full transition-all duration-300
+                      text-[0.6875rem] 2xl:text-[0.75rem] font-bold tracking-wide px-2.5 2xl:px-4 py-2.5 rounded-full transition-all duration-300
                       ${isActive
                         ? "bg-[#051C05] text-[#DFFF00] shadow-md"
                         : (link as any).highlight
@@ -221,7 +221,7 @@ export default function Navbar() {
                             href={subItem.href}
                             prefetch={false}
                             className="
-                              px-5 py-3 text-[13px] font-medium text-gray-600
+                              px-5 py-3 text-[0.8125rem] font-medium text-gray-600
                               hover:bg-[#F9FAF5] hover:text-panda-green hover:pl-7
                               transition-all duration-200 border-b border-gray-50 last:border-0
                             "
@@ -269,7 +269,7 @@ export default function Navbar() {
                 if (api?.toggle) api.toggle();
                 else if (api?.maximize) api.maximize();
               }}
-              className="flex items-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[14px] px-5 py-3 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
+              className="flex items-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[0.875rem] px-5 py-3 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
             >
               <MessageCircle size={18} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
               <span>Chat Now</span>
@@ -329,7 +329,7 @@ export default function Navbar() {
                       prefetch={false}
                       onClick={() => setIsMobileMenuOpen(false)}
                       suppressHydrationWarning
-                      className="flex-1 py-4 px-3 text-[15px] font-bold text-gray-800 uppercase tracking-wide"
+                      className="flex-1 py-4 px-3 text-[0.9375rem] font-bold text-gray-800 uppercase tracking-wide"
                     >
                       <span>{link.name}</span>
                     </Link>
@@ -356,11 +356,11 @@ export default function Navbar() {
                     {/* Inline-flex with whitespace-nowrap so 'OFFERS' never
                         concatenates with the 'HOT' pill on narrow viewports.
                         The pill is a separate flex sibling, not an inline node. */}
-                    <span className="inline-flex items-center gap-2 text-[15px] font-black text-orange-700 uppercase tracking-wide whitespace-nowrap">
+                    <span className="inline-flex items-center gap-2 text-[0.9375rem] font-black text-orange-700 uppercase tracking-wide whitespace-nowrap">
                       <span aria-hidden="true">🔥</span>
                       <span>{link.name}</span>
                     </span>
-                    <span className="flex-shrink-0 text-[10px] font-black bg-red-800 text-white px-2 py-0.5 rounded-full">
+                    <span className="flex-shrink-0 text-[0.625rem] font-black bg-red-800 text-white px-2 py-0.5 rounded-full">
                       HOT
                     </span>
                   </Link>
@@ -370,7 +370,7 @@ export default function Navbar() {
                     prefetch={false}
                     onClick={() => setIsMobileMenuOpen(false)}
                     suppressHydrationWarning
-                    className="block py-4 px-3 text-[15px] font-bold text-gray-800 uppercase tracking-wide hover:bg-gray-50 transition-colors"
+                    className="block py-4 px-3 text-[0.9375rem] font-bold text-gray-800 uppercase tracking-wide hover:bg-gray-50 transition-colors"
                   >
                     <span>{link.name}</span>
                   </Link>
@@ -385,7 +385,7 @@ export default function Navbar() {
                         href={subItem.href}
                         prefetch={false}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="block py-3 px-6 text-[14px] font-medium text-gray-600 hover:text-[#051C05] hover:bg-white transition-colors border-l-2 border-transparent hover:border-[#DFFF00]"
+                        className="block py-3 px-6 text-[0.875rem] font-medium text-gray-600 hover:text-[#051C05] hover:bg-white transition-colors border-l-2 border-transparent hover:border-[#DFFF00]"
                       >
                         {subItem.name}
                       </Link>
@@ -410,7 +410,7 @@ export default function Navbar() {
                 (window as any).Tawk_API.toggle();
               }
             }}
-            className="w-full flex items-center justify-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[15px] px-6 py-4 rounded-full hover:shadow-lg transition-all"
+            className="w-full flex items-center justify-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[0.9375rem] px-6 py-4 rounded-full hover:shadow-lg transition-all"
           >
             <MessageCircle size={20} strokeWidth={2.5} />
             <span>Chat Now</span>
@@ -422,7 +422,7 @@ export default function Navbar() {
           <Link
             href="/account"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="w-full flex items-center justify-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[15px] px-6 py-4 rounded-full hover:shadow-lg transition-all"
+            className="w-full flex items-center justify-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[0.9375rem] px-6 py-4 rounded-full hover:shadow-lg transition-all"
           >
             <UserPlus size={20} strokeWidth={2.5} />
             <span>Login / Register</span>

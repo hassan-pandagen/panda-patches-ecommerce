@@ -154,14 +154,14 @@ export default async function ScoutPatchesPage() {
 
       {/* WHAT WE MAKE — sets the honest scope up front */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[960px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6 text-center">
+        <div className="container mx-auto px-4 md:px-6 max-w-[60rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6 text-center">
             Custom Patches for Scout Units
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[17px] md:text-[19px] font-black text-panda-green mb-3">What we make</h3>
-              <ul className="space-y-2 text-[15px] text-gray-700 leading-relaxed list-disc pl-5">
+              <h3 className="text-[1.0625rem] md:text-[1.1875rem] font-black text-panda-green mb-3">What we make</h3>
+              <ul className="space-y-2 text-[0.9375rem] text-gray-700 leading-relaxed list-disc pl-5">
                 <li>Custom <strong>patrol patches</strong> — your patrol&apos;s own emblem</li>
                 <li>Troop and pack <strong>numerals</strong> and custom unit patches</li>
                 <li><strong>Camporee</strong>, summer-camp, and district event patches</li>
@@ -170,8 +170,8 @@ export default async function ScoutPatchesPage() {
               </ul>
             </div>
             <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <h3 className="text-[17px] md:text-[19px] font-black text-panda-dark mb-3">What to buy from a Scout Shop</h3>
-              <p className="text-[15px] text-gray-700 leading-relaxed">
+              <h3 className="text-[1.0625rem] md:text-[1.1875rem] font-black text-panda-dark mb-3">What to buy from a Scout Shop</h3>
+              <p className="text-[0.9375rem] text-gray-700 leading-relaxed">
                 Official <strong>rank badges</strong>, <strong>merit badges</strong>, and other official Scouts BSA insignia are produced only through BSA-licensed suppliers — get those from your council Scout Shop or ScoutShop.org. We make the <em>custom</em> patches your unit designs itself, not official insignia. If you are unsure which a patch is, ask your unit leader first.
               </p>
             </div>
@@ -186,11 +186,11 @@ export default async function ScoutPatchesPage() {
 
       {/* SEO CONTENT + reciprocal links into the scout guides (the citation engine) */}
       <section className="w-full py-8 md:py-12 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Custom Patrol & Troop Patches, Made to Your Design
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               A patrol&apos;s patch is its identity — the Flaming Arrows, the Screaming Eagles, the Radioactive Raccoons. We turn that idea into a real embroidered or woven patch your scouts wear with pride, from a <Link href="/custom-patches-no-minimum-order" className="text-panda-green font-bold underline">low 5-piece minimum</Link> with no setup fees. Send finished artwork or a rough sketch; our design team returns a free digital mockup in 12 to 24 hours, with unlimited revisions until your unit approves it.
             </p>

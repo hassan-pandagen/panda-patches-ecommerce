@@ -32,14 +32,14 @@ export default async function BulkCaseStudies() {
 
   return (
     <section className="w-full py-8 md:py-14 bg-white">
-      <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">
+      <div className="container mx-auto px-4 md:px-6 max-w-[68.75rem]">
 
         {/* Heading */}
         <div className="text-center mb-10 md:mb-14">
-          <h2 className="text-[24px] md:text-[36px] font-black text-panda-dark uppercase tracking-tight mb-4">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-panda-dark uppercase tracking-tight mb-4">
             Trusted by Brands & Organizations
           </h2>
-          <p className="text-[14px] md:text-[16px] text-gray-500 font-medium max-w-[600px] mx-auto">
+          <p className="text-[0.875rem] md:text-[1rem] text-gray-500 font-medium max-w-[37.5rem] mx-auto">
             From 500-piece fire department orders to 3,000-piece brand launches, we deliver quality at any scale.
           </p>
         </div>
@@ -68,25 +68,25 @@ export default async function BulkCaseStudies() {
                 )}
 
                 <div className="p-6">
-                  <h3 className="text-[16px] md:text-[18px] font-bold text-panda-dark leading-tight mb-3">
+                  <h3 className="text-[1rem] md:text-[1.125rem] font-bold text-panda-dark leading-tight mb-3">
                     {study.title}
                   </h3>
-                  <p className="text-[14px] md:text-[15px] text-gray-500 leading-[1.6] mb-4">
+                  <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-500 leading-[1.6] mb-4">
                     {study.description}
                   </p>
                   <div className="flex flex-nowrap gap-2">
                     {study.quantity && (
-                      <span className="bg-white text-[12px] md:text-[13px] font-bold text-panda-dark px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
+                      <span className="bg-white text-[0.75rem] md:text-[0.8125rem] font-bold text-panda-dark px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
                         {study.quantity}
                       </span>
                     )}
                     {study.patchType && (
-                      <span className="bg-white text-[12px] md:text-[13px] font-bold text-panda-green px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
+                      <span className="bg-white text-[0.75rem] md:text-[0.8125rem] font-bold text-panda-green px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
                         {study.patchType}
                       </span>
                     )}
                     {study.turnaround && (
-                      <span className="bg-white text-[12px] md:text-[13px] font-bold text-gray-500 px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
+                      <span className="bg-white text-[0.75rem] md:text-[0.8125rem] font-bold text-gray-500 px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
                         {study.turnaround}
                       </span>
                     )}
@@ -105,17 +105,17 @@ export default async function BulkCaseStudies() {
                   <div className="w-10 h-10 bg-panda-dark rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                     <study.icon className="w-5 h-5 text-panda-yellow" />
                   </div>
-                  <h3 className="text-[16px] md:text-[18px] font-bold text-panda-dark leading-tight">{study.title}</h3>
+                  <h3 className="text-[1rem] md:text-[1.125rem] font-bold text-panda-dark leading-tight">{study.title}</h3>
                 </div>
-                <p className="text-[14px] md:text-[15px] text-gray-500 leading-[1.6] mb-4">{study.description}</p>
+                <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-500 leading-[1.6] mb-4">{study.description}</p>
                 <div className="flex flex-nowrap gap-2">
-                  <span className="bg-white text-[12px] md:text-[13px] font-bold text-panda-dark px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
+                  <span className="bg-white text-[0.75rem] md:text-[0.8125rem] font-bold text-panda-dark px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
                     {study.quantity}
                   </span>
-                  <span className="bg-white text-[12px] md:text-[13px] font-bold text-panda-green px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
+                  <span className="bg-white text-[0.75rem] md:text-[0.8125rem] font-bold text-panda-green px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
                     {study.patchType}
                   </span>
-                  <span className="bg-white text-[12px] md:text-[13px] font-bold text-gray-500 px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
+                  <span className="bg-white text-[0.75rem] md:text-[0.8125rem] font-bold text-gray-500 px-2.5 py-1 rounded-full border border-gray-200 whitespace-nowrap">
                     {study.turnaround}
                   </span>
                 </div>
@@ -129,7 +129,7 @@ export default async function BulkCaseStudies() {
         <div className="text-center mt-10 md:mt-12">
           <Link
             href="/case-studies/wise-nasdaq-times-square-activation"
-            className="inline-flex items-center gap-2 bg-panda-dark text-white font-black text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:bg-panda-green transition-all"
+            className="inline-flex items-center gap-2 bg-panda-dark text-white font-black text-[0.875rem] md:text-[0.9375rem] px-6 py-3.5 rounded-full hover:bg-panda-green transition-all"
           >
             See a full case study: 9,600 patches for Wise&apos;s Nasdaq activation
             <span aria-hidden>&rarr;</span>

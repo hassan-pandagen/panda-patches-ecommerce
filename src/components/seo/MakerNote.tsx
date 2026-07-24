@@ -20,21 +20,21 @@ interface MakerNoteProps {
 export default function MakerNote({ intro }: MakerNoteProps) {
   return (
     <section className="w-full py-10 md:py-14 bg-white">
-      <div className="container mx-auto px-4 md:px-6 max-w-[820px]">
+      <div className="container mx-auto px-4 md:px-6 max-w-[51.25rem]">
         <div className="flex flex-col sm:flex-row items-start gap-5 bg-panda-light/60 border border-gray-100 rounded-2xl p-6 md:p-7">
           {/* Founder initials avatar — no invented headshot */}
           <div className="shrink-0 w-14 h-14 rounded-full bg-panda-green flex items-center justify-center">
-            <span className="text-white text-[18px] font-black tracking-tight">IR</span>
+            <span className="text-white text-[1.125rem] font-black tracking-tight">IR</span>
           </div>
 
           <div className="min-w-0">
-            <p className="text-[11px] font-bold uppercase tracking-wider text-panda-green mb-1">
+            <p className="text-[0.6875rem] font-bold uppercase tracking-wider text-panda-green mb-1">
               Who makes your patches
             </p>
-            <h2 className="text-[18px] md:text-[20px] font-black text-panda-dark leading-tight mb-2">
+            <h2 className="text-[1.125rem] md:text-[1.25rem] font-black text-panda-dark leading-tight mb-2">
               Imran Raza — Founder &amp; CEO, Panda Patches
             </h2>
-            <p className="text-[14px] text-gray-600 leading-[1.7]">
+            <p className="text-[0.875rem] text-gray-600 leading-[1.7]">
               {intro ? <span className="text-panda-dark font-semibold">{intro} </span> : null}
               Panda Patches (legally MC Patches LLC) is run by Imran Raza, who has spent 13+ years in
               custom patch and textile manufacturing. We&rsquo;re the maker, not a reseller. Most suppliers just
@@ -42,7 +42,7 @@ export default function MakerNote({ intro }: MakerNoteProps) {
               approve, and only then start production. If a finished patch isn&rsquo;t right, we remake it.
             </p>
 
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 text-[13px] font-bold text-panda-dark">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 text-[0.8125rem] font-bold text-panda-dark">
               <span>1,000,000+ patches delivered</span>
               <span className="text-gray-300">·</span>
               <span>{TRUSTPILOT_RATING}/5 from {TRUSTPILOT_REVIEW_COUNT_STR} Trustpilot reviews</span>
@@ -53,7 +53,7 @@ export default function MakerNote({ intro }: MakerNoteProps) {
             <Link
               href="/about"
               prefetch={false}
-              className="inline-flex items-center gap-1.5 mt-4 text-[14px] font-bold text-panda-green hover:gap-2.5 transition-all"
+              className="inline-flex items-center gap-1.5 mt-4 text-[0.875rem] font-bold text-panda-green hover:gap-2.5 transition-all"
             >
               More about how we work
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

@@ -73,7 +73,7 @@ export default function NavbarAuth() {
       <Link
         href="/login"
         prefetch={false}
-        className="flex items-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[14px] px-5 py-3 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
+        className="flex items-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[0.875rem] px-5 py-3 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group whitespace-nowrap"
       >
         <UserPlus size={18} strokeWidth={2.5} className="group-hover:scale-110 transition-transform" />
         <span>Login / Register</span>
@@ -101,12 +101,12 @@ export default function NavbarAuth() {
       <button
         onClick={() => setOpen(!open)}
         onBlur={() => setTimeout(() => setOpen(false), 120)}
-        className="flex items-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[14px] px-3 py-2 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+        className="flex items-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[0.875rem] px-3 py-2 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
       >
-        <span className="w-8 h-8 rounded-full bg-[#DFFF00] text-[#051C05] font-black text-[12px] flex items-center justify-center">
+        <span className="w-8 h-8 rounded-full bg-[#DFFF00] text-[#051C05] font-black text-[0.75rem] flex items-center justify-center">
           {initials}
         </span>
-        <span className="text-[13px] font-bold max-w-[120px] truncate">{displayName}</span>
+        <span className="text-[0.8125rem] font-bold max-w-[120px] truncate">{displayName}</span>
         <ChevronDown size={14} className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
 
@@ -115,7 +115,7 @@ export default function NavbarAuth() {
           <Link
             href="/account"
             prefetch={false}
-            className="flex items-center gap-3 px-4 py-2.5 text-[13px] font-semibold text-gray-700 hover:bg-[#F9FAF5] hover:text-panda-dark transition-colors"
+            className="flex items-center gap-3 px-4 py-2.5 text-[0.8125rem] font-semibold text-gray-700 hover:bg-[#F9FAF5] hover:text-panda-dark transition-colors"
           >
             <UserCircle size={16} className="text-panda-green" />
             My Account
@@ -123,7 +123,7 @@ export default function NavbarAuth() {
           <Link
             href="/account/orders"
             prefetch={false}
-            className="flex items-center gap-3 px-4 py-2.5 text-[13px] font-semibold text-gray-700 hover:bg-[#F9FAF5] hover:text-panda-dark transition-colors"
+            className="flex items-center gap-3 px-4 py-2.5 text-[0.8125rem] font-semibold text-gray-700 hover:bg-[#F9FAF5] hover:text-panda-dark transition-colors"
           >
             <Package size={16} className="text-panda-green" />
             My Orders
@@ -132,7 +132,7 @@ export default function NavbarAuth() {
           <form action="/auth/signout" method="post">
             <button
               type="submit"
-              className="w-full flex items-center gap-3 px-4 py-2.5 text-[13px] font-semibold text-gray-700 hover:bg-[#F9FAF5] hover:text-panda-dark transition-colors text-left"
+              className="w-full flex items-center gap-3 px-4 py-2.5 text-[0.8125rem] font-semibold text-gray-700 hover:bg-[#F9FAF5] hover:text-panda-dark transition-colors text-left"
             >
               <LogOut size={16} className="text-gray-400" />
               Sign Out

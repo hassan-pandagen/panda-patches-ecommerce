@@ -71,7 +71,7 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
       h3: ({children, value}: any) => <h3 id={slugifyBlock(value)} className="text-2xl font-bold text-panda-dark mt-10 mb-4">{children}</h3>,
 
       // Standard Paragraph
-      normal: ({children}: any) => <p className="text-[18px] leading-[1.8] text-gray-700 mb-6 font-normal">{children}</p>,
+      normal: ({children}: any) => <p className="text-[1.125rem] leading-[1.8] text-gray-700 mb-6 font-normal">{children}</p>,
 
       // Blockquote
       blockquote: ({children}: any) => <blockquote className="border-l-4 border-panda-yellow pl-6 py-2 my-8 italic text-xl text-gray-600 bg-gray-50 rounded-r-lg">{children}</blockquote>,
@@ -105,8 +105,8 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
     },
     list: {
       // Bullet Lists
-      bullet: ({children}: any) => <ul className="list-disc pl-6 mb-8 space-y-2 text-[18px] text-gray-700">{children}</ul>,
-      number: ({children}: any) => <ol className="list-decimal pl-6 mb-8 space-y-2 text-[18px] text-gray-700">{children}</ol>,
+      bullet: ({children}: any) => <ul className="list-disc pl-6 mb-8 space-y-2 text-[1.125rem] text-gray-700">{children}</ul>,
+      number: ({children}: any) => <ol className="list-decimal pl-6 mb-8 space-y-2 text-[1.125rem] text-gray-700">{children}</ol>,
     },
     types: {
       image: ({value}: {value: any}) => {
@@ -133,12 +133,12 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
         if (!value?.rows?.length) return null;
         return (
           <div className="overflow-x-auto my-8 rounded-xl border border-gray-200 shadow-sm">
-            <table className="w-full border-collapse text-[15px]">
+            <table className="w-full border-collapse text-[0.9375rem]">
               {value.headers?.length > 0 && (
                 <thead>
                   <tr>
                     {value.headers.map((h: string, i: number) => (
-                      <th key={i} className="bg-panda-dark text-white px-4 py-3 text-left font-bold text-[14px] whitespace-nowrap">{h}</th>
+                      <th key={i} className="bg-panda-dark text-white px-4 py-3 text-left font-bold text-[0.875rem] whitespace-nowrap">{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -165,7 +165,7 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
         return (
           <aside className="my-10 rounded-xl border-l-4 border-panda-green bg-[#F9FAF5] px-6 py-5 md:px-8 md:py-6">
             <p className="text-xs font-bold uppercase tracking-widest text-panda-green mb-2">{heading}</p>
-            <p className="text-[16px] leading-[1.75] text-gray-700 m-0">{value.body}</p>
+            <p className="text-[1rem] leading-[1.75] text-gray-700 m-0">{value.body}</p>
           </aside>
         );
       },
@@ -176,11 +176,11 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
     <main className="min-h-screen bg-white">
       <Navbar />
       
-      <article className="max-w-[800px] mx-auto pt-24 pb-12 px-6">
+      <article className="max-w-[50rem] mx-auto pt-24 pb-12 px-6">
 
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="mb-8">
-          <ol className="flex items-center gap-2 text-[13px] text-gray-500 flex-wrap">
+          <ol className="flex items-center gap-2 text-[0.8125rem] text-gray-500 flex-wrap">
             <li><Link href="/" className="hover:text-panda-dark transition-colors">Home</Link></li>
             <li className="select-none">/</li>
             <li><Link href="/blogs" className="hover:text-panda-dark transition-colors">Blog</Link></li>
@@ -189,13 +189,13 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
           </ol>
         </nav>
 
-        <h1 className="text-[42px] md:text-[52px] font-black text-panda-dark mb-6 leading-[1.2] tracking-tight [text-wrap:balance]">
+        <h1 className="text-[2.625rem] md:text-[3.25rem] font-black text-panda-dark mb-6 leading-[1.2] tracking-tight [text-wrap:balance]">
           {post.title}
         </h1>
 
         {/* Publish + Updated Dates */}
         {publishDate && (
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[14px] text-gray-500 mb-10">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.875rem] text-gray-500 mb-10">
             <span>
               Published <time dateTime={dateSource} className="font-medium text-gray-700">{publishDate}</time>
             </span>
@@ -225,7 +225,7 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
         {/* Speakable excerpt — rendered BEFORE byline so AI extractors pick up the actual
             lede as the page summary, not the author tag. Referenced by Speakable schema cssSelector. */}
         {post.excerpt && (
-          <p className="speakable-summary text-[18px] leading-[1.8] text-gray-600 font-medium mb-10 border-l-4 border-panda-yellow pl-5 italic">
+          <p className="speakable-summary text-[1.125rem] leading-[1.8] text-gray-600 font-medium mb-10 border-l-4 border-panda-yellow pl-5 italic">
             {post.excerpt}
           </p>
         )}
@@ -251,14 +251,14 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
               href="https://www.linkedin.com/in/imran-raza-ladhani/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[15px] font-bold text-panda-dark hover:underline"
+              className="text-[0.9375rem] font-bold text-panda-dark hover:underline"
             >
               Imran Raza
             </a>
-            <p className="text-[13px] text-gray-500">
+            <p className="text-[0.8125rem] text-gray-500">
               Founder & CEO · 13 years in patch manufacturing
             </p>
-            <p className="text-[12px] text-gray-400 mt-0.5">
+            <p className="text-[0.75rem] text-gray-400 mt-0.5">
               Reviewed by Imran Raza{publishDate ? ` · ${publishDate}` : ''}
             </p>
           </div>
@@ -295,12 +295,12 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
                 href="https://www.linkedin.com/in/imran-raza-ladhani/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[20px] font-black text-panda-dark hover:underline block mb-1"
+                className="text-[1.25rem] font-black text-panda-dark hover:underline block mb-1"
               >
                 Imran Raza
               </a>
-              <p className="text-[14px] text-gray-500 font-medium mb-3">Founder & CEO, Panda Patches</p>
-              <p className="text-[15px] text-gray-600 leading-[1.8]">
+              <p className="text-[0.875rem] text-gray-500 font-medium mb-3">Founder & CEO, Panda Patches</p>
+              <p className="text-[0.9375rem] text-gray-600 leading-[1.8]">
                 Imran brings 13 years of hands-on expertise in embroidered patches and textile manufacturing.
                 As the founder of Panda Patches, he oversees quality control, production standards, and customer satisfaction
                 for thousands of custom patch orders each year. He founded the company to make premium custom patches

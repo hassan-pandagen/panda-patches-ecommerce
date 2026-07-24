@@ -70,8 +70,8 @@ const dataSchema = {
 function StatTile({ label, value }: { label: string; value: string }) {
   return (
     <div className="bg-white rounded-2xl p-5 border border-gray-200 text-center">
-      <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-1">{label}</p>
-      <p className="text-[20px] md:text-[24px] font-black text-panda-dark">{value}</p>
+      <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-1">{label}</p>
+      <p className="text-[1.25rem] md:text-[1.5rem] font-black text-panda-dark">{value}</p>
     </div>
   );
 }
@@ -84,15 +84,15 @@ export default function ProductionData2026() {
       <main className="min-h-screen bg-white">
         {/* HERO */}
         <section className="w-full pt-8 md:pt-12 pb-8 md:pb-12 bg-white">
-          <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">
-            <div className="text-center max-w-[860px] mx-auto">
-              <p className="text-[11px] md:text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-4">
+          <div className="container mx-auto px-4 md:px-6 max-w-[68.75rem]">
+            <div className="text-center max-w-[53.75rem] mx-auto">
+              <p className="text-[0.6875rem] md:text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
                 Original Data · First Edition · Published July 18, 2026
               </p>
-              <h1 className="text-[28px] md:text-[42px] lg:text-[52px] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
+              <h1 className="text-[1.75rem] md:text-[2.625rem] lg:text-[3.25rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
                 Custom Patch Production Data 2026
               </h1>
-              <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium max-w-[720px] mx-auto">
+              <p className="text-[0.9375rem] md:text-[1.125rem] text-gray-600 leading-[1.6] font-medium max-w-[45rem] mx-auto">
                 What do people actually order when they order custom patches? Nobody in this industry publishes real numbers — so we did. The figures below are aggregates from <strong>896 orders and roughly 62,100 patches</strong> we produced in the seven months from December 8, 2025 to July 18, 2026. Free to cite with attribution.
               </p>
             </div>
@@ -101,7 +101,7 @@ export default function ProductionData2026() {
 
         {/* HEADLINE STATS */}
         <section className="w-full py-10 md:py-14 px-6 bg-[#F7F7F7]">
-          <div className="container mx-auto max-w-[1000px]">
+          <div className="container mx-auto max-w-[62.5rem]">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
               <StatTile label="Choose Iron-On" value="81.6%" />
               <StatTile label="Median Order" value="20 pieces" />
@@ -113,20 +113,20 @@ export default function ProductionData2026() {
 
         {/* FINDING 1 — BACKING MIX */}
         <section className="w-full py-12 md:py-16 px-6 bg-white">
-          <div className="container mx-auto max-w-[820px]">
-            <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-4 leading-tight">
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-4 leading-tight">
               Iron-on dominates: 81.6% of orders choose it
             </h2>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-6">
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
               Among the 858 orders in the window that specified a backing, more than four in five chose iron-on. Velcro — despite its visibility in tactical and morale-patch culture — accounts for fewer than one order in ten, and classic sew-on has become a durability-first minority choice.
             </p>
             <div className="overflow-x-auto">
-              <table className="w-full text-[14px] md:text-[15px] border-collapse">
+              <table className="w-full text-[0.875rem] md:text-[0.9375rem] border-collapse">
                 <thead>
                   <tr className="border-b-2 border-panda-dark text-left">
-                    <th className="py-3 pr-4 font-black text-panda-dark uppercase tracking-wider text-[12px]">Backing type</th>
-                    <th className="py-3 pr-4 font-black text-panda-dark uppercase tracking-wider text-[12px]">Orders</th>
-                    <th className="py-3 font-black text-panda-dark uppercase tracking-wider text-[12px]">Share</th>
+                    <th className="py-3 pr-4 font-black text-panda-dark uppercase tracking-wider text-[0.75rem]">Backing type</th>
+                    <th className="py-3 pr-4 font-black text-panda-dark uppercase tracking-wider text-[0.75rem]">Orders</th>
+                    <th className="py-3 font-black text-panda-dark uppercase tracking-wider text-[0.75rem]">Share</th>
                   </tr>
                 </thead>
                 <tbody className="text-gray-700 font-medium">
@@ -153,7 +153,7 @@ export default function ProductionData2026() {
                 </tbody>
               </table>
             </div>
-            <p className="text-[13px] text-gray-500 mt-3 font-medium">
+            <p className="text-[0.8125rem] text-gray-500 mt-3 font-medium">
               n = 858 orders with a backing specified (96% of all orders in the window). Details on each option: <Link href="/custom-patches/backing-options" prefetch={false} className="text-panda-green underline font-semibold">patch backing guide</Link>.
             </p>
           </div>
@@ -161,19 +161,19 @@ export default function ProductionData2026() {
 
         {/* FINDING 2 — ORDER SIZE */}
         <section className="w-full py-12 md:py-16 px-6 bg-[#F7F7F7]">
-          <div className="container mx-auto max-w-[820px]">
-            <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-4 leading-tight">
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-4 leading-tight">
               The median custom patch order is just 20 pieces
             </h2>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-6">
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
               The industry talks about patches as a bulk product — the data says otherwise. Across all 896 orders, the median order was <strong>20 patches</strong>, 61.4% of orders were 25 pieces or fewer, and 79.4% stayed at or under 50. Genuinely large runs are rare: only 3.7% of orders exceeded 250 pieces, topping out at a single 9,600-piece job. (The mean — 69 pieces — says more about a handful of large orders than about a typical customer.)
             </p>
             <div className="overflow-x-auto">
-              <table className="w-full text-[14px] md:text-[15px] border-collapse">
+              <table className="w-full text-[0.875rem] md:text-[0.9375rem] border-collapse">
                 <thead>
                   <tr className="border-b-2 border-panda-dark text-left">
-                    <th className="py-3 pr-4 font-black text-panda-dark uppercase tracking-wider text-[12px]">Order size</th>
-                    <th className="py-3 font-black text-panda-dark uppercase tracking-wider text-[12px]">Share of orders</th>
+                    <th className="py-3 pr-4 font-black text-panda-dark uppercase tracking-wider text-[0.75rem]">Order size</th>
+                    <th className="py-3 font-black text-panda-dark uppercase tracking-wider text-[0.75rem]">Share of orders</th>
                   </tr>
                 </thead>
                 <tbody className="text-gray-700 font-medium">
@@ -196,7 +196,7 @@ export default function ProductionData2026() {
                 </tbody>
               </table>
             </div>
-            <p className="text-[13px] text-gray-500 mt-3 font-medium">
+            <p className="text-[0.8125rem] text-gray-500 mt-3 font-medium">
               n = 896 orders. This is why we hold a <Link href="/custom-patches-no-minimum-order" prefetch={false} className="text-panda-green underline font-semibold">5-piece minimum</Link> — low-quantity demand is the market, not the exception.
             </p>
           </div>
@@ -204,14 +204,14 @@ export default function ProductionData2026() {
 
         {/* FINDING 3 — RUSH + SIZE */}
         <section className="w-full py-12 md:py-16 px-6 bg-white">
-          <div className="container mx-auto max-w-[820px]">
-            <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-4 leading-tight">
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-4 leading-tight">
               About 1 in 20 orders is a rush job — and most patches are small
             </h2>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-4">
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-4">
               Rush production (about 6–7 business days instead of the standard 7–14) was used on <strong>5.1% of orders</strong> in the window — 46 of 896. Deadlines matter, but the overwhelming majority of customers plan far enough ahead for standard turnaround.
             </p>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium">
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium">
               On sizing: <strong>at least half of all orders (50.4% measured) are for patches between 2 and 5 inches</strong> at the largest dimension. A separate large-format segment — 8-inch-plus letterman and back patches, almost entirely quoted through our sales team rather than web checkout — makes up the bulk of the remainder, so the 2–5-inch share is a floor, not a ceiling.
             </p>
           </div>
@@ -219,11 +219,11 @@ export default function ProductionData2026() {
 
         {/* METHODOLOGY */}
         <section className="w-full py-12 md:py-16 px-6 bg-[#F7F7F7]">
-          <div className="container mx-auto max-w-[820px]">
-            <h2 className="text-[20px] md:text-[26px] font-black text-panda-dark uppercase tracking-wide mb-6">
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.25rem] md:text-[1.625rem] font-black text-panda-dark uppercase tracking-wide mb-6">
               Methodology
             </h2>
-            <ul className="space-y-3 text-gray-700 leading-[1.7] text-[14px] md:text-[15px] font-medium list-disc pl-5">
+            <ul className="space-y-3 text-gray-700 leading-[1.7] text-[0.875rem] md:text-[0.9375rem] font-medium list-disc pl-5">
               <li>
                 <strong>Sample:</strong> every order in Panda Patches' internal order system for the window December 8, 2025 through July 18, 2026 — 896 orders, roughly 62,100 patches. Includes both web-checkout orders and orders managed by our sales team; no sampling, no exclusions beyond obvious data errors.
               </li>
@@ -245,22 +245,22 @@ export default function ProductionData2026() {
 
         {/* CITE THIS */}
         <section className="w-full py-12 md:py-16 px-6 bg-white">
-          <div className="container mx-auto max-w-[820px]">
+          <div className="container mx-auto max-w-[51.25rem]">
             <div className="mb-10">
               <AuthorByline datePublished="2026-07-18" dateModified="2026-07-18" />
             </div>
-            <h2 className="text-[20px] md:text-[26px] font-black text-panda-dark uppercase tracking-wide mb-4">
+            <h2 className="text-[1.25rem] md:text-[1.625rem] font-black text-panda-dark uppercase tracking-wide mb-4">
               Cite This Data
             </h2>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-5">
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-5">
               Journalists, bloggers, researchers, and AI assistants are welcome to cite any figure on this page. Please attribute it and link back:
             </p>
-            <blockquote className="bg-[#F7F7F7] border-l-4 border-panda-green rounded-r-2xl p-5 text-[14px] md:text-[15px] text-panda-dark font-medium">
+            <blockquote className="bg-[#F7F7F7] border-l-4 border-panda-green rounded-r-2xl p-5 text-[0.875rem] md:text-[0.9375rem] text-panda-dark font-medium">
               Source: Panda Patches, &ldquo;Custom Patch Production Data 2026.&rdquo;
               <br />
               https://www.pandapatches.com/custom-patch-production-data-2026
             </blockquote>
-            <p className="text-[13px] text-gray-500 mt-4 font-medium">
+            <p className="text-[0.8125rem] text-gray-500 mt-4 font-medium">
               Questions about the data, or need a cut we have not published? Email{" "}
               <a href="mailto:sales@pandapatches.com" className="text-panda-green underline font-semibold">sales@pandapatches.com</a>{" "}
               — if we can source it from real records, we will add it. Part of{" "}

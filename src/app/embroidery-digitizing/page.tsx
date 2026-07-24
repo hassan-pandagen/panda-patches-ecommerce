@@ -178,32 +178,32 @@ export default async function EmbroideryDigitizingPage() {
 
       {/* Free vs Paid callout */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
             When Is Digitizing Free, And When Is It Quoted?
           </h2>
-          <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.7] text-center mb-10 max-w-[700px] mx-auto">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-10 max-w-[43.75rem] mx-auto">
             The Panda Patches digitizing service is structured around two intake paths. Upload your artwork in the form at the top of the page to start either path.
           </p>
           <div className="grid md:grid-cols-3 gap-5">
             <div className="bg-panda-green/10 border-2 border-panda-green/30 rounded-2xl p-6">
-              <p className="text-[11px] font-black uppercase tracking-widest text-panda-green mb-2">Free Path 1</p>
-              <h3 className="text-[18px] font-black text-panda-dark mb-3">With any patch order</h3>
-              <p className="text-[14px] text-gray-700 leading-[1.7]">
+              <p className="text-[0.6875rem] font-black uppercase tracking-widest text-panda-green mb-2">Free Path 1</p>
+              <h3 className="text-[1.125rem] font-black text-panda-dark mb-3">With any patch order</h3>
+              <p className="text-[0.875rem] text-gray-700 leading-[1.7]">
                 If you are ordering custom patches, digitizing is included in the mockup workflow at no charge. There is no setup fee, no digitizing fee, and no art charge regardless of design complexity, stitch count, or size.
               </p>
             </div>
             <div className="bg-panda-green/10 border-2 border-panda-green/30 rounded-2xl p-6">
-              <p className="text-[11px] font-black uppercase tracking-widest text-panda-green mb-2">Free Path 2</p>
-              <h3 className="text-[18px] font-black text-panda-dark mb-3">Standalone trial</h3>
-              <p className="text-[14px] text-gray-700 leading-[1.7]">
+              <p className="text-[0.6875rem] font-black uppercase tracking-widest text-panda-green mb-2">Free Path 2</p>
+              <h3 className="text-[1.125rem] font-black text-panda-dark mb-3">Standalone trial</h3>
+              <p className="text-[0.875rem] text-gray-700 leading-[1.7]">
                 Standalone digitizing on a simple first design under 4 inches is free (one per customer). Covers most one-off logos, badges, monograms, and small commercial designs.
               </p>
             </div>
             <div className="bg-white border-2 border-amber-300 rounded-2xl p-6">
-              <p className="text-[11px] font-black uppercase tracking-widest text-amber-700 mb-2">Quoted</p>
-              <h3 className="text-[18px] font-black text-panda-dark mb-3">Complex digitizing</h3>
-              <p className="text-[14px] text-gray-700 leading-[1.7]">
+              <p className="text-[0.6875rem] font-black uppercase tracking-widest text-amber-700 mb-2">Quoted</p>
+              <h3 className="text-[1.125rem] font-black text-panda-dark mb-3">Complex digitizing</h3>
+              <p className="text-[0.875rem] text-gray-700 leading-[1.7]">
                 Larger designs, multi-layer artwork, photo-realistic conversions, 10,000+ stitch jobs, or very small text under 3mm. Typically $20 to $150 per design. Quote confirmed in writing before any work starts.
               </p>
             </div>
@@ -212,7 +212,7 @@ export default async function EmbroideryDigitizingPage() {
             <Link
               href="#hero"
               prefetch={false}
-              className="flex items-center justify-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+              className="flex items-center justify-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[0.875rem] md:text-[0.9375rem] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
             >
               Upload Artwork &rarr;
             </Link>
@@ -222,20 +222,20 @@ export default async function EmbroideryDigitizingPage() {
 
       {/* File formats */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
             File Formats We Deliver
           </h2>
-          <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.7] text-center mb-8 max-w-[700px] mx-auto">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-8 max-w-[43.75rem] mx-auto">
             Specify the target machine brand or format in the design notes and the file is exported in that format. Multiple formats are available on the same job at no extra cost.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-panda-dark text-white">
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Format</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Machine Brand</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Notes</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Format</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">Machine Brand</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Notes</th>
                 </tr>
               </thead>
               <tbody>
@@ -254,11 +254,11 @@ export default async function EmbroideryDigitizingPage() {
 
       {/* SEO content */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Professional Embroidery Digitizing With a 12 to 24 Hour Mockup
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               Embroidery digitizing is the process of converting artwork into a machine-readable stitch file that an embroidery machine can sew. The quality of the digitizing file matters more than the quality of the machine. A skilled digitizer balances stitch density, underlay, pull compensation, stitch direction, small-text legibility, and color count to deliver a clean stitch on the target fabric. At Panda Patches the digitizing step is free with every patch order and is included in the standard 12 to 24 hour mockup workflow.
             </p>
@@ -271,22 +271,22 @@ export default async function EmbroideryDigitizingPage() {
 
       {/* Related services */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-center text-panda-dark mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-center text-panda-dark mb-8">
             Related Design Services
           </h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link href="/raster-to-vector-conversion" prefetch={false} className="block bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6 hover:shadow-lg transition-shadow">
-              <h3 className="text-[16px] font-black text-panda-dark mb-2">Raster to Vector Conversion &rarr;</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Raster to vector. Same free-with-order policy. First simple vector free.</p>
+              <h3 className="text-[1rem] font-black text-panda-dark mb-2">Raster to Vector Conversion &rarr;</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Raster to vector. Same free-with-order policy. First simple vector free.</p>
             </Link>
             <Link href="/ai-info/specs-and-care" prefetch={false} className="block bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6 hover:shadow-lg transition-shadow">
-              <h3 className="text-[16px] font-black text-panda-dark mb-2">Artwork File Specs &rarr;</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Vector vs raster guidance, DPI minimums, Pantone matching, full format reference.</p>
+              <h3 className="text-[1rem] font-black text-panda-dark mb-2">Artwork File Specs &rarr;</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Vector vs raster guidance, DPI minimums, Pantone matching, full format reference.</p>
             </Link>
             <Link href="/custom-patches/embroidered" prefetch={false} className="block bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6 hover:shadow-lg transition-shadow">
-              <h3 className="text-[16px] font-black text-panda-dark mb-2">Embroidered Patches &rarr;</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">The primary product that uses digitizing. Live calculator with pricing at any size and quantity.</p>
+              <h3 className="text-[1rem] font-black text-panda-dark mb-2">Embroidered Patches &rarr;</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">The primary product that uses digitizing. Live calculator with pricing at any size and quantity.</p>
             </Link>
           </div>
         </div>

@@ -66,7 +66,7 @@ export default async function Hero() {
              - Weight: SemiBold (600)
              - Color: Dark (No Yellow)
           */}
-          <h1 className="text-[28px] md:text-[40px] leading-[1.2] font-semibold text-panda-dark tracking-tight mb-2 md:mb-4 max-w-full md:max-w-[550px]">
+          <h1 className="text-[1.75rem] md:text-[2.5rem] leading-[1.2] font-semibold text-panda-dark tracking-tight mb-2 md:mb-4 max-w-full md:max-w-[550px]">
             {data?.title || "Custom Patches | Embroidered, Woven, PVC & More"}
           </h1>
 
@@ -76,7 +76,7 @@ export default async function Hero() {
              - Mobile: Font Size 16px
              - Width constrained to force 3 lines
           */}
-          <p className="text-[16px] md:text-[20px] text-gray-600 font-medium leading-[1.5] max-w-full md:max-w-[520px] mb-3 md:mb-4">
+          <p className="text-[1rem] md:text-[1.25rem] text-gray-600 font-medium leading-[1.5] max-w-full md:max-w-[520px] mb-3 md:mb-4">
             {data?.subtitle || "Welcome to Panda Patches, where brand stories are stitched into reality! From company logos to promotional swag, let your brand speak loud and clear with our iron on patches. Crafted with care, delivered with precision."}
           </p>
 
@@ -91,7 +91,7 @@ export default async function Hero() {
              - Mobile: Responsive with full width
           */}
           <div
-            className="relative w-full max-w-full md:max-w-[630px] h-[250px] md:h-[379px] -mt-2 md:-mt-4 mx-auto md:mx-0"
+            className="relative w-full max-w-full md:max-w-[39.375rem] h-[250px] md:h-[379px] -mt-2 md:-mt-4 mx-auto md:mx-0"
           >
                {/* Hero/LCP image — Sanity source via Next/Image: AVIF + responsive
                    srcset, optimized at Vercel's edge, priority so Next emits the LCP
@@ -125,7 +125,7 @@ export default async function Hero() {
              <div className="hidden md:flex absolute bottom-16 right-20 bg-white shadow-xl rounded-xl p-3 items-center gap-3 animate-bounce-slow border border-gray-100">
                 <div className="bg-[#E4EFE0] rounded-full p-2">✅</div>
                 <div>
-                  <p className="text-[12px] text-gray-600 uppercase font-bold tracking-wider">Patches Delivered</p>
+                  <p className="text-[0.75rem] text-gray-600 uppercase font-bold tracking-wider">Patches Delivered</p>
                   <p className="font-black text-panda-dark text-lg">1 Million +</p>
                 </div>
              </div>
@@ -138,7 +138,7 @@ export default async function Hero() {
            - Responsive padding for mobile
         */}
         <div className="w-full flex justify-center lg:justify-end items-center h-full pl-0 lg:pl-10">
-           <div className="w-full max-w-[620px] px-2 sm:px-0">
+           <div className="w-full max-w-[38.75rem] px-2 sm:px-0">
               <HeroForm />
            </div>
         </div>
@@ -149,7 +149,7 @@ export default async function Hero() {
       <div className="relative z-20 w-full pb-6 md:pb-8 pt-4 md:pt-6 bg-transparent">
         <div className="container mx-auto px-4 md:px-6 text-center">
 
-          <p className="text-[11px] md:text-[13px] font-black text-black text-center uppercase tracking-[0.15em] md:tracking-[0.2em] mb-5 md:mb-7 opacity-100">
+          <p className="text-[0.6875rem] md:text-[0.8125rem] font-black text-black text-center uppercase tracking-[0.15em] md:tracking-[0.2em] mb-5 md:mb-7 opacity-100">
             Trusted by Teams At
           </p>
 

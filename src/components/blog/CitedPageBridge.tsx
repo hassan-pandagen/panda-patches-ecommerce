@@ -29,17 +29,17 @@ export default function CitedPageBridge({
 
   return (
     <aside className="my-10 rounded-2xl border-2 border-panda-green/30 bg-[#F9FAF5] px-6 py-5 md:px-8 md:py-6">
-      <p className="text-[11px] font-black uppercase tracking-widest text-panda-green mb-2">
+      <p className="text-[0.6875rem] font-black uppercase tracking-widest text-panda-green mb-2">
         From Panda Patches
       </p>
-      <p className="text-[17px] md:text-[19px] font-bold text-panda-dark leading-snug mb-3">
+      <p className="text-[1.0625rem] md:text-[1.1875rem] font-bold text-panda-dark leading-snug mb-3">
         {config.offer}
       </p>
       <Link
         href={config.href}
         prefetch={false}
         onClick={track}
-        className="inline-flex items-center gap-1.5 text-[15px] font-black text-panda-dark hover:text-panda-green transition-colors"
+        className="inline-flex items-center gap-1.5 text-[0.9375rem] font-black text-panda-dark hover:text-panda-green transition-colors"
       >
         {config.ctaLabel}
         <ArrowRight className="w-4 h-4" />

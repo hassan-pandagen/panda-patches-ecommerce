@@ -66,12 +66,12 @@ export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
           <div className="flex flex-col items-center text-center pt-6 pb-5 px-4 flex-grow">
 
             {/* Title */}
-            <h3 className="text-[18px] leading-[1.3] font-bold text-panda-dark mb-3 line-clamp-2">
+            <h3 className="text-[1.125rem] leading-[1.3] font-bold text-panda-dark mb-3 line-clamp-2">
               {currentBlog.title}
             </h3>
 
             {/* Excerpt */}
-            <p className="text-[14px] leading-[1.5] text-gray-600 mb-auto line-clamp-3">
+            <p className="text-[0.875rem] leading-[1.5] text-gray-600 mb-auto line-clamp-3">
               {currentBlog.excerpt}
             </p>
 
@@ -141,12 +141,12 @@ export default function BlogSwiper({ blogs }: { blogs: Blog[] }) {
               <div className="flex flex-col items-center text-center pt-8 pb-6 px-4 flex-grow h-[253px]">
                 
                 {/* Title */}
-                <h3 className="text-[22px] leading-[1.3] font-bold text-panda-dark mb-4">
+                <h3 className="text-[1.375rem] leading-[1.3] font-bold text-panda-dark mb-4">
                   {blog.title}
                 </h3>
 
                 {/* Excerpt */}
-                <p className="text-[15px] leading-[1.6] text-gray-600 mb-auto line-clamp-3">
+                <p className="text-[0.9375rem] leading-[1.6] text-gray-600 mb-auto line-clamp-3">
                   {blog.excerpt}
                 </p>
 

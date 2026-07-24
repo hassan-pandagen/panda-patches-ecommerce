@@ -151,8 +151,8 @@ export default async function MagneticPatchesPage() {
 
       {/* ANSWER-FIRST */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] max-w-[820px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] max-w-[51.25rem]">
             Yes, Panda Patches makes <strong>magnetic patches and magnetic name badges</strong> with a no-hole,
             no-sew backing, from a low 5-piece minimum. A magnet bonded behind the patch pairs with a counterpart
             magnet behind the fabric, clamping the garment between them so the patch holds firmly without a pin.
@@ -168,8 +168,8 @@ export default async function MagneticPatchesPage() {
 
       {/* WHO USES IT */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1000px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[62.5rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
             Who Wears Magnetic Badges
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -180,8 +180,8 @@ export default async function MagneticPatchesPage() {
               { title: "Corporate uniforms", body: "Daily-wear name and role badges on shirts, suits, and lab coats." },
             ].map((u) => (
               <div key={u.title} className="bg-white border border-gray-100 rounded-2xl p-6">
-                <h3 className="text-[16px] font-black text-panda-dark mb-2">{u.title}</h3>
-                <p className="text-[14px] text-gray-600 leading-[1.6]">{u.body}</p>
+                <h3 className="text-[1rem] font-black text-panda-dark mb-2">{u.title}</h3>
+                <p className="text-[0.875rem] text-gray-600 leading-[1.6]">{u.body}</p>
               </div>
             ))}
           </div>
@@ -190,10 +190,10 @@ export default async function MagneticPatchesPage() {
 
       {/* SAFETY NOTE */}
       <section className="w-full py-8 md:py-10 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
           <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
-            <h3 className="text-[16px] font-black text-amber-900 mb-2">A note on magnet safety</h3>
-            <p className="text-[14px] text-amber-900/90 leading-[1.7]">
+            <h3 className="text-[1rem] font-black text-amber-900 mb-2">A note on magnet safety</h3>
+            <p className="text-[0.875rem] text-amber-900/90 leading-[1.7]">
               Magnets can interfere with pacemakers and other implanted medical devices. Anyone with such a
               device should not wear a magnetic patch and should choose pin, <Link href="/custom-velcro-patches" prefetch={false} className="underline font-semibold">Velcro</Link>, or <Link href="/sew-on-patches" prefetch={false} className="underline font-semibold">sew-on</Link> backing
               instead. Keep magnetic patches away from credit cards and hard drives. We are happy to advise on a
@@ -211,11 +211,11 @@ export default async function MagneticPatchesPage() {
 
       {/* SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Order Custom Magnetic Name Badges From 5 Pieces
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               Magnetic backing is the professional choice for badges that are worn daily and must not damage the
               garment. Because two magnets grip the fabric instead of a pin piercing it, magnetic patches protect
@@ -235,8 +235,8 @@ export default async function MagneticPatchesPage() {
       </section>
 
       <section className="w-full pb-10 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[14px] text-gray-500 leading-relaxed">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.875rem] text-gray-500 leading-relaxed">
             <span className="font-bold text-panda-dark">Related:</span>{" "}
             <Link href="/how-to-choose-the-right-custom-patch-size-type-backing-guide" prefetch={false} className="text-panda-green underline font-semibold">How to Choose the Right Patch</Link>
             {" · "}

@@ -64,7 +64,7 @@ export default function AnnouncementBar() {
   return (
     <div
       id="announcement-bar"
-      className={`w-full bg-panda-dark text-white text-[13px] font-semibold px-4 flex items-center justify-center gap-3 relative overflow-hidden transition-all duration-300 ease-out ${
+      className={`w-full bg-panda-dark text-white text-[0.8125rem] font-semibold px-4 flex items-center justify-center gap-3 relative overflow-hidden transition-all duration-300 ease-out ${
         collapsed ? "max-h-0 py-0 opacity-0" : "max-h-[60px] py-2 opacity-100"
       }`}
       aria-hidden={collapsed}

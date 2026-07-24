@@ -64,7 +64,7 @@ function PatchCard({ patch }: { patch: PatchCard }) {
         )}
       </div>
       <div className="mt-4 text-center">
-        <h3 className="text-[18px] font-bold text-panda-dark leading-tight">
+        <h3 className="text-[1.125rem] font-bold text-panda-dark leading-tight">
           {patch.label}
         </h3>
       </div>

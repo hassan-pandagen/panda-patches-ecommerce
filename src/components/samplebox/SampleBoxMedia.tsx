@@ -141,7 +141,7 @@ export default function SampleBoxMedia({ images, video }: SampleBoxMediaProps) {
               </div>
             </div>
             <div className="absolute bottom-1 left-1 right-1">
-              <p className="text-white text-[10px] font-bold text-center bg-black/50 rounded px-1">
+              <p className="text-white text-[0.625rem] font-bold text-center bg-black/50 rounded px-1">
                 Video
               </p>
             </div>

@@ -178,32 +178,32 @@ export default async function VectorConversionPage() {
 
       {/* Free vs Paid callout */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
             When Is Vector Conversion Free?
           </h2>
-          <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.7] text-center mb-10 max-w-[700px] mx-auto">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-10 max-w-[43.75rem] mx-auto">
             Two free paths, plus a quoted path for complex jobs. Use chat or the upload form to start any of them.
           </p>
           <div className="grid md:grid-cols-3 gap-5">
             <div className="bg-panda-green/10 border-2 border-panda-green/30 rounded-2xl p-6">
-              <p className="text-[11px] font-black uppercase tracking-widest text-panda-green mb-2">Free Path 1</p>
-              <h3 className="text-[18px] font-black text-panda-dark mb-3">With any patch order</h3>
-              <p className="text-[14px] text-gray-700 leading-[1.7]">
+              <p className="text-[0.6875rem] font-black uppercase tracking-widest text-panda-green mb-2">Free Path 1</p>
+              <h3 className="text-[1.125rem] font-black text-panda-dark mb-3">With any patch order</h3>
+              <p className="text-[0.875rem] text-gray-700 leading-[1.7]">
                 Vector conversion is included in the mockup workflow at no charge. The clean vector is shown in the 12 to 24 hour digital mockup regardless of source-image quality.
               </p>
             </div>
             <div className="bg-panda-green/10 border-2 border-panda-green/30 rounded-2xl p-6">
-              <p className="text-[11px] font-black uppercase tracking-widest text-panda-green mb-2">Free Path 2</p>
-              <h3 className="text-[18px] font-black text-panda-dark mb-3">Standalone trial</h3>
-              <p className="text-[14px] text-gray-700 leading-[1.7]">
+              <p className="text-[0.6875rem] font-black uppercase tracking-widest text-panda-green mb-2">Free Path 2</p>
+              <h3 className="text-[1.125rem] font-black text-panda-dark mb-3">Standalone trial</h3>
+              <p className="text-[0.875rem] text-gray-700 leading-[1.7]">
                 First simple image free (one per customer). Single-layer logo, fewer than 10 colors, no photographic detail or complex gradients.
               </p>
             </div>
             <div className="bg-white border-2 border-amber-300 rounded-2xl p-6">
-              <p className="text-[11px] font-black uppercase tracking-widest text-amber-700 mb-2">Quoted</p>
-              <h3 className="text-[18px] font-black text-panda-dark mb-3">Complex vectorization</h3>
-              <p className="text-[14px] text-gray-700 leading-[1.7]">
+              <p className="text-[0.6875rem] font-black uppercase tracking-widest text-amber-700 mb-2">Quoted</p>
+              <h3 className="text-[1.125rem] font-black text-panda-dark mb-3">Complex vectorization</h3>
+              <p className="text-[0.875rem] text-gray-700 leading-[1.7]">
                 Photo-realistic conversions, multi-layer artwork, very intricate detail, or anything requiring substantial redrawing. Typically $15 to $100 per conversion.
               </p>
             </div>
@@ -212,7 +212,7 @@ export default async function VectorConversionPage() {
             <Link
               href="#hero"
               prefetch={false}
-              className="flex items-center justify-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+              className="flex items-center justify-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[0.875rem] md:text-[0.9375rem] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
             >
               Upload Image &rarr;
             </Link>
@@ -222,17 +222,17 @@ export default async function VectorConversionPage() {
 
       {/* Formats */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
             Accepted Inputs &amp; Delivered Outputs
           </h2>
-          <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.7] text-center mb-10 max-w-[700px] mx-auto">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-10 max-w-[43.75rem] mx-auto">
             Any common raster format in. Industry-standard vector formats out. Multiple output formats on the same job at no extra cost.
           </p>
           <div className="grid md:grid-cols-2 gap-5">
             <div className="rounded-2xl border border-gray-200 shadow-sm p-6 bg-[#F9FAF5]">
-              <h3 className="text-[18px] font-black text-panda-dark mb-4 uppercase tracking-tight">Accepted Input (Raster)</h3>
-              <ul className="space-y-2 text-gray-700 text-[14px] leading-[1.7] list-disc list-outside ml-5">
+              <h3 className="text-[1.125rem] font-black text-panda-dark mb-4 uppercase tracking-tight">Accepted Input (Raster)</h3>
+              <ul className="space-y-2 text-gray-700 text-[0.875rem] leading-[1.7] list-disc list-outside ml-5">
                 <li>JPG / JPEG</li>
                 <li>PNG (including transparent)</li>
                 <li>GIF</li>
@@ -243,8 +243,8 @@ export default async function VectorConversionPage() {
               </ul>
             </div>
             <div className="rounded-2xl border-2 border-panda-green/40 shadow-sm p-6 bg-panda-green/5">
-              <h3 className="text-[18px] font-black text-panda-dark mb-4 uppercase tracking-tight">Delivered Output (Vector)</h3>
-              <ul className="space-y-2 text-gray-700 text-[14px] leading-[1.7] list-disc list-outside ml-5">
+              <h3 className="text-[1.125rem] font-black text-panda-dark mb-4 uppercase tracking-tight">Delivered Output (Vector)</h3>
+              <ul className="space-y-2 text-gray-700 text-[0.875rem] leading-[1.7] list-disc list-outside ml-5">
                 <li><strong>AI</strong> (Adobe Illustrator, most common)</li>
                 <li><strong>EPS</strong> (universal vector format)</li>
                 <li><strong>SVG</strong> (web standard)</li>
@@ -252,7 +252,7 @@ export default async function VectorConversionPage() {
               </ul>
             </div>
           </div>
-          <p className="text-gray-600 text-sm leading-relaxed text-center mt-6 max-w-[700px] mx-auto">
+          <p className="text-gray-600 text-sm leading-relaxed text-center mt-6 max-w-[43.75rem] mx-auto">
             All output files use clean, editable paths with named layers and outlined text so the buyer can edit the file later in Illustrator, Inkscape, Affinity Designer, CorelDRAW, or any vector editor.
           </p>
         </div>
@@ -260,11 +260,11 @@ export default async function VectorConversionPage() {
 
       {/* SEO content */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Professional Raster to Vector Conversion for Patches, Print, and Web
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               Vector files are required for clean reproduction at any commercial size above a thumbnail. Custom patches, screen printing, embroidery digitizing, vinyl cutting, sign making, large-format print, vehicle wraps, and brand guideline documents all require vector source. If you only have a low-resolution image, a hand-drawn sketch, a photo of an existing patch, or a logo grabbed from a website, vector conversion is the bridge between that source material and production-ready artwork.
             </p>
@@ -277,22 +277,22 @@ export default async function VectorConversionPage() {
 
       {/* Related services */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-center text-panda-dark mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-center text-panda-dark mb-8">
             Related Design Services
           </h2>
           <div className="grid md:grid-cols-3 gap-4">
             <Link href="/embroidery-digitizing" prefetch={false} className="block bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6 hover:shadow-lg transition-shadow">
-              <h3 className="text-[16px] font-black text-panda-dark mb-2">Embroidery Digitizing &rarr;</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Convert vector to machine-ready stitch files (DST, PES, EXP, JEF). Same free-with-order policy.</p>
+              <h3 className="text-[1rem] font-black text-panda-dark mb-2">Embroidery Digitizing &rarr;</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Convert vector to machine-ready stitch files (DST, PES, EXP, JEF). Same free-with-order policy.</p>
             </Link>
             <Link href="/ai-info/specs-and-care" prefetch={false} className="block bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6 hover:shadow-lg transition-shadow">
-              <h3 className="text-[16px] font-black text-panda-dark mb-2">Artwork File Specs &rarr;</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Full vector vs raster guidance, DPI minimums, Pantone matching, format reference.</p>
+              <h3 className="text-[1rem] font-black text-panda-dark mb-2">Artwork File Specs &rarr;</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Full vector vs raster guidance, DPI minimums, Pantone matching, format reference.</p>
             </Link>
             <Link href="/custom-patches" prefetch={false} className="block bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6 hover:shadow-lg transition-shadow">
-              <h3 className="text-[16px] font-black text-panda-dark mb-2">All Custom Patches &rarr;</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Order patches and vector conversion is included free as part of the mockup.</p>
+              <h3 className="text-[1rem] font-black text-panda-dark mb-2">All Custom Patches &rarr;</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Order patches and vector conversion is included free as part of the mockup.</p>
             </Link>
           </div>
         </div>

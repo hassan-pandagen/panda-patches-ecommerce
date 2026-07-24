@@ -36,11 +36,11 @@ function OfferPackCard({ pack, category, onSelect, isSelected }: {
       className={`relative cursor-pointer rounded-2xl border-2 p-3 md:p-5 flex flex-col gap-1.5 md:gap-2 transition-all duration-200 bg-white hover:shadow-lg hover:-translate-y-0.5 ${isSelected ? 'border-[#051C05] shadow-xl' : 'border-gray-200 hover:border-gray-400'}`}
     >
       {pack.badge && (
-        <span className={`absolute -top-2.5 left-3 text-[10px] md:text-[11px] font-bold px-2 md:px-3 py-0.5 rounded-full ${pack.badge === 'Best Value' ? 'bg-[#DFFF00] text-[#051C05]' : 'bg-[#051C05] text-[#DFFF00]'}`}>
+        <span className={`absolute -top-2.5 left-3 text-[0.625rem] md:text-[0.6875rem] font-bold px-2 md:px-3 py-0.5 rounded-full ${pack.badge === 'Best Value' ? 'bg-[#DFFF00] text-[#051C05]' : 'bg-[#051C05] text-[#DFFF00]'}`}>
           {pack.badge}
         </span>
       )}
-      <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">{pack.name}</div>
+      <div className="text-[0.625rem] md:text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">{pack.name}</div>
       <div className="text-lg md:text-2xl font-black text-[#051C05]">${pack.price.toLocaleString('en-US')}</div>
       <div className="text-xs md:text-sm text-gray-500">{pack.qty} patches</div>
       <div className="text-xs md:text-sm font-bold text-green-700">${pack.perPiece.toFixed(2)}/pc</div>
@@ -188,7 +188,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
             ].map(item => (
               <div key={item.label} className="flex flex-col items-center justify-center py-5 px-3 bg-[#051C05]/80 backdrop-blur-sm">
                 <span className="text-xl sm:text-2xl font-black text-[#DFFF00] tracking-tight">{item.stat}</span>
-                <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mt-1 text-center leading-tight">{item.label}</span>
+                <span className="text-[0.625rem] font-semibold text-gray-400 uppercase tracking-widest mt-1 text-center leading-tight">{item.label}</span>
               </div>
             ))}
           </div>

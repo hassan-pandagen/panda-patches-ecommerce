@@ -63,10 +63,10 @@ export default function ProductInfoCarousel({
        <div className="w-[100px] md:w-[120px] h-[40px] md:h-[50px] relative mb-4">
          <Image src="/assets/logo-panda.svg" alt="Panda" fill className="object-contain" sizes="120px" quality={90} />
        </div>
-       <h3 className="text-[22px] md:text-[26px] font-black text-panda-dark text-center leading-tight">
+       <h3 className="text-[1.375rem] md:text-[1.625rem] font-black text-panda-dark text-center leading-tight">
          {title}
        </h3>
-       <p className="text-[13px] md:text-[14px] text-gray-400 mt-2 font-medium tracking-wide text-center">
+       <p className="text-[0.8125rem] md:text-[0.875rem] text-gray-400 mt-2 font-medium tracking-wide text-center">
          {subtitle}
        </p>
     </div>
@@ -81,10 +81,10 @@ export default function ProductInfoCarousel({
           <div className="w-[100px] h-[40px] relative mx-auto mb-4">
             <Image src="/assets/logo-panda.svg" alt="Panda" fill className="object-contain" sizes="100px" quality={90} />
           </div>
-          <h3 className="text-[24px] font-black text-panda-dark uppercase tracking-tight">
+          <h3 className="text-[1.5rem] font-black text-panda-dark uppercase tracking-tight">
             {title}
           </h3>
-          <p className="text-[13px] text-gray-500 mt-2 font-medium">
+          <p className="text-[0.8125rem] text-gray-500 mt-2 font-medium">
             {subtitle}
           </p>
         </div>
@@ -153,16 +153,16 @@ export default function ProductInfoCarousel({
                        quality={90}
                      />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-400 text-[12px]">Image</div>
+                    <div className="w-full h-full flex items-center justify-center text-gray-400 text-[0.75rem]">Image</div>
                   )}
                 </div>
 
                 {/* Text Area - Responsive */}
                 <div className="flex-1 flex flex-col items-center text-center justify-center p-3 md:p-4">
-                   <h4 className="text-[16px] md:text-[18px] font-bold text-panda-dark mb-2 leading-tight">
+                   <h4 className="text-[1rem] md:text-[1.125rem] font-bold text-panda-dark mb-2 leading-tight">
                      {card.title}
                    </h4>
-                   <p className="text-[13px] md:text-[14px] leading-[18px] md:leading-[20px] font-normal text-gray-600">
+                   <p className="text-[0.8125rem] md:text-[0.875rem] leading-[1.125rem] md:leading-[1.25rem] font-normal text-gray-600">
                      {card.description}
                    </p>
                 </div>

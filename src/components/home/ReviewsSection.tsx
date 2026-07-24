@@ -45,19 +45,19 @@ const reviews = [
 function ReviewCard({ review }: { review: typeof reviews[0] }) {
   return (
     <div className="bg-white rounded-[16px] p-5 border border-gray-100 shadow-sm h-full flex flex-col">
-      <h3 className="text-[14px] font-bold text-panda-dark mb-2 leading-snug">
+      <h3 className="text-[0.875rem] font-bold text-panda-dark mb-2 leading-snug">
         {review.title}
       </h3>
-      <p className="text-[13px] text-gray-500 leading-[1.7] flex-1">
+      <p className="text-[0.8125rem] text-gray-500 leading-[1.7] flex-1">
         {review.body}
       </p>
       <div className="flex items-center gap-2.5 pt-4 mt-4 border-t border-gray-100">
         <div className={`w-8 h-8 rounded-full ${review.color} flex items-center justify-center flex-shrink-0`}>
-          <span className="text-gray-900 text-[11px] font-bold">{review.initials}</span>
+          <span className="text-gray-900 text-[0.6875rem] font-bold">{review.initials}</span>
         </div>
         <div className="min-w-0">
-          <p className="text-[12px] font-bold text-panda-dark leading-tight truncate">{review.name}</p>
-          <p className="text-[11px] text-gray-600">{review.location} · {review.date}</p>
+          <p className="text-[0.75rem] font-bold text-panda-dark leading-tight truncate">{review.name}</p>
+          <p className="text-[0.6875rem] text-gray-600">{review.location} · {review.date}</p>
         </div>
       </div>
     </div>
@@ -89,14 +89,14 @@ export default function ReviewsSection() {
 
   return (
     <section className="w-full py-8 md:py-12 bg-panda-light overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">
+      <div className="container mx-auto px-4 md:px-6 max-w-[68.75rem]">
 
         {/* Header */}
         <div className="text-center mb-10">
-          <h2 className="text-[24px] md:text-[36px] font-black text-panda-dark uppercase tracking-tight mb-3">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-panda-dark uppercase tracking-tight mb-3">
             What Our Customers Say
           </h2>
-          <p className="text-[14px] md:text-[16px] text-gray-500 font-medium max-w-[500px] mx-auto">
+          <p className="text-[0.875rem] md:text-[1rem] text-gray-500 font-medium max-w-[500px] mx-auto">
             Real orders. Real people. See why customers keep coming back.
           </p>
         </div>
@@ -141,7 +141,7 @@ export default function ReviewsSection() {
         <div className="text-center mt-6 md:mt-8">
           <Link
             href="/reviews"
-            className="inline-flex items-center gap-2 text-[14px] font-bold text-panda-dark hover:text-panda-green transition-colors"
+            className="inline-flex items-center gap-2 text-[0.875rem] font-bold text-panda-dark hover:text-panda-green transition-colors"
           >
             Read all customer reviews
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

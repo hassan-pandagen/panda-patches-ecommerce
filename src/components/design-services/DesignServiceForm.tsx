@@ -216,18 +216,18 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <CheckCircle className="w-8 h-8 text-green-600" />
           </div>
-          <h3 className="text-[22px] font-black text-panda-dark mb-2">Quote Request Sent!</h3>
-          <p className="text-gray-500 font-medium text-[14px] mb-6">{message.text}</p>
+          <h3 className="text-[1.375rem] font-black text-panda-dark mb-2">Quote Request Sent!</h3>
+          <p className="text-gray-500 font-medium text-[0.875rem] mb-6">{message.text}</p>
           <button
             type="button"
             onClick={() => setMessage(null)}
-            className="bg-panda-dark text-panda-yellow font-bold px-8 py-3 rounded-[10px] hover:scale-105 transition-transform uppercase tracking-wider text-[14px]"
+            className="bg-panda-dark text-panda-yellow font-bold px-8 py-3 rounded-[10px] hover:scale-105 transition-transform uppercase tracking-wider text-[0.875rem]"
           >
             Submit Another Quote
           </button>
           <div className="flex items-center justify-center gap-2 mt-4">
             <Phone className="w-3.5 h-3.5 text-panda-green" />
-            <span className="text-[12px] text-gray-500 font-medium">Need it faster? Call (302) 250-4340</span>
+            <span className="text-[0.75rem] text-gray-500 font-medium">Need it faster? Call (302) 250-4340</span>
           </div>
           <FormFeedback formType="bulk_quote" />
         </div>
@@ -240,16 +240,16 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
 
           {/* Header */}
           <div className="text-center mb-5">
-            <h3 className="text-[22px] md:text-[24px] font-black text-panda-dark uppercase tracking-tight leading-tight">
+            <h3 className="text-[1.375rem] md:text-[1.5rem] font-black text-panda-dark uppercase tracking-tight leading-tight">
               {copy.heading}
             </h3>
-            <p className="text-[12px] md:text-[13px] text-gray-500 font-medium mt-1.5">{copy.subheading}</p>
+            <p className="text-[0.75rem] md:text-[0.8125rem] text-gray-500 font-medium mt-1.5">{copy.subheading}</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-3" noValidate>
             {/* Error */}
             {message?.type === "error" && (
-              <div className="p-3 rounded-[10px] text-[13px] font-semibold flex items-center gap-2 bg-red-50 text-red-700 border border-red-200">
+              <div className="p-3 rounded-[10px] text-[0.8125rem] font-semibold flex items-center gap-2 bg-red-50 text-red-700 border border-red-200">
                 {message.text}
               </div>
             )}
@@ -265,7 +265,7 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
                 className={`bulk-field ${errors.name ? "border-red-400 bg-red-50" : ""}`}
                 autoComplete="name"
               />
-              {errors.name && <p id="design-name-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.name.message)}</p>}
+              {errors.name && <p id="design-name-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.name.message)}</p>}
             </div>
 
             {/* Email + Phone */}
@@ -282,7 +282,7 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
                   autoComplete="email"
                   onBlur={handleEmailBlur}
                 />
-                {errors.email && <p id="design-email-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
+                {errors.email && <p id="design-email-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
               </div>
               <div>
                 <input
@@ -294,7 +294,7 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
                   className={`bulk-field ${errors.phone ? "border-red-400 bg-red-50" : ""}`}
                   autoComplete="tel"
                 />
-                {errors.phone && <p id="design-phone-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.phone.message)}</p>}
+                {errors.phone && <p id="design-phone-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.phone.message)}</p>}
               </div>
             </div>
 
@@ -309,7 +309,7 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
                   aria-describedby={errors.size ? "design-size-error" : undefined}
                   className={`bulk-field ${errors.size ? "border-red-400 bg-red-50" : ""}`}
                 />
-                {errors.size && <p id="design-size-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.size.message)}</p>}
+                {errors.size && <p id="design-size-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.size.message)}</p>}
               </div>
               <div>
                 <input
@@ -320,7 +320,7 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
                   aria-describedby={errors.formatRequired ? "design-format-error" : undefined}
                   className={`bulk-field ${errors.formatRequired ? "border-red-400 bg-red-50" : ""}`}
                 />
-                {errors.formatRequired && <p id="design-format-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.formatRequired.message)}</p>}
+                {errors.formatRequired && <p id="design-format-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.formatRequired.message)}</p>}
               </div>
             </div>
 
@@ -330,11 +330,11 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
                 {uploadedFiles.map((f, i) => (
                   <div key={i} className="flex items-center gap-3 px-3 py-2.5 bg-green-50 border border-green-300 rounded-[10px]">
                     <Check className="text-green-600 flex-shrink-0" size={15} strokeWidth={3} />
-                    <span className="text-[12px] text-green-700 font-bold truncate flex-1">{f.name}</span>
+                    <span className="text-[0.75rem] text-green-700 font-bold truncate flex-1">{f.name}</span>
                     <button
                       type="button"
                       onClick={() => removeUploadedFile(i)}
-                      className="flex-shrink-0 w-5 h-5 rounded-full bg-red-100 hover:bg-red-200 text-red-600 flex items-center justify-center transition-colors font-black text-[10px]"
+                      className="flex-shrink-0 w-5 h-5 rounded-full bg-red-100 hover:bg-red-200 text-red-600 flex items-center justify-center transition-colors font-black text-[0.625rem]"
                       aria-label="Remove file"
                     >
                       ✕
@@ -358,12 +358,12 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
                 {uploading ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-panda-green flex-shrink-0" />
-                    <p className="text-[12px] text-gray-500 font-bold">Uploading...</p>
+                    <p className="text-[0.75rem] text-gray-500 font-bold">Uploading...</p>
                   </>
                 ) : (
                   <>
                     <UploadCloud className="text-gray-400 group-hover:text-panda-green transition-colors flex-shrink-0" size={20} />
-                    <p className="text-[12px] text-gray-500 font-bold">
+                    <p className="text-[0.75rem] text-gray-500 font-bold">
                       {uploadedFiles.length === 1 ? (
                         "Add a 2nd file (optional)"
                       ) : (
@@ -391,7 +391,7 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
               disabled={isSubmitting || uploading}
               className="
                 w-full bg-panda-dark text-panda-yellow
-                font-black text-[16px] md:text-[18px]
+                font-black text-[1rem] md:text-[1.125rem]
                 py-4 rounded-[12px]
                 hover:bg-black hover:scale-[1.01]
                 transition-all duration-300
@@ -408,15 +408,15 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
           <div className="flex items-center justify-center gap-4 md:gap-6 mt-4 pt-4 border-t border-gray-100">
             <div className="flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-panda-green" />
-              <span className="text-[11px] text-gray-500 font-medium">2-Hour Response</span>
+              <span className="text-[0.6875rem] text-gray-500 font-medium">2-Hour Response</span>
             </div>
             <div className="flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-panda-green" />
-              <span className="text-[11px] text-gray-500 font-medium">No Obligation</span>
+              <span className="text-[0.6875rem] text-gray-500 font-medium">No Obligation</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Phone className="w-3.5 h-3.5 text-panda-green" />
-              <span className="text-[11px] text-gray-500 font-medium">(302) 250-4340</span>
+              <span className="text-[0.6875rem] text-gray-500 font-medium">(302) 250-4340</span>
             </div>
           </div>
         </>

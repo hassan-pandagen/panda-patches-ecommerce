@@ -92,7 +92,7 @@ export default function ProductSwiper({ products }: { products: Product[] }) {
                     )}
                   </div>
                   <div className="p-4 bg-white text-center">
-                    <h4 className="text-[12px] font-black text-panda-dark uppercase tracking-wide">
+                    <h4 className="text-[0.75rem] font-black text-panda-dark uppercase tracking-wide">
                       {item.title}
                     </h4>
                   </div>

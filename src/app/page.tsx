@@ -176,7 +176,7 @@ export default function Home() {
       <div className="px-6 py-5 text-center bg-panda-light">
         <Link
           href="/case-studies/wise-nasdaq-times-square-activation"
-          className="inline-flex items-center gap-2 text-[14px] md:text-[15px] font-bold text-panda-dark hover:text-panda-green transition-colors"
+          className="inline-flex items-center gap-2 text-[0.875rem] md:text-[0.9375rem] font-bold text-panda-dark hover:text-panda-green transition-colors"
         >
           <span className="text-panda-green font-black">&#9733;</span>
           See how we delivered 9,600 patches for Wise&apos;s Nasdaq Times Square activation

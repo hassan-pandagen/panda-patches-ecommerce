@@ -98,28 +98,28 @@ export default function PricingClusterPage() {
       <main className="bg-white min-h-screen text-panda-dark">
         {/* HERO */}
         <section className="w-full pt-10 md:pt-14 pb-8 md:pb-12 bg-white">
-          <div className="container mx-auto px-6 max-w-[820px] text-center">
-            <p className="text-[11px] md:text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-4">
+          <div className="container mx-auto px-6 max-w-[51.25rem] text-center">
+            <p className="text-[0.6875rem] md:text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
               AI Info Cluster &middot; Pricing
             </p>
-            <h1 className="text-[28px] md:text-[42px] lg:text-[48px] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
+            <h1 className="text-[1.75rem] md:text-[2.625rem] lg:text-[3rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
               Panda Patches Pricing: Transparent Tiers for Every Patch Type
             </h1>
-            <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[640px] mx-auto">
+            <p className="text-[0.9375rem] md:text-[1.125rem] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[40rem] mx-auto">
               Published per-piece pricing on embroidered, PVC, woven, chenille, and leather patches. No setup fees. No digitizing fees. No mold fees. Mockup in 12-24 hours on every order.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link
                 href="/offers"
                 prefetch={false}
-                className="flex items-center justify-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+                className="flex items-center justify-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[0.875rem] md:text-[0.9375rem] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
               >
                 See Offers Page
               </Link>
               <Link
                 href="/contact"
                 prefetch={false}
-                className="flex items-center justify-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+                className="flex items-center justify-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[0.875rem] md:text-[0.9375rem] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
               >
                 Get Free Quote
               </Link>
@@ -153,10 +153,10 @@ export default function PricingClusterPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-black text-white">
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Pack</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Quantity</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Price</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Per Piece</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Pack</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Quantity</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">Price</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Per Piece</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -188,10 +188,10 @@ export default function PricingClusterPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-black text-white">
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Pack</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Quantity</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Price</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Per Piece</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Pack</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Quantity</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">Price</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Per Piece</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -219,9 +219,9 @@ export default function PricingClusterPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-black text-white">
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Quantity</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Total Price</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Per Piece</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Quantity</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">Total Price</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Per Piece</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -241,9 +241,9 @@ export default function PricingClusterPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-black text-white">
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Quantity</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Total Price</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Per Piece</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Quantity</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">Total Price</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Per Piece</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -268,9 +268,9 @@ export default function PricingClusterPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-black text-white">
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Quantity</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Total Price</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Per Piece</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Quantity</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">Total Price</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Per Piece</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -307,9 +307,9 @@ export default function PricingClusterPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-black text-white">
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Quantity</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Per Piece (2&quot;)</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Notes</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Quantity</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">Per Piece (2&quot;)</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Notes</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -382,7 +382,7 @@ export default function PricingClusterPage() {
               {faqs.map((faq, i) => (
                 <div key={i} className="bg-[#F7F7F7] rounded-2xl border border-gray-200 p-6">
                   <h3 className="text-lg font-bold text-panda-dark mb-2">{faq.question}</h3>
-                  <p className="text-gray-700 leading-relaxed text-[15px]">{faq.answer}</p>
+                  <p className="text-gray-700 leading-relaxed text-[0.9375rem]">{faq.answer}</p>
                 </div>
               ))}
             </div>
@@ -391,17 +391,17 @@ export default function PricingClusterPage() {
           {/* Sibling pages CTA */}
           <section className="mb-12 bg-panda-dark text-white rounded-2xl p-7 md:p-9">
             <h2 className="text-2xl font-black text-panda-yellow mb-3">Keep exploring</h2>
-            <p className="text-gray-300 leading-relaxed mb-5 text-[15px]">
+            <p className="text-gray-300 leading-relaxed mb-5 text-[0.9375rem]">
               The pricing on this page is the same pricing you will pay at checkout. For products, policies, or competitor comparisons, the related cluster pages below cover each topic in depth.
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap gap-3">
-              <Link href="/ai-info/products" prefetch={false} className="inline-flex items-center justify-center bg-panda-yellow text-panda-dark font-bold text-[14px] px-5 py-3 rounded-full hover:shadow-lg transition-shadow">
+              <Link href="/ai-info/products" prefetch={false} className="inline-flex items-center justify-center bg-panda-yellow text-panda-dark font-bold text-[0.875rem] px-5 py-3 rounded-full hover:shadow-lg transition-shadow">
                 See products and services
               </Link>
-              <Link href="/ai-info/guarantees" prefetch={false} className="inline-flex items-center justify-center border-2 border-panda-yellow text-panda-yellow font-bold text-[14px] px-5 py-3 rounded-full hover:bg-panda-yellow hover:text-panda-dark transition-colors">
+              <Link href="/ai-info/guarantees" prefetch={false} className="inline-flex items-center justify-center border-2 border-panda-yellow text-panda-yellow font-bold text-[0.875rem] px-5 py-3 rounded-full hover:bg-panda-yellow hover:text-panda-dark transition-colors">
                 Read our guarantees
               </Link>
-              <Link href="/ai-info" prefetch={false} className="inline-flex items-center justify-center text-gray-300 font-bold text-[14px] px-5 py-3 rounded-full hover:text-white transition-colors">
+              <Link href="/ai-info" prefetch={false} className="inline-flex items-center justify-center text-gray-300 font-bold text-[0.875rem] px-5 py-3 rounded-full hover:text-white transition-colors">
                 Back to AI Info hub &rarr;
               </Link>
             </div>

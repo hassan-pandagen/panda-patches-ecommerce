@@ -76,7 +76,7 @@ export default function WorkSamples({ samples }: { samples: any[] }) {
       <div className="container mx-auto px-4 max-w-[1400px]">
         
         {/* HEADING - Mobile Optimized */}
-        <h2 className="text-[24px] md:text-[28px] lg:text-[32px] font-black text-center text-panda-dark uppercase tracking-tight mb-8 md:mb-12 lg:mb-16">
+        <h2 className="text-[1.5rem] md:text-[1.75rem] lg:text-[2rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8 md:mb-12 lg:mb-16">
           WORK SAMPLE
         </h2>
 

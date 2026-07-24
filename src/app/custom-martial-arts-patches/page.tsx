@@ -134,8 +134,8 @@ export default async function CustomMartialArtsPatchesPage() {
 
       {/* ANSWER-FIRST */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] max-w-[820px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] max-w-[51.25rem]">
             Yes, Panda Patches makes <strong>custom martial arts patches</strong> for Brazilian jiu-jitsu gis,
             karate, judo, MMA, and Muay Thai, from a low 5-piece minimum. The recommended build is an
             {" "}<strong>embroidered or woven</strong> patch with <strong>sew-on backing</strong>, because gis and
@@ -151,8 +151,8 @@ export default async function CustomMartialArtsPatchesPage() {
 
       {/* WHAT TO ORDER */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1000px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[62.5rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
             Patches for the Mats
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -163,8 +163,8 @@ export default async function CustomMartialArtsPatchesPage() {
               { title: "Event & seminar", body: "Tournament, seminar, and grading-day commemorative patches." },
             ].map((u) => (
               <div key={u.title} className="bg-white border border-gray-100 rounded-2xl p-6">
-                <h3 className="text-[16px] font-black text-panda-dark mb-2">{u.title}</h3>
-                <p className="text-[14px] text-gray-600 leading-[1.6]">{u.body}</p>
+                <h3 className="text-[1rem] font-black text-panda-dark mb-2">{u.title}</h3>
+                <p className="text-[0.875rem] text-gray-600 leading-[1.6]">{u.body}</p>
               </div>
             ))}
           </div>
@@ -173,27 +173,27 @@ export default async function CustomMartialArtsPatchesPage() {
 
       {/* GI PLACEMENT NOTE */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-6">
             Gi Patch Placement &amp; Build
           </h2>
-          <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.7] text-center mb-8 max-w-[760px] mx-auto">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-8 max-w-[47.5rem] mx-auto">
             For IBJJF competition, patches are allowed in set zones: across the back, on the lapels and skirt, the
             upper sleeves, and the front thighs of the pants. Training gis are unrestricted. Here is the build we
             recommend so patches survive the wash.
           </p>
           <div className="grid md:grid-cols-3 gap-5">
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[16px] font-black text-panda-dark mb-2">Type</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]"><Link href="/custom-patches/woven" prefetch={false} className="text-panda-green underline font-semibold">Woven</Link> for fine logo detail, or <Link href="/custom-patches/embroidered" prefetch={false} className="text-panda-green underline font-semibold">embroidered</Link> for a bolder, textured look.</p>
+              <h3 className="text-[1rem] font-black text-panda-dark mb-2">Type</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]"><Link href="/custom-patches/woven" prefetch={false} className="text-panda-green underline font-semibold">Woven</Link> for fine logo detail, or <Link href="/custom-patches/embroidered" prefetch={false} className="text-panda-green underline font-semibold">embroidered</Link> for a bolder, textured look.</p>
             </div>
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[16px] font-black text-panda-dark mb-2">Backing</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]"><Link href="/sew-on-patches" prefetch={false} className="text-panda-green underline font-semibold">Sew-on</Link>, the only backing that survives repeated hot washing on heavy gi cotton.</p>
+              <h3 className="text-[1rem] font-black text-panda-dark mb-2">Backing</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]"><Link href="/sew-on-patches" prefetch={false} className="text-panda-green underline font-semibold">Sew-on</Link>, the only backing that survives repeated hot washing on heavy gi cotton.</p>
             </div>
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[16px] font-black text-panda-dark mb-2">Placement</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Keep within IBJJF zones for competition gis; place freely on training gis.</p>
+              <h3 className="text-[1rem] font-black text-panda-dark mb-2">Placement</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Keep within IBJJF zones for competition gis; place freely on training gis.</p>
             </div>
           </div>
         </div>
@@ -207,11 +207,11 @@ export default async function CustomMartialArtsPatchesPage() {
 
       {/* SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Custom BJJ &amp; Martial Arts Patches From 5 Pieces
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               A gi patch lives a hard life: hot washes, heavy cotton, and constant grappling. That is why
               embroidered and woven patches with sew-on backing are the standard, they hold color and stay
@@ -229,8 +229,8 @@ export default async function CustomMartialArtsPatchesPage() {
       </section>
 
       <section className="w-full pb-10 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[14px] text-gray-500 leading-relaxed">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.875rem] text-gray-500 leading-relaxed">
             <span className="font-bold text-panda-dark">Related:</span>{" "}
             <Link href="/how-to-choose-the-right-custom-patch-size-type-backing-guide" prefetch={false} className="text-panda-green underline font-semibold">How to Choose the Right Patch</Link>
             {" · "}

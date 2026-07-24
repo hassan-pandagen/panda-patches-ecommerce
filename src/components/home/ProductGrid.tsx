@@ -112,13 +112,13 @@ export default async function ProductGrid() {
         
         {/* HEADER TEXT */}
         <div className="text-center mb-16 space-y-6">
-          <h2 className="text-[26px] md:text-[40px] font-semibold text-panda-dark uppercase leading-tight tracking-tight">
+          <h2 className="text-[1.625rem] md:text-[2.5rem] font-semibold text-panda-dark uppercase leading-tight tracking-tight">
             PICK YOUR PATCH TYPE
           </h2>
-          <p className="text-[13px] md:text-[15px] text-gray-500 font-medium max-w-[760px] mx-auto -mt-2">
+          <p className="text-[0.8125rem] md:text-[0.9375rem] text-gray-500 font-medium max-w-[47.5rem] mx-auto -mt-2">
             Transparent USD pricing. The per-piece price drops as quantity rises, so smaller orders cost more per piece. Each &ldquo;from&rdquo; price is for {FROM_PRICE_QUALIFIER}. Enter your size and quantity for your exact price.
           </p>
-          <p className="text-[14px] md:text-[17px] text-gray-800 leading-[1.8] max-w-[1020px] mx-auto font-medium">
+          <p className="text-[0.875rem] md:text-[1.0625rem] text-gray-800 leading-[1.8] max-w-[63.75rem] mx-auto font-medium">
             From personalized logo patches, to <Link href="/custom-name-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">personalized name patch</Link>, from <Link href="/custom-tactical-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">tactical patches</Link>, to <Link href="/custom-jacket-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">personalized patches for jackets</Link>, and custom <Link href="/custom-velcro-patches" className="underline decoration-panda-dark underline-offset-4 hover:text-panda-dark font-semibold">Velcro patches</Link>,
             our tailored selection ensures a lasting impression, showcasing your unique style. At Panda Patches, we&apos;re dedicated to providing personalized iron on
             patches in the US, that bring brand vision to life and take your product to the next level.
@@ -127,7 +127,7 @@ export default async function ProductGrid() {
 
         {/* Link to the patch-type comparison guide */}
         <div className="text-center -mt-8 mb-12">
-          <Link href="/patch-types-compared" prefetch={false} className="inline-flex items-center gap-2 text-[14px] md:text-[15px] font-bold text-panda-dark hover:text-panda-green transition-colors underline decoration-1 underline-offset-4">
+          <Link href="/patch-types-compared" prefetch={false} className="inline-flex items-center gap-2 text-[0.875rem] md:text-[0.9375rem] font-bold text-panda-dark hover:text-panda-green transition-colors underline decoration-1 underline-offset-4">
             Not sure which type? Compare all 6 side by side
             <span aria-hidden>&rarr;</span>
           </Link>
@@ -144,7 +144,7 @@ export default async function ProductGrid() {
 
         {/* OTHER PRODUCTS HEADING */}
         <div className="text-center mb-16">
-           <h3 className="text-[24px] md:text-[28px] lg:text-[32px] font-bold text-gray-800 uppercase tracking-wide">
+           <h3 className="text-[1.5rem] md:text-[1.75rem] lg:text-[2rem] font-bold text-gray-800 uppercase tracking-wide">
              BEYOND PATCHES: COINS, PINS, KEYCHAINS & PVC CHARMS
            </h3>
         </div>
@@ -206,7 +206,7 @@ function ProductCard({ item, showTag, priority }: { item: any; showTag?: boolean
 
         {/* Discount Tag (Fixed to Black Box - Premium Look) */}
         {showTag && (
-          <div className="absolute top-0 right-0 bg-black text-white text-[12px] font-bold px-3 py-1.5 uppercase z-10 tracking-widest">
+          <div className="absolute top-0 right-0 bg-black text-white text-[0.75rem] font-bold px-3 py-1.5 uppercase z-10 tracking-widest">
             Save 25% at 100+ pcs
           </div>
         )}
@@ -232,10 +232,10 @@ function ProductCard({ item, showTag, priority }: { item: any; showTag?: boolean
 
       {/* TEXT AREA */}
       <div className="flex-grow p-6 text-center flex flex-col items-center justify-center">
-        <h3 className="text-[18px] font-black text-panda-dark uppercase mb-3 leading-tight min-h-[48px] max-w-[180px] mx-auto">
+        <h3 className="text-[1.125rem] font-black text-panda-dark uppercase mb-3 leading-tight min-h-[48px] max-w-[180px] mx-auto">
           {item.title}
         </h3>
-        <p className="text-[15px] text-gray-500 leading-relaxed mb-3">
+        <p className="text-[0.9375rem] text-gray-500 leading-relaxed mb-3">
           {description}
         </p>
 
@@ -243,15 +243,15 @@ function ProductCard({ item, showTag, priority }: { item: any; showTag?: boolean
             per-piece figure. Quote-only products show no per-piece price. */}
         {fromPrice !== null ? (
           <div>
-            <p className="text-[16px] font-bold text-panda-dark">
+            <p className="text-[1rem] font-bold text-panda-dark">
               From ${fromPrice.toFixed(2)}/pc
             </p>
-            <p className="text-[11px] text-gray-600 font-medium leading-tight">
+            <p className="text-[0.6875rem] text-gray-600 font-medium leading-tight">
               {FROM_PRICE_QUALIFIER}
             </p>
           </div>
         ) : (
-          <p className="text-[16px] font-bold text-panda-dark">Get a quote</p>
+          <p className="text-[1rem] font-bold text-panda-dark">Get a quote</p>
         )}
       </div>
 
@@ -273,7 +273,7 @@ function ProductCard({ item, showTag, priority }: { item: any; showTag?: boolean
 
         {/* 2. CENTER TEXT (Absolute Center) */}
         <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none px-10">
-          <span className="text-[13px] font-black uppercase tracking-[0.1em] group-hover:text-black text-white transition-colors duration-500 text-center leading-tight">
+          <span className="text-[0.8125rem] font-black uppercase tracking-[0.1em] group-hover:text-black text-white transition-colors duration-500 text-center leading-tight">
             {item.title.replace(/^Custom\s+/i, '')}
           </span>
         </div>

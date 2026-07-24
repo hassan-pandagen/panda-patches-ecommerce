@@ -8,7 +8,7 @@ export default function IronOnLayout({ data }: { data: any }) {
       <div className="container mx-auto px-6 max-w-[1350px]">
         
         {/* MAIN PAGE HEADING */}
-        <h1 className="text-[42px] font-black text-panda-dark uppercase mb-24 text-center tracking-tight">
+        <h1 className="text-[2.625rem] font-black text-panda-dark uppercase mb-24 text-center tracking-tight">
           {data.title}
         </h1>
 
@@ -49,7 +49,7 @@ export default function IronOnLayout({ data }: { data: any }) {
                 {/* TEXT COLUMN */}
                 <div className="flex-1 pt-4">
                   {/* Title */}
-                  <h3 className="text-[32px] font-bold text-panda-dark mb-6">
+                  <h3 className="text-[2rem] font-bold text-panda-dark mb-6">
                     {item.patchType}
                   </h3>
                   
@@ -57,7 +57,7 @@ export default function IronOnLayout({ data }: { data: any }) {
                      BULLET POINTS (Steps Only)
                      - Industry standard: 18-20px for instructional content
                   */}
-                  <div className="mt-4 text-[18px] text-gray-700 leading-[1.8]">
+                  <div className="mt-4 text-[1.125rem] text-gray-700 leading-[1.8]">
                     <PortableText 
                       value={item.steps} 
                       components={{
@@ -69,7 +69,7 @@ export default function IronOnLayout({ data }: { data: any }) {
                           ),
                         },
                         listItem: {
-                          bullet: ({children}) => <li className="text-[18px] text-gray-700">{children}</li>,
+                          bullet: ({children}) => <li className="text-[1.125rem] text-gray-700">{children}</li>,
                         }
                       }}
                     />
@@ -82,7 +82,7 @@ export default function IronOnLayout({ data }: { data: any }) {
                   {item.tableData && item.tableData.length > 0 && (
                     <div className="mt-6">
                       {item.tableData.map((row: any, i: number) => (
-                        <p key={i} className="text-[17px] text-gray-700">
+                        <p key={i} className="text-[1.0625rem] text-gray-700">
                           Note: {row.value}
                         </p>
                       ))}

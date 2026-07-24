@@ -135,8 +135,8 @@ export default async function CustomEmsPatchesPage() {
 
       {/* ANSWER-FIRST */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] max-w-[820px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] max-w-[51.25rem]">
             Yes, Panda Patches makes <strong>custom EMS, EMT, and paramedic patches</strong> for duty uniforms,
             from a low 5-piece minimum. The standard build is an <strong>embroidered patch with sew-on
             backing</strong>, durable, clearly legible, and able to survive the frequent hot laundering that EMS
@@ -152,8 +152,8 @@ export default async function CustomEmsPatchesPage() {
 
       {/* WHAT TO ORDER */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1000px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[62.5rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
             EMS Uniform Patches We Make
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -164,8 +164,8 @@ export default async function CustomEmsPatchesPage() {
               { title: "Hi-vis & reflective", body: "Bright and reflective elements for night-scene and roadside visibility." },
             ].map((u) => (
               <div key={u.title} className="bg-white border border-gray-100 rounded-2xl p-6">
-                <h3 className="text-[16px] font-black text-panda-dark mb-2">{u.title}</h3>
-                <p className="text-[14px] text-gray-600 leading-[1.6]">{u.body}</p>
+                <h3 className="text-[1rem] font-black text-panda-dark mb-2">{u.title}</h3>
+                <p className="text-[0.875rem] text-gray-600 leading-[1.6]">{u.body}</p>
               </div>
             ))}
           </div>
@@ -174,10 +174,10 @@ export default async function CustomEmsPatchesPage() {
 
       {/* SYMBOL / AUTHORIZATION NOTE */}
       <section className="w-full py-8 md:py-10 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
           <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
-            <h3 className="text-[16px] font-black text-blue-900 mb-2">Protected symbols and seals</h3>
-            <p className="text-[14px] text-blue-900/90 leading-[1.7]">
+            <h3 className="text-[1rem] font-black text-blue-900 mb-2">Protected symbols and seals</h3>
+            <p className="text-[0.875rem] text-blue-900/90 leading-[1.7]">
               Some EMS symbols and seals are controlled, the Star of Life is a protected symbol and many state and
               agency seals require authorization. We reproduce your approved artwork and ask that you confirm you
               are authorized to use any protected mark. Our team lays out the design on a free proof so you can
@@ -195,11 +195,11 @@ export default async function CustomEmsPatchesPage() {
 
       {/* SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Custom EMS &amp; Paramedic Patches From 5 Pieces
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               EMS uniforms are washed hard and worn daily, so duty patches have to last. Embroidered patches with
               sew-on backing are the standard because they hold color, read clearly at a distance, and stay
@@ -218,8 +218,8 @@ export default async function CustomEmsPatchesPage() {
       </section>
 
       <section className="w-full pb-10 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[14px] text-gray-500 leading-relaxed">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.875rem] text-gray-500 leading-relaxed">
             <span className="font-bold text-panda-dark">Related:</span>{" "}
             <Link href="/patch-types-compared" prefetch={false} className="text-panda-green underline font-semibold">Patch Types Compared</Link>
             {" · "}

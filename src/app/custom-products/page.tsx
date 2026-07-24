@@ -51,12 +51,12 @@ export default async function CustomProductsPage() {
 
       {/* HERO SECTION */}
       <section className="bg-white text-black py-24">
-        <div className="container mx-auto px-6 max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px] text-center">
-          <h1 className="text-[48px] md:text-[64px] font-black mb-6 tracking-tight">
+        <div className="container mx-auto px-6 max-w-[75rem] text-center">
+          <h1 className="text-[3rem] md:text-[4rem] font-black mb-6 tracking-tight">
             <span className="text-black">Custom </span>
             <span className="text-panda-yellow">Products</span>
           </h1>
-          <p className="text-[20px] text-gray-800 max-w-[700px] mx-auto leading-relaxed">
+          <p className="text-[1.25rem] text-gray-800 max-w-[43.75rem] mx-auto leading-relaxed">
             High-quality custom products designed to your exact specifications.
             From lapel pins to keychains, we bring your vision to life with premium materials and expert craftsmanship.
           </p>
@@ -91,17 +91,17 @@ export default async function CustomProductsPage() {
 
                   {/* TEXT */}
                   <div className="flex-1 space-y-8">
-                    <h2 className="text-[36px] font-black text-panda-dark uppercase leading-none">
+                    <h2 className="text-[2.25rem] font-black text-panda-dark uppercase leading-none">
                       {product.title}
                     </h2>
 
                     {product.basePrice && (
-                      <p className="text-[24px] font-bold text-panda-green">
+                      <p className="text-[1.5rem] font-bold text-panda-green">
                         Starting at ${product.basePrice}
                       </p>
                     )}
 
-                    <p className="text-[17px] text-gray-600 leading-[1.8] font-medium">
+                    <p className="text-[1.0625rem] text-gray-600 leading-[1.8] font-medium">
                       {product.description || "Premium custom products made to order with expert craftsmanship."}
                     </p>
 
@@ -119,7 +119,7 @@ export default async function CustomProductsPage() {
 
                     <div className="pt-2">
                       <Link href={`/custom-products/${product.slug.current}`}>
-                        <button className="bg-black text-panda-yellow px-10 py-4 rounded-[12px] font-black uppercase tracking-widest text-[13px] flex items-center gap-3 hover:scale-105 transition-transform shadow-xl">
+                        <button className="bg-black text-panda-yellow px-10 py-4 rounded-[12px] font-black uppercase tracking-widest text-[0.8125rem] flex items-center gap-3 hover:scale-105 transition-transform shadow-xl">
                           View Product <ArrowRight size={18} />
                         </button>
                       </Link>

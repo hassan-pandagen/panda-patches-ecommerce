@@ -103,7 +103,7 @@ export default function CallNowPopup() {
           Chat on WhatsApp
         </a>
 
-        <p className="text-center text-[10px] text-gray-400 mt-2">Mon–Sun · 11am–7pm ET</p>
+        <p className="text-center text-[0.625rem] text-gray-400 mt-2">Mon–Sun · 11am–7pm ET</p>
       </div>
     </div>
     </>

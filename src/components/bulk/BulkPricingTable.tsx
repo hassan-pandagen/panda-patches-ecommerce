@@ -48,14 +48,14 @@ export default function BulkPricingTable({ workSamples = {}, pricingData }: Bulk
 
   return (
     <section className="w-full py-8 md:py-14 bg-panda-light">
-      <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">
+      <div className="container mx-auto px-4 md:px-6 max-w-[68.75rem]">
 
         {/* Heading */}
         <div className="text-center mb-10 md:mb-14">
-          <h2 className="text-[24px] md:text-[36px] font-black text-panda-dark uppercase tracking-tight mb-4">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-panda-dark uppercase tracking-tight mb-4">
             Volume Pricing — Save More, Order More
           </h2>
-          <p className="text-[14px] md:text-[16px] text-gray-500 font-medium max-w-[600px] mx-auto">
+          <p className="text-[0.875rem] md:text-[1rem] text-gray-500 font-medium max-w-[37.5rem] mx-auto">
             Transparent pricing. No hidden fees, no setup costs. Prices shown are starting rates for 3-inch patches.
           </p>
         </div>
@@ -66,7 +66,7 @@ export default function BulkPricingTable({ workSamples = {}, pricingData }: Bulk
             <button
               key={type}
               onClick={() => setActiveType(type)}
-              className={`px-4 md:px-6 py-2.5 rounded-full text-[12px] md:text-[14px] font-bold uppercase tracking-wide transition-all duration-200 ${
+              className={`px-4 md:px-6 py-2.5 rounded-full text-[0.75rem] md:text-[0.875rem] font-bold uppercase tracking-wide transition-all duration-200 ${
                 activeType === type
                   ? "bg-panda-dark text-panda-yellow shadow-lg"
                   : "bg-white text-gray-600 border border-gray-200 hover:border-panda-green"
@@ -80,10 +80,10 @@ export default function BulkPricingTable({ workSamples = {}, pricingData }: Bulk
         {/* Work Samples Gallery - Centered with Lightbox */}
         {currentSamples.length > 0 && (
           <div className="mb-10">
-            <p className="text-[12px] md:text-[13px] font-bold text-gray-500 uppercase tracking-widest text-center mb-5">
+            <p className="text-[0.75rem] md:text-[0.8125rem] font-bold text-gray-500 uppercase tracking-widest text-center mb-5">
               Our {activeType} Work
             </p>
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 max-w-[1100px] mx-auto">
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 max-w-[68.75rem] mx-auto">
               {currentSamples.slice(0, 6).map((img: any, idx: number) => (
                 <div
                   key={idx}
@@ -143,10 +143,10 @@ export default function BulkPricingTable({ workSamples = {}, pricingData }: Bulk
         <div className="hidden md:block overflow-hidden rounded-[16px] border border-gray-200 bg-white shadow-sm">
           {/* Header */}
           <div className="grid grid-cols-4 bg-panda-dark text-panda-yellow">
-            <div className="py-4 px-6 text-[14px] font-bold uppercase tracking-wide">Quantity</div>
-            <div className="py-4 px-6 text-center text-[14px] font-bold uppercase tracking-wide">Price Per Patch</div>
-            <div className="py-4 px-6 text-center text-[14px] font-bold uppercase tracking-wide">Savings</div>
-            <div className="py-4 px-6 text-right text-[14px] font-bold uppercase tracking-wide"></div>
+            <div className="py-4 px-6 text-[0.875rem] font-bold uppercase tracking-wide">Quantity</div>
+            <div className="py-4 px-6 text-center text-[0.875rem] font-bold uppercase tracking-wide">Price Per Patch</div>
+            <div className="py-4 px-6 text-center text-[0.875rem] font-bold uppercase tracking-wide">Savings</div>
+            <div className="py-4 px-6 text-right text-[0.875rem] font-bold uppercase tracking-wide"></div>
           </div>
           {/* Rows */}
           {quantities.map((qty, idx) => {
@@ -161,25 +161,25 @@ export default function BulkPricingTable({ workSamples = {}, pricingData }: Bulk
                 className={`grid grid-cols-4 items-center border-t border-gray-100 ${idx % 2 === 0 ? "bg-white" : "bg-gray-50/50"} hover:bg-panda-light/50 transition-colors`}
               >
                 <div className="py-4 px-6">
-                  <span className="text-[16px] font-bold text-panda-dark">{qty} pieces</span>
+                  <span className="text-[1rem] font-bold text-panda-dark">{qty} pieces</span>
                 </div>
                 <div className="py-4 px-6 text-center">
-                  <span className="text-[20px] font-black text-panda-green">{price}</span>
-                  <span className="text-[13px] text-gray-500 ml-1">/ patch</span>
+                  <span className="text-[1.25rem] font-black text-panda-green">{price}</span>
+                  <span className="text-[0.8125rem] text-gray-500 ml-1">/ patch</span>
                 </div>
                 <div className="py-4 px-6 text-center">
                   {savings > 0 ? (
-                    <span className="inline-block bg-green-100 text-green-700 text-[12px] font-bold px-3 py-1 rounded-full">
+                    <span className="inline-block bg-green-100 text-green-700 text-[0.75rem] font-bold px-3 py-1 rounded-full">
                       Save {savings}%
                     </span>
                   ) : (
-                    <span className="text-[12px] text-gray-500">Base Price</span>
+                    <span className="text-[0.75rem] text-gray-500">Base Price</span>
                   )}
                 </div>
                 <div className="py-4 px-6 text-right">
                   <a
                     href={idx >= 3 ? "#bulk-quote" : orderLinks[activeType]}
-                    className={`inline-flex items-center gap-1.5 text-[12px] font-bold px-4 py-2 rounded-full transition-all duration-200 whitespace-nowrap ${
+                    className={`inline-flex items-center gap-1.5 text-[0.75rem] font-bold px-4 py-2 rounded-full transition-all duration-200 whitespace-nowrap ${
                       idx >= 3
                         ? "bg-panda-yellow text-panda-dark hover:bg-panda-green hover:text-white"
                         : "bg-panda-dark text-panda-yellow hover:bg-panda-green hover:text-white"
@@ -204,19 +204,19 @@ export default function BulkPricingTable({ workSamples = {}, pricingData }: Bulk
             return (
               <div key={qty} className="bg-white rounded-[12px] border border-gray-100 p-4 flex items-center justify-between">
                 <div>
-                  <span className="text-[14px] font-bold text-panda-dark block">{qty} pcs</span>
+                  <span className="text-[0.875rem] font-bold text-panda-dark block">{qty} pcs</span>
                   {savings > 0 && (
-                    <span className="text-[11px] font-bold text-green-600">Save {savings}%</span>
+                    <span className="text-[0.6875rem] font-bold text-green-600">Save {savings}%</span>
                   )}
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="text-right">
-                    <span className="text-[20px] font-black text-panda-green">{price}</span>
-                    <span className="text-[11px] text-gray-500 block">per patch</span>
+                    <span className="text-[1.25rem] font-black text-panda-green">{price}</span>
+                    <span className="text-[0.6875rem] text-gray-500 block">per patch</span>
                   </div>
                   <a
                     href={idx >= 3 ? "#bulk-quote" : orderLinks[activeType]}
-                    className={`text-[11px] font-bold px-3 py-1.5 rounded-full whitespace-nowrap ${
+                    className={`text-[0.6875rem] font-bold px-3 py-1.5 rounded-full whitespace-nowrap ${
                       idx >= 3
                         ? "bg-panda-yellow text-panda-dark"
                         : "bg-panda-dark text-panda-yellow"
@@ -231,7 +231,7 @@ export default function BulkPricingTable({ workSamples = {}, pricingData }: Bulk
         </div>
 
         {/* Disclaimer */}
-        <p className="text-center text-[12px] text-gray-500 mt-6 font-medium">
+        <p className="text-center text-[0.75rem] text-gray-500 mt-6 font-medium">
           * Pricing varies by size, color count, and backing type. Table shows starting prices for standard 3-inch patches.
           Contact us for exact quote.
         </p>

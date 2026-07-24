@@ -45,11 +45,11 @@ export default async function ProductHero({ productData, isMainPage = false }: P
           <div className="flex-1 w-full">
 
             {/* Title and description scroll normally above the sticky region. */}
-            <h1 className="text-[20px] sm:text-[22px] md:text-[26px] lg:text-[30px] xl:text-[34px] font-extrabold text-panda-dark leading-tight mb-4 md:mb-6 w-full tracking-tight text-center md:text-left">
+            <h1 className="text-[1.25rem] sm:text-[1.375rem] md:text-[1.625rem] lg:text-[1.875rem] xl:text-[2.125rem] font-extrabold text-panda-dark leading-tight mb-4 md:mb-6 w-full tracking-tight text-center md:text-left">
               {title}
             </h1>
 
-            <p className="text-[14px] md:text-[16px] text-gray-600 leading-[1.6] md:leading-[1.7] font-medium mb-6 md:mb-10 max-w-[600px] text-center md:text-left mx-auto md:mx-0">
+            <p className="text-[0.875rem] md:text-[1rem] text-gray-600 leading-[1.6] md:leading-[1.7] font-medium mb-6 md:mb-10 max-w-[37.5rem] text-center md:text-left mx-auto md:mx-0">
               <AutoLinker text={desc} />
             </p>
 
@@ -64,7 +64,7 @@ export default async function ProductHero({ productData, isMainPage = false }: P
 
           {/* === RIGHT COLUMN === */}
           <div className={`
-             w-full max-w-[600px]
+             w-full max-w-[37.5rem]
              ${isMainPage ? 'mt-4 md:mt-8 lg:mt-16' : 'mt-0'}
           `}>
              {isMainPage ? (

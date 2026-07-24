@@ -52,7 +52,7 @@ export default function ForgotPasswordClient() {
     <div className="bg-white rounded-[20px] border-[3px] border-gray-200 p-7 md:p-8 shadow-2xl">
       {message && (
         <div
-          className={`p-3 mb-4 rounded-[10px] text-[13px] font-semibold ${
+          className={`p-3 mb-4 rounded-[10px] text-[0.8125rem] font-semibold ${
             message.type === "error"
               ? "bg-red-50 text-red-700 border border-red-200"
               : "bg-green-50 text-green-700 border border-green-200"
@@ -64,14 +64,14 @@ export default function ForgotPasswordClient() {
 
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         <div>
-          <label className="block text-[12px] font-bold text-gray-700 mb-1.5 uppercase tracking-wider">Email</label>
+          <label className="block text-[0.75rem] font-bold text-gray-700 mb-1.5 uppercase tracking-wider">Email</label>
           <input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            className="w-full px-4 py-3 border border-gray-200 rounded-[10px] focus:border-panda-green focus:ring-2 focus:ring-panda-green/10 outline-none text-[14px]"
+            className="w-full px-4 py-3 border border-gray-200 rounded-[10px] focus:border-panda-green focus:ring-2 focus:ring-panda-green/10 outline-none text-[0.875rem]"
             autoComplete="email"
           />
         </div>
@@ -79,7 +79,7 @@ export default function ForgotPasswordClient() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full bg-panda-dark text-panda-yellow font-black text-[15px] py-3.5 rounded-[12px] hover:bg-black hover:scale-[1.01] transition-all uppercase tracking-[0.1em] shadow-lg disabled:opacity-50"
+          className="w-full bg-panda-dark text-panda-yellow font-black text-[0.9375rem] py-3.5 rounded-[12px] hover:bg-black hover:scale-[1.01] transition-all uppercase tracking-[0.1em] shadow-lg disabled:opacity-50"
         >
           {submitting ? "Sending..." : "Send Reset Link"}
         </button>

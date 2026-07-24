@@ -72,15 +72,15 @@ export default function SignupClient({ returnTo, initialEmail }: SignupClientPro
   };
 
   const labelCls =
-    "block text-[12px] font-bold text-gray-700 mb-1.5 uppercase tracking-wider";
+    "block text-[0.75rem] font-bold text-gray-700 mb-1.5 uppercase tracking-wider";
   const fieldCls =
-    "w-full px-4 py-3 border border-gray-200 rounded-[10px] focus:border-panda-green focus:ring-2 focus:ring-panda-green/10 outline-none text-[14px]";
+    "w-full px-4 py-3 border border-gray-200 rounded-[10px] focus:border-panda-green focus:ring-2 focus:ring-panda-green/10 outline-none text-[0.875rem]";
 
   return (
     <div className="bg-white rounded-[20px] border-[3px] border-gray-200 p-7 md:p-8 shadow-2xl">
       {message && (
         <div
-          className={`p-3 mb-4 rounded-[10px] text-[13px] font-semibold ${
+          className={`p-3 mb-4 rounded-[10px] text-[0.8125rem] font-semibold ${
             message.type === "error"
               ? "bg-red-50 text-red-700 border border-red-200"
               : "bg-green-50 text-green-700 border border-green-200"
@@ -162,7 +162,7 @@ export default function SignupClient({ returnTo, initialEmail }: SignupClientPro
             className={fieldCls}
             autoComplete="tel"
           />
-          <p className="text-[11px] text-gray-400 mt-1">
+          <p className="text-[0.6875rem] text-gray-400 mt-1">
             Helps us reach you fast if there is a question about your order.
           </p>
         </div>
@@ -184,12 +184,12 @@ export default function SignupClient({ returnTo, initialEmail }: SignupClientPro
         <button
           type="submit"
           disabled={submitting}
-          className="w-full bg-panda-dark text-panda-yellow font-black text-[15px] py-3.5 rounded-[12px] hover:bg-black hover:scale-[1.01] transition-all uppercase tracking-[0.1em] shadow-lg disabled:opacity-50"
+          className="w-full bg-panda-dark text-panda-yellow font-black text-[0.9375rem] py-3.5 rounded-[12px] hover:bg-black hover:scale-[1.01] transition-all uppercase tracking-[0.1em] shadow-lg disabled:opacity-50"
         >
           {submitting ? "Creating account..." : "Create Account"}
         </button>
 
-        <p className="text-[11px] text-gray-400 text-center leading-[1.6] mt-2">
+        <p className="text-[0.6875rem] text-gray-400 text-center leading-[1.6] mt-2">
           By creating an account you agree to our{" "}
           <a href="/terms-of-service" className="text-gray-500 underline hover:text-panda-green">terms</a> and{" "}
           <a href="/privacy-policy" className="text-gray-500 underline hover:text-panda-green">privacy policy</a>.

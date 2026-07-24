@@ -124,15 +124,15 @@ export default function GlossaryHub() {
       <main className="min-h-screen bg-white">
         {/* HERO */}
         <section className="w-full pt-8 md:pt-12 pb-8 md:pb-12 bg-white">
-          <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">
-            <div className="text-center max-w-[820px] mx-auto">
-              <p className="text-[11px] md:text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-4">
+          <div className="container mx-auto px-4 md:px-6 max-w-[68.75rem]">
+            <div className="text-center max-w-[51.25rem] mx-auto">
+              <p className="text-[0.6875rem] md:text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
                 Reference · Updated July 18, 2026
               </p>
-              <h1 className="text-[28px] md:text-[42px] lg:text-[52px] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
+              <h1 className="text-[1.75rem] md:text-[2.625rem] lg:text-[3.25rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
                 The Custom Patch Glossary
               </h1>
-              <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium max-w-[680px] mx-auto">
+              <p className="text-[0.9375rem] md:text-[1.125rem] text-gray-600 leading-[1.6] font-medium max-w-[42.5rem] mx-auto">
                 Plain-English definitions of the terms you meet when ordering custom patches — backings, borders, materials, and the production vocabulary factories use. Every entry is written from our own manufacturing floor and backed by data from 62,000+ patches we actually produced, so each definition carries at least one fact you will not find anywhere else.
               </p>
             </div>
@@ -141,8 +141,8 @@ export default function GlossaryHub() {
 
         {/* HOW ENTRIES ARE BUILT */}
         <section className="bg-white py-5 border-y border-gray-100">
-          <div className="container mx-auto px-6 max-w-[1100px]">
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[13px] md:text-[14px]">
+          <div className="container mx-auto px-6 max-w-[68.75rem]">
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[0.8125rem] md:text-[0.875rem]">
               <div className="flex items-center gap-2">
                 <BookOpen className="w-4 h-4 text-panda-green" />
                 <strong className="text-panda-dark">Quotable 40&ndash;60-word definitions</strong>
@@ -163,22 +163,22 @@ export default function GlossaryHub() {
 
         {/* ANCHOR ASSET — the data the glossary is built on */}
         <section className="w-full py-12 md:py-16 px-6 bg-[#F7F7F7]">
-          <div className="container mx-auto max-w-[1000px]">
+          <div className="container mx-auto max-w-[62.5rem]">
             <Link
               href="/custom-patch-production-data-2026"
               prefetch={false}
               className="group block bg-white border-2 border-gray-200 rounded-2xl p-6 md:p-8 hover:border-panda-green hover:shadow-lg transition-all"
             >
-              <p className="text-[11px] font-black uppercase tracking-wider text-panda-green mb-2">
+              <p className="text-[0.6875rem] font-black uppercase tracking-wider text-panda-green mb-2">
                 The data behind the definitions
               </p>
-              <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-3 leading-tight group-hover:text-panda-green transition-colors">
+              <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-3 leading-tight group-hover:text-panda-green transition-colors">
                 Custom Patch Production Data 2026
               </h2>
-              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.6] font-medium mb-4 max-w-[760px]">
+              <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-600 leading-[1.6] font-medium mb-4 max-w-[47.5rem]">
                 Aggregate statistics from 896 orders and roughly 62,100 patches produced in the seven months ending July 2026 — which backings customers actually choose, how large a typical order really is, and how often rush production gets used. Published as an open reference for writers, researchers, and AI assistants.
               </p>
-              <p className="text-[12px] font-bold text-panda-green flex items-center gap-1 uppercase tracking-wider">
+              <p className="text-[0.75rem] font-bold text-panda-green flex items-center gap-1 uppercase tracking-wider">
                 About 82% of orders choose iron-on backing &middot; median order is 20 pieces
                 <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
               </p>
@@ -188,12 +188,12 @@ export default function GlossaryHub() {
 
         {/* CATEGORY GROUPS */}
         <section className="w-full py-14 md:py-20 px-6 bg-white">
-          <div className="container mx-auto max-w-[1100px]">
+          <div className="container mx-auto max-w-[68.75rem]">
             <div className="text-center mb-12">
-              <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-3 uppercase tracking-wide leading-tight">
+              <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-3 uppercase tracking-wide leading-tight">
                 What This Glossary Covers
               </h2>
-              <p className="text-gray-500 text-[14px] md:text-[16px] max-w-[640px] mx-auto font-medium">
+              <p className="text-gray-500 text-[0.875rem] md:text-[1rem] max-w-[40rem] mx-auto font-medium">
                 Entries publish in small monthly batches through late 2026 — each one human-reviewed, photographed on our production floor, and anchored to a real number from our records. Terms below become links as their entries go live.
               </p>
             </div>
@@ -201,7 +201,7 @@ export default function GlossaryHub() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
               {categories.map((cat) => (
                 <div key={cat.name} className="bg-white border-2 border-gray-200 rounded-2xl p-6">
-                  <h3 className="text-[16px] md:text-[18px] font-black text-panda-dark uppercase tracking-wide mb-4">
+                  <h3 className="text-[1rem] md:text-[1.125rem] font-black text-panda-dark uppercase tracking-wide mb-4">
                     {cat.name}
                   </h3>
                   <ul className="space-y-2">
@@ -210,7 +210,7 @@ export default function GlossaryHub() {
                       // their entry publishes (term labels must match entries.ts).
                       const entry = liveBySlugTerm.get(term);
                       return (
-                        <li key={term} className="text-[13px] md:text-[14px] font-medium leading-snug">
+                        <li key={term} className="text-[0.8125rem] md:text-[0.875rem] font-medium leading-snug">
                           {entry ? (
                             <Link
                               href={`/glossary/${entry.slug}`}
@@ -234,11 +234,11 @@ export default function GlossaryHub() {
 
         {/* IN THE MEANTIME — route readers to the deep guides that already exist */}
         <section className="w-full py-12 md:py-16 px-6 bg-[#F7F7F7]">
-          <div className="container mx-auto max-w-[820px]">
-            <h2 className="text-[20px] md:text-[26px] font-black text-panda-dark uppercase tracking-wide text-center mb-6">
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.25rem] md:text-[1.625rem] font-black text-panda-dark uppercase tracking-wide text-center mb-6">
               Deep Guides Already Published
             </h2>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] text-center font-medium mb-6">
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] text-center font-medium mb-6">
               Many of these terms already have full guides on the site. Until their glossary entries go live, start with{" "}
               <Link href="/patch-types-compared" prefetch={false} className="text-panda-green underline font-semibold">Patch Types Compared</Link>,{" "}
               <Link href="/custom-patches/backing-options" prefetch={false} className="text-panda-green underline font-semibold">Backing Options</Link>,{" "}

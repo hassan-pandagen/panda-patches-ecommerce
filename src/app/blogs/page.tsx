@@ -78,10 +78,10 @@ export default async function BlogsPage() {
       <Navbar />
 
       <section className="w-full py-16 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px]">
+        <div className="container mx-auto px-4 max-w-[75rem]">
 
           {/* PAGE TITLE */}
-          <h1 className="text-[24px] md:text-[50px] font-black text-center text-panda-dark uppercase mb-20 tracking-tight">
+          <h1 className="text-[1.5rem] md:text-[3.125rem] font-black text-center text-panda-dark uppercase mb-20 tracking-tight">
             Guides &amp; Tips for Custom Patches
           </h1>
 

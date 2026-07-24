@@ -155,10 +155,10 @@ export default async function CustomPatchesUKPage() {
 
       {/* SHORT ANSWER (answer-first) */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
           <div className="rounded-2xl border-2 border-panda-green/30 bg-white p-6 md:p-8">
-            <p className="text-[11px] font-black uppercase tracking-[2px] text-panda-green mb-3">Short answer</p>
-            <p className="text-[16px] md:text-[18px] text-panda-dark leading-[1.7]">
+            <p className="text-[0.6875rem] font-black uppercase tracking-[2px] text-panda-green mb-3">Short answer</p>
+            <p className="text-[1rem] md:text-[1.125rem] text-panda-dark leading-[1.7]">
               Yes, we make custom patches for UK customers and ship them to your door <strong>free</strong>, with
               {" "}<strong>no VAT, customs, or import fees</strong> on arrival. We ship <strong>DDP (delivered duty
               paid)</strong>, so the <strong>USD price you see is exactly what you pay</strong>, nothing extra when
@@ -172,8 +172,8 @@ export default async function CustomPatchesUKPage() {
 
       {/* QUICK FACTS */}
       <section className="w-full py-8 md:py-12 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1000px]">
-          <h2 className="text-[22px] md:text-[30px] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[62.5rem]">
+          <h2 className="text-[1.375rem] md:text-[1.875rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
             UK Quick Facts
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -188,8 +188,8 @@ export default async function CustomPatchesUKPage() {
               { k: "Patches delivered", v: "1,000,000+" },
             ].map((f) => (
               <div key={f.k} className="bg-[#F9FAF5] rounded-2xl p-5 border border-gray-200 text-center">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-1">{f.k}</p>
-                <p className="text-[15px] md:text-[17px] font-black text-panda-dark leading-tight">{f.v}</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-1">{f.k}</p>
+                <p className="text-[0.9375rem] md:text-[1.0625rem] font-black text-panda-dark leading-tight">{f.v}</p>
               </div>
             ))}
           </div>
@@ -200,18 +200,18 @@ export default async function CustomPatchesUKPage() {
 
       {/* VAT / DDP EXPLAINER */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[34px] font-black text-panda-dark mb-4">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.125rem] font-black text-panda-dark mb-4">
             Do UK customers pay VAT or customs?
           </h2>
-          <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] mb-4">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-4">
             No. Every UK order ships <strong>DDP (delivered duty paid)</strong>, which means we handle and pre-pay
             all import formalities, VAT, and duties before the parcel reaches you. The USD price you approve at
             checkout is the entire cost. When your patches arrive, there is no VAT bill, no customs charge, and no
             courier handling fee to settle on the doorstep, the most common nasty surprise with overseas patch
             suppliers who ship DAP or DDU.
           </p>
-          <p className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8]">
+          <p className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8]">
             This is the single biggest reason UK buyers choose us over a cheaper-looking quote elsewhere: a low
             sticker price means little if the courier adds 20% VAT plus a clearance fee on delivery. With DDP, the
             number you see is the number you pay. See the full breakdown of how overseas patch pricing really works
@@ -222,17 +222,17 @@ export default async function CustomPatchesUKPage() {
 
       {/* DELIVERY */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[34px] font-black text-panda-dark mb-4">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.125rem] font-black text-panda-dark mb-4">
             How long does UK delivery take?
           </h2>
-          <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] mb-4">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-4">
             Standard UK delivery is approximately <strong>7 to 15 business days</strong> from the moment you approve
             your mockup: production takes 7 to 14 business days and international transit is by DHL or FedEx with
             full tracking. Need them sooner? <strong>Rush production is available</strong>, with the confirmed
             delivery date emailed within a few hours of your order.
           </p>
-          <p className="text-[14px] text-gray-500 leading-[1.7]">
+          <p className="text-[0.875rem] text-gray-500 leading-[1.7]">
             Timelines start after written mockup approval, so the fastest way to hit a deadline is to approve your
             proof quickly. Tell us your in-hands date in the quote and we will confirm whether standard or rush
             meets it.
@@ -242,11 +242,11 @@ export default async function CustomPatchesUKPage() {
 
       {/* UK USE CASES */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1000px]">
-          <h2 className="text-[24px] md:text-[34px] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
+        <div className="container mx-auto px-4 md:px-6 max-w-[62.5rem]">
+          <h2 className="text-[1.5rem] md:text-[2.125rem] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
             Patch Types &amp; UK Use Cases
           </h2>
-          <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.7] text-center mb-10 max-w-[720px] mx-auto">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-10 max-w-[45rem] mx-auto">
             Embroidered, woven, PVC, chenille, and leather, all shipped free to the UK with no VAT. A few of the
             communities we make for:
           </p>
@@ -261,8 +261,8 @@ export default async function CustomPatchesUKPage() {
                   </div>
                 )}
                 <div className="p-6 flex-grow">
-                  <h3 className="text-[17px] font-black text-panda-dark mb-2 group-hover:text-panda-green transition-colors">{u.title}</h3>
-                  <p className="text-[14px] text-gray-600 leading-[1.6]">{u.body}</p>
+                  <h3 className="text-[1.0625rem] font-black text-panda-dark mb-2 group-hover:text-panda-green transition-colors">{u.title}</h3>
+                  <p className="text-[0.875rem] text-gray-600 leading-[1.6]">{u.body}</p>
                 </div>
               </Link>
               );
@@ -273,11 +273,11 @@ export default async function CustomPatchesUKPage() {
 
       {/* PRICING */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[34px] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.125rem] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
             UK Pricing, All-In USD
           </h2>
-          <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.7] text-center mb-8 max-w-[720px] mx-auto">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-8 max-w-[45rem] mx-auto">
             One price, in USD, with free DDP delivery to the UK included. Figures below are the per-piece starting
             price at 2&quot; x 2&quot; and 1,000 pieces; smaller runs cost more per piece. Get your exact, instant
             price on the calculator.
@@ -286,9 +286,9 @@ export default async function CustomPatchesUKPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-panda-dark text-white">
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Patch Type</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">From (2&quot;, 1,000 pcs)</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Shipping to UK</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Patch Type</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">From (2&quot;, 1,000 pcs)</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Shipping to UK</th>
                 </tr>
               </thead>
               <tbody>
@@ -321,11 +321,11 @@ export default async function CustomPatchesUKPage() {
 
       {/* WHY UK BRANDS CHOOSE PANDA */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[34px] font-black text-panda-dark mb-5">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.125rem] font-black text-panda-dark mb-5">
             Why UK brands choose Panda Patches
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-700 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-700 leading-[1.8] space-y-4">
             <p>
               When <strong>Wise</strong> rang the Nasdaq bell in Times Square, they needed custom patches at scale
               and on a tight deadline, and they came to us. You can read the full story in our <Link href="/case-studies/wise-nasdaq-times-square-activation" prefetch={false} className="text-panda-green underline font-semibold">Wise case study</Link>. That same combination, real production capacity with transparent,
@@ -337,7 +337,7 @@ export default async function CustomPatchesUKPage() {
               worldwide shipping, and a money-back guarantee. We make every patch in our own factory rather than
               brokering it out, which keeps quality consistent and turnaround fast. Read the story on our <Link href="/about" prefetch={false} className="text-panda-green underline font-semibold">about page</Link>, see why the minimum is 5 in our <Link href="/custom-patches-no-minimum-order-5-pieces" prefetch={false} className="text-panda-green underline font-semibold">minimum-order guide</Link>, or browse <Link href="/bulk-custom-patches" prefetch={false} className="text-panda-green underline font-semibold">bulk orders</Link> for larger runs.
             </p>
-            <p className="text-[14px] text-gray-500">
+            <p className="text-[0.875rem] text-gray-500">
               Shipping further afield? We also ship free to <Link href="/custom-patches-australia" prefetch={false} className="text-panda-green underline font-semibold">Australia</Link> and <Link href="/custom-patches-canada" prefetch={false} className="text-panda-green underline font-semibold">Canada</Link>, both DDP with no local tax.
             </p>
           </div>

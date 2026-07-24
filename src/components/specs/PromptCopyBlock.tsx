@@ -32,18 +32,18 @@ export default function PromptCopyBlock({ label, prompt }: PromptCopyBlockProps)
   return (
     <div className="bg-white border-2 border-gray-200 rounded-2xl p-5 md:p-6">
       <div className="flex items-start justify-between gap-4 mb-3">
-        <p className="text-[11px] font-black uppercase tracking-wider text-panda-green">{label}</p>
+        <p className="text-[0.6875rem] font-black uppercase tracking-wider text-panda-green">{label}</p>
         <button
           type="button"
           onClick={copy}
           aria-label={`Copy the ${label.toLowerCase()} design prompt`}
-          className="flex items-center gap-1.5 text-[12px] font-bold text-panda-dark border border-gray-300 rounded-full px-3 py-1.5 hover:border-panda-green hover:text-panda-green transition-colors flex-shrink-0"
+          className="flex items-center gap-1.5 text-[0.75rem] font-bold text-panda-dark border border-gray-300 rounded-full px-3 py-1.5 hover:border-panda-green hover:text-panda-green transition-colors flex-shrink-0"
         >
           {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
-      <p className="text-[13px] md:text-[14px] text-gray-700 leading-[1.7] font-medium">{prompt}</p>
+      <p className="text-[0.8125rem] md:text-[0.875rem] text-gray-700 leading-[1.7] font-medium">{prompt}</p>
     </div>
   );
 }

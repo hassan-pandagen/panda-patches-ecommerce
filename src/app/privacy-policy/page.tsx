@@ -27,41 +27,41 @@ export default function PrivacyPolicyPage() {
       />
       <Navbar />
 
-      <article className="max-w-[860px] mx-auto py-24 px-6">
+      <article className="max-w-[53.75rem] mx-auto py-24 px-6">
 
-        <h1 className="text-[38px] md:text-[48px] font-black text-panda-dark mb-4 leading-tight tracking-tight">
+        <h1 className="text-[2.375rem] md:text-[3rem] font-black text-panda-dark mb-4 leading-tight tracking-tight">
           Privacy Policy
         </h1>
-        <p className="text-gray-500 text-[15px] mb-12 border-b border-gray-100 pb-8">
+        <p className="text-gray-500 text-[0.9375rem] mb-12 border-b border-gray-100 pb-8">
           Last Updated: {lastUpdated} · MC Patches LLC (Panda Patches)
         </p>
 
         <div className="prose prose-lg max-w-none text-gray-700 space-y-10">
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">1. Introduction</h2>
-            <p className="text-[16px] leading-[1.8] mb-4">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">1. Introduction</h2>
+            <p className="text-[1rem] leading-[1.8] mb-4">
               MC Patches LLC, operating as <strong>Panda Patches</strong> (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), operates the website
               <strong> pandapatches.com</strong>. This Privacy Policy explains how we collect, use, disclose, and safeguard
               your information when you visit our website or place an order with us.
             </p>
-            <p className="text-[16px] leading-[1.8]">
+            <p className="text-[1rem] leading-[1.8]">
               By using our website, you agree to the terms of this Privacy Policy. If you disagree, please discontinue use of our site.
             </p>
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">2. Information We Collect</h2>
-            <h3 className="text-[20px] font-bold text-panda-dark mb-3">Information You Provide Directly</h3>
-            <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8] mb-6">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">2. Information We Collect</h2>
+            <h3 className="text-[1.25rem] font-bold text-panda-dark mb-3">Information You Provide Directly</h3>
+            <ul className="list-disc pl-6 space-y-2 text-[1rem] leading-[1.8] mb-6">
               <li><strong>Name and contact details</strong> — name, email address, phone number</li>
               <li><strong>Shipping address</strong> — for order delivery</li>
               <li><strong>Payment information</strong>: processed securely via Square; we do not store card numbers</li>
               <li><strong>Order details</strong> — patch specifications, artwork files, special instructions</li>
               <li><strong>Communications</strong> — messages sent through our chat widget (Tawk.to) or email</li>
             </ul>
-            <h3 className="text-[20px] font-bold text-panda-dark mb-3">Information Collected Automatically</h3>
-            <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8]">
+            <h3 className="text-[1.25rem] font-bold text-panda-dark mb-3">Information Collected Automatically</h3>
+            <ul className="list-disc pl-6 space-y-2 text-[1rem] leading-[1.8]">
               <li><strong>Usage data</strong> — pages visited, time on site, referring URLs</li>
               <li><strong>Device data</strong> — browser type, IP address, operating system</li>
               <li><strong>Cookies and tracking</strong> — via Google Tag Manager and Meta Pixel (see Section 5)</li>
@@ -69,8 +69,8 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">3. How We Use Your Information</h2>
-            <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">3. How We Use Your Information</h2>
+            <ul className="list-disc pl-6 space-y-2 text-[1rem] leading-[1.8]">
               <li>Process and fulfill your custom patch orders</li>
               <li>Send order confirmations and shipping updates</li>
               <li>Respond to your inquiries and provide customer support</li>
@@ -82,9 +82,9 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">4. Sharing Your Information</h2>
-            <p className="text-[16px] leading-[1.8] mb-4">We do not sell your personal information. We share data only with:</p>
-            <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">4. Sharing Your Information</h2>
+            <p className="text-[1rem] leading-[1.8] mb-4">We do not sell your personal information. We share data only with:</p>
+            <ul className="list-disc pl-6 space-y-2 text-[1rem] leading-[1.8]">
               <li><strong>Square</strong>: payment processing (PCI-DSS compliant)</li>
               <li><strong>Supabase</strong> — order management database (encrypted at rest)</li>
               <li><strong>Google Analytics / GTM</strong> — aggregated website analytics</li>
@@ -95,22 +95,22 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">5. Cookies and Tracking Technologies</h2>
-            <p className="text-[16px] leading-[1.8] mb-4">We use cookies and similar tracking technologies for:</p>
-            <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8] mb-4">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">5. Cookies and Tracking Technologies</h2>
+            <p className="text-[1rem] leading-[1.8] mb-4">We use cookies and similar tracking technologies for:</p>
+            <ul className="list-disc pl-6 space-y-2 text-[1rem] leading-[1.8] mb-4">
               <li><strong>Essential cookies</strong> — required for the site to function</li>
               <li><strong>Analytics cookies</strong> — Google Analytics via GTM (aggregate traffic data)</li>
               <li><strong>Advertising cookies</strong> — Meta Pixel for ad measurement and remarketing</li>
               <li><strong>Chat cookies</strong> — Tawk.to live chat persistence</li>
             </ul>
-            <p className="text-[16px] leading-[1.8]">
+            <p className="text-[1rem] leading-[1.8]">
               You may disable cookies through your browser settings. Some features may not function correctly if cookies are disabled.
             </p>
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">6. Data Retention</h2>
-            <p className="text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">6. Data Retention</h2>
+            <p className="text-[1rem] leading-[1.8]">
               We retain your personal information for as long as necessary to fulfill your order, provide customer support,
               and comply with legal obligations. Order records are kept for a minimum of 5 years for accounting and tax purposes.
               You may request deletion of your personal data at any time by contacting us at{" "}
@@ -119,9 +119,9 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">7. Your Rights (GDPR / CCPA)</h2>
-            <p className="text-[16px] leading-[1.8] mb-4">Depending on your location, you may have the right to:</p>
-            <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">7. Your Rights (GDPR / CCPA)</h2>
+            <p className="text-[1rem] leading-[1.8] mb-4">Depending on your location, you may have the right to:</p>
+            <ul className="list-disc pl-6 space-y-2 text-[1rem] leading-[1.8]">
               <li><strong>Access</strong> — request a copy of the personal data we hold about you</li>
               <li><strong>Correction</strong> — request correction of inaccurate data</li>
               <li><strong>Deletion</strong> — request erasure of your personal data (&quot;right to be forgotten&quot;)</li>
@@ -129,23 +129,23 @@ export default function PrivacyPolicyPage() {
               <li><strong>Opt-out</strong> — opt out of marketing communications at any time</li>
               <li><strong>Do Not Sell</strong> — California residents: we do not sell personal information</li>
             </ul>
-            <p className="text-[16px] leading-[1.8] mt-4">
+            <p className="text-[1rem] leading-[1.8] mt-4">
               To exercise these rights, email us at{" "}
               <a href="mailto:sales@pandapatches.com" className="text-panda-dark font-semibold underline">sales@pandapatches.com</a>.
             </p>
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">8. Children&apos;s Privacy</h2>
-            <p className="text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">8. Children&apos;s Privacy</h2>
+            <p className="text-[1rem] leading-[1.8]">
               Our website is not directed at children under 13 years of age. We do not knowingly collect personal information
               from children under 13. If we discover that we have inadvertently collected such data, we will delete it promptly.
             </p>
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">9. Security</h2>
-            <p className="text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">9. Security</h2>
+            <p className="text-[1rem] leading-[1.8]">
               We implement industry-standard security measures to protect your data, including SSL/TLS encryption, secure payment
               processing via Square, and encrypted database storage via Supabase. However, no method of transmission over the
               internet is 100% secure, and we cannot guarantee absolute security.
@@ -153,16 +153,16 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">10. Third-Party Links</h2>
-            <p className="text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">10. Third-Party Links</h2>
+            <p className="text-[1rem] leading-[1.8]">
               Our website may contain links to third-party websites (e.g., Instagram, Facebook, Trustpilot). This Privacy Policy
               does not apply to those sites. We encourage you to review the privacy policies of any third-party sites you visit.
             </p>
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">11. Changes to This Policy</h2>
-            <p className="text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">11. Changes to This Policy</h2>
+            <p className="text-[1rem] leading-[1.8]">
               We may update this Privacy Policy from time to time. Changes are effective when posted on this page.
               The &quot;Last Updated&quot; date at the top will reflect the most recent revision.
               Continued use of our website after changes constitutes acceptance.
@@ -170,11 +170,11 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">12. Contact Us</h2>
-            <p className="text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">12. Contact Us</h2>
+            <p className="text-[1rem] leading-[1.8]">
               For privacy-related questions, data requests, or concerns, contact us:
             </p>
-            <div className="mt-4 bg-gray-50 rounded-2xl p-6 text-[16px] space-y-2">
+            <div className="mt-4 bg-gray-50 rounded-2xl p-6 text-[1rem] space-y-2">
               <p><strong>MC Patches LLC (Panda Patches)</strong></p>
               <p>Austin, TX, United States</p>
               <p>Email: <a href="mailto:sales@pandapatches.com" className="text-panda-dark font-semibold underline">sales@pandapatches.com</a></p>

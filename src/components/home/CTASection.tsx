@@ -42,12 +42,12 @@ export default async function CTASection() {
         <div className="max-w-[380px] flex flex-col items-center gap-6">
 
           {/* Heading */}
-          <h2 className="text-[24px] md:text-[28px] lg:text-[32px] font-bold text-black leading-[1.3] tracking-tight">
+          <h2 className="text-[1.5rem] md:text-[1.75rem] lg:text-[2rem] font-bold text-black leading-[1.3] tracking-tight">
             {heading}
           </h2>
 
           {/* Subtext */}
-          <p className="text-[14px] text-gray-900 font-medium leading-[1.5]">
+          <p className="text-[0.875rem] text-gray-900 font-medium leading-[1.5]">
             {sub}
           </p>
 

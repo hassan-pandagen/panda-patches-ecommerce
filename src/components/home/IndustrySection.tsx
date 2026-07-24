@@ -47,13 +47,13 @@ export default async function IndustrySection() {
         
         {/* === HEADER === */}
         <div className="text-center mb-16 space-y-6">
-          <h2 className="text-[24px] md:text-[40px] font-black text-panda-dark uppercase tracking-tight max-w-4xl mx-auto leading-tight">
+          <h2 className="text-[1.5rem] md:text-[2.5rem] font-black text-panda-dark uppercase tracking-tight max-w-4xl mx-auto leading-tight">
             {heading}
           </h2>
-          <p className="text-[16px] text-gray-500 font-medium max-w-4xl mx-auto leading-[1.8]">
+          <p className="text-[1rem] text-gray-500 font-medium max-w-4xl mx-auto leading-[1.8]">
             {desc}
           </p>
-          <p className="text-[20px] md:text-[24px] lg:text-[30px] font-bold text-panda-dark mt-4">
+          <p className="text-[1.25rem] md:text-[1.5rem] lg:text-[1.875rem] font-bold text-panda-dark mt-4">
             Explore a few of our most popular patch categories:
           </p>
         </div>
@@ -74,7 +74,7 @@ export default async function IndustrySection() {
             >
               
               {/* Title */}
-              <h3 className="text-[18px] md:text-[24px] font-bold text-panda-dark mb-6">
+              <h3 className="text-[1.125rem] md:text-[1.5rem] font-bold text-panda-dark mb-6">
                 {card.title}
               </h3>
 
@@ -93,16 +93,16 @@ export default async function IndustrySection() {
               </div>
 
               {/* Text */}
-              <p className="text-[13px] text-gray-500 text-center leading-[1.6] mb-8">
+              <p className="text-[0.8125rem] text-gray-500 text-center leading-[1.6] mb-8">
                 {card.text}
               </p>
 
               {/* Buttons */}
               <div className="flex gap-3 w-full mt-auto">
-                <button className="flex-1 bg-black text-panda-yellow py-3 text-[12px] font-black uppercase tracking-widest hover:scale-105 transition-transform">
+                <button className="flex-1 bg-black text-panda-yellow py-3 text-[0.75rem] font-black uppercase tracking-widest hover:scale-105 transition-transform">
                   Learn More
                 </button>
-                <button className="flex-1 border border-gray-300 text-black py-3 text-[12px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors">
+                <button className="flex-1 border border-gray-300 text-black py-3 text-[0.75rem] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors">
                   Get Quote Now
                 </button>
               </div>

@@ -190,21 +190,21 @@ export default async function CustomIronOnPatchesPage() {
 
       {/* 5. COMPATIBILITY MATRIX */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
             Which Patch Types Support Iron-On?
           </h2>
-          <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.7] text-center mb-8 max-w-[700px] mx-auto">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-8 max-w-[43.75rem] mx-auto">
             Not every patch type accepts iron-on backing. PVC rubber cannot tolerate the heat-press, and chenille yarn has too much texture for the adhesive to bond. Here is the full compatibility matrix.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-3">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-panda-dark text-white">
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Patch Type</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Iron-On?</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Default Backing</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Notes</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Patch Type</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">Iron-On?</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Default Backing</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Notes</th>
                 </tr>
               </thead>
               <tbody>
@@ -225,22 +225,22 @@ export default async function CustomIronOnPatchesPage() {
 
       {/* 6. PRICING TIERS */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
             How Much Do Custom Iron-On Patches Cost?
           </h2>
-          <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.7] text-center mb-8 max-w-[700px] mx-auto">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-8 max-w-[43.75rem] mx-auto">
             Iron-on backing is standard at no upcharge on embroidered, woven, printed, and leather patches. Pricing is the base patch price for the chosen type, size, and quantity.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white mb-3">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-panda-dark text-white">
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Patch Type</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">At 50 pcs</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">At 100 pcs</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">At 500 pcs</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">At 1,000 pcs</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Patch Type</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">At 50 pcs</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">At 100 pcs</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">At 500 pcs</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">At 1,000 pcs</th>
                 </tr>
               </thead>
               <tbody>
@@ -259,14 +259,14 @@ export default async function CustomIronOnPatchesPage() {
 
       {/* 7. APPLICATION STEPS */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
             How To Apply An Iron-On Patch
           </h2>
-          <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.7] text-center mb-10 max-w-[700px] mx-auto">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-10 max-w-[43.75rem] mx-auto">
             This six-step process works on embroidered, woven, printed, and leather iron-on patches on cotton, denim, canvas, and most natural-fiber fabrics. Total time is roughly 90 seconds per patch including cool-down.
           </p>
-          <div className="grid md:grid-cols-2 gap-5 max-w-[800px] mx-auto">
+          <div className="grid md:grid-cols-2 gap-5 max-w-[50rem] mx-auto">
             {[
               { n: 1, title: "Preheat the iron", desc: "Cotton or linen setting (medium-high heat, no steam)." },
               { n: 2, title: "Position the patch", desc: "Adhesive-side down on the garment in the desired location." },
@@ -280,13 +280,13 @@ export default async function CustomIronOnPatchesPage() {
                   {step.n}
                 </div>
                 <div>
-                  <h3 className="text-[16px] font-black text-panda-dark mb-1">{step.title}</h3>
-                  <p className="text-[14px] text-gray-600 leading-[1.6]">{step.desc}</p>
+                  <h3 className="text-[1rem] font-black text-panda-dark mb-1">{step.title}</h3>
+                  <p className="text-[0.875rem] text-gray-600 leading-[1.6]">{step.desc}</p>
                 </div>
               </div>
             ))}
           </div>
-          <p className="text-gray-600 text-[15px] leading-relaxed text-center mt-8 max-w-[700px] mx-auto">
+          <p className="text-gray-600 text-[0.9375rem] leading-relaxed text-center mt-8 max-w-[43.75rem] mx-auto">
             For long-term durability on garments washed frequently (work uniforms, game jerseys, items washed 30+ times per season), reinforce the iron-on with a few stitches around the edge. This hybrid iron-on plus sew-on attachment is the most permanent option.
           </p>
         </div>
@@ -294,11 +294,11 @@ export default async function CustomIronOnPatchesPage() {
 
       {/* 8. SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Order Custom Iron-On Patches With a 12 to 24 Hour Mockup
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               Custom iron-on patches are the easiest way to brand a hat, jacket, backpack, or t-shirt without sewing. Panda Patches produces iron-on backing as standard on embroidered, woven, printed, and leather patches with no upcharge. The 5-piece minimum applies (10 pieces on woven). Every order ships with free worldwide shipping, a digital mockup delivered in 12 to 24 hours, unlimited free revisions, and our money-back guarantee.
             </p>

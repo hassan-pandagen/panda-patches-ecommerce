@@ -232,15 +232,15 @@ export default async function PartnersPage() {
             </div>
           )}
 
-          <div className="relative z-10 text-center px-6 pt-16 pb-16 max-w-[800px] mx-auto">
-            <span className="inline-block bg-panda-yellow text-panda-dark text-[11px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] mb-5">
+          <div className="relative z-10 text-center px-6 pt-16 pb-16 max-w-[50rem] mx-auto">
+            <span className="inline-block bg-panda-yellow text-panda-dark text-[0.6875rem] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] mb-5">
               Creator · Affiliate · Agency Program
             </span>
-            <h1 className="text-[38px] md:text-[58px] lg:text-[72px] font-black leading-[1.05] tracking-tight mb-5 text-panda-dark">
+            <h1 className="text-[2.375rem] md:text-[3.625rem] lg:text-[4.5rem] font-black leading-[1.05] tracking-tight mb-5 text-panda-dark">
               Partner with Panda Patches.<br />
               <span className="text-panda-green">Create. Refer. Resell.</span>
             </h1>
-            <p className="text-[16px] md:text-[18px] text-gray-800 leading-relaxed max-w-[600px] mx-auto mb-8">
+            <p className="text-[1rem] md:text-[1.125rem] text-gray-800 leading-relaxed max-w-[37.5rem] mx-auto mb-8">
               Three ways to work together: creator and influencer gifting collabs, an affiliate referral program, and wholesale white-label production for agencies. Free patches for creators, referral rewards, and up to 25% margins for resellers.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
@@ -248,7 +248,7 @@ export default async function PartnersPage() {
                 trigger={
                   <button
                     type="button"
-                    className="bg-panda-yellow text-panda-dark px-8 py-4 rounded-[100px] font-black text-[16px] hover:brightness-105 transition-all"
+                    className="bg-panda-yellow text-panda-dark px-8 py-4 rounded-[100px] font-black text-[1rem] hover:brightness-105 transition-all"
                   >
                     Apply to Partner →
                   </button>
@@ -256,7 +256,7 @@ export default async function PartnersPage() {
               />
               <a
                 href="tel:+13022504340"
-                className="bg-panda-dark text-panda-yellow px-8 py-4 rounded-[100px] font-black text-[16px] hover:bg-black transition-all"
+                className="bg-panda-dark text-panda-yellow px-8 py-4 rounded-[100px] font-black text-[1rem] hover:bg-black transition-all"
               >
                 Call (302) 250-4340
               </a>
@@ -268,7 +268,7 @@ export default async function PartnersPage() {
             2. PROOF BAR
         ═══════════════════════════════════════════════════ */}
         <section className="bg-panda-yellow py-8 px-6">
-          <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="max-w-[68.75rem] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
               { value: "1M+", label: "Patches Delivered" },
               { value: "5 pc", label: "Low Minimum" },
@@ -276,8 +276,8 @@ export default async function PartnersPage() {
               { value: "$0", label: "Setup Fees, Ever" },
             ].map((s) => (
               <div key={s.label}>
-                <p className="text-[38px] md:text-[46px] font-black text-panda-dark leading-none">{s.value}</p>
-                <p className="text-[11px] font-black text-panda-dark/60 mt-1 uppercase tracking-[0.18em]">{s.label}</p>
+                <p className="text-[2.375rem] md:text-[2.875rem] font-black text-panda-dark leading-none">{s.value}</p>
+                <p className="text-[0.6875rem] font-black text-panda-dark/60 mt-1 uppercase tracking-[0.18em]">{s.label}</p>
               </div>
             ))}
           </div>
@@ -287,43 +287,43 @@ export default async function PartnersPage() {
             2b. THREE PARTNER TRACKS (PAC949 Part 4)
         ═══════════════════════════════════════════════════ */}
         <section className="py-20 px-6 bg-white border-b border-gray-100">
-          <div className="max-w-[1100px] mx-auto">
+          <div className="max-w-[68.75rem] mx-auto">
             <div className="text-center mb-12">
-              <p className="text-panda-green text-[11px] font-black uppercase tracking-[0.25em] mb-3">Three ways to partner</p>
-              <h2 className="text-[40px] md:text-[56px] font-black text-panda-dark leading-[1.05] mb-4">
+              <p className="text-panda-green text-[0.6875rem] font-black uppercase tracking-[0.25em] mb-3">Three ways to partner</p>
+              <h2 className="text-[2.5rem] md:text-[3.5rem] font-black text-panda-dark leading-[1.05] mb-4">
                 Pick the track that fits you.
               </h2>
-              <p className="text-[18px] text-gray-700 font-medium max-w-[640px] mx-auto leading-relaxed">
+              <p className="text-[1.125rem] text-gray-700 font-medium max-w-[40rem] mx-auto leading-relaxed">
                 Whether you create content, send referrals, or resell to clients, there is a partner lane built for you.
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="border-2 border-gray-200 rounded-3xl p-8 hover:border-panda-yellow hover:shadow-lg transition-all">
-                <span className="text-[34px]" aria-hidden="true">🎨</span>
-                <h3 className="text-[22px] font-black text-panda-dark mt-3 mb-2">Creator &amp; Influencer</h3>
-                <p className="text-[14px] text-gray-600 leading-relaxed mb-4">A free gifting batch of your own custom patches in exchange for a post, a tag, and a link. Built for tactical, streetwear, sports, scouting, biker, and maker creators.</p>
-                <ul className="space-y-2 text-[14px] text-gray-700">
+                <span className="text-[2.125rem]" aria-hidden="true">🎨</span>
+                <h3 className="text-[1.375rem] font-black text-panda-dark mt-3 mb-2">Creator &amp; Influencer</h3>
+                <p className="text-[0.875rem] text-gray-600 leading-relaxed mb-4">A free gifting batch of your own custom patches in exchange for a post, a tag, and a link. Built for tactical, streetwear, sports, scouting, biker, and maker creators.</p>
+                <ul className="space-y-2 text-[0.875rem] text-gray-700">
                   <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Free custom patches you design</li>
                   <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Keep the patches, no cost</li>
                   <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Optional affiliate link on top</li>
                 </ul>
               </div>
               <div className="relative border-2 border-panda-yellow rounded-3xl p-8 shadow-lg">
-                <span className="absolute -top-3.5 left-6 bg-panda-dark text-panda-yellow text-[11px] font-black uppercase tracking-widest px-3 py-1 rounded-full">Earn per sale</span>
-                <span className="text-[34px]" aria-hidden="true">🔗</span>
-                <h3 className="text-[22px] font-black text-panda-dark mt-3 mb-2">Affiliate &amp; Referral</h3>
-                <p className="text-[14px] text-gray-600 leading-relaxed mb-4">Share a unique referral link or code with your audience and earn a reward on every order it brings in. Reward rates confirmed on approval.</p>
-                <ul className="space-y-2 text-[14px] text-gray-700">
+                <span className="absolute -top-3.5 left-6 bg-panda-dark text-panda-yellow text-[0.6875rem] font-black uppercase tracking-widest px-3 py-1 rounded-full">Earn per sale</span>
+                <span className="text-[2.125rem]" aria-hidden="true">🔗</span>
+                <h3 className="text-[1.375rem] font-black text-panda-dark mt-3 mb-2">Affiliate &amp; Referral</h3>
+                <p className="text-[0.875rem] text-gray-600 leading-relaxed mb-4">Share a unique referral link or code with your audience and earn a reward on every order it brings in. Reward rates confirmed on approval.</p>
+                <ul className="space-y-2 text-[0.875rem] text-gray-700">
                   <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Unique link and discount code</li>
                   <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Referral reward per sale</li>
                   <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Proud Partner badge to embed</li>
                 </ul>
               </div>
               <div className="border-2 border-gray-200 rounded-3xl p-8 hover:border-panda-yellow hover:shadow-lg transition-all">
-                <span className="text-[34px]" aria-hidden="true">🏭</span>
-                <h3 className="text-[22px] font-black text-panda-dark mt-3 mb-2">B2B &amp; Reseller</h3>
-                <p className="text-[14px] text-gray-600 leading-relaxed mb-4">Agencies, uniform suppliers, embroidery shops, and event partners buy at 10-20% partner margins (up to 25% on volume) with blind shipping and a dedicated account manager.</p>
-                <ul className="space-y-2 text-[14px] text-gray-700">
+                <span className="text-[2.125rem]" aria-hidden="true">🏭</span>
+                <h3 className="text-[1.375rem] font-black text-panda-dark mt-3 mb-2">B2B &amp; Reseller</h3>
+                <p className="text-[0.875rem] text-gray-600 leading-relaxed mb-4">Agencies, uniform suppliers, embroidery shops, and event partners buy at 10-20% partner margins (up to 25% on volume) with blind shipping and a dedicated account manager.</p>
+                <ul className="space-y-2 text-[0.875rem] text-gray-700">
                   <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Up to 25% partner margins</li>
                   <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Blind shipping and white-label</li>
                   <li className="flex gap-2"><span className="text-panda-green font-black">✓</span> Net terms after 3 projects</li>
@@ -333,7 +333,7 @@ export default async function PartnersPage() {
             <div className="text-center mt-10">
               <PartnerApplicationModal
                 trigger={
-                  <button type="button" className="bg-panda-dark text-panda-yellow px-8 py-4 rounded-[100px] font-black text-[16px] hover:bg-panda-green transition-colors">
+                  <button type="button" className="bg-panda-dark text-panda-yellow px-8 py-4 rounded-[100px] font-black text-[1rem] hover:bg-panda-green transition-colors">
                     Apply to the Program →
                   </button>
                 }
@@ -346,12 +346,12 @@ export default async function PartnersPage() {
             3. INDUSTRY GRID — "Trusted by Organizations"
         ═══════════════════════════════════════════════════ */}
         <section className="py-20 px-6 bg-white">
-          <div className="max-w-[1100px] mx-auto">
+          <div className="max-w-[68.75rem] mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-[40px] md:text-[58px] font-black text-panda-dark leading-[1.05] mb-4">
+              <h2 className="text-[2.5rem] md:text-[3.625rem] font-black text-panda-dark leading-[1.05] mb-4">
                 Trusted by Organizations Across the US
               </h2>
-              <p className="text-[18px] text-gray-700 font-medium max-w-[600px] mx-auto leading-relaxed">
+              <p className="text-[1.125rem] text-gray-700 font-medium max-w-[37.5rem] mx-auto leading-relaxed">
                 From first responders to Fortune 500 brands, we make patches for teams that demand quality.
               </p>
             </div>
@@ -376,14 +376,14 @@ export default async function PartnersPage() {
                     )}
                   </div>
                   {/* Label sits below the image */}
-                  <p className="mt-3 text-center font-black text-panda-dark text-[16px] group-hover:text-panda-green transition-colors">
+                  <p className="mt-3 text-center font-black text-panda-dark text-[1rem] group-hover:text-panda-green transition-colors">
                     {cat.label}
                   </p>
                 </Link>
               ))}
             </div>
 
-            <p className="text-center text-[13px] text-gray-400 mt-6 italic">
+            <p className="text-center text-[0.8125rem] text-gray-400 mt-6 italic">
               Also serving: military units, motorcycle clubs, schools, universities, bands, and event organizers.
             </p>
           </div>
@@ -393,12 +393,12 @@ export default async function PartnersPage() {
             4. WORK GALLERY — heading dark, gallery full-width with lightbox/zoom
         ═══════════════════════════════════════════════════ */}
         <section className="pt-20 pb-4 px-6 bg-panda-dark">
-          <div className="max-w-[1100px] mx-auto">
-            <p className="text-panda-yellow text-[11px] font-black uppercase tracking-[0.25em] mb-4">Production quality</p>
-            <h2 className="text-[42px] md:text-[64px] lg:text-[80px] font-black text-white leading-[1.0] tracking-tight mb-6">
+          <div className="max-w-[68.75rem] mx-auto">
+            <p className="text-panda-yellow text-[0.6875rem] font-black uppercase tracking-[0.25em] mb-4">Production quality</p>
+            <h2 className="text-[2.625rem] md:text-[4rem] lg:text-[5rem] font-black text-white leading-[1.0] tracking-tight mb-6">
               Work your clients will love.
             </h2>
-            <Link href="/custom-patches" className="text-panda-yellow text-[24px] md:text-[32px] font-black hover:underline underline-offset-4 transition-all">
+            <Link href="/custom-patches" className="text-panda-yellow text-[1.5rem] md:text-[2rem] font-black hover:underline underline-offset-4 transition-all">
               Browse our full range →
             </Link>
           </div>
@@ -411,9 +411,9 @@ export default async function PartnersPage() {
             5. WHY PARTNER — 3 DIFFERENTIATORS
         ═══════════════════════════════════════════════════ */}
         <section className="py-20 px-6 bg-white">
-          <div className="max-w-[1100px] mx-auto">
-            <p className="text-panda-green text-[11px] font-black uppercase tracking-[0.25em] mb-3">Why agencies switch</p>
-            <h2 className="text-[40px] md:text-[58px] font-black text-panda-dark leading-[1.05] mb-16 max-w-[700px]">
+          <div className="max-w-[68.75rem] mx-auto">
+            <p className="text-panda-green text-[0.6875rem] font-black uppercase tracking-[0.25em] mb-3">Why agencies switch</p>
+            <h2 className="text-[2.5rem] md:text-[3.625rem] font-black text-panda-dark leading-[1.05] mb-16 max-w-[43.75rem]">
               We are not a broker. We own production.
             </h2>
 
@@ -422,20 +422,20 @@ export default async function PartnersPage() {
               {/* Row 1 */}
               <div className="grid md:grid-cols-2 gap-10 items-center">
                 <div>
-                  <span className="inline-block bg-panda-yellow text-panda-dark text-[11px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-5">01</span>
-                  <h3 className="text-[30px] md:text-[38px] font-black text-panda-dark leading-tight mb-4">
+                  <span className="inline-block bg-panda-yellow text-panda-dark text-[0.6875rem] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-5">01</span>
+                  <h3 className="text-[1.875rem] md:text-[2.375rem] font-black text-panda-dark leading-tight mb-4">
                     One dedicated account manager. Always.
                   </h3>
-                  <p className="text-[17px] text-gray-800 leading-relaxed mb-3">
+                  <p className="text-[1.0625rem] text-gray-800 leading-relaxed mb-3">
                     Every partner gets a single point of contact &mdash; dedicated to your account and reachable only for your queries, never shared across fifty others &mdash; who knows your clients, artwork preferences, and deadlines. No ticket queues, no bots, no hold music.
                   </p>
-                  <p className="text-[14px] text-gray-400">Quotes, mockups, production updates, reorders — one person, one thread.</p>
+                  <p className="text-[0.875rem] text-gray-400">Quotes, mockups, production updates, reorders — one person, one thread.</p>
                 </div>
                 <div className="bg-panda-light border-2 border-panda-green/20 rounded-3xl p-8 space-y-5">
                   {["Direct email and phone — no ticketing system", "Responds within 1 business hour", "Remembers your account preferences", "Escalates to production immediately if needed"].map((item) => (
                     <div key={item} className="flex items-start gap-3">
                       <span className="text-panda-green font-black text-xl mt-0.5 flex-shrink-0">✓</span>
-                      <p className="text-[16px] text-panda-dark font-medium leading-snug">{item}</p>
+                      <p className="text-[1rem] text-panda-dark font-medium leading-snug">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -447,39 +447,39 @@ export default async function PartnersPage() {
                   {["No sourcing delays — made in our own facility", "Full QC before anything ships", "Rush available because we control the queue", "Your client never sees another supplier's name"].map((item) => (
                     <div key={item} className="flex items-start gap-3">
                       <span className="text-panda-yellow font-black text-xl mt-0.5 flex-shrink-0">✓</span>
-                      <p className="text-[16px] text-white font-medium leading-snug">{item}</p>
+                      <p className="text-[1rem] text-white font-medium leading-snug">{item}</p>
                     </div>
                   ))}
                 </div>
                 <div className="order-1 md:order-2">
-                  <span className="inline-block bg-panda-yellow text-panda-dark text-[11px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-5">02</span>
-                  <h3 className="text-[30px] md:text-[38px] font-black text-panda-dark leading-tight mb-4">
+                  <span className="inline-block bg-panda-yellow text-panda-dark text-[0.6875rem] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-5">02</span>
+                  <h3 className="text-[1.875rem] md:text-[2.375rem] font-black text-panda-dark leading-tight mb-4">
                     Owned facility. Faster, tighter, better margins.
                   </h3>
-                  <p className="text-[16px] text-gray-700 leading-relaxed mb-3">
+                  <p className="text-[1rem] text-gray-700 leading-relaxed mb-3">
                     Most patch companies broker to Asia and add a markup. We own our production, which means we control lead times, quality, and your margin. When something goes wrong we fix it same day, and for repeat partners we usually absorb rush at no extra charge &mdash; we delivered 9,600 patches for <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-semibold underline">Wise&apos;s Nasdaq launch</Link> on the contractual dates with no rush fee.
                   </p>
-                  <p className="text-[14px] text-gray-500">1,000,000+ patches delivered. Built on 13 years of patch manufacturing experience. Zero middlemen.</p>
+                  <p className="text-[0.875rem] text-gray-500">1,000,000+ patches delivered. Built on 13 years of patch manufacturing experience. Zero middlemen.</p>
                 </div>
               </div>
 
               {/* Row 3 */}
               <div className="grid md:grid-cols-2 gap-10 items-center">
                 <div>
-                  <span className="inline-block bg-panda-yellow text-panda-dark text-[11px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-5">03</span>
-                  <h3 className="text-[30px] md:text-[38px] font-black text-panda-dark leading-tight mb-4">
+                  <span className="inline-block bg-panda-yellow text-panda-dark text-[0.6875rem] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-5">03</span>
+                  <h3 className="text-[1.875rem] md:text-[2.375rem] font-black text-panda-dark leading-tight mb-4">
                     Blind shipping. Your brand, your relationship.
                   </h3>
-                  <p className="text-[17px] text-gray-800 leading-relaxed mb-3">
+                  <p className="text-[1.0625rem] text-gray-800 leading-relaxed mb-3">
                     Packages ship with plain packaging or with your agency as the return address. Mockup PDFs delivered unbranded on request. Your client buys from you, full stop.
                   </p>
-                  <p className="text-[14px] text-gray-400">Net-15 / Net-30 terms available after three successful projects.</p>
+                  <p className="text-[0.875rem] text-gray-400">Net-15 / Net-30 terms available after three successful projects.</p>
                 </div>
                 <div className="bg-panda-light border-2 border-panda-green/20 rounded-3xl p-8 space-y-5">
                   {["Blind ship to client address", "Your return address on the label", "Unbranded mockup PDFs on request", "White-label invoice available", "NDA signed within 24 hours"].map((item) => (
                     <div key={item} className="flex items-start gap-3">
                       <span className="text-panda-green font-black text-xl mt-0.5 flex-shrink-0">✓</span>
-                      <p className="text-[16px] text-panda-dark font-medium leading-snug">{item}</p>
+                      <p className="text-[1rem] text-panda-dark font-medium leading-snug">{item}</p>
                     </div>
                   ))}
                 </div>
@@ -493,12 +493,12 @@ export default async function PartnersPage() {
             6. PARTNER MARGIN TABLE
         ═══════════════════════════════════════════════════ */}
         <section className="py-20 px-6 bg-panda-light">
-          <div className="max-w-[1100px] mx-auto">
-            <p className="text-panda-green text-[11px] font-black uppercase tracking-[0.25em] mb-3">Transparent pricing</p>
-            <h2 className="text-[40px] md:text-[58px] font-black text-panda-dark leading-[1.05] mb-4">
+          <div className="max-w-[68.75rem] mx-auto">
+            <p className="text-panda-green text-[0.6875rem] font-black uppercase tracking-[0.25em] mb-3">Transparent pricing</p>
+            <h2 className="text-[2.5rem] md:text-[3.625rem] font-black text-panda-dark leading-[1.05] mb-4">
               Your margin, on every order.
             </h2>
-            <p className="text-[18px] text-gray-700 font-medium mb-10 max-w-[600px] leading-relaxed">
+            <p className="text-[1.125rem] text-gray-700 font-medium mb-10 max-w-[37.5rem] leading-relaxed">
               Partner pricing runs 10–20% below retail, up to 25% on your highest-volume orders — the more you sell, the higher your tier. Prices below are your cost per piece, pulled live from our retail calculator. You set your own client price and keep 100% of the difference.
             </p>
 
@@ -506,27 +506,27 @@ export default async function PartnersPage() {
               <table className="w-full min-w-[580px]">
                 <thead>
                   <tr className="bg-panda-dark text-white">
-                    <th className="text-left px-6 py-4 font-black text-[13px] uppercase tracking-wider">Patch Type</th>
-                    <th className="text-center px-4 py-4 font-black text-[13px] uppercase tracking-wider">25 pcs</th>
-                    <th className="text-center px-4 py-4 font-black text-[13px] uppercase tracking-wider">100 pcs</th>
-                    <th className="text-center px-4 py-4 font-black text-[13px] uppercase tracking-wider">500 pcs</th>
-                    <th className="text-center px-4 py-4 font-black text-[13px] uppercase tracking-wider text-panda-yellow">1,000 pcs</th>
+                    <th className="text-left px-6 py-4 font-black text-[0.8125rem] uppercase tracking-wider">Patch Type</th>
+                    <th className="text-center px-4 py-4 font-black text-[0.8125rem] uppercase tracking-wider">25 pcs</th>
+                    <th className="text-center px-4 py-4 font-black text-[0.8125rem] uppercase tracking-wider">100 pcs</th>
+                    <th className="text-center px-4 py-4 font-black text-[0.8125rem] uppercase tracking-wider">500 pcs</th>
+                    <th className="text-center px-4 py-4 font-black text-[0.8125rem] uppercase tracking-wider text-panda-yellow">1,000 pcs</th>
                   </tr>
                 </thead>
                 <tbody>
                   {MARGIN_TABLE.map((row, i) => (
                     <tr key={row.type} className={i % 2 === 0 ? "bg-white" : "bg-panda-light"}>
-                      <td className="px-6 py-4 font-bold text-panda-dark text-[15px]">{row.type}</td>
-                      <td className="px-4 py-4 text-center text-gray-600 text-[15px]">{row.r25}</td>
-                      <td className="px-4 py-4 text-center text-gray-600 text-[15px]">{row.r100}</td>
-                      <td className="px-4 py-4 text-center text-gray-600 text-[15px]">{row.r500}</td>
-                      <td className="px-4 py-4 text-center font-black text-panda-green text-[15px]">{row.r1000}</td>
+                      <td className="px-6 py-4 font-bold text-panda-dark text-[0.9375rem]">{row.type}</td>
+                      <td className="px-4 py-4 text-center text-gray-600 text-[0.9375rem]">{row.r25}</td>
+                      <td className="px-4 py-4 text-center text-gray-600 text-[0.9375rem]">{row.r100}</td>
+                      <td className="px-4 py-4 text-center text-gray-600 text-[0.9375rem]">{row.r500}</td>
+                      <td className="px-4 py-4 text-center font-black text-panda-green text-[0.9375rem]">{row.r1000}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <p className="text-[12px] text-gray-400 mt-4">
+            <p className="text-[0.75rem] text-gray-400 mt-4">
               Prices in USD, per piece for a 3-inch patch (chenille shown at 4 inches), pulled live from our retail calculator. Velcro backing is charged separately on every order. Custom sizes quoted within 4 hours by your account manager.
             </p>
           </div>
@@ -536,9 +536,9 @@ export default async function PartnersPage() {
             7. THREE PARTNERSHIP TYPES
         ═══════════════════════════════════════════════════ */}
         <section className="py-20 px-6 bg-white">
-          <div className="max-w-[1100px] mx-auto">
-            <p className="text-panda-green text-[11px] font-black uppercase tracking-[0.25em] mb-3">Partnership options</p>
-            <h2 className="text-[40px] md:text-[58px] font-black text-panda-dark leading-[1.05] mb-12">
+          <div className="max-w-[68.75rem] mx-auto">
+            <p className="text-panda-green text-[0.6875rem] font-black uppercase tracking-[0.25em] mb-3">Partnership options</p>
+            <h2 className="text-[2.5rem] md:text-[3.625rem] font-black text-panda-dark leading-[1.05] mb-12">
               Three ways to work with us.
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
@@ -567,13 +567,13 @@ export default async function PartnersPage() {
                   className="group relative border-2 border-gray-200 bg-white rounded-3xl p-8 cursor-default transition-all duration-200 hover:border-panda-yellow hover:bg-panda-yellow/5 hover:shadow-lg"
                 >
                   {card.badge && (
-                    <span className="absolute -top-3.5 left-6 bg-panda-dark text-panda-yellow text-[11px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
+                    <span className="absolute -top-3.5 left-6 bg-panda-dark text-panda-yellow text-[0.6875rem] font-black uppercase tracking-widest px-3 py-1 rounded-full">
                       {card.badge}
                     </span>
                   )}
-                  <p className="text-[11px] font-black uppercase tracking-widest text-panda-green mb-3">{card.tag}</p>
-                  <h3 className="text-[22px] font-black text-panda-dark mb-3 group-hover:text-panda-green transition-colors">{card.title}</h3>
-                  <p className="text-[15px] text-gray-700 leading-relaxed">{card.body}</p>
+                  <p className="text-[0.6875rem] font-black uppercase tracking-widest text-panda-green mb-3">{card.tag}</p>
+                  <h3 className="text-[1.375rem] font-black text-panda-dark mb-3 group-hover:text-panda-green transition-colors">{card.title}</h3>
+                  <p className="text-[0.9375rem] text-gray-700 leading-relaxed">{card.body}</p>
                 </div>
               ))}
             </div>
@@ -584,17 +584,17 @@ export default async function PartnersPage() {
             8. HOW IT WORKS — 4 STEPS
         ═══════════════════════════════════════════════════ */}
         <section className="py-20 px-6 bg-panda-dark">
-          <div className="max-w-[1100px] mx-auto">
-            <p className="text-panda-yellow text-[11px] font-black uppercase tracking-[0.25em] mb-3">Getting started</p>
-            <h2 className="text-[40px] md:text-[58px] font-black text-white leading-[1.05] mb-16">
+          <div className="max-w-[68.75rem] mx-auto">
+            <p className="text-panda-yellow text-[0.6875rem] font-black uppercase tracking-[0.25em] mb-3">Getting started</p>
+            <h2 className="text-[2.5rem] md:text-[3.625rem] font-black text-white leading-[1.05] mb-16">
               Up and running in 24 hours.
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {HOW_STEPS.map((step) => (
                 <div key={step.n} className="border border-white/10 rounded-2xl p-6">
-                  <p className="text-[52px] font-black text-panda-yellow leading-none mb-4">{step.n}</p>
-                  <h3 className="text-[18px] font-black text-white mb-3">{step.title}</h3>
-                  <p className="text-[14px] text-gray-300 leading-relaxed">{step.body}</p>
+                  <p className="text-[3.25rem] font-black text-panda-yellow leading-none mb-4">{step.n}</p>
+                  <h3 className="text-[1.125rem] font-black text-white mb-3">{step.title}</h3>
+                  <p className="text-[0.875rem] text-gray-300 leading-relaxed">{step.body}</p>
                 </div>
               ))}
             </div>
@@ -605,13 +605,13 @@ export default async function PartnersPage() {
             8b. AFFILIATE LINK + PROUD PARTNER BADGE (PAC949 Part 4)
         ═══════════════════════════════════════════════════ */}
         <section className="py-20 px-6 bg-white">
-          <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div className="max-w-[68.75rem] mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-panda-green text-[11px] font-black uppercase tracking-[0.25em] mb-3">How affiliates earn</p>
-              <h2 className="text-[36px] md:text-[52px] font-black text-panda-dark leading-[1.05] mb-5">
+              <p className="text-panda-green text-[0.6875rem] font-black uppercase tracking-[0.25em] mb-3">How affiliates earn</p>
+              <h2 className="text-[2.25rem] md:text-[3.25rem] font-black text-panda-dark leading-[1.05] mb-5">
                 Your link. Your badge. Your cut.
               </h2>
-              <p className="text-[17px] text-gray-700 leading-relaxed mb-6">
+              <p className="text-[1.0625rem] text-gray-700 leading-relaxed mb-6">
                 Approved affiliates get a unique referral link and discount code to share, plus a &quot;Proud Partner of Panda Patches&quot; badge to place on your site, blog, or bio. When your audience orders through your link, you earn a referral reward and they get a warm welcome.
               </p>
               <ol className="space-y-3">
@@ -621,21 +621,21 @@ export default async function PartnersPage() {
                   ["Share and earn", "Post, link, or refer. You earn a reward on every order your link brings in."],
                 ].map(([t, b], i) => (
                   <li key={t} className="flex gap-4">
-                    <span className="flex-shrink-0 w-8 h-8 rounded-full bg-panda-dark text-panda-yellow font-black flex items-center justify-center text-[14px]">{i + 1}</span>
-                    <p className="text-[15px] text-gray-700 leading-snug"><strong className="text-panda-dark">{t}.</strong> {b}</p>
+                    <span className="flex-shrink-0 w-8 h-8 rounded-full bg-panda-dark text-panda-yellow font-black flex items-center justify-center text-[0.875rem]">{i + 1}</span>
+                    <p className="text-[0.9375rem] text-gray-700 leading-snug"><strong className="text-panda-dark">{t}.</strong> {b}</p>
                   </li>
                 ))}
               </ol>
             </div>
             <div className="bg-panda-light border-2 border-panda-green/20 rounded-3xl p-8 text-center">
               <div className="inline-flex items-center gap-2 bg-panda-dark rounded-2xl px-5 py-3 mb-5">
-                <span className="text-panda-yellow font-black text-[15px]">★ Proud Partner</span>
-                <span className="text-[13px] text-gray-300">of Panda Patches</span>
+                <span className="text-panda-yellow font-black text-[0.9375rem]">★ Proud Partner</span>
+                <span className="text-[0.8125rem] text-gray-300">of Panda Patches</span>
               </div>
-              <p className="text-[14px] text-gray-600 leading-relaxed mb-4">
+              <p className="text-[0.875rem] text-gray-600 leading-relaxed mb-4">
                 A clean badge and embed snippet, supplied on approval, links back to Panda Patches from your site. It builds your credibility and our shared reach.
               </p>
-              <p className="text-[13px] text-gray-500 leading-relaxed">
+              <p className="text-[0.8125rem] text-gray-500 leading-relaxed">
                 Reward rates and badge assets are confirmed with you on approval. Apply above to get started.
               </p>
             </div>
@@ -651,16 +651,16 @@ export default async function PartnersPage() {
             10. FAQ
         ═══════════════════════════════════════════════════ */}
         <section className="py-20 px-6 bg-panda-light">
-          <div className="max-w-[800px] mx-auto">
-            <p className="text-panda-green text-[11px] font-black uppercase tracking-[0.25em] mb-3">Before you apply</p>
-            <h2 className="text-[40px] md:text-[56px] font-black text-panda-dark leading-[1.05] mb-12">
+          <div className="max-w-[50rem] mx-auto">
+            <p className="text-panda-green text-[0.6875rem] font-black uppercase tracking-[0.25em] mb-3">Before you apply</p>
+            <h2 className="text-[2.5rem] md:text-[3.5rem] font-black text-panda-dark leading-[1.05] mb-12">
               Partner FAQ.
             </h2>
             <div className="space-y-8">
               {PARTNER_FAQS.map((faq) => (
                 <div key={faq.question} className="border-b border-gray-200 pb-8">
-                  <h3 className="text-[19px] font-black text-panda-dark mb-3">{faq.question}</h3>
-                  <p className="text-[17px] text-gray-700 leading-relaxed">{faq.answer}</p>
+                  <h3 className="text-[1.1875rem] font-black text-panda-dark mb-3">{faq.question}</h3>
+                  <p className="text-[1.0625rem] text-gray-700 leading-relaxed">{faq.answer}</p>
                 </div>
               ))}
             </div>
@@ -671,13 +671,13 @@ export default async function PartnersPage() {
             11. FINAL CTA
         ═══════════════════════════════════════════════════ */}
         <section className="py-24 px-6 bg-panda-dark">
-          <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-16 items-start">
+          <div className="max-w-[68.75rem] mx-auto grid md:grid-cols-2 gap-16 items-start">
             <div>
-              <p className="text-panda-yellow text-[11px] font-black uppercase tracking-[0.25em] mb-4">Ready to partner?</p>
-              <h2 className="text-[40px] md:text-[58px] font-black text-white leading-[1.05] mb-6">
+              <p className="text-panda-yellow text-[0.6875rem] font-black uppercase tracking-[0.25em] mb-4">Ready to partner?</p>
+              <h2 className="text-[2.5rem] md:text-[3.625rem] font-black text-white leading-[1.05] mb-6">
                 Add custom patches to your offer today.
               </h2>
-              <p className="text-[16px] text-gray-300 leading-relaxed mb-8">
+              <p className="text-[1rem] text-gray-300 leading-relaxed mb-8">
                 Apply in 60 seconds. Your dedicated account manager reaches out within 24 hours with partner pricing and onboarding. No commitment, low 5-piece minimums.
               </p>
               <div className="space-y-4">
@@ -690,15 +690,15 @@ export default async function PartnersPage() {
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-3">
                     <span className="text-panda-yellow font-black text-lg flex-shrink-0">✓</span>
-                    <p className="text-[15px] text-gray-200">{item}</p>
+                    <p className="text-[0.9375rem] text-gray-200">{item}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="bg-white rounded-3xl p-8 md:p-10">
-              <p className="text-[11px] font-black uppercase tracking-[0.25em] text-panda-green mb-3">Start the conversation</p>
-              <h3 className="text-[26px] font-black text-panda-dark mb-6 leading-tight">
+              <p className="text-[0.6875rem] font-black uppercase tracking-[0.25em] text-panda-green mb-3">Start the conversation</p>
+              <h3 className="text-[1.625rem] font-black text-panda-dark mb-6 leading-tight">
                 Three ways to reach Lance.
               </h3>
 
@@ -710,8 +710,8 @@ export default async function PartnersPage() {
                     </svg>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[12px] font-black uppercase tracking-wider text-gray-500 mb-1">Email Lance directly</p>
-                    <a href="mailto:lance@pandapatches.com" className="text-[15px] font-bold text-panda-dark hover:text-panda-green transition-colors break-all">
+                    <p className="text-[0.75rem] font-black uppercase tracking-wider text-gray-500 mb-1">Email Lance directly</p>
+                    <a href="mailto:lance@pandapatches.com" className="text-[0.9375rem] font-bold text-panda-dark hover:text-panda-green transition-colors break-all">
                       lance@pandapatches.com
                     </a>
                   </div>
@@ -724,8 +724,8 @@ export default async function PartnersPage() {
                     </svg>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[12px] font-black uppercase tracking-wider text-gray-500 mb-1">Call the partner line</p>
-                    <a href="tel:+13022504340" className="text-[15px] font-bold text-panda-dark hover:text-panda-green transition-colors">
+                    <p className="text-[0.75rem] font-black uppercase tracking-wider text-gray-500 mb-1">Call the partner line</p>
+                    <a href="tel:+13022504340" className="text-[0.9375rem] font-bold text-panda-dark hover:text-panda-green transition-colors">
                       (302) 250-4340
                     </a>
                   </div>
@@ -738,8 +738,8 @@ export default async function PartnersPage() {
                     </svg>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[12px] font-black uppercase tracking-wider text-gray-500 mb-1">Apply in 60 seconds</p>
-                    <p className="text-[14px] text-gray-600 leading-relaxed">
+                    <p className="text-[0.75rem] font-black uppercase tracking-wider text-gray-500 mb-1">Apply in 60 seconds</p>
+                    <p className="text-[0.875rem] text-gray-600 leading-relaxed">
                       Tell us about your business and Lance reaches out within 24 hours with partner pricing.
                     </p>
                   </div>
@@ -750,14 +750,14 @@ export default async function PartnersPage() {
                 trigger={
                   <button
                     type="button"
-                    className="w-full text-center bg-panda-dark text-panda-yellow font-black text-[16px] py-5 rounded-xl hover:bg-panda-green transition-colors"
+                    className="w-full text-center bg-panda-dark text-panda-yellow font-black text-[1rem] py-5 rounded-xl hover:bg-panda-green transition-colors"
                   >
                     Apply to Partner Program →
                   </button>
                 }
               />
 
-              <p className="text-[12px] text-gray-400 text-center mt-4">
+              <p className="text-[0.75rem] text-gray-400 text-center mt-4">
                 Response within 24 hours. No commitment required.
               </p>
             </div>

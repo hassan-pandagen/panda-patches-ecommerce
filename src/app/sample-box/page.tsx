@@ -130,7 +130,7 @@ export default async function SampleBoxPage() {
                   {includedCategories.map((category, index) => (
                     <div key={index} className="flex items-center gap-2 bg-white rounded-lg p-3 shadow-sm">
                       <Check size={18} className="text-panda-green flex-shrink-0" />
-                      <span className="text-[13px] font-bold text-gray-700">{category}</span>
+                      <span className="text-[0.8125rem] font-bold text-gray-700">{category}</span>
                     </div>
                   ))}
                 </div>

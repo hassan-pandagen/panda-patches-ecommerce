@@ -40,7 +40,7 @@ function statusBadge(status?: string | null, paymentStatus?: string | null) {
     label = s === "MOCKUP_SENT" ? "Mockup Sent" : "Pending";
     cls = "bg-yellow-100 text-yellow-800";
   }
-  return <span className={`inline-block px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider ${cls}`}>{label}</span>;
+  return <span className={`inline-block px-2.5 py-1 rounded-full text-[0.6875rem] font-bold uppercase tracking-wider ${cls}`}>{label}</span>;
 }
 
 export default async function AccountDashboardPage() {
@@ -72,19 +72,19 @@ export default async function AccountDashboardPage() {
     <main className="min-h-screen bg-[#F9FAF5]">
       <Navbar />
       <section className="w-full pt-10 md:pt-14 pb-10 md:pb-16">
-        <div className="container mx-auto px-6 max-w-[1000px]">
+        <div className="container mx-auto px-6 max-w-[62.5rem]">
 
           {/* Greeting */}
           <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
             <div>
-              <p className="text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-2">My Account</p>
-              <h1 className="text-[32px] md:text-[42px] font-black text-panda-dark leading-[1.1] tracking-tight">
+              <p className="text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-2">My Account</p>
+              <h1 className="text-[2rem] md:text-[2.625rem] font-black text-panda-dark leading-[1.1] tracking-tight">
                 Welcome back, {displayName}
               </h1>
-              <p className="text-[14px] text-gray-500 mt-2">Signed in as {user.email}</p>
+              <p className="text-[0.875rem] text-gray-500 mt-2">Signed in as {user.email}</p>
             </div>
             <form action="/auth/signout" method="post">
-              <button type="submit" className="inline-flex items-center gap-2 text-[13px] font-bold text-gray-500 hover:text-panda-dark transition-colors">
+              <button type="submit" className="inline-flex items-center gap-2 text-[0.8125rem] font-bold text-gray-500 hover:text-panda-dark transition-colors">
                 <LogOut size={14} /> Sign Out
               </button>
             </form>
@@ -94,13 +94,13 @@ export default async function AccountDashboardPage() {
           <div className="grid sm:grid-cols-3 gap-4 mb-10">
             <Link href="/account/orders" className="group block bg-white border border-gray-200 rounded-[16px] p-6 hover:shadow-lg transition-shadow">
               <Package className="text-panda-green mb-3" size={28} strokeWidth={2.5} />
-              <h2 className="text-[16px] font-black text-panda-dark mb-1">My Orders</h2>
-              <p className="text-[13px] text-gray-500 leading-[1.6]">View order history, track delivery, and reorder.</p>
+              <h2 className="text-[1rem] font-black text-panda-dark mb-1">My Orders</h2>
+              <p className="text-[0.8125rem] text-gray-500 leading-[1.6]">View order history, track delivery, and reorder.</p>
             </Link>
             <Link href="/account/profile" className="group block bg-white border border-gray-200 rounded-[16px] p-6 hover:shadow-lg transition-shadow">
               <User className="text-panda-green mb-3" size={28} strokeWidth={2.5} />
-              <h2 className="text-[16px] font-black text-panda-dark mb-1">My Profile</h2>
-              <p className="text-[13px] text-gray-500 leading-[1.6]">Update your name, phone, and default shipping address.</p>
+              <h2 className="text-[1rem] font-black text-panda-dark mb-1">My Profile</h2>
+              <p className="text-[0.8125rem] text-gray-500 leading-[1.6]">Update your name, phone, and default shipping address.</p>
             </Link>
             {/* Lands the customer directly on the embroidered product page
                 where the live calculator + checkout form are above the fold,
@@ -109,24 +109,24 @@ export default async function AccountDashboardPage() {
                 ordered type and matches the tile's "live calculator" copy. */}
             <Link href="/custom-patches/embroidered" className="group block bg-white border border-gray-200 rounded-[16px] p-6 hover:shadow-lg transition-shadow">
               <ShoppingBag className="text-panda-green mb-3" size={28} strokeWidth={2.5} />
-              <h2 className="text-[16px] font-black text-panda-dark mb-1">Place a New Order</h2>
-              <p className="text-[13px] text-gray-500 leading-[1.6]">Start a new patch order with our live calculator.</p>
+              <h2 className="text-[1rem] font-black text-panda-dark mb-1">Place a New Order</h2>
+              <p className="text-[0.8125rem] text-gray-500 leading-[1.6]">Start a new patch order with our live calculator.</p>
             </Link>
           </div>
 
           {/* Recent orders */}
           <div className="bg-white border border-gray-200 rounded-[20px] overflow-hidden">
             <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
-              <h2 className="text-[18px] font-black text-panda-dark">Recent Orders</h2>
-              <Link href="/account/orders" className="text-[13px] font-bold text-panda-green hover:underline">
+              <h2 className="text-[1.125rem] font-black text-panda-dark">Recent Orders</h2>
+              <Link href="/account/orders" className="text-[0.8125rem] font-bold text-panda-green hover:underline">
                 View all &rarr;
               </Link>
             </div>
 
             {recentOrders.length === 0 ? (
               <div className="px-6 py-16 text-center">
-                <p className="text-[15px] text-gray-500 mb-4">You have not placed an order yet.</p>
-                <Link href="/custom-patches" className="inline-block bg-panda-dark text-panda-yellow font-black text-[14px] px-6 py-3 rounded-full uppercase tracking-wider hover:scale-105 transition-transform">
+                <p className="text-[0.9375rem] text-gray-500 mb-4">You have not placed an order yet.</p>
+                <Link href="/custom-patches" className="inline-block bg-panda-dark text-panda-yellow font-black text-[0.875rem] px-6 py-3 rounded-full uppercase tracking-wider hover:scale-105 transition-transform">
                   Browse Patches
                 </Link>
               </div>
@@ -139,16 +139,16 @@ export default async function AccountDashboardPage() {
                     className="flex items-center justify-between px-6 py-4 hover:bg-[#F9FAF5] transition-colors"
                   >
                     <div className="flex-1 min-w-0">
-                      <p className="text-[14px] font-bold text-panda-dark truncate">
+                      <p className="text-[0.875rem] font-bold text-panda-dark truncate">
                         {o.patches_type || "Custom Patch Order"}
                       </p>
-                      <p className="text-[12px] text-gray-500 mt-0.5">
+                      <p className="text-[0.75rem] text-gray-500 mt-0.5">
                         {formatDate(o.created_at)} &middot; {o.patches_quantity || 0} pcs &middot; #{String(o.id).slice(0, 8)}
                       </p>
                     </div>
                     <div className="flex items-center gap-4 ml-4 flex-shrink-0">
                       {statusBadge(o.status, o.payment_status)}
-                      <span className="text-[14px] font-black text-panda-dark hidden sm:inline">
+                      <span className="text-[0.875rem] font-black text-panda-dark hidden sm:inline">
                         ${(o.amount_paid || 0).toFixed(2)}
                       </span>
                     </div>

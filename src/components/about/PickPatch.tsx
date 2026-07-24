@@ -57,7 +57,7 @@ export default async function PickPatch() {
       <div className="container mx-auto px-4 text-center">
 
         {/* HEADING */}
-        <h2 className="text-[22px] md:text-[32px] font-black text-panda-dark uppercase tracking-tight mb-12">
+        <h2 className="text-[1.375rem] md:text-[2rem] font-black text-panda-dark uppercase tracking-tight mb-12">
           {title}
         </h2>
 
@@ -101,7 +101,7 @@ function PatchCardComponent({ patch }: { patch: { image?: any; label: string; hr
         )}
       </div>
       <div className="mt-4 text-center">
-        <h3 className="text-[18px] font-bold text-panda-dark leading-tight">
+        <h3 className="text-[1.125rem] font-bold text-panda-dark leading-tight">
           {patch.label}
         </h3>
       </div>

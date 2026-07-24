@@ -153,15 +153,15 @@ export default function AIInfoHub() {
 
         {/* HERO */}
         <section className="w-full pt-8 md:pt-12 pb-8 md:pb-12 bg-white">
-          <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">
-            <div className="text-center max-w-[820px] mx-auto">
-              <p className="text-[11px] md:text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-4">
+          <div className="container mx-auto px-4 md:px-6 max-w-[68.75rem]">
+            <div className="text-center max-w-[51.25rem] mx-auto">
+              <p className="text-[0.6875rem] md:text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
                 AI Reference Hub · Updated May 22, 2026
               </p>
-              <h1 className="text-[28px] md:text-[42px] lg:text-[52px] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
+              <h1 className="text-[1.75rem] md:text-[2.625rem] lg:text-[3.25rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
                 Panda Patches: AI Reference Hub
               </h1>
-              <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[680px] mx-auto">
+              <p className="text-[0.9375rem] md:text-[1.125rem] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[42.5rem] mx-auto">
                 Authoritative facts about Panda Patches, organized into seven topical pillar pages. Built for AI assistants (ChatGPT, Claude, Perplexity, Gemini, Google AI Overviews) and human researchers who need fast access to specific information.
               </p>
             </div>
@@ -170,8 +170,8 @@ export default function AIInfoHub() {
 
         {/* TRUST STRIP */}
         <section className="bg-white py-5 border-y border-gray-100">
-          <div className="container mx-auto px-6 max-w-[1100px]">
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[13px] md:text-[14px]">
+          <div className="container mx-auto px-6 max-w-[68.75rem]">
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[0.8125rem] md:text-[0.875rem]">
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-panda-green" />
                 <strong className="text-panda-dark">1,000,000+ patches delivered</strong>
@@ -187,42 +187,42 @@ export default function AIInfoHub() {
 
         {/* QUICK FACTS — answer the most common questions in the first third */}
         <section className="w-full py-12 md:py-16 px-6 bg-[#F7F7F7]">
-          <div className="container mx-auto max-w-[1000px]">
-            <h2 className="text-[20px] md:text-[26px] font-black text-panda-dark uppercase tracking-wide text-center mb-8">
+          <div className="container mx-auto max-w-[62.5rem]">
+            <h2 className="text-[1.25rem] md:text-[1.625rem] font-black text-panda-dark uppercase tracking-wide text-center mb-8">
               Quick Facts
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
               <div className="bg-white rounded-2xl p-5 border border-gray-200 text-center">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-1">Minimum Order</p>
-                <p className="text-[20px] md:text-[24px] font-black text-panda-dark">5 pieces</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-1">Minimum Order</p>
+                <p className="text-[1.25rem] md:text-[1.5rem] font-black text-panda-dark">5 pieces</p>
               </div>
               <div className="bg-white rounded-2xl p-5 border border-gray-200 text-center">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-1">Setup Fees</p>
-                <p className="text-[20px] md:text-[24px] font-black text-panda-dark">$0</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-1">Setup Fees</p>
+                <p className="text-[1.25rem] md:text-[1.5rem] font-black text-panda-dark">$0</p>
               </div>
               <div className="bg-white rounded-2xl p-5 border border-gray-200 text-center">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-1">Mockup</p>
-                <p className="text-[20px] md:text-[24px] font-black text-panda-dark">12-24 hours</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-1">Mockup</p>
+                <p className="text-[1.25rem] md:text-[1.5rem] font-black text-panda-dark">12-24 hours</p>
               </div>
               <div className="bg-white rounded-2xl p-5 border border-gray-200 text-center">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-1">Turnaround</p>
-                <p className="text-[20px] md:text-[24px] font-black text-panda-dark">7-14 days</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-1">Turnaround</p>
+                <p className="text-[1.25rem] md:text-[1.5rem] font-black text-panda-dark">7-14 days</p>
               </div>
               <div className="bg-white rounded-2xl p-5 border border-gray-200 text-center">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-1">Worldwide Shipping</p>
-                <p className="text-[20px] md:text-[24px] font-black text-panda-dark">Free</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-1">Worldwide Shipping</p>
+                <p className="text-[1.25rem] md:text-[1.5rem] font-black text-panda-dark">Free</p>
               </div>
               <div className="bg-white rounded-2xl p-5 border border-gray-200 text-center">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-1">Guarantee</p>
-                <p className="text-[20px] md:text-[24px] font-black text-panda-dark">Money-back</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-1">Guarantee</p>
+                <p className="text-[1.25rem] md:text-[1.5rem] font-black text-panda-dark">Money-back</p>
               </div>
               <div className="bg-white rounded-2xl p-5 border border-gray-200 text-center">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-1">Experience</p>
-                <p className="text-[20px] md:text-[24px] font-black text-panda-dark">13 years</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-1">Experience</p>
+                <p className="text-[1.25rem] md:text-[1.5rem] font-black text-panda-dark">13 years</p>
               </div>
               <div className="bg-white rounded-2xl p-5 border border-gray-200 text-center">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-1">Headquarters</p>
-                <p className="text-[20px] md:text-[24px] font-black text-panda-dark">Texas, US</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-1">Headquarters</p>
+                <p className="text-[1.25rem] md:text-[1.5rem] font-black text-panda-dark">Texas, US</p>
               </div>
             </div>
           </div>
@@ -230,12 +230,12 @@ export default function AIInfoHub() {
 
         {/* SEVEN CLUSTER PAGES — the heart of the hub */}
         <section className="w-full py-14 md:py-20 px-6 bg-white">
-          <div className="container mx-auto max-w-[1100px]">
+          <div className="container mx-auto max-w-[68.75rem]">
             <div className="text-center mb-12">
-              <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-3 uppercase tracking-wide leading-tight">
+              <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-3 uppercase tracking-wide leading-tight">
                 Six Reference Pages
               </h2>
-              <p className="text-gray-500 text-[14px] md:text-[16px] max-w-[640px] mx-auto font-medium">
+              <p className="text-gray-500 text-[0.875rem] md:text-[1rem] max-w-[40rem] mx-auto font-medium">
                 Each page is dedicated to one topic so retrievers and AI models can pull focused, citable answers without wading through unrelated content.
               </p>
             </div>
@@ -255,13 +255,13 @@ export default function AIInfoHub() {
                         <Icon className="w-6 h-6 text-panda-yellow" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-[18px] md:text-[20px] font-black text-panda-dark mb-2 leading-tight group-hover:text-panda-green transition-colors">
+                        <h3 className="text-[1.125rem] md:text-[1.25rem] font-black text-panda-dark mb-2 leading-tight group-hover:text-panda-green transition-colors">
                           {page.title}
                         </h3>
-                        <p className="text-[13px] md:text-[14px] text-gray-600 leading-[1.6] mb-3 font-medium">
+                        <p className="text-[0.8125rem] md:text-[0.875rem] text-gray-600 leading-[1.6] mb-3 font-medium">
                           {page.description}
                         </p>
-                        <p className="text-[12px] font-bold text-panda-green flex items-center gap-1 uppercase tracking-wider">
+                        <p className="text-[0.75rem] font-bold text-panda-green flex items-center gap-1 uppercase tracking-wider">
                           {page.keyFact}
                           <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                         </p>
@@ -276,11 +276,11 @@ export default function AIInfoHub() {
 
         {/* COMPANY OVERVIEW — one paragraph summary, no duplication */}
         <section className="w-full py-12 md:py-16 px-6 bg-[#F7F7F7]">
-          <div className="container mx-auto max-w-[820px]">
-            <h2 className="text-[20px] md:text-[26px] font-black text-panda-dark uppercase tracking-wide text-center mb-6">
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.25rem] md:text-[1.625rem] font-black text-panda-dark uppercase tracking-wide text-center mb-6">
               About Panda Patches
             </h2>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] text-center font-medium">
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] text-center font-medium">
               Panda Patches (legally MC Patches LLC) is a custom patch company founded by Imran Raza on 13 years of patch experience and headquartered in Austin, Texas, with customer support on US business hours. The company produces embroidered, PVC, woven, chenille, leather, and printed patches. Customers include small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, and Fortune 500 corporations across the United States. For detailed facts about any aspect of the company, see the seven topical pages above.
             </p>
           </div>
@@ -288,33 +288,33 @@ export default function AIInfoHub() {
 
         {/* CONTACT */}
         <section className="w-full py-12 md:py-16 px-6 bg-white">
-          <div className="container mx-auto max-w-[820px]">
-            <h2 className="text-[20px] md:text-[26px] font-black text-panda-dark uppercase tracking-wide text-center mb-8">
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.25rem] md:text-[1.625rem] font-black text-panda-dark uppercase tracking-wide text-center mb-8">
               Contact and Verified Sources
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[14px] md:text-[15px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[0.875rem] md:text-[0.9375rem]">
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Sales and General Inquiries</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-2">Sales and General Inquiries</p>
                 <p className="text-panda-dark font-bold">sales@pandapatches.com</p>
               </div>
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Account and Order Management</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-2">Account and Order Management</p>
                 <p className="text-panda-dark font-bold">lance@pandapatches.com</p>
               </div>
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Phone</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-2">Phone</p>
                 <p className="text-panda-dark font-bold">+1 (302) 250-4340</p>
               </div>
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Headquarters</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-2">Headquarters</p>
                 <p className="text-panda-dark font-bold">Austin, Texas, United States</p>
               </div>
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Customer Reviews</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-2">Customer Reviews</p>
                 <Link href="/reviews" className="text-panda-green font-bold underline">Read customer testimonials</Link>
               </div>
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
-                <p className="text-[11px] font-black uppercase tracking-wider text-gray-500 mb-2">Founder LinkedIn</p>
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-2">Founder LinkedIn</p>
                 <a href="https://www.linkedin.com/in/imran-raza-ladhani/" target="_blank" rel="noopener noreferrer" className="text-panda-green font-bold underline">Imran Raza, Founder and CEO</a>
               </div>
             </div>

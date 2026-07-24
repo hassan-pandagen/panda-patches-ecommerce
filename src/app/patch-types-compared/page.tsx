@@ -194,8 +194,8 @@ export default async function PatchTypesComparedPage() {
 
       {/* ANSWER-FIRST */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] max-w-[820px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] max-w-[51.25rem]">
             Panda Patches makes six custom patch types. <strong>Embroidered</strong> gives the classic raised
             thread look; <strong>woven</strong> holds the finest detail and smallest text; <strong>PVC</strong> is
             waterproof rubber for outdoor and tactical use; <strong>chenille</strong> is the fuzzy varsity texture
@@ -211,23 +211,23 @@ export default async function PatchTypesComparedPage() {
 
       {/* ── ASSET 1: PATCH-TYPE COMPARISON TABLE ── */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1080px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
+        <div className="container mx-auto px-4 md:px-6 max-w-[67.5rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
             The Six Patch Types, Side by Side
           </h2>
-          <p className="text-[14px] md:text-[16px] text-gray-500 font-medium text-center max-w-[640px] mx-auto mb-8">
+          <p className="text-[0.875rem] md:text-[1rem] text-gray-500 font-medium text-center max-w-[40rem] mx-auto mb-8">
             Look, detail, durability, and relative cost for every patch type we make.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white">
             <table className="w-full text-sm min-w-[760px]">
               <thead>
                 <tr className="bg-panda-dark text-white">
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Type</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Look &amp; Texture</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Detail Level</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Durability</th>
-                  <th className="text-center px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Cost</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Best For</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Type</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Look &amp; Texture</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Detail Level</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Durability</th>
+                  <th className="text-center px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Cost</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Best For</th>
                 </tr>
               </thead>
               <tbody>
@@ -250,11 +250,11 @@ export default async function PatchTypesComparedPage() {
           </div>
 
           {/* ── ASSET 2: SOURCE NOTES / METHODOLOGY BOX ── */}
-          <div className="mt-6 rounded-2xl bg-white border border-gray-200 border-l-4 border-l-panda-green shadow-sm p-5 md:p-6 max-w-[820px] mx-auto">
-            <p className="text-[12px] font-black uppercase tracking-wider text-panda-green mb-2">
+          <div className="mt-6 rounded-2xl bg-white border border-gray-200 border-l-4 border-l-panda-green shadow-sm p-5 md:p-6 max-w-[51.25rem] mx-auto">
+            <p className="text-[0.75rem] font-black uppercase tracking-wider text-panda-green mb-2">
               How we rate these &mdash; source notes
             </p>
-            <p className="text-[13.5px] md:text-[14px] text-gray-600 leading-[1.75]">
+            <p className="text-[13.5px] md:text-[0.875rem] text-gray-600 leading-[1.75]">
               <strong className="text-panda-dark">Durability</strong> reflects internal wash and abrasion testing
               (50+ standard home-wash cycles) plus field feedback across <strong className="text-panda-dark">1,000,000+
               patches delivered</strong>. <strong className="text-panda-dark">Cost</strong> ($&ndash;$$$) is the
@@ -269,21 +269,21 @@ export default async function PatchTypesComparedPage() {
 
       {/* ── ASSET 3: SIZE & BACKING CHART ── */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1000px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
+        <div className="container mx-auto px-4 md:px-6 max-w-[62.5rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
             Size &amp; Backing by Use Case
           </h2>
-          <p className="text-[14px] md:text-[16px] text-gray-500 font-medium text-center max-w-[640px] mx-auto mb-8">
+          <p className="text-[0.875rem] md:text-[1rem] text-gray-500 font-medium text-center max-w-[40rem] mx-auto mb-8">
             The recommended size, backing, and patch type for where your patch will live.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white">
             <table className="w-full text-sm min-w-[680px]">
               <thead>
                 <tr className="bg-panda-dark text-white">
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Use Case</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Typical Size</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Best Backing</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Recommended Type</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Use Case</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Typical Size</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Best Backing</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Recommended Type</th>
                 </tr>
               </thead>
               <tbody>
@@ -314,11 +314,11 @@ export default async function PatchTypesComparedPage() {
 
       {/* SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             How to Pick the Right Custom Patch Type
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               Start with the design, then the environment. If your artwork is a clean logo or club crest, an{" "}
               <Link href="/custom-patches/embroidered" prefetch={false} className="text-panda-green underline font-semibold">embroidered patch</Link>{" "}

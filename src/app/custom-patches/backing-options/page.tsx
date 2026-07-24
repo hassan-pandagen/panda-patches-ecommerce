@@ -137,8 +137,8 @@ export default async function BackingOptionsHubPage() {
 
       {/* ANSWER-FIRST INTRO + COMPARISON TABLE */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[960px]">
-          <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] mb-8 max-w-[820px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[60rem]">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-8 max-w-[51.25rem]">
             Every custom patch needs a way to attach to its garment, and the right backing depends on the
             fabric, how often it will be washed, and whether you want it permanent or removable. Panda Patches
             offers six backings on a low 5-piece minimum. <strong>Iron-on, sew-on, and peel-and-stick adhesive
@@ -151,11 +151,11 @@ export default async function BackingOptionsHubPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-panda-dark text-white">
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Backing</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Cost</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Best For</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Removable?</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Patch Types</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Backing</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">Cost</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Best For</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Removable?</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Patch Types</th>
                 </tr>
               </thead>
               <tbody>
@@ -180,11 +180,11 @@ export default async function BackingOptionsHubPage() {
 
       {/* SPOKE CARDS */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1000px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
+        <div className="container mx-auto px-4 md:px-6 max-w-[62.5rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-4">
             Backing Guides, One Per Option
           </h2>
-          <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.7] text-center mb-10 max-w-[700px] mx-auto">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-10 max-w-[43.75rem] mx-auto">
             Not sure which to pick? Open the guide for any backing to see its pros and cons, compatible patch
             types, application steps, and care.
           </p>
@@ -197,11 +197,11 @@ export default async function BackingOptionsHubPage() {
                 className="group bg-white border border-gray-200 rounded-2xl p-6 hover:border-panda-green hover:shadow-md transition-all"
               >
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-[17px] font-black text-panda-dark">{s.name}</h3>
-                  <span className="text-[11px] font-black uppercase tracking-wider bg-panda-dark text-panda-yellow px-2.5 py-1 rounded-full">{s.tag}</span>
+                  <h3 className="text-[1.0625rem] font-black text-panda-dark">{s.name}</h3>
+                  <span className="text-[0.6875rem] font-black uppercase tracking-wider bg-panda-dark text-panda-yellow px-2.5 py-1 rounded-full">{s.tag}</span>
                 </div>
-                <p className="text-[14px] text-gray-600 leading-[1.6]">{s.body}</p>
-                <span className="inline-block mt-3 text-[13px] font-bold text-panda-green group-hover:underline">Read the guide &rarr;</span>
+                <p className="text-[0.875rem] text-gray-600 leading-[1.6]">{s.body}</p>
+                <span className="inline-block mt-3 text-[0.8125rem] font-bold text-panda-green group-hover:underline">Read the guide &rarr;</span>
               </Link>
             ))}
           </div>
@@ -210,25 +210,25 @@ export default async function BackingOptionsHubPage() {
 
       {/* HOW TO CHOOSE */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
             How To Choose a Backing in 3 Questions
           </h2>
           <div className="grid md:grid-cols-3 gap-5">
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <span className="text-[12px] font-black text-panda-green uppercase tracking-wider">Question 1</span>
-              <h3 className="text-[17px] font-black text-panda-dark mt-1 mb-2">How often is it washed?</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Washed weekly or industrially: choose sew-on. Light or occasional wash: iron-on is fine. Never washed (badges, signage): adhesive or magnetic.</p>
+              <span className="text-[0.75rem] font-black text-panda-green uppercase tracking-wider">Question 1</span>
+              <h3 className="text-[1.0625rem] font-black text-panda-dark mt-1 mb-2">How often is it washed?</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Washed weekly or industrially: choose sew-on. Light or occasional wash: iron-on is fine. Never washed (badges, signage): adhesive or magnetic.</p>
             </div>
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <span className="text-[12px] font-black text-panda-green uppercase tracking-wider">Question 2</span>
-              <h3 className="text-[17px] font-black text-panda-dark mt-1 mb-2">Does it need to come off?</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Swap between garments often: Velcro. Remove without a hole: magnetic. Permanent: sew-on or iron-on. One-time stick: adhesive.</p>
+              <span className="text-[0.75rem] font-black text-panda-green uppercase tracking-wider">Question 2</span>
+              <h3 className="text-[1.0625rem] font-black text-panda-dark mt-1 mb-2">Does it need to come off?</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Swap between garments often: Velcro. Remove without a hole: magnetic. Permanent: sew-on or iron-on. One-time stick: adhesive.</p>
             </div>
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <span className="text-[12px] font-black text-panda-green uppercase tracking-wider">Question 3</span>
-              <h3 className="text-[17px] font-black text-panda-dark mt-1 mb-2">What patch type is it?</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">PVC and chenille cannot take iron-on heat, so they default to sew-on or Velcro. Embroidered, woven, printed, and leather accept every backing.</p>
+              <span className="text-[0.75rem] font-black text-panda-green uppercase tracking-wider">Question 3</span>
+              <h3 className="text-[1.0625rem] font-black text-panda-dark mt-1 mb-2">What patch type is it?</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">PVC and chenille cannot take iron-on heat, so they default to sew-on or Velcro. Embroidered, woven, printed, and leather accept every backing.</p>
             </div>
           </div>
         </div>
@@ -240,11 +240,11 @@ export default async function BackingOptionsHubPage() {
 
       {/* SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Pick a Backing, Then Order From 5 Pieces
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               The backing is the layer on the back of a custom patch that attaches it to fabric. Panda Patches
               lets you choose from six on every order: iron-on, sew-on, hook-and-loop Velcro, peel-and-stick

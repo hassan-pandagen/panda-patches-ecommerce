@@ -66,7 +66,7 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
           block: {
             h2: ({children}) => <h2 className="text-3xl font-black text-panda-dark mt-12 mb-6 leading-tight">{children}</h2>,
             h3: ({children}) => <h3 className="text-2xl font-bold text-panda-dark mt-8 mb-4">{children}</h3>,
-            normal: ({children}) => <p className="text-[17px] leading-[1.8] mb-6 text-gray-600">{children}</p>,
+            normal: ({children}) => <p className="text-[1.0625rem] leading-[1.8] mb-6 text-gray-600">{children}</p>,
           },
           marks: {
             strong: ({children}) => <strong className="font-bold text-panda-dark">{children}</strong>,
@@ -173,10 +173,10 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
 
           {/* After-FAQ CTA */}
           <div className="py-10 bg-white border-t border-gray-100">
-            <div className="container mx-auto px-6 max-w-[860px] text-center">
-              <p className="text-[18px] md:text-[22px] font-black text-panda-dark mb-2">Ready to create your custom hat patches?</p>
-              <p className="text-[15px] text-gray-500 mb-6">Upload your design and get a mockup in 12-24 hours.</p>
-              <a href="#quote-form" className="inline-block bg-panda-green text-white font-black text-[16px] px-10 py-4 rounded-full hover:bg-panda-dark transition-colors shadow-lg">Start Your Order</a>
+            <div className="container mx-auto px-6 max-w-[53.75rem] text-center">
+              <p className="text-[1.125rem] md:text-[1.375rem] font-black text-panda-dark mb-2">Ready to create your custom hat patches?</p>
+              <p className="text-[0.9375rem] text-gray-500 mb-6">Upload your design and get a mockup in 12-24 hours.</p>
+              <a href="#quote-form" className="inline-block bg-panda-green text-white font-black text-[1rem] px-10 py-4 rounded-full hover:bg-panda-dark transition-colors shadow-lg">Start Your Order</a>
             </div>
           </div>
 
@@ -209,7 +209,7 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
           {/* 7. SEO TEXT SECTION 1 */}
           {data.seoSection1 && (
             <section className="py-8 md:py-10 bg-white border-t border-b border-gray-100">
-              <div className="container mx-auto px-6 max-w-[860px]">
+              <div className="container mx-auto px-6 max-w-[53.75rem]">
                 <div className="w-10 h-1 bg-panda-yellow mb-6 rounded-full" />
                 <SEOText content={data.seoSection1} />
               </div>
@@ -225,7 +225,7 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
           {/* 10. SEO TEXT SECTION 2 */}
           {data.seoSection2 && (
             <section className="py-8 md:py-10 bg-[#F9FAF5] border-t border-gray-100">
-              <div className="container mx-auto px-6 max-w-[860px]">
+              <div className="container mx-auto px-6 max-w-[53.75rem]">
                 <div className="w-10 h-1 bg-panda-yellow mb-6 rounded-full" />
                 <SEOText content={data.seoSection2} />
               </div>

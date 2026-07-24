@@ -121,14 +121,14 @@ export default async function LocationsHubPage() {
 
       {/* Hero */}
       <section className="w-full pt-10 md:pt-14 pb-8 md:pb-12 bg-white">
-        <div className="container mx-auto px-6 max-w-[920px] text-center">
-          <p className="text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-3">
+        <div className="container mx-auto px-6 max-w-[57.5rem] text-center">
+          <p className="text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-3">
             Panda Patches . Locations
           </p>
-          <h1 className="text-[32px] md:text-[48px] font-black text-panda-dark leading-[1.05] tracking-tight mb-4">
+          <h1 className="text-[2rem] md:text-[3rem] font-black text-panda-dark leading-[1.05] tracking-tight mb-4">
             Custom Patches Shipped to Every US City and State
           </h1>
-          <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] max-w-[680px] mx-auto">
+          <p className="text-[0.9375rem] md:text-[1.125rem] text-gray-600 leading-[1.6] max-w-[42.5rem] mx-auto">
             We ship custom patches to every US zip code with free worldwide delivery. {locations.length} cities and states currently have their own dedicated page with local pricing notes, common use cases, and team-order examples. Pick your area below to see what we have shipped there.
           </p>
         </div>
@@ -137,11 +137,11 @@ export default async function LocationsHubPage() {
       {/* States grid */}
       {states.length > 0 && (
         <section className="w-full py-10 md:py-14 bg-white border-t border-gray-100">
-          <div className="container mx-auto px-6 max-w-[1100px]">
-            <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-2">
+          <div className="container mx-auto px-6 max-w-[68.75rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-2">
               Custom Patches by State
             </h2>
-            <p className="text-[14px] text-gray-500 mb-7">
+            <p className="text-[0.875rem] text-gray-500 mb-7">
               Statewide pages cover bulk and team orders from anywhere within the state.
             </p>
             <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -151,7 +151,7 @@ export default async function LocationsHubPage() {
                     href={`/${s.slug}`}
                     className="flex items-center justify-between gap-3 px-5 py-4 bg-[#F9FAF5] border border-gray-200 rounded-[14px] hover:bg-white hover:border-panda-green transition-all group"
                   >
-                    <span className="flex items-center gap-2.5 text-[14px] font-bold text-panda-dark">
+                    <span className="flex items-center gap-2.5 text-[0.875rem] font-bold text-panda-dark">
                       <MapPin size={16} className="text-panda-green flex-shrink-0" />
                       Custom Patches in {s.locationName}
                     </span>
@@ -170,11 +170,11 @@ export default async function LocationsHubPage() {
       {/* Cities grid */}
       {cities.length > 0 && (
         <section className="w-full py-10 md:py-14 bg-[#F9FAF5] border-t border-gray-100">
-          <div className="container mx-auto px-6 max-w-[1100px]">
-            <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-2">
+          <div className="container mx-auto px-6 max-w-[68.75rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-2">
               Custom Patches by City
             </h2>
-            <p className="text-[14px] text-gray-500 mb-7">
+            <p className="text-[0.875rem] text-gray-500 mb-7">
               City pages include local use cases and turnaround examples for that metro.
             </p>
             <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -184,7 +184,7 @@ export default async function LocationsHubPage() {
                     href={`/${c.slug}`}
                     className="flex items-center justify-between gap-3 px-5 py-4 bg-white border border-gray-200 rounded-[14px] hover:border-panda-green transition-all group"
                   >
-                    <span className="flex items-center gap-2.5 text-[14px] font-bold text-panda-dark">
+                    <span className="flex items-center gap-2.5 text-[0.875rem] font-bold text-panda-dark">
                       <MapPin size={16} className="text-panda-green flex-shrink-0" />
                       Custom Patches in {c.locationName}
                     </span>
@@ -202,24 +202,24 @@ export default async function LocationsHubPage() {
 
       {/* CTA */}
       <section className="w-full py-12 md:py-16 bg-panda-dark text-white">
-        <div className="container mx-auto px-6 max-w-[820px] text-center">
-          <h2 className="text-[26px] md:text-[36px] font-black text-panda-yellow leading-[1.1] mb-3">
+        <div className="container mx-auto px-6 max-w-[51.25rem] text-center">
+          <h2 className="text-[1.625rem] md:text-[2.25rem] font-black text-panda-yellow leading-[1.1] mb-3">
             Do not see your city?
           </h2>
-          <p className="text-[14px] md:text-[16px] text-gray-300 mb-6 max-w-[560px] mx-auto leading-[1.6]">
+          <p className="text-[0.875rem] md:text-[1rem] text-gray-300 mb-6 max-w-[560px] mx-auto leading-[1.6]">
             Every order ships free worldwide. Use the main quote form or chat with us. We have shipped to all 50 states and 40+ countries.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-panda-yellow text-panda-dark font-black text-[14px] uppercase tracking-wider px-6 py-3 rounded-full hover:scale-[1.03] transition-transform"
+              className="inline-flex items-center gap-2 bg-panda-yellow text-panda-dark font-black text-[0.875rem] uppercase tracking-wider px-6 py-3 rounded-full hover:scale-[1.03] transition-transform"
             >
               Get a Free Quote
               <ArrowRight size={16} />
             </Link>
             <Link
               href="/custom-patches"
-              className="inline-flex items-center gap-2 bg-white/10 text-white font-black text-[14px] uppercase tracking-wider px-6 py-3 rounded-full hover:bg-white/20 transition-colors"
+              className="inline-flex items-center gap-2 bg-white/10 text-white font-black text-[0.875rem] uppercase tracking-wider px-6 py-3 rounded-full hover:bg-white/20 transition-colors"
             >
               Browse Patches
             </Link>

@@ -52,7 +52,7 @@ export default function ProcessInteractive({ data }: { data: any }) {
               
               {/* Step Number */}
               <div className="flex flex-col items-center mb-10">
-                <span className="text-[18px] font-bold text-panda-dark mb-2">
+                <span className="text-[1.125rem] font-bold text-panda-dark mb-2">
                   Step
                 </span>
                 {/* 

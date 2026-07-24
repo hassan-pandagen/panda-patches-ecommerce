@@ -234,14 +234,14 @@ export default function HeroForm({
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <Check className="w-8 h-8 text-green-600" strokeWidth={3} />
           </div>
-          <h3 className="text-[22px] font-black text-panda-dark mb-2">Quote Request Sent!</h3>
-          <p className="text-gray-500 font-medium text-[14px] mb-6">
+          <h3 className="text-[1.375rem] font-black text-panda-dark mb-2">Quote Request Sent!</h3>
+          <p className="text-gray-500 font-medium text-[0.875rem] mb-6">
             Thank you! Our team will contact you soon with your digital mockup in 12 to 24 hours.
           </p>
           <button
             type="button"
             onClick={() => setMessage(null)}
-            className="bg-panda-dark text-panda-yellow font-bold px-8 py-3 rounded-[10px] hover:scale-105 transition-transform uppercase tracking-wider text-[14px]"
+            className="bg-panda-dark text-panda-yellow font-bold px-8 py-3 rounded-[10px] hover:scale-105 transition-transform uppercase tracking-wider text-[0.875rem]"
           >
             Submit Another Quote
           </button>
@@ -251,11 +251,11 @@ export default function HeroForm({
       <>
 
       <div className="text-center mb-6">
-        <h2 className="text-[24px] leading-tight font-black text-panda-dark uppercase tracking-tight">
+        <h2 className="text-[1.5rem] leading-tight font-black text-panda-dark uppercase tracking-tight">
           {headline || <>Get Your Free Quote & <br/> 12-24h Mockup</>}
         </h2>
         {subhead && (
-          <p className="text-[13px] text-gray-500 font-semibold mt-2">{subhead}</p>
+          <p className="text-[0.8125rem] text-gray-500 font-semibold mt-2">{subhead}</p>
         )}
       </div>
 
@@ -283,7 +283,7 @@ export default function HeroForm({
               className={`form-input ${errors.name ? 'border-red-400 bg-red-50' : ''}`}
               autoComplete="name"
             />
-            {errors.name && <p id="hero-name-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.name.message)}</p>}
+            {errors.name && <p id="hero-name-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.name.message)}</p>}
           </div>
           <div>
             <input
@@ -297,7 +297,7 @@ export default function HeroForm({
               autoComplete="email"
               onBlur={handleEmailBlur}
             />
-            {errors.email && <p id="hero-email-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
+            {errors.email && <p id="hero-email-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
           </div>
         </div>
 
@@ -314,7 +314,7 @@ export default function HeroForm({
               className={`form-input ${errors.phone ? 'border-red-400 bg-red-50' : ''}`}
               autoComplete="tel"
             />
-            {errors.phone && <p id="hero-phone-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.phone.message)}</p>}
+            {errors.phone && <p id="hero-phone-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.phone.message)}</p>}
           </div>
           <div>
             <input
@@ -327,7 +327,7 @@ export default function HeroForm({
               aria-describedby={errors.quantity ? "hero-quantity-error" : undefined}
               className={`form-input ${errors.quantity ? 'border-red-400 bg-red-50' : ''}`}
             />
-            {errors.quantity && <p id="hero-quantity-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.quantity.message)}</p>}
+            {errors.quantity && <p id="hero-quantity-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.quantity.message)}</p>}
           </div>
         </div>
 
@@ -336,7 +336,7 @@ export default function HeroForm({
             needs a real visible label. */}
         {showDeadlineField && (
           <div>
-            <label htmlFor="hero-deadline" className="text-[12px] font-bold text-panda-dark block mb-1">
+            <label htmlFor="hero-deadline" className="text-[0.75rem] font-bold text-panda-dark block mb-1">
               When do you need them in hand? <span className="text-red-500">*</span>
             </label>
             <input
@@ -349,9 +349,9 @@ export default function HeroForm({
               className={`form-input text-gray-500 ${errors.deadline ? 'border-red-400 bg-red-50' : ''}`}
             />
             {errors.deadline ? (
-              <p id="hero-deadline-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.deadline.message)}</p>
+              <p id="hero-deadline-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.deadline.message)}</p>
             ) : (
-              <p id="hero-deadline-help" className="text-gray-400 text-[11px] mt-1">
+              <p id="hero-deadline-help" className="text-gray-400 text-[0.6875rem] mt-1">
                 We confirm whether we can hit this date within 2–6 hours — before you pay any rush fee.
               </p>
             )}
@@ -388,7 +388,7 @@ export default function HeroForm({
                </select>
              )}
              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
-             {errors.size && <p id="hero-size-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.size.message)}</p>}
+             {errors.size && <p id="hero-size-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.size.message)}</p>}
            </div>
 
            <div className="relative">
@@ -459,7 +459,7 @@ export default function HeroForm({
               aria-label="Shipping ZIP or Country"
               className="form-input"
             />
-            <p className="text-gray-400 text-[11px] mt-1">Helps us confirm your exact delivery date.</p>
+            <p className="text-gray-400 text-[0.6875rem] mt-1">Helps us confirm your exact delivery date.</p>
           </div>
         )}
 
@@ -510,11 +510,11 @@ export default function HeroForm({
             {uploadedFiles.map((f, i) => (
               <div key={i} className="flex items-center gap-3 px-4 py-2.5 bg-green-50 border border-green-300 rounded-[10px]">
                 <Check className="text-green-600 flex-shrink-0" size={16} strokeWidth={3} />
-                <span className="text-[12px] text-green-700 font-bold truncate flex-1">{f.name}</span>
+                <span className="text-[0.75rem] text-green-700 font-bold truncate flex-1">{f.name}</span>
                 <button
                   type="button"
                   onClick={() => removeUploadedFile(i)}
-                  className="flex-shrink-0 w-5 h-5 rounded-full bg-red-100 hover:bg-red-200 text-red-600 flex items-center justify-center transition-colors font-black text-[10px]"
+                  className="flex-shrink-0 w-5 h-5 rounded-full bg-red-100 hover:bg-red-200 text-red-600 flex items-center justify-center transition-colors font-black text-[0.625rem]"
                   aria-label="Remove file"
                 >✕</button>
               </div>
@@ -535,16 +535,16 @@ export default function HeroForm({
             {uploading ? (
               <>
                 <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-panda-green mb-2" />
-                <p className="text-[12px] text-gray-500 font-bold">Uploading...</p>
+                <p className="text-[0.75rem] text-gray-500 font-bold">Uploading...</p>
               </>
             ) : (
               <>
                 <UploadCloud className="text-gray-400 group-hover:text-panda-green transition-colors mb-1" size={24} />
-                <p className="text-[12px] text-gray-500 font-bold mb-1">
+                <p className="text-[0.75rem] text-gray-500 font-bold mb-1">
                   {uploadedFiles.length === 1 ? 'Add a 2nd file (optional)' : 'Drop files here or'}
                 </p>
                 {uploadedFiles.length === 0 && (
-                  <span className="bg-white border border-gray-200 px-4 py-1.5 rounded-md text-[12px] font-black text-panda-dark shadow-sm">
+                  <span className="bg-white border border-gray-200 px-4 py-1.5 rounded-md text-[0.75rem] font-black text-panda-dark shadow-sm">
                     SELECT FILES
                   </span>
                 )}
@@ -567,7 +567,7 @@ export default function HeroForm({
           className="
             w-full
             bg-panda-dark text-panda-yellow
-            font-black text-[18px]
+            font-black text-[1.125rem]
             py-4
             rounded-[12px]
             hover:bg-black hover:scale-[1.01]
@@ -581,7 +581,7 @@ export default function HeroForm({
           {isSubmitting ? 'Submitting...' : (ctaText || 'Get My Mockup in 12-24 Hours')}
         </button>
         {ctaMicrocopy && (
-          <p className="text-center text-gray-400 text-[11px] mt-2 leading-relaxed">{ctaMicrocopy}</p>
+          <p className="text-center text-gray-400 text-[0.6875rem] mt-2 leading-relaxed">{ctaMicrocopy}</p>
         )}
       </form>
 

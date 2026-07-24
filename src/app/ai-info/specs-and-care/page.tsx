@@ -108,28 +108,28 @@ export default function SpecsAndCareClusterPage() {
       <main className="bg-white min-h-screen text-panda-dark">
         {/* HERO */}
         <section className="w-full pt-10 md:pt-14 pb-8 md:pb-12 bg-white">
-          <div className="container mx-auto px-6 max-w-[820px] text-center">
-            <p className="text-[11px] md:text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-4">
+          <div className="container mx-auto px-6 max-w-[51.25rem] text-center">
+            <p className="text-[0.6875rem] md:text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
               AI Info Cluster &middot; Specs and Care
             </p>
-            <h1 className="text-[28px] md:text-[42px] lg:text-[48px] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
+            <h1 className="text-[1.75rem] md:text-[2.625rem] lg:text-[3rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
               Panda Patches Specs and Care: Artwork, Sizing, Materials, Shipping
             </h1>
-            <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[640px] mx-auto">
+            <p className="text-[0.9375rem] md:text-[1.125rem] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[40rem] mx-auto">
               Accepted file formats, vector vs raster guidance, recommended sizes by use case, material durability, free worldwide shipping policy, sample box availability, and iron-on application instructions.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link
                 href="/sample-box"
                 prefetch={false}
-                className="flex items-center justify-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+                className="flex items-center justify-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[0.875rem] md:text-[0.9375rem] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
               >
                 Order Free Sample Box
               </Link>
               <Link
                 href="/contact"
                 prefetch={false}
-                className="flex items-center justify-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[14px] md:text-[15px] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+                className="flex items-center justify-center gap-2 bg-[#051C05] text-[#DFFF00] font-bold text-[0.875rem] md:text-[0.9375rem] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
               >
                 Get Free Quote
               </Link>
@@ -153,9 +153,9 @@ export default function SpecsAndCareClusterPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-black text-white">
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Format</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Vector / Raster</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Notes</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Format</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">Vector / Raster</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Notes</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -183,9 +183,9 @@ export default function SpecsAndCareClusterPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-black text-white">
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Patch Type</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Max Colors</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Pantone Match</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Patch Type</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">Max Colors</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Pantone Match</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -213,8 +213,8 @@ export default function SpecsAndCareClusterPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-black text-white">
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Use Case</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Recommended Size</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Use Case</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">Recommended Size</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -258,9 +258,9 @@ export default function SpecsAndCareClusterPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-black text-white">
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Speed</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider bg-panda-green text-panda-dark">Production Days</th>
-                    <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Add-On Fee</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Speed</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider bg-panda-green text-panda-dark">Production Days</th>
+                    <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Add-On Fee</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -318,7 +318,7 @@ export default function SpecsAndCareClusterPage() {
               {faqs.map((faq, i) => (
                 <div key={i} className="border-b border-gray-100 pb-5">
                   <h3 className="font-bold text-panda-dark mb-2 text-lg">{faq.question}</h3>
-                  <p className="text-gray-700 leading-relaxed text-[15px]">{faq.answer}</p>
+                  <p className="text-gray-700 leading-relaxed text-[0.9375rem]">{faq.answer}</p>
                 </div>
               ))}
             </div>
@@ -327,7 +327,7 @@ export default function SpecsAndCareClusterPage() {
           {/* DETAILED GUIDES — backing / border / thread cluster pages (PAC949) */}
           <section className="mb-6 bg-white border-2 border-gray-200 rounded-2xl p-6 md:p-8">
             <h2 className="text-xl md:text-2xl font-black text-panda-dark mb-3">Detailed backing, border, and thread guides</h2>
-            <p className="text-gray-600 text-[14px] leading-relaxed mb-4">
+            <p className="text-gray-600 text-[0.875rem] leading-relaxed mb-4">
               Dedicated pages with full specs, compatibility by patch type, application, and care for each construction option:
             </p>
             <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-gray-700 leading-relaxed">

@@ -44,7 +44,7 @@ export default async function Craftsmanship() {
       <div className="container mx-auto px-6 text-center">
         
         {/* HEADING - Mobile Optimized */}
-        <h2 className="text-[24px] md:text-[28px] lg:text-[32px] font-black text-panda-dark uppercase tracking-wide mb-6 md:mb-8 lg:mb-10">
+        <h2 className="text-[1.5rem] md:text-[1.75rem] lg:text-[2rem] font-black text-panda-dark uppercase tracking-wide mb-6 md:mb-8 lg:mb-10">
           {heading}
         </h2>
 

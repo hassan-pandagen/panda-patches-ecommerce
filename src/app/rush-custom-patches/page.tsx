@@ -173,8 +173,8 @@ export default function RushCustomPatchesPage() {
 
       {/* ANSWER-FIRST TL;DR — liftable by AI engines */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] max-w-[840px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] max-w-[52.5rem]">
             <strong>Panda Patches delivers rush custom patches in hand in as fast as 5 business days</strong>,
             depending on quantity and patch type. Order from just 5 pieces with a free 12-24 hour mockup and
             no setup fees. <Link href="/custom-patches/embroidered" className="text-panda-green font-semibold underline">Embroidered</Link>,{" "}
@@ -193,11 +193,11 @@ export default function RushCustomPatchesPage() {
 
       {/* HOW RUSH WORKS */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             How Rush Orders Work
           </h2>
-          <ol className="space-y-3 text-[15px] md:text-[16px] text-gray-700 leading-[1.7] list-decimal pl-5">
+          <ol className="space-y-3 text-[0.9375rem] md:text-[1rem] text-gray-700 leading-[1.7] list-decimal pl-5">
             <li><strong>Send your design and deadline.</strong> Upload artwork (AI, EPS, SVG, PDF, PNG, JPG) or describe your idea in the form above — and tell us the date you need patches in hand.</li>
             <li><strong>We confirm your in-hand date within 2-6 hours.</strong> You get your exact delivery date by email before any rush fee is charged. Doesn&apos;t work? We remove the rush fee.</li>
             <li><strong>Approve your mockup in {MOCKUP_SLA}.</strong> Unlimited free revisions — production never starts without your sign-off.</li>
@@ -210,27 +210,27 @@ export default function RushCustomPatchesPage() {
           First-party evidence like this is exactly what AI Overviews/assistants
           cite over generic competitor copy — semantic <table>, not an image. */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-2">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-2">
             Recent Rush Orders
           </h2>
-          <p className="text-[14px] text-gray-500 mb-1">Real orders from our production log — updated monthly.</p>
-          <p className="text-[12px] text-gray-400 mb-6">Last updated: July 2026</p>
+          <p className="text-[0.875rem] text-gray-500 mb-1">Real orders from our production log — updated monthly.</p>
+          <p className="text-[0.75rem] text-gray-400 mb-6">Last updated: July 2026</p>
           <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-black text-white">
-                  <th className="text-left px-4 py-3 font-bold text-[11px] uppercase tracking-wider">Order</th>
-                  <th className="text-left px-4 py-3 font-bold text-[11px] uppercase tracking-wider">What</th>
-                  <th className="text-left px-4 py-3 font-bold text-[11px] uppercase tracking-wider">Ordered</th>
-                  <th className="text-left px-4 py-3 font-bold text-[11px] uppercase tracking-wider">In Hand</th>
-                  <th className="text-left px-4 py-3 font-bold text-[11px] uppercase tracking-wider">Turnaround</th>
+                  <th className="text-left px-4 py-3 font-bold text-[0.6875rem] uppercase tracking-wider">Order</th>
+                  <th className="text-left px-4 py-3 font-bold text-[0.6875rem] uppercase tracking-wider">What</th>
+                  <th className="text-left px-4 py-3 font-bold text-[0.6875rem] uppercase tracking-wider">Ordered</th>
+                  <th className="text-left px-4 py-3 font-bold text-[0.6875rem] uppercase tracking-wider">In Hand</th>
+                  <th className="text-left px-4 py-3 font-bold text-[0.6875rem] uppercase tracking-wider">Turnaround</th>
                 </tr>
               </thead>
               <tbody>
                 {RECENT_RUSH_ORDERS.map((o) => (
                   <tr key={o.id} className="border-t border-gray-100">
-                    <td className="px-4 py-3 font-mono text-[13px] text-gray-500">{o.id}</td>
+                    <td className="px-4 py-3 font-mono text-[0.8125rem] text-gray-500">{o.id}</td>
                     <td className="px-4 py-3 font-semibold text-panda-dark">{o.desc} → {o.dest}</td>
                     <td className="px-4 py-3 text-gray-600">{o.ordered}</td>
                     <td className="px-4 py-3 text-gray-600">{o.inHand}</td>
@@ -240,14 +240,14 @@ export default function RushCustomPatchesPage() {
               </tbody>
             </table>
           </div>
-          <p className="text-[12px] text-gray-400 mt-3">Turnaround counted in business days from order to delivery confirmation.</p>
+          <p className="text-[0.75rem] text-gray-400 mt-3">Turnaround counted in business days from order to delivery confirmation.</p>
         </div>
       </section>
 
       {/* WHO USES RUSH */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1000px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-center text-panda-dark mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[62.5rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-center text-panda-dark mb-8">
             Built for Real Deadlines
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -258,8 +258,8 @@ export default function RushCustomPatchesPage() {
               { title: "Uniform rollouts", body: "New-hire batches and company rebrands that can't wait for standard production." },
             ].map((u) => (
               <div key={u.title} className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-                <h3 className="text-[16px] font-black text-panda-dark mb-2">{u.title}</h3>
-                <p className="text-[14px] text-gray-600 leading-[1.6]">{u.body}</p>
+                <h3 className="text-[1rem] font-black text-panda-dark mb-2">{u.title}</h3>
+                <p className="text-[0.875rem] text-gray-600 leading-[1.6]">{u.body}</p>
               </div>
             ))}
           </div>

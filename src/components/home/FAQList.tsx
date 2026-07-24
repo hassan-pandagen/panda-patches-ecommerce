@@ -11,7 +11,7 @@ export default function FAQList({ questions }: { questions: any[] }) {
   };
 
   return (
-    <div className="max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px] mx-auto space-y-4">
+    <div className="max-w-[75rem] mx-auto space-y-4">
       {questions.map((item, index) => {
         const isOpen = openIndex === index;
 
@@ -30,7 +30,7 @@ export default function FAQList({ questions }: { questions: any[] }) {
             >
               {/* Mobile-Optimized Typography: 18px mobile, 22px desktop */}
               <span className={`
-                text-[18px] md:text-[22px] lg:text-[24px] leading-[26px] md:leading-[32px] font-semibold transition-colors duration-300
+                text-[1.125rem] md:text-[1.375rem] lg:text-[1.5rem] leading-[1.625rem] md:leading-[2rem] font-semibold transition-colors duration-300
                 ${isOpen ? 'text-panda-dark' : 'text-gray-800'}
               `}>
                 {item.question}
@@ -49,7 +49,7 @@ export default function FAQList({ questions }: { questions: any[] }) {
             <div id={`faq-answer-${index}`} className={`faq-wrapper ${isOpen ? 'open' : ''}`}>
               <div className="faq-inner border-t border-gray-100">
                 {/* Mobile-Optimized Typography: 15px mobile, 17px desktop */}
-                <p className="text-[15px] md:text-[17px] leading-[24px] md:leading-[28px] font-normal text-gray-600 px-6 py-5 md:py-6">
+                <p className="text-[0.9375rem] md:text-[1.0625rem] leading-[1.5rem] md:leading-[1.75rem] font-normal text-gray-600 px-6 py-5 md:py-6">
                   {item.answer}
                 </p>
               </div>

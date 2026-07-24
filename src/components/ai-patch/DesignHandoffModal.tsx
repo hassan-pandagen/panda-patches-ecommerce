@@ -179,9 +179,9 @@ export default function DesignHandoffModal({
   }
 
   const inputCls =
-    "w-full px-3.5 py-2.5 border border-gray-200 rounded-[10px] text-[14px] focus:border-panda-green focus:ring-2 focus:ring-panda-green/10 outline-none";
+    "w-full px-3.5 py-2.5 border border-gray-200 rounded-[10px] text-[0.875rem] focus:border-panda-green focus:ring-2 focus:ring-panda-green/10 outline-none";
   const labelCls =
-    "block text-[11px] font-black text-gray-500 uppercase tracking-wider mb-1.5";
+    "block text-[0.6875rem] font-black text-gray-500 uppercase tracking-wider mb-1.5";
 
   return (
     <div
@@ -197,7 +197,7 @@ export default function DesignHandoffModal({
         className="absolute inset-0 bg-panda-dark/60 backdrop-blur-[2px]"
       />
 
-      <div className="relative w-full sm:max-w-[760px] bg-white rounded-t-[24px] sm:rounded-[24px] shadow-2xl max-h-[92vh] overflow-y-auto">
+      <div className="relative w-full sm:max-w-[47.5rem] bg-white rounded-t-[24px] sm:rounded-[24px] shadow-2xl max-h-[92vh] overflow-y-auto">
         <button
           type="button"
           onClick={onClose}
@@ -211,10 +211,10 @@ export default function DesignHandoffModal({
           /* ============ SUCCESS ============ */
           <div className="px-6 py-12 md:px-12 text-center">
             <CheckCircle className="text-panda-green mx-auto mb-4" size={48} strokeWidth={2} />
-            <h3 className="text-[24px] md:text-[28px] font-black text-panda-dark mb-2">
+            <h3 className="text-[1.5rem] md:text-[1.75rem] font-black text-panda-dark mb-2">
               Design sent to our team!
             </h3>
-            <p className="text-[14px] text-gray-500 leading-[1.65] max-w-[440px] mx-auto mb-7">
+            <p className="text-[0.875rem] text-gray-500 leading-[1.65] max-w-[440px] mx-auto mb-7">
               Your design is with our team. You will receive your quote
               within 24 hours.
             </p>
@@ -222,7 +222,7 @@ export default function DesignHandoffModal({
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Link
                   href={success.productPath}
-                  className="inline-flex items-center gap-2 bg-panda-dark text-panda-yellow font-black text-[13px] uppercase tracking-wider px-6 py-3.5 rounded-full hover:bg-black transition-colors"
+                  className="inline-flex items-center gap-2 bg-panda-dark text-panda-yellow font-black text-[0.8125rem] uppercase tracking-wider px-6 py-3.5 rounded-full hover:bg-black transition-colors"
                 >
                   <Zap size={15} />
                   Order now with the live calculator
@@ -230,7 +230,7 @@ export default function DesignHandoffModal({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="text-[13px] font-bold text-gray-400 hover:text-panda-dark transition-colors"
+                  className="text-[0.8125rem] font-bold text-gray-400 hover:text-panda-dark transition-colors"
                 >
                   I will wait for the mockup
                 </button>
@@ -239,7 +239,7 @@ export default function DesignHandoffModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="inline-flex items-center gap-2 bg-panda-dark text-panda-yellow font-black text-[13px] uppercase tracking-wider px-6 py-3.5 rounded-full hover:bg-black transition-colors"
+                className="inline-flex items-center gap-2 bg-panda-dark text-panda-yellow font-black text-[0.8125rem] uppercase tracking-wider px-6 py-3.5 rounded-full hover:bg-black transition-colors"
               >
                 Keep designing
               </button>
@@ -260,13 +260,13 @@ export default function DesignHandoffModal({
                   className="w-full h-auto"
                 />
               </div>
-              <p className="text-[11px] text-gray-500 leading-[1.5] line-clamp-3 mb-1.5">
+              <p className="text-[0.6875rem] text-gray-500 leading-[1.5] line-clamp-3 mb-1.5">
                 {design.prompt}
               </p>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-panda-green">
+              <p className="text-[0.625rem] font-bold uppercase tracking-wider text-panda-green">
                 {design.style} . {design.shape} . {design.border}
               </p>
-              <p className="mt-auto pt-4 text-[10px] text-gray-400 leading-[1.5]">
+              <p className="mt-auto pt-4 text-[0.625rem] text-gray-400 leading-[1.5]">
                 The clean, watermark-free file goes straight to our design team.
               </p>
             </div>
@@ -275,7 +275,7 @@ export default function DesignHandoffModal({
             <form onSubmit={onSubmit} className="p-6 md:p-8">
               <div className="flex items-center gap-2 mb-1.5">
                 <Sparkles className="text-panda-green" size={16} />
-                <h3 className="text-[19px] font-black text-panda-dark leading-tight">
+                <h3 className="text-[1.1875rem] font-black text-panda-dark leading-tight">
                   Love it? Make it real.
                 </h3>
               </div>
@@ -297,10 +297,10 @@ export default function DesignHandoffModal({
                 >
                   <FileText size={17} className="text-panda-green mt-0.5 flex-shrink-0" />
                   <span>
-                    <span className="block text-[13px] font-black text-panda-dark leading-tight">
+                    <span className="block text-[0.8125rem] font-black text-panda-dark leading-tight">
                       Get a free quote
                     </span>
-                    <span className="block text-[11px] text-gray-400 leading-[1.4] mt-0.5">
+                    <span className="block text-[0.6875rem] text-gray-400 leading-[1.4] mt-0.5">
                       Price + mockup by email
                     </span>
                   </span>
@@ -317,10 +317,10 @@ export default function DesignHandoffModal({
                 >
                   <Zap size={17} className="text-panda-green mt-0.5 flex-shrink-0" />
                   <span>
-                    <span className="block text-[13px] font-black text-panda-dark leading-tight">
+                    <span className="block text-[0.8125rem] font-black text-panda-dark leading-tight">
                       I am ready to order
                     </span>
-                    <span className="block text-[11px] text-gray-400 leading-[1.4] mt-0.5">
+                    <span className="block text-[0.6875rem] text-gray-400 leading-[1.4] mt-0.5">
                       Go straight to the order form
                     </span>
                   </span>
@@ -428,7 +428,7 @@ export default function DesignHandoffModal({
               <button
                 type="submit"
                 disabled={submitting || redirecting}
-                className="w-full bg-panda-dark text-panda-yellow font-black text-[14px] py-3.5 rounded-[12px] uppercase tracking-[0.08em] hover:bg-black disabled:opacity-50 transition-colors inline-flex items-center justify-center gap-2"
+                className="w-full bg-panda-dark text-panda-yellow font-black text-[0.875rem] py-3.5 rounded-[12px] uppercase tracking-[0.08em] hover:bg-black disabled:opacity-50 transition-colors inline-flex items-center justify-center gap-2"
               >
                 {redirecting ? (
                   "Taking you to the order form..."

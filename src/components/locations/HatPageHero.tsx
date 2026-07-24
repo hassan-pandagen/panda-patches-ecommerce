@@ -32,20 +32,20 @@ export default function HatPageHero({ title, description, gallery = [] }: Props)
           <div className="flex-1 w-full pt-2 md:pt-6">
 
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-panda-green/10 text-panda-green text-[12px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 bg-panda-green/10 text-panda-green text-[0.75rem] font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
               <span className="w-2 h-2 rounded-full bg-panda-green animate-pulse" />
               Hat Patches Specialist
             </div>
 
             {/* Title */}
-            <h1 className="text-[26px] sm:text-[30px] md:text-[36px] lg:text-[40px] font-extrabold text-panda-dark leading-tight mb-4 tracking-tight">
+            <h1 className="text-[1.625rem] sm:text-[1.875rem] md:text-[2.25rem] lg:text-[2.5rem] font-extrabold text-panda-dark leading-tight mb-4 tracking-tight">
               {title}
             </h1>
 
             {/* Price anchor — visible before intro paragraph */}
             <div className="flex flex-wrap gap-3 mb-4">
               {["From $0.91/pc (2x2, 1k pcs)", "Free Design + 12-24h Mockup", "Ships in 7-14 Days"].map((item) => (
-                <span key={item} className="inline-flex items-center gap-1.5 bg-panda-green/10 text-panda-green text-[13px] font-bold px-3 py-1.5 rounded-full">
+                <span key={item} className="inline-flex items-center gap-1.5 bg-panda-green/10 text-panda-green text-[0.8125rem] font-bold px-3 py-1.5 rounded-full">
                   <span className="w-1.5 h-1.5 rounded-full bg-panda-green" />
                   {item}
                 </span>
@@ -53,7 +53,7 @@ export default function HatPageHero({ title, description, gallery = [] }: Props)
             </div>
 
             {/* Description */}
-            <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.7] font-medium mb-6 max-w-[560px]">
+            <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] font-medium mb-6 max-w-[560px]">
               {description}
             </p>
 
@@ -62,7 +62,7 @@ export default function HatPageHero({ title, description, gallery = [] }: Props)
               {TRUST_POINTS.map((point, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <CheckCircle className="text-panda-green flex-shrink-0 mt-0.5" size={18} />
-                  <span className="text-[14px] md:text-[15px] text-gray-700 font-medium">{point}</span>
+                  <span className="text-[0.875rem] md:text-[0.9375rem] text-gray-700 font-medium">{point}</span>
                 </li>
               ))}
             </ul>
@@ -109,20 +109,20 @@ export default function HatPageHero({ title, description, gallery = [] }: Props)
             {/* Social proof bar */}
             <div className="flex flex-wrap gap-6 pt-6 border-t border-gray-100">
               <div className="text-center">
-                <p className="text-[22px] font-black text-panda-dark">1M+</p>
-                <p className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide">Patches Delivered</p>
+                <p className="text-[1.375rem] font-black text-panda-dark">1M+</p>
+                <p className="text-[0.6875rem] text-gray-500 font-semibold uppercase tracking-wide">Patches Delivered</p>
               </div>
               <div className="text-center">
-                <p className="text-[22px] font-black text-panda-dark">5 pc</p>
-                <p className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide">Low Minimum</p>
+                <p className="text-[1.375rem] font-black text-panda-dark">5 pc</p>
+                <p className="text-[0.6875rem] text-gray-500 font-semibold uppercase tracking-wide">Low Minimum</p>
               </div>
               <div className="text-center">
-                <p className="text-[22px] font-black text-panda-dark">12-24h</p>
-                <p className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide">Mockup</p>
+                <p className="text-[1.375rem] font-black text-panda-dark">12-24h</p>
+                <p className="text-[0.6875rem] text-gray-500 font-semibold uppercase tracking-wide">Mockup</p>
               </div>
               <div className="text-center">
-                <p className="text-[22px] font-black text-panda-dark">7-14</p>
-                <p className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide">Day Delivery</p>
+                <p className="text-[1.375rem] font-black text-panda-dark">7-14</p>
+                <p className="text-[0.6875rem] text-gray-500 font-semibold uppercase tracking-wide">Day Delivery</p>
               </div>
             </div>
 

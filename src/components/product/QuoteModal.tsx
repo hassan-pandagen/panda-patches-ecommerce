@@ -265,7 +265,7 @@ export default function QuoteModal({
             <button
               type="submit"
               disabled={quoteSubmitting}
-              className="w-full h-[60px] bg-black text-panda-yellow rounded-[14px] font-black text-[15px] uppercase tracking-widest hover:scale-[1.01] transition-transform shadow-xl disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
+              className="w-full h-[60px] bg-black text-panda-yellow rounded-[14px] font-black text-[0.9375rem] uppercase tracking-widest hover:scale-[1.01] transition-transform shadow-xl disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
             >
               {quoteSubmitting ? (
                 <span className="flex items-center justify-center gap-2">

@@ -293,16 +293,16 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
 
       {/* BULK ORDER CALLOUT — internal link to /bulk-custom-patches */}
       <section className="w-full py-10 md:py-14 bg-panda-dark">
-        <div className="container mx-auto px-4 md:px-6 max-w-[800px] text-center">
-          <p className="text-gray-400 text-[13px] md:text-[15px] font-medium mb-2 uppercase tracking-widest">
+        <div className="container mx-auto px-4 md:px-6 max-w-[50rem] text-center">
+          <p className="text-gray-400 text-[0.8125rem] md:text-[0.9375rem] font-medium mb-2 uppercase tracking-widest">
             Ordering 50+ pieces?
           </p>
-          <h2 className="text-white text-[20px] md:text-[28px] font-black uppercase mb-5 leading-tight">
+          <h2 className="text-white text-[1.25rem] md:text-[1.75rem] font-black uppercase mb-5 leading-tight">
             Order in Bulk &amp; Save More
           </h2>
           <Link
             href="/bulk-custom-patches"
-            className="inline-flex items-center gap-2 bg-panda-yellow text-panda-dark font-black px-8 py-3 rounded-full text-[13px] uppercase tracking-widest hover:bg-white transition-colors"
+            className="inline-flex items-center gap-2 bg-panda-yellow text-panda-dark font-black px-8 py-3 rounded-full text-[0.8125rem] uppercase tracking-widest hover:bg-white transition-colors"
           >
             Get Bulk Pricing →
           </Link>
@@ -314,16 +314,16 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
 
       {/* 12. RELATED PATCH TYPES — internal linking */}
       <section className="w-full py-12 md:py-16 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px] text-center">
-          <p className="text-gray-500 text-[12px] font-semibold uppercase tracking-widest mb-2">Explore More</p>
-          <h2 className="text-[20px] md:text-[26px] font-black uppercase text-panda-dark mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem] text-center">
+          <p className="text-gray-500 text-[0.75rem] font-semibold uppercase tracking-widest mb-2">Explore More</p>
+          <h2 className="text-[1.25rem] md:text-[1.625rem] font-black uppercase text-panda-dark mb-8">
             Other Custom Patch Types
           </h2>
           <div className="flex flex-wrap justify-center gap-3">
             {/* Embroidered always shows first — top seller */}
             <Link
               href="/custom-patches/embroidered"
-              className="px-5 py-2.5 rounded-full border-2 border-panda-dark text-panda-dark text-[13px] font-bold uppercase tracking-wide hover:bg-panda-dark hover:text-white transition-colors"
+              className="px-5 py-2.5 rounded-full border-2 border-panda-dark text-panda-dark text-[0.8125rem] font-bold uppercase tracking-wide hover:bg-panda-dark hover:text-white transition-colors"
             >
               Embroidered Patches
             </Link>
@@ -331,14 +331,14 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
               <Link
                 key={patch.slug}
                 href={`/custom-patches/${patch.slug}`}
-                className="px-5 py-2.5 rounded-full border-2 border-panda-dark text-panda-dark text-[13px] font-bold uppercase tracking-wide hover:bg-panda-dark hover:text-white transition-colors"
+                className="px-5 py-2.5 rounded-full border-2 border-panda-dark text-panda-dark text-[0.8125rem] font-bold uppercase tracking-wide hover:bg-panda-dark hover:text-white transition-colors"
               >
                 {patch.name}
               </Link>
             ))}
             <Link
               href="/custom-patches"
-              className="px-5 py-2.5 rounded-full bg-panda-yellow text-panda-dark text-[13px] font-bold uppercase tracking-wide hover:bg-panda-dark hover:text-panda-yellow transition-colors"
+              className="px-5 py-2.5 rounded-full bg-panda-yellow text-panda-dark text-[0.8125rem] font-bold uppercase tracking-wide hover:bg-panda-dark hover:text-panda-yellow transition-colors"
             >
               All Patch Types
             </Link>
@@ -350,18 +350,18 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
           for detailed/AI-generated art that embroidery blurs, so this is the natural cross-link. */}
       {slug === "woven" && (
         <section className="w-full py-10 md:py-14 bg-white border-t border-gray-100">
-          <div className="container mx-auto px-4 md:px-6 max-w-[800px] text-center">
-            <p className="text-gray-500 text-[12px] font-semibold uppercase tracking-widest mb-2">Design Guide</p>
-            <h2 className="text-[20px] md:text-[26px] font-black text-panda-dark mb-3 leading-tight">
+          <div className="container mx-auto px-4 md:px-6 max-w-[50rem] text-center">
+            <p className="text-gray-500 text-[0.75rem] font-semibold uppercase tracking-widest mb-2">Design Guide</p>
+            <h2 className="text-[1.25rem] md:text-[1.625rem] font-black text-panda-dark mb-3 leading-tight">
               Is your design too detailed to embroider?
             </h2>
-            <p className="text-gray-600 text-[14px] md:text-[15px] leading-[1.7] mb-5 max-w-[620px] mx-auto">
+            <p className="text-gray-600 text-[0.875rem] md:text-[0.9375rem] leading-[1.7] mb-5 max-w-[38.75rem] mx-auto">
               Woven holds fine detail — small text and thin lines — that embroidery blurs at small sizes. If you have an AI-generated or intricate design, our guide explains exactly when to choose woven over embroidered.
             </p>
             <Link
               href="/ai-patch-design-too-detailed-for-embroidery"
               prefetch={false}
-              className="inline-flex items-center gap-2 text-panda-green font-black text-[13px] uppercase tracking-widest underline underline-offset-4 hover:text-panda-dark transition-colors"
+              className="inline-flex items-center gap-2 text-panda-green font-black text-[0.8125rem] uppercase tracking-widest underline underline-offset-4 hover:text-panda-dark transition-colors"
             >
               AI design too detailed for embroidery? →
             </Link>

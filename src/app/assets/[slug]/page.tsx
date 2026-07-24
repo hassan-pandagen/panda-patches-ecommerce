@@ -65,7 +65,7 @@ export default async function AssetPage({ params }: { params: Promise<{ slug: st
           <div className="container mx-auto px-4 flex flex-col items-center">
             
             {/* Title */}
-            <h1 className="text-[40px] font-black text-panda-dark uppercase mb-12 text-center tracking-tight">
+            <h1 className="text-[2.5rem] font-black text-panda-dark uppercase mb-12 text-center tracking-tight">
               {data.title}
             </h1>
 

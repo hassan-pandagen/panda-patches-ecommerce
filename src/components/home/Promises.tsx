@@ -19,11 +19,11 @@ export default function Promises({ bgColor = "bg-[#F7F7F7]", items }: { bgColor?
     <section className={`w-full pb-6 md:pb-12 pt-8 ${bgColor}`}>
       <div className="container mx-auto px-6 flex flex-col items-center">
         
-        <h2 className="text-[24px] md:text-[28px] lg:text-[32px] font-black text-center text-panda-dark uppercase tracking-wide mb-8 md:mb-12 lg:mb-16">
+        <h2 className="text-[1.5rem] md:text-[1.75rem] lg:text-[2rem] font-black text-center text-panda-dark uppercase tracking-wide mb-8 md:mb-12 lg:mb-16">
           4 Things Every Order Gets. All Free.
         </h2>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-[50px] max-w-[1055px] w-full">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-[50px] max-w-[65.9375rem] w-full">
           {promises.map((item, idx) => (
             <div key={idx} className="flex flex-col items-center text-center">
               <div className="w-[70px] h-[70px] md:w-[84px] md:h-[84px] bg-black rounded-full flex items-center justify-center mb-4 md:mb-6 shadow-lg hover:scale-110 transition-transform duration-300">
@@ -31,8 +31,8 @@ export default function Promises({ bgColor = "bg-[#F7F7F7]", items }: { bgColor?
                   <Image src={item.icon} alt={`${item.title} icon - Panda Patches guarantee`} fill className="object-contain" sizes="38px" quality={90} />
                 </div>
               </div>
-              <h3 className="text-[15px] md:text-[18px] font-extrabold text-panda-dark mb-2 md:mb-3 leading-tight">{item.title}</h3>
-              <p className="text-[13px] md:text-[15px] text-gray-500 leading-[1.6] max-w-[180px] md:max-w-[220px] font-medium">{item.desc}</p>
+              <h3 className="text-[0.9375rem] md:text-[1.125rem] font-extrabold text-panda-dark mb-2 md:mb-3 leading-tight">{item.title}</h3>
+              <p className="text-[0.8125rem] md:text-[0.9375rem] text-gray-500 leading-[1.6] max-w-[180px] md:max-w-[220px] font-medium">{item.desc}</p>
             </div>
           ))}
         </div>

@@ -24,18 +24,18 @@ export default async function ProfilePage() {
     <main className="min-h-screen bg-[#F9FAF5]">
       <Navbar />
       <section className="w-full pt-10 md:pt-14 pb-10 md:pb-16">
-        <div className="container mx-auto px-6 max-w-[680px]">
+        <div className="container mx-auto px-6 max-w-[42.5rem]">
 
-          <Link href="/account" className="inline-flex items-center gap-1.5 text-[13px] text-gray-500 hover:text-panda-dark mb-4 transition-colors">
+          <Link href="/account" className="inline-flex items-center gap-1.5 text-[0.8125rem] text-gray-500 hover:text-panda-dark mb-4 transition-colors">
             <ChevronLeft size={14} /> Back to account
           </Link>
 
           <div className="mb-8">
-            <p className="text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-2">My Account &middot; Profile</p>
-            <h1 className="text-[32px] md:text-[42px] font-black text-panda-dark leading-[1.1] tracking-tight">
+            <p className="text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-2">My Account &middot; Profile</p>
+            <h1 className="text-[2rem] md:text-[2.625rem] font-black text-panda-dark leading-[1.1] tracking-tight">
               My Profile
             </h1>
-            <p className="text-[14px] text-gray-500 mt-2">Signed in as {user.email}</p>
+            <p className="text-[0.875rem] text-gray-500 mt-2">Signed in as {user.email}</p>
           </div>
 
           <ProfileFormClient

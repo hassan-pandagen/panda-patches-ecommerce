@@ -51,11 +51,11 @@ export default async function BlogSection() {
   return (
     // Section Background: Light Grey (#F6F6F6)
     <section className="w-full py-12 bg-[#F6F6F6]">
-      <div className="container mx-auto px-4 max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px]">
+      <div className="container mx-auto px-4 max-w-[75rem]">
         
         {/* HEADING */}
         <div className="text-center mb-16">
-          <h2 className="text-[24px] md:text-[40px] font-black text-panda-dark uppercase tracking-tight">
+          <h2 className="text-[1.5rem] md:text-[2.5rem] font-black text-panda-dark uppercase tracking-tight">
             GUIDES &amp; TIPS FOR CUSTOM PATCHES
           </h2>
         </div>
@@ -65,7 +65,7 @@ export default async function BlogSection() {
 
         {/* Homepage shows a featured subset — link to the full archive */}
         <div className="text-center mt-8">
-          <Link href="/blogs" className="inline-flex items-center gap-2 text-[14px] font-bold text-panda-dark hover:text-panda-green transition-colors">
+          <Link href="/blogs" className="inline-flex items-center gap-2 text-[0.875rem] font-bold text-panda-dark hover:text-panda-green transition-colors">
             View all guides
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7" />
@@ -113,12 +113,12 @@ function BlogCard({ blog }: { blog: any }) {
       <div className="flex flex-col items-center text-center pt-8 pb-6 px-4 flex-grow">
         
         {/* Title */}
-        <h3 className="text-[18px] md:text-[22px] leading-[1.3] font-bold text-panda-dark mb-4">
+        <h3 className="text-[1.125rem] md:text-[1.375rem] leading-[1.3] font-bold text-panda-dark mb-4">
           {blog.title}
         </h3>
 
         {/* Excerpt */}
-        <p className="text-[15px] leading-[1.6] text-gray-600 mb-auto line-clamp-3">
+        <p className="text-[0.9375rem] leading-[1.6] text-gray-600 mb-auto line-clamp-3">
           {blog.excerpt}
         </p>
 

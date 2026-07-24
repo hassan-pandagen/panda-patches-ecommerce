@@ -32,7 +32,7 @@ export default function TrustpilotRatingLine({
 
   if (variant === "compact") {
     return (
-      <p className={`text-[12px] font-bold ${baseColor} ${className}`}>
+      <p className={`text-[0.75rem] font-bold ${baseColor} ${className}`}>
         <span className="font-black">{TRUSTPILOT_RATING}/5</span>{" "}
         <span className="font-semibold text-gray-500">
           on Trustpilot. {TRUSTPILOT_REVIEW_COUNT_STR}+ reviews.
@@ -50,7 +50,7 @@ export default function TrustpilotRatingLine({
   }
 
   return (
-    <p className={`text-[13px] md:text-[14px] font-semibold leading-[1.5] ${baseColor} ${className}`}>
+    <p className={`text-[0.8125rem] md:text-[0.875rem] font-semibold leading-[1.5] ${baseColor} ${className}`}>
       Rated{" "}
       <span className="font-black">{TRUSTPILOT_RATING}/5</span>{" "}
       by{" "}

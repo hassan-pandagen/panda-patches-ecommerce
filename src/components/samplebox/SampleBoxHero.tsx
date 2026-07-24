@@ -29,13 +29,13 @@ export default async function SampleBoxHero() {
 
       {/* Text centered on top of the image */}
       <div className="relative z-10 text-center px-6 py-16 max-w-3xl mx-auto">
-        <h1 className="text-[42px] md:text-[60px] font-black uppercase tracking-tight mb-4 text-panda-dark">
+        <h1 className="text-[2.625rem] md:text-[3.75rem] font-black uppercase tracking-tight mb-4 text-panda-dark">
           Order a Sample Box
         </h1>
-        <p className="text-[17px] md:text-[20px] text-gray-700 max-w-2xl mx-auto leading-relaxed font-medium">
+        <p className="text-[1.0625rem] md:text-[1.25rem] text-gray-700 max-w-2xl mx-auto leading-relaxed font-medium">
           Order our sample box and experience the high quality of our custom products.
         </p>
-        <p className="text-[22px] md:text-[24px] font-black text-panda-green mt-5">
+        <p className="text-[1.375rem] md:text-[1.5rem] font-black text-panda-green mt-5">
           Get 1 Sample of Each Category • Only $45
         </p>
       </div>

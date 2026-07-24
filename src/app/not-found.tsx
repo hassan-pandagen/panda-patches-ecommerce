@@ -35,16 +35,16 @@ export default function NotFound() {
       <Navbar />
 
       <section className="flex-1 w-full pt-12 md:pt-20 pb-16 md:pb-24">
-        <div className="container mx-auto px-6 max-w-[920px]">
+        <div className="container mx-auto px-6 max-w-[57.5rem]">
 
           <div className="text-center mb-12 md:mb-16">
-            <p className="text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-3">
+            <p className="text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-3">
               404 . Page Not Found
             </p>
-            <h1 className="text-[40px] md:text-[56px] font-black text-panda-dark leading-[1.05] tracking-tight mb-4">
+            <h1 className="text-[2.5rem] md:text-[3.5rem] font-black text-panda-dark leading-[1.05] tracking-tight mb-4">
               We could not find that page.
             </h1>
-            <p className="text-[16px] md:text-[18px] text-gray-600 max-w-[600px] mx-auto leading-[1.6]">
+            <p className="text-[1rem] md:text-[1.125rem] text-gray-600 max-w-[37.5rem] mx-auto leading-[1.6]">
               The link might be broken, or the page may have moved. Try a search,
               jump to a popular page, or chat with our team for a free quote.
             </p>
@@ -66,12 +66,12 @@ export default function NotFound() {
                 name="q"
                 placeholder="Search for custom patches, pricing, or a blog post"
                 aria-label="Search the site"
-                className="flex-1 bg-transparent border-0 outline-none px-3 py-2.5 text-[14px] text-panda-dark placeholder:text-gray-400"
+                className="flex-1 bg-transparent border-0 outline-none px-3 py-2.5 text-[0.875rem] text-panda-dark placeholder:text-gray-400"
                 required
               />
               <button
                 type="submit"
-                className="bg-panda-dark text-panda-yellow font-black text-[13px] uppercase tracking-wider px-4 py-2 rounded-full hover:scale-[1.03] transition-transform flex-shrink-0"
+                className="bg-panda-dark text-panda-yellow font-black text-[0.8125rem] uppercase tracking-wider px-4 py-2 rounded-full hover:scale-[1.03] transition-transform flex-shrink-0"
               >
                 Search
               </button>
@@ -81,7 +81,7 @@ export default function NotFound() {
           <div className="grid md:grid-cols-2 gap-6 mb-12 md:mb-16">
 
             <div className="bg-white border border-gray-200 rounded-[20px] p-6 md:p-7">
-              <h2 className="text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-4">
+              <h2 className="text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
                 Patch Types
               </h2>
               <ul className="space-y-2">
@@ -89,7 +89,7 @@ export default function NotFound() {
                   <li key={t.href}>
                     <Link
                       href={t.href}
-                      className="flex items-center justify-between gap-2 py-2 text-[14px] font-bold text-panda-dark hover:text-panda-green transition-colors group"
+                      className="flex items-center justify-between gap-2 py-2 text-[0.875rem] font-bold text-panda-dark hover:text-panda-green transition-colors group"
                     >
                       <span>{t.name}</span>
                       <ArrowRight
@@ -103,7 +103,7 @@ export default function NotFound() {
             </div>
 
             <div className="bg-white border border-gray-200 rounded-[20px] p-6 md:p-7">
-              <h2 className="text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-4">
+              <h2 className="text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
                 Popular Pages
               </h2>
               <ul className="space-y-2">
@@ -111,7 +111,7 @@ export default function NotFound() {
                   <li key={p.href}>
                     <Link
                       href={p.href}
-                      className="flex items-center justify-between gap-2 py-2 text-[14px] font-bold text-panda-dark hover:text-panda-green transition-colors group"
+                      className="flex items-center justify-between gap-2 py-2 text-[0.875rem] font-bold text-panda-dark hover:text-panda-green transition-colors group"
                     >
                       <span>{p.name}</span>
                       <ArrowRight
@@ -127,24 +127,24 @@ export default function NotFound() {
           </div>
 
           <div className="bg-panda-dark text-white rounded-[24px] p-8 md:p-10 text-center">
-            <h2 className="text-[24px] md:text-[32px] font-black text-panda-yellow leading-[1.1] mb-3">
+            <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-yellow leading-[1.1] mb-3">
               Need a quote? We move fast.
             </h2>
-            <p className="text-[14px] md:text-[16px] text-gray-300 mb-6 max-w-[520px] mx-auto leading-[1.6]">
+            <p className="text-[0.875rem] md:text-[1rem] text-gray-300 mb-6 max-w-[520px] mx-auto leading-[1.6]">
               Free digital mockup in 12 to 24 hours. Low minimums from 5 pieces.
               Free worldwide shipping. No setup fees.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-panda-yellow text-panda-dark font-black text-[14px] uppercase tracking-wider px-6 py-3 rounded-full hover:scale-[1.03] transition-transform"
+                className="inline-flex items-center gap-2 bg-panda-yellow text-panda-dark font-black text-[0.875rem] uppercase tracking-wider px-6 py-3 rounded-full hover:scale-[1.03] transition-transform"
               >
                 Get a Free Quote
                 <ArrowRight size={16} />
               </Link>
               <Link
                 href="/custom-patches"
-                className="inline-flex items-center gap-2 bg-white/10 text-white font-black text-[14px] uppercase tracking-wider px-6 py-3 rounded-full hover:bg-white/20 transition-colors"
+                className="inline-flex items-center gap-2 bg-white/10 text-white font-black text-[0.875rem] uppercase tracking-wider px-6 py-3 rounded-full hover:bg-white/20 transition-colors"
               >
                 <MessageCircle size={16} />
                 Browse Patches

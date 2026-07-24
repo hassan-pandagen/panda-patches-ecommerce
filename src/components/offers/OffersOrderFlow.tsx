@@ -61,7 +61,7 @@ function StepBar({ step }: { step: number }) {
               <div className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm transition-all ${done ? 'bg-green-500 text-white' : active ? 'bg-[#051C05] text-[#DFFF00]' : 'bg-gray-200 text-gray-500'}`}>
                 {done ? '✓' : s}
               </div>
-              <span className={`text-[10px] mt-1 font-semibold ${active ? 'text-[#051C05]' : 'text-gray-400'}`}>{label}</span>
+              <span className={`text-[0.625rem] mt-1 font-semibold ${active ? 'text-[#051C05]' : 'text-gray-400'}`}>{label}</span>
             </div>
             {i < 3 && <div className={`w-8 h-0.5 mb-5 mx-1 ${step > s ? 'bg-green-500' : 'bg-gray-200'}`} />}
           </div>
@@ -227,7 +227,7 @@ function Step2({ formData, setFormData, onNext, onBack, offer }: {
                 <div>
                   <div className="flex items-center gap-2">
                     <span className={`font-bold text-sm ${selected ? 'text-[#DFFF00]' : 'text-[#051C05]'}`}>{d.label}</span>
-                    {d.badge && <span className="text-[10px] font-bold bg-[#DFFF00] text-[#051C05] px-2 py-0.5 rounded-full">{d.badge}</span>}
+                    {d.badge && <span className="text-[0.625rem] font-bold bg-[#DFFF00] text-[#051C05] px-2 py-0.5 rounded-full">{d.badge}</span>}
                   </div>
                   <div className={`text-xs mt-0.5 ${selected ? 'text-gray-300' : 'text-gray-500'}`}>{d.timeline}</div>
                 </div>
@@ -262,7 +262,7 @@ function Step2({ formData, setFormData, onNext, onBack, offer }: {
                       {formData.upgrades.includes(u.name) && '✓'}
                     </div>
                     <span className="font-bold text-sm text-[#051C05]">{u.name}</span>
-                    {u.badge && <span className="text-[10px] font-bold bg-[#DFFF00] text-[#051C05] px-2 py-0.5 rounded-full">{u.badge}</span>}
+                    {u.badge && <span className="text-[0.625rem] font-bold bg-[#DFFF00] text-[#051C05] px-2 py-0.5 rounded-full">{u.badge}</span>}
                   </div>
                   <div className="text-xs text-gray-500 mt-0.5 ml-7">{u.desc}</div>
                 </div>
@@ -428,7 +428,7 @@ function Step5({
         {['Visa', 'Mastercard', 'Amex', 'Apple Pay', 'Google Pay', 'Cash App', 'AfterPay'].map(p => (
           <span key={p} className="px-2 py-1 bg-gray-100 rounded font-medium text-gray-600">{p}</span>
         ))}
-        <span className="ml-auto text-[11px] text-gray-400">256-bit SSL. Powered by Square.</span>
+        <span className="ml-auto text-[0.6875rem] text-gray-400">256-bit SSL. Powered by Square.</span>
       </div>
 
       {error && (

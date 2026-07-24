@@ -712,7 +712,7 @@ export default function ComplexCalculator({
                   <label className="text-sm font-black text-black uppercase tracking-wide">
                     {borderSectionLabel || "Select Border"}
                   </label>
-                  <span className="text-[11px] font-semibold text-gray-400">Optional</span>
+                  <span className="text-[0.6875rem] font-semibold text-gray-400">Optional</span>
                 </div>
                 <button
                   type="button"
@@ -851,7 +851,7 @@ export default function ComplexCalculator({
 
               {/* Selected size confirmation */}
               {(parseFloat(widthInput) > 0 && parseFloat(heightInput) > 0) && (
-                <p className="mt-2 text-[13px] font-bold text-gray-700">
+                <p className="mt-2 text-[0.8125rem] font-bold text-gray-700">
                   {`📐 Selected Size: ${widthInput}" × ${heightInput}"`}
                 </p>
               )}
@@ -860,7 +860,7 @@ export default function ComplexCalculator({
               <button
                 type="button"
                 onClick={() => { if (typeof window !== 'undefined' && (window as any).Tawk_API) { (window as any).Tawk_API.maximize(); } }}
-                className="mt-2 flex items-center gap-1.5 text-[12px] text-gray-600 font-semibold hover:text-panda-green transition-colors group cursor-pointer"
+                className="mt-2 flex items-center gap-1.5 text-[0.75rem] text-gray-600 font-semibold hover:text-panda-green transition-colors group cursor-pointer"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="flex-shrink-0 group-hover:text-panda-green" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>
@@ -909,9 +909,9 @@ export default function ComplexCalculator({
                 <div className="absolute right-5 top-1/2 -translate-y-1/2 text-xs text-gray-500 font-bold pointer-events-none uppercase tracking-wide">Pieces</div>
               </div>
               {fieldErrors.quantity ? (
-                <p id="calc-quantity-error" className="text-red-500 text-[12px] mt-1.5 font-semibold">⚠ {fieldErrors.quantity}</p>
+                <p id="calc-quantity-error" className="text-red-500 text-[0.75rem] mt-1.5 font-semibold">⚠ {fieldErrors.quantity}</p>
               ) : (
-                <p className="text-gray-500 text-[12px] mt-1.5 font-medium">Minimum order: 5 pieces. Per-piece price drops as quantity goes up, so smaller orders cost more per piece. This calculator shows your exact price.</p>
+                <p className="text-gray-500 text-[0.75rem] mt-1.5 font-medium">Minimum order: 5 pieces. Per-piece price drops as quantity goes up, so smaller orders cost more per piece. This calculator shows your exact price.</p>
               )}
             </div>
 
@@ -921,7 +921,7 @@ export default function ComplexCalculator({
                 <label className="text-sm font-black text-black uppercase tracking-wide">
                   Upload Your Artwork
                 </label>
-                <span className="text-[11px] font-semibold text-gray-400 normal-case">Optional — we design for free</span>
+                <span className="text-[0.6875rem] font-semibold text-gray-400 normal-case">Optional — we design for free</span>
               </div>
               {/* Uploaded files list */}
               {files.length > 0 && (
@@ -973,7 +973,7 @@ export default function ComplexCalculator({
                           <p className="text-sm font-black text-panda-dark group-hover:text-black leading-tight">
                             {files.length === 1 ? 'Add a 2nd file (optional)' : 'Click to Upload Artwork'}
                           </p>
-                          <p className="text-[11px] text-gray-500 font-medium mt-0.5">JPG, PNG, AI, EPS, PDF · No file? We design free!</p>
+                          <p className="text-[0.6875rem] text-gray-500 font-medium mt-0.5">JPG, PNG, AI, EPS, PDF · No file? We design free!</p>
                         </div>
                       </>
                     )}
@@ -1033,7 +1033,7 @@ export default function ComplexCalculator({
                       className={`w-full h-[52px] border-2 rounded-[12px] px-4 font-bold text-base text-black outline-none focus:border-black transition-all ${fieldErrors.name ? 'border-red-400 bg-red-50' : 'border-gray-300'}`}
                       autoComplete="name"
                     />
-                    {fieldErrors.name && <p id="calc-name-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {fieldErrors.name}</p>}
+                    {fieldErrors.name && <p id="calc-name-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {fieldErrors.name}</p>}
                   </div>
                   <div>
                     <input
@@ -1047,11 +1047,11 @@ export default function ComplexCalculator({
                       className={`w-full h-[52px] border-2 rounded-[12px] px-4 font-bold text-base text-black outline-none focus:border-black transition-all ${fieldErrors.email ? 'border-red-400 bg-red-50' : 'border-gray-300'}`}
                       autoComplete="email"
                     />
-                    {fieldErrors.email && <p id="calc-email-error" className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {fieldErrors.email}</p>}
+                    {fieldErrors.email && <p id="calc-email-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {fieldErrors.email}</p>}
                   </div>
                 </div>
-                {quoteError && <p className="text-red-500 text-[12px] mt-1 font-semibold">⚠ {quoteError}</p>}
-                {checkoutError && <p className="text-red-500 text-[12px] mt-1 font-semibold">⚠ {checkoutError}</p>}
+                {quoteError && <p className="text-red-500 text-[0.75rem] mt-1 font-semibold">⚠ {quoteError}</p>}
+                {checkoutError && <p className="text-red-500 text-[0.75rem] mt-1 font-semibold">⚠ {checkoutError}</p>}
               </div>
             </div>
 
@@ -1078,7 +1078,7 @@ export default function ComplexCalculator({
                     className="w-full flex items-center justify-between px-5 py-4 rounded-[14px] border-2 border-dashed border-green-400 bg-green-50 hover:border-green-600 hover:bg-green-100 transition-all group shadow-sm hover:shadow-md"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="bg-green-600 text-white text-[13px] font-black px-3 py-1.5 rounded-md uppercase tracking-wide">
+                      <span className="bg-green-600 text-white text-[0.8125rem] font-black px-3 py-1.5 rounded-md uppercase tracking-wide">
                         SAVE {tier.savingsPercent}%
                       </span>
                       <span className="text-base font-bold text-gray-800 group-hover:text-black">
@@ -1117,9 +1117,9 @@ export default function ComplexCalculator({
                       </p>
                     </div>
                     <div className="text-right space-y-1.5">
-                      <span className="bg-black text-panda-yellow text-[12px] font-black px-3 py-1.5 rounded uppercase tracking-wide block">FREE SHIPPING</span>
+                      <span className="bg-black text-panda-yellow text-[0.75rem] font-black px-3 py-1.5 rounded uppercase tracking-wide block">FREE SHIPPING</span>
                       {discount > 0 && (
-                        <span className="bg-panda-yellow text-black text-[12px] font-black px-3 py-1.5 rounded uppercase tracking-wide block">
+                        <span className="bg-panda-yellow text-black text-[0.75rem] font-black px-3 py-1.5 rounded uppercase tracking-wide block">
                           {(discount * 100).toFixed(0)}% OFF
                         </span>
                       )}
@@ -1177,7 +1177,7 @@ export default function ComplexCalculator({
                   style={{ border: deliveryOption === "standard" ? '2px solid #000' : '2px solid #9CA3AF', background: deliveryOption === "standard" ? '#000' : '#fff' }}
                 >
                   <p className={`text-base font-black leading-tight ${deliveryOption === "standard" ? 'text-white' : 'text-black'}`}>Standard</p>
-                  <p className={`text-[11px] font-medium mt-1 ${deliveryOption === "standard" ? 'text-gray-300' : 'text-gray-400'}`}>12-14 days</p>
+                  <p className={`text-[0.6875rem] font-medium mt-1 ${deliveryOption === "standard" ? 'text-gray-300' : 'text-gray-400'}`}>12-14 days</p>
                 </div>
 
                 {/* Economy Delivery */}
@@ -1187,8 +1187,8 @@ export default function ComplexCalculator({
                   style={{ border: deliveryOption === "economy" ? '2px solid #000' : '2px solid #9CA3AF', background: deliveryOption === "economy" ? '#000' : '#fff' }}
                 >
                   <p className={`text-base font-black leading-tight ${deliveryOption === "economy" ? 'text-white' : 'text-black'}`}>Economy</p>
-                  <span className="inline-block bg-panda-yellow text-black text-[10px] font-black px-2 py-0.5 rounded-full mt-1">5% OFF</span>
-                  <p className={`text-[11px] font-medium mt-0.5 ${deliveryOption === "economy" ? 'text-gray-300' : 'text-gray-400'}`}>16-18 days</p>
+                  <span className="inline-block bg-panda-yellow text-black text-[0.625rem] font-black px-2 py-0.5 rounded-full mt-1">5% OFF</span>
+                  <p className={`text-[0.6875rem] font-medium mt-0.5 ${deliveryOption === "economy" ? 'text-gray-300' : 'text-gray-400'}`}>16-18 days</p>
                 </div>
               </div>
 
@@ -1322,7 +1322,7 @@ export default function ComplexCalculator({
                 style={{ border: fieldErrors.address ? '2px solid #f87171' : '2px solid #9CA3AF', background: fieldErrors.address ? '#fef2f2' : '#fff' }}
               />
               {fieldErrors.address && (
-                <p id="calc-address-error" className="text-red-500 text-[12px] mt-2 font-semibold">⚠ {fieldErrors.address}</p>
+                <p id="calc-address-error" className="text-red-500 text-[0.75rem] mt-2 font-semibold">⚠ {fieldErrors.address}</p>
               )}
             </div>
 
@@ -1448,7 +1448,7 @@ export default function ComplexCalculator({
               <button
                 type="button"
                 onClick={handleNext}
-                className="w-full h-[70px] bg-black text-panda-yellow rounded-[14px] font-black text-[16px] md:text-[18px] uppercase tracking-wide md:tracking-widest hover:scale-[1.01] transition-transform shadow-xl"
+                className="w-full h-[70px] bg-black text-panda-yellow rounded-[14px] font-black text-[1rem] md:text-[1.125rem] uppercase tracking-wide md:tracking-widest hover:scale-[1.01] transition-transform shadow-xl"
               >
                 CHECK BEST PRICES →
               </button>
@@ -1459,7 +1459,7 @@ export default function ComplexCalculator({
               <button
                 type="submit"
                 disabled={checkoutLoading}
-                className={`w-full h-[70px] bg-black text-panda-yellow rounded-[14px] font-black text-[18px] uppercase tracking-widest transition-all shadow-2xl flex items-center justify-center gap-3 ${
+                className={`w-full h-[70px] bg-black text-panda-yellow rounded-[14px] font-black text-[1.125rem] uppercase tracking-widest transition-all shadow-2xl flex items-center justify-center gap-3 ${
                   checkoutLoading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-[1.01]'
                 }`}
               >
@@ -1480,7 +1480,7 @@ export default function ComplexCalculator({
                 type="button"
                 onClick={handleDirectQuote}
                 disabled={quoteSending || quoteSent}
-                className={`w-full h-[56px] rounded-[14px] font-bold uppercase tracking-widest text-[13px] flex items-center justify-center gap-2 transition-colors disabled:cursor-not-allowed ${quoteSent ? 'bg-green-50 text-green-700' : 'bg-white text-gray-800 hover:border-black hover:text-black hover:bg-gray-50'}`}
+                className={`w-full h-[56px] rounded-[14px] font-bold uppercase tracking-widest text-[0.8125rem] flex items-center justify-center gap-2 transition-colors disabled:cursor-not-allowed ${quoteSent ? 'bg-green-50 text-green-700' : 'bg-white text-gray-800 hover:border-black hover:text-black hover:bg-gray-50'}`}
                 style={{ border: quoteSent ? '2px solid #16a34a' : '2px solid #9CA3AF' }}
               >
                 {quoteSending ? (

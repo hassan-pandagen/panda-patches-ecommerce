@@ -15,7 +15,7 @@ export default function CTAChatButton() {
       className="
         flex items-center gap-2
         bg-black text-panda-yellow
-        font-bold text-[16px]
+        font-bold text-[1rem]
         px-10 py-3
         rounded-[6px]
         hover:scale-105 transition-transform duration-300 shadow-xl

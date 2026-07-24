@@ -50,19 +50,19 @@ export interface AeoAnswerContent {
 export default function AeoAnswerBlock({ content }: { content: AeoAnswerContent }) {
   return (
     <section className="w-full py-8 md:py-12 bg-white border-t border-b border-gray-100">
-      <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+      <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
 
         {/* H2 + answer-first block (first-30% extraction zone) */}
-        <h2 className="text-[22px] md:text-[30px] font-black text-panda-dark leading-tight mb-4">
+        <h2 className="text-[1.375rem] md:text-[1.875rem] font-black text-panda-dark leading-tight mb-4">
           {content.heading}
         </h2>
-        <p className="text-[16px] md:text-[18px] text-gray-700 leading-[1.7] mb-6 font-medium">
+        <p className="text-[1rem] md:text-[1.125rem] text-gray-700 leading-[1.7] mb-6 font-medium">
           {content.answer}
         </p>
 
         {/* KEY-FACTS table — highest-citation format; plain <table>, text-extractable */}
         <div className="overflow-x-auto rounded-[12px] border border-gray-200 mb-8">
-          <table className="w-full text-[14px] md:text-[15px] text-left">
+          <table className="w-full text-[0.875rem] md:text-[0.9375rem] text-left">
             <tbody className="divide-y divide-gray-100">
               {content.keyFacts.map((f, i) => (
                 <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
@@ -79,11 +79,11 @@ export default function AeoAnswerBlock({ content }: { content: AeoAnswerContent 
         {/* COMPARISON table (optional) */}
         {content.comparison && (
           <div className="mb-8">
-            <h3 className="text-[18px] md:text-[22px] font-black text-panda-dark mb-4">
+            <h3 className="text-[1.125rem] md:text-[1.375rem] font-black text-panda-dark mb-4">
               {content.comparison.caption}
             </h3>
             <div className="overflow-x-auto rounded-[12px] border border-gray-200">
-              <table className="w-full text-[13px] md:text-[14px] text-left">
+              <table className="w-full text-[0.8125rem] md:text-[0.875rem] text-left">
                 <thead className="bg-panda-dark text-white">
                   <tr>
                     {content.comparison.columns.map((c, i) => (
@@ -112,10 +112,10 @@ export default function AeoAnswerBlock({ content }: { content: AeoAnswerContent 
         <div className="space-y-6">
           {content.faqs.map((qa, i) => (
             <div key={i}>
-              <h3 className="text-[17px] md:text-[19px] font-black text-panda-dark mb-2 leading-snug">
+              <h3 className="text-[1.0625rem] md:text-[1.1875rem] font-black text-panda-dark mb-2 leading-snug">
                 {qa.q}
               </h3>
-              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">
+              <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-600 leading-[1.8]">
                 {qa.a}
               </p>
             </div>
@@ -123,7 +123,7 @@ export default function AeoAnswerBlock({ content }: { content: AeoAnswerContent 
         </div>
 
         {/* Freshness signal */}
-        <p className="text-[12px] text-gray-400 mt-8">
+        <p className="text-[0.75rem] text-gray-400 mt-8">
           Last updated: {content.updated} ·{" "}
           <Link href="/how-much-do-custom-patches-cost-full-pricing-breakdown" className="underline hover:text-panda-green">
             See full pricing breakdown

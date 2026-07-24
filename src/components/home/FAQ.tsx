@@ -15,7 +15,7 @@ export default function FAQ({ questions: propQuestions, heading: propHeading }: 
       <div className="container mx-auto px-6">
         
         {/* HEADING - Mobile Optimized */}
-        <h2 className="text-[24px] md:text-[32px] lg:text-[36px] font-bold text-center text-panda-dark uppercase tracking-wide mb-8 md:mb-12 lg:mb-16">
+        <h2 className="text-[1.5rem] md:text-[2rem] lg:text-[2.25rem] font-bold text-center text-panda-dark uppercase tracking-wide mb-8 md:mb-12 lg:mb-16">
           {propHeading || "FREQUENTLY ASKED QUESTIONS"}
         </h2>
 

@@ -17,16 +17,16 @@ export default function ForgotPasswordPage() {
       <Navbar />
       <section className="w-full pt-10 md:pt-14 pb-10 md:pb-16">
         <div className="container mx-auto px-6 max-w-[480px]">
-          <h1 className="text-[32px] md:text-[40px] font-black text-panda-dark leading-[1.1] tracking-tight mb-2 text-center">
+          <h1 className="text-[2rem] md:text-[2.5rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-2 text-center">
             Reset your password
           </h1>
-          <p className="text-[15px] text-gray-600 leading-[1.6] mb-8 text-center">
+          <p className="text-[0.9375rem] text-gray-600 leading-[1.6] mb-8 text-center">
             Enter the email tied to your account and we will send a reset link.
           </p>
 
           <ForgotPasswordClient />
 
-          <p className="text-[13px] text-gray-500 text-center mt-6">
+          <p className="text-[0.8125rem] text-gray-500 text-center mt-6">
             Remembered your password?{" "}
             <Link href="/login" className="text-panda-green font-bold hover:underline">
               Back to sign in

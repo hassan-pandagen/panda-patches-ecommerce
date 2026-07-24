@@ -37,7 +37,7 @@ export default function ProductGallery({ images }: { images: any[] }) {
   };
 
   return (
-    <div className="flex flex-col gap-4 md:gap-6 w-full max-w-[600px]">
+    <div className="flex flex-col gap-4 md:gap-6 w-full max-w-[37.5rem]">
 
       {/* MAIN SWIPER - Swipeable Gallery */}
       <div className="gallery-main-wrapper">

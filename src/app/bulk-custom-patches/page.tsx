@@ -306,8 +306,8 @@ export default async function BulkCustomPatchesPage() {
 
       {/* 4. HOW BULK ORDERING WORKS (4-Step Process) */}
       <section className="w-full py-8 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1000px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-10 md:mb-14">
+        <div className="container mx-auto px-4 md:px-6 max-w-[62.5rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-10 md:mb-14">
             How Bulk Ordering Works
           </h2>
 
@@ -336,10 +336,10 @@ export default async function BulkCustomPatchesPage() {
             ].map((item, idx) => (
               <div key={idx} className="text-center">
                 <div className="w-14 h-14 bg-panda-dark rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-panda-yellow font-black text-[18px]">{item.step}</span>
+                  <span className="text-panda-yellow font-black text-[1.125rem]">{item.step}</span>
                 </div>
-                <h3 className="text-[16px] md:text-[19px] font-bold text-panda-dark mb-2 leading-tight">{item.title}</h3>
-                <p className="text-[13px] md:text-[15px] text-gray-500 leading-[1.6] max-w-[200px] mx-auto">{item.desc}</p>
+                <h3 className="text-[1rem] md:text-[1.1875rem] font-bold text-panda-dark mb-2 leading-tight">{item.title}</h3>
+                <p className="text-[0.8125rem] md:text-[0.9375rem] text-gray-500 leading-[1.6] max-w-[200px] mx-auto">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -351,48 +351,48 @@ export default async function BulkCustomPatchesPage() {
 
       {/* 6. WHO ORDERS BULK PATCHES */}
       <section className="w-full py-8 md:py-12 bg-panda-light">
-        <div className="container mx-auto px-4 md:px-6 max-w-[960px]">
-          <h2 className="text-[24px] md:text-[34px] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
+        <div className="container mx-auto px-4 md:px-6 max-w-[60rem]">
+          <h2 className="text-[1.5rem] md:text-[2.125rem] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
             Who Orders Bulk Custom Patches?
           </h2>
-          <p className="text-center text-gray-500 text-[15px] md:text-[16px] mb-10 md:mb-14 max-w-[600px] mx-auto">
+          <p className="text-center text-gray-500 text-[0.9375rem] md:text-[1rem] mb-10 md:mb-14 max-w-[37.5rem] mx-auto">
             Our bulk customers span dozens of industries. If you need consistent quality across hundreds or thousands of patches, you are in the right place.
           </p>
           <div className="space-y-8">
 
             <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
-              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Promotional Products Distributors & ASI Members</h3>
-              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">We are set up to work as your behind-the-scenes patch supplier. White-label fulfillment, blind shipping, Net 15/30 terms, and competitive distributor pricing for ASI members. Many of our distributor partners place recurring monthly orders with locked-in volume rates.</p>
+              <h3 className="text-[1.0625rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Promotional Products Distributors & ASI Members</h3>
+              <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-600 leading-[1.8]">We are set up to work as your behind-the-scenes patch supplier. White-label fulfillment, blind shipping, Net 15/30 terms, and competitive distributor pricing for ASI members. Many of our distributor partners place recurring monthly orders with locked-in volume rates.</p>
             </div>
 
             <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
-              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Corporate Marketing & Branding Teams</h3>
-              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">From employee uniforms to trade show giveaways, <Link href="/custom-patches/embroidered" className="text-panda-green font-semibold underline">custom embroidered patches</Link> are one of the most cost-effective branded merchandise items. We produce patches for Fortune 500 onboarding kits, conference swag, and department insignia. Corporate clients appreciate consistent color matching across reorders and a dedicated account manager for ongoing programs.</p>
+              <h3 className="text-[1.0625rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Corporate Marketing & Branding Teams</h3>
+              <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-600 leading-[1.8]">From employee uniforms to trade show giveaways, <Link href="/custom-patches/embroidered" className="text-panda-green font-semibold underline">custom embroidered patches</Link> are one of the most cost-effective branded merchandise items. We produce patches for Fortune 500 onboarding kits, conference swag, and department insignia. Corporate clients appreciate consistent color matching across reorders and a dedicated account manager for ongoing programs.</p>
             </div>
 
             <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
-              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Fire Departments & Law Enforcement</h3>
-              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">Department patches are a point of pride. We produce custom fire department and law enforcement patches that meet the exacting standards these agencies require. Velcro-backed options for easy uniform swaps, merrowed borders for a clean professional look, and reorder consistency so every new batch matches the last.</p>
+              <h3 className="text-[1.0625rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Fire Departments & Law Enforcement</h3>
+              <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-600 leading-[1.8]">Department patches are a point of pride. We produce custom fire department and law enforcement patches that meet the exacting standards these agencies require. Velcro-backed options for easy uniform swaps, merrowed borders for a clean professional look, and reorder consistency so every new batch matches the last.</p>
             </div>
 
             <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
-              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Sports Teams & Athletic Leagues</h3>
-              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">Whether it is patches for a little league, hockey tournament, or <Link href="/custom-patches/chenille" className="text-panda-green font-semibold underline">varsity chenille letters</Link> for letterman jackets, we handle team orders of every size. Most sports team orders range from 50 to 500 pieces and repeat seasonally.</p>
+              <h3 className="text-[1.0625rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Sports Teams & Athletic Leagues</h3>
+              <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-600 leading-[1.8]">Whether it is patches for a little league, hockey tournament, or <Link href="/custom-patches/chenille" className="text-panda-green font-semibold underline">varsity chenille letters</Link> for letterman jackets, we handle team orders of every size. Most sports team orders range from 50 to 500 pieces and repeat seasonally.</p>
             </div>
 
             <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
-              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Fashion & Streetwear Brands</h3>
-              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">Independent apparel brands use our patches as premium branding elements. <Link href="/custom-patches/leather" className="text-panda-green font-semibold underline">Leather patches</Link> for hat lines, <Link href="/custom-patches/chenille" className="text-panda-green font-semibold underline">chenille patches</Link> for varsity-inspired collections, and <Link href="/custom-patches/woven" className="text-panda-green font-semibold underline">woven labels</Link> for garment tagging. We offer low minimums starting at 50 pieces so emerging brands can launch without overcommitting to inventory.</p>
+              <h3 className="text-[1.0625rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Fashion & Streetwear Brands</h3>
+              <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-600 leading-[1.8]">Independent apparel brands use our patches as premium branding elements. <Link href="/custom-patches/leather" className="text-panda-green font-semibold underline">Leather patches</Link> for hat lines, <Link href="/custom-patches/chenille" className="text-panda-green font-semibold underline">chenille patches</Link> for varsity-inspired collections, and <Link href="/custom-patches/woven" className="text-panda-green font-semibold underline">woven labels</Link> for garment tagging. We offer low minimums starting at 50 pieces so emerging brands can launch without overcommitting to inventory.</p>
             </div>
 
             <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
-              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Military, Veteran & Motorcycle Organizations</h3>
-              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">From unit insignia to motorcycle club back patches, we serve communities that take their patches seriously. <Link href="/custom-patches/pvc" className="text-panda-green font-semibold underline">PVC with Velcro backing</Link> for tactical applications, large embroidered back patches for riding clubs, and small patches for caps and vests. Veterans groups, VFW posts, and departments also order commemorative runs for <Link href="/custom-250th-anniversary-patches" className="text-panda-green font-semibold underline">America&apos;s 250th anniversary in 2026</Link>.</p>
+              <h3 className="text-[1.0625rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Military, Veteran & Motorcycle Organizations</h3>
+              <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-600 leading-[1.8]">From unit insignia to motorcycle club back patches, we serve communities that take their patches seriously. <Link href="/custom-patches/pvc" className="text-panda-green font-semibold underline">PVC with Velcro backing</Link> for tactical applications, large embroidered back patches for riding clubs, and small patches for caps and vests. Veterans groups, VFW posts, and departments also order commemorative runs for <Link href="/custom-250th-anniversary-patches" className="text-panda-green font-semibold underline">America&apos;s 250th anniversary in 2026</Link>.</p>
             </div>
 
             <div className="bg-white rounded-[14px] p-6 md:p-8 border border-gray-100 shadow-sm">
-              <h3 className="text-[17px] md:text-[20px] font-black text-panda-dark mb-2">Schools, Universities & Scouting Organizations</h3>
-              <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.8]">Academic institutions and scouting groups order patches for achievement recognition, club identification, and event commemoration. We offer student-organization-friendly pricing with low minimums and fast turnaround for time-sensitive events like graduations, competitions, and annual ceremonies.</p>
+              <h3 className="text-[1.0625rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Schools, Universities & Scouting Organizations</h3>
+              <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-600 leading-[1.8]">Academic institutions and scouting groups order patches for achievement recognition, club identification, and event commemoration. We offer student-organization-friendly pricing with low minimums and fast turnaround for time-sensitive events like graduations, competitions, and annual ceremonies.</p>
             </div>
 
           </div>
@@ -401,11 +401,11 @@ export default async function BulkCustomPatchesPage() {
 
       {/* 7. MATERIALS & PATCH TYPES */}
       <section className="w-full py-8 md:py-12 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">
-          <h2 className="text-[24px] md:text-[34px] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
+        <div className="container mx-auto px-4 md:px-6 max-w-[68.75rem]">
+          <h2 className="text-[1.5rem] md:text-[2.125rem] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
             Materials & Patch Types
           </h2>
-          <p className="text-center text-gray-500 text-[14px] md:text-[16px] mb-10 md:mb-14 max-w-[560px] mx-auto">
+          <p className="text-center text-gray-500 text-[0.875rem] md:text-[1rem] mb-10 md:mb-14 max-w-[560px] mx-auto">
             Every bulk order can mix patch types. Prices shown are per piece at 2x2 inches and 1,000 pieces; smaller orders cost more per piece.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -419,11 +419,11 @@ export default async function BulkCustomPatchesPage() {
             ].map((item, idx) => (
               <div key={idx} className="border border-gray-200 rounded-[14px] p-5 hover:border-panda-green hover:shadow-md transition-all">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-[15px] md:text-[17px] font-black text-panda-dark">{item.type}</h3>
-                  <span className="text-[11px] font-bold text-panda-green bg-panda-light px-2.5 py-1 rounded-full">{item.from}</span>
+                  <h3 className="text-[0.9375rem] md:text-[1.0625rem] font-black text-panda-dark">{item.type}</h3>
+                  <span className="text-[0.6875rem] font-bold text-panda-green bg-panda-light px-2.5 py-1 rounded-full">{item.from}</span>
                 </div>
-                <p className="text-[12px] md:text-[13px] text-gray-500 mb-2">{item.best}</p>
-                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wide">{item.note}</p>
+                <p className="text-[0.75rem] md:text-[0.8125rem] text-gray-500 mb-2">{item.best}</p>
+                <p className="text-[0.6875rem] font-bold text-gray-400 uppercase tracking-wide">{item.note}</p>
               </div>
             ))}
           </div>
@@ -432,11 +432,11 @@ export default async function BulkCustomPatchesPage() {
 
       {/* 8. REORDER PROCESS */}
       <section className="w-full py-8 md:py-12 bg-panda-dark">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px] text-center">
-          <h2 className="text-[24px] md:text-[34px] font-black text-white uppercase tracking-tight mb-3">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem] text-center">
+          <h2 className="text-[1.5rem] md:text-[2.125rem] font-black text-white uppercase tracking-tight mb-3">
             Repeat Orders Are Even Easier
           </h2>
-          <p className="text-gray-400 text-[14px] md:text-[16px] mb-10 md:mb-12 max-w-[520px] mx-auto">
+          <p className="text-gray-400 text-[0.875rem] md:text-[1rem] mb-10 md:mb-12 max-w-[520px] mx-auto">
             Once you place your first bulk order, reordering takes minutes, not days.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
@@ -446,9 +446,9 @@ export default async function BulkCustomPatchesPage() {
               { step: "03", title: "One Message to Reorder", desc: "Email or message your account manager with quantity and delivery date. We handle the rest." },
             ].map((item, idx) => (
               <div key={idx} className="bg-white/5 rounded-[14px] p-6 border border-white/10">
-                <span className="text-panda-yellow font-black text-[28px] block mb-3">{item.step}</span>
-                <h3 className="text-white font-bold text-[15px] md:text-[17px] mb-2">{item.title}</h3>
-                <p className="text-gray-400 text-[13px] md:text-[14px] leading-[1.7]">{item.desc}</p>
+                <span className="text-panda-yellow font-black text-[1.75rem] block mb-3">{item.step}</span>
+                <h3 className="text-white font-bold text-[0.9375rem] md:text-[1.0625rem] mb-2">{item.title}</h3>
+                <p className="text-gray-400 text-[0.8125rem] md:text-[0.875rem] leading-[1.7]">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -489,11 +489,11 @@ export default async function BulkCustomPatchesPage() {
 
       {/* 10. WHY BUSINESSES CHOOSE PANDA */}
       <section className="w-full py-8 md:py-12 bg-panda-light">
-        <div className="container mx-auto px-4 md:px-6 max-w-[960px]">
-          <h2 className="text-[24px] md:text-[34px] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
+        <div className="container mx-auto px-4 md:px-6 max-w-[60rem]">
+          <h2 className="text-[1.5rem] md:text-[2.125rem] font-black text-center text-panda-dark uppercase tracking-tight mb-3">
             Why Businesses Choose Panda Patches for Bulk Orders
           </h2>
-          <p className="text-center text-gray-500 text-[15px] md:text-[16px] mb-10 md:mb-14 max-w-[680px] mx-auto">
+          <p className="text-center text-gray-500 text-[0.9375rem] md:text-[1rem] mb-10 md:mb-14 max-w-[42.5rem] mx-auto">
             When <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-dark font-semibold underline decoration-1 underline-offset-2 hover:text-panda-green">Wise rang the Nasdaq bell in Times Square</Link>, the 9,600 patches in the giveaway came from us &mdash; designed, approved, and delivered in two shipments on May 4 and May 7, both on contractual dates that could not move, with no rush surcharge. That is the standard we hold whether your order is 50 pieces or 50,000.
           </p>
           <div className="space-y-5">
@@ -521,11 +521,11 @@ export default async function BulkCustomPatchesPage() {
             ].map((item, idx) => (
               <div key={idx} className="bg-white rounded-[14px] p-6 md:p-7 border border-gray-100 shadow-sm flex gap-4 items-start">
                 <div className="w-8 h-8 bg-panda-dark rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-panda-yellow font-black text-[13px]">{idx + 1}</span>
+                  <span className="text-panda-yellow font-black text-[0.8125rem]">{idx + 1}</span>
                 </div>
                 <div>
-                  <h3 className="text-[15px] md:text-[17px] font-black text-panda-dark mb-1.5">{item.title}</h3>
-                  <p className="text-[13px] md:text-[14px] text-gray-600 leading-[1.8]">{item.body}</p>
+                  <h3 className="text-[0.9375rem] md:text-[1.0625rem] font-black text-panda-dark mb-1.5">{item.title}</h3>
+                  <p className="text-[0.8125rem] md:text-[0.875rem] text-gray-600 leading-[1.8]">{item.body}</p>
                 </div>
               </div>
             ))}
@@ -535,11 +535,11 @@ export default async function BulkCustomPatchesPage() {
 
       {/* 11. SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Custom Patches in Bulk — Your Complete Guide
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-5">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-5">
             <p>
               Looking to order <strong>custom patches in bulk</strong>? Panda Patches is the trusted partner for brands, organizations, sports teams, and businesses across the United States that need high-quality patches at wholesale volume pricing. Whether you need <strong>50 embroidered patches</strong> for your startup team or <strong>50,000 PVC patches</strong> for a national product launch, we deliver consistent quality, transparent pricing, and a production process built for scale.
             </p>
@@ -564,11 +564,11 @@ export default async function BulkCustomPatchesPage() {
 
       {/* Mistakes we talk bulk buyers out of — B2B first-hand layer */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Mistakes We Talk Bulk Buyers Out Of
           </h2>
-          <ul className="space-y-4 text-[15px] md:text-[16px] text-gray-600 leading-[1.8]">
+          <ul className="space-y-4 text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8]">
             <li><strong className="text-panda-dark">Ordering short to &ldquo;test,&rdquo; then reordering.</strong> Per-piece price drops fast with volume &mdash; a 50-piece run and a 1,000-piece run are very different prices. If you know you need 1,000, order 1,000; splitting it into small reorders just costs you more. Want to check quality first? That is what the free pre-production sample is for, on orders of 500 or more.</li>
             <li><strong className="text-panda-dark">Approving a screen mockup instead of a real sample.</strong> On a few thousand pieces, signing off on a digital proof alone is a gamble. For 500+ we send a finished sample so you hold the color, backing, and size in your hand before we run the full batch.</li>
             <li><strong className="text-panda-dark">Forcing a detailed or AI-generated design onto embroidery at scale.</strong> Gradients and fine detail that thread cannot hold look worse multiplied across thousands of patches. We will tell you when <Link href="/custom-patches/printed" className="text-panda-dark font-bold underline decoration-1 underline-offset-2 hover:text-panda-green">printed</Link> or <Link href="/custom-patches/woven" className="text-panda-dark font-bold underline decoration-1 underline-offset-2 hover:text-panda-green">woven</Link> will hold your art better &mdash; before it is 10,000 pieces too late.</li>

@@ -47,7 +47,7 @@ export default async function AboutContent() {
       <div className="container mx-auto px-4 flex flex-col items-center">
 
         {/* === MAIN PAGE TITLE === */}
-        <h1 className="text-[20px] md:text-[36px] font-black text-panda-dark uppercase mb-1 tracking-tight">
+        <h1 className="text-[1.25rem] md:text-[2.25rem] font-black text-panda-dark uppercase mb-1 tracking-tight">
           {title}
         </h1>
 
@@ -67,16 +67,16 @@ export default async function AboutContent() {
         </div>
 
         {/* === CONTENT BOX === */}
-        <div className="flex flex-col gap-5 md:gap-8 max-w-[800px] text-center">
+        <div className="flex flex-col gap-5 md:gap-8 max-w-[50rem] text-center">
 
           {sections.map((section: any, idx: number) => (
             <div key={idx} className="space-y-1.5">
 
-              <h2 className="text-[15px] md:text-[24px] font-bold text-panda-dark leading-snug">
+              <h2 className="text-[0.9375rem] md:text-[1.5rem] font-bold text-panda-dark leading-snug">
                 {section.heading}
               </h2>
 
-              <p className="text-[13px] md:text-[15px] font-normal text-gray-600 leading-[1.6] mx-auto">
+              <p className="text-[0.8125rem] md:text-[0.9375rem] font-normal text-gray-600 leading-[1.6] mx-auto">
                 {section.description}
               </p>
 

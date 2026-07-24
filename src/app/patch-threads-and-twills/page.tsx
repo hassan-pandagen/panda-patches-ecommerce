@@ -134,8 +134,8 @@ export default async function PatchThreadsAndTwillsPage() {
 
       {/* ANSWER-FIRST */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] max-w-[820px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] max-w-[51.25rem]">
             On an embroidered patch, the <strong>thread</strong> creates the design and the <strong>twill</strong>
             {" "}is the fabric background it is stitched onto. Panda Patches offers standard polyester thread (free,
             with Pantone matching), plus <strong>metallic</strong>, <strong>glow-in-the-dark</strong>, and
@@ -152,18 +152,18 @@ export default async function PatchThreadsAndTwillsPage() {
 
       {/* THREAD OPTIONS */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1000px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[62.5rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
             Thread Options
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {THREADS.map((t) => (
               <div key={t.name} className="bg-white border border-gray-100 rounded-2xl p-6">
                 <div className="flex items-start justify-between gap-2 mb-2">
-                  <h3 className="text-[16px] font-black text-panda-dark">{t.name}</h3>
+                  <h3 className="text-[1rem] font-black text-panda-dark">{t.name}</h3>
                 </div>
-                <span className="inline-block text-[10px] font-black uppercase tracking-wider bg-panda-dark text-panda-yellow px-2 py-0.5 rounded-full mb-3">{t.tag}</span>
-                <p className="text-[14px] text-gray-600 leading-[1.6]">{t.body}</p>
+                <span className="inline-block text-[0.625rem] font-black uppercase tracking-wider bg-panda-dark text-panda-yellow px-2 py-0.5 rounded-full mb-3">{t.tag}</span>
+                <p className="text-[0.875rem] text-gray-600 leading-[1.6]">{t.body}</p>
               </div>
             ))}
           </div>
@@ -175,18 +175,18 @@ export default async function PatchThreadsAndTwillsPage() {
 
       {/* TWILL / CAMO */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
             Twill Backgrounds &amp; Camo Twill
           </h2>
           <div className="grid md:grid-cols-2 gap-5">
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[17px] font-black text-panda-dark mb-2">Twill colors</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Twill is the woven base fabric. Choose its color to set the background of the patch. On partially embroidered designs the twill shows through, so the twill color is part of the look, not just the backing.</p>
+              <h3 className="text-[1.0625rem] font-black text-panda-dark mb-2">Twill colors</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Twill is the woven base fabric. Choose its color to set the background of the patch. On partially embroidered designs the twill shows through, so the twill color is part of the look, not just the backing.</p>
             </div>
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[17px] font-black text-panda-dark mb-2">Camo twill</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Camo twill is a patterned base fabric, woodland, multicam-style, or desert, used for tactical, military, hunting, and outdoor patches so the background itself carries the camouflage. Pairs naturally with <Link href="/custom-tactical-patches" prefetch={false} className="text-panda-green underline font-semibold">tactical</Link> and <Link href="/custom-airsoft-patches" prefetch={false} className="text-panda-green underline font-semibold">airsoft</Link> designs.</p>
+              <h3 className="text-[1.0625rem] font-black text-panda-dark mb-2">Camo twill</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Camo twill is a patterned base fabric, woodland, multicam-style, or desert, used for tactical, military, hunting, and outdoor patches so the background itself carries the camouflage. Pairs naturally with <Link href="/custom-tactical-patches" prefetch={false} className="text-panda-green underline font-semibold">tactical</Link> and <Link href="/custom-airsoft-patches" prefetch={false} className="text-panda-green underline font-semibold">airsoft</Link> designs.</p>
             </div>
           </div>
         </div>
@@ -198,11 +198,11 @@ export default async function PatchThreadsAndTwillsPage() {
 
       {/* SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Build Your Patch From Thread Up
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               Thread choice changes both the look and the feel of an embroidered patch. Standard polyester thread
               covers the full color range with free Pantone matching and is included at no upcharge. Metallic

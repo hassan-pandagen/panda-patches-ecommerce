@@ -72,14 +72,14 @@ export default function ProfileFormClient({ initial }: ProfileFormClientProps) {
   };
 
   const fieldCls =
-    "w-full px-4 py-3 border border-gray-200 rounded-[10px] focus:border-panda-green focus:ring-2 focus:ring-panda-green/10 outline-none text-[14px]";
-  const labelCls = "block text-[12px] font-bold text-gray-700 mb-1.5 uppercase tracking-wider";
+    "w-full px-4 py-3 border border-gray-200 rounded-[10px] focus:border-panda-green focus:ring-2 focus:ring-panda-green/10 outline-none text-[0.875rem]";
+  const labelCls = "block text-[0.75rem] font-bold text-gray-700 mb-1.5 uppercase tracking-wider";
 
   return (
     <div className="bg-white border border-gray-200 rounded-[20px] p-7 md:p-8">
       {message && (
         <div
-          className={`p-3 mb-5 rounded-[10px] text-[13px] font-semibold ${
+          className={`p-3 mb-5 rounded-[10px] text-[0.8125rem] font-semibold ${
             message.type === "error"
               ? "bg-red-50 text-red-700 border border-red-200"
               : "bg-green-50 text-green-700 border border-green-200"
@@ -92,7 +92,7 @@ export default function ProfileFormClient({ initial }: ProfileFormClientProps) {
       <form onSubmit={handleSubmit} className="space-y-6" noValidate>
 
         <div>
-          <h2 className="text-[15px] font-black text-panda-dark uppercase tracking-wider mb-4">Contact</h2>
+          <h2 className="text-[0.9375rem] font-black text-panda-dark uppercase tracking-wider mb-4">Contact</h2>
           <div className="space-y-4">
             <div>
               <label className={labelCls}>Full Name</label>
@@ -133,7 +133,7 @@ export default function ProfileFormClient({ initial }: ProfileFormClientProps) {
         </div>
 
         <div className="pt-6 border-t border-gray-100">
-          <h2 className="text-[15px] font-black text-panda-dark uppercase tracking-wider mb-4">Default Shipping Address</h2>
+          <h2 className="text-[0.9375rem] font-black text-panda-dark uppercase tracking-wider mb-4">Default Shipping Address</h2>
           <div>
             <label className={labelCls}>Default shipping address</label>
             <textarea
@@ -150,7 +150,7 @@ export default function ProfileFormClient({ initial }: ProfileFormClientProps) {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full bg-panda-dark text-panda-yellow font-black text-[15px] py-3.5 rounded-[12px] hover:bg-black hover:scale-[1.01] transition-all uppercase tracking-[0.1em] shadow-lg disabled:opacity-50"
+          className="w-full bg-panda-dark text-panda-yellow font-black text-[0.9375rem] py-3.5 rounded-[12px] hover:bg-black hover:scale-[1.01] transition-all uppercase tracking-[0.1em] shadow-lg disabled:opacity-50"
         >
           {submitting ? "Saving..." : "Save Changes"}
         </button>

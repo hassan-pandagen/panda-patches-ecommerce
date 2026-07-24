@@ -39,7 +39,7 @@ export default function Modal({ isOpen, onClose, children, title }: ModalProps) 
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
-        className="relative z-10 w-full max-w-[600px] bg-white rounded-[20px] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200"
+        className="relative z-10 w-full max-w-[37.5rem] bg-white rounded-[20px] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200"
       >
 
         {/* Header */}

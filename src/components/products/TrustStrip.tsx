@@ -4,7 +4,7 @@ export default function TrustStrip() {
       <div className="container mx-auto px-4 text-center">
 
         {/* HEADING */}
-        <h2 className="text-[20px] md:text-[28px] lg:text-[32px] font-black text-black uppercase tracking-[0.1em] md:tracking-[0.15em] mb-8">
+        <h2 className="text-[1.25rem] md:text-[1.75rem] lg:text-[2rem] font-black text-black uppercase tracking-[0.1em] md:tracking-[0.15em] mb-8">
           Patches Made For Teams At
         </h2>
 

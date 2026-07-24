@@ -31,10 +31,10 @@ export default function WorkGallery({ samples }: WorkGalleryProps) {
 
   return (
     <section className="w-full py-8 md:py-14 bg-panda-light">
-      <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">
+      <div className="container mx-auto px-4 md:px-6 max-w-[68.75rem]">
 
         {/* Heading */}
-        <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-10 md:mb-14">
+        <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-10 md:mb-14">
           Our Work Samples
         </h2>
 

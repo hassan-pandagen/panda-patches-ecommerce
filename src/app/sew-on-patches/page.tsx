@@ -137,8 +137,8 @@ export default async function SewOnPatchesPage() {
 
       {/* ANSWER-FIRST */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] max-w-[820px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] max-w-[51.25rem]">
             Yes, Panda Patches offers <strong>free sew-on backing on every patch type</strong>, embroidered,
             woven, printed, leather, PVC, and chenille, from a low 5-piece minimum. Sew-on is the most permanent
             and wash-proof backing because the patch is stitched directly to the fabric rather than glued. It is
@@ -154,14 +154,14 @@ export default async function SewOnPatchesPage() {
 
       {/* WHEN TO CHOOSE SEW-ON */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
             When To Choose Sew-On
           </h2>
           <div className="grid md:grid-cols-2 gap-5">
             <div className="bg-white border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[17px] font-black text-panda-dark mb-2">Choose sew-on for</h3>
-              <ul className="text-[14px] text-gray-600 leading-[1.8] list-disc pl-5 space-y-1">
+              <h3 className="text-[1.0625rem] font-black text-panda-dark mb-2">Choose sew-on for</h3>
+              <ul className="text-[0.875rem] text-gray-600 leading-[1.8] list-disc pl-5 space-y-1">
                 <li>Work uniforms and industrial-wash garments</li>
                 <li>Game jerseys and team kit washed weekly</li>
                 <li>Scout and military uniforms, sashes</li>
@@ -171,14 +171,14 @@ export default async function SewOnPatchesPage() {
               </ul>
             </div>
             <div className="bg-white border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[17px] font-black text-panda-dark mb-2">Iron-on may be easier for</h3>
-              <ul className="text-[14px] text-gray-600 leading-[1.8] list-disc pl-5 space-y-1">
+              <h3 className="text-[1.0625rem] font-black text-panda-dark mb-2">Iron-on may be easier for</h3>
+              <ul className="text-[0.875rem] text-gray-600 leading-[1.8] list-disc pl-5 space-y-1">
                 <li>Hats, denim, and canvas washed occasionally</li>
                 <li>One-off personal projects with no sewing kit</li>
                 <li>Cotton t-shirts, hoodies, and tote bags</li>
                 <li>Fast application with a household iron</li>
               </ul>
-              <p className="text-[13px] text-gray-500 leading-[1.6] mt-3">
+              <p className="text-[0.8125rem] text-gray-500 leading-[1.6] mt-3">
                 Compare both on the <Link href="/custom-iron-on-patches" prefetch={false} className="text-panda-green underline font-semibold">iron-on patches</Link> page, or see all six in the <Link href="/custom-patches/backing-options" prefetch={false} className="text-panda-green underline font-semibold">backing options guide</Link>.
               </p>
             </div>
@@ -188,11 +188,11 @@ export default async function SewOnPatchesPage() {
 
       {/* HOW TO SEW ON */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-10">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-10">
             How To Sew On a Patch
           </h2>
-          <div className="grid md:grid-cols-2 gap-5 max-w-[800px] mx-auto">
+          <div className="grid md:grid-cols-2 gap-5 max-w-[50rem] mx-auto">
             {[
               { n: 1, title: "Position and pin", desc: "Place the patch where you want it and pin or fabric-tape it flat so it cannot shift." },
               { n: 2, title: "Match your thread", desc: "Use thread that matches the patch border for an invisible seam, or a contrast color for a visible stitch." },
@@ -202,8 +202,8 @@ export default async function SewOnPatchesPage() {
               <div key={step.n} className="flex gap-4 bg-[#F9FAF5] border border-gray-100 rounded-2xl p-5">
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-panda-dark text-panda-yellow font-black flex items-center justify-center text-lg">{step.n}</div>
                 <div>
-                  <h3 className="text-[16px] font-black text-panda-dark mb-1">{step.title}</h3>
-                  <p className="text-[14px] text-gray-600 leading-[1.6]">{step.desc}</p>
+                  <h3 className="text-[1rem] font-black text-panda-dark mb-1">{step.title}</h3>
+                  <p className="text-[0.875rem] text-gray-600 leading-[1.6]">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -219,11 +219,11 @@ export default async function SewOnPatchesPage() {
 
       {/* SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Order Custom Sew-On Patches From 5 Pieces
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               A sew-on patch is finished with a clean border and no adhesive, so it can be stitched permanently
               to almost any fabric. It is the most durable backing Panda Patches offers and the standard choice

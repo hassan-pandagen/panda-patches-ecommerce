@@ -31,9 +31,9 @@ export default async function PatchStylePage({ params }: { params: Promise<{ slu
 
   // Helper for SEO Text Styling
   const SEOBlock = ({ title, content }: { title: string; content: any }) => (
-    <section className="py-16 max-w-[1000px] mx-auto px-6">
+    <section className="py-16 max-w-[62.5rem] mx-auto px-6">
       {title && (
-        <h2 className="text-[32px] font-black text-panda-dark uppercase mb-6 text-center lg:text-left">
+        <h2 className="text-[2rem] font-black text-panda-dark uppercase mb-6 text-center lg:text-left">
           {title}
         </h2>
       )}

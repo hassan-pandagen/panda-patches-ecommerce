@@ -20,7 +20,7 @@ export default function StickyMobileCTA() {
     <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
       <a
         href="#quote-form"
-        className="flex items-center justify-center w-full bg-panda-green text-white font-black text-[16px] py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.15)] active:opacity-90"
+        className="flex items-center justify-center w-full bg-panda-green text-white font-black text-[1rem] py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.15)] active:opacity-90"
       >
         Get a Free Quote
       </a>

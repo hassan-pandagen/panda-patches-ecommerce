@@ -42,7 +42,7 @@ function statusBadge(status?: string | null, paymentStatus?: string | null) {
     label = s === "MOCKUP_SENT" ? "Mockup Sent" : "Pending";
     cls = "bg-yellow-100 text-yellow-800";
   }
-  return <span className={`inline-block px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider ${cls}`}>{label}</span>;
+  return <span className={`inline-block px-2.5 py-1 rounded-full text-[0.6875rem] font-bold uppercase tracking-wider ${cls}`}>{label}</span>;
 }
 
 export default async function OrdersPage({
@@ -71,27 +71,27 @@ export default async function OrdersPage({
     <main className="min-h-screen bg-[#F9FAF5]">
       <Navbar />
       <section className="w-full pt-10 md:pt-14 pb-10 md:pb-16">
-        <div className="container mx-auto px-6 max-w-[1000px]">
+        <div className="container mx-auto px-6 max-w-[62.5rem]">
 
-          <Link href="/account" className="inline-flex items-center gap-1.5 text-[13px] text-gray-500 hover:text-panda-dark mb-4 transition-colors">
+          <Link href="/account" className="inline-flex items-center gap-1.5 text-[0.8125rem] text-gray-500 hover:text-panda-dark mb-4 transition-colors">
             <ChevronLeft size={14} /> Back to account
           </Link>
 
           <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
             <div>
-              <p className="text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-2">My Account &middot; Orders</p>
-              <h1 className="text-[32px] md:text-[42px] font-black text-panda-dark leading-[1.1] tracking-tight">
+              <p className="text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-2">My Account &middot; Orders</p>
+              <h1 className="text-[2rem] md:text-[2.625rem] font-black text-panda-dark leading-[1.1] tracking-tight">
                 My Orders
               </h1>
-              <p className="text-[14px] text-gray-500 mt-2">{total} order{total === 1 ? "" : "s"} total</p>
+              <p className="text-[0.875rem] text-gray-500 mt-2">{total} order{total === 1 ? "" : "s"} total</p>
             </div>
           </div>
 
           <div className="bg-white border border-gray-200 rounded-[20px] overflow-hidden">
             {rows.length === 0 ? (
               <div className="px-6 py-20 text-center">
-                <p className="text-[15px] text-gray-500 mb-4">You have not placed an order yet.</p>
-                <Link href="/custom-patches" className="inline-block bg-panda-dark text-panda-yellow font-black text-[14px] px-6 py-3 rounded-full uppercase tracking-wider hover:scale-105 transition-transform">
+                <p className="text-[0.9375rem] text-gray-500 mb-4">You have not placed an order yet.</p>
+                <Link href="/custom-patches" className="inline-block bg-panda-dark text-panda-yellow font-black text-[0.875rem] px-6 py-3 rounded-full uppercase tracking-wider hover:scale-105 transition-transform">
                   Browse Patches
                 </Link>
               </div>
@@ -104,17 +104,17 @@ export default async function OrdersPage({
                     className="flex items-center justify-between gap-4 px-6 py-5 hover:bg-[#F9FAF5] transition-colors"
                   >
                     <div className="flex-1 min-w-0">
-                      <p className="text-[14px] font-bold text-panda-dark truncate">
+                      <p className="text-[0.875rem] font-bold text-panda-dark truncate">
                         {o.patches_type || "Custom Patch Order"}
                       </p>
-                      <p className="text-[12px] text-gray-500 mt-0.5">
+                      <p className="text-[0.75rem] text-gray-500 mt-0.5">
                         {formatDate(o.created_at)} &middot; {o.patches_quantity || 0} pcs &middot; {o.design_size || "-"} &middot; {o.design_backing || "-"}
                       </p>
-                      <p className="text-[11px] text-gray-400 mt-1 font-mono">#{String(o.id).slice(0, 8)}</p>
+                      <p className="text-[0.6875rem] text-gray-400 mt-1 font-mono">#{String(o.id).slice(0, 8)}</p>
                     </div>
                     <div className="flex flex-col items-end gap-2 flex-shrink-0">
                       {statusBadge(o.status, o.payment_status)}
-                      <span className="text-[15px] font-black text-panda-dark">
+                      <span className="text-[0.9375rem] font-black text-panda-dark">
                         ${(o.amount_paid || 0).toFixed(2)}
                       </span>
                     </div>

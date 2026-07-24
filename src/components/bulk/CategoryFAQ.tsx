@@ -18,10 +18,10 @@ export default function CategoryFAQ({ title = "Frequently Asked Questions", faqs
   return (
     <section className="w-full py-8 md:py-14 bg-panda-light">
 
-      <div className="container mx-auto px-4 md:px-6 max-w-[800px]">
+      <div className="container mx-auto px-4 md:px-6 max-w-[50rem]">
 
         {/* Heading */}
-        <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-10 md:mb-14">
+        <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-10 md:mb-14">
           {title}
         </h2>
 
@@ -37,7 +37,7 @@ export default function CategoryFAQ({ title = "Frequently Asked Questions", faqs
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                 className="w-full flex items-center justify-between px-5 md:px-6 py-4 md:py-5 text-left group"
               >
-                <span className="text-[14px] md:text-[16px] font-bold text-panda-dark pr-4 leading-tight">
+                <span className="text-[0.875rem] md:text-[1rem] font-bold text-panda-dark pr-4 leading-tight">
                   {faq.question}
                 </span>
                 <ChevronDown
@@ -53,7 +53,7 @@ export default function CategoryFAQ({ title = "Frequently Asked Questions", faqs
                   openIndex === idx ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <p className="px-5 md:px-6 pb-5 text-[13px] md:text-[15px] text-gray-600 leading-[1.7]">
+                <p className="px-5 md:px-6 pb-5 text-[0.8125rem] md:text-[0.9375rem] text-gray-600 leading-[1.7]">
                   {faq.answer}
                 </p>
               </div>

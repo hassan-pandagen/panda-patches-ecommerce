@@ -13,7 +13,7 @@ import dynamic from "next/dynamic";
 const ProductGallery = dynamic(() => import("./ProductGallery"), {
   ssr: true,
   loading: () => (
-    <div className="flex flex-col gap-4 md:gap-6 w-full max-w-[600px]">
+    <div className="flex flex-col gap-4 md:gap-6 w-full max-w-[37.5rem]">
       {/* Main image placeholder, same aspect-square as the gallery */}
       <div className="w-full aspect-square rounded-[16px] md:rounded-[24px] border border-gray-200 shadow-md bg-gradient-to-br from-gray-50 via-white to-gray-50 animate-pulse" />
       {/* Thumbnail row placeholder, matches the 90px/120px thumbs */}

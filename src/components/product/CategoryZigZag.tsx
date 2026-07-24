@@ -24,7 +24,7 @@ export default async function CategoryZigZag({ locationName }: CategoryZigZagPro
     <section className="w-full py-10 md:py-14 bg-white">
       <div className="container mx-auto px-6 max-w-[1300px]">
         
-        <h2 className="text-[28px] md:text-[40px] font-black text-center text-panda-dark mb-12 lg:mb-24 uppercase tracking-tight">
+        <h2 className="text-[1.75rem] md:text-[2.5rem] font-black text-center text-panda-dark mb-12 lg:mb-24 uppercase tracking-tight">
           {locationName 
             ? `Types of Custom Patches in ${locationName}` 
             : "Explore Our Patch Types"
@@ -60,16 +60,16 @@ export default async function CategoryZigZag({ locationName }: CategoryZigZagPro
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-[15px] font-black text-panda-dark uppercase leading-tight mb-1.5">
+                    <h3 className="text-[0.9375rem] font-black text-panda-dark uppercase leading-tight mb-1.5">
                       {displayTitle}
                     </h3>
-                    <p className="text-[12px] text-gray-500 leading-[1.5] line-clamp-2 mb-2">
+                    <p className="text-[0.75rem] text-gray-500 leading-[1.5] line-clamp-2 mb-2">
                       {product.description ?
                         product.description.substring(0, 80) + "..." :
                         "Custom patches designed to your specifications."
                       }
                     </p>
-                    <span className="text-[11px] font-bold text-panda-green uppercase tracking-wide inline-flex items-center gap-1">
+                    <span className="text-[0.6875rem] font-bold text-panda-green uppercase tracking-wide inline-flex items-center gap-1">
                       Customize <ArrowRight size={12} />
                     </span>
                   </div>
@@ -89,17 +89,17 @@ export default async function CategoryZigZag({ locationName }: CategoryZigZagPro
                     )}
                   </div>
                   <div className="flex-1 space-y-8">
-                    <h3 className="text-[30px] lg:text-[36px] font-black text-panda-dark uppercase leading-none">
+                    <h3 className="text-[1.875rem] lg:text-[2.25rem] font-black text-panda-dark uppercase leading-none">
                       {displayTitle}
                     </h3>
-                    <p className="text-[17px] text-gray-600 leading-[1.8] font-medium">
+                    <p className="text-[1.0625rem] text-gray-600 leading-[1.8] font-medium">
                       {product.description ?
                         product.description.substring(0, 150) + "..." :
                         "Create high-quality custom patches designed to your exact specifications with our expert team."
                       }
                     </p>
                     <div className="pt-2">
-                       <span className="bg-black text-panda-yellow px-10 py-4 rounded-[12px] font-black uppercase tracking-widest text-[13px] inline-flex items-center gap-3 group-hover:scale-105 transition-transform shadow-xl">
+                       <span className="bg-black text-panda-yellow px-10 py-4 rounded-[12px] font-black uppercase tracking-widest text-[0.8125rem] inline-flex items-center gap-3 group-hover:scale-105 transition-transform shadow-xl">
                          Start Customizing <ArrowRight size={18} />
                        </span>
                     </div>

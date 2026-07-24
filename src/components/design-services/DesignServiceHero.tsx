@@ -24,22 +24,22 @@ export default function DesignServiceHero({
 }: DesignServiceHeroProps) {
   return (
     <section id="hero" className="w-full pt-6 md:pt-8 pb-6 md:pb-10 bg-white scroll-mt-24">
-      <div className="container mx-auto px-4 md:px-6 max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px]">
+      <div className="container mx-auto px-4 md:px-6 max-w-[75rem]">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
           {/* LEFT - Content */}
           <div className="flex-1 text-center lg:text-left">
             {/* H1 */}
-            <h1 className="text-[28px] md:text-[42px] lg:text-[48px] font-black text-panda-dark leading-[1.1] tracking-tight mb-4">
+            <h1 className="text-[1.75rem] md:text-[2.625rem] lg:text-[3rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-4">
               {heading}
             </h1>
 
             {/* Subheadline */}
-            <p className="text-[16px] md:text-[19px] font-bold text-panda-dark leading-[1.3] mb-3 max-w-[560px] mx-auto lg:mx-0">
+            <p className="text-[1rem] md:text-[1.1875rem] font-bold text-panda-dark leading-[1.3] mb-3 max-w-[560px] mx-auto lg:mx-0">
               {subheading}
             </p>
 
             {/* Description */}
-            <p className="text-[15px] md:text-[17px] text-gray-600 leading-[1.6] font-medium mb-5 max-w-[560px] mx-auto lg:mx-0">
+            <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.6] font-medium mb-5 max-w-[560px] mx-auto lg:mx-0">
               {description}
             </p>
 
@@ -56,10 +56,10 @@ export default function DesignServiceHero({
                   className="flex flex-col items-center text-center bg-panda-light rounded-[10px] py-2.5 px-2 border border-gray-100"
                 >
                   <item.icon className="w-4 h-4 md:w-5 md:h-5 text-panda-green mb-1" strokeWidth={2.5} />
-                  <span className="text-[11px] md:text-[13px] font-bold text-panda-dark leading-tight">
+                  <span className="text-[0.6875rem] md:text-[0.8125rem] font-bold text-panda-dark leading-tight">
                     {item.label}
                   </span>
-                  <span className="text-[9px] md:text-[11px] text-gray-500 font-medium">{item.sub}</span>
+                  <span className="text-[0.5625rem] md:text-[0.6875rem] text-gray-500 font-medium">{item.sub}</span>
                 </div>
               ))}
             </div>
@@ -107,7 +107,7 @@ export default function DesignServiceHero({
                   <div className="hidden md:flex absolute bottom-6 right-6 bg-white shadow-xl rounded-xl p-2.5 items-center gap-2.5 border border-gray-100">
                     <div className="bg-[#E4EFE0] rounded-full p-1.5">✅</div>
                     <div>
-                      <p className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">
+                      <p className="text-[0.625rem] text-gray-400 uppercase font-bold tracking-wider">
                         Patches Delivered
                       </p>
                       <p className="font-black text-panda-dark text-base">1 Million +</p>

@@ -213,17 +213,17 @@ export default function PatchManufacturabilitySpecs() {
       <main className="min-h-screen bg-white">
         {/* HERO */}
         <section className="w-full pt-8 md:pt-12 pb-8 bg-white">
-          <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-            <p className="text-[11px] md:text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-4">
+          <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+            <p className="text-[0.6875rem] md:text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
               Published standard · {SPEC_VERSION} · {SPEC_DATE_LABEL} · Reviewed by our digitizing team
             </p>
-            <h1 className="text-[28px] md:text-[42px] lg:text-[50px] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
+            <h1 className="text-[1.75rem] md:text-[2.625rem] lg:text-[3.125rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
               Patch Manufacturability Specs — What Reproduces, and Why
             </h1>
-            <p className="text-[15px] md:text-[18px] text-gray-600 leading-[1.6] font-medium max-w-[760px]">
+            <p className="text-[0.9375rem] md:text-[1.125rem] text-gray-600 leading-[1.6] font-medium max-w-[47.5rem]">
               Not every design that looks great on screen survives the jump to thread, weave, or mould. This page is our manufacturability standard: the real limits our production floor holds, type by type. Design to these numbers and your artwork comes out crisp the first time — no surprises at the mockup stage.
             </p>
-            <p className="text-[14px] md:text-[15px] text-gray-600 leading-[1.7] font-medium mt-4">
+            <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-600 leading-[1.7] font-medium mt-4">
               Generating artwork with AI or handing us a logo? Skip to the{" "}
               <a href="#design-first-time-right" className="text-panda-green underline font-semibold">
                 design-for-first-time-right prompts
@@ -235,17 +235,17 @@ export default function PatchManufacturabilitySpecs() {
 
         {/* MATRIX */}
         <section className="w-full py-10 md:py-14 px-4 md:px-6 bg-[#F7F7F7]">
-          <div className="container mx-auto max-w-[1000px]">
-            <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-5">Quick-reference matrix</h2>
+          <div className="container mx-auto max-w-[62.5rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-5">Quick-reference matrix</h2>
             <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
-              <table className="w-full text-[13px] md:text-[15px] border-collapse min-w-[720px]">
+              <table className="w-full text-[0.8125rem] md:text-[0.9375rem] border-collapse min-w-[720px]">
                 <thead>
                   <tr className="border-b-2 border-panda-dark text-left">
-                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[11px]">Spec</th>
-                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[11px]">Embroidered</th>
-                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[11px]">Woven</th>
-                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[11px]">PVC</th>
-                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[11px]">Leather</th>
+                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">Spec</th>
+                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">Embroidered</th>
+                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">Woven</th>
+                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">PVC</th>
+                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">Leather</th>
                   </tr>
                 </thead>
                 <tbody className="text-gray-700 font-medium">
@@ -261,7 +261,7 @@ export default function PatchManufacturabilitySpecs() {
                 </tbody>
               </table>
             </div>
-            <p className="text-[13px] text-gray-500 mt-3 font-medium">
+            <p className="text-[0.8125rem] text-gray-500 mt-3 font-medium">
               All figures are for finished patches. Minimum text height assumes a clean sans-serif; serif and decorative fonts need more room.
             </p>
           </div>
@@ -269,33 +269,33 @@ export default function PatchManufacturabilitySpecs() {
 
         {/* BY TYPE */}
         <section className="w-full py-10 md:py-14 px-4 md:px-6 bg-white">
-          <div className="container mx-auto max-w-[820px]">
-            <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-6">By patch type</h2>
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-6">By patch type</h2>
 
-            <h3 className="text-[18px] md:text-[20px] font-black text-panda-dark mb-2">Embroidered</h3>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-6">
+            <h3 className="text-[1.125rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Embroidered</h3>
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
               The classic. Thread laid by machine, so detail is bounded by thread thickness. Our standard thread is 40wt, which lays a line roughly 1 mm wide. For small lettering and fine detail we switch to a finer 75wt thread — finer than most shops run — so we hold smaller text than the typical embroiderer. Readable text starts at 4 mm for a clean sans-serif, 8 mm for serif, and about 10 mm for complex display fonts. Bold, simple shapes always reproduce better than dense fine detail. See{" "}
               <Link href="/custom-patches/embroidered" prefetch={false} className="text-panda-green underline font-semibold">custom embroidered patches</Link>.
             </p>
 
-            <h3 className="text-[18px] md:text-[20px] font-black text-panda-dark mb-2">Woven</h3>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-6">
+            <h3 className="text-[1.125rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Woven</h3>
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
               Woven uses finer threads on a loom, reproducing detail roughly 2–4× finer than embroidery. That means smaller text — down to 1.5 mm for sans-serif, 2 mm for serif or script — and cleaner small logos, with up to 4 colors included and a surcharge above that. The trade-off is a flatter surface with no raised embroidered texture, and a maximum size of 8 inches. See{" "}
               <Link href="/custom-patches/woven" prefetch={false} className="text-panda-green underline font-semibold">custom woven patches</Link> or the{" "}
               <Link href="/woven-vs-embroidered-patches-which-is-right-for-you" prefetch={false} className="text-panda-green underline font-semibold">woven vs embroidered comparison</Link>.
             </p>
 
-            <h3 className="text-[18px] md:text-[20px] font-black text-panda-dark mb-2">PVC</h3>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-6">
+            <h3 className="text-[1.125rem] md:text-[1.25rem] font-black text-panda-dark mb-2">PVC</h3>
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
               Moulded soft rubber, built in layers. Our PVC starts from a 2.5 mm base, with raised elements added in 0.5 mm layers up to a maximum of five — so a full 3D PVC patch reaches about 5 mm total thickness with roughly 2.5 mm of stacked relief. Colors are Pantone-matched solid zones (about 8 included, more with a surcharge). A raised element needs to be at least about 0.3 mm wide — that is its width, not its height. A 2D mould uses flat stepped levels, so it holds slightly thinner, sharper lines and smaller details; a 3D mould uses rounded slopes, so fine elements narrow toward the top and can soften or disappear, and need to be broader. On a hybrid design, keep small text and fine detail in 2D and reserve 3D for larger logos, faces, mascots, or other prominent shapes. PVC renders bold dimensional logos beautifully but does not do smooth gradients; color lives in discrete zones. Maximum size 8 inches. See{" "}
               <Link href="/custom-patches/pvc" prefetch={false} className="text-panda-green underline font-semibold">custom PVC patches</Link>.
             </p>
 
-            <h3 className="text-[18px] md:text-[20px] font-black text-panda-dark mb-2">Leather</h3>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-3">
+            <h3 className="text-[1.125rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Leather</h3>
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-3">
               Two very different looks from one material:
             </p>
-            <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-6">
+            <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
               <li>
                 <strong className="text-panda-dark">Laser-engraved leather</strong> — a single-tone burn into the hide. Timeless, premium, and very fine (down to about 0.3 mm line detail), but tonal only: no color, no gradient.
               </li>
@@ -303,10 +303,10 @@ export default function PatchManufacturabilitySpecs() {
                 <strong className="text-panda-dark">UV-printed leather</strong> — full color printed onto the leather surface, including true gradients and photographic artwork.
               </li>
             </ul>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-3">
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-3">
               Both genuine and premium synthetic (faux) leather take engraving and printing, and every leather patch gets a protective coating for durability and water resistance. Standard colors are natural, tan, brown, black, navy, and dark green; custom dyeing is available on genuine leather only. Minimum text is about 2 mm whether engraved or printed.
             </p>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium">
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium">
               Choose engraved for a classic tonal crest, UV print when you need exact brand colors. Maximum size 8 inches. See{" "}
               <Link href="/custom-patches/leather" prefetch={false} className="text-panda-green underline font-semibold">custom leather patches</Link>.
             </p>
@@ -315,12 +315,12 @@ export default function PatchManufacturabilitySpecs() {
 
         {/* COLORS & GRADIENTS */}
         <section className="w-full py-10 md:py-14 px-4 md:px-6 bg-[#F7F7F7]">
-          <div className="container mx-auto max-w-[820px]">
-            <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-4">Colors and gradients</h2>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-4">
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-4">Colors and gradients</h2>
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-4">
               There is no hard cap on embroidered thread colors — we include up to about 12 and surcharge beyond that, since machines run around 15 needles and thread can be reloaded for more. Woven includes up to 4 colors with a surcharge above that; PVC uses about 8 Pantone-matched zones.
             </p>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium">
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium">
               <strong className="text-panda-dark">True gradients cannot be stitched.</strong> In embroidery and woven, a gradient is simulated by blending or dithering adjacent thread colors — it reads as a blend at a glance but is not a smooth transition up close. PVC blends in solid zones. The exceptions are printed (dye-sublimated) patches and UV-printed leather, both of which reproduce true gradients. If your design leans on smooth color transitions, either simplify to solid colors, choose a printed patch, or ask us about UV print.
             </p>
           </div>
@@ -328,17 +328,17 @@ export default function PatchManufacturabilitySpecs() {
 
         {/* SIZE TO DETAIL */}
         <section className="w-full py-10 md:py-14 px-4 md:px-6 bg-white">
-          <div className="container mx-auto max-w-[820px]">
-            <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-3">Size-to-detail guide</h2>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-5">
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-3">Size-to-detail guide</h2>
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-5">
               What survives shrinks with the patch. These notes are for embroidered, our tightest case — woven and UV print hold more at every size.
             </p>
             <div className="overflow-x-auto rounded-2xl border border-gray-200">
-              <table className="w-full text-[14px] md:text-[15px] border-collapse">
+              <table className="w-full text-[0.875rem] md:text-[0.9375rem] border-collapse">
                 <thead>
                   <tr className="border-b-2 border-panda-dark text-left bg-[#F7F7F7]">
-                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[11px]">Finished size</th>
-                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[11px]">What reproduces</th>
+                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">Finished size</th>
+                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">What reproduces</th>
                   </tr>
                 </thead>
                 <tbody className="text-gray-700 font-medium">
@@ -351,7 +351,7 @@ export default function PatchManufacturabilitySpecs() {
                 </tbody>
               </table>
             </div>
-            <p className="text-[13px] text-gray-500 mt-3 font-medium">
+            <p className="text-[0.8125rem] text-gray-500 mt-3 font-medium">
               Most of what we produce sits in this range — see{" "}
               <Link href="/custom-patch-production-data-2026" prefetch={false} className="text-panda-green underline font-semibold">our production data</Link>, where at least half of orders are 2–5 inches.
             </p>
@@ -360,9 +360,9 @@ export default function PatchManufacturabilitySpecs() {
 
         {/* SPECIAL CAPABILITIES */}
         <section className="w-full py-10 md:py-14 px-4 md:px-6 bg-[#F7F7F7]">
-          <div className="container mx-auto max-w-[820px]">
-            <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-5">Special capabilities</h2>
-            <div className="space-y-4 text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium">
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-5">Special capabilities</h2>
+            <div className="space-y-4 text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium">
               <p>
                 <strong className="text-panda-dark">3D puff embroidery</strong> — foam under the stitching raises the design about 3 mm. Because each puffed stroke needs a satin column at least ~3 mm wide, letters should be at least 0.5 in (12 mm) tall to puff cleanly without collapsing.
               </p>
@@ -381,9 +381,9 @@ export default function PatchManufacturabilitySpecs() {
 
         {/* BORDERS */}
         <section className="w-full py-10 md:py-14 px-4 md:px-6 bg-white">
-          <div className="container mx-auto max-w-[820px]">
-            <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-5">Borders and finishing</h2>
-            <div className="space-y-4 text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium">
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-5">Borders and finishing</h2>
+            <div className="space-y-4 text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium">
               <p>
                 <strong className="text-panda-dark">Merrowed border</strong> — the classic wrapped-thread edge. It adds about 2–4 mm per edge to the finished size and needs a patch of at least 0.8 in (2 cm); below that the thread cannot turn the corners. Works on simple shapes — round, oval, square, shield. More in our{" "}
                 <Link href="/patch-borders" prefetch={false} className="text-panda-green underline font-semibold">patch borders guide</Link>.
@@ -401,9 +401,9 @@ export default function PatchManufacturabilitySpecs() {
 
         {/* DESIGN FOR FIRST TIME RIGHT */}
         <section id="design-first-time-right" className="w-full py-10 md:py-14 px-4 md:px-6 bg-[#F7F7F7] scroll-mt-20">
-          <div className="container mx-auto max-w-[900px]">
-            <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-4">Design for first-time-right</h2>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-6">
+          <div className="container mx-auto max-w-[56.25rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-4">Design for first-time-right</h2>
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
               The single most common issue we see in customer artwork is <strong className="text-panda-dark">text that is too small or too thin</strong> to reproduce. Start there: size your smallest text to the minimums above and keep strokes at least ~1 mm. Generating artwork with AI? Paste the matching prompt below into ChatGPT, Midjourney, or our own{" "}
               <Link href="/ai-patch-generator" prefetch={false} className="text-panda-green underline font-semibold">AI patch generator</Link> to get a manufacturable design on the first try.
             </p>
@@ -412,7 +412,7 @@ export default function PatchManufacturabilitySpecs() {
                 <PromptCopyBlock key={p.label} label={p.label} prompt={p.prompt} />
               ))}
             </div>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mt-6">
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mt-6">
               Not sure whether your design will hold? <Link href="/contact" prefetch={false} className="text-panda-green underline font-semibold">Send it over</Link> — our team flags anything below spec and suggests a fix before we make the mockup. If your artwork is too detailed for thread,{" "}
               <Link href="/custom-patches/woven" prefetch={false} className="text-panda-green underline font-semibold">woven</Link> usually solves it without a redesign.
             </p>
@@ -421,13 +421,13 @@ export default function PatchManufacturabilitySpecs() {
 
         {/* FAQ */}
         <section className="w-full py-10 md:py-14 px-4 md:px-6 bg-white">
-          <div className="container mx-auto max-w-[820px]">
-            <h2 className="text-[22px] md:text-[28px] font-black text-panda-dark mb-6">Frequently asked questions</h2>
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-6">Frequently asked questions</h2>
             <div className="space-y-6">
               {faqs.map((f) => (
                 <div key={f.question}>
-                  <h3 className="text-[16px] md:text-[18px] font-black text-panda-dark mb-2">{f.question}</h3>
-                  <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium">{f.answer}</p>
+                  <h3 className="text-[1rem] md:text-[1.125rem] font-black text-panda-dark mb-2">{f.question}</h3>
+                  <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium">{f.answer}</p>
                 </div>
               ))}
             </div>
@@ -436,30 +436,30 @@ export default function PatchManufacturabilitySpecs() {
 
         {/* BYLINE + CITE */}
         <section className="w-full py-10 md:py-16 px-4 md:px-6 bg-[#F7F7F7]">
-          <div className="container mx-auto max-w-[820px]">
+          <div className="container mx-auto max-w-[51.25rem]">
             <div className="mb-10">
               <AuthorByline datePublished={SPEC_DATE} dateModified={SPEC_DATE} reviewedBy="the Panda Patches digitizing team" />
             </div>
-            <h2 className="text-[20px] md:text-[24px] font-black text-panda-dark uppercase tracking-wide mb-4">
+            <h2 className="text-[1.25rem] md:text-[1.5rem] font-black text-panda-dark uppercase tracking-wide mb-4">
               Cite this standard
             </h2>
-            <p className="text-gray-700 leading-[1.8] text-[15px] md:text-[16px] font-medium mb-5">
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-5">
               These specifications are published openly so designers, writers, and AI assistants can reference real manufacturing limits instead of guessing. Free to cite with attribution:
             </p>
-            <blockquote className="bg-white border-l-4 border-panda-green rounded-r-2xl p-5 text-[14px] md:text-[15px] text-panda-dark font-medium">
+            <blockquote className="bg-white border-l-4 border-panda-green rounded-r-2xl p-5 text-[0.875rem] md:text-[0.9375rem] text-panda-dark font-medium">
               Source: Panda Patches, &ldquo;Patch Manufacturability Specifications&rdquo; ({SPEC_VERSION}, {SPEC_DATE_LABEL}).
               <br />
               {CANONICAL}
             </blockquote>
-            <p className="text-[13px] text-gray-500 mt-4 font-medium">
+            <p className="text-[0.8125rem] text-gray-500 mt-4 font-medium">
               Versioned so a citation stays traceable: figures are revised only with a version bump, never silently. Spot something that does not match your own production experience?{" "}
               <a href="mailto:sales@pandapatches.com" className="text-panda-green underline font-semibold">Tell us</a> — we would rather correct it.
             </p>
 
-            <h3 className="text-[16px] md:text-[18px] font-black text-panda-dark uppercase tracking-wide mt-8 mb-3">
+            <h3 className="text-[1rem] md:text-[1.125rem] font-black text-panda-dark uppercase tracking-wide mt-8 mb-3">
               Changelog
             </h3>
-            <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-[1.7] text-[14px] md:text-[15px] font-medium">
+            <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-[1.7] text-[0.875rem] md:text-[0.9375rem] font-medium">
               <li>
                 <strong className="text-panda-dark">v1.2 — July 2026:</strong> added the PVC minimum raised-element width (0.3 mm for a raised dot or line), the 2D-versus-3D mould distinction, and hybrid-design guidance. This closes the last open figure in the standard. Confirmed by our production team.
               </li>

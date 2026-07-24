@@ -257,11 +257,11 @@ export default async function CorporatePatchesPage() {
 
       {/* 6. SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Custom Corporate Patches — Professional Quality for Your Brand
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               <strong>Custom corporate patches</strong> are one of our most common runs — logo patches for uniforms, merchandise, and promotional products. We produce them in every style (embroidered, PVC, woven, chenille, and leather), and our Pantone color-matching system reproduces your brand colors accurately across all of them, whether you order 50 employee patches or 50,000 for a national campaign.
             </p>

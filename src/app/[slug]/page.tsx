@@ -612,13 +612,13 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
 
         {cp.seoContent && cp.seoContent.length > 0 && (
           <section className="w-full py-8 md:py-12 bg-white">
-            <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
+            <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
               {cp.seoHeading && (
-                <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+                <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
                   {cp.seoHeading}
                 </h2>
               )}
-              <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4 prose prose-sm max-w-none">
+              <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4 prose prose-sm max-w-none">
                 <PortableText value={cp.seoContent} />
               </div>
             </div>

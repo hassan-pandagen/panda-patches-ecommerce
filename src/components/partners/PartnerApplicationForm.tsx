@@ -5,8 +5,8 @@ import { getStoredAttribution } from '@/lib/clientAttribution';
 import { trackLead } from '@/lib/ga4';
 import { trackGoogleAdsLead } from '@/lib/googleAds';
 
-const inputCls = 'w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-panda-green focus:border-transparent transition';
-const labelCls = 'block text-[12px] font-semibold text-gray-500 mb-1.5 tracking-wide uppercase';
+const inputCls = 'w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-[0.875rem] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-panda-green focus:border-transparent transition';
+const labelCls = 'block text-[0.75rem] font-semibold text-gray-500 mb-1.5 tracking-wide uppercase';
 
 export default function PartnerApplicationForm() {
   const [submitting, setSubmitting] = useState(false);
@@ -78,11 +78,11 @@ export default function PartnerApplicationForm() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-[22px] font-black text-gray-900 mb-2">Application received!</h3>
-        <p className="text-[15px] text-gray-500 leading-relaxed mb-6 max-w-[320px] mx-auto">
+        <h3 className="text-[1.375rem] font-black text-gray-900 mb-2">Application received!</h3>
+        <p className="text-[0.9375rem] text-gray-500 leading-relaxed mb-6 max-w-[320px] mx-auto">
           Lance will reach out within 24 hours with your partner pricing and onboarding details.
         </p>
-        <p className="text-[13px] text-gray-400">
+        <p className="text-[0.8125rem] text-gray-400">
           Need us sooner?{' '}
           <a href="tel:+13022504340" className="text-panda-green font-semibold underline">
             Call (302) 250-4340
@@ -106,10 +106,10 @@ export default function PartnerApplicationForm() {
 
       {/* Modal Header */}
       <div className="px-8 pt-8 pb-6">
-        <h3 id="partner-application-title" className="text-[22px] font-black text-gray-900 mb-1.5">
+        <h3 id="partner-application-title" className="text-[1.375rem] font-black text-gray-900 mb-1.5">
           Apply to Partner Program
         </h3>
-        <p className="text-[14px] text-gray-500 leading-relaxed">
+        <p className="text-[0.875rem] text-gray-500 leading-relaxed">
           Tell us about your business. Lance reaches out within 24 hours with your partner pricing.
         </p>
       </div>
@@ -237,7 +237,7 @@ export default function PartnerApplicationForm() {
 
         {error && (
           <div className="p-3.5 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-[13px] text-red-700">{error}</p>
+            <p className="text-[0.8125rem] text-red-700">{error}</p>
           </div>
         )}
       </div>
@@ -247,14 +247,14 @@ export default function PartnerApplicationForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full font-black text-[15px] py-4 rounded-xl transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full font-black text-[0.9375rem] py-4 rounded-xl transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           style={{ backgroundColor: '#111827', color: '#ffffff' }}
           onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#dcff70'; (e.currentTarget as HTMLButtonElement).style.color = '#111827'; }}
           onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#111827'; (e.currentTarget as HTMLButtonElement).style.color = '#ffffff'; }}
         >
           {submitting ? 'Submitting…' : 'Apply to Partner Program →'}
         </button>
-        <p className="text-[11px] text-gray-400 text-center mt-3">
+        <p className="text-[0.6875rem] text-gray-400 text-center mt-3">
           Response within 24 hours · No commitment required
         </p>
       </div>

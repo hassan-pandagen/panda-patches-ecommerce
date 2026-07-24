@@ -134,8 +134,8 @@ export default async function CustomLettermanPatchesPage() {
 
       {/* ANSWER-FIRST */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] max-w-[820px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] max-w-[51.25rem]">
             Yes, Panda Patches makes <strong>custom letterman and varsity patches</strong> in classic chenille,
             from a low 5-piece minimum. The raised, soft chenille yarn on a felt base gives the authentic varsity
             look for school letters, mascots, sport icons, and award patches. We Pantone-match your school colors
@@ -151,8 +151,8 @@ export default async function CustomLettermanPatchesPage() {
 
       {/* WHAT TO ORDER */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1000px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[62.5rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
             What Goes on a Letterman Jacket
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -163,8 +163,8 @@ export default async function CustomLettermanPatchesPage() {
               { title: "Award stars & years", body: "Year patches, award stars, and bars marking each season and honor." },
             ].map((u) => (
               <div key={u.title} className="bg-white border border-gray-100 rounded-2xl p-6">
-                <h3 className="text-[16px] font-black text-panda-dark mb-2">{u.title}</h3>
-                <p className="text-[14px] text-gray-600 leading-[1.6]">{u.body}</p>
+                <h3 className="text-[1rem] font-black text-panda-dark mb-2">{u.title}</h3>
+                <p className="text-[0.875rem] text-gray-600 leading-[1.6]">{u.body}</p>
               </div>
             ))}
           </div>
@@ -173,22 +173,22 @@ export default async function CustomLettermanPatchesPage() {
 
       {/* BUILD */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
             How a Letterman Patch Is Built
           </h2>
           <div className="grid md:grid-cols-3 gap-5">
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[16px] font-black text-panda-dark mb-2">Type</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]"><Link href="/custom-patches/chenille" prefetch={false} className="text-panda-green underline font-semibold">Chenille</Link> for the raised varsity texture; <Link href="/custom-patches/embroidered" prefetch={false} className="text-panda-green underline font-semibold">embroidered</Link> for fine-detail year and sponsor patches.</p>
+              <h3 className="text-[1rem] font-black text-panda-dark mb-2">Type</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]"><Link href="/custom-patches/chenille" prefetch={false} className="text-panda-green underline font-semibold">Chenille</Link> for the raised varsity texture; <Link href="/custom-patches/embroidered" prefetch={false} className="text-panda-green underline font-semibold">embroidered</Link> for fine-detail year and sponsor patches.</p>
             </div>
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[16px] font-black text-panda-dark mb-2">Backing</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Felt <Link href="/sew-on-patches" prefetch={false} className="text-panda-green underline font-semibold">sew-on</Link> base, stitched to the jacket for years of wear. Iron-on does not bond to chenille.</p>
+              <h3 className="text-[1rem] font-black text-panda-dark mb-2">Backing</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Felt <Link href="/sew-on-patches" prefetch={false} className="text-panda-green underline font-semibold">sew-on</Link> base, stitched to the jacket for years of wear. Iron-on does not bond to chenille.</p>
             </div>
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[16px] font-black text-panda-dark mb-2">Size &amp; color</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">4 to 12 inch letters, two-color and outlined styles, with free Pantone school-color matching.</p>
+              <h3 className="text-[1rem] font-black text-panda-dark mb-2">Size &amp; color</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">4 to 12 inch letters, two-color and outlined styles, with free Pantone school-color matching.</p>
             </div>
           </div>
         </div>
@@ -202,11 +202,11 @@ export default async function CustomLettermanPatchesPage() {
 
       {/* SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Custom Letterman &amp; Varsity Patches From 5 Pieces
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               The letterman patch is a keepsake, worn for years and often kept for life, so the build matters.
               Chenille is the authentic choice: thick, raised yarn on a felt base gives the classic varsity letter

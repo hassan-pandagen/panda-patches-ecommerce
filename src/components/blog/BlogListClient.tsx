@@ -159,11 +159,11 @@ export default function BlogListClient({ blogs }: { blogs: Blog[] }) {
               {/* TEXT CONTENT */}
               <div className="flex-1 p-6 md:p-8 flex flex-col justify-center bg-[#F4F4F4]">
                 {post.category && (
-                  <span className="text-[11px] font-bold text-panda-green uppercase tracking-wider mb-2">
+                  <span className="text-[0.6875rem] font-bold text-panda-green uppercase tracking-wider mb-2">
                     {post.category}
                   </span>
                 )}
-                <h2 className="text-[18px] md:text-[28px] font-bold text-panda-dark leading-tight mb-3">
+                <h2 className="text-[1.125rem] md:text-[1.75rem] font-bold text-panda-dark leading-tight mb-3">
                   {post.title}
                 </h2>
                 {(() => {
@@ -174,7 +174,7 @@ export default function BlogListClient({ blogs }: { blogs: Blog[] }) {
                   const showUpdated = updateLabel && publishLabel && updateLabel !== publishLabel;
                   if (!publishLabel) return null;
                   return (
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[12px] text-gray-500 mb-4">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[0.75rem] text-gray-500 mb-4">
                       <span>
                         Published{" "}
                         <time dateTime={publishIso} className="font-medium text-gray-700">
@@ -192,7 +192,7 @@ export default function BlogListClient({ blogs }: { blogs: Blog[] }) {
                     </div>
                   );
                 })()}
-                <p className="text-[14px] md:text-[16px] text-gray-600 leading-[1.6] mb-6 md:mb-8 line-clamp-3">
+                <p className="text-[0.875rem] md:text-[1rem] text-gray-600 leading-[1.6] mb-6 md:mb-8 line-clamp-3">
                   {post.excerpt}
                 </p>
 

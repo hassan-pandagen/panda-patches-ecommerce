@@ -58,10 +58,10 @@ export default function SampleBoxForm() {
       </div>
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-[24px] font-black text-panda-dark uppercase">Price</h3>
-          <p className="text-[32px] font-black text-panda-dark">$45.00</p>
+          <h3 className="text-[1.5rem] font-black text-panda-dark uppercase">Price</h3>
+          <p className="text-[2rem] font-black text-panda-dark">$45.00</p>
         </div>
-        <p className="text-[14px] text-gray-600">
+        <p className="text-[0.875rem] text-gray-600">
           This price includes all the setup and shipping charges.
         </p>
       </div>
@@ -82,7 +82,7 @@ export default function SampleBoxForm() {
               className={`form-input ${errors.fullName ? 'border-red-400 bg-red-50' : ''}`}
               autoComplete="name"
             />
-            {errors.fullName && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.fullName.message)}</p>}
+            {errors.fullName && <p className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.fullName.message)}</p>}
           </div>
           <div>
             <input
@@ -92,7 +92,7 @@ export default function SampleBoxForm() {
               className={`form-input ${errors.email ? 'border-red-400 bg-red-50' : ''}`}
               autoComplete="email"
             />
-            {errors.email && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
+            {errors.email && <p className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.email.message)}</p>}
           </div>
         </div>
 
@@ -105,7 +105,7 @@ export default function SampleBoxForm() {
             className={`form-input ${errors.contactNumber ? 'border-red-400 bg-red-50' : ''}`}
             autoComplete="tel"
           />
-          {errors.contactNumber && <p className="text-red-500 text-[11px] mt-1 font-semibold">⚠ {String(errors.contactNumber.message)}</p>}
+          {errors.contactNumber && <p className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.contactNumber.message)}</p>}
         </div>
 
         {/* Shipping Address */}
@@ -133,7 +133,7 @@ export default function SampleBoxForm() {
           className="
             w-full
             bg-panda-dark text-panda-yellow
-            font-black text-[18px]
+            font-black text-[1.125rem]
             py-4
             rounded-[12px]
             hover:bg-black hover:scale-[1.01]

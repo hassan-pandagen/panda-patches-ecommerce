@@ -135,8 +135,8 @@ export default async function PatchBordersPage() {
 
       {/* ANSWER-FIRST */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] max-w-[820px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] max-w-[51.25rem]">
             A patch border is the finished edge that frames the design and stops it fraying. Panda Patches offers
             three main borders plus a borderless option: a <strong>merrowed</strong> rope edge for simple shapes,
             a flat <strong>satin embroidered</strong> border that follows any outline, and a <strong>hot-cut
@@ -152,25 +152,25 @@ export default async function PatchBordersPage() {
 
       {/* BORDER COMPARISON */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[960px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[60rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
             The Four Border Finishes
           </h2>
           <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-panda-dark text-white">
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Border</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Look</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Best Shapes</th>
-                  <th className="text-left px-5 py-4 font-bold text-[12px] uppercase tracking-wider">Patch Types</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Border</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Look</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Best Shapes</th>
+                  <th className="text-left px-5 py-4 font-bold text-[0.75rem] uppercase tracking-wider">Patch Types</th>
                 </tr>
               </thead>
               <tbody>
                 {BORDERS.map((b) => (
                   <tr key={b.name} className="border-t border-gray-100 align-top">
                     <td className="px-5 py-4 font-bold">{b.name}</td>
-                    <td className="px-5 py-4 text-gray-700">{b.look}<span className="block text-gray-500 text-[13px] mt-0.5">{b.note}</span></td>
+                    <td className="px-5 py-4 text-gray-700">{b.look}<span className="block text-gray-500 text-[0.8125rem] mt-0.5">{b.note}</span></td>
                     <td className="px-5 py-4 text-gray-600">{b.shapes}</td>
                     <td className="px-5 py-4 text-gray-600">{b.types}</td>
                   </tr>
@@ -186,22 +186,22 @@ export default async function PatchBordersPage() {
 
       {/* CHOOSE BY SHAPE */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
             Choose Your Border by Shape
           </h2>
           <div className="grid md:grid-cols-3 gap-5">
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[17px] font-black text-panda-dark mb-2">Simple shape</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Circle, square, oval, or shield? A merrowed border gives the classic raised rim and the most traditional patch look.</p>
+              <h3 className="text-[1.0625rem] font-black text-panda-dark mb-2">Simple shape</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Circle, square, oval, or shield? A merrowed border gives the classic raised rim and the most traditional patch look.</p>
             </div>
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[17px] font-black text-panda-dark mb-2">Custom outline</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Text, mascot, flames, or a logo silhouette? A satin embroidered border follows the exact shape a merrow machine cannot.</p>
+              <h3 className="text-[1.0625rem] font-black text-panda-dark mb-2">Custom outline</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Text, mascot, flames, or a logo silhouette? A satin embroidered border follows the exact shape a merrow machine cannot.</p>
             </div>
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[17px] font-black text-panda-dark mb-2">Modern / detailed</h3>
-              <p className="text-[14px] text-gray-600 leading-[1.6]">Intricate die-cut or printed art? A hot-cut sealed edge gives a slim, flush, fray-proof finish with no raised rim.</p>
+              <h3 className="text-[1.0625rem] font-black text-panda-dark mb-2">Modern / detailed</h3>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Intricate die-cut or printed art? A hot-cut sealed edge gives a slim, flush, fray-proof finish with no raised rim.</p>
             </div>
           </div>
         </div>
@@ -213,11 +213,11 @@ export default async function PatchBordersPage() {
 
       {/* SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Get the Right Border on Your Custom Patch
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               The border does two jobs: it frames the design and it seals the edge so the patch never frays. A
               merrowed border is the raised rope edge most people picture on a classic patch, made by an overlock

@@ -17,20 +17,20 @@ export default function TermsOfServicePage() {
     <main className="min-h-screen bg-white">
       <Navbar />
 
-      <article className="max-w-[860px] mx-auto py-24 px-6">
+      <article className="max-w-[53.75rem] mx-auto py-24 px-6">
 
-        <h1 className="text-[38px] md:text-[48px] font-black text-panda-dark mb-4 leading-tight tracking-tight">
+        <h1 className="text-[2.375rem] md:text-[3rem] font-black text-panda-dark mb-4 leading-tight tracking-tight">
           Terms of Service
         </h1>
-        <p className="text-gray-500 text-[15px] mb-12 border-b border-gray-100 pb-8">
+        <p className="text-gray-500 text-[0.9375rem] mb-12 border-b border-gray-100 pb-8">
           Last Updated: {lastUpdated} · MC Patches LLC (Panda Patches)
         </p>
 
         <div className="prose prose-lg max-w-none text-gray-700 space-y-10">
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">1. Agreement to Terms</h2>
-            <p className="text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">1. Agreement to Terms</h2>
+            <p className="text-[1rem] leading-[1.8]">
               By accessing or using <strong>pandapatches.com</strong>, placing an order, or communicating with us, you agree
               to be bound by these Terms of Service and our Privacy Policy. These terms apply to all visitors, customers,
               and others who use our services. If you do not agree to any part of these terms, please do not use our site.
@@ -38,20 +38,20 @@ export default function TermsOfServicePage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">2. Our Services</h2>
-            <p className="text-[16px] leading-[1.8] mb-4">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">2. Our Services</h2>
+            <p className="text-[1rem] leading-[1.8] mb-4">
               MC Patches LLC (trading as <strong>Panda Patches</strong>) manufactures and sells custom patches including
               embroidered, iron-on, velcro, woven, PVC, and printed patches, as well as challenge coins, enamel pins, and keychains.
             </p>
-            <p className="text-[16px] leading-[1.8]">
+            <p className="text-[1rem] leading-[1.8]">
               All products are custom-manufactured to your specifications. You may cancel for a full refund before you approve
               your mockup; once you approve it and production begins, all sales are final (see Section 7).
             </p>
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">3. Ordering Process</h2>
-            <ul className="list-disc pl-6 space-y-3 text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">3. Ordering Process</h2>
+            <ul className="list-disc pl-6 space-y-3 text-[1rem] leading-[1.8]">
               <li>
                 <strong>Quote & Mockup:</strong> You submit your design and specifications. We provide a digital mockup
                 in 12 to 24 hours. Unlimited revisions are provided at no charge until you approve the design.
@@ -71,8 +71,8 @@ export default function TermsOfServicePage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">4. Pricing and Payment</h2>
-            <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">4. Pricing and Payment</h2>
+            <ul className="list-disc pl-6 space-y-2 text-[1rem] leading-[1.8]">
               <li>All prices are in US Dollars (USD) unless otherwise stated.</li>
               <li>Prices are subject to change without notice. Your quoted price is honored for 30 days.</li>
               <li>Payment is processed securely via Square. We accept all major credit cards.</li>
@@ -82,8 +82,8 @@ export default function TermsOfServicePage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">5. Artwork and Intellectual Property</h2>
-            <ul className="list-disc pl-6 space-y-3 text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">5. Artwork and Intellectual Property</h2>
+            <ul className="list-disc pl-6 space-y-3 text-[1rem] leading-[1.8]">
               <li>
                 <strong>Your Responsibility:</strong> By submitting artwork, you confirm that you own the rights to the
                 design or have permission to reproduce it. You grant Panda Patches a limited license to use the artwork
@@ -105,8 +105,8 @@ export default function TermsOfServicePage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">6. Shipping and Delivery</h2>
-            <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">6. Shipping and Delivery</h2>
+            <ul className="list-disc pl-6 space-y-2 text-[1rem] leading-[1.8]">
               <li>We ship to all 50 US states, Canada, United Kingdom, Australia, and internationally.</li>
               <li>Shipping costs are calculated at checkout based on weight, destination, and carrier.</li>
               <li>Delivery times are estimates and not guaranteed. We are not responsible for carrier delays.</li>
@@ -117,30 +117,30 @@ export default function TermsOfServicePage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">7. Cancellations, Refunds and Replacements</h2>
-            <p className="text-[16px] leading-[1.8] mb-4">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">7. Cancellations, Refunds and Replacements</h2>
+            <p className="text-[1rem] leading-[1.8] mb-4">
               <strong>Cancelling before production:</strong> You may cancel your order for a full refund at any time before
               you approve the final mockup and production begins. Just email us and we will refund you in full. Once you approve the mockup, production starts and your patches are custom-made to your specifications,
               so the terms below apply.
             </p>
-            <p className="text-[16px] leading-[1.8] mb-4">
+            <p className="text-[1rem] leading-[1.8] mb-4">
               Because all products are custom-manufactured to your specifications, once production has begun <strong>we do
               not accept returns or offer refunds</strong> unless the error is ours.
             </p>
-            <p className="text-[16px] leading-[1.8] mb-3 font-semibold">We will replace or refund your order if:</p>
-            <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8] mb-4">
+            <p className="text-[1rem] leading-[1.8] mb-3 font-semibold">We will replace or refund your order if:</p>
+            <ul className="list-disc pl-6 space-y-2 text-[1rem] leading-[1.8] mb-4">
               <li>Products are significantly different from the approved mockup</li>
               <li>Products arrive damaged or defective</li>
               <li>Wrong items are shipped</li>
             </ul>
-            <p className="text-[16px] leading-[1.8] mb-3 font-semibold">We do not offer refunds for:</p>
-            <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8]">
+            <p className="text-[1rem] leading-[1.8] mb-3 font-semibold">We do not offer refunds for:</p>
+            <ul className="list-disc pl-6 space-y-2 text-[1rem] leading-[1.8]">
               <li>Customer errors in approved mockups (wrong size, color, spelling)</li>
               <li>Change of mind after production has begun</li>
               <li>Slight color variations (screen color vs. embroidery thread color)</li>
               <li>Minor size variations within ±5% of specified dimensions</li>
             </ul>
-            <p className="text-[16px] leading-[1.8] mt-4">
+            <p className="text-[1rem] leading-[1.8] mt-4">
               To request a replacement, contact us within <strong>14 days of delivery</strong> at{" "}
               <a href="mailto:sales@pandapatches.com" className="text-panda-dark font-semibold underline">sales@pandapatches.com</a>{" "}
               with photos of the issue.
@@ -148,22 +148,22 @@ export default function TermsOfServicePage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">8. Prohibited Uses</h2>
-            <p className="text-[16px] leading-[1.8] mb-3">You may not use our services to produce patches containing:</p>
-            <ul className="list-disc pl-6 space-y-2 text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">8. Prohibited Uses</h2>
+            <p className="text-[1rem] leading-[1.8] mb-3">You may not use our services to produce patches containing:</p>
+            <ul className="list-disc pl-6 space-y-2 text-[1rem] leading-[1.8]">
               <li>Hate speech, racist, or discriminatory imagery</li>
               <li>Obscene or pornographic content</li>
               <li>Counterfeit brands, logos, or trademarked designs without authorization</li>
               <li>Content that violates any applicable law or regulation</li>
             </ul>
-            <p className="text-[16px] leading-[1.8] mt-4">
+            <p className="text-[1rem] leading-[1.8] mt-4">
               We reserve the right to refuse any order at our discretion.
             </p>
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">9. Limitation of Liability</h2>
-            <p className="text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">9. Limitation of Liability</h2>
+            <p className="text-[1rem] leading-[1.8]">
               To the maximum extent permitted by law, MC Patches LLC shall not be liable for any indirect, incidental,
               special, consequential, or punitive damages arising from your use of our products or services. Our total
               liability to you shall not exceed the amount paid for the specific order giving rise to the claim.
@@ -171,16 +171,16 @@ export default function TermsOfServicePage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">10. Governing Law</h2>
-            <p className="text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">10. Governing Law</h2>
+            <p className="text-[1rem] leading-[1.8]">
               These Terms are governed by the laws of the State of Texas, United States, without regard to conflict of law
               provisions. Any disputes shall be resolved in the courts of Fort Bend County, Texas.
             </p>
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">11. Changes to Terms</h2>
-            <p className="text-[16px] leading-[1.8]">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">11. Changes to Terms</h2>
+            <p className="text-[1rem] leading-[1.8]">
               We reserve the right to update these Terms at any time. Changes take effect immediately upon posting.
               Continued use of our website after changes constitutes acceptance. The &quot;Last Updated&quot; date reflects the
               most recent revision.
@@ -188,9 +188,9 @@ export default function TermsOfServicePage() {
           </section>
 
           <section>
-            <h2 className="text-[26px] font-black text-panda-dark mb-4">12. Contact</h2>
-            <p className="text-[16px] leading-[1.8]">Questions about these Terms? Contact us:</p>
-            <div className="mt-4 bg-gray-50 rounded-2xl p-6 text-[16px] space-y-2">
+            <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">12. Contact</h2>
+            <p className="text-[1rem] leading-[1.8]">Questions about these Terms? Contact us:</p>
+            <div className="mt-4 bg-gray-50 rounded-2xl p-6 text-[1rem] space-y-2">
               <p><strong>MC Patches LLC (Panda Patches)</strong></p>
               <p>Austin, TX, United States</p>
               <p>Email: <a href="mailto:sales@pandapatches.com" className="text-panda-dark font-semibold underline">sales@pandapatches.com</a></p>

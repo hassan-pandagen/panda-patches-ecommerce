@@ -257,11 +257,11 @@ export default async function FireDepartmentPatchesPage() {
 
       {/* 6. SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             What Makes a Fire Department Patch Last
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               Fire department patches take a beating, so the materials matter. We stitch ours in 100% polyester thread, rated for industrial wash temperatures of 160&ndash;180&deg;F and repeated high-heat cycles &mdash; the rayon thread cheaper suppliers use degrades and fades under the same conditions.
             </p>
@@ -273,11 +273,11 @@ export default async function FireDepartmentPatchesPage() {
       </section>
 
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Memorials, Ranks, and Union Orders
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               We&apos;re the maker, not a reseller &mdash; most suppliers just want the sale, but we get the mockup right first, send unlimited free revisions until you approve, and remake any patch that isn&apos;t right. That matters most on memorial and line-of-duty patches, which we can rush in 4&ndash;7 business days when your department needs them quickly.
             </p>
@@ -290,11 +290,11 @@ export default async function FireDepartmentPatchesPage() {
 
       {/* Pricing */}
       <section className="w-full py-8 md:py-12 bg-white border-t border-gray-100">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-3">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-3">
             How Much Do Fire Department Patches Cost?
           </h2>
-          <p className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] mb-6">
+          <p className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] mb-6">
             Embroidered fire department patches run about <strong>$3.92/pc at 50</strong>, <strong>$2.55 at 100</strong>, and down to <strong>$1.05 at 1,000</strong> for a 3&quot; patch &mdash; all-in, with <strong>no setup or digitizing fees</strong> and free worldwide shipping. Memorial and single-station runs start at a low <strong>5-piece minimum</strong>; Velcro backing is charged separately on every order.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-gray-200 max-w-md">
@@ -324,11 +324,11 @@ export default async function FireDepartmentPatchesPage() {
 
       {/* How to order */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             How to Order Fire Department Patches
           </h2>
-          <ol className="space-y-3 text-[15px] md:text-[16px] text-gray-700 leading-[1.7] list-decimal pl-5">
+          <ol className="space-y-3 text-[0.9375rem] md:text-[1rem] text-gray-700 leading-[1.7] list-decimal pl-5">
             <li><strong>Send your artwork or idea.</strong> Upload your department seal, Maltese cross, or badge as a vector (AI, EPS, SVG, PDF) or high-resolution image (PNG, JPG) &mdash; or just describe it and we draft it free.</li>
             <li><strong>Approve your mockup.</strong> You get a digital mockup in 12&ndash;24 hours with unlimited free revisions. Nothing is produced until you sign off.</li>
             <li><strong>We produce &amp; ship.</strong> Standard production is 7&ndash;14 business days; line-of-duty memorial patches rush in 4&ndash;7. Free worldwide shipping, low 5-piece minimum.</li>

@@ -60,7 +60,7 @@ export default async function ContentSection() {
 
   return (
     <section className="w-full py-10 md:py-14 bg-white">
-      <div className="container mx-auto px-4 max-w-[1170px]">
+      <div className="container mx-auto px-4 max-w-[73.125rem]">
         
         <div className="flex flex-col gap-16 text-center">
           {sections.map((section: any, idx: number) => (
@@ -72,7 +72,7 @@ export default async function ContentSection() {
                  - Size: 40px
                  - Weight: Medium (500)
               */}
-              <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-medium text-panda-dark leading-tight">
+              <h2 className="text-[1.5rem] md:text-[2rem] lg:text-[2.5rem] font-medium text-panda-dark leading-tight">
                 {section.heading}
               </h2>
 
@@ -83,7 +83,7 @@ export default async function ContentSection() {
                  - Color: Gray 600
                  - Leading: Relaxed for readability
               */}
-              <div className="text-[16px] font-normal text-gray-600 leading-relaxed max-w-[1100px] mx-auto space-y-4">
+              <div className="text-[1rem] font-normal text-gray-600 leading-relaxed max-w-[68.75rem] mx-auto space-y-4">
                 {/* PortableText handles paragraphs and links automatically */}
                 <PortableText 
                   value={section.body} 

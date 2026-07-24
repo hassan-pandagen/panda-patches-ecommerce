@@ -252,11 +252,11 @@ export default async function SportsPatchesPage() {
 
       {/* 6. SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Custom Sports Patches — Professional Quality for Teams & Athletes
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               Custom sports patches come down to the right material for the job. <strong>Chenille</strong> is the classic varsity and letterman award patch &mdash; raised, fuzzy, and built for jackets. <strong>Embroidered</strong> suits team logos on uniforms and hats, and <strong>woven</strong> holds the fine detail in a small or intricate crest. We make them for football, baseball, basketball, soccer, hockey, wrestling, swimming, tennis, and more &mdash; team logos, jersey numbers, varsity letters, and championship patches that hold up to game-day wear and washing.
             </p>
@@ -266,7 +266,7 @@ export default async function SportsPatchesPage() {
             <p>
               Ready to start? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> &mdash; we respond to every inquiry within 2 business hours and include a complimentary digital mockup.
             </p>
-            <h3 className="text-[20px] font-black text-panda-dark mt-8 mb-3">Custom Patches for School Spirit Wear — Low 5-Piece Minimum</h3>
+            <h3 className="text-[1.25rem] font-black text-panda-dark mt-8 mb-3">Custom Patches for School Spirit Wear — Low 5-Piece Minimum</h3>
             <p>
               Panda Patches is a top choice for <strong>custom school spirit patches with a low 5-piece minimum</strong>. Whether you need 5 patches for a student club or 500 for a full school store, we produce every order with the same quality. We offer <strong>embroidered patches</strong> for uniforms and hats, <strong>chenille patches</strong> for varsity jackets and letterman awards, and <strong>woven patches</strong> for fine-detail school logos. All with no setup fees, free worldwide shipping, and a digital mockup in 12 to 24 hours. Production never starts until you approve your design, and if you are not happy, we offer a full money-back guarantee. Standard delivery is 7-14 business days.
             </p>

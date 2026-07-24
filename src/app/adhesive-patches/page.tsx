@@ -137,8 +137,8 @@ export default async function AdhesivePatchesPage() {
 
       {/* ANSWER-FIRST */}
       <section className="w-full py-10 md:py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[15px] md:text-[17px] text-gray-700 leading-[1.8] max-w-[820px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] max-w-[51.25rem]">
             Yes, Panda Patches makes <strong>peel-and-stick adhesive patches</strong> for short-term branding
             and event swag, with a free backing and a low 5-piece minimum. You peel off the release liner and
             press the patch onto a clean, dry surface, no iron and no sewing. Adhesive backing is best on flat
@@ -153,14 +153,14 @@ export default async function AdhesivePatchesPage() {
 
       {/* BEST USE / NOT FOR */}
       <section className="w-full py-10 md:py-14 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[36px] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-center text-panda-dark uppercase tracking-tight mb-8">
             Where Peel-and-Stick Shines
           </h2>
           <div className="grid md:grid-cols-2 gap-5">
             <div className="bg-white border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[17px] font-black text-panda-dark mb-2">Great for</h3>
-              <ul className="text-[14px] text-gray-600 leading-[1.8] list-disc pl-5 space-y-1">
+              <h3 className="text-[1.0625rem] font-black text-panda-dark mb-2">Great for</h3>
+              <ul className="text-[0.875rem] text-gray-600 leading-[1.8] list-disc pl-5 space-y-1">
                 <li>Trade-show and conference giveaways</li>
                 <li>Product launches and event swag bags</li>
                 <li>Temporary apparel and banner branding</li>
@@ -169,8 +169,8 @@ export default async function AdhesivePatchesPage() {
               </ul>
             </div>
             <div className="bg-white border border-gray-100 rounded-2xl p-6">
-              <h3 className="text-[17px] font-black text-panda-dark mb-2">Not the right pick for</h3>
-              <ul className="text-[14px] text-gray-600 leading-[1.8] list-disc pl-5 space-y-1">
+              <h3 className="text-[1.0625rem] font-black text-panda-dark mb-2">Not the right pick for</h3>
+              <ul className="text-[0.875rem] text-gray-600 leading-[1.8] list-disc pl-5 space-y-1">
                 <li>Garments that will be washed (use <Link href="/sew-on-patches" prefetch={false} className="text-panda-green underline font-semibold">sew-on</Link> or <Link href="/custom-iron-on-patches" prefetch={false} className="text-panda-green underline font-semibold">iron-on</Link>)</li>
                 <li>Long-term, permanent placement</li>
                 <li>Heavily textured chenille backs</li>
@@ -192,11 +192,11 @@ export default async function AdhesivePatchesPage() {
 
       {/* SEO CONTENT */}
       <section className="w-full py-8 md:py-12 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark mb-6">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-6">
             Order Custom Peel-and-Stick Patches From 5 Pieces
           </h2>
-          <div className="text-[15px] md:text-[16px] text-gray-600 leading-[1.8] space-y-4">
+          <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
               Adhesive patches give you the premium look of an embroidered, printed, or PVC patch with the
               grab-and-go convenience of a sticker. The backing is a pressure-sensitive adhesive under a peel
@@ -216,8 +216,8 @@ export default async function AdhesivePatchesPage() {
       </section>
 
       <section className="w-full pb-10 bg-[#F9FAF5]">
-        <div className="container mx-auto px-4 md:px-6 max-w-[900px]">
-          <p className="text-[14px] text-gray-500 leading-relaxed">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          <p className="text-[0.875rem] text-gray-500 leading-relaxed">
             <span className="font-bold text-panda-dark">Related:</span>{" "}
             <Link href="/patch-backings-101-iron-on-vs-sew-on-vs-velcro" prefetch={false} className="text-panda-green underline font-semibold">Patch Backings 101</Link>
             {" · "}

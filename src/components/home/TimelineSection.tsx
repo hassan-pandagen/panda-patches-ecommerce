@@ -62,10 +62,10 @@ export default async function TimelineSection() {
         
         {/* HEADER */}
         <div className="text-center mb-6">
-          <h2 className="text-[24px] md:text-[32px] lg:text-[38px] font-black text-panda-dark uppercase tracking-tight leading-tight max-w-3xl mx-auto">
+          <h2 className="text-[1.5rem] md:text-[2rem] lg:text-[2.375rem] font-black text-panda-dark uppercase tracking-tight leading-tight max-w-3xl mx-auto">
             {title}
           </h2>
-          <p className="text-[16px] text-gray-600 mt-3 font-medium max-w-2xl mx-auto">
+          <p className="text-[1rem] text-gray-600 mt-3 font-medium max-w-2xl mx-auto">
             After helping thousands of customers now we have cracked the best way to help a customer order 100% hassle free!
           </p>
         </div>
@@ -167,7 +167,7 @@ function TimelineStepContent({ step, align }: { step: TimelineStep; align: 'left
     <div className={`relative ${isRight ? 'text-right' : 'text-left'} w-full max-w-[480px]`}>
       {/* Watermark Number */}
       <div className={`
-        absolute text-[120px] font-black leading-none select-none
+        absolute text-[7.5rem] font-black leading-none select-none
         text-gray-150 opacity-10 -z-10
         ${isRight ? 'right-0' : 'left-0'}
         -top-12
@@ -176,13 +176,13 @@ function TimelineStepContent({ step, align }: { step: TimelineStep; align: 'left
       </div>
 
       <div className="relative z-10">
-         <h3 className="text-[26px] font-black text-panda-dark mb-1 leading-tight">
+         <h3 className="text-[1.625rem] font-black text-panda-dark mb-1 leading-tight">
            {step.title}
          </h3>
-         <p className="text-[18px] font-bold text-black mb-2 leading-tight">
+         <p className="text-[1.125rem] font-bold text-black mb-2 leading-tight">
            {step.subtitle}
          </p>
-         <p className="text-[15px] text-gray-600 leading-[1.6] font-medium">
+         <p className="text-[0.9375rem] text-gray-600 leading-[1.6] font-medium">
            {step.description}
          </p>
       </div>
@@ -200,9 +200,9 @@ function TimelineStep({ step, align, mobile }: { step: TimelineStep; align: 'lef
         {step.number}
       </div>
       <div className="pt-1">
-        <h3 className="text-[22px] font-black text-panda-dark leading-tight">{step.title}</h3>
-        <p className="text-[17px] font-bold text-black mb-1">{step.subtitle}</p>
-        <p className="text-[14px] text-gray-600 leading-relaxed">{step.description}</p>
+        <h3 className="text-[1.375rem] font-black text-panda-dark leading-tight">{step.title}</h3>
+        <p className="text-[1.0625rem] font-bold text-black mb-1">{step.subtitle}</p>
+        <p className="text-[0.875rem] text-gray-600 leading-relaxed">{step.description}</p>
       </div>
     </div>
   );

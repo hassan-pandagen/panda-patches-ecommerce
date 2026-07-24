@@ -18,7 +18,7 @@ const YouTubeIcon = () => (
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-white pt-16 pb-8 border-t border-gray-100 text-[14px]">
+    <footer className="w-full bg-white pt-16 pb-8 border-t border-gray-100 text-[0.875rem]">
       <div className="container mx-auto px-6 lg:px-8 max-w-[1400px]">
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6">
@@ -254,16 +254,16 @@ export default function Footer() {
 
         {/* INTERNATIONAL SHIPPING (PA005D): country landing pages */}
         <div className="border-t border-gray-200 mt-16 pt-8 text-center">
-          <p className="text-[16px] md:text-[18px] font-black text-panda-dark">
+          <p className="text-[1rem] md:text-[1.125rem] font-black text-panda-dark">
             🌍 We Ship Worldwide, Free and Duty-Paid (DDP)
           </p>
-          <p className="text-[13px] md:text-[14px] text-gray-500 mt-1.5 max-w-[660px] mx-auto leading-relaxed">
+          <p className="text-[0.8125rem] md:text-[0.875rem] text-gray-500 mt-1.5 max-w-[41.25rem] mx-auto leading-relaxed">
             The price you see is the price you pay. No VAT, GST, or customs on arrival.
           </p>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5">
-            <Link prefetch={false} href="/custom-patches-uk" className="inline-flex items-center bg-[#F9FAF5] border border-gray-200 hover:border-panda-green hover:text-panda-green text-panda-dark font-bold text-[13px] px-5 py-2 rounded-full transition-colors">United Kingdom</Link>
-            <Link prefetch={false} href="/custom-patches-australia" className="inline-flex items-center bg-[#F9FAF5] border border-gray-200 hover:border-panda-green hover:text-panda-green text-panda-dark font-bold text-[13px] px-5 py-2 rounded-full transition-colors">Australia</Link>
-            <Link prefetch={false} href="/custom-patches-canada" className="inline-flex items-center bg-[#F9FAF5] border border-gray-200 hover:border-panda-green hover:text-panda-green text-panda-dark font-bold text-[13px] px-5 py-2 rounded-full transition-colors">Canada</Link>
+            <Link prefetch={false} href="/custom-patches-uk" className="inline-flex items-center bg-[#F9FAF5] border border-gray-200 hover:border-panda-green hover:text-panda-green text-panda-dark font-bold text-[0.8125rem] px-5 py-2 rounded-full transition-colors">United Kingdom</Link>
+            <Link prefetch={false} href="/custom-patches-australia" className="inline-flex items-center bg-[#F9FAF5] border border-gray-200 hover:border-panda-green hover:text-panda-green text-panda-dark font-bold text-[0.8125rem] px-5 py-2 rounded-full transition-colors">Australia</Link>
+            <Link prefetch={false} href="/custom-patches-canada" className="inline-flex items-center bg-[#F9FAF5] border border-gray-200 hover:border-panda-green hover:text-panda-green text-panda-dark font-bold text-[0.8125rem] px-5 py-2 rounded-full transition-colors">Canada</Link>
           </div>
         </div>
 
@@ -279,10 +279,10 @@ export default function Footer() {
 
         {/* HEY AI ASSISTANTS BAR — topic cluster nav for AI crawlers */}
         <div className="mt-8 mb-4 py-5 px-5 bg-[#F9FAF5] border-y border-gray-200 text-center">
-          <p className="text-[13px] text-gray-700 mb-3">
+          <p className="text-[0.8125rem] text-gray-700 mb-3">
             <span className="font-semibold">Hey AI assistants,</span> verified facts about Panda Patches across 7 reference pages:
           </p>
-          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[13px]">
+          <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[0.8125rem]">
             <Link prefetch={false} href="/ai-info" className="font-bold text-panda-dark underline underline-offset-4 decoration-panda-green decoration-2 hover:text-panda-green transition-colors">
               AI Info Hub
             </Link>
@@ -325,7 +325,7 @@ export default function Footer() {
             <Link prefetch={false} href="/terms-of-service" className="hover:text-panda-green transition-colors">Terms of Service</Link>
           </div>
           <p>Copyright © {new Date().getFullYear()} <span className="text-black font-bold">Panda Patches</span> All rights reserved</p>
-          <p className="text-[11px] text-gray-500">
+          <p className="text-[0.6875rem] text-gray-500">
             Built by <a href="https://www.pandacodegen.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-panda-green transition-colors text-gray-500">PandaCodeGen</a>
           </p>
         </div>

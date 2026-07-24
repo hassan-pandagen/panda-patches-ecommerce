@@ -62,7 +62,7 @@ export default async function CustomProductPage({ params }: { params: Promise<{ 
   // === PROFESSIONAL SEO TEXT COMPONENT ===
   const SEOText = ({ content, bgColor = "bg-white" }: { content: any; bgColor?: string }) => (
     <section className={`py-20 ${bgColor}`}>
-      <div className="container mx-auto px-6 max-w-[1000px]">
+      <div className="container mx-auto px-6 max-w-[62.5rem]">
         
         <div className="text-gray-700">
           <PortableText 
@@ -71,19 +71,19 @@ export default async function CustomProductPage({ params }: { params: Promise<{ 
               block: {
                 // H2: Big, Black, Bold
                 h2: ({children}) => (
-                  <h2 className="text-[32px] md:text-[36px] font-black text-panda-dark mt-12 mb-6 leading-tight text-left">
+                  <h2 className="text-[2rem] md:text-[2.25rem] font-black text-panda-dark mt-12 mb-6 leading-tight text-left">
                     {children}
                   </h2>
                 ),
                 // H3: Slightly smaller
                 h3: ({children}) => (
-                  <h3 className="text-[24px] font-bold text-panda-dark mt-10 mb-4 text-left">
+                  <h3 className="text-[1.5rem] font-bold text-panda-dark mt-10 mb-4 text-left">
                     {children}
                   </h3>
                 ),
                 // Paragraph: Readable size, Left Aligned
                 normal: ({children}) => (
-                  <p className="text-[17px] leading-[1.8] text-gray-600 mb-6 text-left">
+                  <p className="text-[1.0625rem] leading-[1.8] text-gray-600 mb-6 text-left">
                     {children}
                   </p>
                 ),
@@ -95,8 +95,8 @@ export default async function CustomProductPage({ params }: { params: Promise<{ 
                 ),
               },
               list: {
-                bullet: ({children}) => <ul className="list-disc pl-6 mb-6 space-y-2 text-[17px] text-gray-600">{children}</ul>,
-                number: ({children}) => <ol className="list-decimal pl-6 mb-6 space-y-2 text-[17px] text-gray-600">{children}</ol>,
+                bullet: ({children}) => <ul className="list-disc pl-6 mb-6 space-y-2 text-[1.0625rem] text-gray-600">{children}</ul>,
+                number: ({children}) => <ol className="list-decimal pl-6 mb-6 space-y-2 text-[1.0625rem] text-gray-600">{children}</ol>,
               }
             }}
           />

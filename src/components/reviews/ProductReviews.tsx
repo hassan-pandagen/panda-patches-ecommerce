@@ -28,12 +28,12 @@ export default function ProductReviews({
 
   return (
     <section className="w-full py-8 md:py-12 bg-panda-light">
-      <div className="container mx-auto px-4 md:px-6 max-w-[1100px]">
+      <div className="container mx-auto px-4 md:px-6 max-w-[68.75rem]">
         <div className="text-center mb-8">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark tracking-tight mb-2">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark tracking-tight mb-2">
             {productName} Reviews
           </h2>
-          <p className="text-[14px] md:text-[15px] text-gray-600 font-medium">
+          <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-600 font-medium">
             <span className="font-bold text-panda-dark">{avgLabel} out of 5</span>
             {" "}from {reviews.length} verified customer {reviews.length === 1 ? "review" : "reviews"}
           </p>
@@ -60,10 +60,10 @@ export default function ProductReviews({
                   </svg>
                 ))}
               </div>
-              <p className="text-[14px] text-gray-700 leading-relaxed flex-1">{r.body}</p>
+              <p className="text-[0.875rem] text-gray-700 leading-relaxed flex-1">{r.body}</p>
               <div className="flex items-center justify-between pt-2 border-t border-gray-50">
-                <span className="font-semibold text-gray-800 text-[13px]">{r.name}</span>
-                <span className="text-[12px] text-gray-400">{formatDate(r.date)}</span>
+                <span className="font-semibold text-gray-800 text-[0.8125rem]">{r.name}</span>
+                <span className="text-[0.75rem] text-gray-400">{formatDate(r.date)}</span>
               </div>
             </div>
           ))}

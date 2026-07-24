@@ -47,7 +47,7 @@ export default function FormFeedback({ formType }: FormFeedbackProps) {
 
   if (submitted) {
     return (
-      <p className="text-[12px] text-gray-400 mt-3 text-center">
+      <p className="text-[0.75rem] text-gray-400 mt-3 text-center">
         Thanks for your feedback!
       </p>
     );
@@ -55,7 +55,7 @@ export default function FormFeedback({ formType }: FormFeedbackProps) {
 
   return (
     <div className="mt-4 pt-4 border-t border-gray-100">
-      <p className="text-[12px] text-gray-500 font-semibold text-center mb-2">
+      <p className="text-[0.75rem] text-gray-500 font-semibold text-center mb-2">
         How easy was filling out this form?
       </p>
 
@@ -69,13 +69,13 @@ export default function FormFeedback({ formType }: FormFeedbackProps) {
             key={option.value}
             type="button"
             onClick={() => handleRating(option.value)}
-            className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-lg border transition-all text-[11px] font-medium ${
+            className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-lg border transition-all text-[0.6875rem] font-medium ${
               rating === option.value
                 ? "border-panda-green bg-panda-green/10 text-panda-dark"
                 : "border-gray-200 hover:border-gray-300 text-gray-500"
             }`}
           >
-            <span className="text-[18px]">{option.emoji}</span>
+            <span className="text-[1.125rem]">{option.emoji}</span>
             <span>{option.label}</span>
           </button>
         ))}
@@ -88,12 +88,12 @@ export default function FormFeedback({ formType }: FormFeedbackProps) {
             onChange={(e) => setComment(e.target.value)}
             placeholder="Any feedback? (optional)"
             maxLength={300}
-            className="w-full text-[12px] text-gray-600 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 resize-none h-[50px] focus:outline-none focus:border-panda-green"
+            className="w-full text-[0.75rem] text-gray-600 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 resize-none h-[50px] focus:outline-none focus:border-panda-green"
           />
           <button
             type="button"
             onClick={handleSubmit}
-            className="w-full text-[12px] font-bold text-panda-dark bg-gray-100 hover:bg-gray-200 rounded-lg py-1.5 transition-colors"
+            className="w-full text-[0.75rem] font-bold text-panda-dark bg-gray-100 hover:bg-gray-200 rounded-lg py-1.5 transition-colors"
           >
             Submit Feedback
           </button>

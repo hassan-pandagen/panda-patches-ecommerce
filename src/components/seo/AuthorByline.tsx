@@ -41,19 +41,19 @@ export default function AuthorByline({ datePublished, dateModified, reviewedBy }
         className="w-14 h-14 rounded-full object-cover flex-shrink-0"
       />
       <div className="min-w-0">
-        <p className="text-[14px] md:text-[15px] font-bold text-panda-dark">
+        <p className="text-[0.875rem] md:text-[0.9375rem] font-bold text-panda-dark">
           Written by{" "}
           <Link href="/about" prefetch={false} className="text-panda-green underline">
             Imran Raza
           </Link>
           , Founder of Panda Patches
         </p>
-        <p className="text-[13px] text-gray-600 leading-[1.6] font-medium mt-1">
+        <p className="text-[0.8125rem] text-gray-600 leading-[1.6] font-medium mt-1">
           13+ years in custom patch manufacturing. Figures on this page come from Panda Patches&rsquo; own production records.
           {reviewedBy ? ` Reviewed by ${reviewedBy}.` : ""}
         </p>
         {(published || modified) && (
-          <p className="text-[12px] text-gray-500 font-medium mt-2">
+          <p className="text-[0.75rem] text-gray-500 font-medium mt-2">
             {published && <>Published {published}</>}
             {published && modified && " · "}
             {modified && <>Last reviewed {modified}</>}

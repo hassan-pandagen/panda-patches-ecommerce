@@ -6,10 +6,10 @@ export default function ProductTypesList({ types, heading }: { types: any[], hea
 
   return (
     <section className="w-full py-10 md:py-16 bg-white">
-      <div className="container mx-auto px-6 max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px]">
+      <div className="container mx-auto px-6 max-w-[75rem]">
         
         {/* DYNAMIC HEADING */}
-        <h2 className="text-[40px] font-black text-center text-panda-dark uppercase mb-24 tracking-tight">
+        <h2 className="text-[2.5rem] font-black text-center text-panda-dark uppercase mb-24 tracking-tight">
           {heading}
         </h2>
 
@@ -36,10 +36,10 @@ export default function ProductTypesList({ types, heading }: { types: any[], hea
 
                 {/* TEXT */}
                 <div className="flex-1 space-y-6 text-center lg:text-left">
-                  <h3 className="text-[24px] md:text-[28px] lg:text-[32px] font-bold text-panda-dark uppercase leading-tight">
+                  <h3 className="text-[1.5rem] md:text-[1.75rem] lg:text-[2rem] font-bold text-panda-dark uppercase leading-tight">
                     {item.title}
                   </h3>
-                  <p className="text-[17px] text-gray-600 leading-[1.8]">
+                  <p className="text-[1.0625rem] text-gray-600 leading-[1.8]">
                     {item.description}
                   </p>
                 </div>

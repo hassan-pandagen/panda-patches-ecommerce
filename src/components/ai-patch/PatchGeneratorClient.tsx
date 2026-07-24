@@ -395,7 +395,7 @@ export default function PatchGeneratorClient() {
   const doneCount = designs.filter((d) => d.status === "done").length;
 
   return (
-    <div className="max-w-[880px] mx-auto">
+    <div className="max-w-[55rem] mx-auto">
       {/* ============ COMMAND CENTER: prompt + options in ONE card ============ */}
       <form
         onSubmit={onSubmit}
@@ -415,12 +415,12 @@ export default function PatchGeneratorClient() {
             }}
             placeholder="Describe your patch. e.g. snarling wolf head for a motorcycle club, red and black"
             rows={2}
-            className="flex-1 resize-none bg-transparent text-[15px] leading-[1.5] outline-none placeholder:text-gray-400 pt-1"
+            className="flex-1 resize-none bg-transparent text-[0.9375rem] leading-[1.5] outline-none placeholder:text-gray-400 pt-1"
           />
           <button
             type="submit"
             disabled={!canSubmit}
-            className="inline-flex items-center gap-2 bg-panda-dark text-panda-yellow font-black text-[13px] px-5 py-3 rounded-[12px] uppercase tracking-wider hover:bg-black disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex-shrink-0"
+            className="inline-flex items-center gap-2 bg-panda-dark text-panda-yellow font-black text-[0.8125rem] px-5 py-3 rounded-[12px] uppercase tracking-wider hover:bg-black disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex-shrink-0"
           >
             <Sparkles size={15} />
             Generate
@@ -432,7 +432,7 @@ export default function PatchGeneratorClient() {
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             {/* Shape */}
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black text-gray-400 uppercase tracking-[1.2px]">
+              <span className="text-[0.625rem] font-black text-gray-400 uppercase tracking-[1.2px]">
                 Shape
               </span>
               <div className="flex gap-1">
@@ -458,7 +458,7 @@ export default function PatchGeneratorClient() {
 
             {/* Style */}
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black text-gray-400 uppercase tracking-[1.2px]">
+              <span className="text-[0.625rem] font-black text-gray-400 uppercase tracking-[1.2px]">
                 Style
               </span>
               <Segmented
@@ -480,7 +480,7 @@ export default function PatchGeneratorClient() {
 
             {/* Border */}
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black text-gray-400 uppercase tracking-[1.2px]">
+              <span className="text-[0.625rem] font-black text-gray-400 uppercase tracking-[1.2px]">
                 Border
               </span>
               <Segmented
@@ -492,7 +492,7 @@ export default function PatchGeneratorClient() {
 
             {/* Colors */}
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black text-gray-400 uppercase tracking-[1.2px]">
+              <span className="text-[0.625rem] font-black text-gray-400 uppercase tracking-[1.2px]">
                 Colors
               </span>
               <Segmented
@@ -507,7 +507,7 @@ export default function PatchGeneratorClient() {
 
       {/* Starter chips — one tidy row under the composer */}
       <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
-        <span className="text-[11px] font-black text-gray-400 uppercase tracking-[1.5px] mr-1">
+        <span className="text-[0.6875rem] font-black text-gray-400 uppercase tracking-[1.5px] mr-1">
           Try:
         </span>
         {STARTERS.map((s) => (
@@ -517,14 +517,14 @@ export default function PatchGeneratorClient() {
             disabled={isGenerating}
             onClick={() => onStarter(s)}
             title={s.prompt}
-            className="text-[12px] font-bold text-panda-dark bg-white border border-gray-200 rounded-full px-3.5 py-1.5 hover:border-panda-green hover:bg-panda-green/5 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="text-[0.75rem] font-bold text-panda-dark bg-white border border-gray-200 rounded-full px-3.5 py-1.5 hover:border-panda-green hover:bg-panda-green/5 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           >
             {s.label}
           </button>
         ))}
       </div>
 
-      <p className="text-[11px] text-gray-400 mt-3 text-center leading-[1.5]">
+      <p className="text-[0.6875rem] text-gray-400 mt-3 text-center leading-[1.5]">
         AI concept preview. Our designers refine your final patch and send a production mockup for approval before anything is made.
       </p>
 
@@ -532,13 +532,13 @@ export default function PatchGeneratorClient() {
       {designs.length > 0 && (
         <div ref={resultsRef} className="mt-10 scroll-mt-28">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[15px] font-black text-panda-dark uppercase tracking-wider">
+            <h2 className="text-[0.9375rem] font-black text-panda-dark uppercase tracking-wider">
               Your designs{doneCount > 0 ? ` (${doneCount})` : ""}
             </h2>
             <button
               type="button"
               onClick={onClearAll}
-              className="inline-flex items-center gap-1.5 text-[12px] font-bold text-gray-400 hover:text-red-600 transition-colors"
+              className="inline-flex items-center gap-1.5 text-[0.75rem] font-bold text-gray-400 hover:text-red-600 transition-colors"
             >
               <Trash2 size={13} />
               Clear all
@@ -753,7 +753,7 @@ function DesignCard({
         <p className="text-[12.5px] text-gray-700 leading-[1.45] line-clamp-2 mb-1.5">
           {design.prompt}
         </p>
-        <p className="text-[10px] font-bold uppercase tracking-wider text-panda-green mb-3">
+        <p className="text-[0.625rem] font-bold uppercase tracking-wider text-panda-green mb-3">
           {design.presets.style} . {design.presets.shape} . {design.presets.border}
         </p>
         <div className="flex flex-wrap items-center gap-1.5">
@@ -775,7 +775,7 @@ function DesignCard({
           <button
             type="button"
             onClick={onUseDesign}
-            className="ml-auto inline-flex items-center gap-1 text-[11px] font-black text-panda-dark uppercase tracking-wider px-3 py-2 rounded-full bg-panda-yellow hover:bg-yellow-300 transition-colors"
+            className="ml-auto inline-flex items-center gap-1 text-[0.6875rem] font-black text-panda-dark uppercase tracking-wider px-3 py-2 rounded-full bg-panda-yellow hover:bg-yellow-300 transition-colors"
           >
             Use this design <ArrowRight size={11} />
           </button>
@@ -802,7 +802,7 @@ function IconAction({
       onClick={onClick}
       disabled={disabled}
       title={label}
-      className="inline-flex items-center gap-1 text-[11px] font-bold text-panda-dark px-2.5 py-2 rounded-full bg-white border border-gray-200 hover:border-panda-green disabled:opacity-40 transition-colors"
+      className="inline-flex items-center gap-1 text-[0.6875rem] font-bold text-panda-dark px-2.5 py-2 rounded-full bg-white border border-gray-200 hover:border-panda-green disabled:opacity-40 transition-colors"
     >
       {icon}
       <span className="hidden sm:inline">{label}</span>
@@ -825,10 +825,10 @@ function LoadingCard({ prompt, tip }: { prompt: string; tip: string }) {
             style={{ animationDelay: "240ms" }}
           />
         </div>
-        <p className="text-[13px] font-black text-panda-dark mb-1">
+        <p className="text-[0.8125rem] font-black text-panda-dark mb-1">
           Designing your patch...
         </p>
-        <p className="text-[11px] text-gray-500 leading-[1.5]">Tip: {tip}</p>
+        <p className="text-[0.6875rem] text-gray-500 leading-[1.5]">Tip: {tip}</p>
       </div>
       <div className="p-3.5">
         <p className="text-[12.5px] text-gray-400 leading-[1.45] line-clamp-2">{prompt}</p>
@@ -869,7 +869,7 @@ function Lightbox({
         className="absolute inset-0 bg-black/80 backdrop-blur-[4px]"
       />
 
-      <div className="relative max-w-[640px] w-full">
+      <div className="relative max-w-[40rem] w-full">
         {/* Close */}
         <button
           type="button"
@@ -895,17 +895,17 @@ function Lightbox({
         {/* Info strip */}
         <div className="mt-3 flex items-center gap-3">
           <div className="flex-1 min-w-0">
-            <p className="text-[13px] text-white/90 leading-[1.45] line-clamp-2">
+            <p className="text-[0.8125rem] text-white/90 leading-[1.45] line-clamp-2">
               {design.prompt}
             </p>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-panda-yellow/80 mt-0.5">
+            <p className="text-[0.625rem] font-bold uppercase tracking-wider text-panda-yellow/80 mt-0.5">
               {design.presets.style} . {design.presets.shape} . {design.presets.border}
             </p>
           </div>
           <button
             type="button"
             onClick={onUseDesign}
-            className="flex-shrink-0 inline-flex items-center gap-1.5 bg-panda-yellow text-panda-dark font-black text-[12px] uppercase tracking-wider px-4 py-2.5 rounded-full hover:bg-yellow-300 transition-colors"
+            className="flex-shrink-0 inline-flex items-center gap-1.5 bg-panda-yellow text-panda-dark font-black text-[0.75rem] uppercase tracking-wider px-4 py-2.5 rounded-full hover:bg-yellow-300 transition-colors"
           >
             Use this design <ArrowRight size={12} />
           </button>
@@ -919,14 +919,14 @@ function ErrorCard({ design, onRetry }: { design: Design; onRetry: () => void })
   return (
     <article className="bg-white border border-red-200 rounded-[18px] overflow-hidden">
       <div className="aspect-square bg-red-50/60 flex flex-col items-center justify-center px-6 text-center">
-        <p className="text-[13px] font-black text-red-700 mb-1.5">Generation failed</p>
-        <p className="text-[11px] text-red-600/80 leading-[1.5] mb-4 line-clamp-3">
+        <p className="text-[0.8125rem] font-black text-red-700 mb-1.5">Generation failed</p>
+        <p className="text-[0.6875rem] text-red-600/80 leading-[1.5] mb-4 line-clamp-3">
           {design.error}
         </p>
         <button
           type="button"
           onClick={onRetry}
-          className="inline-flex items-center gap-1.5 text-[11px] font-black text-white uppercase tracking-wider px-4 py-2 rounded-full bg-red-600 hover:bg-red-700 transition-colors"
+          className="inline-flex items-center gap-1.5 text-[0.6875rem] font-black text-white uppercase tracking-wider px-4 py-2 rounded-full bg-red-600 hover:bg-red-700 transition-colors"
         >
           <RotateCw size={12} /> Try again
         </button>

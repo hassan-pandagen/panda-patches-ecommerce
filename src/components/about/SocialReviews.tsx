@@ -20,7 +20,7 @@ export default async function SocialReviews() {
       <div className="container mx-auto px-4 flex flex-col items-center">
         
         {/* HEADING */}
-        <h2 className="text-[40px] font-black text-panda-dark uppercase tracking-tight mb-16">
+        <h2 className="text-[2.5rem] font-black text-panda-dark uppercase tracking-tight mb-16">
           SOCIAL REVIEWS
         </h2>
 

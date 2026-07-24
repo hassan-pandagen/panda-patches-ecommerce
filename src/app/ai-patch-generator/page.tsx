@@ -102,17 +102,17 @@ export default function AiPatchGeneratorPage() {
 
       {/* Hero — short, flows straight into the composer card */}
       <section className="w-full pt-10 md:pt-14 pb-6 md:pb-8">
-        <div className="container mx-auto px-6 max-w-[820px] text-center">
-          <span className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-[2px] text-panda-green bg-panda-green/10 px-3 py-1.5 rounded-full mb-4">
+        <div className="container mx-auto px-6 max-w-[51.25rem] text-center">
+          <span className="inline-flex items-center gap-1.5 text-[0.6875rem] font-black uppercase tracking-[2px] text-panda-green bg-panda-green/10 px-3 py-1.5 rounded-full mb-4">
             ✨ Panda AI: Dream it. Patch it.
           </span>
-          <h1 className="text-[34px] md:text-[52px] font-black text-panda-dark leading-[1.02] tracking-tight mb-3">
+          <h1 className="text-[2.125rem] md:text-[3.25rem] font-black text-panda-dark leading-[1.02] tracking-tight mb-3">
             Free AI Patch Generator
           </h1>
-          <p className="text-[15px] md:text-[17px] text-gray-500 leading-[1.6] max-w-[560px] mx-auto">
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-500 leading-[1.6] max-w-[560px] mx-auto">
             Describe a patch, pick a style, see it in seconds. Refine until you love it, then order the real thing from 5 pieces.
           </p>
-          <p className="text-[13px] md:text-[14px] text-gray-500 leading-[1.6] max-w-[560px] mx-auto mt-3">
+          <p className="text-[0.8125rem] md:text-[0.875rem] text-gray-500 leading-[1.6] max-w-[560px] mx-auto mt-3">
             Want it to come out crisp in thread? Our{" "}
             <Link href="/patch-manufacturability-specs" prefetch={false} className="text-panda-green underline font-semibold">manufacturability specs</Link>{" "}
             include copy-paste prompts that keep AI artwork inside real production limits — and if it turns out too detailed to embroider, here&rsquo;s{" "}
@@ -130,8 +130,8 @@ export default function AiPatchGeneratorPage() {
 
       {/* How it works */}
       <section className="w-full py-12 md:py-16 bg-white border-t border-gray-100">
-        <div className="container mx-auto px-6 max-w-[1000px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark text-center mb-8">
+        <div className="container mx-auto px-6 max-w-[62.5rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark text-center mb-8">
             How it works
           </h2>
           <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -143,10 +143,10 @@ export default function AiPatchGeneratorPage() {
                 <span className="inline-flex w-8 h-8 items-center justify-center bg-panda-dark text-panda-yellow font-black rounded-full mb-3">
                   {i + 1}
                 </span>
-                <h3 className="text-[15px] font-black text-panda-dark mb-1.5">
+                <h3 className="text-[0.9375rem] font-black text-panda-dark mb-1.5">
                   {step.title}
                 </h3>
-                <p className="text-[13px] text-gray-600 leading-[1.6]">{step.body}</p>
+                <p className="text-[0.8125rem] text-gray-600 leading-[1.6]">{step.body}</p>
               </li>
             ))}
           </ol>
@@ -155,8 +155,8 @@ export default function AiPatchGeneratorPage() {
 
       {/* FAQ */}
       <section className="w-full py-12 md:py-16 bg-[#F9FAF5] border-t border-gray-100">
-        <div className="container mx-auto px-6 max-w-[820px]">
-          <h2 className="text-[24px] md:text-[32px] font-black text-panda-dark text-center mb-8">
+        <div className="container mx-auto px-6 max-w-[51.25rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark text-center mb-8">
             Frequently asked questions
           </h2>
           <div className="space-y-3">
@@ -165,13 +165,13 @@ export default function AiPatchGeneratorPage() {
                 key={f.question}
                 className="group bg-white border border-gray-200 rounded-[14px] overflow-hidden"
               >
-                <summary className="cursor-pointer list-none flex items-center justify-between gap-3 px-5 py-4 text-[14px] font-bold text-panda-dark">
+                <summary className="cursor-pointer list-none flex items-center justify-between gap-3 px-5 py-4 text-[0.875rem] font-bold text-panda-dark">
                   {f.question}
                   <span className="text-panda-green font-black group-open:rotate-45 transition-transform">
                     +
                   </span>
                 </summary>
-                <div className="px-5 pb-4 text-[13px] text-gray-600 leading-[1.7]">
+                <div className="px-5 pb-4 text-[0.8125rem] text-gray-600 leading-[1.7]">
                   {f.answer}
                 </div>
               </details>
@@ -182,16 +182,16 @@ export default function AiPatchGeneratorPage() {
 
       {/* Final CTA */}
       <section className="w-full py-12 md:py-16 bg-panda-dark text-white">
-        <div className="container mx-auto px-6 max-w-[640px] text-center">
-          <h2 className="text-[26px] md:text-[36px] font-black text-panda-yellow leading-[1.1] mb-3">
+        <div className="container mx-auto px-6 max-w-[40rem] text-center">
+          <h2 className="text-[1.625rem] md:text-[2.25rem] font-black text-panda-yellow leading-[1.1] mb-3">
             Want a real patch from your design?
           </h2>
-          <p className="text-[14px] md:text-[16px] text-gray-300 mb-6 leading-[1.6]">
+          <p className="text-[0.875rem] md:text-[1rem] text-gray-300 mb-6 leading-[1.6]">
             From 5 pieces. Free digital mockup in 12 to 24 hours. Free worldwide shipping.
           </p>
           <Link
             href="/contact?utm_source=ai-patch&utm_medium=landing-cta"
-            className="inline-flex items-center gap-2 bg-panda-yellow text-panda-dark font-black text-[14px] uppercase tracking-wider px-6 py-3 rounded-full hover:scale-[1.03] transition-transform"
+            className="inline-flex items-center gap-2 bg-panda-yellow text-panda-dark font-black text-[0.875rem] uppercase tracking-wider px-6 py-3 rounded-full hover:scale-[1.03] transition-transform"
           >
             Get a Free Quote
           </Link>
