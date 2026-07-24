@@ -60,9 +60,9 @@ export default function BulkHero({
   const stats = trustStats || DEFAULT_TRUST_STATS;
   return (
     <section className="w-full pt-0 md:pt-1 pb-6 md:pb-10 bg-white">
-      <div className="container mx-auto px-4 md:px-6 max-w-[1200px]">
+      <div className="container mx-auto px-4 md:px-6 max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px]">
 
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 3xl:gap-16 items-start">
 
           {/* LEFT - Content */}
           <div className="flex-1 text-center lg:text-left">
@@ -123,7 +123,7 @@ export default function BulkHero({
             {(() => {
               const hasSanityImage = !!heroImage;
               const imgSrc = hasSanityImage
-                ? urlFor(heroImage).width(1040).height(640).quality(85).auto('format').url()
+                ? urlFor(heroImage).width(1600).height(984).quality(85).auto('format').url()
                 : '/assets/hero-product.webp';
               return (
               <div className="relative w-full max-w-[520px] h-[200px] md:h-[320px] mx-auto lg:mx-0">

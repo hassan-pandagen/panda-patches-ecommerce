@@ -51,7 +51,7 @@ export default async function BlogSection() {
   return (
     // Section Background: Light Grey (#F6F6F6)
     <section className="w-full py-12 bg-[#F6F6F6]">
-      <div className="container mx-auto px-4 max-w-[1200px]">
+      <div className="container mx-auto px-4 max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px]">
         
         {/* HEADING */}
         <div className="text-center mb-16">

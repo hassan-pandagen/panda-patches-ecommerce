@@ -8,6 +8,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // Large-screen scaling steps (brief §3). Below 1536px nothing changes —
+      // Tailwind's built-in 2xl (1536px) plus these two drive the stepped
+      // container widths and the root font-size media queries in globals.css.
+      screens: {
+        "3xl": "1920px",
+        "4xl": "2560px",
+      },
       colors: {
         panda: {
           green: "#3B7E00",

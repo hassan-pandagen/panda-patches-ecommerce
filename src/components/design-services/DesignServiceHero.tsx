@@ -24,7 +24,7 @@ export default function DesignServiceHero({
 }: DesignServiceHeroProps) {
   return (
     <section id="hero" className="w-full pt-6 md:pt-8 pb-6 md:pb-10 bg-white scroll-mt-24">
-      <div className="container mx-auto px-4 md:px-6 max-w-[1200px]">
+      <div className="container mx-auto px-4 md:px-6 max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px]">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
           {/* LEFT - Content */}
           <div className="flex-1 text-center lg:text-left">

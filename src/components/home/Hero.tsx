@@ -12,7 +12,7 @@ async function getHeroData() {
     const query = `*[_type == "hero"][0] {
       title,
       subtitle,
-      "imageUrl": heroImage.asset->url + "?w=1134&auto=format&q=85",
+      "imageUrl": heroImage.asset->url + "?w=1600&auto=format&q=85",
       "imageAlt": heroImage.alt,
       "trustBadges": trustBadges[] {
         "ref": image,
@@ -54,7 +54,7 @@ export default async function Hero() {
       {/* MAIN CONTENT — stays at Tailwind's default `container` cap on every
           screen, including 2560px+/3440px monitors; a wider `wide:` cap was
           tried and reverted (stretched the layout, CLAUDE_2.MD). */}
-      <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 items-center flex-grow pt-0 md:pt-8 lg:justify-items-start justify-items-center">
+      <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 3xl:gap-16 items-center flex-grow pt-0 md:pt-8 lg:justify-items-start justify-items-center">
         
         {/* === LEFT SIDE (Text & Patches) === */}
         <div className="flex flex-col justify-center h-full text-center lg:text-left w-full lg:w-auto">
@@ -103,7 +103,7 @@ export default async function Hero() {
                    fill
                    priority
                    quality={65}
-                   sizes="(max-width: 768px) 100vw, 630px"
+                   sizes="(max-width: 768px) 100vw, (min-width: 1920px) 760px, 630px"
                    style={{ objectFit: 'contain', objectPosition: 'center' }}
                  />
                ) : (

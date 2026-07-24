@@ -51,7 +51,7 @@ export default async function CustomProductsPage() {
 
       {/* HERO SECTION */}
       <section className="bg-white text-black py-24">
-        <div className="container mx-auto px-6 max-w-[1200px] text-center">
+        <div className="container mx-auto px-6 max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px] text-center">
           <h1 className="text-[48px] md:text-[64px] font-black mb-6 tracking-tight">
             <span className="text-black">Custom </span>
             <span className="text-panda-yellow">Products</span>

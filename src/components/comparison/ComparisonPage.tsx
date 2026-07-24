@@ -95,7 +95,7 @@ export default function ComparisonPage({
 
       {/* 1. HERO — match BulkHero style */}
       <section className="w-full pt-8 md:pt-12 pb-8 md:pb-12 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-[1200px]">
+        <div className="container mx-auto px-4 md:px-6 max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px]">
           <div className="text-center max-w-[820px] mx-auto">
             <p className="text-[11px] md:text-[12px] font-black uppercase tracking-[2px] text-panda-green mb-4">
               Custom Patch Company Comparison · 2026

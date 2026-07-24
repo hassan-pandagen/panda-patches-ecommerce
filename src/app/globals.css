@@ -107,6 +107,12 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* Large-screen scaling (brief §3b): bump the root font-size on very large
+   viewports so rem-based sizing scales ~6-12%. Zero effect below 1920px;
+   px-hardcoded borders/icons and the 16px form inputs are unaffected. */
+@media (min-width: 1920px) { html { font-size: 17px; } }
+@media (min-width: 2560px) { html { font-size: 18px; } }
+
 /* Tawk.to bubble — prevent animation jank */
 #tawk-bubble-container,
 .tawk-bubble-container,

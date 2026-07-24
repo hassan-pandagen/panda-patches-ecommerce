@@ -25,7 +25,7 @@ const REVIEWS = [
 export default function ReviewSnippet() {
   return (
     <div className="w-full py-8 bg-gray-50 border-b border-gray-100">
-      <div className="container mx-auto px-4 max-w-[1200px]">
+      <div className="container mx-auto px-4 max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px]">
         <div className="text-center mb-6">
           <h2 className="text-[16px] font-black text-gray-800">What Our Customers Say</h2>
         </div>

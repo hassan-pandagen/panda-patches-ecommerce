@@ -6,7 +6,7 @@ export default function ProductTypesList({ types, heading }: { types: any[], hea
 
   return (
     <section className="w-full py-10 md:py-16 bg-white">
-      <div className="container mx-auto px-6 max-w-[1200px]">
+      <div className="container mx-auto px-6 max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px]">
         
         {/* DYNAMIC HEADING */}
         <h2 className="text-[40px] font-black text-center text-panda-dark uppercase mb-24 tracking-tight">

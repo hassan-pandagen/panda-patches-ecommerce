@@ -11,7 +11,7 @@ export default function FAQList({ questions }: { questions: any[] }) {
   };
 
   return (
-    <div className="max-w-[1200px] mx-auto space-y-4">
+    <div className="max-w-[1200px] 2xl:max-w-[1320px] 3xl:max-w-[1440px] 4xl:max-w-[1536px] mx-auto space-y-4">
       {questions.map((item, index) => {
         const isOpen = openIndex === index;
 
