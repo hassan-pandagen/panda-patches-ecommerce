@@ -1,11 +1,8 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import { sendMetaEvent, type Attribution } from '@/lib/metaCapi';
+import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+const supabase = createSupabaseAdminClient();
 
 const WEBHOOK_SECRET = process.env.SUPABASE_WEBHOOK_SECRET;
 const CANCELLED_STATUSES = new Set(['CANCELLED', 'REFUNDED']);

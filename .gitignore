@@ -60,3 +60,9 @@ verify-home.jpeg
 
 # Secrets paste-file — values live in Vercel env + .env.local, never track
 add-to-vercel.txt
+
+# Graphify — generated knowledge-graph output. Kept fresh locally by the git
+# post-commit hook, which rebuilds it AFTER each commit — so tracking it would
+# leave the tree perpetually dirty. Local-only. (.graphifyignore config +
+# .gitattributes merge mapping stay tracked.)
+graphify-out/

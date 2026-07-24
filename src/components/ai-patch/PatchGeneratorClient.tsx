@@ -33,7 +33,7 @@ import { trackAiGen } from "@/lib/aiGenAnalytics";
  * G6 conversion funnel: done. G9 GA4 funnel events: done.
  */
 
-type Shape = "square" | "circle" | "shield" | "oval" | "rectangle" | "die-cut";
+type Shape = "square" | "circle" | "shield" | "oval" | "rectangle" | "die-cut" | "free-form";
 type Border = "merrowed" | "satin" | "none" | "raised";
 type Style = "embroidered" | "chenille" | "pvc" | "woven";
 type ColorBudget = "<=4" | "<=7" | "unlimited";
@@ -86,6 +86,11 @@ const STARTERS: Array<{ label: string; prompt: string; presets: Partial<Presets>
     presets: { shape: "die-cut", style: "embroidered" },
   },
   {
+    label: "🏷 Name banner",
+    prompt: "custom last-name wordmark for a family or crew, bold clean lettering on a banner",
+    presets: { shape: "free-form", style: "embroidered" },
+  },
+  {
     label: "💀 Tactical morale",
     prompt: "tactical morale patch, skull with crossed rifles, subdued green and tan",
     presets: { shape: "rectangle", style: "pvc" },
@@ -97,7 +102,18 @@ const STARTERS: Array<{ label: string; prompt: string; presets: Partial<Presets>
   },
 ];
 
-const SHAPES: Shape[] = ["circle", "square", "shield", "oval", "rectangle", "die-cut"];
+const SHAPES: Shape[] = ["free-form", "circle", "square", "shield", "oval", "rectangle", "die-cut"];
+
+// Friendly labels for the shape buttons (tooltip + aria). "free-form" -> "Free form".
+const SHAPE_LABEL: Record<Shape, string> = {
+  "free-form": "Free form",
+  circle: "Circle",
+  square: "Square",
+  shield: "Shield",
+  oval: "Oval",
+  rectangle: "Rectangle",
+  "die-cut": "Die-cut",
+};
 
 const STYLES: Array<{ id: Style; label: string; hint: string }> = [
   { id: "embroidered", label: "Embroidered", hint: "Classic stitched thread" },
@@ -425,8 +441,8 @@ export default function PatchGeneratorClient() {
                     key={s}
                     type="button"
                     onClick={() => setPresets({ ...presets, shape: s })}
-                    title={s}
-                    aria-label={`${s} shape`}
+                    title={SHAPE_LABEL[s]}
+                    aria-label={`${SHAPE_LABEL[s]} shape`}
                     aria-pressed={presets.shape === s}
                     className={`w-9 h-9 rounded-[9px] border flex items-center justify-center transition-all ${
                       presets.shape === s
@@ -676,6 +692,16 @@ function ShapeIcon({ shape, active }: { shape: Shape; active: boolean }) {
         <svg width="20" height="20" viewBox="0 0 24 24">
           <path
             d="M12 3l2.2 4.6 5 .7-3.6 3.6.9 5L12 14.6 7.5 17l.9-5L4.8 8.3l5-.7z"
+            {...props}
+          />
+        </svg>
+      );
+    case "free-form":
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24">
+          <path
+            d="M7.5 4.8c3.3-1.6 8.4-1.1 10.2 2 1.7 2.8.6 6.3-1.9 8.4-2.8 2.3-7.9 3.1-10.8.3-2.6-2.5-2-7.2.4-9.4.6-.5 1.3-1 2.1-1.3z"
+            strokeDasharray="2.6 2.2"
             {...props}
           />
         </svg>

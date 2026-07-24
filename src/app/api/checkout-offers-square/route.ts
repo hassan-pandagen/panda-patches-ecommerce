@@ -1,18 +1,15 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { randomUUID } from 'crypto';
 import { lookupOfferPrice, calculateOfferTotal, OFFER_CATEGORIES } from '@/lib/offerPackages';
 import { resolveBaseUrl } from '@/lib/checkoutConfig';
 import { createSquarePaymentLink } from '@/lib/square';
 import { sendMetaEvent } from '@/lib/metaCapi';
+import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 
 export const runtime = 'nodejs';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-);
+const supabase = createSupabaseAdminClient();
 
 // Mirrors the Stripe offers schema.
 const Schema = z.object({

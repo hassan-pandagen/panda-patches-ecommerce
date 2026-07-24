@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import { resolveLeadSource } from '@/lib/attribution';
 import { sendMetaEvent, type Attribution } from '@/lib/metaCapi';
 import { sendCustomerEmail } from '@/lib/sendCustomerEmail';
@@ -7,6 +6,7 @@ import { ensureCustomerAccount } from '@/lib/ensureCustomerAccount';
 import { sendOrderEmails } from '@/lib/orderEmails';
 import { verifySquareWebhookSignature, resolveSquareReference, WEB_REF_PREFIX } from '@/lib/square';
 import { sendGa4Purchase } from '@/lib/ga4Server';
+import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 
 export const runtime = 'nodejs';
 
@@ -14,10 +14,7 @@ export const runtime = 'nodejs';
 // HMAC signature will never validate.
 const WEBHOOK_URL = 'https://www.pandapatches.com/api/webhooks/square';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-);
+const supabase = createSupabaseAdminClient();
 
 const ok = (extra: Record<string, unknown> = {}) =>
   NextResponse.json({ received: true, ...extra });

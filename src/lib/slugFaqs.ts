@@ -67,7 +67,7 @@ const wovenFaqs: FAQItem[] = [
   },
   {
     question: "What is the smallest font size that woven patches can reproduce?",
-    answer: "Woven patches can accurately reproduce text as small as 4pt font, compared to 8-10pt minimum for embroidery. This makes them ideal for detailed logos, fine lines, and designs with small lettering."
+    answer: "Woven patches reproduce text down to about 1.5 mm tall (2 mm for serif or script), compared to about 4 mm for embroidery — nearly three times smaller. This makes them ideal for detailed logos, fine lines, and designs with small lettering."
   },
   {
     question: "Are woven patches thinner than embroidered patches?",

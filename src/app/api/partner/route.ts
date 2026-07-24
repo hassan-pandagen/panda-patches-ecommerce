@@ -1,17 +1,14 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { SendMailClient } from 'zeptomail';
-import { createClient } from '@supabase/supabase-js';
 import { getAttributionFromRequest } from '@/lib/attribution';
 import { deriveTrafficSource, attributionSummary } from '@/lib/leadSource';
 import { sendMetaEvent } from '@/lib/metaCapi';
+import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 
 // Service-role client — partner applications are persisted to the CRM (audit
 // P0-5: previously email-only, so a ZeptoMail failure destroyed the lead).
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+const supabase = createSupabaseAdminClient();
 
 const PartnerSchema = z.object({
   partnerType: z.string().max(60).optional().or(z.literal('')),

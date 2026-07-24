@@ -1,12 +1,9 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import { SendMailClient } from 'zeptomail';
 import { sendMetaEvent } from '@/lib/metaCapi';
+import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+const supabase = createSupabaseAdminClient();
 
 const ABANDON_DELAY_MIN = 45;          // First email after 45 min (was 30 — audit P1-5:
                                         // BNPL approval + a slow final review can run

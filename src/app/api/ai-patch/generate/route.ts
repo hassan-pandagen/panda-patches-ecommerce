@@ -46,7 +46,7 @@ const RequestSchema = z.object({
   prompt: z.string().min(1).max(2000),
   presets: z
     .object({
-      shape: z.enum(["square", "circle", "shield", "oval", "rectangle", "die-cut"]).optional(),
+      shape: z.enum(["square", "circle", "shield", "oval", "rectangle", "die-cut", "free-form"]).optional(),
       border: z.enum(["merrowed", "satin", "none", "raised"]).optional(),
       style: z.enum(["embroidered", "chenille", "pvc", "woven"]).optional(),
       colors: z.enum(["<=4", "<=7", "unlimited"]).optional(),

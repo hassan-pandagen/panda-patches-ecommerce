@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
-import { createClient } from "@supabase/supabase-js";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { calculatePatchPrice } from "@/lib/pricingCalculator";
 import { applyEconomyDiscount, applyVelcroPricing, getRushSurcharge, resolveBaseUrl } from "@/lib/checkoutConfig";
 import { createSquarePaymentLink } from "@/lib/square";
@@ -9,10 +9,7 @@ import { createSquarePaymentLink } from "@/lib/square";
 export const runtime = "nodejs";
 
 // Service-role client for the square_pending_orders insert (RLS-protected, server-only).
-const admin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-);
+const admin = createSupabaseAdminClient();
 
 /**
  * POST /api/account/reorder

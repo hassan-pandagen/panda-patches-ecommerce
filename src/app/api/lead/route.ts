@@ -1,12 +1,9 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { calculatePatchPrice } from '@/lib/pricingCalculator';
+import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+const supabase = createSupabaseAdminClient();
 
 const LeadSchema = z.object({
   productName: z.string().min(1).max(100),

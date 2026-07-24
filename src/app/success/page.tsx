@@ -5,7 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PurchaseConversion from "@/components/PurchaseConversion";
-import { createClient } from "@supabase/supabase-js";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export const metadata: Metadata = {
   title: "Order Confirmed | Panda Patches",
@@ -16,10 +16,7 @@ export const metadata: Metadata = {
 // Disable static rendering — this page must verify the payment server-side on every request
 export const dynamic = "force-dynamic";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-);
+const supabase = createSupabaseAdminClient();
 
 interface SuccessSearchParams {
   provider?: string; // 'square'

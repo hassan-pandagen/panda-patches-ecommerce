@@ -660,7 +660,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
                 type: "Embroidered",
                 best: "Uniforms, sports teams, classic brands",
                 pros: "Raised texture, bold visibility, classic look",
-                cons: "Not ideal for fine text under 8pt",
+                cons: "Not ideal for fine text under 4 mm",
                 price: "From $0.91/pc",
                 tag: "Most Popular",
                 href: "/custom-patches/embroidered",

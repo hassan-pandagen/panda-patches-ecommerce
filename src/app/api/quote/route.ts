@@ -1,16 +1,13 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 import { SendMailClient } from 'zeptomail';
 import { sendMetaEvent } from '@/lib/metaCapi';
 import { getAttributionFromRequest } from '@/lib/attribution';
 import { deriveLeadSource, deriveTrafficSource } from '@/lib/leadSource';
 import { canonicalPatchType, canonicalBacking, canonicalBorder, extractBorderFromText } from '@/lib/canonicalFields';
+import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+const supabase = createSupabaseAdminClient();
 
 const QuoteSchema = z.object({
   customer: z.object({

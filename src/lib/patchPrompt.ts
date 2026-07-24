@@ -34,7 +34,8 @@ export type PatchShape =
   | "shield"
   | "oval"
   | "rectangle"
-  | "die-cut";
+  | "die-cut"
+  | "free-form";
 
 export type PatchBorder = "merrowed" | "satin" | "none" | "raised";
 
@@ -86,6 +87,8 @@ const SHAPE_LANGUAGE: Record<PatchShape, string> = {
     "rectangular patch, landscape orientation, straight parallel edges",
   "die-cut":
     "die-cut patch, custom outline following the subject's silhouette, no background fill outside the shape",
+  "free-form":
+    "free-form patch shaped to fit the design itself, not forced into a geometric outline. For a name, word, or lettering, use a horizontal banner, pill, ribbon, or nameplate outline that hugs the text. For a logo, emblem, mascot, or figure, use a clean outline that follows its natural contour. Organic outer boundary, no circle or rectangle imposed on the artwork, no empty background fill outside the shape",
 };
 
 // Per-style language. Lives in one place so the [HUMAN] reviewer can tune

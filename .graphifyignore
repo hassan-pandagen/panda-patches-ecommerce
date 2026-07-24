@@ -1,0 +1,44 @@
+# Version control and coding-assistant tooling
+.git/
+.agents/
+.claude/
+.continue/
+.codex/
+.playwright-mcp/
+
+# Dependencies and generated build output
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+graphify-out/
+*.tsbuildinfo
+
+# Framework and tool caches
+.sanity/
+.vercel/
+.turbo/
+.cache/
+.eslintcache
+
+# Local secrets and machine-specific files
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+
+# Generated/search-console exports and local scratch inputs
+GSC/
+*.csv
+video-benchmarks/
+email-campaign/
+blog-drafts/
+
+# Generated dependency metadata; package.json remains in the corpus
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

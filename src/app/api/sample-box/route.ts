@@ -1,17 +1,14 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { createClient } from '@supabase/supabase-js';
 import { randomUUID } from 'crypto';
 import { resolveBaseUrl } from '@/lib/checkoutConfig';
 import { createSquarePaymentLink } from '@/lib/square';
+import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 
 export const runtime = 'nodejs';
 
 // Service-role client for the square_pending_orders insert (RLS, server-only).
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-);
+const supabase = createSupabaseAdminClient();
 
 const sampleBoxSchema = z.object({
   fullName: z.string().min(1, { message: 'Full name is required' }).max(200),
