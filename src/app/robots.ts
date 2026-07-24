@@ -35,6 +35,9 @@ export default function robots(): MetadataRoute.Robots {
           'ClaudeBot', 'Claude-SearchBot', 'Claude-User',
           // Perplexity
           'PerplexityBot', 'Perplexity-User',
+          // xAI / Grok — real customers are arriving from Grok, so unblock its
+          // crawlers (July 2026).
+          'GrokBot', 'xAI-Crawler',
           // Other major AI assistants
           'Google-Extended', 'Applebot-Extended', 'Meta-ExternalAgent', 'Meta-ExternalFetcher',
           'Amazonbot', 'MistralAI-User', 'DuckAssistBot', 'cohere-ai', 'CCBot',
