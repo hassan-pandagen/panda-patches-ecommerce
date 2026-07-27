@@ -36,7 +36,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How fast can I get custom patches delivered to Alabama?",
-      answer: "Standard production is 7-14 business days after design approval, with delivery to all Alabama cities including Birmingham, Huntsville, Mobile, Montgomery, and Tuscaloosa. Rush orders are available for an additional fee and can cut turnaround to 5-7 days when needed for events or deployments."
+      answer: "Standard production is 7-14 business days after design approval, with delivery to all Alabama cities including Birmingham, Huntsville, Mobile, Montgomery, and Tuscaloosa. Rush orders are available for an additional fee and can put patches in hand in as soon as 5 business days when needed for events or deployments."
     },
     {
       question: "Do Alabama churches and civic organizations qualify for bulk patch discounts?",
@@ -58,7 +58,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How does rush delivery work for Austin customers with tight deadlines?",
-      answer: "Austin customers with urgent needs — corporate events at the Austin Convention Center, UT Longhorn game days, or SXSW launch events — can request rush production. Rush orders ship within 5-7 business days of proof approval. Email or call us directly for same-week quote requests."
+      answer: "Austin customers with urgent needs — corporate events at the Austin Convention Center, UT Longhorn game days, or SXSW launch events — can request rush production. Rush orders can be in hand in as soon as 5 business days after proof approval. Email or call us directly for same-week quote requests."
     },
     {
       question: "Do you work with Austin food trucks and small businesses for custom patches?",
@@ -150,7 +150,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How quickly can patches be delivered to Denver, Colorado Springs, or Boulder?",
-      answer: "Standard delivery to any Colorado city — Denver, Colorado Springs, Boulder, Fort Collins, Pueblo — is 7-14 business days after design approval. Rush production (5-7 days) is available for urgent orders. We can ship directly to business addresses, ski lodges, or military base APO/FPO addresses with proper documentation."
+      answer: "Standard delivery to any Colorado city — Denver, Colorado Springs, Boulder, Fort Collins, Pueblo — is 7-14 business days after design approval. Rush production (in hand in as soon as 5 business days) is available for urgent orders. We can ship directly to business addresses, ski lodges, or military base APO/FPO addresses with proper documentation."
     }
   ],
   "custom-patches-dallas": [
@@ -172,7 +172,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How do you ship to the entire Dallas-Fort Worth Metroplex?",
-      answer: "We ship to all DFW Metroplex cities — Dallas, Fort Worth, Plano, Frisco, McKinney, Irving, Arlington, Garland, and beyond. Standard delivery is 7-14 business days after approval. For corporate event deadlines or game-day delivery needs, rush production with expedited shipping can compress turnaround to 5-7 business days."
+      answer: "We ship to all DFW Metroplex cities — Dallas, Fort Worth, Plano, Frisco, McKinney, Irving, Arlington, Garland, and beyond. Standard delivery is 7-14 business days after approval. For corporate event deadlines or game-day delivery needs, rush production with expedited shipping can put patches in hand in as soon as 5 business days."
     }
   ],
   "custom-denver-patches": [
@@ -282,7 +282,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How quickly can patches be delivered to Los Angeles for production deadlines?",
-      answer: "Standard production is 7-14 business days. For entertainment productions or retail launches with firm deadlines, rush production of 5-7 days is available. We ship directly to production offices, costume departments at studios in Burbank and Culver City, or warehouse addresses throughout Greater LA. Same-day courier delivery within LA County is available on request."
+      answer: "Standard production is 7-14 business days. For entertainment productions or retail launches with firm deadlines, rush production in as soon as 5 business days is available. We ship directly to production offices, costume departments at studios in Burbank and Culver City, or warehouse addresses throughout Greater LA. Same-day courier delivery within LA County is available on request."
     }
   ],
   "custom-miami-patches": [
@@ -326,7 +326,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How fast can patches be delivered to Manhattan, Brooklyn, Queens, the Bronx, and Staten Island?",
-      answer: "We ship to all five boroughs and the greater New York metropolitan area including Long Island, Westchester, and Northern New Jersey. Standard production is 7-14 business days after proof approval. For Broadway productions, fashion week submissions, or NYPD/FDNY event deadlines, rush production can reduce turnaround to 5-7 business days."
+      answer: "We ship to all five boroughs and the greater New York metropolitan area including Long Island, Westchester, and Northern New Jersey. Standard production is 7-14 business days after proof approval. For Broadway productions, fashion week submissions, or NYPD/FDNY event deadlines, rush production can put patches in hand in as soon as 5 business days."
     }
   ],
   "custom-ohio-state-patches": [
@@ -348,7 +348,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How quickly can custom patches be delivered to Cleveland, Columbus, Cincinnati, and Dayton?",
-      answer: "Standard production is 7-14 business days from proof approval, with delivery to all major Ohio cities and rural communities. Rush orders ship in 5-7 days for urgent needs like game-day presentations or unit ceremonies at Wright-Patterson. We ship to all Ohio addresses via standard ground and expedited air freight on request."
+      answer: "Standard production is 7-14 business days from proof approval, with delivery to all major Ohio cities and rural communities. Rush orders can be in hand in as soon as 5 business days for urgent needs like game-day presentations or unit ceremonies at Wright-Patterson. We ship to all Ohio addresses via standard ground and expedited air freight on request."
     }
   ],
   "custom-patches-portland": [
@@ -392,7 +392,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How quickly can custom patches reach the San Francisco Bay Area?",
-      answer: "We ship to San Francisco, Oakland, Berkeley, San Jose, Palo Alto, and all Bay Area communities. Standard delivery is 7-14 business days from proof approval. Rush orders of 5-7 days are available for tech conference deadlines or Pride festival merchandise needs. Expedited delivery can be requested at checkout to ensure timely arrival for your Bay Area event."
+      answer: "We ship to San Francisco, Oakland, Berkeley, San Jose, Palo Alto, and all Bay Area communities. Standard delivery is 7-14 business days from proof approval. Rush orders in hand in as soon as 5 business days are available for tech conference deadlines or Pride festival merchandise needs. Expedited delivery can be requested at checkout to ensure timely arrival for your Bay Area event."
     }
   ],
   "custom-patches-in-texas": [
@@ -744,7 +744,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can we order patches with limited edition album art or tour artwork for specific shows?",
-      answer: "Yes. Limited edition tour patches, album release patches, and show-specific patches are perfect promotional items. We produce limited runs of 25-100 patches efficiently. Ordering exclusive patches for a record release show or landmark concert creates collectible merch that fans will pay premium prices for at the table. We can turnaround rush orders in 5-7 days for bands with upcoming show deadlines."
+      answer: "Yes. Limited edition tour patches, album release patches, and show-specific patches are perfect promotional items. We produce limited runs of 25-100 patches efficiently. Ordering exclusive patches for a record release show or landmark concert creates collectible merch that fans will pay premium prices for at the table. We can turn around rush orders in as soon as 5 business days for bands with upcoming show deadlines."
     }
   ],
   "custom-tactical-patches": [
@@ -852,7 +852,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How long does a biker cut set take to produce?",
-      answer: "A standard three-piece biker cut set takes 7-14 business days from artwork approval to shipping. Rush production of 5-7 days is available for prospecting or patching ceremonies with firm dates. We recommend sharing reference artwork or a description of your club colors and emblem 2-3 weeks before your patching ceremony to allow time for proof approval and any design adjustments."
+      answer: "A standard three-piece biker cut set takes 7-14 business days from artwork approval to shipping. Rush production in as soon as 5 business days is available for prospecting or patching ceremonies with firm dates. We recommend sharing reference artwork or a description of your club colors and emblem 2-3 weeks before your patching ceremony to allow time for proof approval and any design adjustments."
     },
     {
       question: "Do you produce the small chest and pin patches worn on the front of a cut?",

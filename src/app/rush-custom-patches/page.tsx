@@ -25,7 +25,7 @@ import { addBusinessDays, formatShortDate } from "@/lib/businessDays";
 // SCOPING NOTE: the "in hand in as fast as 5 business days" claim on this page is
 // a page-specific rewrite of this page's own copy, per the brief's own scope
 // ("rewrite the page ... and any shared components [it uses]"). It intentionally
-// does NOT change the sitewide RUSH_DELIVERY constant ("about 6-7 business days")
+// does NOT change the sitewide RUSH_DELIVERY constant ("as soon as 5 business days")
 // consumed by the offers page / product calculator / wholesale page's rush
 // checkout options — that's a live checkout promise on a different, revenue-
 // critical flow, so changing it sitewide needs its own explicit confirmation

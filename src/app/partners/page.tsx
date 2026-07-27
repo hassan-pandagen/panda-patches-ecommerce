@@ -140,7 +140,7 @@ const PARTNER_FAQS = [
   },
   {
     question: "How fast can you turn around partner projects?",
-    answer: "Standard turnaround is 7 to 14 business days after mockup approval. 24-hour rush production is available for qualifying orders. Partner orders take priority over retail in our production queue.",
+    answer: "Standard turnaround is 7 to 14 business days after mockup approval. Rush production (in hand in as soon as 5 business days) is available for qualifying orders. Partner orders take priority over retail in our production queue.",
   },
   {
     question: "What artwork formats do you accept?",

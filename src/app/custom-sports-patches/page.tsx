@@ -43,7 +43,7 @@ const sportsFAQs = [
   },
   {
     question: "Can we get championship patches the week after our season ends?",
-    answer: "Yes, this is one of our most common rush requests. Post-season championship and tournament patches land in your hands within 10 business days standard, or 4-7 days with rush. Order as soon as the season ends while the momentum is still there — most teams delay and lose the moment."
+    answer: "Yes, this is one of our most common rush requests. Post-season championship and tournament patches land in your hands in 7-14 business days standard, or in as soon as 5 business days with rush. Order as soon as the season ends while the momentum is still there — most teams delay and lose the moment."
   },
   {
     question: "What backing is right for varsity jackets vs. game jerseys?",
