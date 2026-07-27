@@ -209,7 +209,7 @@ export default function ProductionData2026() {
               About 1 in 20 orders is a rush job — and most patches are small
             </h2>
             <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-4">
-              Rush production (about 6–7 business days instead of the standard 7–14) was used on <strong>5.1% of orders</strong> in the window — 46 of 896. Deadlines matter, but the overwhelming majority of customers plan far enough ahead for standard turnaround.
+              Rush production (as soon as 5 business days instead of the standard 7–14) was used on <strong>5.1% of orders</strong> in the window — 46 of 896. Deadlines matter, but the overwhelming majority of customers plan far enough ahead for standard turnaround.
             </p>
             <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium">
               On sizing: <strong>at least half of all orders (50.4% measured) are for patches between 2 and 5 inches</strong> at the largest dimension. A separate large-format segment — 8-inch-plus letterman and back patches, almost entirely quoted through our sales team rather than web checkout — makes up the bulk of the remainder, so the 2–5-inch share is a floor, not a ceiling.

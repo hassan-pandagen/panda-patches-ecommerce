@@ -10,7 +10,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Do you work with JSO and Jacksonville Fire and Rescue for department patches?",
-      answer: "Yes. We make patches for the Jacksonville Sheriff's Office, Jacksonville Fire and Rescue, and surrounding Northeast Florida departments — shoulder patches, unit and K-9 patches, and memorial patches. We use 100% polyester thread rated for industrial washing, stitched Velcro (not glued) for tactical gear, and rush memorial and line-of-duty patches in 4 to 7 business days."
+      answer: "Yes. We make patches for the Jacksonville Sheriff's Office, Jacksonville Fire and Rescue, and surrounding Northeast Florida departments — shoulder patches, unit and K-9 patches, and memorial patches. We use 100% polyester thread rated for industrial washing, stitched Velcro (not glued) for tactical gear, and rush memorial and line-of-duty patches in as soon as 5 business days."
     },
     {
       question: "What about Jacksonville businesses, sports teams, and events?",
@@ -18,7 +18,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How fast can I get custom patches delivered in Jacksonville?",
-      answer: "Standard production is 7 to 14 business days after you approve your mockup, with free shipping to all Jacksonville and Northeast Florida ZIP codes. Rush production is available and can bring turnaround to 4 to 7 business days for deadlines like unit deployments, memorial services, or event dates."
+      answer: "Standard production is 7 to 14 business days after you approve your mockup, with free shipping to all Jacksonville and Northeast Florida ZIP codes. Rush production is available and can bring turnaround to as soon as 5 business days for deadlines like unit deployments, memorial services, or event dates."
     }
   ],
   "alabama-patches": [

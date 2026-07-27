@@ -31,7 +31,7 @@ const sportsFAQs = [
   },
   {
     question: "Can you hit our tournament or season-start deadline?",
-    answer: "Standard production is 10-14 business days after you approve your mockup. Rush production cuts that to 4-7 business days. If you have a hard date — tournament day, picture day, first game — add it in the order notes and we confirm whether we can hit it within 6 hours, before any payment processes. Post-season championship patches ship within 10 business days on standard."
+    answer: "Standard production is 10-14 business days after you approve your mockup. Rush production cuts that to as soon as 5 business days. If you have a hard date — tournament day, picture day, first game — add it in the order notes and we confirm whether we can hit it within 6 hours, before any payment processes. Post-season championship patches ship within 10 business days on standard."
   },
   {
     question: "We have a youth team of 14 players. Is there a minimum order?",

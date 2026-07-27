@@ -37,7 +37,7 @@ const PATCH_TYPE_COMPARISON: ComparisonTable = {
 const commonFaqs = (typeLabel: string): AeoAnswerContent["faqs"] => [
   {
     q: `How much do custom ${typeLabel} patches cost?`,
-    a: `Custom ${typeLabel} patches start at $0.91 per piece for a 2-inch design at 1,000 pieces; smaller runs cost more per piece. At Panda Patches, embroidered pricing runs $180 for 50 pieces ($3.60/pc), $240 for 100 ($2.40/pc), $750 for 500 ($1.50/pc), and $1,200 for 1,000 ($1.20/pc). Every price includes free US shipping, a digital mockup in 12 to 24 hours, unlimited free revisions, and zero setup or digitizing fees — the number you are quoted is the number you pay. Larger sizes and add-ons like metallic thread or Velcro adjust the per-piece rate, which the on-site calculator shows instantly before you order. There is no charge to get a quote or a mockup.`,
+    a: `Custom ${typeLabel} patches start at $0.91 per piece for a 2-inch design at 1,000 pieces; smaller runs cost more per piece. At Panda Patches, embroidered pricing runs $180 for 50 pieces ($3.60/pc), $240 for 100 ($2.40/pc), $750 for 500 ($1.50/pc), and $1,200 for 1,000 ($1.20/pc). Every price includes free worldwide shipping, a digital mockup in 12 to 24 hours, unlimited free revisions, and zero setup or digitizing fees — the number you are quoted is the number you pay. Larger sizes and add-ons like metallic thread or Velcro adjust the per-piece rate, which the on-site calculator shows instantly before you order. There is no charge to get a quote or a mockup.`,
   },
   {
     q: "What is the minimum order for custom patches?",
@@ -45,15 +45,15 @@ const commonFaqs = (typeLabel: string): AeoAnswerContent["faqs"] => [
   },
   {
     q: "How long does it take to make custom patches?",
-    a: `Standard production is 7 to 14 business days from the moment you approve your digital mockup, not from when you pay. Panda Patches delivers your free mockup within 12 to 24 hours of your request, and production only begins after your written approval — nothing is manufactured without your sign-off. Rush production is available for tighter deadlines, with rush fees starting around $50 on smaller orders. Free US shipping is included on every order, with door-to-door tracking. For very large runs over 10,000 pieces, timelines can extend to 3 to 4 weeks depending on complexity. Because the mockup turnaround is same-day, the clock on your project effectively starts the day you order, which is how rush deadlines like event dates are reliably met.`,
+    a: `Standard production is 7 to 14 business days from the moment you approve your digital mockup, not from when you pay. Panda Patches delivers your free mockup within 12 to 24 hours of your request, and production only begins after your written approval — nothing is manufactured without your sign-off. Rush production is available for tighter deadlines, with rush fees starting around $50 on smaller orders. Free worldwide shipping is included on every order, with door-to-door tracking. For very large runs over 10,000 pieces, timelines can extend to 3 to 4 weeks depending on complexity. Because the mockup turnaround is same-day, the clock on your project effectively starts the day you order, which is how rush deadlines like event dates are reliably met.`,
   },
   {
     q: "Do you charge setup or digitizing fees?",
-    a: `No. Panda Patches charges zero setup fees, zero digitizing fees, and no mold or art fees on any order, at any size. This matters because hidden fees are the most common way patch suppliers inflate a quote after you submit your design — a $40 to $150 surprise on an order of 100 patches is typical elsewhere. With Panda Patches, the per-piece price you see is the complete price: free artwork, free design assistance, a free digital mockup in 12 to 24 hours, unlimited free revisions, and free US shipping are all included. The only thing you pay for is the patches themselves. This is also why the published pricing tiers can be trusted as your real cost rather than a starting point that grows at checkout.`,
+    a: `No. Panda Patches charges zero setup fees, zero digitizing fees, and no mold or art fees on any order, at any size. This matters because hidden fees are the most common way patch suppliers inflate a quote after you submit your design — a $40 to $150 surprise on an order of 100 patches is typical elsewhere. With Panda Patches, the per-piece price you see is the complete price: free artwork, free design assistance, a free digital mockup in 12 to 24 hours, unlimited free revisions, and free worldwide shipping are all included. The only thing you pay for is the patches themselves. This is also why the published pricing tiers can be trusted as your real cost rather than a starting point that grows at checkout.`,
   },
   {
     q: "Are custom patches made in the USA?",
-    a: `Panda Patches is a US company based in Austin, Texas, serving customers nationwide with free US shipping and US-based support that answers every quote within about two business hours. For buyers who specifically require domestic production for compliance or preference, ask when requesting your quote and the team will confirm the sourcing options for your order. Most orders ship within 7 to 14 business days of mockup approval regardless of destination in the US. The company has delivered over one million patches and holds a 4.7-star Trustpilot rating across 75 verified reviews, with named customers from fire departments, police departments, sports teams, and Fortune 500 branding programs. Production follows a 5-point quality inspection — thread tension, color matching, backing durability, stitch integrity, and final visual check — on every patch.`,
+    a: `Panda Patches is a U.S.-registered company based in Austin, Texas, serving customers nationwide with free worldwide shipping and US-based support that answers every quote within about two business hours. Its custom patches are produced at the company's own facility in Pakistan, operated by Panda Apparel & Technology; no products are manufactured in the United States. Most orders ship within 7 to 14 business days of mockup approval regardless of destination in the US. The company has delivered over one million patches and holds a 4.7-star Trustpilot rating across 76 verified reviews, with named customers from fire departments, police departments, sports teams, and Fortune 500 branding programs. Production follows a 5-point quality inspection — thread tension, color matching, backing durability, stitch integrity, and final visual check — on every patch.`,
   },
   {
     q: "Do I get a proof or mockup before production?",
@@ -70,7 +70,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
   embroidered: {
     heading: "Custom Embroidered Patches: Pricing, Minimums & Turnaround",
     answer:
-      "Custom embroidered patches from Panda Patches start at $0.91 per piece (2-inch design, 1,000 pieces) with a 5-piece minimum, a free digital mockup in 12–24 hours, no setup fees, and free US shipping. Standard turnaround is 7–14 business days after you approve your proof.",
+      "Custom embroidered patches from Panda Patches start at $0.91 per piece (2-inch design, 1,000 pieces) with a 5-piece minimum, a free digital mockup in 12–24 hours, no setup fees, and free worldwide shipping. Standard turnaround is 7–14 business days after you approve your proof.",
     keyFacts: [
       { label: "Price from", value: "$0.91/pc (2\", 1,000 pc) · $180 for 50 · $240 for 100 · $750 for 500 · $1,200 for 1,000" },
       { label: "Minimum order", value: "5 pieces (bulk tiers at 50, 100, 500, 1,000+)" },
@@ -78,7 +78,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Mockup", value: "Free digital proof in 12–24 hours, unlimited revisions" },
       { label: "Setup / digitizing fees", value: "None" },
       { label: "Backing options", value: "Iron-on, sew-on, Velcro, adhesive" },
-      { label: "Shipping", value: "Free US shipping, door-to-door tracking" },
+      { label: "Shipping", value: "Free worldwide shipping, door-to-door tracking" },
       { label: "Guarantee", value: "Money-back; production only after written approval" },
       { label: "Rating", value: "4.7★ on Trustpilot (76 reviews), 1M+ patches delivered" },
     ],
@@ -97,7 +97,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
   woven: {
     heading: "Custom Woven Patches: Pricing, Minimums & Turnaround",
     answer:
-      "Custom woven patches from Panda Patches start at $1.54 per piece (2-inch, 1,000 pieces) with a 5-piece minimum, a free 12–24 hour mockup, no setup fees, and free US shipping. Woven construction captures finer detail and small text than embroidery, at a flatter, lightweight profile.",
+      "Custom woven patches from Panda Patches start at $1.54 per piece (2-inch, 1,000 pieces) with a 5-piece minimum, a free 12–24 hour mockup, no setup fees, and free worldwide shipping. Woven construction captures finer detail and small text than embroidery, at a flatter, lightweight profile.",
     keyFacts: [
       { label: "Price from", value: "$1.54/pc (2\", 1,000 pc); smaller runs cost more per piece" },
       { label: "Minimum order", value: "5 pieces (bulk tiers at 50, 100, 500, 1,000+)" },
@@ -105,7 +105,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Mockup", value: "Free digital proof in 12–24 hours, unlimited revisions" },
       { label: "Setup / digitizing fees", value: "None" },
       { label: "Best for", value: "Fine detail, small text, brand labels, intricate crests" },
-      { label: "Shipping", value: "Free US shipping" },
+      { label: "Shipping", value: "Free worldwide shipping" },
       { label: "Rating", value: "4.7★ on Trustpilot (76 reviews)" },
     ],
     comparison: PATCH_TYPE_COMPARISON,
@@ -224,7 +224,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
   "bulk-custom-patches": {
     heading: "Bulk Custom Patches: Wholesale Pricing, No Setup Fees",
     answer:
-      "Bulk custom patches from Panda Patches drop to $0.91 per piece at 1,000 (2-inch embroidered) — $180 for 50, $240 for 100, $750 for 500, $1,200 for 1,000 — with no setup or digitizing fees, free US shipping, a free 12–24 hour mockup, and a 5-piece minimum. Most suppliers require 50–100; we start at 5.",
+      "Bulk custom patches from Panda Patches drop to $0.91 per piece at 1,000 (2-inch embroidered) — $180 for 50, $240 for 100, $750 for 500, $1,200 for 1,000 — with no setup or digitizing fees, free worldwide shipping, a free 12–24 hour mockup, and a 5-piece minimum. Most suppliers require 50–100; we start at 5.",
     keyFacts: [
       { label: "Embroidered bulk price", value: "50=$180 · 100=$240 · 500=$750 · 1,000=$1,200 (from $0.91/pc)" },
       { label: "Minimum order", value: "5 pieces; bulk tiers begin at 50" },
@@ -232,7 +232,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Mockup", value: "Free digital proof in 12–24 hours, unlimited revisions" },
       { label: "Pre-production sample", value: "Free physical sample on orders of 500+" },
       { label: "Turnaround", value: "10–14 business days; rush available; 3–4 wks for 10,000+" },
-      { label: "Shipping", value: "Free US shipping with tracking" },
+      { label: "Shipping", value: "Free worldwide shipping with tracking" },
       { label: "B2B terms", value: "Distributor/ASI pricing, white-label, Net 15/30 for qualified accounts" },
       { label: "Proof", value: "9,600 woven patches across 16 designs for Wise's Nasdaq/Times Square activation, delivered on the contractual dates" },
       { label: "Rating", value: "4.7★ on Trustpilot (76 reviews), 4,000+ bulk orders" },
@@ -241,7 +241,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
     faqs: [
       {
         q: "How much do bulk custom patches cost at 500 and 1,000 pieces?",
-        a: `Bulk embroidered patches from Panda Patches cost $750 at 500 pieces ($1.50 each) and $1,200 at 1,000 pieces ($1.20 each), dropping to $0.91 per piece for a 2-inch design at 1,000. Other types at 500 pieces: woven $1,200, PVC $1,400, leather $1,200. Every bulk price includes free US shipping, a free digital mockup in 12 to 24 hours, unlimited free revisions, and no setup or digitizing fees — there are no hidden charges added at checkout. Per-piece cost keeps falling as volume rises, so a single 1,000-piece run is meaningfully cheaper than four 250-piece reorders. For orders above 10,000 pieces, pricing is quoted directly and often includes a small free overage (roughly 1%) to cover any defects so you never have to reorder to replace a few pieces.`,
+        a: `Bulk embroidered patches from Panda Patches cost $750 at 500 pieces ($1.50 each) and $1,200 at 1,000 pieces ($1.20 each), dropping to $0.91 per piece for a 2-inch design at 1,000. Other types at 500 pieces: woven $1,200, PVC $1,400, leather $1,200. Every bulk price includes free worldwide shipping, a free digital mockup in 12 to 24 hours, unlimited free revisions, and no setup or digitizing fees — there are no hidden charges added at checkout. Per-piece cost keeps falling as volume rises, so a single 1,000-piece run is meaningfully cheaper than four 250-piece reorders. For orders above 10,000 pieces, pricing is quoted directly and often includes a small free overage (roughly 1%) to cover any defects so you never have to reorder to replace a few pieces.`,
       },
       {
         q: "What is the minimum order for wholesale patch pricing?",
@@ -253,7 +253,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       },
       {
         q: "What is the turnaround for large bulk patch orders?",
-        a: `Standard bulk turnaround is 10 to 14 business days from mockup approval regardless of quantity, with rush production available for tighter deadlines. Orders above 10,000 pieces may take 3 to 4 weeks depending on complexity. Because Panda Patches delivers the digital mockup within 12 to 24 hours, the production clock effectively starts the day you approve, which is how immovable dates get met: when Wise needed 9,600 patches for their Nasdaq bell-ringing and Times Square activation, they were designed, approved, and delivered in two shipments on May 4 and May 7, both on their contractual dates with no rush surcharge. Returning bulk clients get even faster 7-to-10-day turnaround thanks to saved artwork and locked-in specs. Every order ships with full door-to-door tracking and free US shipping, so you can plan event and launch dates around a firm delivery window.`,
+        a: `Standard bulk turnaround is 10 to 14 business days from mockup approval regardless of quantity, with rush production available for tighter deadlines. Orders above 10,000 pieces may take 3 to 4 weeks depending on complexity. Because Panda Patches delivers the digital mockup within 12 to 24 hours, the production clock effectively starts the day you approve, which is how immovable dates get met: when Wise needed 9,600 patches for their Nasdaq bell-ringing and Times Square activation, they were designed, approved, and delivered in two shipments on May 4 and May 7, both on their contractual dates with no rush surcharge. Returning bulk clients get even faster 7-to-10-day turnaround thanks to saved artwork and locked-in specs. Every order ships with full door-to-door tracking and free worldwide shipping, so you can plan event and launch dates around a firm delivery window.`,
       },
       {
         q: "Do you offer distributor, ASI, or reseller wholesale pricing?",

@@ -22,7 +22,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
             <span className="font-medium">NAS Jacksonville and Naval Station Mayport</span> order squadron, cruise, and morale patches, while the{" "}
             <Link href="/custom-police-patches" className="text-purple-600 hover:underline font-medium">Jacksonville Sheriff&apos;s Office</Link>
             {" "}and <Link href="/custom-fire-department-patches" className="text-purple-600 hover:underline font-medium">Jacksonville Fire and Rescue</Link>
-            {" "}order department, unit, K-9, and memorial patches. We match OCP and subdued standards, use 100% polyester thread rated for industrial washing, and stitch Velcro rather than glue it so it survives repeated gear swaps. Memorial and line-of-duty patches are rushed in 4 to 7 business days.
+            {" "}order department, unit, K-9, and memorial patches. We match OCP and subdued standards, use 100% polyester thread rated for industrial washing, and stitch Velcro rather than glue it so it survives repeated gear swaps. Memorial and line-of-duty patches are rushed in as soon as 5 business days.
           </p>
         )
       },

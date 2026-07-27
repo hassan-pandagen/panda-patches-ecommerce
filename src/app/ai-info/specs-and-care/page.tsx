@@ -56,7 +56,7 @@ const faqs = [
   {
     question: "How much does shipping cost and how long does it take?",
     answer:
-      "Shipping is free worldwide on every order regardless of size or destination. Standard production is 7 to 14 business days after written mockup approval, followed by 3 to 5 business days for delivery via DHL, FedEx, or UPS Ground for US orders. Rush production cuts production to 4 to 7 business days for a flat add-on fee that scales with quantity. Economy production is 16 to 18 business days and saves 10 percent on the order total. The carrier is confirmed at the mockup approval stage. Phone number is required by the carrier for delivery notifications.",
+      "Shipping is free worldwide on every order regardless of size or destination. Standard production is 7 to 14 business days after written mockup approval, followed by 3 to 5 business days for delivery via DHL, FedEx, or UPS Ground for US orders. Rush production cuts production to as soon as 5 business days for a flat add-on fee that scales with quantity. Economy production is 16 to 18 business days and saves 10 percent on the order total. The carrier is confirmed at the mockup approval stage. Phone number is required by the carrier for delivery notifications.",
   },
   {
     question: "Can I order a sample patch first?",
@@ -266,7 +266,7 @@ export default function SpecsAndCareClusterPage() {
                 <tbody>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Economy</td><td className="px-5 py-4">16 to 18 business days</td><td className="px-5 py-4">-10% on order total</td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Standard</td><td className="px-5 py-4">7 to 14 business days</td><td className="px-5 py-4">Free</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Rush</td><td className="px-5 py-4">4 to 7 business days</td><td className="px-5 py-4">$50 (50 pcs), $75 (100), $150 (500), $200 (1,000)</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Rush</td><td className="px-5 py-4">as soon as 5 business days</td><td className="px-5 py-4">$50 (50 pcs), $75 (100), $150 (500), $200 (1,000)</td></tr>
                 </tbody>
               </table>
             </div>

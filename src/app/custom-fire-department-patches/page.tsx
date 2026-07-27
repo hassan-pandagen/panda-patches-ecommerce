@@ -24,7 +24,7 @@ import { calculatePatchPrice } from "@/lib/pricingCalculator";
 const fireFAQs = [
   {
     question: "Can you rush memorial patches for a line-of-duty death?",
-    answer: "Yes, and we treat LODD memorial patches as our absolute highest priority. Send us the firefighter's name, badge number, station, and any design references and we start your mockup within hours. Rush production fulfills in 4-7 business days. We understand what these patches mean to a department and treat every detail accordingly."
+    answer: "Yes, and we treat LODD memorial patches as our absolute highest priority. Send us the firefighter's name, badge number, station, and any design references and we start your mockup within hours. Rush production fulfills in as soon as 5 business days. We understand what these patches mean to a department and treat every detail accordingly."
   },
   {
     question: "Do your patches survive fire station industrial washers?",
@@ -316,7 +316,7 @@ export default async function FireDepartmentPatchesPage() {
             </table>
           </div>
           <p className="text-xs text-gray-400 mt-3">
-            3&quot; embroidered patch, free US shipping included.{" "}
+            3&quot; embroidered patch, free worldwide shipping included.{" "}
             <a href="/how-much-do-custom-patches-cost-full-pricing-breakdown" className="text-panda-green underline">Full pricing breakdown &rarr;</a>
           </p>
         </div>

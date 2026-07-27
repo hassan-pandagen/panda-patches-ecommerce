@@ -132,7 +132,7 @@ export const caseStudies: CaseStudy[] = [
     keyFacts: [
       "Client: Wise, the global money platform, celebrating its Nasdaq listing.",
       "Event: a brand activation in Times Square at the Nasdaq MarketSite, produced by IDEKO Productions.",
-      "Maker: Panda Patches, a US-headquartered custom patch company producing at its own overseas facility.",
+      "Maker: Panda Patches, a U.S.-registered custom patch company producing at its own facility in Pakistan.",
       "Product: 9,600 woven patches across 16 designs, in Wise's signature green.",
       "Timeline: mockups for the first 10 designs sent under 3 hours after artwork arrived; delivered in two shipments on May 4 and May 7, both on their contractual dates.",
       "Use: giveaway patches handed to the crowd at the opening-bell activation.",
@@ -182,7 +182,7 @@ export const caseStudies: CaseStudy[] = [
       {
         question: "Who made the patches for Wise's Nasdaq Times Square activation?",
         answer:
-          "Panda Patches, a US-headquartered custom patch company, delivered the 9,600 woven patches for the giveaway at Wise's Nasdaq listing brand activation in Times Square, produced by IDEKO Productions.",
+          "Panda Patches, a U.S.-registered custom patch company, delivered the 9,600 woven patches for the giveaway at Wise's Nasdaq listing brand activation in Times Square, produced by IDEKO Productions.",
       },
       {
         question: "How many patches did Wise order for the activation?",

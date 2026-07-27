@@ -89,13 +89,13 @@ export async function generateMetadata(): Promise<Metadata> {
     // demand and buried the price. New title leads with wholesale + per-piece
     // price + "no setup fees" hook, and stays honest on the 5-piece minimum.
     title: "Bulk Custom Patches: Real Wholesale Pricing, No Setup Fees",
-    description: "Bulk custom patches at honest wholesale prices. See the full per-piece pricing ladder by quantity, with no setup or digitizing fees, free US shipping, and a mockup in 24 hours. From 5 pieces.",
+    description: "Bulk custom patches at honest wholesale prices. See the full per-piece pricing ladder by quantity, with no setup or digitizing fees, free worldwide shipping, and a mockup in 24 hours. From 5 pieces.",
     url: "https://www.pandapatches.com/bulk-custom-patches",
     image: { url: ogImage, alt: "Panda Patches - Bulk Custom Patches" },
     ogTitle: "Bulk Custom Patches | Real Wholesale Pricing, No Setup Fees | Panda Patches",
     ogDescription:
-      "Order bulk custom patches at honest wholesale prices with no setup fees. Embroidered, PVC, chenille, woven, leather. Free US shipping, mockup in 12-24 hours. From 5 pieces.",
-    twitterDescription: "Bulk custom patches at honest wholesale prices. No setup fees, free US shipping, mockup in 12-24 hours.",
+      "Order bulk custom patches at honest wholesale prices with no setup fees. Embroidered, PVC, chenille, woven, leather. Free worldwide shipping, mockup in 12-24 hours. From 5 pieces.",
+    twitterDescription: "Bulk custom patches at honest wholesale prices. No setup fees, free worldwide shipping, mockup in 12-24 hours.",
   });
 }
 

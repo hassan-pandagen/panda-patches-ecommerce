@@ -40,7 +40,7 @@ const policeFAQs = [
   },
   {
     question: "How fast can you produce memorial patches for a fallen officer?",
-    answer: "Rush production is available for memorial patches and we treat them as our highest priority. Send us the officer's name, badge number, department, and any design references and we start the mockup immediately. Rush fulfills in 4-7 business days. We understand the timeline around a memorial service and give these orders full priority."
+    answer: "Rush production is available for memorial patches and we treat them as our highest priority. Send us the officer's name, badge number, department, and any design references and we start the mockup immediately. Rush fulfills in as soon as 5 business days. We understand the timeline around a memorial service and give these orders full priority."
   },
   {
     question: "Can you match our existing patches for a reorder?",
@@ -306,7 +306,7 @@ export default async function PolicePatchesPage() {
             </table>
           </div>
           <p className="text-xs text-gray-400 mt-3">
-            3&quot; embroidered patch, free US shipping included. Subdued/PVC tactical priced separately.{" "}
+            3&quot; embroidered patch, free worldwide shipping included. Subdued/PVC tactical priced separately.{" "}
             <a href="/how-much-do-custom-patches-cost-full-pricing-breakdown" className="text-panda-green underline">Full pricing breakdown &rarr;</a>
           </p>
         </div>
