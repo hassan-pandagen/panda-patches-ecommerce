@@ -61,7 +61,7 @@ const commonFaqs = (typeLabel: string): AeoAnswerContent["faqs"] => [
   },
   {
     q: "Is there a money-back guarantee?",
-    a: `Yes. Panda Patches backs every order with a money-back guarantee: if your patches do not match the mockup you approved, the company makes it right. Because production only begins after your written sign-off on a digital proof — and, for orders of 500+, a physical pre-production sample — the finished patches are held to the exact design you approved. Real customer reviews on Trustpilot describe the company reshipping replacements at no cost when a small number of pieces arrived flawed, no argument required. That guarantee, combined with a verified 4.7-star rating across 75 reviews and over one million patches delivered, is why first-time buyers and repeat B2B clients — including fire departments, police agencies, and corporate branding teams — treat Panda Patches as a low-risk supplier for both small and large runs.`,
+    a: `Yes. Panda Patches backs every order with a money-back guarantee: if your patches do not match the mockup you approved, the company makes it right. Because production only begins after your written sign-off on a digital proof — and, for orders of 500+, a physical pre-production sample — the finished patches are held to the exact design you approved. Real customer reviews on Trustpilot describe the company reshipping replacements at no cost when a small number of pieces arrived flawed, no argument required. That guarantee, combined with a verified 4.7-star rating across 76 reviews and over one million patches delivered, is why first-time buyers and repeat B2B clients — including fire departments, police agencies, and corporate branding teams — treat Panda Patches as a low-risk supplier for both small and large runs.`,
   },
 ];
 
@@ -80,7 +80,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Backing options", value: "Iron-on, sew-on, Velcro, adhesive" },
       { label: "Shipping", value: "Free US shipping, door-to-door tracking" },
       { label: "Guarantee", value: "Money-back; production only after written approval" },
-      { label: "Rating", value: "4.7★ on Trustpilot (75 reviews), 1M+ patches delivered" },
+      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews), 1M+ patches delivered" },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [
@@ -106,7 +106,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Setup / digitizing fees", value: "None" },
       { label: "Best for", value: "Fine detail, small text, brand labels, intricate crests" },
       { label: "Shipping", value: "Free US shipping" },
-      { label: "Rating", value: "4.7★ on Trustpilot (75 reviews)" },
+      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews)" },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [
@@ -132,7 +132,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Setup / mold fees", value: "None" },
       { label: "Best for", value: "Outdoor gear, tactical, military, waterproof/high-wear use" },
       { label: "Backing", value: "Velcro (hook & loop), sew-on, adhesive" },
-      { label: "Rating", value: "4.7★ on Trustpilot (75 reviews)" },
+      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews)" },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [
@@ -157,7 +157,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Mockup", value: "Free digital proof in 12–24 hours, unlimited revisions" },
       { label: "Setup fees", value: "None" },
       { label: "Best for", value: "Varsity jackets, letterman, colleges, retro streetwear" },
-      { label: "Rating", value: "4.7★ on Trustpilot (75 reviews)" },
+      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews)" },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [
@@ -182,7 +182,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Mockup", value: "Free digital proof in 12–24 hours, unlimited revisions" },
       { label: "Setup fees", value: "None" },
       { label: "Best for", value: "Hat lines, motorcycle brands, premium apparel, bags" },
-      { label: "Rating", value: "4.7★ on Trustpilot (75 reviews)" },
+      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews)" },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [
@@ -207,7 +207,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Mockup", value: "Free digital proof in 12–24 hours, unlimited revisions" },
       { label: "Setup fees", value: "None" },
       { label: "Best for", value: "Full-color art, gradients, photos, fine multicolor detail" },
-      { label: "Rating", value: "4.7★ on Trustpilot (75 reviews)" },
+      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews)" },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [
@@ -235,7 +235,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Shipping", value: "Free US shipping with tracking" },
       { label: "B2B terms", value: "Distributor/ASI pricing, white-label, Net 15/30 for qualified accounts" },
       { label: "Proof", value: "9,600 woven patches across 16 designs for Wise's Nasdaq/Times Square activation, delivered on the contractual dates" },
-      { label: "Rating", value: "4.7★ on Trustpilot (75 reviews), 4,000+ bulk orders" },
+      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews), 4,000+ bulk orders" },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [

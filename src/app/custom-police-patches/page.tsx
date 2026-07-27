@@ -36,7 +36,7 @@ const policeFAQs = [
   },
   {
     question: "Can we order small quantities for a K-9 team or special unit?",
-    answer: "Yes, low 5-piece minimum. K-9 units of 4-6 handlers, SWAT teams, detective divisions, and small specialized units regularly order 10-25 patches from us. Per-piece pricing improves at 50+, 100+, and 500+, but small unit orders at any quantity are completely normal for us."
+    answer: "Yes, low 5-piece minimum. K-9 units of 4-6 handlers, SWAT teams, detective divisions, and small specialized units regularly order 10-25 patches from us. Per-piece pricing improves at 50+, 100+, and 500+, but small unit orders at any size are completely normal for us."
   },
   {
     question: "How fast can you produce memorial patches for a fallen officer?",

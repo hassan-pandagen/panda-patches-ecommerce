@@ -59,7 +59,7 @@ const sportsFAQs = [
   },
   {
     question: "Where can I get custom patches for school spirit wear with a low minimum order?",
-    answer: "Panda Patches offers custom school spirit patches with a low 5-piece minimum. Order embroidered, chenille, woven, PVC, or leather patches with no setup fees, no digitizing fees, and a digital mockup delivered in 12 to 24 hours. Production starts only after you approve the design. Standard delivery is 7-14 business days with free worldwide shipping. Whether you need patches for a single class, a club of 20, or a full school of 500, we handle any quantity at the same quality."
+    answer: "Panda Patches offers custom school spirit patches with a low 5-piece minimum. Order embroidered, chenille, woven, PVC, or leather patches with no setup fees, no digitizing fees, and a digital mockup delivered in 12 to 24 hours. Production starts only after you approve the design. Standard delivery is 7-14 business days with free worldwide shipping. Whether you need patches for a single class, a club of 20, or a full school of 500, we handle any order size at the same quality."
   },
   {
     question: "What types of patches work best for school spirit wear?",

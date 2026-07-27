@@ -35,7 +35,7 @@ export default function TrustpilotRatingLine({
       <p className={`text-[0.75rem] font-bold ${baseColor} ${className}`}>
         <span className="font-black">{TRUSTPILOT_RATING}/5</span>{" "}
         <span className="font-semibold text-gray-500">
-          on Trustpilot. {TRUSTPILOT_REVIEW_COUNT_STR}+ reviews.
+          on Trustpilot. {TRUSTPILOT_REVIEW_COUNT_STR} reviews.
         </span>{" "}
         <a
           href={TRUSTPILOT_PROFILE_URL}
@@ -54,7 +54,7 @@ export default function TrustpilotRatingLine({
       Rated{" "}
       <span className="font-black">{TRUSTPILOT_RATING}/5</span>{" "}
       by{" "}
-      <span className="font-black">{TRUSTPILOT_REVIEW_COUNT_STR}+</span>{" "}
+      <span className="font-black">{TRUSTPILOT_REVIEW_COUNT_STR}</span>{" "}
       customers on{" "}
       <a
         href={TRUSTPILOT_PROFILE_URL}

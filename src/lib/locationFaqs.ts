@@ -388,7 +388,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can San Francisco queer community organizations and Pride events order patches?",
-      answer: "Absolutely and enthusiastically. San Francisco's LGBTQ+ community and the annual Pride celebration generate strong demand for custom patches as wearable identity expression. We produce patches in any design, colorway, and size without restrictions. Community organizations, advocacy groups, and Pride event organizers are welcome to order in any quantity with full design freedom."
+      answer: "Absolutely and enthusiastically. San Francisco's LGBTQ+ community and the annual Pride celebration generate strong demand for custom patches as wearable identity expression. We produce patches in any design, colorway, and size without restrictions. Community organizations, advocacy groups, and Pride event organizers are welcome to order at any size with full design freedom."
     },
     {
       question: "How quickly can custom patches reach the San Francisco Bay Area?",

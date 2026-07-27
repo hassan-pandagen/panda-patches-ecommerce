@@ -22,7 +22,7 @@ export default async function AboutContent() {
   const sections = about?.textSections || [
     {
       heading: "More Than Just Patches, We're Patch Partners!",
-      description: "Welcome to Panda Patches, where we are more than just patch makers – we are your patch partners. For over 8 years, we have woven brand stories into the hearts of customers worldwide. Trusted by businesses, teams, and organizations, we craft top-quality custom patches that leave a lasting impression."
+      description: "Welcome to Panda Patches, where we are more than just patch makers – we are your patch partners. Drawing on our founder's 13 years in custom patch manufacturing, we weave brand stories into the hearts of customers worldwide. Trusted by businesses, teams, and organizations, we craft top-quality custom patches that leave a lasting impression."
     },
     {
       heading: "Rooted in Expertise, Stitched with Dedication",

@@ -28,7 +28,7 @@ const corporateFAQs = [
   },
   {
     question: "Where can I order custom patches for company uniforms?",
-    answer: "Panda Patches makes custom patches for company uniforms in any quantity from 5 to 50,000+ pieces. Embroidered patches start at about $3.92 per piece for 50 pieces and drop to $1.05 per piece at 1,000 pieces. Variable name and location patches are supported for franchise uniforms and multi-location employee programs. Free artwork, free Pantone matching to your brand guide, free worldwide shipping, no setup fees, formal PO invoicing accepted, Net 15 and Net 30 terms for established accounts. Email lance@pandapatches.com for corporate procurement details."
+    answer: "Panda Patches makes custom patches for company uniforms from 5 to 50,000+ pieces. Embroidered patches start at about $3.92 per piece for 50 pieces and drop to $1.05 per piece at 1,000 pieces. Variable name and location patches are supported for franchise uniforms and multi-location employee programs. Free artwork, free Pantone matching to your brand guide, free worldwide shipping, no setup fees, formal PO invoicing accepted, Net 15 and Net 30 terms for established accounts. Email lance@pandapatches.com for corporate procurement details."
   },
   {
     question: "Where can I order wholesale custom patches for corporate branding?",

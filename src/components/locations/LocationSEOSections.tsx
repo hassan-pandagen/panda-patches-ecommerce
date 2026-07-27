@@ -319,7 +319,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Bay Area Tech and Startup Patches",
         content: (
           <p className="text-[1.0625rem] leading-[1.8] text-gray-600">
-            San Francisco's tech industry uses custom patches for team identity, company swag, and hackathon merchandise. Startups order patches for employee onboarding kits. Larger tech companies order them for team offsites, internal events, and branded jackets. We also serve SF's vibrant food scene (restaurant uniforms), its cycling community (club patches), and nonprofit organizations across the Bay Area. Our minimum of 50 pieces fits the startup model, and our <Link href="/bulk-custom-patches" className="text-purple-600 hover:underline font-medium">bulk pricing</Link> scales for larger companies.
+            San Francisco's tech industry uses custom patches for team identity, company swag, and hackathon merchandise. Startups order patches for employee onboarding kits. Larger tech companies order them for team offsites, internal events, and branded jackets. We also serve SF's vibrant food scene (restaurant uniforms), its cycling community (club patches), and nonprofit organizations across the Bay Area. Our low 5-piece minimum fits the startup model, and our <Link href="/bulk-custom-patches" className="text-purple-600 hover:underline font-medium">bulk pricing</Link> scales for larger companies.
           </p>
         )
       },
@@ -434,7 +434,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Keep Austin Patched",
         content: (
           <p className="text-[1.0625rem] leading-[1.8] text-gray-600">
-            Austin's creative energy makes it one of the most active patch markets in Texas. Music venues on Sixth Street order patches for staff and merchandise. Tech companies along the I-35 corridor use patches for team swag and onboarding kits. Food trucks and indie brands across East Austin use patches as core brand elements. We serve Austin's creative economy with patches that match the city's independent spirit. Minimum 50 pieces, free design, free shipping.
+            Austin's creative energy makes it one of the most active patch markets in Texas. Music venues on Sixth Street order patches for staff and merchandise. Tech companies along the I-35 corridor use patches for team swag and onboarding kits. Food trucks and indie brands across East Austin use patches as core brand elements. We serve Austin's creative economy with patches that match the city's independent spirit. Low 5-piece minimum, free design, free shipping.
           </p>
         )
       },
