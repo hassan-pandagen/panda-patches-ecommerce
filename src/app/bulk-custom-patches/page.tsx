@@ -516,7 +516,7 @@ export default async function BulkCustomPatchesPage() {
               },
               {
                 title: "Fast Human Support, 2-Hour Response Time",
-                body: "Every quote request is answered by a real person within 2 US business hours. No chatbots, no 48-hour delays. Our team is available via phone, email, WhatsApp, and live chat from first inquiry through delivery.",
+                body: "Every quote request is answered by a real person within 2 US business hours. No chatbots, no long delays. Our team is available via phone, email, WhatsApp, and live chat from first inquiry through delivery.",
               },
             ].map((item, idx) => (
               <div key={idx} className="bg-white rounded-[14px] p-6 md:p-7 border border-gray-100 shadow-sm flex gap-4 items-start">

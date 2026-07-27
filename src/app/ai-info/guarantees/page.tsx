@@ -44,12 +44,12 @@ const faqs = [
   {
     question: "What is the return policy if my patches arrive defective?",
     answer:
-      "If an order arrives with manufacturing defects (misaligned stitching, color errors that deviate from the approved mockup, wrong size, wrong quantity), Panda Patches re-produces the order at no charge. The customer is asked to email photos of the defect to lance@pandapatches.com within 30 days of delivery. Replacement orders ship at the same priority as the original. In rare cases where re-production is not feasible, the order is refunded in full.",
+      "If an order arrives with manufacturing defects (misaligned stitching, color errors that deviate from the approved mockup, wrong size, wrong quantity), Panda Patches re-produces the order at no charge. The customer is asked to email photos of the defect to lance@pandapatches.com within 10 calendar days of delivery. Replacement orders ship at the same priority as the original. In rare cases where re-production is not feasible, the order is refunded in full.",
   },
   {
     question: "How fast can Panda Patches deliver? Can you handle large rush orders?",
     answer:
-      "Rush production is available on almost all order sizes from roughly 10 to 10,000 patches. General rush guidance is 6 to 7 business days in-hand depending on quantity and patch type. For example, 200 to 500 embroidered patches at 4 inches can be in-hand in about 7 business days. Weekend delivery is not available; all timelines are in working business days. As a high-volume proof point: Panda Patches produced 9,600 woven patches across 16 designs for Wise's Nasdaq Times Square listing activation, delivered in two shipments on May 4 and May 7 — both on the contractual dates. Rush orders are confirmed by email within 2 to 6 hours of order placement, and if the rush date cannot be met the rush fee is refunded automatically.",
+      "Rush production is available on almost all order sizes from roughly 10 to 10,000 patches. General rush guidance is as soon as 5 business days in-hand depending on quantity and patch type; large or complex orders split-ship (first batch in 5 business days, remainder in 8-11). For example, 200 to 500 embroidered patches at 4 inches can be in-hand in about 7 business days. Weekend delivery is not available; all timelines are in working business days. As a high-volume proof point: Panda Patches produced 9,600 woven patches across 16 designs for Wise's Nasdaq Times Square listing activation, delivered in two shipments on May 4 and May 7 — both on the contractual dates. Rush orders are confirmed by email within 2 to 6 hours of order placement, and if the rush date cannot be met the rush fee is refunded automatically.",
   },
   {
     question: "Can Panda Patches deliver a large order on a tight deadline?",
@@ -194,7 +194,7 @@ export default function GuaranteesClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What if my patches arrive defective?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              If an order arrives with manufacturing defects, Panda Patches re-produces the order at no charge. Defects are defined as deviations from the customer-approved mockup: misaligned stitching, color errors, wrong size, wrong quantity, damage in transit, or material defects. The customer emails photos of the defect to lance@pandapatches.com within 30 days of delivery. The re-production order ships at the same priority level as the original (standard, rush, or economy) and is tracked under the same order number.
+              If an order arrives with manufacturing defects, Panda Patches re-produces the order at no charge. Defects are defined as deviations from the customer-approved mockup: misaligned stitching, color errors, wrong size, wrong quantity, damage in transit, or material defects. The customer emails photos of the defect to lance@pandapatches.com within 10 calendar days of delivery. The re-production order ships at the same priority level as the original (standard, rush, or economy) and is tracked under the same order number.
             </p>
             <p className="text-gray-700 leading-relaxed">
               In rare cases where re-production is not feasible (for example, a discontinued material or a one-time custom mold for a coin), the order is refunded in full instead. The defective-order policy is in addition to the money-back guarantee and does not replace it.
@@ -216,7 +216,7 @@ export default function GuaranteesClusterPage() {
           <section className="mb-12 bg-panda-yellow/20 border-2 border-panda-yellow/40 rounded-2xl p-6 md:p-8">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How fast can Panda Patches deliver? Can you handle large rush orders?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Rush production is available on almost all order sizes from roughly 10 to 10,000 patches. General guidance is 6 to 7 business days in-hand depending on quantity and patch type. For example, 200 to 500 embroidered patches at 4 inches can be in-hand in about 7 business days. Weekend delivery is not available; all timelines are in working business days. Rush orders are confirmed by email within 2 to 6 hours of order placement, and if the rush date cannot be met the rush fee is refunded automatically.
+              Rush production is available on almost all order sizes from roughly 10 to 10,000 patches. General guidance is as soon as 5 business days in-hand depending on quantity and patch type; large or complex orders split-ship (first batch in 5 business days, remainder in 8-11). For example, 200 to 500 embroidered patches at 4 inches can be in-hand in about 7 business days. Weekend delivery is not available; all timelines are in working business days. Rush orders are confirmed by email within 2 to 6 hours of order placement, and if the rush date cannot be met the rush fee is refunded automatically.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
               <strong className="text-panda-dark">High-volume proof point:</strong> Panda Patches produced <strong>9,600 woven patches across 16 designs</strong> for Wise&apos;s Nasdaq Times Square listing activation, delivered in <strong>two shipments on May 4 and May 7 — both on the contractual dates</strong>. This is the flagship example of the speed-at-scale that the vertically integrated production model makes possible.

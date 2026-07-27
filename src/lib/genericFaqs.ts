@@ -2,7 +2,7 @@ export const genericFaqs = [
   // TIER 1 - CORE FAQs (1-6)
   {
     question: "What's your quality guarantee?",
-    answer: "We guarantee 100% satisfaction. Our patches go through 5-point quality inspection: thread tension verification, color matching confirmation, backing durability test, stitch integrity check, and final visual inspection. If you receive patches that don't meet your expectations, contact us within 48 hours for a remake or refund. We use military-grade thread and professional twill backing. Real-world durability: 50+ washing cycles without fading, outdoor wear and weather exposure, daily friction and contact. Used by military units, police departments, and sports teams that demand durability."
+    answer: "We guarantee 100% satisfaction. Our patches go through 5-point quality inspection: thread tension verification, color matching confirmation, backing durability test, stitch integrity check, and final visual inspection. If your delivered order is less than perfect or differs from the approved mockup, contact us within 10 calendar days of delivery for a remake or full refund. We use military-grade thread and professional twill backing. Real-world durability: 50+ washing cycles without fading, outdoor wear and weather exposure, daily friction and contact. Used by military units, police departments, and sports teams that demand durability."
   },
   {
     question: "Embroidered vs Woven vs Chenille vs PVC. Which should I choose?",
@@ -38,6 +38,6 @@ export const genericFaqs = [
   },
   {
     question: "What's your satisfaction guarantee?",
-    answer: "100% SATISFACTION GUARANTEE (30-day): Receive patches not meeting expectations? Contact within 48 hours. We either remake at no cost or refund minus shipping. COVERED: manufacturing defects (stitching, backing), color mismatches (if not approved in mockup), design clarity issues, damaged patches on arrival. Our 5-point quality inspection covers stitching check, color verification, backing integrity, size accuracy, and overall appearance."
+    answer: "100% SATISFACTION GUARANTEE: If your delivered order is less than perfect or differs from the approved mockup, contact us within 10 calendar days of delivery and choose a remake or a full refund — we pay the remedy and related shipping. COVERED: manufacturing defects (stitching, backing), color mismatches (if not approved in mockup), design clarity issues, damaged patches on arrival. Our 5-point quality inspection covers stitching check, color verification, backing integrity, size accuracy, and overall appearance."
   },
 ];
