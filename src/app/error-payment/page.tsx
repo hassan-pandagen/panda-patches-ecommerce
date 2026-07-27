@@ -79,7 +79,7 @@ export default function PaymentErrorPage() {
           {/* Contact Info */}
           <div className="bg-white rounded-xl p-6 mb-8 border border-gray-200">
             <h3 className="font-bold text-lg text-panda-dark mb-2">Need Help?</h3>
-            <p className="text-gray-600 mb-3">Our team is available 24/7</p>
+            <p className="text-gray-600 mb-3">Phone support: Monday&ndash;Saturday, 11am&ndash;7pm ET</p>
             <div className="space-y-2 text-sm">
               <div className="flex items-center justify-center gap-2 text-gray-700">
                 <Mail size={16} />

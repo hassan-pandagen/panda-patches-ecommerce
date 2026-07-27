@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 import TrackedEmailLink from "@/components/TrackedEmailLink";
+import { SUPPORT_HOURS_PHONE, SUPPORT_HOURS_EMAIL } from "@/lib/factConstants";
 import { getStoredAttribution } from "@/lib/clientAttribution";
 import { trackLead } from "@/lib/ga4";
 import { trackGoogleAdsLead } from "@/lib/googleAds";
@@ -200,9 +201,11 @@ export default function ContactHero() {
 
             {/* Hours */}
             <div>
-              <h3 className="text-xl font-bold text-panda-dark mb-2">We&apos;re Open</h3>
-              <p className="text-gray-600 mb-1">Our support team is here to help</p>
-              <p className="text-gray-900 font-bold">Every day, 11am&ndash;7pm ET</p>
+              <h3 className="text-xl font-bold text-panda-dark mb-2">Support Hours</h3>
+              <p className="text-gray-600 mb-1">Phone</p>
+              <p className="text-gray-900 font-bold mb-2">{SUPPORT_HOURS_PHONE}</p>
+              <p className="text-gray-600 mb-1">Email</p>
+              <p className="text-gray-900 font-bold">{SUPPORT_HOURS_EMAIL}</p>
             </div>
 
           </div>

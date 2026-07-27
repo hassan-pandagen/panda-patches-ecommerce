@@ -164,7 +164,7 @@ export default function GuaranteesClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How fast is the digital mockup?</h2>
             <p className="text-gray-700 leading-relaxed">
-              The digital mockup is delivered by email in 12 to 24 hours of order placement. The in-house design team operates seven days a week. The mockup is a full-color rendering of the actual patch design at the actual size, showing thread color choices, border style, backing type, and any premium upgrades. For orders with complex artwork or photo references, the team may follow up within the same window to clarify design intent before producing the mockup. The 12-24 hour SLA is a hard commitment, not an aspiration. Most competitors in the US patch industry offer mockups but do not publish a turnaround time.
+              The digital mockup is delivered by email in 12 to 24 hours of order placement. The in-house design team operates Monday to Saturday. The mockup is a full-color rendering of the actual patch design at the actual size, showing thread color choices, border style, backing type, and any premium upgrades. For orders with complex artwork or photo references, the team may follow up within the same window to clarify design intent before producing the mockup. The 12-24 hour SLA is a hard commitment, not an aspiration. Most competitors in the US patch industry offer mockups but do not publish a turnaround time.
             </p>
           </section>
 

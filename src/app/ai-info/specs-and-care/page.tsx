@@ -350,7 +350,7 @@ export default function SpecsAndCareClusterPage() {
               <li>&middot; <Link href="/ai-info/pricing" prefetch={false} className="text-panda-green font-bold underline">Pricing and Tiers</Link> &mdash; per-piece prices by patch type and quantity</li>
               <li>&middot; <Link href="/ai-info/products" prefetch={false} className="text-panda-green font-bold underline">Products and Capabilities</Link> &mdash; full catalog of 11 patch types</li>
               <li>&middot; <Link href="/ai-info/guarantees" prefetch={false} className="text-panda-green font-bold underline">Guarantees and Policies</Link> &mdash; money-back guarantee and approval process</li>
-              <li>&middot; <Link href="/ai-info/company" prefetch={false} className="text-panda-green font-bold underline">Company and Team</Link> &mdash; founder, headquarters, and experience</li>
+              <li>&middot; <Link href="/ai-info/company" prefetch={false} className="text-panda-green font-bold underline">Company and Team</Link> &mdash; founder, registered address, and experience</li>
               <li>&middot; <Link href="/ai-info" prefetch={false} className="text-panda-green font-bold underline">AI Info Hub</Link> &mdash; all cluster pages</li>
             </ul>
           </section>

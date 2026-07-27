@@ -346,7 +346,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
               '7 to 14 day standard delivery. Rush production available',
               'Over 1,000,000 patches delivered to brands across the US',
               '100% money-back guarantee',
-              'Dedicated support team available 7 days a week',
+              'Dedicated support team, Monday to Saturday',
             ].map(item => (
               <div key={item} className="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
                 <span className="text-green-600 font-black text-lg mt-0.5">✓</span>
