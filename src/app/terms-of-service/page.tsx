@@ -108,9 +108,9 @@ export default function TermsOfServicePage() {
             <h2 className="text-[1.625rem] font-black text-panda-dark mb-4">6. Shipping and Delivery</h2>
             <ul className="list-disc pl-6 space-y-2 text-[1rem] leading-[1.8]">
               <li>We ship to all 50 US states, Canada, United Kingdom, Australia, and internationally.</li>
-              <li>Shipping costs are calculated at checkout based on weight, destination, and carrier.</li>
+              <li>Shipping is free worldwide on every order (DDP &mdash; delivered duty paid). There are no shipping charges at checkout, and any import duties are prepaid by Panda Patches.</li>
               <li>Delivery times are estimates and not guaranteed. We are not responsible for carrier delays.</li>
-              <li>Risk of loss transfers to you upon handover to the carrier.</li>
+              <li>Because orders ship DDP, Panda Patches bears the risk of loss until your order is delivered to your address.</li>
               <li>We provide tracking information for all shipments.</li>
               <li>If a package is lost in transit, we will work with the carrier to resolve the issue.</li>
             </ul>
@@ -127,7 +127,7 @@ export default function TermsOfServicePage() {
               Because all products are custom-manufactured to your specifications, once production has begun <strong>we do
               not accept returns or offer refunds</strong> unless the error is ours.
             </p>
-            <p className="text-[1rem] leading-[1.8] mb-3 font-semibold">We will replace or refund your order if:</p>
+            <p className="text-[1rem] leading-[1.8] mb-3 font-semibold">If your delivered order is less than perfect or differs from the approved mockup, you may choose a remake or a full refund, at no cost to you &mdash; we cover the remedy and its shipping. This applies if:</p>
             <ul className="list-disc pl-6 space-y-2 text-[1rem] leading-[1.8] mb-4">
               <li>Products are significantly different from the approved mockup</li>
               <li>Products arrive damaged or defective</li>
@@ -141,7 +141,7 @@ export default function TermsOfServicePage() {
               <li>Minor size variations within ±5% of specified dimensions</li>
             </ul>
             <p className="text-[1rem] leading-[1.8] mt-4">
-              To request a replacement, contact us within <strong>14 days of delivery</strong> at{" "}
+              To request a remake or full refund, contact us within <strong>10 calendar days of delivery</strong> at{" "}
               <a href="mailto:sales@pandapatches.com" className="text-panda-dark font-semibold underline">sales@pandapatches.com</a>{" "}
               with photos of the issue.
             </p>
