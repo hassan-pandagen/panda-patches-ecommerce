@@ -94,53 +94,10 @@ const hubSchema = {
         "description": p.description,
       })),
     },
-    {
-      "@type": "Organization",
-      "@id": "https://www.pandapatches.com/#organization",
-      "name": "Panda Patches",
-      "legalName": "MC Patches LLC",
-      "alternateName": ["Panda Patches LLC", "MC Patches"],
-      "url": "https://www.pandapatches.com",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.pandapatches.com/assets/logo-panda.webp",
-        "width": 750,
-        "height": 750,
-      },
-      "image": "https://www.pandapatches.com/assets/logo-panda.webp",
-      "description": "Custom patch company founded by Imran Raza on 13 years of patch manufacturing experience. U.S.-registered in Austin, Texas with customer support available on US business hours (Monday to Saturday). Produces embroidered, PVC, woven, chenille, leather, and printed patches for small businesses, sports teams, first responders, military units, streetwear brands, and Fortune 500 corporations.",
-      "email": "sales@pandapatches.com",
-      "telephone": "+1-302-250-4340",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "701 Tillery St Ste 12",
-        "addressLocality": "Austin",
-        "addressRegion": "TX",
-        "postalCode": "78702",
-        "addressCountry": "US",
-      },
-      "areaServed": "Worldwide",
-      "priceRange": "$0.91 to $20 per piece (qty- and size-dependent)",
-      "founder": {
-        "@type": "Person",
-        // Same @id as the global entity graph (schemas.ts PERSON_ID) — a second
-        // id here split the founder into two entities (schema audit P2).
-        "@id": "https://www.pandapatches.com/#person/imran-raza",
-        "name": "Imran Raza",
-        "jobTitle": "Founder and CEO",
-        "url": "https://www.pandapatches.com/about",
-        "sameAs": ["https://www.linkedin.com/in/imran-raza-ladhani/"],
-      },
-      "sameAs": [
-        "https://www.facebook.com/pandapatchesofficial",
-        "https://www.instagram.com/pandapatchesofficial",
-        "https://www.linkedin.com/company/pandapatchesofficial",
-        "https://www.tiktok.com/@pandapatchesofficial",
-        "https://www.youtube.com/@PandaPatchesOfficial",
-        "https://www.crunchbase.com/organization/panda-patches",
-        "https://www.behance.net/imranraza1",
-      ],
-    },
+    // Organization is declared ONCE globally (generateEntityGraph, root layout,
+    // @id #organization). §1.1: reference it by @id (the FAQPage above does via
+    // about/mainEntity) — do NOT redefine it here. The old inline duplicate
+    // carried conflicting areaServed/priceRange under the same @id; removed.
   ],
 };
 

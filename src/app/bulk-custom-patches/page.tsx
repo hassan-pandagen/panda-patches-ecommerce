@@ -115,7 +115,7 @@ const productSchema = {
     "@type": "MerchantReturnPolicy",
     applicableCountry: "US",
     returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
-    merchantReturnDays: 30,
+    merchantReturnDays: 10,
     returnMethod: "https://schema.org/ReturnByMail",
     returnFees: "https://schema.org/FreeReturn",
   },
@@ -127,11 +127,10 @@ const productSchema = {
     offerCount: "4",
     availability: "https://schema.org/InStock",
     itemCondition: "https://schema.org/NewCondition",
-    priceValidUntil: "2027-01-01",
     shippingDetails: {
       "@type": "OfferShippingDetails",
       shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" },
-      shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" },
+      shippingDestination: [{ "@type": "DefinedRegion", addressCountry: "US" }, { "@type": "DefinedRegion", addressCountry: "CA" }, { "@type": "DefinedRegion", addressCountry: "GB" }, { "@type": "DefinedRegion", addressCountry: "AU" }],
       deliveryTime: {
         "@type": "ShippingDeliveryTime",
         handlingTime: { "@type": "QuantitativeValue", minValue: 10, maxValue: 14, unitCode: "DAY" },

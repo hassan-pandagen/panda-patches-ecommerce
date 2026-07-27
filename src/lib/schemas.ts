@@ -115,8 +115,7 @@ export function generateOrganizationSchema() {
       "https://www.youtube.com/@PandaPatchesOfficial",
       "https://www.tiktok.com/@pandapatchesofficial",
       "https://www.provenexpert.com/en-us/panda-patches/",
-      "https://www.yelp.com/biz/panda-patches",
-      "https://maps.app.goo.gl/i5yZ6n2wUMJVAdUb7"
+      "https://www.yelp.com/biz/panda-patches"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
@@ -125,20 +124,6 @@ export function generateOrganizationSchema() {
       "email": "sales@pandapatches.com",
       "availableLanguage": ["English"],
       "areaServed": ["US", "CA", "GB", "AU"]
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-      ],
-      "opens": "11:00",
-      "closes": "19:00"
     }
   };
 }
@@ -521,7 +506,6 @@ export function generateProductSchema(params: ProductSchemaParams) {
       "offerCount": pricingTiers.length.toString(),
       "availability": `https://schema.org/${schemaAvailability}`,
       "url": url,
-      "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
       "offers": pricingTiers.map((tier, index) => ({
         "@type": "Offer",
         "price": tier.unitPrice.toFixed(2),
@@ -762,34 +746,9 @@ export function generateHowToSchema() {
 }
 
 // ============================================
-// 11. WEBSITE SCHEMA (global - for layout.tsx)
+// 11. (removed) WEBSITE SCHEMA — was dead code carrying a nonfunctional
+// SearchAction (§1.1). The live WebSite node lives in generateEntityGraph.
 // ============================================
-
-export function generateWebSiteSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Panda Patches",
-    "url": "https://www.pandapatches.com",
-    "description": "Custom embroidered patches, iron-on patches, PVC patches with low minimums, free design services, and fast 7-14 day delivery.",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://www.pandapatches.com/custom-patches?search={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Panda Patches",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.pandapatches.com/assets/logo-panda.svg"
-      }
-    }
-  };
-}
 
 // ============================================
 // 12. SERVICE SCHEMA (for Free Design Service)

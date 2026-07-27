@@ -109,7 +109,6 @@ const productSchema = {
     offerCount: "3",
     availability: "https://schema.org/InStock",
     itemCondition: "https://schema.org/NewCondition",
-    priceValidUntil: "2027-01-01",
   },
 };
 

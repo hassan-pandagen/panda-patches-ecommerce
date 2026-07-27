@@ -267,11 +267,10 @@ export function getPatchStyleProductSchema(slug: string, styleName: string) {
       "offerCount": data.offerCount,
       "availability": "https://schema.org/InStock",
       "itemCondition": "https://schema.org/NewCondition",
-      "priceValidUntil": "2027-01-01",
       "shippingDetails": {
         "@type": "OfferShippingDetails",
         "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
-        "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
+        "shippingDestination": [{ "@type": "DefinedRegion", "addressCountry": "US" }, { "@type": "DefinedRegion", "addressCountry": "CA" }, { "@type": "DefinedRegion", "addressCountry": "GB" }, { "@type": "DefinedRegion", "addressCountry": "AU" }],
         "deliveryTime": {
           "@type": "ShippingDeliveryTime",
           "handlingTime": { "@type": "QuantitativeValue", "minValue": 7, "maxValue": 14, "unitCode": "DAY" },
@@ -285,7 +284,6 @@ export function getPatchStyleProductSchema(slug: string, styleName: string) {
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
         "itemCondition": "https://schema.org/NewCondition",
-        "priceValidUntil": "2027-01-01",
       })),
     },
   };

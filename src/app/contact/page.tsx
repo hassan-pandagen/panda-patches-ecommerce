@@ -9,7 +9,6 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "Contact", url: "https://www.pandapatches.com/contact" },
 ]);
 import ContactHero from "@/components/contact/ContactHero";
-import MapSection from "@/components/contact/MapSection";
 import Promises from "@/components/home/Promises";
 import PickPatch from "@/components/about/PickPatch";
 
@@ -48,9 +47,6 @@ export default function ContactPage() {
       {/* 3. Pick Your Patch (Reused) */}
       <PickPatch />
 
-      {/* 4. Map Section */}
-      <MapSection />
-      
       <Footer />
     </main>
   );

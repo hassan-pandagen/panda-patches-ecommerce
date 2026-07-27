@@ -64,15 +64,14 @@ function buildProductSchema(
         '@type': 'MerchantReturnPolicy',
         applicableCountry: 'US',
         returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-        merchantReturnDays: 30,
+        merchantReturnDays: 10,
       },
       shippingDetails: {
         '@type': 'OfferShippingDetails',
         shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'USD' },
-        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' },
+        shippingDestination: [{ '@type': 'DefinedRegion', addressCountry: 'US' }, { '@type': 'DefinedRegion', addressCountry: 'CA' }, { '@type': 'DefinedRegion', addressCountry: 'GB' }, { '@type': 'DefinedRegion', addressCountry: 'AU' }],
         deliveryTime: {
           '@type': 'ShippingDeliveryTime',
-          businessDays: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] },
           cutoffTime: '17:00:00-06:00',
           handlingTime: { '@type': 'QuantitativeValue', minValue: 7, maxValue: 14 },
           transitTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 3 },
