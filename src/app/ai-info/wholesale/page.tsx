@@ -60,7 +60,7 @@ const faqs = [
   {
     question: "What does patch wholesale cost per unit?",
     answer:
-      "Wholesale per-unit cost is the retail from-price with the partner tier discount applied. At the 2\" x 2\", 1,000-piece retail basis (embroidered $0.91, PVC or woven $1.54), Starter tier (10% off) lands at $0.82 embroidered / $1.39 PVC-or-woven, Growth (13% off) at $0.79 / $1.34, Scale (15% off) at $0.77 / $1.31, and Volume (18% off) at $0.75 / $1.26. Actual invoice price varies with patch size, quantity, and backing.",
+      "Wholesale per-unit cost is the retail from-price with the partner tier discount applied. At the 2\" x 2\", 1,000-piece retail basis (embroidered $0.91, woven $1.54; PVC $1.40), Starter tier (10% off) lands at $0.82 embroidered / $1.39 woven, Growth (13% off) at $0.79 / $1.34, Scale (15% off) at $0.77 / $1.31, and Volume (18% off) at $0.75 / $1.26. Actual invoice price varies with patch size, quantity, and backing.",
   },
   {
     question: "Does Panda Patches work with ASI, PPAI, or SAGE distributors?",

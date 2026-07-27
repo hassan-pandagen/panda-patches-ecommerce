@@ -22,10 +22,10 @@ const productPageMeta: Record<string, ProductPageMeta> = {
     ogDescription: "Embroidered patches from $0.91/pc (2x2, 1,000 pcs); smaller orders cost more per piece. Any size, shape & color. 12-24h mockup, 5-piece minimum, ships in 7-14 days.",
   },
   "pvc": {
-    title: "Custom PVC Patches from $1.54/pc (1k) | 24h Mockup",
-    description: "Custom PVC patches from $1.54/pc for 2x2 inches at 1,000 pieces; smaller orders cost more per piece. Waterproof, flexible & 3D-molded for tactical gear, outdoor brands & uniforms. 5-piece minimum, free design. Ships in 7-14 days.",
-    ogTitle: "Custom PVC Patches from $1.54/pc (1k) | 24h Mockup",
-    ogDescription: "PVC patches from $1.54/pc (2x2, 1,000 pcs); smaller orders cost more per piece. Waterproof, flexible & 3D-molded for tactical gear & uniforms. Free design, ships in 7-14 days.",
+    title: "Custom PVC Patches from $1.40/pc (1k) | 24h Mockup",
+    description: "Custom PVC patches from $1.40/pc for 2x2 inches at 1,000 pieces; smaller orders cost more per piece. Waterproof, flexible & 3D-molded for tactical gear, outdoor brands & uniforms. 5-piece minimum, free design. Ships in 7-14 days.",
+    ogTitle: "Custom PVC Patches from $1.40/pc (1k) | 24h Mockup",
+    ogDescription: "PVC patches from $1.40/pc (2x2, 1,000 pcs); smaller orders cost more per piece. Waterproof, flexible & 3D-molded for tactical gear & uniforms. Free design, ships in 7-14 days.",
   },
   "woven": {
     title: "Custom Woven Patches from $1.54/pc (1k) | 24h Mockup",

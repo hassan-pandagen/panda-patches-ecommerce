@@ -123,9 +123,9 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
   pvc: {
     heading: "Custom PVC Patches: Pricing, Minimums & Turnaround",
     answer:
-      "Custom PVC (rubber) patches from Panda Patches start at $1.54 per piece (2-inch, 1,000 pieces) with a 5-piece minimum, a free 12–24 hour mockup, and no setup fees. PVC is 100% waterproof, UV-resistant, and Velcro-compatible — the top choice for tactical, outdoor, and uniform use.",
+      "Custom PVC (rubber) patches from Panda Patches start at $1.40 per piece (2-inch, 1,000 pieces) with a 5-piece minimum, a free 12–24 hour mockup, and no setup fees. PVC is 100% waterproof, UV-resistant, and Velcro-compatible — the top choice for tactical, outdoor, and uniform use.",
     keyFacts: [
-      { label: "Price from", value: "$1.54/pc (2\", 1,000 pc); smaller runs cost more per piece" },
+      { label: "Price from", value: "$1.40/pc (2\", 1,000 pc); smaller runs cost more per piece" },
       { label: "Minimum order", value: "5 pieces (bulk tiers at 50, 100, 500, 1,000+)" },
       { label: "Turnaround", value: "7–14 business days after mockup approval; rush available" },
       { label: "Mockup", value: "Free digital proof in 12–24 hours, unlimited revisions" },
@@ -138,7 +138,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
     faqs: [
       {
         q: "Why choose PVC patches over embroidered?",
-        a: `Choose PVC (rubber) patches when the patch will face water, sun, mud, or heavy abrasion, or when you need clean Velcro attachment for gear that swaps often. PVC is 100% waterproof, will not fade in direct sunlight, holds fine molded shapes and 3D detail, and survives conditions that degrade thread — which is why military units, law enforcement, hunting and fishing brands, and outdoor gear companies prefer it. Embroidered patches give a softer, classic textile look and cost less at volume ($0.91 vs $1.54 per piece at 1,000 from Panda Patches), but they are not waterproof. The rule of thumb: indoor, apparel, and uniform use leans embroidered; outdoor, tactical, and equipment use leans PVC. Panda Patches produces both with a free mockup and Velcro backing available on either.`,
+        a: `Choose PVC (rubber) patches when the patch will face water, sun, mud, or heavy abrasion, or when you need clean Velcro attachment for gear that swaps often. PVC is 100% waterproof, will not fade in direct sunlight, holds fine molded shapes and 3D detail, and survives conditions that degrade thread — which is why military units, law enforcement, hunting and fishing brands, and outdoor gear companies prefer it. Embroidered patches give a softer, classic textile look and cost less at volume ($0.91 vs $1.40 per piece at 1,000 from Panda Patches), but they are not waterproof. The rule of thumb: indoor, apparel, and uniform use leans embroidered; outdoor, tactical, and equipment use leans PVC. Panda Patches produces both with a free mockup and Velcro backing available on either.`,
       },
       ...commonFaqs("PVC"),
     ],
