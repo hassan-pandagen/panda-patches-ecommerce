@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { generateLocalBusinessSchema, generateSchemaScript } from "@/lib/schemas";
+import { generateSchemaScript } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
 import { client, urlFor } from "@/lib/sanity";
 import Hero from "@/components/home/Hero";
@@ -146,11 +146,6 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white">
 
-      {/* LocalBusiness Schema — triggers star ratings in Google Search results */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={generateSchemaScript(generateLocalBusinessSchema())}
-      />
       {/* FAQPage Schema — enables AI engines to extract and cite homepage answers */}
       <script
         type="application/ld+json"

@@ -471,12 +471,15 @@ export function getUpsellTiers(
 
 /**
  * Get representative pricing tiers for structured data schema (server-side).
- * Uses a standard 3" patch (size 3) at common quantity breaks.
+ * Uses the advertised 2" from-price basis (size 2) so Product/Offer schema
+ * lowPrice matches the VISIBLE "from" price (§1.2) — e.g. PVC $1.40, not the
+ * 3" $1.56. Tiers start at the real minimum (5; woven's table starts at 10),
+ * so eligibleQuantity.minValue is truthful (§1.3) with no 25/50 floor.
  */
 export function getSchemaPricingTiers(productName: string): { minQuantity: number; unitPrice: number }[] {
   const pricing = getPricingTable(productName);
-  const lookupSize = Math.max(pricing.minSize, Math.min(pricing.maxSize, 3));
-  const schemaQtys = [25, 50, 100, 500, 1000];
+  const lookupSize = Math.max(pricing.minSize, Math.min(pricing.maxSize, 2));
+  const schemaQtys = [5, 10, 25, 50, 100, 500, 1000];
 
   return schemaQtys
     .filter(qty => pricing.qtyBreaks.includes(qty))

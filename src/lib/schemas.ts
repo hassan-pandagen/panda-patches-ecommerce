@@ -184,7 +184,10 @@ export function generateEntityGraph() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
+        // OnlineStore subtype (§1.1) — an online merchant, no physical-visit
+        // signal. Other pages reference this node by @id; there is exactly ONE
+        // Organization/OnlineStore node sitewide (no LocalBusiness anywhere).
+        "@type": "OnlineStore",
         "@id": ORG_ID,
         "name": "Panda Patches",
         "alternateName": "Panda Patches - Custom Embroidered Patches",
@@ -248,14 +251,13 @@ export function generateEntityGraph() {
           "https://www.youtube.com/@PandaPatchesOfficial",
           "https://www.tiktok.com/@pandapatchesofficial",
           // Trustpilot profile — links the entity to its strongest review signal
-          // (4.7/75). Review-platform sameAs is an entity/citation signal for AI
+          // (4.7/76). Review-platform sameAs is an entity/citation signal for AI
           // engines (AEO-CONTENT-REWORK-SPEC-2026-07.md). A Wikidata entry is the
           // remaining entity gap — create off-page, then add its URL here.
           "https://www.trustpilot.com/review/pandapatches.com",
           "https://www.provenexpert.com/en-us/panda-patches/",
           "https://www.yelp.com/biz/panda-patches",
           "https://www.crunchbase.com/organization/panda-patches",
-          "https://maps.app.goo.gl/i5yZ6n2wUMJVAdUb7",
         ],
         "contactPoint": {
           "@type": "ContactPoint",
@@ -273,12 +275,8 @@ export function generateEntityGraph() {
         // above, which is the legitimate way to associate the entity with it.
         // Product-level aggregateRating is still fine where genuine, on-page
         // product reviews back it (productReviews.ts).
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "11:00",
-          "closes": "19:00",
-        },
+        // NO openingHoursSpecification (§0.5) — removed entirely; there is no
+        // visitable office and support hours are not a schema claim.
       },
       {
         "@type": "Brand",
@@ -297,14 +295,8 @@ export function generateEntityGraph() {
         "inLanguage": "en-US",
         "publisher": { "@id": ORG_ID },
         "about": { "@id": ORG_ID },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": `${SITE_URL}/custom-patches?search={search_term_string}`,
-          },
-          "query-input": "required name=search_term_string",
-        },
+        // NO SearchAction (§1.1) — the site has no functional search endpoint,
+        // so the sitelinks-searchbox action was nonfunctional and is removed.
       },
       {
         "@type": "Person",
@@ -415,7 +407,12 @@ export function generateProductSchema(params: ProductSchemaParams) {
   const shippingDetails = {
     "@type": "OfferShippingDetails",
     "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
-    "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
+    "shippingDestination": [
+      { "@type": "DefinedRegion", "addressCountry": "US" },
+      { "@type": "DefinedRegion", "addressCountry": "CA" },
+      { "@type": "DefinedRegion", "addressCountry": "GB" },
+      { "@type": "DefinedRegion", "addressCountry": "AU" }
+    ],
     "deliveryTime": {
       "@type": "ShippingDeliveryTime",
       "handlingTime": { "@type": "QuantitativeValue", "minValue": 10, "maxValue": 14, "unitCode": "DAY" },
@@ -427,7 +424,7 @@ export function generateProductSchema(params: ProductSchemaParams) {
     "@type": "MerchantReturnPolicy",
     "applicableCountry": "US",
     "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-    "merchantReturnDays": 30,
+    "merchantReturnDays": 10,
     "returnMethod": "https://schema.org/ReturnByMail",
     "returnFees": "https://schema.org/FreeReturn"
   };
@@ -458,7 +455,6 @@ export function generateProductSchema(params: ProductSchemaParams) {
           "availability": `https://schema.org/${schemaAvailability}`,
           "itemCondition": "https://schema.org/NewCondition",
           "url": url,
-          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
           "shippingDetails": shippingDetails,
           "hasMerchantReturnPolicy": merchantReturnPolicy
         }
@@ -469,7 +465,6 @@ export function generateProductSchema(params: ProductSchemaParams) {
           "availability": `https://schema.org/${schemaAvailability}`,
           "itemCondition": "https://schema.org/NewCondition",
           "url": url,
-          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
           "shippingDetails": shippingDetails,
           "hasMerchantReturnPolicy": merchantReturnPolicy
         }
@@ -532,12 +527,11 @@ export function generateProductSchema(params: ProductSchemaParams) {
         "price": tier.unitPrice.toFixed(2),
         "priceCurrency": priceCurrency,
         "availability": `https://schema.org/${schemaAvailability}`,
-        "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
         "shippingDetails": shippingDetails,
         "eligibleQuantity": {
           "@type": "QuantitativeValue",
           "minValue": tier.minQuantity,
-          "maxValue": tier.maxQuantity || 999999,
+          ...(tier.maxQuantity ? { "maxValue": tier.maxQuantity } : {}),
           "unitText": "units"
         },
         "priceSpecification": {
@@ -686,63 +680,14 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
 }
 
 // ============================================
-// 6. LOCAL BUSINESS SCHEMA (global - for homepage/about)
+// 6. (removed) LOCAL BUSINESS SCHEMA — §1.1: zero LocalBusiness sitewide.
+// The homepage and /contact now rely solely on the global OnlineStore entity
+// graph (generateEntityGraph, root layout). The old generator carried a
+// #localbusiness @id, Houston geo coordinates, and an openingHours block — all
+// visitable-office signals that must not exist. Call sites were removed too.
+// generateLocalBusinessSchema is intentionally deleted; do not reintroduce it.
 // ============================================
 
-export function generateLocalBusinessSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://www.pandapatches.com/#localbusiness",
-    "name": "Panda Patches",
-    "legalName": "MC Patches LLC",
-    "image": "https://www.pandapatches.com/assets/og-image.png",
-    "logo": "https://www.pandapatches.com/assets/logo-panda.svg",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "701 Tillery St Ste 12",
-      "addressLocality": "Austin",
-      "addressRegion": "TX",
-      "postalCode": "78702",
-      "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 29.6186,
-      "longitude": -95.5377
-    },
-    "telephone": "+1-302-250-4340",
-    "email": "sales@pandapatches.com",
-    "url": "https://www.pandapatches.com",
-    "priceRange": "$$",
-    "founder": {
-      "@type": "Person",
-      "name": "Imran Raza",
-      "sameAs": "https://www.linkedin.com/in/imran-raza-ladhani/"
-    },
-    "sameAs": [
-      "https://www.instagram.com/pandapatchesofficial/",
-      "https://www.linkedin.com/in/imran-raza-ladhani/"
-    ],
-    // No aggregateRating here: this LocalBusiness (@id: #localbusiness) renders
-    // on the homepage and /contact alongside the Organization entity (@id:
-    // #organization) from the root layout's generateEntityGraph(), which
-    // already carries the one authoritative Trustpilot rating. A second
-    // aggregateRating here — same name/address, different @id — is exactly
-    // the "multiple aggregate ratings" pattern Google flagged on /reviews
-    // (GSC Review snippets, 2026-07-07); removed before it got flagged here too.
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        // Aligned with the entity graph + real support hours (11am-7pm ET daily);
-        // previously said 9-6 weekdays, contradicting the org schema (audit P2).
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "11:00",
-        "closes": "19:00"
-      }
-    ]
-  };
-}
 
 // ============================================
 // 9. LOCATION-SPECIFIC LOCAL BUSINESS SCHEMA (for state/city landing pages)
@@ -751,37 +696,22 @@ export function generateLocalBusinessSchema() {
 export function generateLocationBusinessSchema(locationName: string, pageSlug?: string) {
   const fallbackSlug = locationName.toLowerCase().replace(/\s+/g, '-');
   const urlSlug = pageSlug || fallbackSlug;
+  // §1.1/§8.3: NOT a LocalBusiness. A city page describes a delivery SERVICE
+  // provided by the global OnlineStore (referenced by @id), with areaServed =
+  // the metro. No physical address / geo / openingHours (nothing visitable).
   return {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "Store"],
-    "name": `Custom Patches in ${locationName} | Panda Patches`,
+    "@type": "Service",
+    "serviceType": "Custom patch manufacturing and delivery",
+    "name": `Custom Patches Delivered to ${locationName} | Panda Patches`,
     "description": `Order custom embroidered patches delivered to ${locationName}. Low minimums, mockup in 12-24 hours, fast 7-14 day turnaround. Founded by Imran Raza with 13 years of patch manufacturing expertise.`,
-    "telephone": "+1-302-250-4340",
-    "email": "sales@pandapatches.com",
-    "url": `https://www.pandapatches.com/${urlSlug}`,
-    "image": "https://www.pandapatches.com/assets/logo-panda.svg",
-    "priceRange": "$$",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "701 Tillery St Ste 12",
-      "addressLocality": "Austin",
-      "addressRegion": "TX",
-      "postalCode": "78702",
-      "addressCountry": "US"
-    },
+    "provider": { "@id": ORG_ID },
     "areaServed": {
       "@type": "AdministrativeArea",
       "name": locationName
     },
-    "serviceArea": {
-      "@type": "AdministrativeArea",
-      "name": locationName
-    },
-    "founder": {
-      "@type": "Person",
-      "name": "Imran Raza",
-      "sameAs": "https://www.linkedin.com/in/imran-raza-ladhani/"
-    }
+    "url": `https://www.pandapatches.com/${urlSlug}`,
+    "image": "https://www.pandapatches.com/assets/logo-panda.svg"
   };
 }
 
