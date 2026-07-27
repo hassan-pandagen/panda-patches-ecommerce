@@ -6,13 +6,16 @@
  * that disagreed between titles, FAQs, schema, and llms.txt). Every new or
  * edited surface should import from here instead of hardcoding a claim.
  *
- * COMPLIANCE RULES baked into these values (ad policy, July 2026):
- *  - Rush is stated in BUSINESS DAYS only (~6-7). Never "24-hour rush",
- *    never next-day/weekend/date promises. "24 hours" is ONLY valid for the
- *    digital mockup.
+ * COMPLIANCE RULES baked into these values (MASTER brief v3, Jul 26 2026):
+ *  - Rush is stated in BUSINESS DAYS only: "as soon as 5 business days", with
+ *    split-ship (first batch 5 days, remainder 8-11) for qualifying large/complex
+ *    orders. Never "24-hour rush", never next-day/weekend/date promises.
+ *    "24 hours" is ONLY valid for the digital mockup.
  *  - Say "from 5 pieces" / "low minimums", never "no minimum".
  *  - Every advertised price states its size + quantity basis (PAE792).
- *  - No "Made in USA" claims (US-headquartered; company-owned facility overseas).
+ *  - No "Made in USA"/US-production claims. Company is U.S.-registered (Austin TX
+ *    is a mailing/registered address only, not a visitable office); production is
+ *    at a company-owned facility in Pakistan (Panda Apparel & Technology).
  */
 
 // ── SLAs ────────────────────────────────────────────────────────────────────
@@ -22,8 +25,14 @@ export const RESPONSE_SLA = '2 business hours';
 export const MOCKUP_SLA = '12-24 hours';
 /** Standard production after mockup approval. */
 export const STANDARD_DELIVERY = '7-14 business days';
-/** Rush production (qualifying orders). Business days only — compliance. */
-export const RUSH_DELIVERY = 'about 6-7 business days';
+/** Rush production (qualifying orders). Business days only — compliance (§0.2). */
+export const RUSH_DELIVERY = 'as soon as 5 business days';
+/** Split-ship arrangement for qualifying large/complex rush orders (§0.2). */
+export const RUSH_SPLIT_SHIP =
+  'For qualifying large or complex orders, split-shipping is agreed at quote time: the first batch arrives in 5 business days and the remainder in 8–11 business days.';
+/** Full canonical rush statement — use verbatim on llms.txt + rush FAQ (§0.2). */
+export const RUSH_CANON_STATEMENT =
+  'Rush orders can arrive in hand in as soon as five business days. For qualifying large or complex orders, split-shipping is agreed at quote time: the agreed first batch arrives in five business days and the remainder in 8–11 business days.';
 /** Economy delivery window. Discount differs by product (5% calculator, 10% offers packs) — say "up to 10%" in generic copy. */
 export const ECONOMY_DELIVERY = '16-18 business days';
 
@@ -55,7 +64,39 @@ export const FROM_PRICE_LEATHER = '$1.74';
  *  not appear on any public surface. */
 export const PHONE_DISPLAY = '+1 (302) 250-4340';
 export const PHONE_TEL = 'tel:+13022504340';
-export const SUPPORT_HOURS = 'Every day, 11am-7pm ET';
+/** Public contact email (default). lance@ is also active and RETAINED (§0.8). */
+export const SUPPORT_EMAIL = 'sales@pandapatches.com';
+/**
+ * Support hours (§0.5, owner canon). Phone and email windows differ; Sunday
+ * closed. Do NOT use "24/7", "every day", or "seven days a week" anywhere.
+ */
+export const SUPPORT_HOURS_PHONE = 'Monday–Saturday, 11:00 AM–7:00 PM ET';
+export const SUPPORT_HOURS_EMAIL = '24 hours a day, Monday–Saturday (Sunday closed)';
+/** Short combined label for compact UI (phone hours — the usual "hours" meaning). */
+export const SUPPORT_HOURS = 'Mon–Sat, 11am–7pm ET';
+
+// ── Identity (§0.3) ──────────────────────────────────────────────────────────
+export const COMPANY_LEGAL_NAME = 'MC Patches LLC';
+/** DBA + formation. Use "U.S.-registered", never "US-headquartered". */
+export const COMPANY_REGISTRATION =
+  'MC Patches LLC (DBA Panda Patches), U.S.-registered, formed December 2023';
+/** Austin is a mailing/registered address only — no office, no visits (§0.3). */
+export const REGISTERED_ADDRESS = '701 Tillery St Ste 12, Austin, TX 78702';
+export const REGISTERED_ADDRESS_NOTE =
+  'Austin, TX is our U.S. mailing/registered address only — not a visitable office.';
+export const FOUNDER_NAME = 'Imran Raza';
+/** Attach experience to the FOUNDER, never the company's age (§0.3). */
+export const FOUNDER_EXPERIENCE = '13 years in custom patch manufacturing';
+
+// ── Production origin (§0.4) ─────────────────────────────────────────────────
+export const PRODUCTION_ORIGIN =
+  'Produced at our company-owned facility in Pakistan, operated by Panda Apparel & Technology. No products are manufactured in the United States.';
+
+// ── Guarantee / returns (§0.1) ───────────────────────────────────────────────
+export const GUARANTEE_WINDOW_DAYS = 10;
+/** Full canonical guarantee/returns policy — replaces 48h / 14-day / 30-day variants. */
+export const GUARANTEE_STATEMENT =
+  'Before mockup approval, you may cancel for a full refund. After written approval, production begins and change-of-mind cancellation is not covered. If the delivered order is less than perfect or differs from the approved mockup, contact Panda Patches within 10 calendar days of delivery and choose a remake or full refund. Panda Patches pays the remedy and related shipping costs.';
 
 // ── Social proof ───────────────────────────────────────────────────────────
 /**
