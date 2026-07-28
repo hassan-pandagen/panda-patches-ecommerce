@@ -1,8 +1,4 @@
-import {
-  TRUSTPILOT_RATING,
-  TRUSTPILOT_REVIEW_COUNT_STR,
-  TRUSTPILOT_PROFILE_URL,
-} from "@/lib/reviewConstants";
+import { getCompanyFacts } from "@/lib/companyFacts";
 
 /**
  * Plain-text Trustpilot rating line. No logo, no fake star imagery, no
@@ -10,19 +6,25 @@ import {
  * normal link to the profile, so the rendering stays strictly typographic and
  * styled in our brand only.
  *
- * Drop this in the hero, the homepage band, the reviews page hero, or any
- * other trust-building slot. Numbers come from src/lib/reviewConstants.ts
- * so future updates land in one place.
+ * Numbers come from the CMS `companyFacts` singleton via getCompanyFacts()
+ * (CRM-writable, so the rating can move without a code deploy), with
+ * reviewConstants as the build-time fallback. Async server component — both
+ * current call sites (Hero, /reviews) are server components.
  */
 type Variant = "default" | "compact" | "dark";
 
-export default function TrustpilotRatingLine({
+export default async function TrustpilotRatingLine({
   variant = "default",
   className = "",
 }: {
   variant?: Variant;
   className?: string;
 }) {
+  const facts = await getCompanyFacts();
+  const TRUSTPILOT_RATING = facts.trustpilotRating;
+  const TRUSTPILOT_REVIEW_COUNT_STR = String(facts.trustpilotReviewCount);
+  const TRUSTPILOT_PROFILE_URL = facts.trustpilotProfileUrl;
+
   const baseColor =
     variant === "dark" ? "text-white" : "text-panda-dark";
   const linkColor =
