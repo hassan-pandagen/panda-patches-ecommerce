@@ -278,7 +278,7 @@ export default async function FireDepartmentPatchesPage() {
           </h2>
           <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
-              We&apos;re the maker, not a reseller &mdash; most suppliers just want the sale, but we get the mockup right first, send unlimited free revisions until you approve, and remake any patch that isn&apos;t right. That matters most on memorial and line-of-duty patches, which we can rush in 4&ndash;7 business days when your department needs them quickly.
+              We&apos;re the maker, not a reseller &mdash; most suppliers just want the sale, but we get the mockup right first, send unlimited free revisions until you approve, and remake any patch that isn&apos;t right. That matters most on memorial and line-of-duty patches, which we can rush in as soon as 5 business days when your department needs them quickly.
             </p>
             <p>
               We also handle rank insignia by bugle count and recurring orders for IAFF locals. For July 4, 2026, many departments add commemorative <a href="/custom-250th-anniversary-patches" className="text-panda-green font-semibold underline">250th anniversary patches</a> for America&apos;s semiquincentennial.
@@ -330,7 +330,7 @@ export default async function FireDepartmentPatchesPage() {
           <ol className="space-y-3 text-[0.9375rem] md:text-[1rem] text-gray-700 leading-[1.7] list-decimal pl-5">
             <li><strong>Send your artwork or idea.</strong> Upload your department seal, Maltese cross, or badge as a vector (AI, EPS, SVG, PDF) or high-resolution image (PNG, JPG) &mdash; or just describe it and we draft it free.</li>
             <li><strong>Approve your mockup.</strong> You get a digital mockup in 12&ndash;24 hours with unlimited free revisions. Nothing is produced until you sign off.</li>
-            <li><strong>We produce &amp; ship.</strong> Standard production is 7&ndash;14 business days; line-of-duty memorial patches rush in 4&ndash;7. Free worldwide shipping, low 5-piece minimum.</li>
+            <li><strong>We produce &amp; ship.</strong> Standard production is 7&ndash;14 business days; line-of-duty memorial patches rush in as soon as 5 business days. Free worldwide shipping, low 5-piece minimum.</li>
           </ol>
         </div>
       </section>
