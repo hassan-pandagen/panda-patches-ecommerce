@@ -158,12 +158,12 @@ export default function Home() {
       <Hero />
 
       {/* New Sections Added Here */}
-      <div className="min-h-[300px] md:min-h-[400px] cv-auto">
+      <div className="min-h-[300px] md:min-h-[400px] cv-auto" style={{ containIntrinsicSize: "auto 740px" }}>
         <Craftsmanship />
       </div>
 
       {/* Customer Reviews — social proof immediately after craftsmanship */}
-      <div className="min-h-[400px] md:min-h-[500px] cv-auto">
+      <div className="min-h-[400px] md:min-h-[500px] cv-auto" style={{ containIntrinsicSize: "auto 580px" }}>
         <ReviewsSection />
       </div>
 
@@ -179,49 +179,51 @@ export default function Home() {
         </Link>
       </div>
 
-      <div className="cv-auto">
+      <div className="cv-auto" style={{ containIntrinsicSize: "auto 584px" }}>
         <Promises />
       </div>
 
-      {/* The New Grid */}
-      <div className="cv-auto">
+      {/* The New Grid — no content-visibility: it renders ~8500px tall on mobile
+          vs shorter on desktop, so no single contain-intrinsic-size fits both;
+          skipping it here was the dominant homepage CLS source (§3). */}
+      <div>
         <ProductGrid />
       </div>
 
       {/* Process Section with Interactive Animation */}
-      <div className="min-h-[300px] md:min-h-[400px] cv-auto">
+      <div className="min-h-[300px] md:min-h-[400px] cv-auto" style={{ containIntrinsicSize: "auto 1780px" }}>
         <ProcessSection />
       </div>
 
       {/* Timeline/Zig-Zag Section */}
-      <div className="cv-auto">
+      <div className="cv-auto" style={{ containIntrinsicSize: "auto 1452px" }}>
         <TimelineSection />
       </div>
 
       {/* Panda AI teaser — discovery band for /ai-patch-generator. Mid-low
           placement on purpose: the CEO wants the tool visible for SEO and
           credibility without competing with the primary quote-form funnel. */}
-      <div className="cv-auto">
+      <div className="cv-auto" style={{ containIntrinsicSize: "auto 380px" }}>
         <AiGeneratorTeaser />
       </div>
 
       {/* FAQ Section with Accordion */}
-      <div className="cv-auto">
+      <div className="cv-auto" style={{ containIntrinsicSize: "auto 1242px" }}>
         <FAQ />
       </div>
 
       {/* Blog Section */}
-      <div className="min-h-[400px] md:min-h-[550px] cv-auto">
+      <div className="min-h-[400px] md:min-h-[550px] cv-auto" style={{ containIntrinsicSize: "auto 810px" }}>
         <BlogSection />
       </div>
 
       {/* SEO Content Section */}
-      <div className="cv-auto">
+      <div className="cv-auto" style={{ containIntrinsicSize: "auto 1074px" }}>
         <ContentSection />
       </div>
 
       {/* CTA Section */}
-      <div className="cv-auto">
+      <div className="cv-auto" style={{ containIntrinsicSize: "auto 460px" }}>
         <CTASection />
       </div>
 
