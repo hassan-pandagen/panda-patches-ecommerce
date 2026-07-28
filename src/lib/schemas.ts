@@ -38,7 +38,7 @@ export function generatePersonSchema() {
     "name": "Imran Raza",
     "jobTitle": "Founder & CEO",
     "description": "Founder of Panda Patches with 13 years of hands-on experience in embroidered patches and textile manufacturing. Expert in custom patch production, quality control, and textile industry standards.",
-    "url": "https://www.pandapatches.com/about",
+    "url": "https://www.pandapatches.com/about/imran-raza",
     "sameAs": [
       "https://www.linkedin.com/in/imran-raza-ladhani/"
     ],
@@ -290,7 +290,7 @@ export function generateEntityGraph() {
         "jobTitle": "Founder & CEO",
         "description":
           "Founder of Panda Patches with 13 years of hands-on experience in embroidered patches and textile manufacturing.",
-        "url": `${SITE_URL}/about`,
+        "url": `${SITE_URL}/about/imran-raza`,
         "worksFor": { "@id": ORG_ID },
         "sameAs": [
           "https://www.linkedin.com/in/imran-raza-ladhani/",

@@ -43,7 +43,7 @@ export default function AuthorByline({ datePublished, dateModified, reviewedBy }
       <div className="min-w-0">
         <p className="text-[0.875rem] md:text-[0.9375rem] font-bold text-panda-dark">
           Written by{" "}
-          <Link href="/about" prefetch={false} className="text-panda-green underline">
+          <Link href="/about/imran-raza" prefetch={false} className="text-panda-green underline">
             Imran Raza
           </Link>
           , Founder of Panda Patches

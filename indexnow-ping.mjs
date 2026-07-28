@@ -20,6 +20,11 @@ const urls = [
   `${BASE}/glossary`,
   `${BASE}/custom-patch-production-data-2026`,
 
+  // E-E-A-T entity + guide pages (Appendix B3/B4, added 2026-07-28)
+  `${BASE}/about/imran-raza`,
+  `${BASE}/about/digitizing-team`,
+  `${BASE}/how-to-vet-a-custom-patch-supplier`,
+
   // Specialty patch pages
   `${BASE}/custom-police-patches`,
   `${BASE}/custom-sports-patches`,
