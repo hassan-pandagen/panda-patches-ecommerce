@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { requireUser } from "@/lib/supabase/guards";
+import LoyaltyBadge from "@/components/account/LoyaltyBadge";
 import { Package, User, ShoppingBag, LogOut } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -89,6 +90,9 @@ export default async function AccountDashboardPage() {
               </button>
             </form>
           </div>
+
+          {/* Loyalty tier badge — renders only for tiered members (Task 3) */}
+          <LoyaltyBadge email={user.email} />
 
           {/* Quick tiles */}
           <div className="grid sm:grid-cols-3 gap-4 mb-10">

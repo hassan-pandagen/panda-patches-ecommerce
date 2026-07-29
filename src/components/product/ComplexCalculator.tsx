@@ -203,6 +203,16 @@ export default function ComplexCalculator({
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState("");
 
+  // Loyalty rewards code (CL86F1 / Task 1). Preview only — checkout-square
+  // re-validates authoritatively and computes the charged amount server-side.
+  const [showLoyaltyField, setShowLoyaltyField] = useState(false);
+  const [loyaltyCodeInput, setLoyaltyCodeInput] = useState("");
+  const [loyaltyApplied, setLoyaltyApplied] = useState<string | null>(null);
+  const [loyaltyPercent, setLoyaltyPercent] = useState(0);
+  const [loyaltyTier, setLoyaltyTier] = useState("");
+  const [loyaltyChecking, setLoyaltyChecking] = useState(false);
+  const [loyaltyMsg, setLoyaltyMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
   // Weekend warning for rush date
   const [weekendWarning, setWeekendWarning] = useState(false);
 
@@ -303,6 +313,17 @@ export default function ComplexCalculator({
   const { priceResult, upsellTiers, discount, originalPrice, discountAmount, basePrice, unitPrice, pricePulse, rushSurcharge, velcroFee } = usePriceCalculation({
     productType, width, height, quantity, deliveryOption, backing,
   });
+
+  // Loyalty preview — mirrors checkout-square exactly: the % applies to the patch
+  // subtotal (velcro + economy, NOT rush), then rush is added back. basePrice
+  // already includes rushSurcharge, so strip it to recover the subtotal.
+  const loyaltyPatchSubtotal = Math.round((basePrice - rushSurcharge) * 100) / 100;
+  const loyaltyDiscountedSubtotal =
+    loyaltyPercent > 0
+      ? Math.round(loyaltyPatchSubtotal * (1 - loyaltyPercent / 100) * 100) / 100
+      : loyaltyPatchSubtotal;
+  const loyaltyDiscountAmount = Math.round((loyaltyPatchSubtotal - loyaltyDiscountedSubtotal) * 100) / 100;
+  const payTotal = Math.round((loyaltyDiscountedSubtotal + rushSurcharge) * 100) / 100;
 
   // Step validation
   const validateStep = (step: number): boolean => {
@@ -458,6 +479,69 @@ export default function ComplexCalculator({
     setQuoteSending(false);
   };
 
+  const applyLoyaltyCode = async () => {
+    const code = loyaltyCodeInput.trim();
+    if (!code) return;
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setLoyaltyMsg({ type: "error", text: "Enter your account email above first — codes are email-bound." });
+      return;
+    }
+    setLoyaltyChecking(true);
+    setLoyaltyMsg(null);
+    try {
+      const res = await fetch("/api/loyalty/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code, email, pricingSource: "calculator" }),
+      });
+      const data = await res.json();
+      if (data.valid && Number(data.percent) > 0) {
+        setLoyaltyApplied(code);
+        setLoyaltyPercent(Number(data.percent) || 0);
+        setLoyaltyTier(typeof data.tier === "string" ? data.tier : "");
+        setLoyaltyMsg({ type: "success", text: data.message || "Discount applied" });
+        try {
+          (window as any).dataLayer = (window as any).dataLayer || [];
+          (window as any).dataLayer.push({
+            event: "loyalty_code_applied",
+            loyalty_tier: data.tier || "",
+            loyalty_percent: Number(data.percent) || 0,
+          });
+        } catch { /* noop */ }
+      } else {
+        setLoyaltyApplied(null);
+        setLoyaltyPercent(0);
+        setLoyaltyTier("");
+        setLoyaltyMsg({ type: "error", text: data.message || "That code could not be applied." });
+      }
+    } catch {
+      setLoyaltyMsg({ type: "error", text: "We couldn't verify that code right now. Please try again." });
+    } finally {
+      setLoyaltyChecking(false);
+    }
+  };
+
+  const removeLoyaltyCode = () => {
+    setLoyaltyApplied(null);
+    setLoyaltyPercent(0);
+    setLoyaltyTier("");
+    setLoyaltyMsg(null);
+    setLoyaltyCodeInput("");
+    setShowLoyaltyField(false);
+  };
+
+  // A code is email-bound; if the email changes after applying, drop the preview
+  // so a stale discount can't show (the server re-validates at checkout anyway).
+  useEffect(() => {
+    if (loyaltyApplied) {
+      setLoyaltyApplied(null);
+      setLoyaltyPercent(0);
+      setLoyaltyTier("");
+      setLoyaltyMsg({ type: "error", text: "Email changed — please re-apply your code." });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [email]);
+
   const handleCheckout = async (e: any) => {
     e.preventDefault();
 
@@ -521,6 +605,7 @@ export default function ComplexCalculator({
           deliveryOption: deliveryOption,
           rushDate: deliveryOption === "rush" ? rushDate : null,
           discount: discount > 0 ? `${(discount * 100).toFixed(0)}% Economy Delivery Discount (16-18 business days)` : null,
+          loyaltyCode: loyaltyApplied || null,
           artworkUrl: files[0]?.url || null,
           addons: selectedAddons.length > 0 ? selectedAddons.map(id => ADDON_OPTIONS.find(opt => opt.id === id)?.name).filter(Boolean) : null,
           specialInstructions: [shape ? `Shape: ${SHAPES.find(s => s.id === shape)?.name}` : null, patchIdea ? `Patch Idea: ${patchIdea}` : null, specialInstructions || null, hearAbout ? `Source: ${hearAbout === "Other" ? (hearAboutOther.trim() || "Other") : hearAbout}` : null].filter(Boolean).join(' | ') || null,
@@ -1149,6 +1234,77 @@ export default function ComplexCalculator({
                       </div>
                     </div>
                   )}
+
+                  {/* Loyalty discount line (applied) */}
+                  {loyaltyApplied && loyaltyPercent > 0 && (
+                    <div className="pt-3 border-t border-gray-200">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-600 font-medium">
+                          Loyalty discount{loyaltyTier ? ` (${loyaltyTier.charAt(0).toUpperCase()}${loyaltyTier.slice(1)}, ${loyaltyPercent}%)` : ` (${loyaltyPercent}%)`}:
+                        </span>
+                        <span className="text-green-600 font-black">-${loyaltyDiscountAmount.toFixed(2)}</span>
+                      </div>
+                      <div className="flex justify-between items-baseline mt-2 pt-2 border-t border-gray-100">
+                        <span className="text-sm font-black text-black uppercase tracking-wide">You pay</span>
+                        <span className="text-2xl font-black text-black">${payTotal.toFixed(2)}</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Have a rewards code? (Task 1) — email-bound loyalty code */}
+                  <div className="pt-3 border-t border-gray-200">
+                    {!showLoyaltyField && !loyaltyApplied && (
+                      <button
+                        type="button"
+                        onClick={() => setShowLoyaltyField(true)}
+                        className="text-sm font-bold text-panda-green underline"
+                      >
+                        Have a rewards code?
+                      </button>
+                    )}
+                    {(showLoyaltyField || loyaltyApplied) && (
+                      <div>
+                        {!loyaltyApplied ? (
+                          <>
+                            <label className="block text-xs font-black text-black uppercase tracking-wide mb-2">Rewards code</label>
+                            <div className="flex gap-2">
+                              <input
+                                type="text"
+                                value={loyaltyCodeInput}
+                                onChange={(e) => setLoyaltyCodeInput(e.target.value.toUpperCase())}
+                                onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); applyLoyaltyCode(); } }}
+                                placeholder="ENTER YOUR CODE"
+                                className="flex-1 h-[48px] border-2 border-gray-300 rounded-[12px] px-4 font-bold text-sm text-black outline-none focus:border-black uppercase tracking-wide"
+                              />
+                              <button
+                                type="button"
+                                onClick={applyLoyaltyCode}
+                                disabled={loyaltyChecking || !loyaltyCodeInput.trim()}
+                                className="h-[48px] px-5 rounded-[12px] bg-black text-white font-black text-sm disabled:opacity-50"
+                              >
+                                {loyaltyChecking ? "Checking…" : "Apply"}
+                              </button>
+                            </div>
+                            {loyaltyMsg && (
+                              <p className={`text-xs mt-2 font-semibold ${loyaltyMsg.type === "success" ? "text-green-600" : "text-red-500"}`}>
+                                {loyaltyMsg.text}
+                              </p>
+                            )}
+                            <p className="text-[0.6875rem] text-gray-400 mt-1.5 leading-snug">
+                              Applies to standard pricing only. Codes are tied to your account email — enter your email above first.
+                            </p>
+                          </>
+                        ) : (
+                          <div className="flex justify-between items-center">
+                            <span className="text-sm font-bold text-green-700">✓ Code {loyaltyApplied} applied ({loyaltyPercent}% off)</span>
+                            <button type="button" onClick={removeLoyaltyCode} className="text-xs font-bold text-gray-500 underline">
+                              Remove
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </>
               )}
             </div>

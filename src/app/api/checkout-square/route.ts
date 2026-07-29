@@ -9,6 +9,7 @@ import {
   getRushSurcharge,
 } from '@/lib/checkoutConfig';
 import { createSquarePaymentLink } from '@/lib/square';
+import { validateLoyaltyCode } from '@/lib/loyalty';
 import { sendMetaEvent } from '@/lib/metaCapi';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
@@ -35,6 +36,7 @@ const CheckoutSchema = z.object({
   deliveryOption: z.enum(['rush', 'standard', 'economy']),
   rushDate: z.string().optional().or(z.null()),
   discount: z.string().optional().or(z.null()),
+  loyaltyCode: z.string().max(64).optional().or(z.null()).or(z.literal('')),
   artworkUrl: z.string().url().optional().or(z.null()).or(z.literal('')),
   addons: z.array(z.string()).optional().or(z.null()),
   specialInstructions: z.string().optional().or(z.null()),
@@ -72,6 +74,7 @@ export async function POST(req: Request) {
       specialInstructions,
       attribution,
       initiateCheckoutEventId,
+      loyaltyCode,
     } = parsed.data;
 
     // Tag the order with the signed-in user if there is one (guest checkout works
@@ -95,7 +98,29 @@ export async function POST(req: Request) {
     const velcroAdjusted = applyVelcroPricing(priceResult.totalPrice, backing, quantity);
     const patchSubtotal = applyEconomyDiscount(velcroAdjusted, deliveryOption);
     const rushSurcharge = deliveryOption === 'rush' ? getRushSurcharge(quantity) : 0;
-    const finalPrice = Math.round((patchSubtotal + rushSurcharge) * 100) / 100;
+
+    // Loyalty member discount (CL86F1). Re-validate server-side — never trust a
+    // client-supplied discount. Applies to the calculator patch subtotal ONLY,
+    // never the rush surcharge; the engine rejects non-calculator pricing. An
+    // invalid/expired code at pay time is ignored (charge full price) rather than
+    // failing the whole checkout. The post-discount amount is what Square charges
+    // and what the CRM records as amount_paid for lifetime-value/tier math.
+    let loyaltyCodeApplied: string | null = null;
+    let loyaltyPercent = 0;
+    let loyaltyTier: string | null = null;
+    if (loyaltyCode && loyaltyCode.trim()) {
+      const v = await validateLoyaltyCode(loyaltyCode, customer.email, 'calculator');
+      if (v.valid && v.percent > 0) {
+        loyaltyCodeApplied = loyaltyCode.trim();
+        loyaltyPercent = v.percent;
+        loyaltyTier = v.tier;
+      }
+    }
+    const discountedSubtotal =
+      loyaltyPercent > 0
+        ? Math.round(patchSubtotal * (1 - loyaltyPercent / 100) * 100) / 100
+        : patchSubtotal;
+    const finalPrice = Math.round((discountedSubtotal + rushSurcharge) * 100) / 100;
 
     const origin =
       req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/');
@@ -143,6 +168,9 @@ export async function POST(req: Request) {
       order_amount: finalPrice,
       attribution: mergedAttribution,
       user_id: userId || '',
+      loyalty_code: loyaltyCodeApplied || '',
+      loyalty_percent: loyaltyPercent,
+      loyalty_tier: loyaltyTier || '',
     };
 
     const { error: pendingErr } = await supabase
@@ -163,7 +191,16 @@ export async function POST(req: Request) {
       amount: finalPrice,
       buyerEmail: customer.email,
       redirectUrl,
-      metadata: { qty: String(quantity), product: productName.substring(0, 60) },
+      metadata: {
+        qty: String(quantity),
+        product: productName.substring(0, 60),
+        // Redemption contract (CRM): loyalty_code + loyalty_discount_percent on
+        // the Square order metadata, next to web_token. Square metadata values
+        // must be strings. Only stamped when a code actually applied server-side.
+        ...(loyaltyCodeApplied
+          ? { loyalty_code: loyaltyCodeApplied, loyalty_discount_percent: String(loyaltyPercent) }
+          : {}),
+      },
     });
 
     // Abandoned-cart tracking — mirror the Stripe route. provider_session_id = token.
