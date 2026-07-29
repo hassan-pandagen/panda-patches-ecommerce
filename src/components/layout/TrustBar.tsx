@@ -18,7 +18,7 @@ export default function TrustBar() {
         </span>
         <span className="flex items-center gap-1.5 text-[0.75rem] font-semibold text-panda-dark whitespace-nowrap">
           <CheckCircle className="text-panda-green w-[13px] h-[13px]" fill="currentColor" stroke="none" />
-          Money-Back Guarantee
+          10-Day Money-Back Guarantee
         </span>
       </div>
     </div>

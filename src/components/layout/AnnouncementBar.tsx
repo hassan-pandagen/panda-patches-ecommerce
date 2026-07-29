@@ -69,7 +69,7 @@ export default function AnnouncementBar() {
       }`}
       aria-hidden={collapsed}
     >
-      <span className="text-panda-yellow font-black">🛡 Money-Back Guarantee.</span>
+      <span className="text-panda-yellow font-black">🛡 10-Day Money-Back Guarantee.</span>
       <span className="hidden sm:inline">Save More on Bulk Orders. Free Worldwide Shipping.</span>
       {/* Relabeled: this pointed to /offers (fixed-price packages) under the label
           "Get a Free Quote", which has no quote form — mismatched destination

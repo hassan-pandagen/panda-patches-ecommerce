@@ -102,6 +102,7 @@ export default async function Hero() {
                    alt={data?.imageAlt || "Custom iron on patches, embroidered, chenille, PVC, woven and leather patches with low minimums and fast delivery | Panda Patches"}
                    fill
                    priority
+                   fetchPriority="high"
                    quality={65}
                    sizes="(max-width: 768px) 100vw, (min-width: 1920px) 760px, 630px"
                    style={{ objectFit: 'contain', objectPosition: 'center' }}

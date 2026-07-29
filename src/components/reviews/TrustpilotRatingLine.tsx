@@ -24,6 +24,7 @@ export default async function TrustpilotRatingLine({
   const TRUSTPILOT_RATING = facts.trustpilotRating;
   const TRUSTPILOT_REVIEW_COUNT_STR = String(facts.trustpilotReviewCount);
   const TRUSTPILOT_PROFILE_URL = facts.trustpilotProfileUrl;
+  const reviewLastChecked = facts.reviewLastChecked;
 
   const baseColor =
     variant === "dark" ? "text-white" : "text-panda-dark";
@@ -37,7 +38,7 @@ export default async function TrustpilotRatingLine({
       <p className={`text-[0.75rem] font-bold ${baseColor} ${className}`}>
         <span className="font-black">{TRUSTPILOT_RATING}/5</span>{" "}
         <span className="font-semibold text-gray-500">
-          on Trustpilot. {TRUSTPILOT_REVIEW_COUNT_STR} reviews.
+          on Trustpilot from {TRUSTPILOT_REVIEW_COUNT_STR} reviews (checked {reviewLastChecked}).
         </span>{" "}
         <a
           href={TRUSTPILOT_PROFILE_URL}
@@ -55,9 +56,7 @@ export default async function TrustpilotRatingLine({
     <p className={`text-[0.8125rem] md:text-[0.875rem] font-semibold leading-[1.5] ${baseColor} ${className}`}>
       Rated{" "}
       <span className="font-black">{TRUSTPILOT_RATING}/5</span>{" "}
-      by{" "}
-      <span className="font-black">{TRUSTPILOT_REVIEW_COUNT_STR}</span>{" "}
-      customers on{" "}
+      on{" "}
       <a
         href={TRUSTPILOT_PROFILE_URL}
         target="_blank"
@@ -65,7 +64,8 @@ export default async function TrustpilotRatingLine({
         className={`underline underline-offset-2 font-bold ${linkColor}`}
       >
         Trustpilot
-      </a>
+      </a>{" "}
+      from <span className="font-black">{TRUSTPILOT_REVIEW_COUNT_STR}</span> reviews &mdash; checked {reviewLastChecked}
     </p>
   );
 }
