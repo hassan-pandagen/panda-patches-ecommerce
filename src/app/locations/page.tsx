@@ -46,30 +46,29 @@ const STATE_NAMES = new Set([
   "Washington",
 ]);
 
-// Nearby-cities cross-link map. Each metro lists 2 to 4 other metros in the
-// same region so visitors who land on Houston can see Dallas and Austin
-// without needing to dig back through the hub.
+// LIVE location pages. July 2026 consolidation (CLAUDE_4.MD) 301'd 16 thin
+// location pages to /custom-patches (or the Texas hub for Dallas/Houston) via
+// next.config.mjs, keeping only these 4: the HQ (Austin), the state hub (Texas),
+// and the two metros with real GSC separation (New York, Los Angeles). The other
+// 16 locationPage docs are STILL published in Sanity, so the hub must filter to
+// this allowlist or it links to pages that immediately redirect. If a city page
+// is ever rebuilt, remove its redirect in next.config.mjs and add its slug here.
+const LIVE_LOCATION_SLUGS = new Set([
+  "custom-austin-patches",
+  "custom-patches-in-texas",
+  "custom-patches-in-new-york",
+  "custom-patches-los-angeles",
+]);
+
+// Nearby-cities cross-link map. Only the 4 live pages remain, so cross-links
+// point solely to other live pages (Austin <-> Texas). LA and New York have no
+// surviving in-region neighbor, so they render no nearby module rather than
+// link to a redirected slug.
 const NEARBY: Record<string, string[]> = {
-  "custom-patches-houston": ["custom-patches-dallas", "custom-austin-patches", "custom-patches-in-texas"],
-  "custom-patches-dallas": ["custom-patches-houston", "custom-austin-patches", "custom-patches-in-texas"],
-  "custom-austin-patches": ["custom-patches-houston", "custom-patches-dallas", "custom-patches-in-texas"],
-  "custom-patches-in-texas": ["custom-patches-houston", "custom-patches-dallas", "custom-austin-patches"],
-  "custom-patches-los-angeles": ["custom-patches-in-san-francisco", "custom-california-patches"],
-  "custom-patches-in-san-francisco": ["custom-patches-los-angeles", "custom-california-patches"],
-  "custom-california-patches": ["custom-patches-los-angeles", "custom-patches-in-san-francisco"],
-  "custom-patches-in-new-york": ["custom-patches-in-boston"],
-  "custom-patches-in-boston": ["custom-patches-in-new-york"],
-  "custom-patches-in-chicago": ["custom-ohio-state-patches"],
-  "custom-patches-in-florida": ["custom-miami-patches"],
-  "custom-miami-patches": ["custom-patches-in-florida"],
-  "custom-denver-patches": ["custom-patches-colorado", "custom-utah-patches"],
-  "custom-patches-colorado": ["custom-denver-patches", "custom-utah-patches"],
-  "custom-utah-patches": ["custom-denver-patches", "custom-patches-colorado"],
-  "custom-patches-portland": ["custom-patches-in-washington"],
-  "custom-patches-in-washington": ["custom-patches-portland"],
-  "alabama-patches": [],
-  "kentucky-patches": ["custom-ohio-state-patches"],
-  "custom-ohio-state-patches": ["custom-patches-in-chicago", "kentucky-patches"],
+  "custom-austin-patches": ["custom-patches-in-texas"],
+  "custom-patches-in-texas": ["custom-austin-patches"],
+  "custom-patches-los-angeles": [],
+  "custom-patches-in-new-york": [],
 };
 
 interface LocationDoc {
@@ -93,7 +92,11 @@ async function getLocations(): Promise<LocationDoc[]> {
 }
 
 export default async function LocationsHubPage() {
-  const locations = await getLocations();
+  const allLocations = await getLocations();
+  // Only surface pages that actually serve dedicated content. The other 16
+  // locationPage docs are still published in Sanity but 301 elsewhere, so
+  // listing them would send visitors to links that immediately redirect.
+  const locations = allLocations.filter((l) => LIVE_LOCATION_SLUGS.has(l.slug));
 
   const states = locations.filter((l) => STATE_NAMES.has(l.locationName));
   const cities = locations.filter((l) => !STATE_NAMES.has(l.locationName));

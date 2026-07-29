@@ -42,7 +42,7 @@ const rushFAQs = [
   },
   {
     question: "Can you rush large orders?",
-    answer: "Yes. We own our production facility, so rush capacity scales. For Wise's Nasdaq Times Square activation we delivered 9,600 woven patches across 16 designs in two shipments on May 4 and May 7 — both on the contractual dates, with every design approved before production. For event deadlines, uniform rollouts, and line-of-duty memorial patches, tell us your date and we plan production around it.",
+    answer: "Yes. We own our production facility, so rush capacity scales. Large or complex rush orders split-ship — the first batch arrives in as fast as 5 business days and the remainder follows in 8-11 business days — so your most time-critical pieces still hit the deadline. For Wise's Nasdaq Times Square activation we delivered 9,600 woven patches across 16 designs in two shipments on May 4 and May 7 — both on the contractual dates, with every design approved before production. For event deadlines, uniform rollouts, and line-of-duty memorial patches, tell us your date and we plan production around it.",
   },
   {
     question: "What is the fastest turnaround for custom patches?",
