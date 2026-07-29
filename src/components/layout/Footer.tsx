@@ -125,7 +125,7 @@ export default function Footer() {
                  <li><Link prefetch={false} href="/blogs">Blog</Link></li>
                  <li><Link prefetch={false} href="/sample-box">Sample Box</Link></li>
                  <li><Link prefetch={false} href="/partners">Partners</Link></li>
-                 <li><Link prefetch={false} href="/ai-info">AI Info</Link></li>
+                 <li><Link prefetch={false} href="/rewards">Rewards Program</Link></li>
                </ul>
 
                <h3 className="font-bold text-lg text-panda-dark text-left pt-4">Compare</h3>
