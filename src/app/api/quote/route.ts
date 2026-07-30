@@ -156,6 +156,11 @@ export async function POST(req: Request) {
       ...attribution,
       traffic_source: trafficSource,
       form_name: leadSource,
+      // "How did you hear about us?" — persisted for the CRM's traffic × heard_about
+      // matrix. Pulled from the "Source: X" tag every quote form appends to the
+      // instructions string (extracted above). For the "Other" option this holds
+      // the customer's free-text answer, not the literal word "Other".
+      heard_about: hearAboutUs || undefined,
       border_type: borderType || undefined,
       country: country || undefined,
     };
