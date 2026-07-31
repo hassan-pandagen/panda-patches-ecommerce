@@ -192,7 +192,7 @@ function ProductCard({ item, showTag, priority }: { item: any; showTag?: boolean
   return (
     <Link href={href} className="
       group relative
-      w-full sm:w-[296px] h-full min-h-[484px]
+      w-full sm:w-[296px] h-full min-h-[440px]
       bg-white
       shadow-sm hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)]
       transition-all duration-500
@@ -201,8 +201,12 @@ function ProductCard({ item, showTag, priority }: { item: any; showTag?: boolean
       overflow-hidden
       block
     ">
-      {/* IMAGE AREA */}
-      <div className="relative w-full h-[296px] bg-[#F9FAF5] flex items-center justify-center p-6 transition-colors duration-500 group-hover:bg-white">
+      {/* IMAGE AREA — WHITE tile (matches the card) + a tall box (h-72 = 288px)
+          via a core height utility. White means the empty space around a patch is
+          invisible, so we can keep the box tall and the patch BIG without an
+          off-white band showing under it. The <Image> fills directly (object-contain
+          shows the WHOLE patch; p-3 keeps it off the edges). */}
+      <div className="relative w-full h-72 bg-white overflow-hidden">
 
         {/* Discount Tag (Fixed to Black Box - Premium Look) */}
         {showTag && (
@@ -211,23 +215,21 @@ function ProductCard({ item, showTag, priority }: { item: any; showTag?: boolean
           </div>
         )}
 
-        {/* Image */}
-        <div className="relative w-full h-full">
-           {item.image ? (
-             <Image
-               src={urlFor(item.image).width(800).format('webp').quality(80).url()}
-               alt={`${item.title} - Custom patches with low minimums and fast delivery | Panda Patches`}
-               fill
-               className="object-contain group-hover:scale-110 transition-transform duration-500"
-               quality={80}
-               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 248px"
-               priority={priority}
-               loading={priority ? "eager" : "lazy"}
-             />
-           ) : (
-             <div className="w-full h-full bg-gray-200/50 animate-pulse rounded-lg" />
-           )}
-        </div>
+        {/* Image — whole patch shown, sized to the full card width */}
+        {item.image ? (
+          <Image
+            src={urlFor(item.image).width(900).format('webp').quality(80).url()}
+            alt={`${item.title} - Custom patches with low minimums and fast delivery | Panda Patches`}
+            fill
+            className="object-contain p-3 group-hover:scale-105 transition-transform duration-500"
+            quality={80}
+            sizes="(max-width: 640px) 92vw, 296px"
+            priority={priority}
+            loading={priority ? "eager" : "lazy"}
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gray-200/50 animate-pulse" />
+        )}
       </div>
 
       {/* TEXT AREA */}
