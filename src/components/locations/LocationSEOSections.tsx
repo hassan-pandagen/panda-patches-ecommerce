@@ -18,11 +18,10 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Jacksonville's Custom Patch Demand: Military and First Responders",
         content: (
           <p className="text-[1.0625rem] leading-[1.8] text-gray-600">
-            Jacksonville is a Navy town, and that shapes what we make here. Squadrons and commands at{" "}
-            <span className="font-medium">NAS Jacksonville and Naval Station Mayport</span> order squadron, cruise, and morale patches, while the{" "}
-            <Link href="/custom-police-patches" className="text-purple-600 hover:underline font-medium">Jacksonville Sheriff&apos;s Office</Link>
-            {" "}and <Link href="/custom-fire-department-patches" className="text-purple-600 hover:underline font-medium">Jacksonville Fire and Rescue</Link>
-            {" "}order department, unit, K-9, and memorial patches. We match OCP and subdued standards, use 100% polyester thread rated for industrial washing, and stitch Velcro rather than glue it so it survives repeated gear swaps. Memorial and line-of-duty patches are rushed in as soon as 5 business days.
+            Jacksonville is a Navy town, and that shapes what we make here. We produce squadron, cruise, and morale patches, plus{" "}
+            <Link href="/custom-police-patches" className="text-purple-600 hover:underline font-medium">police</Link>
+            {" "}and <Link href="/custom-fire-department-patches" className="text-purple-600 hover:underline font-medium">fire department</Link>
+            {" "}department, unit, K-9, and memorial patches. We match OCP and subdued standards, use 100% polyester thread rated for industrial washing, and stitch Velcro rather than glue it so it survives repeated gear swaps. Memorial and line-of-duty patches are rushed in as soon as 5 business days.
           </p>
         )
       },
@@ -117,7 +116,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "NYC's Custom Patch Designers",
         content: (
           <p className="text-[1.0625rem] leading-[1.8] text-gray-600">
-            New York City sets the standard for quality. Fashion houses in the Garment District, streetwear brands in Brooklyn, and corporate headquarters in Midtown all need patches that meet NYC expectations. We produce patches for New York clothing labels that sell in boutiques on the Lower East Side, for uniformed staff at Manhattan hotels and restaurants, and for FDNY and NYPD affiliated organizations ordering custom unit patches. Every patch starts with a digital mockup in 12 to 24 hours. You approve before we produce. No exceptions.
+            New York City sets the standard for quality. Fashion labels, streetwear brands, hospitality teams, and corporate offices all need patches that meet NYC expectations. We produce embroidered, woven, leather, chenille, and PVC patches to your specification — for clothing labels, uniformed staff, and unit-style custom patches. Every patch starts with a digital mockup in 12 to 24 hours. You approve before we produce. No exceptions.
           </p>
         )
       },

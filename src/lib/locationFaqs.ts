@@ -1,16 +1,16 @@
 const locationFaqs: Record<string, Array<{ question: string; answer: string }>> = {
   "custom-patches-in-jacksonville": [
     {
-      question: "Do you make military patches for units at NAS Jacksonville and Naval Station Mayport?",
-      answer: "Yes. Jacksonville is a Navy town, and we regularly produce squadron, command, and morale patches for units at NAS Jacksonville and Naval Station Mayport. We match OCP and subdued color standards, reproduce official insignia precisely, and offer PVC for gear that takes weather and abrasion. Low 5-piece minimum for small unit runs, with a mockup in 12 to 24 hours before anything is produced."
+      question: "Do you make military squadron and command patches?",
+      answer: "Yes — we produce squadron, command, and morale patches to your specification. We match OCP and subdued color standards, reproduce the insignia you supply precisely, and offer PVC for gear that takes weather and abrasion. Low 5-piece minimum for small unit runs, with a mockup in 12 to 24 hours before anything is produced."
     },
     {
       question: "Can Jacksonville motorcycle clubs order custom biker and club patches?",
       answer: "Absolutely — MC and riding club patches are one of our most-requested Jacksonville orders. We produce full back patches, rockers, and small club patches in embroidered or leather, in the size, shape, and thread colors your club specifies. Orders start at a 5-piece minimum, artwork and mockups are free, and we keep your design on file so future member patches match exactly."
     },
     {
-      question: "Do you work with JSO and Jacksonville Fire and Rescue for department patches?",
-      answer: "Yes. We make patches for the Jacksonville Sheriff's Office, Jacksonville Fire and Rescue, and surrounding Northeast Florida departments — shoulder patches, unit and K-9 patches, and memorial patches. We use 100% polyester thread rated for industrial washing, stitched Velcro (not glued) for tactical gear, and rush memorial and line-of-duty patches in as soon as 5 business days."
+      question: "Can you make department-style patches for first responders?",
+      answer: "Yes — we produce first-responder-style patches to your specification: shoulder patches, unit and K-9 patches, and memorial patches. We use 100% polyester thread rated for industrial washing and stitched Velcro (not glued) for tactical gear, and rush memorial and line-of-duty patches in as soon as 5 business days."
     },
     {
       question: "What about Jacksonville businesses, sports teams, and events?",
@@ -23,8 +23,8 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
   ],
   "alabama-patches": [
     {
-      question: "Which Alabama industries order custom patches most often?",
-      answer: "Military and defense personnel at Fort Novosel (formerly Fort Rucker) and Redstone Arsenal are among our most frequent Alabama customers. We also serve automotive suppliers around Huntsville, university sports programs for Alabama Crimson Tide and Auburn Tigers, and firefighter and police departments throughout Birmingham and Montgomery."
+      question: "What kinds of custom patches do you make for Alabama orders?",
+      answer: "We produce the full range for Alabama orders — military- and service-style unit patches, industrial and automotive uniform patches, school and team sports patches, and first-responder-style department patches. Every order includes free design and a mockup in 12 to 24 hours, from a 5-piece minimum."
     },
     {
       question: "Can Alabama sports teams get custom patches for their uniforms?",
@@ -79,8 +79,8 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
       answer: "For patches worn through Boston's snowy winters and frequent rain, sew-on backing is the most durable option for outerwear. PVC patches with hook-and-loop backing also perform extremely well in cold conditions. We advise against relying solely on iron-on backing for heavy winter coats that experience repeated freezing and thawing."
     },
     {
-      question: "Can Boston fire stations and EMT departments order custom rank and unit patches?",
-      answer: "Yes. We regularly work with fire departments, EMT services, and police departments throughout Massachusetts. We produce embroidered rank insignia, station unit patches, and retirement keepsake patches. Orders for public safety departments receive detailed attention to color accuracy and badge design fidelity."
+      question: "Can you make rank and unit patches for fire and EMS departments?",
+      answer: "Yes. We produce embroidered rank insignia, station unit patches, and retirement keepsake patches to your specification. Public-safety-style orders receive detailed attention to color accuracy and badge design fidelity."
     },
     {
       question: "How are custom patches shipped to Boston and surrounding areas?",
@@ -89,8 +89,8 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
   ],
   "custom-california-patches": [
     {
-      question: "What industries in California order custom patches at the highest volume?",
-      answer: "California's entertainment industry generates significant patch demand for film productions, TV shows, and streaming series wardrobe departments. The military community around Camp Pendleton, Edwards AFB, and Vandenberg SFB orders unit patches regularly. Tech companies in Silicon Valley order branded patches for swag kits, while surf and outdoor brands along the coast order patches for retail merchandise."
+      question: "What kinds of custom patches do you make for California orders?",
+      answer: "We produce the full range for California orders — wardrobe and production patches for film and TV, military- and service-style unit patches, branded swag patches for company kits, and retail patches for surf, outdoor, and apparel brands. Every order includes free design and a mockup in 12 to 24 hours."
     },
     {
       question: "Can California streetwear brands order custom patches for wholesale?",
@@ -111,12 +111,12 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
   ],
   "custom-patches-in-chicago": [
     {
-      question: "What Chicago industries and organizations order custom patches regularly?",
-      answer: "Chicago's manufacturing and trades sector — including IBEW electricians, Teamsters, and construction unions in Cook County — orders embroidered union and trade patches frequently. Chicago Police Department and CFD units request rank and division patches, while the vibrant Chicago restaurant and hospitality scene orders staff uniform patches."
+      question: "What kinds of custom patches do you make for Chicago orders?",
+      answer: "We produce embroidered union- and trade-style patches, rank and division-style department patches, and staff uniform patches for restaurants and hospitality — plus the full range of embroidered, PVC, woven, chenille, and leather options. Every order includes free design and a mockup in 12 to 24 hours."
     },
     {
       question: "Do Chicago sports fans and booster clubs order custom team patches?",
-      answer: "Absolutely. Fans of the Bears, Cubs, White Sox, Bulls, Blackhawks, and Fire order custom fan patches for jackets, scarves, and bags. We also produce patches for youth baseball and hockey leagues throughout Chicagoland, and for college sports programs at Northwestern, DePaul, Loyola, and UIC."
+      answer: "Absolutely. We produce original fan-created patches for jackets, scarves, and bags, plus patches for youth baseball and hockey leagues throughout Chicagoland and for college and university sports programs. Note that we produce original fan artwork rather than officially licensed team logos."
     },
     {
       question: "What patch style works best for Chicago's cold winters and windy conditions?",
@@ -199,8 +199,8 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
   ],
   "custom-patches-in-florida": [
     {
-      question: "Which Florida industries order custom patches at the highest volumes?",
-      answer: "Florida's theme park and hospitality industry — Disney, Universal, SeaWorld, and major hotel chains — orders staff identification and department patches in large volumes. Florida's Coast Guard, Navy (NAS Jacksonville, NAS Pensacola, Naval Station Mayport), and military communities are consistent patch buyers. Florida's fishing charter, dive operator, and marine recreation businesses also order patches for staff shirts and gear."
+      question: "What kinds of custom patches do you make for Florida orders?",
+      answer: "We produce staff identification and department patches for hospitality and attraction uniforms, military- and service-style unit patches, and gear patches for fishing charter, dive, and marine recreation businesses. Every order includes free design and a mockup in 12 to 24 hours."
     },
     {
       question: "What backing type is most durable for Florida's heat and humidity?",
@@ -211,8 +211,8 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
       answer: "Yes. Florida's year-round sports culture means youth baseball, soccer, football, and lacrosse leagues operate continuously. We produce tournament patches, participation patches, and achievement patches for leagues from Pensacola to Key West. A low 5-piece minimum, free design, and fast 7-14 business day turnaround makes us a reliable partner for league coordinators."
     },
     {
-      question: "Do Florida law enforcement and corrections departments order from Panda Patches?",
-      answer: "We work with Florida Sheriff's offices, police departments, and corrections agencies throughout the state. We produce rank insignia patches, unit designator patches, and specialized division patches to exact specifications. Color accuracy, border clarity, and thread quality are held to strict standards for all public safety orders."
+      question: "Can you make patches for law enforcement and corrections agencies?",
+      answer: "Yes. We produce rank insignia patches, unit designator patches, and specialized division patches to exact specifications. Color accuracy, border clarity, and thread quality are held to strict standards on every public-safety-style order."
     },
     {
       question: "How do you ship custom patches to South Florida, the Panhandle, and rural areas?",
@@ -265,12 +265,12 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
   ],
   "custom-patches-los-angeles": [
     {
-      question: "What Los Angeles industries are the biggest buyers of custom patches?",
-      answer: "Hollywood film and TV productions order wardrobe department patches in large quantities for costume continuity. Los Angeles's massive streetwear and fashion industry — brands based in downtown LA, Fairfax, and Silver Lake — orders patches for retail apparel drops. Military and law enforcement at Los Angeles Air Force Base and LAPD also order identification and unit patches regularly."
+      question: "What kinds of custom patches do you make for Los Angeles orders?",
+      answer: "We produce the full range for LA orders — embroidered, PVC, woven, chenille, and leather patches in any size, shape, or design. Common uses include wardrobe and costume-continuity patches, retail apparel and streetwear drops, uniform and staff patches, and event merch. Every order includes free design and a mockup in 12 to 24 hours."
     },
     {
       question: "Can LA streetwear brands order custom patches for apparel drops?",
-      answer: "Yes. We work with streetwear brands throughout Los Angeles County producing iron-on, sew-on, and heat-transfer patches for denim jackets, hoodies, and caps. Minimum orders start at just 5 pieces, and per-unit pricing drops significantly at 50 and 100 pieces, perfect for limited release drops. We can produce chenille patches in the classic varsity style popular in LA's current fashion moment."
+      answer: "Yes. We produce iron-on, sew-on, and heat-transfer patches for denim jackets, hoodies, and caps. Minimum orders start at just 5 pieces, and per-unit pricing drops significantly at 50 and 100 pieces, which suits limited-release drops. Chenille patches in the classic varsity style are available in the same run."
     },
     {
       question: "What patch style is most popular with Los Angeles's surf and skate community?",
@@ -309,30 +309,30 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
   ],
   "custom-patches-in-new-york": [
     {
-      question: "What New York industries and organizations order custom patches most?",
-      answer: "New York City's FDNY, NYPD, and Port Authority Police are among the most prominent New York patch customers — ordering unit, rank, and commemorative patches. New York's fashion industry uses patches in runway and retail collections. Broadway and entertainment production companies order costume patches. New York's dense union trade culture — IBEW, IATSE, Teamsters — orders union identification patches regularly."
+      question: "What kinds of custom patches do you make for New York orders?",
+      answer: "We produce the full range for New York orders — embroidered, PVC, woven, chenille, and leather patches in any size, shape, or design. Common uses include uniform and staff patches, costume and production patches, event and merch patches, and limited-run patches for independent apparel brands. Every order includes free design and a mockup in 12 to 24 hours."
     },
     {
       question: "Can NYC small businesses and bodegas order branded staff patches?",
       answer: "Yes. New York City's dense small business ecosystem, from bodegas to boutiques to specialty food shops, orders staff uniform patches in small quantities. Our minimum order is just 5 pieces, which makes us accessible to independent businesses that only need 5-10 patches for their team. Free design help and fast turnaround make it easy for busy NYC business owners to manage."
     },
     {
-      question: "What patch types are popular with New York's hip-hop and streetwear culture?",
-      answer: "New York's streetwear scene in SoHo, the Bronx, and Brooklyn drives strong demand for embroidered patches with bold lettering, chenille patches in varsity styles, and woven patches for precision logo reproduction. Brands and artists operating in New York's sneaker and streetwear ecosystem often order limited run patches of 25-100 pieces for drops and collaborations."
+      question: "What patch types work best for streetwear and apparel brands?",
+      answer: "Embroidered patches with bold lettering, chenille patches in varsity styles, and woven patches for precise logo reproduction are the most popular choices for apparel and streetwear. Limited runs of 25 to 100 pieces are typical for drops and collaborations, and our 5-piece minimum makes a small test run practical before committing to a full batch."
     },
     {
-      question: "Do New York firefighters and police departments order custom memorial patches?",
-      answer: "Yes. Memorial and retirement patches are a meaningful tradition in New York's fire and police community. We produce FDNY and NYPD memorial patches for line-of-duty losses, retirement ceremonies, and unit anniversaries with the care and accuracy these occasions deserve. We understand the significance of these orders and prioritize precision in every detail."
+      question: "Do you make memorial and retirement patches?",
+      answer: "Yes. We produce memorial and retirement patches — including line-of-duty memorial designs, retirement ceremony patches, and unit anniversary patches — with precise matching on every detail. Rush production is available when a ceremony or service date is fixed."
     },
     {
       question: "How fast can patches be delivered to Manhattan, Brooklyn, Queens, the Bronx, and Staten Island?",
-      answer: "We ship to all five boroughs and the greater New York metropolitan area including Long Island, Westchester, and Northern New Jersey. Standard production is 7-14 business days after proof approval. For Broadway productions, fashion week submissions, or NYPD/FDNY event deadlines, rush production can put patches in hand in as soon as 5 business days."
+      answer: "We ship to all five boroughs and the greater New York metropolitan area including Long Island, Westchester, and Northern New Jersey. Standard production is 7-14 business days after proof approval. When you have a fixed event or ceremony deadline, rush production can put patches in hand in as soon as 5 business days."
     }
   ],
   "custom-ohio-state-patches": [
     {
-      question: "What Ohio industries and institutions order custom patches most often?",
-      answer: "Ohio's manufacturing heritage means auto plants around Toledo, Cincinnati, and Columbus order safety and company patches for worker uniforms. Wright-Patterson AFB near Dayton is a major military patch customer. Ohio State University and the state's many other universities order patches for athletics, Greek life, and campus organizations. Cleveland's healthcare corridor also orders department identification patches."
+      question: "What kinds of custom patches do you make for Ohio orders?",
+      answer: "We produce safety and company patches for manufacturing and industrial uniforms, military- and service-style unit patches, university and campus organization patches for athletics and Greek life, and healthcare department identification patches. Every order includes free design and a mockup in 12 to 24 hours."
     },
     {
       question: "Are Ohio State Buckeyes fan patches popular with Columbus customers?",
@@ -441,8 +441,8 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
   ],
   "custom-patches-in-washington": [
     {
-      question: "What Washington State industries and communities order custom patches most?",
-      answer: "Seattle's tech giants — Amazon, Microsoft, Boeing — order branded patches for employee events, team swag, and company culture programs. Washington State's military installations including Joint Base Lewis-McChord, Naval Station Everett, and NAS Whidbey Island are consistent patch customers. Washington's outdoor recreation industry, fishing and maritime sector, and Seahawks and Sounders fan communities also generate strong patch demand."
+      question: "What kinds of custom patches do you make for Washington State orders?",
+      answer: "We produce branded patches for employee events, team swag, and company culture programs, military- and service-style unit patches, and gear patches for outdoor recreation, fishing, and maritime use — plus original fan-created sports patches. Every order includes free design and a mockup in 12 to 24 hours."
     },
     {
       question: "Are custom patches popular with Seattle's outdoor and REI crowd?",
