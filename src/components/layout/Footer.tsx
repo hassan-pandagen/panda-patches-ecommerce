@@ -245,10 +245,13 @@ export default function Footer() {
               </Link>
             </h3>
             <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-3">
-              <li><Link prefetch={false} href="/custom-austin-patches">Custom Austin Patches</Link></li>
+              {/* CL051B Path B (2026-08-03): the Austin / New York / Los Angeles
+                  city pages now 301 to /locations, so linking them sitewide would
+                  put three redirect hops in the footer of every page. Removed;
+                  the hub link above covers per-city delivery. Texas remains a
+                  live page of its own. */}
+              <li><Link prefetch={false} href="/locations">Delivery Coverage by State</Link></li>
               <li><Link prefetch={false} href="/custom-patches-in-texas">Custom Patches in Texas</Link></li>
-              <li><Link prefetch={false} href="/custom-patches-in-new-york">Custom Patches in New York</Link></li>
-              <li><Link prefetch={false} href="/custom-patches-los-angeles">Custom Patches Los Angeles</Link></li>
             </ul>
           </div>
 

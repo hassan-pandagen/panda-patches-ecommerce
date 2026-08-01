@@ -484,6 +484,22 @@ const nextConfig = {
       { source: '/custom-patches-in-washington', destination: '/custom-patches', permanent: true },
       { source: '/custom-patches-in-washington/', destination: '/custom-patches', permanent: true },
 
+      // CITY-PAGE CONSOLIDATION — CL051B Path B (Aug 3 2026, CEO approved).
+      // The last three standalone city pages measured 51% byte-identical to each
+      // other, with the remaining "unique" copy being city-token substitution
+      // (CategoryZigZag rendering "Custom X Patches in {City}" x12) — the pattern
+      // Google names as a doorway. With no physical presence in these metros we
+      // cannot produce the local content that would justify separate pages, so
+      // they consolidate into /locations, the delivery-coverage hub, which now
+      // carries the per-city delivery data behind a selector. 301 (not deleted)
+      // to preserve the residual equity on these slugs.
+      { source: '/custom-patches-in-new-york', destination: '/locations', permanent: true },
+      { source: '/custom-patches-in-new-york/', destination: '/locations', permanent: true },
+      { source: '/custom-patches-los-angeles', destination: '/locations', permanent: true },
+      { source: '/custom-patches-los-angeles/', destination: '/locations', permanent: true },
+      { source: '/custom-austin-patches', destination: '/locations', permanent: true },
+      { source: '/custom-austin-patches/', destination: '/locations', permanent: true },
+
       // MISSING CITY PAGES — Google discovered these from old backlinks but we
       // have not built them yet. 301 to main products page until location added.
       { source: '/custom-patches-atlanta', destination: '/custom-patches', permanent: true },

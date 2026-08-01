@@ -53,11 +53,12 @@ const STATE_NAMES = new Set([
 // 16 locationPage docs are STILL published in Sanity, so the hub must filter to
 // this allowlist or it links to pages that immediately redirect. If a city page
 // is ever rebuilt, remove its redirect in next.config.mjs and add its slug here.
+// CL051B Path B (2026-08-03): the three remaining city pages now 301 to THIS
+// hub, so they must not be listed here — linking to them would bounce the
+// visitor straight back to this page. Only the Texas state page still serves
+// its own content. Per-city delivery data moves into a selector on this hub.
 const LIVE_LOCATION_SLUGS = new Set([
-  "custom-austin-patches",
   "custom-patches-in-texas",
-  "custom-patches-in-new-york",
-  "custom-patches-los-angeles",
 ]);
 
 // Nearby-cities cross-link map. Only the 4 live pages remain, so cross-links
@@ -65,10 +66,9 @@ const LIVE_LOCATION_SLUGS = new Set([
 // surviving in-region neighbor, so they render no nearby module rather than
 // link to a redirected slug.
 const NEARBY: Record<string, string[]> = {
-  "custom-austin-patches": ["custom-patches-in-texas"],
-  "custom-patches-in-texas": ["custom-austin-patches"],
-  "custom-patches-los-angeles": [],
-  "custom-patches-in-new-york": [],
+  // Texas is the only surviving location page, so it has no neighbour to
+  // cross-link to. Every other slug 301s away; linking one would be a dead hop.
+  "custom-patches-in-texas": [],
 };
 
 interface LocationDoc {
@@ -132,7 +132,7 @@ export default async function LocationsHubPage() {
             Custom Patches Shipped to Every US City and State
           </h1>
           <p className="text-[0.9375rem] md:text-[1.125rem] text-gray-600 leading-[1.6] max-w-[42.5rem] mx-auto">
-            We ship custom patches to every US zip code with free worldwide delivery. {locations.length} cities and states currently have their own dedicated page with local pricing notes, common use cases, and team-order examples. Pick your area below to see what we have shipped there.
+            We produce every patch at our own facility and deliver anywhere in the US with free tracked shipping &mdash; rush service puts patches in hand in as soon as 5 business days.
           </p>
         </div>
       </section>

@@ -47,6 +47,13 @@ const REDIRECTED_SLUGS = new Set([
   'custom-patches-in-san-francisco',
   'custom-utah-patches',
   'custom-patches-in-washington',
+  // CL051B Path B (2026-08-03, CEO approved) — the last 3 standalone city pages
+  // 301 to /locations. Measured 51% byte-identical with city-token substitution
+  // (Google's textbook doorway pattern); consolidated into the delivery hub with
+  // a city selector instead. No standalone city pages going forward.
+  'custom-patches-in-new-york',
+  'custom-patches-los-angeles',
+  'custom-austin-patches',
 ]);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
