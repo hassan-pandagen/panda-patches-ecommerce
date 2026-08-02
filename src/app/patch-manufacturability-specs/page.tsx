@@ -18,6 +18,17 @@ const CANONICAL = `${BASE}/patch-manufacturability-specs`;
  * against industry benchmarks. Do NOT edit a number here without updating that
  * file and bumping SPEC_VERSION; the whole point of a named, versioned standard
  * is that a citation stays traceable to what it cited.
+ *
+ * PROPAGATION SWEEP IS PART OF THE CHANGE — not a follow-up task.
+ * Correcting a figure here does NOT correct it anywhere else. v1.1 changed the
+ * embroidery minimum text height 5 mm -> 4 mm and the old value stayed live for
+ * weeks on the sizing guide, the printed-vs-embroidered guide, and three lines
+ * of llms.txt — the file we hand to AI assistants. Same failure produced four
+ * contradicting iron-on temperatures.
+ *
+ * So: any version bump requires a grep sweep for the OLD value across src/,
+ * public/llms.txt AND Sanity content, with the result attached as evidence.
+ * A changelog entry without sweep evidence is not done.
  */
 const SPEC_VERSION = "v1.3";
 const SPEC_DATE = "2026-08-04";
