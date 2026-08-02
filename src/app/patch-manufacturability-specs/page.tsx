@@ -474,6 +474,10 @@ export default function PatchManufacturabilitySpecs() {
                     <td className="py-3 font-bold text-panda-dark">From behind only, full 25&ndash;30 seconds</td>
                   </tr>
                   <tr className="border-b border-gray-200">
+                    <td className="py-3 pr-4">Chenille patches</td>
+                    <td className="py-3 font-bold text-panda-dark">From behind only, 20&ndash;30 seconds, no adhesive spray</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
                     <td className="py-3 pr-4">Fabric weight</td>
                     <td className="py-3 font-bold text-panda-dark">Heavier fabric &rarr; more time and pressure</td>
                   </tr>
@@ -484,6 +488,11 @@ export default function PatchManufacturabilitySpecs() {
               <li>
                 <strong className="text-panda-dark">PVC is pressed from behind only.</strong> Direct heat on the face of a
                 PVC patch melts it. Press from inside the garment so the heat reaches the adhesive, not the PVC.
+              </li>
+              <li>
+                <strong className="text-panda-dark">Chenille is also pressed from behind</strong>, face-down, for 20&ndash;30
+                seconds. Direct heat on the pile flattens and scorches it. Chenille needs no adhesive spray &mdash; the
+                backing carries its own adhesive.
               </li>
               <li>
                 <strong className="text-panda-dark">Fabric rule.</strong> If the fabric itself cannot take a hot press
@@ -526,7 +535,7 @@ export default function PatchManufacturabilitySpecs() {
             </h3>
             <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-[1.7] text-[0.875rem] md:text-[0.9375rem] font-medium">
               <li>
-                <strong className="text-panda-dark">v1.3 — August 2026:</strong> added the iron-on application spec (350&deg;F / 175&deg;C, 25&ndash;30 second front press, 10 second reverse press, PVC pressed from behind only) and care guidance, confirmed by our production team. This replaces earlier per-fabric temperature figures with the manufacturer&rsquo;s own rule.
+                <strong className="text-panda-dark">v1.3 — August 2026:</strong> added the iron-on application spec (350&deg;F / 175&deg;C, 25&ndash;30 second front press, 10 second reverse press, PVC and chenille pressed from behind only, chenille at 20&ndash;30 seconds with no adhesive spray) and care guidance, confirmed by our production team. This replaces earlier per-fabric temperature figures with the manufacturer&rsquo;s own rule.
               </li>
               <li>
                 <strong className="text-panda-dark">v1.2 — July 2026:</strong> added the PVC minimum raised-element width (0.3 mm for a raised dot or line), the 2D-versus-3D mould distinction, and hybrid-design guidance. This closes the last open figure in the standard. Confirmed by our production team.
