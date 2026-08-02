@@ -46,7 +46,7 @@ const ironOnFAQs = [
   {
     question: "How do I apply an iron-on patch?",
     answer:
-      "Step 1: preheat a household iron to the cotton or linen setting (medium-high heat, no steam). Step 2: place the patch adhesive-side down on the garment in the desired position. Step 3: cover with a thin cotton cloth or pressing sheet. Step 4: press straight down with firm pressure for 30 to 45 seconds. Do not slide the iron. Step 5: flip the garment inside out and repeat the press from the back side for another 20 seconds. Step 6: let the patch cool completely before handling. The bond strengthens after the first wash.",
+      "Step 1: preheat a household iron to 350°F (175°C) with no steam. Step 2: place the patch adhesive-side down on the garment in the desired position. Step 3: cover with a thin cotton cloth or pressing sheet. Step 4: press straight down with firm pressure for 25 to 30 seconds. Do not slide the iron. Heavier fabrics need more time and pressure — a 500gsm hoodie takes longer than a t-shirt. Step 5: flip the garment inside out and press from the back side for another 10 seconds. Step 6: let the patch cool completely before handling. PVC patches are the exception: press PVC from behind only, for the full 25 to 30 seconds, because direct front heat melts the PVC. Once properly heat-pressed the bond is near-permanent, and machine washing and dry cleaning are both safe.",
   },
   {
     question: "What garments work best for iron-on patches?",
@@ -268,12 +268,12 @@ export default async function CustomIronOnPatchesPage() {
           </p>
           <div className="grid md:grid-cols-2 gap-5 max-w-[50rem] mx-auto">
             {[
-              { n: 1, title: "Preheat the iron", desc: "Cotton or linen setting (medium-high heat, no steam)." },
+              { n: 1, title: "Preheat the iron", desc: "350°F (175°C), no steam." },
               { n: 2, title: "Position the patch", desc: "Adhesive-side down on the garment in the desired location." },
               { n: 3, title: "Cover with a pressing cloth", desc: "Thin cotton cloth or pressing sheet protects both the patch and the iron." },
-              { n: 4, title: "Press for 30-45 seconds", desc: "Firm pressure straight down. Do not slide the iron." },
-              { n: 5, title: "Press from the back", desc: "Flip the garment inside out and repeat for 20 seconds from the back side." },
-              { n: 6, title: "Cool completely", desc: "Let the patch cool fully before handling. The bond strengthens after the first wash." },
+              { n: 4, title: "Press for 25-30 seconds", desc: "Firm pressure straight down. Do not slide the iron. Heavier fabrics need longer and firmer pressure than a t-shirt." },
+              { n: 5, title: "Press from the back", desc: "Flip the garment inside out and press for 10 seconds. PVC is the exception: press PVC from behind only, the full 25-30 seconds, or the front heat melts it." },
+              { n: 6, title: "Cool completely", desc: "Let the patch cool fully. Once properly pressed the bond is near-permanent, and machine washing and dry cleaning are both safe." },
             ].map((step) => (
               <div key={step.n} className="flex gap-4 bg-[#F9FAF5] border border-gray-100 rounded-2xl p-5">
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-panda-dark text-panda-yellow font-black flex items-center justify-center text-lg">

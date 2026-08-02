@@ -66,7 +66,7 @@ const faqs = [
   {
     question: "How do I apply iron-on patches?",
     answer:
-      "Iron-on patches use a heat-activated adhesive bonded to the back of the patch. Application steps: (1) preheat a household iron to the cotton or linen setting (medium-high heat, no steam), (2) place the patch adhesive-side down on the garment in the desired position, (3) cover with a thin cotton cloth or pressing sheet to protect both the patch and the iron, (4) press straight down with firm pressure for 30 to 45 seconds (do not slide the iron), (5) flip the garment inside out and repeat the press from the back side for another 20 seconds, and (6) let the patch cool completely before handling. The bond strengthens after the first wash. For long-term durability on items washed frequently, reinforce the iron-on with a few stitches around the edge.",
+      "Iron-on patches use a heat-activated adhesive bonded to the back of the patch. Application steps: (1) preheat a household iron to 350°F (175°C) with no steam, (2) place the patch adhesive-side down on the garment in the desired position, (3) cover with a thin cotton cloth or pressing sheet to protect both the patch and the iron, (4) press straight down with firm pressure for 25 to 30 seconds without sliding the iron — heavier fabrics need more time and pressure, so a 500gsm hoodie takes longer than a t-shirt, (5) flip the garment inside out and press from the back for another 10 seconds, and (6) let the patch cool completely before handling. PVC patches are the exception: press them from behind only, for the full 25 to 30 seconds, because direct front heat melts PVC. If a fabric cannot take a hot press — heat-sensitive synthetics, coated or waterproof materials — choose sew-on backing instead. Once properly heat-pressed the bond is near-permanent: machine washing and dry cleaning are both safe. These figures are our production team's own application spec.",
   },
   {
     question: "Will iron-on patches survive washing?",
@@ -296,11 +296,11 @@ export default function SpecsAndCareClusterPage() {
               Iron-on patches use a heat-activated adhesive bonded to the back of the patch. The adhesive melts under heat and pressure, then cools and bonds to the garment fabric. Application takes about a minute per patch with a household iron and standard pressing cloth.
             </p>
             <ol className="space-y-3 text-gray-700 leading-relaxed list-decimal list-outside ml-5 mb-4">
-              <li>Preheat a household iron to the cotton or linen setting (medium-high heat). Turn off steam.</li>
+              <li>Preheat a household iron to 350&deg;F (175&deg;C). Turn off steam.</li>
               <li>Place the patch adhesive-side down on the garment in the desired position. The adhesive is the slightly tacky shiny side on the back.</li>
               <li>Cover the patch with a thin cotton cloth or a Teflon pressing sheet to protect both the patch and the iron from direct contact.</li>
-              <li>Press straight down with firm pressure for 30 to 45 seconds. Do not slide the iron. Sliding shifts the patch before the adhesive sets.</li>
-              <li>Flip the garment inside out and press again from the back side for 20 seconds. This reinforces the bond from both sides.</li>
+              <li>Press straight down with firm pressure for 25 to 30 seconds. Do not slide the iron. Sliding shifts the patch before the adhesive sets. Heavier fabrics need more time and firmer pressure &mdash; a 500gsm hoodie takes longer than a t-shirt.</li>
+              <li>Flip the garment inside out and press again from the back side for 10 seconds. This reinforces the bond from both sides. <strong>PVC patches are the exception:</strong> press PVC from behind only, for the full 25 to 30 seconds, because direct front heat melts the PVC.</li>
               <li>Let the patch cool completely before handling. The adhesive bond fully cures during cooling. The first machine wash further strengthens the bond.</li>
             </ol>
             <p className="text-gray-700 leading-relaxed mb-4">

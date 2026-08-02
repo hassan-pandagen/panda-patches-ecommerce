@@ -19,9 +19,9 @@ const CANONICAL = `${BASE}/patch-manufacturability-specs`;
  * file and bumping SPEC_VERSION; the whole point of a named, versioned standard
  * is that a citation stays traceable to what it cited.
  */
-const SPEC_VERSION = "v1.2";
-const SPEC_DATE = "2026-07-24";
-const SPEC_DATE_LABEL = "July 2026";
+const SPEC_VERSION = "v1.3";
+const SPEC_DATE = "2026-08-04";
+const SPEC_DATE_LABEL = "August 2026";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Patch Manufacturability Specs: Min Text, Lines, Colors by Type",
@@ -434,6 +434,71 @@ export default function PatchManufacturabilitySpecs() {
           </div>
         </section>
 
+        {/* IRON-ON APPLICATION + CARE (v1.3) — our production team's own
+            application spec. Published here because no competitor can state it
+            without inventing it: they do not manufacture the adhesive.
+            Canon lives here; the iron-on guide and commercial pages mirror it. */}
+        <section className="w-full py-12 md:py-16 px-4 md:px-6 bg-white">
+          <div className="container mx-auto max-w-[51.25rem]">
+            <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-4 leading-tight">
+              Iron-on application and care spec
+            </h2>
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
+              These are the figures our production team applies to our own heat-activated adhesive &mdash; not a
+              general-purpose estimate. Application temperature, dwell time and technique all affect whether the bond
+              holds, and the correct technique differs by patch type.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-[0.875rem] md:text-[0.9375rem] border-collapse">
+                <thead>
+                  <tr className="border-b-2 border-panda-dark text-left">
+                    <th className="py-3 pr-4 font-black text-panda-dark uppercase tracking-wider text-[0.75rem]">Spec</th>
+                    <th className="py-3 font-black text-panda-dark uppercase tracking-wider text-[0.75rem]">Figure</th>
+                  </tr>
+                </thead>
+                <tbody className="text-gray-700 font-medium">
+                  <tr className="border-b border-gray-200">
+                    <td className="py-3 pr-4">Iron / press temperature</td>
+                    <td className="py-3 font-bold text-panda-dark">350&deg;F (175&deg;C), no steam</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-3 pr-4">Front press &mdash; embroidered, woven</td>
+                    <td className="py-3 font-bold text-panda-dark">25&ndash;30 seconds, firm, straight down</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-3 pr-4">Reverse press &mdash; embroidered, woven</td>
+                    <td className="py-3 font-bold text-panda-dark">10 seconds (reinforcement)</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-3 pr-4">PVC patches</td>
+                    <td className="py-3 font-bold text-panda-dark">From behind only, full 25&ndash;30 seconds</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-3 pr-4">Fabric weight</td>
+                    <td className="py-3 font-bold text-panda-dark">Heavier fabric &rarr; more time and pressure</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-[1.7] text-[0.875rem] md:text-[0.9375rem] font-medium mt-5">
+              <li>
+                <strong className="text-panda-dark">PVC is pressed from behind only.</strong> Direct heat on the face of a
+                PVC patch melts it. Press from inside the garment so the heat reaches the adhesive, not the PVC.
+              </li>
+              <li>
+                <strong className="text-panda-dark">Fabric rule.</strong> If the fabric itself cannot take a hot press
+                &mdash; heat-sensitive synthetics, coated or waterproof materials &mdash; do not iron the patch on. Choose
+                sew-on backing instead. Any fabric that tolerates ironing works.
+              </li>
+              <li>
+                <strong className="text-panda-dark">Care.</strong> Once properly heat-pressed the bond is near-permanent:
+                machine washing and dry cleaning are both safe. The conditional matters &mdash; an under-pressed patch will
+                not survive either.
+              </li>
+            </ul>
+          </div>
+        </section>
+
         {/* BYLINE + CITE */}
         <section className="w-full py-10 md:py-16 px-4 md:px-6 bg-[#F7F7F7]">
           <div className="container mx-auto max-w-[51.25rem]">
@@ -460,6 +525,9 @@ export default function PatchManufacturabilitySpecs() {
               Changelog
             </h3>
             <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-[1.7] text-[0.875rem] md:text-[0.9375rem] font-medium">
+              <li>
+                <strong className="text-panda-dark">v1.3 — August 2026:</strong> added the iron-on application spec (350&deg;F / 175&deg;C, 25&ndash;30 second front press, 10 second reverse press, PVC pressed from behind only) and care guidance, confirmed by our production team. This replaces earlier per-fabric temperature figures with the manufacturer&rsquo;s own rule.
+              </li>
               <li>
                 <strong className="text-panda-dark">v1.2 — July 2026:</strong> added the PVC minimum raised-element width (0.3 mm for a raised dot or line), the 2D-versus-3D mould distinction, and hybrid-design guidance. This closes the last open figure in the standard. Confirmed by our production team.
               </li>

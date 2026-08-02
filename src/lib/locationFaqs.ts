@@ -622,7 +622,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How should I apply iron-on patches to denim jackets?",
-      answer: "Denim jackets are the ideal canvas for iron-on patches. Set your iron to the cotton or high heat setting (around 360-380°F), place the patch adhesive-side down on the denim, cover with a pressing cloth, and apply firm downward pressure for 30-60 seconds without moving the iron. Allow to cool fully before touching. For long-term durability, adding a perimeter stitch around the patch edge significantly improves resistance to washing and wear."
+      answer: "Denim jackets are the ideal canvas for iron-on patches. Set your iron to 350°F (175°C) with steam off, place the patch adhesive-side down on the denim, cover with a pressing cloth, and apply firm downward pressure for 25-30 seconds without moving the iron. Heavy denim sits at the longer end of that range and needs firmer pressure. Flip the jacket and press from the reverse side for 10 seconds, then allow to cool fully before touching. For long-term durability, adding a perimeter stitch around the patch edge significantly improves resistance to washing and wear."
     },
     {
       question: "What sizes work best for different jacket locations — back, chest, and sleeve?",
@@ -936,7 +936,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "How do I apply iron-on letter patches correctly?",
-      answer: "Preheat your iron to the cotton or high-heat setting (360-380°F). Do not use steam. Position the letter patch adhesive-side down on the fabric. Place a pressing cloth (thin cotton fabric) over the patch. Apply firm downward pressure with the iron for 30-45 seconds without moving. Lift and allow to cool for 30 seconds. Test adhesion by gently lifting one edge. If an edge lifts, reheat for another 15-20 seconds. For best long-term durability, add a few hand stitches around the perimeter."
+      answer: "Preheat your iron to 350°F (175°C). Do not use steam. Position the letter patch adhesive-side down on the fabric. Place a pressing cloth (thin cotton fabric) over the patch. Apply firm downward pressure with the iron for 25-30 seconds without moving — heavier fabrics need more time and firmer pressure than a t-shirt. Flip the garment and press from the reverse side for 10 seconds. Allow to cool before handling. Test adhesion by gently lifting one edge; if an edge lifts, reheat for another 15-20 seconds. For best long-term durability, add a few hand stitches around the perimeter."
     },
     {
       question: "What sizes are available for iron-on letter patches?",
