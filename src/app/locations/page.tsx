@@ -9,8 +9,17 @@ import {
   generateSchemaScript,
   generateBreadcrumbSchema,
   generateCollectionPageSchema,
+  generateFAQSchema,
 } from "@/lib/schemas";
 import { MapPin, ArrowRight } from "lucide-react";
+import CityDeliverySelector from "@/components/locations/CityDeliverySelector";
+import { CITY_DELIVERY, honestyFrame, cityDeliveryFaqs } from "@/lib/cityDeliveryPages";
+import { addBusinessDays, formatShortDate } from "@/lib/businessDays";
+import {
+  STATE_DELIVERY_TALLY,
+  TALLY_AS_OF,
+  CITY_PAGE_THRESHOLD,
+} from "@/lib/stateDeliveryTally";
 
 const CANONICAL = "https://www.pandapatches.com/locations";
 
@@ -113,14 +122,37 @@ export default async function LocationsHubPage() {
     }))
   );
 
+  // Order-by dates are computed here, on the server, so the selector renders the
+  // same value the client hydrates with. Standard is the conservative end:
+  // 14 business days production PLUS this metro's transit, matching how the
+  // iron-on/delivery canon describes it (production, then shipping) rather than
+  // quoting the optimistic 7-day figure.
+  const today = new Date();
+  const selectorCities = CITY_DELIVERY.map((c) => ({
+    id: c.id,
+    city: c.city,
+    state: c.state,
+    stateOrders: c.stateOrders,
+    transit: c.transit,
+    cutoffLocal: c.cutoffLocal,
+    honestyFrame: honestyFrame(c.city),
+    rushDate: formatShortDate(addBusinessDays(today, 5)),
+    standardDate: formatShortDate(addBusinessDays(today, 14 + c.transitDays)),
+  }));
+
+  // FAQPage schema only because these FAQs are rendered visibly below.
+  const deliveryFaqs = CITY_DELIVERY.flatMap((c) => cityDeliveryFaqs(c));
+  const faqSchema = generateFAQSchema(deliveryFaqs);
+
   return (
     <main className="min-h-screen bg-[#F9FAF5]">
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(collectionSchema)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(faqSchema)} />
 
       <Navbar />
 
-      <Breadcrumbs items={[]} currentPage="Locations" />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }]} currentPage="Delivery" />
 
       {/* Hero */}
       <section className="w-full pt-10 md:pt-14 pb-8 md:pb-12 bg-white">
@@ -129,13 +161,17 @@ export default async function LocationsHubPage() {
             Panda Patches . Locations
           </p>
           <h1 className="text-[2rem] md:text-[3rem] font-black text-panda-dark leading-[1.05] tracking-tight mb-4">
-            Custom Patches Shipped to Every US City and State
+            Custom Patch Delivery Coverage
           </h1>
           <p className="text-[0.9375rem] md:text-[1.125rem] text-gray-600 leading-[1.6] max-w-[42.5rem] mx-auto">
             We produce every patch at our own facility and deliver anywhere in the US with free tracked shipping &mdash; rush service puts patches in hand in as soon as 5 business days.
           </p>
         </div>
       </section>
+
+      {/* CITY SELECTOR — replaces the three standalone city pages (CL051B Path B).
+          One URL, real per-city data, no doorway pattern. */}
+      <CityDeliverySelector cities={selectorCities} />
 
       {/* States grid */}
       {states.length > 0 && (
@@ -202,6 +238,77 @@ export default async function LocationsHubPage() {
           </div>
         </section>
       )}
+
+      {/* DELIVERY COVERAGE — real state-level delivery record. Count only:
+          delivered_at timestamps are batch-entered, so no honest median exists
+          yet; the median column returns once the carrier webhook writes real
+          delivery times. Never infer metro-level counts from these. */}
+      <section className="w-full py-10 md:py-14 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-6 max-w-[68.75rem]">
+          <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-2">
+            Delivery Coverage by State
+          </h2>
+          <p className="text-[0.875rem] text-gray-500 mb-7 max-w-[42.5rem] leading-[1.6]">
+            Orders we have actually delivered, by state, as of {TALLY_AS_OF}. States with{" "}
+            {CITY_PAGE_THRESHOLD}+ delivered orders get their own entry in the city selector above.
+            Refreshed quarterly.
+          </p>
+
+          <div className="overflow-x-auto rounded-2xl border border-gray-200">
+            <table className="w-full text-[0.875rem] md:text-[0.9375rem] border-collapse bg-white">
+              <thead>
+                <tr className="bg-panda-dark text-white text-left">
+                  <th className="py-3 px-4 font-black uppercase tracking-wider text-[0.6875rem]">State</th>
+                  <th className="py-3 px-4 font-black uppercase tracking-wider text-[0.6875rem]">Orders delivered</th>
+                  <th className="py-3 px-4 font-black uppercase tracking-wider text-[0.6875rem]">Dedicated page</th>
+                </tr>
+              </thead>
+              <tbody className="text-gray-700 font-medium">
+                {STATE_DELIVERY_TALLY.map((s) => (
+                  <tr key={s.code} className="border-t border-gray-100">
+                    <td className="py-3 px-4 font-semibold text-panda-dark">{s.state}</td>
+                    <td className="py-3 px-4 font-bold">{s.orders}</td>
+                    <td className="py-3 px-4">
+                      {s.href ? (
+                        <Link href={s.href} className="text-panda-green font-semibold underline underline-offset-2">
+                          View page
+                        </Link>
+                      ) : (
+                        <span className="text-gray-400">&mdash;</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="text-[0.75rem] text-gray-400 mt-3 leading-[1.6] max-w-[46rem]">
+            Counts come from our own shipment records (orders marked delivered). Addresses that could not be
+            resolved to a state are excluded rather than estimated, so every figure is a conservative floor.
+            Door-to-door delivery times are not published yet &mdash; we will add them once carrier tracking
+            supplies verified delivery timestamps.
+          </p>
+        </div>
+      </section>
+
+      {/* DELIVERY FAQs — rendered visibly because the page emits FAQPage schema
+          for them. Built from the same real numbers as the selector. */}
+      <section className="w-full py-10 md:py-14 bg-[#F9FAF5] border-t border-gray-100">
+        <div className="container mx-auto px-6 max-w-[53.75rem]">
+          <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-6">
+            Delivery questions
+          </h2>
+          <div className="space-y-6">
+            {deliveryFaqs.map((f) => (
+              <div key={f.question}>
+                <h3 className="text-[1rem] md:text-[1.0625rem] font-bold text-panda-dark mb-1">{f.question}</h3>
+                <p className="text-[0.9375rem] text-gray-700 leading-[1.8]">{f.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="w-full py-12 md:py-16 bg-panda-dark text-white">
