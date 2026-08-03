@@ -82,7 +82,8 @@ export async function POST(req: Request) {
 
   const velcroAdjusted = applyVelcroPricing(priceResult.totalPrice, backing, quantity);
   const patchSubtotalNow = applyEconomyDiscount(velcroAdjusted, deliveryOption);
-  const rushSurchargeNow = deliveryOption === "rush" ? getRushSurcharge(quantity) : 0;
+  // Rush = 25% of subtotal, $50 floor — computed from the subtotal, not quantity.
+  const rushSurchargeNow = deliveryOption === "rush" ? getRushSurcharge(patchSubtotalNow) : 0;
   const finalPriceNow = Math.round((patchSubtotalNow + rushSurchargeNow) * 100) / 100;
 
   // Loyalty price-lock: reorders within 365 days honor the original unit price

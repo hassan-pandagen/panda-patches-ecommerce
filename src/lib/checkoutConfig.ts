@@ -17,15 +17,33 @@ export const ALLOWED_ORIGINS = [
 /** Economy delivery gives a 5% discount. */
 export const ECONOMY_DISCOUNT_RATE = 0.95;
 
-/** Velcro backing: +$0.25 per piece. */
-export const VELCRO_PER_PIECE_FEE = 0.25;
+/** Velcro backing: +$0.35 per piece, every quantity. No flat fee, no minimum. */
+export const VELCRO_PER_PIECE_FEE = 0.35;
 
-/** Rush surcharge bands (mirrored from usePriceCalculation hook). */
-export function getRushSurcharge(quantity: number): number {
-  if (quantity <= 50) return 100;
-  if (quantity <= 250) return 150;
-  if (quantity <= 1000) return 200;
-  return 300;
+/**
+ * Rush surcharge: 25% of the order subtotal, with a $50 floor and no cap
+ * (CEO decision, Aug 2026). Replaces the old flat quantity bands.
+ *
+ * THIS IS THE ONLY DEFINITION. Every surface — checkout, reorder, the price
+ * hook, and the calculator UI — calls this function. Do not re-implement the
+ * rule locally: the calculator UI previously carried its own copy of the bands,
+ * which is precisely the drift that let four different rush figures go live.
+ *
+ * Why the shape: rush demand skews small and urgent (median order 24 pieces), so
+ * a percentage floor makes rush an easy yes where the volume actually is, while
+ * large rush jobs — the ones that strain production and trigger split-ship
+ * coordination — now carry their real cost instead of a flat $200.
+ *
+ * If large-rush orders start balking, the pre-agreed lever is a cap: add
+ * RUSH_MAX here and clamp. One value, no refactor.
+ */
+export const RUSH_SURCHARGE_RATE = 0.25;
+export const RUSH_MIN = 50;
+
+/** @param subtotal Order subtotal BEFORE rush is added (after velcro/economy). */
+export function getRushSurcharge(subtotal: number): number {
+  if (!(subtotal > 0)) return RUSH_MIN;
+  return Math.round(Math.max(subtotal * RUSH_SURCHARGE_RATE, RUSH_MIN) * 100) / 100;
 }
 
 /**

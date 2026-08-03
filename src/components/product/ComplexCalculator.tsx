@@ -13,6 +13,8 @@ import FormFeedback from "@/components/feedback/FormFeedback";
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 import { trackLead } from "@/lib/ga4";
 import { trackGoogleAdsLead } from "@/lib/googleAds";
+import { VELCRO_PER_PIECE_FEE } from "@/lib/checkoutConfig";
+import BulkQuoteCTA from "@/components/product/BulkQuoteCTA";
 
 
 // Default backing options if none provided
@@ -1213,7 +1215,7 @@ export default function ComplexCalculator({
                   {velcroFee > 0 && (
                     <div className="pt-3 border-t border-gray-200">
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-600 font-medium">Velcro Backing (+$0.25/pc):</span>
+                        <span className="text-gray-600 font-medium">Velcro Backing (+${VELCRO_PER_PIECE_FEE.toFixed(2)}/pc):</span>
                         <span className="text-red-600 font-black">+${velcroFee.toFixed(2)}</span>
                       </div>
                     </div>
@@ -1250,6 +1252,17 @@ export default function ComplexCalculator({
                       </div>
                     </div>
                   )}
+
+                  {/* Bulk-quote CTA — only at genuine bulk volume (qty >= 500 or
+                      subtotal >= $1,000). Not a negotiate button; nothing shows
+                      below the threshold and standard checkout is untouched. */}
+                  <BulkQuoteCTA
+                    quantity={quantity}
+                    subtotal={loyaltyPatchSubtotal}
+                    productName={productType}
+                    width={parseFloat(widthInput) || width}
+                    height={parseFloat(heightInput) || height}
+                  />
 
                   {/* Have a rewards code? (Task 1) — email-bound loyalty code */}
                   <div className="pt-3 border-t border-gray-200">
@@ -1323,7 +1336,11 @@ export default function ComplexCalculator({
                   style={{ border: deliveryOption === "rush" ? '2px solid #000' : '2px solid #9CA3AF', background: deliveryOption === "rush" ? '#000' : '#fff' }}
                 >
                   <p className={`text-base font-black leading-tight ${deliveryOption === "rush" ? 'text-white' : 'text-black'}`}>Rush</p>
-                  <p className={`text-xs font-bold mt-1 ${deliveryOption === "rush" ? 'text-panda-yellow' : 'text-red-500'}`}>+${quantity <= 50 ? 100 : quantity <= 250 ? 150 : quantity <= 1000 ? 200 : 300}</p>
+                  {/* Reads the surcharge from usePriceCalculation, which calls the
+                      single getRushSurcharge definition. This tile used to carry
+                      its own copy of the old quantity bands — the exact drift this
+                      refactor removes. */}
+                  <p className={`text-xs font-bold mt-1 ${deliveryOption === "rush" ? 'text-panda-yellow' : 'text-red-500'}`}>+25% (min $50)</p>
                 </div>
 
                 {/* Standard Delivery */}

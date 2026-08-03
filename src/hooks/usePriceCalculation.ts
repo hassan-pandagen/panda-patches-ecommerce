@@ -37,14 +37,20 @@ export function usePriceCalculation({
     return () => clearTimeout(timer);
   }, [width, height, quantity, deliveryOption, backing]);
 
-  const rushSurcharge = deliveryOption === "rush" ? getRushSurcharge(quantity) : 0;
   const discount = deliveryOption === "economy" ? 0.05 : 0;
 
   const baseFromCalculator = priceResult.totalPrice;
   const originalPrice = applyVelcroPricing(baseFromCalculator, backing, quantity);
   const velcroFee = Math.round((originalPrice - baseFromCalculator) * 100) / 100;
   const discountAmount = Math.round(originalPrice * discount * 100) / 100;
-  const basePrice = Math.round((originalPrice - discountAmount + rushSurcharge) * 100) / 100;
+
+  // Rush = 25% of the subtotal, $50 floor. Computed AFTER velcro/economy so the
+  // subtotal it reads is the same one the server uses in checkout-square — the
+  // two must agree to the cent or the customer sees one price and pays another.
+  const subtotalBeforeRush = Math.round((originalPrice - discountAmount) * 100) / 100;
+  const rushSurcharge = deliveryOption === "rush" ? getRushSurcharge(subtotalBeforeRush) : 0;
+
+  const basePrice = Math.round((subtotalBeforeRush + rushSurcharge) * 100) / 100;
   const unitPrice = quantity > 0 ? originalPrice / quantity : priceResult.unitPrice;
 
   return { priceResult, upsellTiers, discount, originalPrice, discountAmount, basePrice, unitPrice, pricePulse, rushSurcharge, velcroFee };

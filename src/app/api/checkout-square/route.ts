@@ -97,7 +97,9 @@ export async function POST(req: Request) {
     }
     const velcroAdjusted = applyVelcroPricing(priceResult.totalPrice, backing, quantity);
     const patchSubtotal = applyEconomyDiscount(velcroAdjusted, deliveryOption);
-    const rushSurcharge = deliveryOption === 'rush' ? getRushSurcharge(quantity) : 0;
+    // Rush is 25% of the patch subtotal ($50 floor) — computed from the subtotal,
+    // never from quantity. Single definition in checkoutConfig.
+    const rushSurcharge = deliveryOption === 'rush' ? getRushSurcharge(patchSubtotal) : 0;
 
     // Loyalty member discount (CL86F1). Re-validate server-side — never trust a
     // client-supplied discount. Applies to the calculator patch subtotal ONLY,
