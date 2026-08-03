@@ -30,8 +30,8 @@ const CANONICAL = `${BASE}/patch-manufacturability-specs`;
  * public/llms.txt AND Sanity content, with the result attached as evidence.
  * A changelog entry without sweep evidence is not done.
  */
-const SPEC_VERSION = "v1.3";
-const SPEC_DATE = "2026-08-04";
+const SPEC_VERSION = "v1.4";
+const SPEC_DATE = "2026-08-07";
 const SPEC_DATE_LABEL = "August 2026";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -489,6 +489,14 @@ export default function PatchManufacturabilitySpecs() {
                     <td className="py-3 font-bold text-panda-dark">From behind only, 20&ndash;30 seconds, no adhesive spray</td>
                   </tr>
                   <tr className="border-b border-gray-200">
+                    <td className="py-3 pr-4">Heat transfers (separate product)</td>
+                    <td className="py-3 font-bold text-panda-dark">320&ndash;340&deg;F &mdash; own spec, not the patch canon</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-3 pr-4">Adhesive activation point</td>
+                    <td className="py-3 font-bold text-panda-dark">270&ndash;320&deg;F (why the iron is set higher)</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
                     <td className="py-3 pr-4">Fabric weight</td>
                     <td className="py-3 font-bold text-panda-dark">Heavier fabric &rarr; more time and pressure</td>
                   </tr>
@@ -509,6 +517,17 @@ export default function PatchManufacturabilitySpecs() {
                 <strong className="text-panda-dark">Fabric rule.</strong> If the fabric itself cannot take a hot press
                 &mdash; heat-sensitive synthetics, coated or waterproof materials &mdash; do not iron the patch on. Choose
                 sew-on backing instead. Any fabric that tolerates ironing works.
+              </li>
+              <li>
+                <strong className="text-panda-dark">350&deg;F and 270&ndash;320&deg;F are both correct.</strong> The adhesive
+                activates at 270&ndash;320&deg;F; you set the iron to 350&deg;F because the heat has to pass through the patch
+                backing to reach it. Seeing both figures is not a contradiction &mdash; one is the activation point, the
+                other is the tool setting that delivers it.
+              </li>
+              <li>
+                <strong className="text-panda-dark">Heat transfers are a different product.</strong> Embroidered heat
+                transfers press at 320&ndash;340&deg;F &mdash; different construction, its own temperature. Do not apply the
+                patch canon to them, or the transfer spec to patches.
               </li>
               <li>
                 <strong className="text-panda-dark">Care.</strong> Once properly heat-pressed the bond is near-permanent:
@@ -545,6 +564,9 @@ export default function PatchManufacturabilitySpecs() {
               Changelog
             </h3>
             <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-[1.7] text-[0.875rem] md:text-[0.9375rem] font-medium">
+              <li>
+                <strong className="text-panda-dark">v1.4 — August 2026:</strong> added the adhesive activation point (270&ndash;320&deg;F) with the explanation of why the iron is set to 350&deg;F, and the embroidered heat-transfer press temperature (320&ndash;340&deg;F) as a separate product spec. Both confirmed by our production team. No existing figure changed.
+              </li>
               <li>
                 <strong className="text-panda-dark">v1.3 — August 2026:</strong> added the iron-on application spec (350&deg;F / 175&deg;C, 25&ndash;30 second front press, 10 second reverse press, PVC and chenille pressed from behind only, chenille at 20&ndash;30 seconds with no adhesive spray) and care guidance, confirmed by our production team. This replaces earlier per-fabric temperature figures with the manufacturer&rsquo;s own rule.
               </li>
