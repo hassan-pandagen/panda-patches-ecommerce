@@ -58,6 +58,12 @@ export const FROM_PRICE_PVC = '$1.40';
 export const FROM_PRICE_WOVEN = '$1.54';
 // Leather = base x 1.10 x 1.12 (CHENILLE_LEATHER_UPLIFT, June 2026). $1.55 was pre-uplift.
 export const FROM_PRICE_LEATHER = '$1.74';
+// Chenille = base x 1.10 x 1.12, same uplift as leather. Added Aug 2026: chenille
+// was the only patch type without a canonical from-price, so public surfaces had
+// drifted to a 3"/5,000 basis quoting $1.19 — the RAW table value, pre-uplift. Two
+// errors compounding: wrong basis and no uplift. Every from-price now states the
+// same 2"x2"/1,000 tuple, so a basis mismatch is visible instead of plausible.
+export const FROM_PRICE_CHENILLE = '$1.47';
 
 // ── Support ────────────────────────────────────────────────────────────────
 /** Main line. Replaced (302) 773-8982 per SEDAA3_1 §A.3 — the old number must

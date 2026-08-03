@@ -314,7 +314,7 @@ export default function PricingClusterPage() {
                 </thead>
                 <tbody>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">50</td><td className="px-5 py-4 font-black bg-panda-green/10">$3.96/pc</td><td className="px-5 py-4 text-gray-600">Starter tier</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">100</td><td className="px-5 py-4 font-black bg-panda-green/10">$3.60/pc</td><td className="px-5 py-4 text-gray-600">Same per-piece as starter chenille at 100 qty</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">100</td><td className="px-5 py-4 font-black bg-panda-green/10">$3.60/pc</td><td className="px-5 py-4 text-gray-600">Cheer, dance and gameday mid-tier</td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">500</td><td className="px-5 py-4 font-black bg-panda-green/10">$1.79/pc</td><td className="px-5 py-4 text-gray-600">Cheer / fashion mid-volume tier</td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">1,000+</td><td className="px-5 py-4 font-black bg-panda-green/10">$1.44/pc</td><td className="px-5 py-4 text-gray-600">Volume floor; per-piece stays here through 5,000 qty</td></tr>
                 </tbody>

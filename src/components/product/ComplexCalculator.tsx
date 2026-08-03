@@ -14,6 +14,7 @@ import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 import { trackLead } from "@/lib/ga4";
 import { trackGoogleAdsLead } from "@/lib/googleAds";
 import { VELCRO_PER_PIECE_FEE } from "@/lib/checkoutConfig";
+import { formatMoney } from "@/lib/pricingCalculator";
 import BulkQuoteCTA from "@/components/product/BulkQuoteCTA";
 
 
@@ -1173,7 +1174,7 @@ export default function ComplexCalculator({
                       </span>
                     </div>
                     <div className="text-right">
-                      <span className="text-base font-black text-green-700 group-hover:text-green-800">${tier.unitPrice.toFixed(2)}/ea</span>
+                      <span className="text-base font-black text-green-700 group-hover:text-green-800">${formatMoney(tier.unitPrice)}/ea</span>
                     </div>
                   </button>
                 ))}
@@ -1193,14 +1194,14 @@ export default function ComplexCalculator({
                       <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Total Cost</p>
                       {discount > 0 && (
                         <p className="text-sm font-bold text-gray-400 line-through mt-1">
-                          ${originalPrice.toFixed(2)}
+                          ${formatMoney(originalPrice)}
                         </p>
                       )}
                       <div className={`text-4xl font-black text-black tracking-tight transition-transform duration-200 ${pricePulse ? 'scale-105' : ''}`}>
-                        ${basePrice.toFixed(2)}
+                        ${formatMoney(basePrice)}
                       </div>
                       <p className="text-sm text-gray-500 mt-2">
-                        <span className="font-semibold">${unitPrice.toFixed(2)}</span> per patch × {quantity} patches
+                        <span className="font-semibold">${formatMoney(unitPrice)}</span> per patch × {quantity} patches
                       </p>
                     </div>
                     <div className="text-right space-y-1.5">
@@ -1215,8 +1216,8 @@ export default function ComplexCalculator({
                   {velcroFee > 0 && (
                     <div className="pt-3 border-t border-gray-200">
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-600 font-medium">Velcro Backing (+${VELCRO_PER_PIECE_FEE.toFixed(2)}/pc):</span>
-                        <span className="text-red-600 font-black">+${velcroFee.toFixed(2)}</span>
+                        <span className="text-gray-600 font-medium">Velcro Backing (+${formatMoney(VELCRO_PER_PIECE_FEE)}/pc):</span>
+                        <span className="text-red-600 font-black">+${formatMoney(velcroFee)}</span>
                       </div>
                     </div>
                   )}
@@ -1224,7 +1225,7 @@ export default function ComplexCalculator({
                     <div className="pt-3 border-t border-gray-200">
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-600 font-medium">Economy Delivery Discount (16-18 business days):</span>
-                        <span className="text-green-600 font-black">-${discountAmount.toFixed(2)}</span>
+                        <span className="text-green-600 font-black">-${formatMoney(discountAmount)}</span>
                       </div>
                     </div>
                   )}
@@ -1232,7 +1233,7 @@ export default function ComplexCalculator({
                     <div className="pt-3 border-t border-gray-200">
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-600 font-medium">Rush Delivery Fee:</span>
-                        <span className="text-red-600 font-black">+${rushSurcharge.toFixed(2)}</span>
+                        <span className="text-red-600 font-black">+${formatMoney(rushSurcharge)}</span>
                       </div>
                     </div>
                   )}
@@ -1244,11 +1245,11 @@ export default function ComplexCalculator({
                         <span className="text-gray-600 font-medium">
                           Loyalty discount{loyaltyTier ? ` (${loyaltyTier.charAt(0).toUpperCase()}${loyaltyTier.slice(1)}, ${loyaltyPercent}%)` : ` (${loyaltyPercent}%)`}:
                         </span>
-                        <span className="text-green-600 font-black">-${loyaltyDiscountAmount.toFixed(2)}</span>
+                        <span className="text-green-600 font-black">-${formatMoney(loyaltyDiscountAmount)}</span>
                       </div>
                       <div className="flex justify-between items-baseline mt-2 pt-2 border-t border-gray-100">
                         <span className="text-sm font-black text-black uppercase tracking-wide">You pay</span>
-                        <span className="text-2xl font-black text-black">${payTotal.toFixed(2)}</span>
+                        <span className="text-2xl font-black text-black">${formatMoney(payTotal)}</span>
                       </div>
                     </div>
                   )}

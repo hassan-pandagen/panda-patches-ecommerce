@@ -402,6 +402,30 @@ export function calculatePatchPrice(
 export const FROM_PRICE_BASIS = { width: 2, height: 2, quantity: 1000 } as const;
 export const FROM_PRICE_QUALIFIER = '2" x 2", 1,000 pcs';
 
+/**
+ * Canonical money rounding — the ONE rule for turning a raw price into cents.
+ *
+ * Nine tiers across the embroidery, TPU, 3D-transfer and silicone tables land
+ * on an exact half-cent once the uplift is applied (e.g. 0.95 x 1.10 = 1.045).
+ * At those tiers `toFixed(2)` and `Math.round(x * 100) / 100` disagree by a
+ * cent, because toFixed inherits the float's downward bias while Math.round
+ * does not. That produced a real defect: the pricing page advertised $1.05 for
+ * embroidered at 1,000 (via getFromPrice) while the calculator rendered $1.04
+ * (via toFixed) for the same patch.
+ *
+ * Half-cents round UP here. Every user-facing money string must go through
+ * formatMoney so a price cannot depend on which code path rendered it.
+ * NEVER call .toFixed(2) directly on a price.
+ */
+export function roundMoney(value: number): number {
+  return Math.round(value * 100) / 100;
+}
+
+/** Canonical "X.XX" money string. Use everywhere a price is displayed. */
+export function formatMoney(value: number): string {
+  return roundMoney(value).toFixed(2);
+}
+
 export function getFromPrice(productName: string): number {
   const { unitPrice } = calculatePatchPrice(
     productName,
@@ -409,12 +433,12 @@ export function getFromPrice(productName: string): number {
     FROM_PRICE_BASIS.height,
     FROM_PRICE_BASIS.quantity
   );
-  return Math.round(unitPrice * 100) / 100;
+  return roundMoney(unitPrice);
 }
 
 /** Formatted "$X.XX" for the 2"x2"/1,000-pc basis. */
 export function getFromPriceLabel(productName: string): string {
-  return `$${getFromPrice(productName).toFixed(2)}`;
+  return `$${formatMoney(getFromPrice(productName))}`;
 }
 
 /**

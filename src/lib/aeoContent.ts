@@ -26,7 +26,7 @@ const PATCH_TYPE_COMPARISON: ComparisonTable = {
     ["Embroidered", "Uniforms, teams, classic logos", "Medium", "High", "$0.91/pc"],
     ["Woven", "Fine detail, small text, labels", "Very high", "High", "$1.54/pc"],
     ["PVC / Rubber", "Outdoor, tactical, waterproof use", "Medium", "Very high", "$1.40/pc"],
-    ["Chenille", "Varsity jackets, letterman, retro", "Low", "Medium", "$1.31/pc"],
+    ["Chenille", "Varsity jackets, letterman, retro", "Low", "Medium", "$1.47/pc"],
     ["Leather", "Hat lines, luxury branding", "Low-Med", "High", "$1.74/pc"],
     ["Printed / Sublimated", "Full-color art, gradients, photos", "Photographic", "Medium", "from quote"],
   ],
