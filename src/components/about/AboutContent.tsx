@@ -22,11 +22,17 @@ export default async function AboutContent() {
   const sections = about?.textSections || [
     {
       heading: "More Than Just Patches, We're Patch Partners!",
-      description: "Welcome to Panda Patches, where we are more than just patch makers – we are your patch partners. Drawing on our founder's 13 years in custom patch manufacturing, we weave brand stories into the hearts of customers worldwide. Trusted by businesses, teams, and organizations, we craft top-quality custom patches that leave a lasting impression."
+      // The founding story is CEO-approved canon (factConstants.FOUNDER_STORY),
+      // quoted verbatim — an approved company fact, not marketing copy. The
+      // "13 years" stays attached to the founder, never the company.
+      description: "Welcome to Panda Patches, where we are more than just patch makers – we are your patch partners. Imran spent ten years making patches for other companies before founding Panda Patches in 2023 — convinced that customers deserved better service at a better price, from someone who'd actually made the product with his own hands. Drawing on our founder's 13 years in custom patch manufacturing, we weave brand stories into the hearts of customers worldwide."
     },
     {
       heading: "Rooted in Expertise, Stitched with Dedication",
-      description: "We proudly stand as a division of MC Patches LLC, a powerhouse in the patch industry. This legacy ensures unmatched expertise and craftsmanship in every patch we create. Our skilled artisans infuse passion into every stitch, transforming your patches into more than just fabric – they become symbols of quality and dedication."
+      // Panda Patches IS MC Patches LLC trading under another name — not a
+      // division of it. Matches the Terms page: "MC Patches LLC (trading as
+      // Panda Patches)".
+      description: "Panda Patches is the trading name of MC Patches LLC, our U.S.-registered company. Owning our production rather than brokering it out is what puts real expertise and craftsmanship into every patch we make. Our skilled artisans infuse passion into every stitch, transforming your patches into more than just fabric – they become symbols of quality and dedication."
     },
     {
       heading: "Your Brand Story Sewn to Perfection",

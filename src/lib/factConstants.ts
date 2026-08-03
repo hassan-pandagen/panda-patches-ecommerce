@@ -85,8 +85,37 @@ export const REGISTERED_ADDRESS = '701 Tillery St Ste 12, Austin, TX 78702';
 export const REGISTERED_ADDRESS_NOTE =
   'Austin, TX is our U.S. mailing/registered address only — not a visitable office.';
 export const FOUNDER_NAME = 'Imran Raza';
-/** Attach experience to the FOUNDER, never the company's age (§0.3). */
+/**
+ * Attach experience to the FOUNDER, never the company's age (§0.3).
+ *
+ * The maths, recorded so it is never re-litigated: ~10 years making patches
+ * employed by other companies + ~3 years running Panda = the 13-year figure.
+ * It is a founder TOTAL that includes the Panda years, and it belongs to Imran
+ * personally. The company is not 13 years old and must never be described that
+ * way — that misattribution shipped in the /about metadata and was corrected
+ * Aug 2026.
+ */
 export const FOUNDER_EXPERIENCE = '13 years in custom patch manufacturing';
+
+/**
+ * CEO-approved founding story (Aug 2026). An approved company fact, not
+ * marketing copy — reusable verbatim on /about, the founder page, and in the
+ * llms.txt company description. Do not paraphrase.
+ */
+export const FOUNDER_STORY =
+  "Imran spent ten years making patches for other companies before founding Panda Patches in 2023 — convinced that customers deserved better service at a better price, from someone who'd actually made the product with his own hands.";
+
+/**
+ * Two dates, two different facts — both correct, so neither is "the" date:
+ *  - operations began June 2023, under a predecessor LLC
+ *  - MC Patches LLC was formed December 2023
+ * PUBLIC COPY SAYS "founded in 2023" — true, simple, and it avoids entity
+ * archaeology on customer-facing pages. Use the specific fields only where the
+ * distinction genuinely matters (legal, compliance, vendor due diligence).
+ */
+export const OPERATIONS_STARTED = 'June 2023';
+export const LEGAL_ENTITY_FORMED = 'December 2023';
+export const FOUNDED_PUBLIC = '2023';
 
 // ── Production origin (§0.4) ─────────────────────────────────────────────────
 export const PRODUCTION_ORIGIN =

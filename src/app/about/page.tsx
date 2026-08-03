@@ -19,12 +19,17 @@ const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"),
 export async function generateMetadata(): Promise<Metadata> {
   const ogImage = await getSanityOgImage();
   return buildPageMetadata({
-    title: "About Panda Patches | 13 Years Custom Patch Experts",
-    description: "Learn about Panda Patches. 13 years of custom embroidered patch experience with low minimums. Family-owned with mockup in 12-24 hours and money-back guarantee.",
+    // The 13 years belong to the FOUNDER, never the company (founded 2023).
+    // The previous title/description attributed them to Panda Patches while the
+    // page body correctly credited Imran — the metadata was the version showing
+    // in the SERP. "Family-owned" was also removed: it is not true and does not
+    // enter canon (CEO, Aug 2026).
+    title: "About Panda Patches | Our Story, Facility and Founder",
+    description: "Panda Patches is a US-registered custom patch manufacturer founded in 2023 by Imran Raza, who brings 13 years in patch manufacturing. Own facility, low minimums, mockup in 12-24 hours.",
     url: "https://www.pandapatches.com/about",
     image: { url: ogImage, alt: "About Panda Patches" },
-    ogDescription: "Family-owned custom patch company with 13 years of experience. Low minimums, free design services, money-back guarantee.",
-    twitterDescription: "Family-owned custom patch company with 13 years of experience. Low minimums, free design services.",
+    ogDescription: "US-registered custom patch manufacturer founded in 2023 by Imran Raza, with 13 years in patch manufacturing. Own facility, low minimums, money-back guarantee.",
+    twitterDescription: "US-registered custom patch manufacturer founded in 2023 by Imran Raza, with 13 years in patch manufacturing. Low minimums, free design services.",
   });
 }
 
