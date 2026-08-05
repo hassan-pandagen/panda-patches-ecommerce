@@ -33,8 +33,10 @@ const FALLBACK: CompanyFacts = {
   reviewLastChecked: TRUSTPILOT_LAST_CHECKED,
   trustpilotProfileUrl: TRUSTPILOT_PROFILE_URL,
   shippingCountries: ["US", "CA", "GB", "AU"],
-  medianOrderPieces: 20,
-  orderDatasetCount: 896,
+  // 2nd edition of the production-data asset (Aug 2026): pure-patch base of 963
+  // orders / 68,785 patches, median 25. See GSC/production-data-verified-2026-08-06.md.
+  medianOrderPieces: 25,
+  orderDatasetCount: 963,
 };
 
 export async function getCompanyFacts(): Promise<CompanyFacts> {

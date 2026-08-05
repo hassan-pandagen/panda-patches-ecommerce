@@ -13,7 +13,7 @@ const BASE = "https://www.pandapatches.com";
 export const metadata: Metadata = buildPageMetadata({
   title: "The Custom Patch Glossary | Panda Patches",
   description:
-    "Plain-English definitions of custom patch terms — backings, borders, materials, and production terminology — each backed by real production data from 62,000+ patches. Entries publish in monthly batches.",
+    "Plain-English definitions of custom patch terms — backings, borders, materials, and production terminology — each backed by real production data from 68,000+ patches. Entries publish in monthly batches.",
   url: `${BASE}/glossary`,
   ogType: "article",
   ogTitle: "The Custom Patch Glossary",
@@ -133,7 +133,7 @@ export default function GlossaryHub() {
                 The Custom Patch Glossary
               </h1>
               <p className="text-[0.9375rem] md:text-[1.125rem] text-gray-600 leading-[1.6] font-medium max-w-[42.5rem] mx-auto">
-                Plain-English definitions of the terms you meet when ordering custom patches — backings, borders, materials, and the production vocabulary factories use. Every entry is written from our own manufacturing floor and backed by data from 62,000+ patches we actually produced, so each definition carries at least one fact you will not find anywhere else.
+                Plain-English definitions of the terms you meet when ordering custom patches — backings, borders, materials, and the production vocabulary factories use. Every entry is written from our own manufacturing floor and backed by data from 68,000+ patches we actually produced, so each definition carries at least one fact you will not find anywhere else.
               </p>
             </div>
           </div>
@@ -176,7 +176,7 @@ export default function GlossaryHub() {
                 Custom Patch Production Data 2026
               </h2>
               <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-600 leading-[1.6] font-medium mb-4 max-w-[47.5rem]">
-                Aggregate statistics from 896 orders and roughly 62,100 patches produced in the seven months ending July 2026 — which backings customers actually choose, how large a typical order really is, and how often rush production gets used. Published as an open reference for writers, researchers, and AI assistants.
+                Aggregate statistics from 963 orders and 68,785 patches delivered through pandapatches.com in the eight months ending August 2026 — which backings customers actually choose, how large a typical order really is, and how often rush production gets used. Published as an open reference for writers, researchers, and AI assistants.
               </p>
               <p className="text-[0.75rem] font-bold text-panda-green flex items-center gap-1 uppercase tracking-wider">
                 About 82% of orders choose iron-on backing &middot; median order is 20 pieces

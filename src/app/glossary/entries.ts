@@ -249,8 +249,14 @@ export const glossaryEntries: GlossaryEntry[] = [
     definition:
       "3D or puff embroidery stitches thread over a foam underlay, so the design rises off the surface in a rounded, sculpted relief instead of lying flat. It is the raised lettering seen on structured caps and letterman jackets. Bold, simple shapes and thick lettering work; thin lines and small text collapse.",
     fact:
-      "Nearly one in ten orders we produce — 9.3% — is 3D puff embroidery, at a median of 20 pieces. It is now a larger share of our production than woven patches.",
-    factNote: "facts bank 2026-07-19: type share n≈892, median qty n=83",
+      "Nearly one in ten orders we produce — 9.4% — is 3D puff embroidery, at a median of 20 pieces. It is now a larger share of our production than woven patches.",
+    // 9.4% counts patches_type = '3D Embroidery Puff' only. Counting every type
+    // containing "3D" — which pulls in 3D Embroidery Transfer, a heat-applied
+    // transfer rather than a foam-underlay patch — doubles it to 18.1%. That loose
+    // rule is where the "puff jumped to 18.1%" scare came from; the share has not
+    // moved at all (9.3% Jul window, 9.4% Aug window on the strict rule). Keep the
+    // strict rule: this entry is about puff embroidery, not transfers.
+    factNote: "verified 2026-08-06: puff 91/963 orders (9.4%), median qty 20; woven 4.9% so the comparison holds",
     whenToChoose: [
       "Choose puff for cap fronts, bold monogram lettering, and anywhere physical height makes a design read from a distance.",
       "Skip it for detailed logos, thin script, or small text — the foam needs a wide stitch path to stay covered, and fine elements either flatten or split. Flat embroidery reproduces those cleanly.",
