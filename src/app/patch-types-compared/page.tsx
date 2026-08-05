@@ -107,7 +107,7 @@ const typeFAQs = [
   {
     question: "Which custom patch type is the cheapest?",
     answer:
-      "Printed (sublimation) patches are the only type that reproduces photographic artwork, fine color blends, and true gradients, with unlimited colors at no extra charge. Embroidered gives the classic raised-thread texture, woven holds the finest lines and smallest text, and PVC, chenille, and leather each bring their own construction and feel. Pricing across types is comparable and converging; every type has no setup fees and a low 5-piece minimum, and the calculator on each product page returns your exact price in seconds.",
+      "Printed (sublimation) patches are the only type that reproduces photographic artwork, fine color blends, and true gradients, with unlimited colors at no extra charge. Embroidered gives the classic raised-thread texture, woven holds the finest lines and smallest text, and PVC, chenille, and leather each bring their own construction and feel. Per-piece price varies by type, size, and quantity; every type has no setup fees and a low 5-piece minimum, and the calculator on each product page returns your exact price in seconds.",
   },
   {
     question: "What size and backing should I use for hats, jackets, and bags?",
