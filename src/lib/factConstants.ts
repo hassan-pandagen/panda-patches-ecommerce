@@ -33,7 +33,16 @@ export const RUSH_SPLIT_SHIP =
 /** Full canonical rush statement — use verbatim on llms.txt + rush FAQ (§0.2). */
 export const RUSH_CANON_STATEMENT =
   'Rush orders can arrive in hand in as soon as five business days. For qualifying large or complex orders, split-shipping is agreed at quote time: the agreed first batch arrives in five business days and the remainder in 8–11 business days.';
-/** Economy delivery window. Discount differs by product (5% calculator, 10% offers packs) — say "up to 10%" in generic copy. */
+/**
+ * Economy delivery window. The discount is a flat 5% on EVERY path — see
+ * ECONOMY_DISCOUNT_RATE in checkoutConfig, which both the calculator and the
+ * offers packs now import.
+ *
+ * This previously read "5% calculator, 10% offers packs — say 'up to 10%' in
+ * generic copy", because the packs never received the Aug 2026 correction. The
+ * CEO ruled that was a propagation miss, not two intentional price lists
+ * (Aug 8). There is one rate. Never write "up to 10%" again.
+ */
 export const ECONOMY_DELIVERY = '16-18 business days';
 
 // ── Minimums ────────────────────────────────────────────────────────────────

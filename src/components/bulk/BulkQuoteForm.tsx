@@ -366,7 +366,7 @@ export default function BulkQuoteForm() {
             <option value="" disabled hidden>Preferred Delivery Speed (optional)</option>
             <option value="standard">Standard (7–14 business days) — Free</option>
             <option value="rush">Rush (faster) — Fee applies</option>
-            <option value="economy">Economy (16–18 business days) — Save 10%</option>
+            <option value="economy">Economy (16–18 business days) — Save 5%</option>
           </select>
           <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-[0.625rem]">&#9660;</div>
         </div>

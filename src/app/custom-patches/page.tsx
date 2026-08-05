@@ -179,7 +179,7 @@ const faqSchema = {
       name: "Does Panda Patches offer rush order custom patches with fast turnaround?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Panda Patches offers rush production on custom patches with turnaround confirmed by email within 2-6 hours of ordering. Rush fees: +$50 for 50 pieces, +$75 for 100 pieces, +$150 for 500 pieces, +$200 for 1,000 pieces. If the rush date cannot be met, the rush fee is refunded. Standard production is 7-14 business days. Economy production (16-18 business days) saves 10% off the order total. All timelines start after digital mockup approval.",
+        text: "Yes. Panda Patches offers rush production on custom patches with turnaround confirmed by email within 2-6 hours of ordering. Rush costs 25% of your order total with a $50 minimum. If the rush date cannot be met, the rush fee is refunded. Standard production is 7-14 business days. Economy production (16-18 business days) saves 5% off the order total. All timelines start after digital mockup approval.",
       },
     },
     {
@@ -187,7 +187,7 @@ const faqSchema = {
       name: "How long does production take?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Standard production is 7-14 business days after design approval. Rush production is available with exact delivery date confirmed by email within 2-6 hours. Economy production (16-18 business days) saves 10% off the total. Free worldwide shipping on all orders.",
+        text: "Standard production is 7-14 business days after design approval. Rush production is available with exact delivery date confirmed by email within 2-6 hours. Economy production (16-18 business days) saves 5% off the total. Free worldwide shipping on all orders.",
       },
     },
     {

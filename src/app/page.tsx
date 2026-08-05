@@ -111,7 +111,7 @@ const homeFaqSchema = {
       "name": "How long does it take to get custom patches from Panda Patches?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Standard production is 7-14 business days after you approve your digital mockup. Rush production is available in as soon as 5 business days on qualifying orders (large or complex orders split-ship: first batch in 5 business days, remainder in 8-11), with your exact date confirmed by email within 2-6 hours of ordering. Economy delivery (16-18 business days) saves up to 10% off the order total depending on the product. Free worldwide shipping is included on all orders.",
+        "text": "Standard production is 7-14 business days after you approve your digital mockup. Rush production is available in as soon as 5 business days on qualifying orders (large or complex orders split-ship: first batch in 5 business days, remainder in 8-11), with your exact date confirmed by email within 2-6 hours of ordering. Economy delivery (16-18 business days) saves 5% off the order total. Free worldwide shipping is included on all orders.",
       },
     },
     {

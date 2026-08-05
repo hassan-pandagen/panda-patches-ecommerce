@@ -176,7 +176,7 @@ export default function WholesaleClusterPage() {
               </table>
             </div>
             <p className="text-gray-700 leading-relaxed">
-              The pricing tiers stack with the published economy delivery discount of 10 percent (16 to 18 day production), which means Volume-tier partners running economy production can land at roughly 25 to 27 percent off retail on the patch line item. Rush on bulk and wholesale partner orders is usually absorbed at no surcharge for repeat partners, with a fee only on the most extreme timelines.
+              The pricing tiers stack with the published economy delivery discount of 5 percent (16 to 18 day production), which means Volume-tier partners running economy production can land at roughly 22 percent off retail on the patch line item. Rush on bulk and wholesale partner orders is usually absorbed at no surcharge for repeat partners, with a fee only on the most extreme timelines.
             </p>
           </section>
 

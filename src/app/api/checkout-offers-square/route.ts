@@ -68,7 +68,7 @@ export async function POST(req: Request) {
       specialInstructions ? `Instructions: ${specialInstructions}` : null,
       company ? `Company: ${company}` : null,
       upgrades?.length ? `Upgrades: ${upgrades.join(', ')}` : null,
-      delivery === 'economy' ? 'Economy Delivery (16-18 business days, 10% discount)' : null,
+      delivery === 'economy' ? 'Economy Delivery (16-18 business days, 5% discount)' : null,
       delivery === 'rush' ? 'Rush Delivery requested' : null,
     ].filter(Boolean);
 

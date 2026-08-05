@@ -162,7 +162,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Midwest Manufacturing Patches",
         content: (
           <p className="text-[1.0625rem] leading-[1.8] text-gray-600">
-            Chicago's central location means faster shipping to anywhere in the continental US. For Midwest businesses ordering patches for multi-location operations, this matters. We ship to distribution centers, branch offices, and retail locations across the region with consistent quality on every order. From the South Side to the suburbs, from O'Hare to Gary, our patches reach you within 7 to 14 business days standard, with economy (10% off) and rush options available.
+            Chicago's central location means faster shipping to anywhere in the continental US. For Midwest businesses ordering patches for multi-location operations, this matters. We ship to distribution centers, branch offices, and retail locations across the region with consistent quality on every order. From the South Side to the suburbs, from O'Hare to Gary, our patches reach you within 7 to 14 business days standard, with economy (5% off) and rush options available.
           </p>
         )
       },
@@ -228,7 +228,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Beach and Tourism Business Patches",
         content: (
           <p className="text-[1.0625rem] leading-[1.8] text-gray-600">
-            Tourism businesses in Florida use patches differently than most industries. Souvenir patches sell in gift shops across the state. Staff identification patches need to withstand outdoor heat and humidity. Event patches for music festivals, boat shows, and sporting events are ordered on tight timelines. We handle all of it. Standard delivery is 7 to 14 business days, with rush available for events with fixed dates. Economy shipping saves 10% for orders with flexible timelines.
+            Tourism businesses in Florida use patches differently than most industries. Souvenir patches sell in gift shops across the state. Staff identification patches need to withstand outdoor heat and humidity. Event patches for music festivals, boat shows, and sporting events are ordered on tight timelines. We handle all of it. Standard delivery is 7 to 14 business days, with rush available for events with fixed dates. Economy shipping saves 5% for orders with flexible timelines.
           </p>
         )
       },
@@ -501,7 +501,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Statewide Texas Delivery",
         content: (
           <p className="text-[1.0625rem] leading-[1.8] text-gray-600">
-            We ship patches to every corner of Texas. Standard delivery is 7 to 14 business days. Rush options available for events and deadlines. Economy shipping saves 10% for flexible timelines. <Link href="/offers" className="text-purple-600 hover:underline font-medium">See pricing</Link> or <Link href="/contact" className="text-purple-600 hover:underline font-medium">get a free quote</Link>.
+            We ship patches to every corner of Texas. Standard delivery is 7 to 14 business days. Rush options available for events and deadlines. Economy shipping saves 5% for flexible timelines. <Link href="/offers" className="text-purple-600 hover:underline font-medium">See pricing</Link> or <Link href="/contact" className="text-purple-600 hover:underline font-medium">get a free quote</Link>.
           </p>
         )
       }

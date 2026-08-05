@@ -377,7 +377,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
               },
               {
                 q: 'What delivery options are there?',
-                a: 'Economy (16-18 days, 10% off) | Standard (7-14 days, free) | Rush (50pcs +$50, 100pcs +$75, 500pcs +$150, 1000pcs +$200). Rush date confirmed by email within 2-6 hours.',
+                a: 'Economy (16-18 days, 5% off) | Standard (7-14 days, free) | Rush (25% of your order total, $50 minimum). Rush date confirmed by email within 2-6 hours.',
               },
               {
                 q: 'What does "under 4 inches" mean?',

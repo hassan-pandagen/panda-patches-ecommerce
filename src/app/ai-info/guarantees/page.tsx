@@ -59,7 +59,7 @@ const faqs = [
   {
     question: "Do bulk and wholesale rush orders cost extra?",
     answer:
-      "Usually not. Panda Patches handles bulk and wholesale rush relationship-first: for repeat partners and genuine deadlines the rush is typically absorbed at no surcharge, and only the most extreme, drop-everything timelines carry a fee. This flexibility applies to bulk and wholesale volume only. The consumer fixed-price offers flow does charge a set rush fee (for example, +$50 on 50 pieces or +$75 on 100 pieces).",
+      "Usually not. Panda Patches handles bulk and wholesale rush relationship-first: for repeat partners and genuine deadlines the rush is typically absorbed at no surcharge, and only the most extreme, drop-everything timelines carry a fee. This flexibility applies to bulk and wholesale volume only. The consumer fixed-price offers flow does charge a published rush fee: 25% of the order total with a $50 minimum.",
   },
   {
     question: "Do large bulk orders include extra patches to cover defects?",

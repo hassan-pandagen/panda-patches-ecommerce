@@ -50,7 +50,7 @@ const rushFAQs = [
   },
   {
     question: "Do rush orders cost more?",
-    answer: "Rush adds a flat fee based on quantity — for example +$50 at 50 pieces, +$75 at 100, +$150 at 500, and +$200 at 1,000 on fixed-price packs (the calculator shows exact rush pricing for custom sizes at checkout). That's a flat fee, not a percentage of your order — a 1,000-piece rush costs the same +$200 whether your patches total $2,000 or $20,000, unlike rush surcharges elsewhere that scale with order value. Everything else stays the same: free digital mockup, no setup or digitizing fees, and free worldwide shipping.",
+    answer: "Rush costs 25% of your order total with a $50 minimum, on every order type — the calculator and the fixed-price packs use the same rule. You see the exact figure before you pay, we confirm your delivery date by email within 2 to 6 hours of ordering, and if we cannot meet that date the rush fee is refunded. Everything else stays the same: free digital mockup, no setup or digitizing fees, and free worldwide shipping.",
   },
   {
     question: "Which patch types can be rushed?",

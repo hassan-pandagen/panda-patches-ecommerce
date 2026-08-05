@@ -178,7 +178,7 @@ const faqSchema = {
       name: 'How much does rush production cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Rush production is a flat add-on based on quantity: +$50 for 50 pieces, +$75 for 100, +$150 for 500, and +$200 for 1,000. After you order rush, we confirm your exact delivery date by email within 2 to 6 hours. Standard (non-rush) production is 7 to 14 business days after you approve your mockup.',
+        text: 'Rush production costs 25% of your order total with a $50 minimum, on both the calculator and the fixed-price packs. After you order rush, we confirm your exact delivery date by email within 2 to 6 hours, and the fee is refunded if we cannot meet it. Standard (non-rush) production is 7 to 14 business days after you approve your mockup.',
       },
     },
     {
@@ -561,13 +561,13 @@ export default function PricingPage() {
           <div>
             <h2 className="text-xl font-black text-gray-900 mb-3">Rush Production Pricing</h2>
             <p className="text-gray-600 text-sm leading-relaxed mb-4">
-              Need it fast? Rush is a flat add-on by quantity, and we confirm your exact delivery date by email within 2–6 hours:
+              Need it fast? Rush costs <strong>25% of your order total with a $50 minimum</strong>, and we confirm your exact delivery date by email within 2&ndash;6 hours. Examples on a 3&quot; embroidered order:
             </p>
             <ul className="space-y-2 text-sm text-gray-700 mb-4">
-              <li>50 pcs — <strong>+$50</strong></li>
-              <li>100 pcs — <strong>+$75</strong></li>
-              <li>500 pcs — <strong>+$150</strong></li>
-              <li>1,000 pcs — <strong>+$200</strong></li>
+              <li>50 pcs ($195.80) — <strong>+$50.00</strong> (25% would be $48.95, so the minimum applies)</li>
+              <li>100 pcs ($255.20) — <strong>+$63.80</strong></li>
+              <li>500 pcs ($588.50) — <strong>+$147.13</strong></li>
+              <li>1,000 pcs ($1,045.00) — <strong>+$261.25</strong></li>
             </ul>
             <Link href="/rush-custom-patches" className="text-panda-green font-semibold text-sm underline">
               See rush custom patches →

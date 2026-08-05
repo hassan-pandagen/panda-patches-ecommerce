@@ -1,6 +1,8 @@
 'use client';
 
-import { getRushFee, VELCRO_FEE, METALLIC_FEE, GLOW_FEE, PUFF_FEE } from '@/lib/offerPackages';
+import { getOfferRushFee, getOfferVelcroFee, METALLIC_FEE, GLOW_FEE, PUFF_FEE } from '@/lib/offerPackages';
+import { VELCRO_PER_PIECE_FEE } from '@/lib/checkoutConfig';
+import { formatMoney } from '@/lib/pricingCalculator';
 
 // ─── Types (mirrors OffersClient.tsx — kept in sync there) ────────────────────
 
@@ -173,7 +175,16 @@ function Step2({ formData, setFormData, onNext, onBack, offer }: {
   formData: FormData; setFormData: (f: FormData) => void;
   onNext: () => void; onBack: () => void; offer: SelectedOffer;
 }) {
-  const rushFee = getRushFee(offer.qty);
+  // Rush is a percentage of the pre-rush subtotal, so it moves with the backing
+  // and upgrade selections — recomputed from current formData, not from qty alone.
+  const rushFee = getOfferRushFee(
+    offer.basePrice,
+    offer.qty,
+    formData.backing,
+    formData.delivery,
+    formData.upgrades
+  );
+  const velcroFee = getOfferVelcroFee(offer.qty);
   const toggleUpgrade = (u: string) => {
     const next = formData.upgrades.includes(u)
       ? formData.upgrades.filter(x => x !== u)
@@ -183,9 +194,9 @@ function Step2({ formData, setFormData, onNext, onBack, offer }: {
 
   const BackingOptions = ['Iron-On', 'Sew-On', 'Sticker', 'Velcro'];
   const DeliveryOptions = [
-    { value: 'economy', label: 'Economy', timeline: '16-18 business days', note: '10% off total', badge: null },
+    { value: 'economy', label: 'Economy', timeline: '16-18 business days', note: '5% off total', badge: null },
     { value: 'standard', label: 'Standard', timeline: '7-14 business days', note: 'FREE', badge: 'Recommended' },
-    { value: 'rush', label: 'Rush', timeline: 'Confirmed by email', note: `+$${rushFee}`, badge: null },
+    { value: 'rush', label: 'Rush', timeline: 'Confirmed by email', note: `+$${formatMoney(rushFee)}`, badge: null },
   ];
   const PremiumUpgrades = [
     { name: 'Metallic Thread', fee: METALLIC_FEE, desc: 'Gold, silver or copper thread' },
@@ -205,7 +216,7 @@ function Step2({ formData, setFormData, onNext, onBack, offer }: {
             <button key={b} onClick={() => setFormData({ ...formData, backing: b })}
               className={`p-3 rounded-xl border-2 text-sm font-bold transition-all ${formData.backing === b ? 'border-[#051C05] bg-[#051C05] text-[#DFFF00]' : 'border-gray-200 bg-white text-gray-700 hover:border-gray-400'}`}>
               {b}
-              {b === 'Velcro' && <span className="block text-xs font-normal mt-0.5">+${VELCRO_FEE}</span>}
+              {b === 'Velcro' && <span className="block text-xs font-normal mt-0.5">+${formatMoney(VELCRO_PER_PIECE_FEE)}/pc</span>}
               {b !== 'Velcro' && <span className={`block text-xs font-normal mt-0.5 ${formData.backing === b ? 'text-[#DFFF00]' : 'text-green-600'}`}>FREE</span>}
             </button>
           ))}
@@ -382,13 +393,15 @@ function Step5({
     // Velcro's amount stays visible here and on the backing selector: this is the
     // purchase flow, the fee is added to the order total (calculateOfferTotal), and
     // a charge the customer is about to pay must be itemised, not described vaguely.
-    // Reads VELCRO_FEE rather than a hardcoded figure so the label cannot drift.
-    { label: 'Backing', value: `${formData.backing}${formData.backing === 'Velcro' ? ` (+$${VELCRO_FEE})` : ' (FREE)'}` },
+    // Reads the canon per-piece constant rather than a hardcoded figure so the
+    // label cannot drift from what checkout charges.
+    { label: 'Backing', value: `${formData.backing}${formData.backing === 'Velcro' ? ` (+$${formatMoney(getOfferVelcroFee(offer.qty))} — ${offer.qty} × $${formatMoney(VELCRO_PER_PIECE_FEE)})` : ' (FREE)'}` },
     {
       label: 'Delivery',
-      value: formData.delivery === 'economy' ? 'Economy 16-18 days (-10%)' :
-        formData.delivery === 'rush' ? `Rush (+$${getRushFee(offer.qty)})` :
-          'Standard 7-14 days (FREE)'
+      value: formData.delivery === 'economy' ? 'Economy 16-18 days (-5%)' :
+        formData.delivery === 'rush'
+          ? `Rush (+$${formatMoney(getOfferRushFee(offer.basePrice, offer.qty, formData.backing, formData.delivery, formData.upgrades))})`
+          : 'Standard 7-14 days (FREE)'
     },
     ...(formData.upgrades.map(u => ({ label: 'Upgrade', value: u }))),
     { label: 'Size', value: sizeStr },

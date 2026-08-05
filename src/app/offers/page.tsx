@@ -51,7 +51,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'What delivery options are there?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Economy (16-18 days, 10% off) | Standard (7-14 days, free) | Rush (50pcs +$50, 100pcs +$75, 500pcs +$150, 1000pcs +$200). Rush date confirmed by email within 2-6 hours.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Economy (16-18 days, 5% off) | Standard (7-14 days, free) | Rush (25% of your order total, $50 minimum). Rush date confirmed by email within 2-6 hours.' },
     },
     {
       '@type': 'Question',

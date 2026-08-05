@@ -1,3 +1,11 @@
+import {
+  VELCRO_PER_PIECE_FEE,
+  applyEconomyDiscount,
+  applyVelcroPricing,
+  getRushSurcharge,
+} from '@/lib/checkoutConfig';
+import { roundMoney } from '@/lib/pricingCalculator';
+
 export interface OfferPack {
   name: string;
   qty: number;
@@ -106,20 +114,62 @@ export const OFFER_CATEGORIES: OfferCategory[] = [
   },
 ];
 
-export const VELCRO_FEE = 30;
+// Special-finish add-ons are flat per-order fees and are the same on both paths.
+// They are NOT delivery/backing terms, so the Aug 2026 pricing corrections do not
+// touch them.
 export const METALLIC_FEE = 20;
 export const GLOW_FEE = 25;
 export const PUFF_FEE = 30;
 
-const RUSH_TIERS = [
-  { minQty: 1000, fee: 200 },
-  { minQty: 500, fee: 150 },
-  { minQty: 100, fee: 75 },
-  { minQty: 1, fee: 50 },
-];
+/**
+ * Velcro on a pack order — per piece, from the canon constant.
+ *
+ * Was a flat $30 per order. That figure predated the Aug 2026 correction to
+ * $0.35/piece and was never propagated here, so the two checkout routes charged
+ * different amounts for the same backing: $30 on a pack, $350 on a 1,000-piece
+ * calculator order. Fixed by importing the constant instead of restating it.
+ */
+export function getOfferVelcroFee(qty: number): number {
+  return roundMoney(VELCRO_PER_PIECE_FEE * qty);
+}
 
-export function getRushFee(qty: number): number {
-  return RUSH_TIERS.find(t => qty >= t.minQty)?.fee ?? 50;
+/**
+ * Pre-rush subtotal for a pack order: base + per-piece velcro + flat upgrades,
+ * then the economy discount. Rush is a percentage of THIS figure, matching the
+ * order of operations in usePriceCalculation and the reorder route exactly.
+ */
+export function getOfferSubtotalBeforeRush(
+  basePrice: number,
+  qty: number,
+  backing: string,
+  delivery: string,
+  upgrades: string[]
+): number {
+  let total = basePrice;
+  if (backing === 'Velcro') total += VELCRO_PER_PIECE_FEE * qty;
+  if (upgrades.includes('Metallic Thread')) total += METALLIC_FEE;
+  if (upgrades.includes('Glow in the Dark')) total += GLOW_FEE;
+  if (upgrades.includes('3D Puff Embroidery')) total += PUFF_FEE;
+  if (delivery === 'economy') total = applyEconomyDiscount(total, 'economy');
+  return roundMoney(total);
+}
+
+/**
+ * Rush on a pack order: 25% of the pre-rush subtotal with a $50 floor, from the
+ * canon helper. Replaced flat tiers (+$50/$75/$150/$200) that predated the
+ * percentage decision. Takes the full order shape rather than just quantity,
+ * because a percentage of the subtotal depends on backing and upgrades too.
+ */
+export function getOfferRushFee(
+  basePrice: number,
+  qty: number,
+  backing: string,
+  delivery: string,
+  upgrades: string[]
+): number {
+  return getRushSurcharge(
+    getOfferSubtotalBeforeRush(basePrice, qty, backing, delivery, upgrades)
+  );
 }
 
 export function lookupOfferPrice(
@@ -154,12 +204,51 @@ export function calculateOfferTotal(
   delivery: string,
   upgrades: string[]
 ): number {
-  let total = basePrice;
-  if (backing === 'Velcro') total += VELCRO_FEE;
-  if (upgrades.includes('Metallic Thread')) total += METALLIC_FEE;
-  if (upgrades.includes('Glow in the Dark')) total += GLOW_FEE;
-  if (upgrades.includes('3D Puff Embroidery')) total += PUFF_FEE;
-  if (delivery === 'economy') total = total * 0.9;
-  if (delivery === 'rush') total += getRushFee(qty);
-  return Math.round(total * 100) / 100;
+  const subtotal = getOfferSubtotalBeforeRush(basePrice, qty, backing, delivery, upgrades);
+  const rush = delivery === 'rush' ? getRushSurcharge(subtotal) : 0;
+  return roundMoney(subtotal + rush);
 }
+
+/**
+ * BUILD-TIME PARITY GUARD — do not remove.
+ *
+ * The pack path and the calculator path must charge identical velcro, economy and
+ * rush. They diverged three times because each system restated the numbers
+ * instead of sharing them; the values above are now imported, which makes a copy
+ * the only way to break parity again. This runs at module load, so `next build`
+ * fails rather than shipping two disagreeing price lists.
+ *
+ * If this throws: something reintroduced a literal fee or rate. Fix the literal,
+ * do not relax the assertion.
+ */
+(function assertPackCalculatorParity() {
+  const qty = 100;
+  const base = 500;
+
+  const packVelcro = roundMoney(
+    calculateOfferTotal(base, qty, 'Velcro', 'standard', []) -
+      calculateOfferTotal(base, qty, 'Iron-On', 'standard', [])
+  );
+  const calcVelcro = roundMoney(applyVelcroPricing(base, 'velcro', qty) - base);
+  if (packVelcro !== calcVelcro) {
+    throw new Error(
+      `[offerPackages] velcro parity broken: packs charge ${packVelcro}, calculator charges ${calcVelcro}`
+    );
+  }
+
+  const packEconomy = calculateOfferTotal(base, qty, 'Iron-On', 'economy', []);
+  const calcEconomy = applyEconomyDiscount(base, 'economy');
+  if (packEconomy !== calcEconomy) {
+    throw new Error(
+      `[offerPackages] economy parity broken: packs charge ${packEconomy}, calculator charges ${calcEconomy}`
+    );
+  }
+
+  const packRush = roundMoney(calculateOfferTotal(base, qty, 'Iron-On', 'rush', []) - base);
+  const calcRush = getRushSurcharge(base);
+  if (packRush !== calcRush) {
+    throw new Error(
+      `[offerPackages] rush parity broken: packs charge ${packRush}, calculator charges ${calcRush}`
+    );
+  }
+})();

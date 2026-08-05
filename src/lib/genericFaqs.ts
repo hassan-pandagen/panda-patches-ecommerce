@@ -14,11 +14,11 @@ export const genericFaqs = [
   },
   {
     question: "How much do custom patches cost?",
-    answer: "Custom patches start from $0.91 per piece for a 2x2-inch embroidered design at 1,000 pieces. Smaller orders cost more per piece. Pricing depends on patch type, size, and quantity. Examples from the live calculator for a 3-inch embroidered patch: 50 pieces cost $3.92 each ($196 total). 100 = $2.55 each ($255 total). 500 = $1.18 each ($590 total). 1,000 = $1.05 each ($1,050 total). Small first runs of 5 to 10 patches typically land at $13 to $24 each. Free worldwide shipping, digital mockup in 12 to 24 hours, no setup fees. Economy delivery (16 to 18 business days) saves 10 percent off the order total."
+    answer: "Custom patches start from $0.91 per piece for a 2x2-inch embroidered design at 1,000 pieces. Smaller orders cost more per piece. Pricing depends on patch type, size, and quantity. Examples from the live calculator for a 3-inch embroidered patch: 50 pieces cost $3.92 each ($196 total). 100 = $2.55 each ($255 total). 500 = $1.18 each ($589 total). 1,000 = $1.05 each ($1,045 total). Small first runs of 5 to 10 patches typically land at $13 to $24 each. Free worldwide shipping, digital mockup in 12 to 24 hours, no setup fees. Economy delivery (16 to 18 business days) saves 5 percent off the order total."
   },
   {
     question: "What's your turnaround time?",
-    answer: "Standard production is 7 to 14 business days after you approve the digital mockup. The mockup arrives within 12 to 24 hours of order. Rush production is available with the exact delivery date confirmed by email within 2 to 6 hours of order placement. Economy production (16 to 18 business days) saves 10 percent off the order total. Free worldwide shipping is included on every order."
+    answer: "Standard production is 7 to 14 business days after you approve the digital mockup. The mockup arrives within 12 to 24 hours of order. Rush production is available with the exact delivery date confirmed by email within 2 to 6 hours of order placement. Economy production (16 to 18 business days) saves 5 percent off the order total. Free worldwide shipping is included on every order."
   },
   {
     question: "What's your design approval process?",

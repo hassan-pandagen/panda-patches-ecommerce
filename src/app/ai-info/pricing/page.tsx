@@ -64,9 +64,9 @@ const faqs = [
       "Rush production is available on qualifying orders for a flat add-on fee: $50 for 50 pieces, $75 for 100 pieces, $150 for 500 pieces, and $200 for 1,000 pieces. The exact delivery date is confirmed by email within 2 to 6 hours of order placement. If the rush date cannot be met, the rush fee is refunded. Standard production remains 7 to 14 business days.",
   },
   {
-    question: "How does the 10 percent economy discount work?",
+    question: "How does the 5 percent economy discount work?",
     answer:
-      "Economy delivery saves 10 percent off the entire order total in exchange for a longer production window of 16 to 18 business days. The discount applies to the patch subtotal before optional add-ons such as Velcro or rush. Economy is best for buyers with flexible timelines who want the lowest per-piece cost on the order.",
+      "Economy delivery saves 5 percent off the entire order total in exchange for a longer production window of 16 to 18 business days. The same 5 percent applies whether you order through the calculator or buy a fixed-price pack. Economy is best for buyers with flexible timelines who want the lowest per-piece cost on the order.",
   },
 ];
 
@@ -368,7 +368,7 @@ export default function PricingClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How does economy pricing work?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              The economy delivery option saves 10 percent off the entire order total in exchange for a longer production window of 16 to 18 business days. Economy uses the same materials, the same production facility, the same quality control, and the same money-back guarantee as standard production. The only difference is queue position: economy orders go behind standard and rush orders in the production queue, which is what creates the savings.
+              The economy delivery option saves 5 percent off the entire order total in exchange for a longer production window of 16 to 18 business days. Economy uses the same materials, the same production facility, the same quality control, and the same money-back guarantee as standard production. The only difference is queue position: economy orders go behind standard and rush orders in the production queue, which is what creates the savings.
             </p>
             <p className="text-gray-700 leading-relaxed">
               Economy is the right choice for buyers with flexible timelines who want the lowest per-piece total cost on the order. Common use cases include holiday merchandise ordered well in advance, season-long uniform programs, and corporate giveaways ordered months ahead of an event. Standard remains the default and is free.
