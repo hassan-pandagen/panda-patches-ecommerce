@@ -33,7 +33,7 @@ const bulkFAQs = [
   },
   {
     question: "What quality standards do you follow?",
-    answer: "Every patch goes through our 5-point quality inspection: thread tension verification, color matching, backing durability test, stitch integrity check, and final visual inspection. We use military-grade thread and professional twill backing. Our patches are trusted by fire departments, police departments, and Fortune 500 companies."
+    answer: "Every patch goes through our 5-point quality inspection: thread tension verification, color matching, backing durability test, stitch integrity check, and final visual inspection. We use military-grade thread and professional twill backing. We have made patches for fire departments, police departments, and Fortune 500 teams."
   },
 ];
 

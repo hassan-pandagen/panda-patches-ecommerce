@@ -253,7 +253,7 @@ const faqSchema = {
       name: "What quality standards do you follow?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Every patch goes through our 5-point quality inspection: thread tension verification, color matching, backing durability test, stitch integrity check, and final visual inspection. Our patches are trusted by fire departments, police departments, and Fortune 500 companies.",
+        text: "Every patch goes through our 5-point quality inspection: thread tension verification, color matching, backing durability test, stitch integrity check, and final visual inspection. We have made patches for fire departments, police departments, and Fortune 500 teams.",
       },
     },
   ],
@@ -498,12 +498,17 @@ export default async function BulkCustomPatchesPage() {
           <div className="space-y-5">
             {[
               {
+                // 4,000+ is CAREER-LIFETIME (CEO-attested Aug 11 2026), across 13+
+                // years including factory production for other patch brands — the
+                // same basis and scoping rule as the 1,000,000+ figure. Never let
+                // this read as this store's order count; the store's own orders are
+                // published at /custom-patch-production-data-2026.
                 title: "4,000+ Bulk Orders Completed",
-                body: "From 50-piece test orders to 50,000-piece national rollouts, our production infrastructure handles volume without cutting corners. Every order ships with full tracking and a quality guarantee.",
+                body: "Across 13+ years of manufacturing under founder Imran Raza, including production for other patch brands — from 50-piece test orders to 50,000-piece national rollouts. Every order ships with full tracking and a quality guarantee. This store's own delivered orders are published separately at /custom-patch-production-data-2026.",
               },
               {
                 title: "ASI Verified Supplier",
-                body: "We are a verified supplier in the ASI network. Promotional products distributors can confidently recommend us to their clients — we understand blind shipping, white-label packaging, and Net 15/30 terms.",
+                body: "We are a verified supplier in the ASI network, member number 43049. Promotional products distributors can recommend us knowing we handle blind shipping, white-label packaging, and Net 15/30 terms.",
               },
               {
                 title: "5-Point Quality Inspection on Every Patch",

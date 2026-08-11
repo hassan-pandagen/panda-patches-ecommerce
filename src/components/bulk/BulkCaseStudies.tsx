@@ -37,7 +37,7 @@ export default async function BulkCaseStudies() {
         {/* Heading */}
         <div className="text-center mb-10 md:mb-14">
           <h2 className="text-[1.5rem] md:text-[2.25rem] font-black text-panda-dark uppercase tracking-tight mb-4">
-            Trusted by Brands & Organizations
+            Patches Made For Brands & Organizations
           </h2>
           <p className="text-[0.875rem] md:text-[1rem] text-gray-500 font-medium max-w-[37.5rem] mx-auto">
             From 500-piece fire department orders to 3,000-piece brand launches, we deliver quality at any scale.

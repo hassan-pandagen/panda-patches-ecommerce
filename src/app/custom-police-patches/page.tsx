@@ -118,7 +118,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
   const ogTitle = "Custom Police & Law Enforcement Patches | Panda Patches";
-  const ogDescription = "Custom police department patches and law enforcement badges. Trusted by departments nationwide. Fast turnaround, bulk pricing.";
+  const ogDescription = "Custom police department patches and law enforcement badges. Patches made for departments nationwide. Fast turnaround, bulk pricing.";
   return buildPageMetadata({
     title: "Custom Police Patches | Department, Tactical & Memorial | Panda Patches",
     description: "Custom police department patches with badge replication, subdued tactical, PVC, K-9, SWAT, and memorial rush. Low 5-piece minimum. Mockup in 12-24 hours. Free worldwide shipping.",
@@ -233,8 +233,8 @@ export default async function PolicePatchesPage() {
         heroImage={heroImage}
         trustBadges={trustBadges}
         customHeading="Custom Police Patches"
-        customSubheading="Trusted by Law Enforcement Nationwide"
-        customDescription="Professional police department patches, sheriff badges, and tactical patches. Embroidered, PVC, and woven formats. Trusted by departments for quality and durability. Volume pricing available. 2-week turnaround."
+        customSubheading="Patches Made For Law Enforcement Nationwide"
+        customDescription="Professional police department patches, sheriff badges, and tactical patches. Embroidered, PVC, and woven formats. Made for departments that need quality and durability. Volume pricing available. 2-week turnaround."
       />
 
       {/* 2. WORK GALLERY */}

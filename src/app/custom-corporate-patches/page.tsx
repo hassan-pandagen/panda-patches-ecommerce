@@ -118,7 +118,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
   const ogTitle = "Custom Corporate & Company Logo Patches | Panda Patches";
-  const ogDescription = "Custom embroidered patches for businesses and brands. Low 5-piece minimum, mockup in 12-24 hours, fast delivery. Trusted by Fortune 500 companies.";
+  const ogDescription = "Custom embroidered patches for businesses and brands. Low 5-piece minimum, mockup in 12-24 hours, fast delivery. Patches made for Fortune 500 teams.";
   return buildPageMetadata({
     title: "Custom Corporate Patches | Pantone-Matched Uniform & Employee Patches",
     description: "Custom corporate uniform patches with Pantone color matching, variable name patches, ASI reseller pricing, and formal PO invoicing. Pre-production sample at 500+. Mockup in 12-24 hours.",
@@ -233,7 +233,7 @@ export default async function CorporatePatchesPage() {
         heroImage={heroImage}
         trustBadges={trustBadges}
         customHeading="Custom Corporate Patches"
-        customSubheading="Trusted by Fortune 500 Companies"
+        customSubheading="Patches Made For Fortune 500 Teams"
         customDescription="Premium embroidered company logo patches for uniforms, branded merchandise, and promotional products. Pantone color-matching. Low 5-piece minimum. Mockup in 12-24 hours. 2-week turnaround."
       />
 
@@ -268,7 +268,7 @@ export default async function CorporatePatchesPage() {
               We&apos;re the maker, not a reseller — most suppliers just want the sale, but we get the mockup right first, send unlimited free revisions until you approve, and remake any patch that isn&apos;t right. Every order also runs through a 5-point quality inspection, with no setup fees, a mockup in 12-24 hours, and a standard 2-week turnaround.
             </p>
             <p>
-              Brands including Google, Coca-Cola, Microsoft, and Nissan have trusted us with their logo patches. The clearest proof: <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-bold underline">we delivered 9,600 custom patches for Wise&apos;s Nasdaq Times Square activation</Link> in two shipments, both on the contractual dates.
+              We have made logo patches for teams at brands including Google, Coca-Cola, Microsoft, and Nissan. The clearest proof: <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-bold underline">we delivered 9,600 custom patches for Wise&apos;s Nasdaq Times Square activation</Link> in two shipments, both on the contractual dates.
             </p>
             <p>
               Ready to start? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> — we respond to every inquiry within 2 business hours and include a complimentary digital mockup.

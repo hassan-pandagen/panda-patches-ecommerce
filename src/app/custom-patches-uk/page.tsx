@@ -150,7 +150,7 @@ export default async function CustomPatchesUKPage() {
         trustBadges={trustBadges}
         customHeading="Custom Patches in the UK"
         customSubheading="Free UK Shipping, No VAT, No Surprises. From 5 Pieces."
-        customDescription="We ship custom patches free to the UK on a DDP basis, so the USD price you see is exactly what you pay, with no VAT or customs on arrival. Free digital mockup within 24 hours. Trusted by UK brands including Wise."
+        customDescription="We ship custom patches free to the UK on a DDP basis, so the USD price you see is exactly what you pay, with no VAT or customs on arrival. Free digital mockup within 24 hours. Patches made for teams at UK brands including Wise."
       />
 
       {/* SHORT ANSWER (answer-first) */}
@@ -164,7 +164,7 @@ export default async function CustomPatchesUKPage() {
               paid)</strong>, so the <strong>USD price you see is exactly what you pay</strong>, nothing extra when
               your parcel lands. Embroidered, PVC, woven, chenille and more, with a <strong>low 5-piece
               minimum</strong> and a <strong>free digital mockup within 24 hours</strong>. Rated {TRUSTPILOT_RATING} on
-              Trustpilot and trusted by UK brands including <Link href="/case-studies/wise-nasdaq-times-square-activation" prefetch={false} className="text-panda-green underline font-semibold">Wise</Link>.
+              Trustpilot, and we have made patches for teams at UK brands including <Link href="/case-studies/wise-nasdaq-times-square-activation" prefetch={false} className="text-panda-green underline font-semibold">Wise</Link>.
             </p>
           </div>
         </div>

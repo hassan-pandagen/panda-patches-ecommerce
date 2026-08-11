@@ -228,7 +228,7 @@ export default async function SportsPatchesPage() {
         heroImage={heroImage}
         trustBadges={trustBadges}
         customHeading="Custom Sports Team Patches"
-        customSubheading="Trusted by Youth Leagues & Pro Teams"
+        customSubheading="Patches Made For Youth Leagues & Pro Teams"
         customDescription="Premium embroidered sports patches for uniforms, jerseys, varsity jackets, and championship gear. Team logos, numbers, and custom designs. Low 5-piece minimum. Mockup in 12-24 hours. 2-week turnaround."
       />
 

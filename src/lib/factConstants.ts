@@ -18,6 +18,50 @@
  *    at a company-owned facility in Pakistan (Panda Apparel & Technology).
  */
 
+// ── Scope-sensitive volume claims (CLBE37 §1.8 + §3, CEO-attested) ──────────
+/**
+ * The 1,000,000+ and 4,000+ figures are CAREER-LIFETIME, spanning the founder's
+ * 13+ years including factory production for OTHER patch brands. They are NOT
+ * this store's delivered-order count — that is published at
+ * /custom-patch-production-data-2026 (963 orders / 68,785 patches, Aug 2026).
+ *
+ * RULE (both claims): fine as a short badge with no elaboration. The moment a
+ * surface explains, qualifies, or itemises the figure, it MUST use the career /
+ * factory scope — never this store's order base. Two surfaces previously broke
+ * this by describing the 1M as spanning "clients across all 50 US states" and
+ * "small starter orders from 5 pieces", which reads as store deliveries and
+ * directly contradicts the 68,785 figure.
+ *
+ * Never pair either figure with "since 2016" — operations began June 2023; the
+ * year framing is always "13+ years under founder Imran Raza".
+ */
+export const LIFETIME_PATCHES_SCOPE =
+  "Over 1,000,000 patches delivered across 13+ years of manufacturing under founder Imran Raza, including production for other patch brands — this store's own delivered orders are published at /custom-patch-production-data-2026.";
+
+/** Attested Aug 11 2026, career-lifetime basis. Same scoping rule as above. */
+export const BULK_ORDERS_LIFETIME = '4,000+';
+
+/** ASI member number — required to display the ASI mark (CLBE37 §1.8). */
+export const ASI_MEMBER_NUMBER = '43049';
+
+/**
+ * Named-brand attribution wording. NEVER "trusted by", "our clients", or
+ * anything implying endorsement — that is what triggers trademark complaints.
+ * Approved family: "Patches made for teams at" / "we've made patches for".
+ */
+export const BRAND_ATTRIBUTION_HEADING = 'Patches Made For Teams At';
+
+// ── Contact ownership (owner decision Jul 21 2026, reconfirmed Aug 11) ──────
+/**
+ * sales@  — public / pre-sale address, the only one shown on pages
+ * hello@  — post-sale SENDING address in email flows (orderEmails.ts,
+ *           TrackedEmailLink.tsx). Not a public contact; do not remove.
+ * lance@  — accounts and order management.
+ * An earlier note claiming hello@ was "removed sitewide" is superseded.
+ */
+export const CONTACT_OWNERSHIP =
+  'Public contact: sales@ · post-sale email sending: hello@ · accounts/order management: lance@';
+
 // ── SLAs ────────────────────────────────────────────────────────────────────
 /** Quote/inquiry response time. */
 export const RESPONSE_SLA = '2 business hours';

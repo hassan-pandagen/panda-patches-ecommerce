@@ -343,13 +343,13 @@ export default async function PartnersPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════
-            3. INDUSTRY GRID — "Trusted by Organizations"
+            3. INDUSTRY GRID — "Patches Made For Organizations"
         ═══════════════════════════════════════════════════ */}
         <section className="py-20 px-6 bg-white">
           <div className="max-w-[68.75rem] mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-[2.5rem] md:text-[3.625rem] font-black text-panda-dark leading-[1.05] mb-4">
-                Trusted by Organizations Across the US
+                Patches Made For Organizations Across the US
               </h2>
               <p className="text-[1.125rem] text-gray-700 font-medium max-w-[37.5rem] mx-auto leading-relaxed">
                 From first responders to Fortune 500 brands, we make patches for teams that demand quality.

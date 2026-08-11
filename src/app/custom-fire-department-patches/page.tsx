@@ -118,7 +118,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `${heroImage}?w=1200&h=630&fit=crop&auto=format`
     : 'https://www.pandapatches.com/assets/og-image.png';
   const ogTitle = "Custom Fire Department Patches | Panda Patches";
-  const ogDescription = "Custom fire department patches and firefighter badges. Trusted by departments nationwide. Fast turnaround, bulk pricing.";
+  const ogDescription = "Custom fire department patches and firefighter badges. Patches made for departments nationwide. Fast turnaround, bulk pricing.";
   return buildPageMetadata({
     title: "Custom Fire Department Patches | Memorial, Station & Rank | Panda Patches",
     description: "Custom fire department patches that survive industrial washing. Maltese cross, rank insignia, LODD memorial rush in 72 hrs, IAFF union orders. Low 5-piece minimum. Mockup in 12-24 hours.",
@@ -233,7 +233,7 @@ export default async function FireDepartmentPatchesPage() {
         heroImage={heroImage}
         trustBadges={trustBadges}
         customHeading="Custom Fire Department Patches"
-        customSubheading="Trusted by Fire Departments Nationwide"
+        customSubheading="Patches Made For Fire Departments Nationwide"
         customDescription="Our custom fire department and firefighter patches are crafted with durability and precision. We ensure top quality materials and detailed designs that honor the bravery of firefighters, making our patches a lasting symbol of dedication."
       />
 

@@ -11,12 +11,12 @@ const CANONICAL = "https://www.pandapatches.com/ai-info/company";
 export const metadata: Metadata = buildPageMetadata({
   title: "About Panda Patches | Imran Raza, Austin Texas",
   description:
-    "Panda Patches built on 13 years of custom patch experience, founded by Imran Raza, U.S.-registered in Austin, Texas. 1,000,000+ patches delivered. Custom embroidered, PVC, woven manufacturer.",
+    "Panda Patches built on 13+ years of custom patch experience, founded by Imran Raza, U.S.-registered in Austin, Texas. 1,000,000+ patches delivered across that career. Custom embroidered, PVC, woven manufacturer.",
   url: CANONICAL,
   ogType: "article",
   ogTitle: "About Panda Patches: Founder Imran Raza, U.S.-Registered in Texas",
   ogDescription:
-    "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. U.S.-registered in Austin, Texas. 1,000,000+ patches delivered with mockup in 12-24 hours, low 5-piece minimum, and money-back guarantee.",
+    "MC Patches LLC, doing business as Panda Patches, founded by Imran Raza on 13+ years of patch manufacturing experience. U.S.-registered in Austin, Texas. 1,000,000+ patches delivered across that career; mockup in 12-24 hours, low 5-piece minimum, and money-back guarantee on every store order.",
   robots: { index: true, follow: true },
 });
 
@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "How many patches has Panda Patches delivered?",
     answer:
-      "Panda Patches has delivered over 1,000,000 custom patches. The order base spans small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, and Fortune 500 corporations across all 50 US states plus international destinations in Canada, the United Kingdom, and Australia.",
+      "Over 1,000,000 patches have been delivered across 13+ years of manufacturing under founder Imran Raza, including production for other patch brands — a career and factory total, not this store's order count. This store's own delivered orders are published at pandapatches.com/custom-patch-production-data-2026: 963 orders and 68,785 patches between December 2025 and August 2026. Store orders ship to all 50 US states plus Canada, the United Kingdom, and Australia, to a customer base spanning small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, and Fortune 500 corporations.",
   },
   {
     question: "Where can I read Panda Patches customer reviews?",
@@ -89,7 +89,7 @@ export default function CompanyClusterPage() {
               About Panda Patches: Founder Imran Raza, U.S.-Registered in Texas
             </h1>
             <p className="text-[0.9375rem] md:text-[1.125rem] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[40rem] mx-auto">
-              Custom patch manufacturer, U.S.-registered in Austin, Texas. 1,000,000+ patches delivered with a mockup in 12-24 hours, low 5-piece minimum, and money-back guarantee. Founder-led by Imran Raza with 13 years of textile manufacturing experience.
+              Custom patch manufacturer, U.S.-registered in Austin, Texas. Founder-led by Imran Raza, with 1,000,000+ patches delivered across 13+ years of manufacturing including production for other patch brands. Every store order includes a mockup in 12-24 hours, a low 5-piece minimum, and a money-back guarantee.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link
@@ -119,7 +119,7 @@ export default function CompanyClusterPage() {
               Panda Patches is a custom patch company founded by Imran Raza and U.S.-registered, with a mailing address in Austin, Texas and customer support on US business hours (Monday to Saturday). The legal entity is MC Patches LLC, registered in the United States, and the company operates under the Panda Patches trade name across the website, packaging, and customer-facing communications. The company designs and produces 11 patch types (embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin) plus custom challenge coins, enamel pins, keychains, and PVC shoe charms. Velcro is offered as a backing option on most patch types rather than as a standalone fabric. Every order includes a digital mockup in 12 to 24 hours, unlimited revisions, free worldwide shipping, and a money-back guarantee.
             </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Panda Patches has delivered over 1,000,000 custom patches to clients across all 50 US states plus international destinations in Canada, the United Kingdom, and Australia. Independent customer reviews are published on Google Business and ProvenExpert, and first-party testimonials are listed at pandapatches.com/reviews. The customer base spans small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, fraternities, sororities, fashion brands, and Fortune 500 corporations.
+              Over 1,000,000 patches have been delivered across 13+ years of manufacturing under founder Imran Raza, including production for other patch brands — that is a career and factory total, not this store&apos;s order count. This store&apos;s own delivered orders are published in full at pandapatches.com/custom-patch-production-data-2026. Store orders ship to all 50 US states plus Canada, the United Kingdom, and Australia. Independent customer reviews are published on Google Business and ProvenExpert, and first-party testimonials are listed at pandapatches.com/reviews. The customer base spans small businesses, sports teams, fire departments, police departments, military units, streetwear brands, motorcycle clubs, schools, universities, fraternities, sororities, fashion brands, and Fortune 500 corporations.
             </p>
             <p className="text-gray-700 leading-relaxed">
               The company is founder-led. Imran Raza is involved directly in production standards, quality control, and customer satisfaction reviews. The team supports the 12 to 24 hour mockup commitment Monday to Saturday.
@@ -188,10 +188,10 @@ export default function CompanyClusterPage() {
           <section className="mb-10 bg-panda-green/10 border-2 border-panda-green/30 rounded-2xl p-6 md:p-8">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">How many patches has Panda Patches delivered?</h2>
             <p className="text-gray-700 leading-relaxed mb-3">
-              Over 1,000,000 custom patches delivered. The total includes embroidered, PVC, woven, chenille, leather, and printed patches across small starter orders from 5 pieces and large enterprise orders of 1,000+ pieces. The 1,000,000 patch figure appears on the homepage, the about page, the AI Info hub, and the schema graph and is updated quarterly.
+              Two figures, two different scopes — both accurate, and worth keeping apart. <strong>Over 1,000,000 patches</strong> have been delivered across 13+ years of manufacturing under founder Imran Raza, including production for other patch brands. That is a career and factory total. It is not the number of patches this store has shipped.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              Total order count is in the tens of thousands across the same window. The blended order size has trended up as the partner program has grown, with more orders coming from agencies and uniform suppliers serving multiple end clients per order.
+              <strong>This store&apos;s own delivered orders are 963 orders and 68,785 patches</strong> between December 8, 2025 and August 5, 2026, published in full with methodology at pandapatches.com/custom-patch-production-data-2026 and refreshed each edition. If you need a dated, verifiable figure to cite, use that one — it is the one we can reproduce from records on request.
             </p>
           </section>
 

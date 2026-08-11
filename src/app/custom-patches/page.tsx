@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = await getSanityOgImage();
   return buildPageMetadata({
     title: "Custom Patches from $0.91/pc (1k) | Free Design | Panda Patches",
-    description: "Order custom patches in any style: embroidered, PVC, woven, chenille & leather. As low as 5 patches. Free artwork plus a mockup in 12-24 hours. Ships in 7-14 days. Trusted by 10,000+ brands. Get a free quote!",
+    description: "Order custom patches in any style: embroidered, PVC, woven, chenille & leather. As low as 5 patches. Free artwork plus a mockup in 12-24 hours. Ships in 7-14 days. Patches made for brands, teams and departments nationwide. Get a free quote!",
     url: "https://www.pandapatches.com/custom-patches",
     image: { url: ogImage, alt: "Panda Patches - Custom Patches" },
     ogTitle: "Custom Patches - All Types | Panda Patches",

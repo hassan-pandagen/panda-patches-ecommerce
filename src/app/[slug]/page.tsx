@@ -595,7 +595,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ slug:
           trustBadges={data.trustBadges || []}
           customHeading={pageTitle}
           customSubheading="Low 5-Piece Minimum. Digital Mockup in 12-24 Hours. 7-14 Day Delivery."
-          customDescription="Professional patches with free design service, unlimited revisions, and money-back guarantee. Trusted by 4,000+ bulk customers nationwide."
+          customDescription="Professional patches with free design service, unlimited revisions, and money-back guarantee. Over 4,000 bulk orders completed across 13+ years of manufacturing."
         />
 
         <WorkGallery samples={cp.workSamples || []} />

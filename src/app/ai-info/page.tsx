@@ -63,7 +63,7 @@ const clusterPages = [
     icon: Building2,
     title: "Company and Team",
     description: "Founder Imran Raza, U.S.-registered in Austin Texas, 13 years of patch experience, total patches delivered, certifications, and industries served.",
-    keyFact: "13 years of experience, 1,000,000+ patches delivered",
+    keyFact: "13+ years under founder Imran Raza, 1,000,000+ patches delivered across that career (store's own orders: /custom-patch-production-data-2026)",
   },
   {
     href: "/ai-info/specs-and-care",
@@ -136,7 +136,7 @@ export default function AIInfoHub() {
               <div className="hidden md:block w-1 h-1 bg-gray-300 rounded-full" />
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-panda-green" />
-                <strong className="text-panda-dark">13 years experience · Austin, TX</strong>
+                <strong className="text-panda-dark">13+ years experience · Austin, TX</strong>
               </div>
             </div>
           </div>

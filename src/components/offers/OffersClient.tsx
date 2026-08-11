@@ -198,7 +198,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
       {/* WHO ORDERS FROM US */}
       <section className="bg-white py-14 px-4">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-black text-[#051C05] mb-3">Trusted by Organizations Across the US</h2>
+          <h2 className="text-2xl md:text-3xl font-black text-[#051C05] mb-3">Patches Made For Organizations Across the US</h2>
           <p className="text-gray-500 text-sm mb-10">From first responders to Fortune 500 brands, we make patches for teams that demand quality.</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
             {[

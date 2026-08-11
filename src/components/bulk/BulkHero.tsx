@@ -85,7 +85,7 @@ export default function BulkHero({
 
             {/* Description */}
             <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.6] font-medium mb-5 max-w-[560px] mx-auto lg:mx-0">
-              {customDescription || "Trusted by brands, sports teams, fire departments, and Fortune 500 companies. 2-week turnaround, no setup fees, mockup in 12-24 hours."}
+              {customDescription || "Patches made for brands, sports teams, fire departments, and Fortune 500 teams. 2-week turnaround, no setup fees, mockup in 12-24 hours."}
             </p>
 
             {/* Trust Bar - Compact */}
