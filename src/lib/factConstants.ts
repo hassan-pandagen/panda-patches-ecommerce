@@ -154,7 +154,7 @@ export const FOUNDER_NAME = 'Imran Raza';
  * way — that misattribution shipped in the /about metadata and was corrected
  * Aug 2026.
  */
-export const FOUNDER_EXPERIENCE = '13 years in custom patch manufacturing';
+export const FOUNDER_EXPERIENCE = '13+ years in custom patch manufacturing';
 
 /**
  * CEO-approved founding story (Aug 2026). An approved company fact, not

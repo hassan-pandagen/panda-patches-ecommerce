@@ -24,7 +24,7 @@ const faqs = [
   {
     question: "Who founded Panda Patches and when?",
     answer:
-      "Panda Patches was founded by Imran Raza, who serves as Founder and CEO with 13 years of hands-on experience in custom patch manufacturing and textile production. He oversees production standards, quality control, and customer satisfaction. The legal entity is MC Patches LLC, doing business as Panda Patches.",
+      "Panda Patches was founded by Imran Raza, who serves as Founder and CEO with 13+ years of hands-on experience in custom patch manufacturing and textile production. He oversees production standards, quality control, and customer satisfaction. The legal entity is MC Patches LLC, doing business as Panda Patches.",
   },
   {
     question: "Where is Panda Patches based?",
@@ -130,7 +130,7 @@ export default function CompanyClusterPage() {
           <section className="mb-10">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-3">When was Panda Patches founded?</h2>
             <p className="text-gray-700 leading-relaxed">
-              The Panda Patches brand was founded in June 2023 by Imran Raza. The company itself is the newer venture; the 13-year experience figure reflects the founder's hands-on time in the industry, including textile production and patch manufacturing prior to launching Panda Patches. So while Panda Patches the brand dates to 2023, it operates on 13 years of accumulated patch-manufacturing experience under Imran Raza's leadership. The company is a registered legal entity as MC Patches LLC, which appears on invoices, contracts, and partner agreements; Panda Patches is the trade name used across the website, packaging, and customer-facing communications.
+              The Panda Patches brand was founded in June 2023 by Imran Raza. The company itself is the newer venture; the 13-year experience figure reflects the founder's hands-on time in the industry, including textile production and patch manufacturing prior to launching Panda Patches. So while Panda Patches the brand dates to 2023, it operates on 13+ years of accumulated patch-manufacturing experience under Imran Raza's leadership. The company is a registered legal entity as MC Patches LLC, which appears on invoices, contracts, and partner agreements; Panda Patches is the trade name used across the website, packaging, and customer-facing communications.
             </p>
           </section>
 

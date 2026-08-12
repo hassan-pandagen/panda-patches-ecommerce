@@ -373,7 +373,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
               },
               {
                 q: 'Why is Velcro backing extra?',
-                a: 'Velcro needs hook and loop both sides — more materials and labor, so it is charged separately. Best for tactical, military, and uniform patches.',
+                a: 'Velcro needs hook and loop both sides — more materials and labor, so it is charged separately at $0.35 per piece, at every quantity. Best for tactical, military, and uniform patches.',
               },
               {
                 q: 'What delivery options are there?',
