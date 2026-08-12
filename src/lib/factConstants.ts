@@ -80,14 +80,18 @@ export const CONTACT_OWNERSHIP =
  * silently stop velcro being charged.
  *
  * `label` is what the customer sees and what lands in `orders.design_backing`.
- * Historical rows hold older spellings ("sticker", "iron on"); those are left
- * as-is and are not worth a migration.
+ * These labels are deliberately identical to the values the CRM already writes
+ * ("Iron-On", "Sew-On", "Velcro (Hook & Loop)", "Adhesive (Peel & Stick)"), so
+ * web and CRM orders produce one clean distribution instead of two spellings
+ * per backing. The CRM was already consistent here; the website's two selectors
+ * were the ones drifting ("Sticker" in the offers flow, "Peel & Stick" in the
+ * calculator). Do not change a label without changing it in the CRM too.
  */
 export const BACKINGS = [
   { id: 'iron',   label: 'Iron-On',              free: true,  quoteOnly: false, href: '/custom-iron-on-patches' },
   { id: 'sew',    label: 'Sew-On',               free: true,  quoteOnly: false, href: '/sew-on-patches' },
   { id: 'velcro', label: 'Velcro (Hook & Loop)', free: false, quoteOnly: false, href: '/custom-velcro-patches' },
-  { id: 'peel',   label: 'Peel & Stick',         free: true,  quoteOnly: false, href: '/adhesive-patches' },
+  { id: 'peel',   label: 'Adhesive (Peel & Stick)', free: true, quoteOnly: false, href: '/adhesive-patches' },
   { id: 'magnet', label: 'Magnetic',             free: false, quoteOnly: true,  href: '/magnetic-patches' },
   { id: 'button', label: 'Button-Loop',          free: false, quoteOnly: true,  href: '/button-loop-patches' },
 ] as const;
