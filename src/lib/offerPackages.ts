@@ -5,6 +5,7 @@ import {
   getRushSurcharge,
 } from '@/lib/checkoutConfig';
 import { roundMoney } from '@/lib/pricingCalculator';
+import { isVelcroBacking, SELECTABLE_BACKINGS } from '@/lib/factConstants';
 
 export interface OfferPack {
   name: string;
@@ -146,7 +147,7 @@ export function getOfferSubtotalBeforeRush(
   upgrades: string[]
 ): number {
   let total = basePrice;
-  if (backing === 'Velcro') total += VELCRO_PER_PIECE_FEE * qty;
+  if (isVelcroBacking(backing)) total += VELCRO_PER_PIECE_FEE * qty;
   if (upgrades.includes('Metallic Thread')) total += METALLIC_FEE;
   if (upgrades.includes('Glow in the Dark')) total += GLOW_FEE;
   if (upgrades.includes('3D Puff Embroidery')) total += PUFF_FEE;

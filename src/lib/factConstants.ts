@@ -62,6 +62,50 @@ export const BRAND_ATTRIBUTION_HEADING = 'Patches Made For Teams At';
 export const CONTACT_OWNERSHIP =
   'Public contact: sales@ · post-sale email sending: hello@ · accounts/order management: lance@';
 
+// ── Backing options (single source, added Aug 2026) ─────────────────────────
+/**
+ * The six backings we actually offer. Four are self-selectable at checkout;
+ * Magnetic and Button-Loop are quote-only and must NOT appear in a selector.
+ *
+ * Why this exists: the adhesive backing had four different public names
+ * ("Peel & Stick" in the calculator, "Sticker" in the offers flow, "Adhesive
+ * (Peel & Stick)" on the backing page, "Sticker / Peel" on the pricing page),
+ * and llms.txt listed "self-adhesive" and "peel-and-stick" as two separate
+ * options — the same backing counted twice, while omitting Magnetic and
+ * Button-Loop entirely. One list, one label each.
+ *
+ * `id` is the stable lowercase key used by pricing logic — NEVER match on the
+ * label. `applyVelcroPricing` and calculateOfferTotal both normalise to `id`,
+ * because an exact-case check on a display string means a copy edit can
+ * silently stop velcro being charged.
+ *
+ * `label` is what the customer sees and what lands in `orders.design_backing`.
+ * Historical rows hold older spellings ("sticker", "iron on"); those are left
+ * as-is and are not worth a migration.
+ */
+export const BACKINGS = [
+  { id: 'iron',   label: 'Iron-On',              free: true,  quoteOnly: false, href: '/custom-iron-on-patches' },
+  { id: 'sew',    label: 'Sew-On',               free: true,  quoteOnly: false, href: '/sew-on-patches' },
+  { id: 'velcro', label: 'Velcro (Hook & Loop)', free: false, quoteOnly: false, href: '/custom-velcro-patches' },
+  { id: 'peel',   label: 'Peel & Stick',         free: true,  quoteOnly: false, href: '/adhesive-patches' },
+  { id: 'magnet', label: 'Magnetic',             free: false, quoteOnly: true,  href: '/magnetic-patches' },
+  { id: 'button', label: 'Button-Loop',          free: false, quoteOnly: true,  href: '/button-loop-patches' },
+] as const;
+
+/** The four a customer can pick without a quote. */
+export const SELECTABLE_BACKINGS = BACKINGS.filter(b => !b.quoteOnly);
+
+/**
+ * True when a backing value means velcro, whatever spelling reached us —
+ * "velcro", "Velcro", "Velcro (Hook & Loop)", a CRM-typed "hook and loop".
+ * Both checkout paths use this so velcro cannot silently become free.
+ */
+export function isVelcroBacking(backing: string | undefined | null): boolean {
+  if (!backing) return false;
+  const b = backing.toLowerCase();
+  return b.includes('velcro') || b.includes('hook');
+}
+
 // ── SLAs ────────────────────────────────────────────────────────────────────
 /** Quote/inquiry response time. */
 export const RESPONSE_SLA = '2 business hours';

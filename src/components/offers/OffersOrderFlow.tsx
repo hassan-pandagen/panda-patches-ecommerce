@@ -2,6 +2,7 @@
 
 import { getOfferRushFee, getOfferVelcroFee, METALLIC_FEE, GLOW_FEE, PUFF_FEE } from '@/lib/offerPackages';
 import { VELCRO_PER_PIECE_FEE } from '@/lib/checkoutConfig';
+import { SELECTABLE_BACKINGS, isVelcroBacking } from '@/lib/factConstants';
 import { formatMoney } from '@/lib/pricingCalculator';
 
 // ─── Types (mirrors OffersClient.tsx — kept in sync there) ────────────────────
@@ -192,7 +193,10 @@ function Step2({ formData, setFormData, onNext, onBack, offer }: {
     setFormData({ ...formData, upgrades: next });
   };
 
-  const BackingOptions = ['Iron-On', 'Sew-On', 'Sticker', 'Velcro'];
+  // Labels come from the canon so this selector cannot drift from the product
+  // calculator or the backing-options page. Quote-only backings (magnetic,
+  // button-loop) are excluded by SELECTABLE_BACKINGS, not by hand.
+  const BackingOptions = SELECTABLE_BACKINGS.map(b => b.label);
   const DeliveryOptions = [
     { value: 'economy', label: 'Economy', timeline: '16-18 business days', note: '5% off total', badge: null },
     { value: 'standard', label: 'Standard', timeline: '7-14 business days', note: 'FREE', badge: 'Recommended' },
@@ -216,12 +220,12 @@ function Step2({ formData, setFormData, onNext, onBack, offer }: {
             <button key={b} onClick={() => setFormData({ ...formData, backing: b })}
               className={`p-3 rounded-xl border-2 text-sm font-bold transition-all ${formData.backing === b ? 'border-[#051C05] bg-[#051C05] text-[#DFFF00]' : 'border-gray-200 bg-white text-gray-700 hover:border-gray-400'}`}>
               {b}
-              {b === 'Velcro' && <span className="block text-xs font-normal mt-0.5">+${formatMoney(VELCRO_PER_PIECE_FEE)}/pc</span>}
-              {b !== 'Velcro' && <span className={`block text-xs font-normal mt-0.5 ${formData.backing === b ? 'text-[#DFFF00]' : 'text-green-600'}`}>FREE</span>}
+              {isVelcroBacking(b) && <span className="block text-xs font-normal mt-0.5">+${formatMoney(VELCRO_PER_PIECE_FEE)}/pc</span>}
+              {!isVelcroBacking(b) && <span className={`block text-xs font-normal mt-0.5 ${formData.backing === b ? 'text-[#DFFF00]' : 'text-green-600'}`}>FREE</span>}
             </button>
           ))}
         </div>
-        {formData.backing === 'Velcro' && (
+        {isVelcroBacking(formData.backing) && (
           <p className="text-xs text-gray-500 mt-3">Industry standard for tactical, military and uniform patches. Hook + loop both sides included.</p>
         )}
       </div>
@@ -395,7 +399,7 @@ function Step5({
     // a charge the customer is about to pay must be itemised, not described vaguely.
     // Reads the canon per-piece constant rather than a hardcoded figure so the
     // label cannot drift from what checkout charges.
-    { label: 'Backing', value: `${formData.backing}${formData.backing === 'Velcro' ? ` (+$${formatMoney(getOfferVelcroFee(offer.qty))} — ${offer.qty} × $${formatMoney(VELCRO_PER_PIECE_FEE)})` : ' (FREE)'}` },
+    { label: 'Backing', value: `${formData.backing}${isVelcroBacking(formData.backing) ? ` (+$${formatMoney(getOfferVelcroFee(offer.qty))} — ${offer.qty} × $${formatMoney(VELCRO_PER_PIECE_FEE)})` : ' (FREE)'}` },
     {
       label: 'Delivery',
       value: formData.delivery === 'economy' ? 'Economy 16-18 days (-5%)' :

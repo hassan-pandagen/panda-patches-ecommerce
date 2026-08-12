@@ -14,17 +14,22 @@ import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 import { trackLead } from "@/lib/ga4";
 import { trackGoogleAdsLead } from "@/lib/googleAds";
 import { VELCRO_PER_PIECE_FEE } from "@/lib/checkoutConfig";
+import { SELECTABLE_BACKINGS } from "@/lib/factConstants";
 import { formatMoney } from "@/lib/pricingCalculator";
 import BulkQuoteCTA from "@/components/product/BulkQuoteCTA";
 
 
-// Default backing options if none provided
-const DEFAULT_BACKINGS = [
-  { id: "iron", name: "Iron On", icon: "🔥" },
-  { id: "sew", name: "Sew On", icon: "🪡" },
-  { id: "velcro", name: "Velcro", icon: "🔗" },
-  { id: "peel", name: "Peel & Stick", icon: "🏷️" },
-];
+// Default backing options if none provided. Names come from the canon
+// (SELECTABLE_BACKINGS) so this list cannot drift from the offers flow or the
+// backing-options page; only the icons are presentational and local.
+const BACKING_ICONS: Record<string, string> = {
+  iron: "🔥", sew: "🪡", velcro: "🔗", peel: "🏷️",
+};
+const DEFAULT_BACKINGS = SELECTABLE_BACKINGS.map(b => ({
+  id: b.id,
+  name: b.label,
+  icon: BACKING_ICONS[b.id] ?? "🏷️",
+}));
 
 const SHAPES = [
   { id: "circle", name: "Circle" },

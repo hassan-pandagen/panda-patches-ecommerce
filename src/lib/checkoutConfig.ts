@@ -14,6 +14,8 @@ export const ALLOWED_ORIGINS = [
   'https://panda-patches-ecommerce-7w28lefz.vercel.app',
 ] as const;
 
+import { isVelcroBacking } from '@/lib/factConstants';
+
 /** Economy delivery gives a 5% discount. */
 export const ECONOMY_DISCOUNT_RATE = 0.95;
 
@@ -80,9 +82,14 @@ export function applyEconomyDiscount(price: number, deliveryOption: string): num
 /**
  * Applies velcro backing pricing: adds a per-piece fee on top of the
  * base patch price. No-op for any other backing.
+ *
+ * Matches via isVelcroBacking rather than `backing === 'velcro'`. The old exact
+ * check only worked because the calculator happened to pass the lowercase id;
+ * anything passing the display label ("Velcro", "Velcro (Hook & Loop)") got
+ * velcro for free. A copy edit should not be able to zero a fee.
  */
 export function applyVelcroPricing(price: number, backing: string | undefined, quantity: number): number {
-  if (backing !== 'velcro' || price <= 0 || quantity <= 0) return price;
+  if (!isVelcroBacking(backing) || price <= 0 || quantity <= 0) return price;
   const adjusted = price + VELCRO_PER_PIECE_FEE * quantity;
   return Math.round(adjusted * 100) / 100;
 }
