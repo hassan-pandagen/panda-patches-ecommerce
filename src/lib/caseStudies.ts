@@ -117,11 +117,14 @@ export const caseStudies: CaseStudy[] = [
   // them; that was flagged to the owner before publishing and the decision to
   // use all four was made on 2026-08-13. Alt text stays neutral regardless.
   //
-  // MOCKUPS: ten were produced. design-mockup-1 is the client's brand LOGO
-  // patch and is the single asset that would identify them — excluded, and it
-  // must stay excluded. The other nine carry no brand mark; seven are published
-  // here. Every mockup was opened and checked individually before selection
-  // rather than assumed clean from its filename.
+  // MOCKUPS: ten were produced and all ten were opened and checked individually,
+  // never assumed clean from a filename. design-mockup-1 is the client's brand
+  // LOGO patch and is the single asset that would identify them — excluded, and
+  // it must stay excluded. The other nine carry no brand mark and are all
+  // published here. The set reconciles exactly with the brief's design list:
+  // 1 rosette + 3 "Step Up Your Snack" colourways + 3 "Train Like a Champion"
+  // colourways + 2 "The Snack You've Been Waiting For" colourways = 9, plus the
+  // logo patch = 10.
   //
   // PRODUCTION PHOTOS: safe — the only brand-bearing stack appears edge-on, so
   // no wordmark is legible. Recheck if these are ever re-cropped or enlarged.
@@ -257,12 +260,20 @@ export const caseStudies: CaseStudy[] = [
         alt: "The same Step Up Your Snack design in a second colourway, red on yellow with a red border",
       },
       {
+        src: "/assets/case-studies/nashville-design-stepup-purple.webp",
+        alt: "The Step Up Your Snack design in a third colourway, white and yellow on purple with a dark purple border",
+      },
+      {
         src: "/assets/case-studies/nashville-design-champion-red.webp",
         alt: "Approved patch mockup reading Train Like a Champion with a crown, red with a yellow border, marked 3 by 0.9 inches",
       },
       {
         src: "/assets/case-studies/nashville-design-champion-purple.webp",
         alt: "The Train Like a Champion design in a purple colourway with a yellow border",
+      },
+      {
+        src: "/assets/case-studies/nashville-design-champion-green.webp",
+        alt: "The Train Like a Champion design in a third colourway, white on green with a yellow border",
       },
       {
         src: "/assets/case-studies/nashville-design-snack-purple.webp",
