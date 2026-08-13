@@ -31,6 +31,15 @@
 > recorded here rather than papered over by dropping an entry to make the
 > arithmetic tidy.
 
+> ⚠ **Count reconciliation open (2026-08-14).** Two reviews were added to the
+> log below — Kelly Paschall (Aug 9) and Emily Rodgers (Aug 13) — that were not
+> in the Aug 13 sync. The **83** above was verified against the live profile on
+> Aug 13, and Emily's review is dated Aug 13, so it is unknown whether 83
+> already includes either of them. Per the CASE-S_3 instruction, the count has
+> **not** been hand-bumped: re-read TrustScore and total off the live profile
+> and update both together. Adding reviews to this log does not, by itself,
+> license changing the published count.
+
 ## How to add a new review
 
 1. Add a row below in the correct date order (newest first), with: ISO date · name · country · rating · product tag(s) · verbatim body.
@@ -45,8 +54,25 @@
 
 ## Reviews (newest first)
 
+### 2026-08-13 · Emily Rodgers (US) · ★★★★★ · [event, hats, leather, woven, rush, repeat]
+**Exactly what we wanted!** — Lance was great to work with and helped us out with a project that needed to be turned around quickly. He stayed on top of order and communicated well throughout the entire process. The patches ordered turned out great and our guests were excited to create their hats with the designs.
+
+> Labeled "Unprompted" by Trustpilot; experience date 2026-01-12. This is the
+> closing quote on /case-studies/karbach-brewing-patches (named and approved —
+> Emily Rodgers, Aug 13, 2026). Source: CASE-S_3 brief, quoted verbatim.
+
 ### 2026-08-11 · David Puerto (US) · ★★★★★ · [general]
 **Excellent quality** — Excellent quality. Great communication. They delivered exactly what I wanted. I will use them again.
+
+### 2026-08-09 · Kelly Paschall (US) · ★★★★★ · [event, woven, rush] · ⚠ ABRIDGED
+**Working with Lance and Panda Patches was a great experience** — Working with Lance and Panda Patches was a great experience… quality patches against a tight timeline… kept me in the loop from end to end… turned out great for the event!
+
+> ⚠ **This body is abridged, not verbatim.** It was transcribed into the
+> CASE-S_1 brief with ellipses, and the full text has not been read off the live
+> profile. Rule 5 forbids editing review text, so this is logged as-is and
+> flagged — replace it with the verbatim body on the next profile read before
+> it is used anywhere beyond the case study. Labeled "Unprompted" by Trustpilot.
+> Closing quote on /case-studies/nashville-event-patches-2026.
 
 ### 2026-08-06 · Alden (US) · ★★★★★ · [general]
 **Great Service** — Excellent and timely service. Lance and the team responded the same day with my quote and mock-up. I would use again.

@@ -35,10 +35,16 @@ export interface CaseStudyImage {
 
 export interface CaseStudySection {
   heading: string;
-  /** One or more paragraphs. Split paragraphs with a blank line (\n\n). */
+  /**
+   * One or more paragraphs. Split paragraphs with a blank line (\n\n).
+   * Rendered as plain text — markdown is NOT parsed here, so a [label](href)
+   * would print literally. Use `link` below for an outbound link.
+   */
   body: string;
   /** Optional image shown after this section's text (interleaves photos with copy). */
   image?: CaseStudyImage;
+  /** Optional outbound link rendered under this section's paragraphs. */
+  link?: { href: string; label: string };
 }
 
 export interface CaseStudyFAQ {
@@ -521,12 +527,16 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: "The honest footnote: leather behaves differently under an iron",
         body:
-          "Leather runs hotter than woven under an iron, and Karbach's team found that some leather patches stuck or scorched when pressed directly. We sent the fix the same day — a buffer layer between the iron and the patch, and a shorter press — and the rest applied cleanly.\n\nWe would rather tell you that here than pretend every material behaves identically. Woven, embroidered and leather all take iron-on backing, but they do not all take the same iron. If you are ordering mixed materials, ask us for the per-material pressing guidance before your team starts applying them.",
+          "Leather runs hotter than woven under an iron, and Karbach's team found that some leather patches stuck or scorched when pressed directly. We sent the fix the same day — a buffer layer between the iron and the patch, and a shorter press — and the rest applied cleanly.\n\nWe would rather tell you that here than pretend every material behaves identically. Woven, embroidered and leather all take iron-on backing, but they do not all take the same iron. This order is why our iron-on application guide now calls leather out as an exception alongside PVC, rather than implying one setting covers every material. If you are ordering mixed materials, ask us for the per-material pressing guidance before your team starts applying them.",
+        link: {
+          href: "/custom-iron-on-patches",
+          label: "Read the iron-on application guide, including the leather exception",
+        },
       },
       {
         heading: "Two weeks later, and then again in August",
         body:
-          "At the end of January: \"The patches went over really well and the quality was great… Amazing job and we'll definitely order from you again!\"\n\nIn August 2026, they did — Karbach came back with their next patch order. The repeat is the part of a case study you cannot write on the day you ship.",
+          "At the end of January: \"The patches went over really well and the quality was great… Amazing job and we'll definitely order from you again!\"\n\nWhat the patches were actually for: guests at the event used them to customize their own hats, which is why six designs at 200 each mattered more than one design at 1,200 — everyone got a choice.\n\nIn August 2026, they did order again — Karbach came back with their next patch order, and left a five-star review. The repeat is the part of a case study you cannot write on the day you ship.",
       },
     ],
 
@@ -548,11 +558,18 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
 
+    // CASE-S_3 promoted the closing quote from the Jan 29 private email to
+    // Emily's public Trustpilot review (Aug 13, 2026, 5 stars, "Unprompted",
+    // experience date Jan 12 2026). A public, linkable review is stronger proof
+    // than an email only we can see. The email quote is not lost — it still
+    // opens the "Two weeks later" section above.
     quote: {
       text:
-        "The patches went over really well and the quality was great… Amazing job and we'll definitely order from you again!",
+        "Lance was great to work with and helped us out with a project that needed to be turned around quickly. He stayed on top of order and communicated well throughout the entire process. The patches ordered turned out great and our guests were excited to create their hats with the designs.",
       author: "Emily Rodgers",
-      role: "Sr. Brand Manager, Karbach Brewing",
+      role: "Sr. Brand Manager, Karbach Brewing — verified Trustpilot review, August 2026",
+      sourceUrl: "https://www.trustpilot.com/review/pandapatches.com",
+      sourceLabel: "Read the review on Trustpilot",
     },
 
     tags: ["Brand Event", "Woven Patches", "Leather Patches", "Rush Order", "Repeat Client"],

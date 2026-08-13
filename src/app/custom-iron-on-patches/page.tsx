@@ -46,7 +46,7 @@ const ironOnFAQs = [
   {
     question: "How do I apply an iron-on patch?",
     answer:
-      "Step 1: preheat a household iron to 350°F (175°C) with no steam. Step 2: place the patch adhesive-side down on the garment in the desired position. Step 3: cover with a thin cotton cloth or pressing sheet. Step 4: press straight down with firm pressure for 25 to 30 seconds. Do not slide the iron. Heavier fabrics need more time and pressure — a 500gsm hoodie takes longer than a t-shirt. Step 5: flip the garment inside out and press from the back side for another 10 seconds. Step 6: let the patch cool completely before handling. PVC patches are the exception: press PVC from behind only, for the full 25 to 30 seconds, because direct front heat melts the PVC. Once properly heat-pressed the bond is near-permanent, and machine washing and dry cleaning are both safe.",
+      "Step 1: preheat a household iron to 350°F (175°C) with no steam. Step 2: place the patch adhesive-side down on the garment in the desired position. Step 3: cover with a thin cotton cloth or pressing sheet. Step 4: press straight down with firm pressure for 25 to 30 seconds. Do not slide the iron. Heavier fabrics need more time and pressure — a 500gsm hoodie takes longer than a t-shirt. Step 5: flip the garment inside out and press from the back side for another 10 seconds. Step 6: let the patch cool completely before handling. Two materials are exceptions. PVC: press from behind only, for the full 25 to 30 seconds, because direct front heat melts the PVC. Leather: never skip the pressing cloth, and shorten the step 4 press — leather can stick or scorch under a direct iron — then add time only if the bond needs it, testing one patch on a spare item first. Once properly heat-pressed the bond is near-permanent, and machine washing and dry cleaning are both safe.",
   },
   {
     question: "What garments work best for iron-on patches?",
@@ -264,7 +264,7 @@ export default async function CustomIronOnPatchesPage() {
             How To Apply An Iron-On Patch
           </h2>
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-10 max-w-[43.75rem] mx-auto">
-            This six-step process works on embroidered, woven, printed, and leather iron-on patches on cotton, denim, canvas, and most natural-fiber fabrics. Total time is roughly 90 seconds per patch including cool-down.
+            This six-step process works on embroidered, woven, and printed iron-on patches on cotton, denim, canvas, and most natural-fiber fabrics. Total time is roughly 90 seconds per patch including cool-down. Leather takes the same six steps with two adjustments — see the note below.
           </p>
           <div className="grid md:grid-cols-2 gap-5 max-w-[50rem] mx-auto">
             {[
@@ -285,6 +285,19 @@ export default async function CustomIronOnPatchesPage() {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="mt-8 max-w-[43.75rem] mx-auto bg-panda-yellow/10 border border-panda-yellow/40 rounded-2xl p-6">
+            <h3 className="text-[1rem] font-black text-panda-dark mb-2">Leather is the other exception</h3>
+            <p className="text-gray-700 text-[0.875rem] leading-[1.7]">
+              Leather absorbs and holds heat differently from woven or embroidered patches, and it can stick or scorch when a hot iron is applied directly to its face. Two adjustments: never skip the pressing cloth at step 3, and shorten the step 4 press, checking the bond and adding time rather than starting long. Test one patch on a spare item before running a batch.
+            </p>
+            <p className="text-gray-700 text-[0.875rem] leading-[1.7] mt-3">
+              We learned this from a real order — 1,200 woven and leather patches where the leather needed application fine-tuning after delivery. That order is written up in full, including what went wrong:{" "}
+              <Link href="/case-studies/karbach-brewing-patches" className="text-panda-green font-semibold underline">
+                Karbach Brewing, 1,200 woven and leather patches
+              </Link>
+              . If your order mixes materials, ask us for the per-material pressing guidance instead of applying one setting to everything.
+            </p>
           </div>
           <p className="text-gray-600 text-[0.9375rem] leading-relaxed text-center mt-8 max-w-[43.75rem] mx-auto">
             For long-term durability on garments washed frequently (work uniforms, game jerseys, items washed 30+ times per season), reinforce the iron-on with a few stitches around the edge. This hybrid iron-on plus sew-on attachment is the most permanent option.

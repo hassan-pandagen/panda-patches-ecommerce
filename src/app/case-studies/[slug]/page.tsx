@@ -285,6 +285,16 @@ export default async function CaseStudyDetailPage({
                 {p}
               </p>
             ))}
+            {sec.link && (
+              <p className="text-[1.0625rem] leading-[1.85] mb-4">
+                <Link
+                  href={sec.link.href}
+                  className="text-panda-green font-semibold underline"
+                >
+                  {sec.link.label}
+                </Link>
+              </p>
+            )}
             {sec.image?.src && (
               <figure className="mt-6">
                 <div className="relative w-full overflow-hidden rounded-2xl bg-gray-100 aspect-[16/10]">
