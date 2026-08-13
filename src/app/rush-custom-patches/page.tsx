@@ -112,6 +112,12 @@ const RECENT_RUSH_ORDERS = [
   // this order. Case study: /case-studies/nashville-event-patches-2026.
   { id: "PP-11148", desc: "1,500 woven patches, 10 designs", dest: "Tennessee", ordered: "Jul 24, 2026", inHand: "Aug 6, 2026", turnaround: "9 business days" },
   { id: "PP-11017", desc: "200 PVC patches", dest: "Balch Springs, TX", ordered: "Jun 24, 2026", inHand: "Jul 3, 2026", turnaround: "7 business days" },
+  // Old Google Sheet log number for this order is #3987; PP-10191 is the CRM
+  // number after the numbering changed. "Ordered" is the CRM created date
+  // (Jan 8), not the Jan 7 first-contact date in the sales chat, so the count
+  // matches this table's convention. Case study:
+  // /case-studies/karbach-brewing-patches
+  { id: "PP-10191", desc: "1,200 woven + leather patches, 6 designs", dest: "Los Angeles, CA", ordered: "Jan 8, 2026", inHand: "Jan 19, 2026", turnaround: "7 business days" },
   { id: "PP-10788", desc: "4 oversized 3D puff patches (up to 12\")", dest: "Gardiner, MT", ordered: "May 12, 2026", inHand: "Shipped May 14 via FedEx", turnaround: "Produced in 2 days" },
   { id: "PP-10241", desc: "100 patches (embroidered + leather)", dest: "Las Vegas, NV", ordered: "Jan 28, 2026", inHand: "Feb 4, 2026", turnaround: "5 business days" },
   { id: "PP-10231", desc: "12 embroidered patches", dest: "Woodmere, NY", ordered: "Jan 22, 2026", inHand: "Jan 28, 2026", turnaround: "~5 business days" },

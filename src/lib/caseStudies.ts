@@ -367,6 +367,123 @@ export const caseStudies: CaseStudy[] = [
 
   // ---------------------------------------------------------------------------
   // TEMPLATE for the next case study. Copy, fill in, set published: true.
+  // ───────────────────────────────────────────────────────────────────────────
+  // NAMED version, approved in writing by Emily Rodgers (Aug 13, 2026) —
+  // covers naming Karbach, quoting her emails, and showing the designs.
+  // Approval email filed in the claims register.
+  //
+  // Order numbering: this is #3987 in the old Google Sheet log and PP-10191 in
+  // the CRM. Both refer to the same order; the numbering changed when the CRM
+  // replaced the sheet. Register both so it stays findable from either system.
+  //
+  // NEVER publish: the order value, the FedEx tracking number, the delivery
+  // signer's name, or any rush-fee amount (that fee predates the current
+  // 25%/$50-min rush canon and would misrepresent today's pricing).
+  // ───────────────────────────────────────────────────────────────────────────
+  {
+    slug: "karbach-brewing-patches",
+    published: true,
+
+    client: "Karbach Brewing",
+    clientDescriptor: "Craft brewery",
+
+    title:
+      "1,200 woven and leather patches for Karbach Brewing — approved to in hand in 10 days, a day ahead of deadline",
+    cardTitle: "Karbach Brewing: 1,200 Patches, Delivered a Day Early",
+
+    metaTitle:
+      "Karbach Brewing: 1,200 Woven and Leather Patches in 10 Days | Case Study",
+    metaDescription:
+      "Karbach Brewing needed 1,200 woven and leather patches for a Los Angeles event on January 20. Approved January 9, shipped January 14, delivered and signed for January 19 — a day before the event.",
+
+    summary:
+      "Six designs, 1,200 pieces, a mix of woven and laser-engraved leather, and an event in Los Angeles that could not move. Mockups were approved on January 9, the order shipped on January 14, and it was signed for on January 19 — one day before the event and ten days after approval.",
+
+    event: "Brand event",
+    location: "Los Angeles, California",
+    date: "January 2026",
+    isoDate: "2026-01-19",
+
+    productType: "Woven and Leather Patches",
+    productHref: "/custom-patches/woven",
+
+    stats: [
+      { value: "1,200", label: "patches delivered" },
+      { value: "6", label: "designs, woven + leather" },
+      { value: "5 days", label: "approval to shipped" },
+      { value: "1 day", label: "ahead of the event" },
+    ],
+
+    keyFacts: [
+      "Client: Karbach Brewing, ordering patches for a brand event in Los Angeles.",
+      "Maker: Panda Patches, a U.S.-registered custom patch company producing at its own facility in Pakistan.",
+      "Product: 1,200 patches across 6 designs at 200 pieces each — a mix of woven and laser-engraved leather, 2.25 to 3.5 inches, with iron-on backing.",
+      "Constraint: a rush order from the first message, with an event in Los Angeles on January 20 that the patches had to make.",
+      "Timeline: mockups sent January 8, approved in writing January 9, shipped January 14 — five days after approval.",
+      "Delivery: signed for on January 19 at 10:13 AM, one day before the event and ten days after approval, door to door from the production facility.",
+      "Outcome: Karbach placed a repeat patch order in August 2026.",
+    ],
+
+    sections: [
+      {
+        heading: "Six designs, two materials, one fixed date",
+        body:
+          "When Karbach Brewing's brand team reached out in early January, they had six patch designs, a quantity of 1,200 — a mix of woven and laser-engraved leather between 2.25 and 3.5 inches — and one hard constraint: an event in Los Angeles on January 20 that the patches had to make.\n\nThis was a rush order from the first message. The deadline was not negotiable, and the order mixed two materials that behave differently in production and in application.",
+      },
+      {
+        heading: "January 8–9: mockups approved",
+        body:
+          "Every design was mocked up and approved in writing within a day. Emily Rodgers, Karbach's Sr. Brand Manager, came back with three words that start the production clock: \"These are approved.\"",
+      },
+      {
+        heading: "January 14: shipped, five days after approval",
+        body:
+          "Five days after approval, all 1,200 patches were finished, quality-checked and handed to the carrier — six designs across two different materials, each counted separately.\n\nThe same-day reaction from Karbach: \"Amazing! They look soooo GOOD! Thank you so much for knocking these out!\"",
+      },
+      {
+        heading: "January 19, 10:13 AM: delivered and signed for",
+        body:
+          "The shipment was delivered in Los Angeles and signed for on the morning of January 19 — one day before the event, ten days after mockup approval, door to door from our facility. Carrier delivery record on file.",
+      },
+      {
+        heading: "The honest footnote: leather behaves differently under an iron",
+        body:
+          "Leather runs hotter than woven under an iron, and Karbach's team found that some leather patches stuck or scorched when pressed directly. We sent the fix the same day — a buffer layer between the iron and the patch, and a shorter press — and the rest applied cleanly.\n\nWe would rather tell you that here than pretend every material behaves identically. Woven, embroidered and leather all take iron-on backing, but they do not all take the same iron. If you are ordering mixed materials, ask us for the per-material pressing guidance before your team starts applying them.",
+      },
+      {
+        heading: "Two weeks later, and then again in August",
+        body:
+          "At the end of January: \"The patches went over really well and the quality was great… Amazing job and we'll definitely order from you again!\"\n\nIn August 2026, they did — Karbach came back with their next patch order. The repeat is the part of a case study you cannot write on the day you ship.",
+      },
+    ],
+
+    faqs: [
+      {
+        question: "Can Panda Patches produce mixed woven and leather patch orders?",
+        answer:
+          "Yes. This Karbach Brewing order was 1,200 patches across 6 designs at 200 each, mixing woven and laser-engraved leather between 2.25 and 3.5 inches, all with iron-on backing. Mixed-material orders are produced and counted per design so they arrive ready to distribute.",
+      },
+      {
+        question: "How fast can Panda Patches turn around a rush patch order?",
+        answer:
+          "This order shipped five days after mockup approval and was signed for ten days after approval, door to door from the production facility to Los Angeles — one day ahead of the client's event. Turnaround depends on quantity, design count and materials, and your exact in-hand date is confirmed by email within 2 to 6 hours of ordering, before any rush fee is charged.",
+      },
+      {
+        question: "Do leather iron-on patches apply the same way as woven ones?",
+        answer:
+          "No, and this order is why we say so plainly. Leather runs hotter under an iron than woven or embroidered patches and can stick or scorch if pressed directly. Use a buffer layer between the iron and the patch and a shorter press. If your order mixes materials, ask us for the per-material pressing guidance rather than applying one setting to everything.",
+      },
+    ],
+
+    quote: {
+      text:
+        "The patches went over really well and the quality was great… Amazing job and we'll definitely order from you again!",
+      author: "Emily Rodgers",
+      role: "Sr. Brand Manager, Karbach Brewing",
+    },
+
+    tags: ["Brand Event", "Woven Patches", "Leather Patches", "Rush Order", "Repeat Client"],
+  },
   // ---------------------------------------------------------------------------
   // {
   //   slug: "client-event-name",
