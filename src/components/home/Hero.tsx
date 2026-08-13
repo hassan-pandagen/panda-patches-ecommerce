@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { client } from "@/lib/sanity";
 import TrustpilotRatingLine from "@/components/reviews/TrustpilotRatingLine";
+import { BRAND_LOGOS } from "@/lib/factConstants";
 
 // Defer HeroForm's JS chunk out of the critical path. ssr:true keeps SSR markup
 // so the form is visible immediately (LCP unaffected); only hydration is delayed.
@@ -154,34 +155,28 @@ export default async function Hero() {
             Patches Made For Teams At
           </p>
 
-          {/* Mobile: row 1 = Google + Microsoft, row 2 = Coca + Nissan + Wise | Desktop: 5 in 1 row */}
+          {/* Mobile: 3 per row, 2 rows. Desktop: all 6 in one row. */}
           <style>{`
             .panda-trust-grid-hero { display: grid; grid-template-columns: repeat(6, 1fr); column-gap: 0.75rem; row-gap: 0.75rem; }
-            .panda-trust-grid-hero > div { height: 3rem; }
-            .panda-trust-grid-hero > div:nth-child(1), .panda-trust-grid-hero > div:nth-child(2) { grid-column: span 3; }
-            .panda-trust-grid-hero > div:nth-child(3), .panda-trust-grid-hero > div:nth-child(4), .panda-trust-grid-hero > div:nth-child(5) { grid-column: span 2; }
+            .panda-trust-grid-hero > div { height: 3rem; grid-column: span 2; }
             @media (min-width: 768px) {
-              .panda-trust-grid-hero { grid-template-columns: repeat(5, 1fr); column-gap: 1rem; row-gap: 1rem; }
-              .panda-trust-grid-hero > div { height: 4rem; }
-              .panda-trust-grid-hero > div:nth-child(n) { grid-column: span 1; }
+              .panda-trust-grid-hero { column-gap: 1rem; row-gap: 1rem; }
+              .panda-trust-grid-hero > div { height: 4rem; grid-column: span 1; }
             }
           `}</style>
           <div className="panda-trust-grid-hero w-full max-w-5xl mx-auto">
-             <div className="flex items-center justify-center">
-               <img src="/assets/logo-google.svg" alt="Google" width={120} height={48} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
-             </div>
-             <div className="flex items-center justify-center">
-               <img src="/assets/logo-microsoft.svg" alt="Microsoft" width={120} height={48} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
-             </div>
-             <div className="flex items-center justify-center">
-               <img src="/assets/logo-cocacola.svg" alt="CocaCola" width={120} height={48} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
-             </div>
-             <div className="flex items-center justify-center">
-               <img src="/assets/logo-nissan.svg" alt="Nissan" width={120} height={48} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
-             </div>
-             <div className="flex items-center justify-center">
-               <img src="/assets/logo-wise.svg" alt="Wise" width={120} height={48} style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }} loading="lazy" />
-             </div>
+            {BRAND_LOGOS.map((logo) => (
+              <div key={logo.alt} className="flex items-center justify-center">
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={120}
+                  height={48}
+                  style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }}
+                  loading="lazy"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

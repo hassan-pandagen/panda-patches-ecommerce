@@ -51,6 +51,29 @@ export const ASI_MEMBER_NUMBER = '43049';
  */
 export const BRAND_ATTRIBUTION_HEADING = 'Patches Made For Teams At';
 
+/**
+ * The brand logo wall, rendered on the homepage hero AND the product TrustStrip.
+ *
+ * ONE list, imported by both, because it was previously duplicated and a logo
+ * change meant remembering to edit two files. Every entry is a substantiated
+ * claim — a brand appears here only with an order record on file, tracked in
+ * GSC/CLAIMS-REGISTER.md. Removing a brand is a single edit to this array.
+ *
+ * ASSET REQUIREMENT: both walls render these through `filter: brightness(0)`,
+ * which flattens every fill to solid black. An asset must therefore be a flat,
+ * single-colour wordmark. A layered or multi-colour illustration collapses into
+ * an unreadable silhouette — the Karbach source art did exactly that, and the
+ * published file is a wordmark extracted from it rather than the full lockup.
+ */
+export const BRAND_LOGOS = [
+  { src: '/assets/logo-google.svg', alt: 'Google' },
+  { src: '/assets/logo-microsoft.svg', alt: 'Microsoft' },
+  { src: '/assets/logo-cocacola.svg', alt: 'Coca-Cola' },
+  { src: '/assets/logo-nissan.svg', alt: 'Nissan' },
+  { src: '/assets/logo-wise.svg', alt: 'Wise' },
+  { src: '/assets/logo-karbach.svg', alt: 'Karbach Brewing' },
+] as const;
+
 // ── Contact ownership (owner decision Jul 21 2026, reconfirmed Aug 11) ──────
 /**
  * sales@  — public / pre-sale address, the only one shown on pages
