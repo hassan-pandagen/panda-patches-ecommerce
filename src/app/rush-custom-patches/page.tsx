@@ -108,6 +108,9 @@ const webPageSchema = {
 // order's activity log, count business days, add row, remove the oldest row.
 // Keep 4-6 rows. Never publish names or amounts. -->
 const RECENT_RUSH_ORDERS = [
+  // Destination is state-only because the CRM record carries no ship city for
+  // this order. Case study: /case-studies/nashville-event-patches-2026.
+  { id: "PP-11148", desc: "1,500 woven patches, 10 designs", dest: "Tennessee", ordered: "Jul 24, 2026", inHand: "Aug 6, 2026", turnaround: "9 business days" },
   { id: "PP-11017", desc: "200 PVC patches", dest: "Balch Springs, TX", ordered: "Jun 24, 2026", inHand: "Jul 3, 2026", turnaround: "7 business days" },
   { id: "PP-10788", desc: "4 oversized 3D puff patches (up to 12\")", dest: "Gardiner, MT", ordered: "May 12, 2026", inHand: "Shipped May 14 via FedEx", turnaround: "Produced in 2 days" },
   { id: "PP-10241", desc: "100 patches (embroidered + leather)", dest: "Las Vegas, NV", ordered: "Jan 28, 2026", inHand: "Feb 4, 2026", turnaround: "5 business days" },
