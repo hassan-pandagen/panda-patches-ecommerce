@@ -493,6 +493,15 @@ export const caseStudies: CaseStudy[] = [
     productType: "Woven and Leather Patches",
     productHref: "/custom-patches/woven",
 
+    // SUBSTANTIATION NOTE — read before "correcting" the woven+leather claim.
+    // The CRM record for this order (PP-10191) reads patches_type = "Woven"
+    // alone. That is a gap in the CRM's option list, not evidence against the
+    // mix: the field does carry combined values (Sublimation+Embroidery,
+    // TPU+Chenille and five more, 56 orders between them), but the list grew one
+    // pair at a time and Woven+Leather was never added. The mix is evidenced by
+    // the January email thread and by the leather design shot published below.
+    // Tracked in GSC/CRM-DEV-BRIEF.md.
+
     // Design shots supplied by the digitizer, Aug 14 2026, and confirmed by the
     // owner as the WOVEN designs from this order. Emily Rodgers' Aug 13 written
     // permission explicitly covers showing the designs.
