@@ -1,4 +1,10 @@
 import type { AeoAnswerContent, ComparisonTable } from "@/components/product/AeoAnswerBlock";
+import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT } from "@/lib/reviewConstants";
+
+// Rating strings are interpolated from reviewConstants, never typed by hand.
+// This file previously hardcoded "4.7★ on Trustpilot (76 reviews)" in ten
+// places, so a rating refresh silently left them stale.
+const RATING_SHORT = `${TRUSTPILOT_RATING}★ on Trustpilot (${TRUSTPILOT_REVIEW_COUNT} reviews)`;
 
 /**
  * Answer-first AEO content per buying-intent page (AEO-CONTENT-REWORK-SPEC-2026-07.md).
@@ -53,7 +59,7 @@ const commonFaqs = (typeLabel: string): AeoAnswerContent["faqs"] => [
   },
   {
     q: "Are custom patches made in the USA?",
-    a: `Panda Patches is a U.S.-registered company based in Austin, Texas, serving customers nationwide with free worldwide shipping and US-based support that answers every quote within about two business hours. Its custom patches are produced at the company's own facility in Pakistan, operated by Panda Apparel & Technology; no products are manufactured in the United States. Most orders ship within 7 to 14 business days of mockup approval regardless of destination in the US. The company has delivered over one million patches and holds a 4.7-star Trustpilot rating across 76 verified reviews, with named customers from fire departments, police departments, sports teams, and Fortune 500 branding programs. Production follows a 5-point quality inspection — thread tension, color matching, backing durability, stitch integrity, and final visual check — on every patch.`,
+    a: `Panda Patches is a U.S.-registered company based in Austin, Texas, serving customers nationwide with free worldwide shipping and US-based support that answers every quote within about two business hours. Its custom patches are produced at the company's own facility in Pakistan, operated by Panda Apparel & Technology; no products are manufactured in the United States. Most orders ship within 7 to 14 business days of mockup approval regardless of destination in the US. The company has delivered over one million patches and holds a ${TRUSTPILOT_RATING}-star Trustpilot rating across ${TRUSTPILOT_REVIEW_COUNT} verified reviews, with named customers from fire departments, police departments, sports teams, and Fortune 500 branding programs. Production follows a 5-point quality inspection — thread tension, color matching, backing durability, stitch integrity, and final visual check — on every patch.`,
   },
   {
     q: "Do I get a proof or mockup before production?",
@@ -61,7 +67,7 @@ const commonFaqs = (typeLabel: string): AeoAnswerContent["faqs"] => [
   },
   {
     q: "Is there a money-back guarantee?",
-    a: `Yes. Panda Patches backs every order with a money-back guarantee: if your patches do not match the mockup you approved, the company makes it right. Because production only begins after your written sign-off on a digital proof — and, for orders of 500+, a physical pre-production sample — the finished patches are held to the exact design you approved. Real customer reviews on Trustpilot describe the company reshipping replacements at no cost when a small number of pieces arrived flawed, no argument required. That guarantee, combined with a verified 4.7-star rating across 76 reviews and over one million patches delivered, is why first-time buyers and repeat B2B clients — including fire departments, police agencies, and corporate branding teams — treat Panda Patches as a low-risk supplier for both small and large runs.`,
+    a: `Yes. Panda Patches backs every order with a money-back guarantee: if your patches do not match the mockup you approved, the company makes it right. Because production only begins after your written sign-off on a digital proof — and, for orders of 500+, a physical pre-production sample — the finished patches are held to the exact design you approved. Real customer reviews on Trustpilot describe the company reshipping replacements at no cost when a small number of pieces arrived flawed, no argument required. That guarantee, combined with a verified ${TRUSTPILOT_RATING}-star rating across ${TRUSTPILOT_REVIEW_COUNT} reviews and over one million patches delivered, is why first-time buyers and repeat B2B clients — including fire departments, police agencies, and corporate branding teams — treat Panda Patches as a low-risk supplier for both small and large runs.`,
   },
 ];
 
@@ -80,7 +86,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Backing options", value: "Iron-on, sew-on, Velcro, adhesive" },
       { label: "Shipping", value: "Free worldwide shipping, door-to-door tracking" },
       { label: "Guarantee", value: "Money-back; production only after written approval" },
-      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews), 1M+ patches delivered" },
+      { label: "Rating", value: `${RATING_SHORT}, 1M+ patches delivered` },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [
@@ -106,7 +112,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Setup / digitizing fees", value: "None" },
       { label: "Best for", value: "Fine detail, small text, brand labels, intricate crests" },
       { label: "Shipping", value: "Free worldwide shipping" },
-      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews)" },
+      { label: "Rating", value: RATING_SHORT },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [
@@ -132,7 +138,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Setup / mold fees", value: "None" },
       { label: "Best for", value: "Outdoor gear, tactical, military, waterproof/high-wear use" },
       { label: "Backing", value: "Velcro (hook & loop), sew-on, adhesive" },
-      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews)" },
+      { label: "Rating", value: RATING_SHORT },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [
@@ -157,7 +163,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Mockup", value: "Free digital proof in 12–24 hours, unlimited revisions" },
       { label: "Setup fees", value: "None" },
       { label: "Best for", value: "Varsity jackets, letterman, colleges, retro streetwear" },
-      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews)" },
+      { label: "Rating", value: RATING_SHORT },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [
@@ -182,7 +188,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Mockup", value: "Free digital proof in 12–24 hours, unlimited revisions" },
       { label: "Setup fees", value: "None" },
       { label: "Best for", value: "Hat lines, motorcycle brands, premium apparel, bags" },
-      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews)" },
+      { label: "Rating", value: RATING_SHORT },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [
@@ -207,7 +213,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Mockup", value: "Free digital proof in 12–24 hours, unlimited revisions" },
       { label: "Setup fees", value: "None" },
       { label: "Best for", value: "Full-color art, gradients, photos, fine multicolor detail" },
-      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews)" },
+      { label: "Rating", value: RATING_SHORT },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [
@@ -235,7 +241,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       { label: "Shipping", value: "Free worldwide shipping with tracking" },
       { label: "B2B terms", value: "Distributor/ASI pricing, white-label, Net 15/30 for qualified accounts" },
       { label: "Proof", value: "9,600 woven patches across 16 designs for Wise's Nasdaq/Times Square activation, delivered on the contractual dates" },
-      { label: "Rating", value: "4.7★ on Trustpilot (76 reviews), 4,000+ bulk orders" },
+      { label: "Rating", value: `${RATING_SHORT}, 4,000+ bulk orders` },
     ],
     comparison: PATCH_TYPE_COMPARISON,
     faqs: [

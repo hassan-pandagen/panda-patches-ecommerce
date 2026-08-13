@@ -11,7 +11,11 @@
  *   3. Update TRUSTPILOT_REVIEWS.md "last updated" date
  *   4. Ship the change
  *
- * Owner canon July 2026 (MASTER brief v3 §0.9): TrustScore 4.7, count 76.
+ * Current: TrustScore 4.8, count 83, verified on the live profile 13 Aug 2026.
+ * Previous: 4.7 / 76 (July 2026, MASTER brief v3 §0.9). The score rose as new
+ * reviews landed — note that an older brief flagged "4.8 from 72" as a stale
+ * error, so 4.8 is now correct for a different reason. Check the count, not
+ * just the score, before assuming a 4.8 on any surface is the old bad figure.
  * Full per-review log lives in TRUSTPILOT_REVIEWS.md — update both together.
  *
  * SEDAA3_1 §A.2 rules (do not violate):
@@ -27,13 +31,13 @@
  *   - Plain text + plain link to the profile is allowed
  */
 
-export const TRUSTPILOT_RATING = "4.7";
-export const TRUSTPILOT_REVIEW_COUNT = 76;
+export const TRUSTPILOT_RATING = "4.8";
+export const TRUSTPILOT_REVIEW_COUNT = 83;
 export const TRUSTPILOT_REVIEW_COUNT_STR = String(TRUSTPILOT_REVIEW_COUNT);
 export const TRUSTPILOT_PROFILE_URL =
   "https://www.trustpilot.com/review/pandapatches.com";
 /** Date the rating + count above were last verified on the live profile. */
-export const TRUSTPILOT_LAST_CHECKED = "July 2026";
+export const TRUSTPILOT_LAST_CHECKED = "August 2026";
 
 /**
  * Ready-to-render copy variants for in-page use. Keep these plain text so

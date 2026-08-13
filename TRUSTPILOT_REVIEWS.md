@@ -8,14 +8,28 @@
 
 | | Value |
 |---|---|
-| TrustScore | **4.7** |
-| Total reviews | **75** |
-| 5★ | 71 (94%) |
-| 4★ | 2 (3%) |
-| 3★ | 0 |
-| 2★ | 0 |
-| 1★ | 2 (3%) |
-| Last synced | 2026-07-12 |
+| TrustScore | **4.8** |
+| Total reviews | **83** |
+| 5★ | ⚠ re-read from live profile |
+| 4★ | ⚠ re-read from live profile |
+| 3★ | ⚠ re-read from live profile |
+| 2★ | ⚠ re-read from live profile |
+| 1★ | ⚠ re-read from live profile |
+| Last synced | 2026-08-13 |
+
+> **TrustScore and total are verified** against the live profile on 2026-08-13
+> (screenshot). The **star split is not** — it was read off a bar chart and the
+> exact per-band counts were not legible, so it is marked for re-read rather
+> than estimated. Do not publish a star breakdown until someone reads the real
+> numbers off the profile.
+>
+> **Known ±1 discrepancy, deliberately not reconciled.** The previous sync
+> recorded 75 total on 2026-07-12. Nine new reviews are logged below, which
+> would give 84, but Trustpilot displays 83. Most likely one review was removed
+> or the earlier 75 was slightly off. The authoritative figure is what
+> Trustpilot shows — **83** — so that is what the site publishes. The gap is
+> recorded here rather than papered over by dropping an entry to make the
+> arithmetic tidy.
 
 ## How to add a new review
 
@@ -30,6 +44,33 @@
 ---
 
 ## Reviews (newest first)
+
+### 2026-08-11 · David Puerto (US) · ★★★★★ · [general]
+**Excellent quality** — Excellent quality. Great communication. They delivered exactly what I wanted. I will use them again.
+
+### 2026-08-06 · Alden (US) · ★★★★★ · [general]
+**Great Service** — Excellent and timely service. Lance and the team responded the same day with my quote and mock-up. I would use again.
+
+### 2026-08-04 · Matt Osborn (US) · ★★★★★ · [general, revisions]
+**The requirements for my patch were very…** — The requirements for my patch were very specific, and had to match a very recognizable precedent, so I was extremely focused on the result. The team at Panda were super responsive to my revision requests and ultimately delivered EXACTLY what I needed.
+
+### 2026-08-02 · Chris In-Line Johnson (US) · ★★★★★ · [general, repeat]
+**Great business and communications** — Great business and communications. I have used their services several time and will continue using them.
+
+### 2026-08-02 · Goodnews Babade (US) · ★★★★★ · [education, letters]
+**Awesome Services!!** — We're a robotics team in Georgia that needed letters, but we didn't have a lot to work with budget-wise. Even though all this, Panda Patches was still willing to work with us. They were so helpful throughout the whole process. We will definitely be buying from them again!!
+
+### 2026-07-31 · Cassidee Domstrich (US) · ★★★★★ · [general, remake]
+**Panda patches goes above and beyond** — Panda patches goes above and beyond! The first set didn't have the colors just right, and instead of saying you're SOL... they redid them and worked with me extensively! Thank you! Such a huge impact on my brand!
+
+### 2026-07-31 · Rob Kloss (US) · ★★★★★ · [general]
+**I was initially skeptical at ordering…** — I was initially skeptical at ordering but glad I did. They exceeded expectations.
+
+### 2026-07-28 · Dustin Gay (US) · ★★★★★ · [general]
+**Fast and great quality and AWSOME…** — Fast and great quality and AWSOME customer service
+
+### 2026-07-28 · James Williams (US) · ★★★★★ · [general, repeat]
+**I have placed many orders with panda…** — I have placed many orders with panda and have had great success with them, even when I had problems with my design, they help bring it to life, great customer service and support, make process easy, will be given them more work, I go to them to help make my design come to life
 
 ### 2026-07-09 · Mark Pijanowski (IT) · ★★★★★ · [general]
 **Great experience overall** — Great experience overall. And the company worked with me to adjust the template I submitted. Would recommend and use again in the future.
