@@ -74,3 +74,6 @@ graphify-out/
 /NASHVI_2.ZIP
 /public/event/
 tsconfig.tsbuildinfo
+
+# Client design source PNGs — WebP derivatives are the tracked copies.
+/public/karl/

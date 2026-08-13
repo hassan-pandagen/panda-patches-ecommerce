@@ -31,6 +31,13 @@ export interface CaseStudyImage {
   /** Photo credit line, shown under the image. Required for third-party photos. */
   credit?: string;
   caption?: string;
+  /**
+   * Fit the whole image inside the frame instead of cropping to fill it.
+   * Set this for product and design shots on a plain background — a square,
+   * die-cut patch loses its top and bottom to the default 16:10 crop.
+   * Leave unset for photographs, where cropping to the frame is what you want.
+   */
+  contain?: boolean;
 }
 
 export interface CaseStudySection {
@@ -486,6 +493,22 @@ export const caseStudies: CaseStudy[] = [
     productType: "Woven and Leather Patches",
     productHref: "/custom-patches/woven",
 
+    // Design shots supplied by the digitizer, Aug 14 2026, and confirmed by the
+    // owner as the WOVEN designs from this order. Emily Rodgers' Aug 13 written
+    // permission explicitly covers showing the designs.
+    //
+    // Both images here are woven. Do NOT caption either as leather: a third
+    // image showing the leather design is still to come, and the honest-footnote
+    // section below is its slot — a leather shot next to the paragraph about
+    // leather scorching under an iron is the strongest placement on the page.
+    heroImage: {
+      src: "/assets/case-studies/karbach-design-texas-lager.webp",
+      contain: true,
+      alt: "Woven Karbach Brewing patch cut to the shape of Texas, cream ground with navy Karbach lettering, orange Texas Lager type, and a Born in Texas star roundel",
+      caption:
+        "One of the six designs: a Texas-shaped woven patch, merrowed border, produced at 2.5 to 3.5 inches with iron-on backing.",
+    },
+
     stats: [
       { value: "1,200", label: "patches delivered" },
       { value: "6", label: "designs, woven + leather" },
@@ -508,6 +531,13 @@ export const caseStudies: CaseStudy[] = [
         heading: "Six designs, two materials, one fixed date",
         body:
           "When Karbach Brewing's brand team reached out in early January, they had six patch designs, a quantity of 1,200 — a mix of woven and laser-engraved leather between 2.25 and 3.5 inches — and one hard constraint: an event in Los Angeles on January 20 that the patches had to make.\n\nThis was a rush order from the first message. The deadline was not negotiable, and the order mixed two materials that behave differently in production and in application.",
+        image: {
+          src: "/assets/case-studies/karbach-design-brewing-co.webp",
+          contain: true,
+          alt: "Woven Karbach Brewing Co. patch in a half-round shape, navy border and lettering on a white ground, with a gold delivery truck hauling a beer bottle and Est. Houston, Texas 2011 below",
+          caption:
+            "A second woven design from the same run. Six designs at 200 pieces each meant guests could pick the one they wanted rather than all getting the same patch.",
+        },
       },
       {
         heading: "January 8–9: mockups approved",
@@ -528,6 +558,13 @@ export const caseStudies: CaseStudy[] = [
         heading: "The honest footnote: leather behaves differently under an iron",
         body:
           "Leather runs hotter than woven under an iron, and Karbach's team found that some leather patches stuck or scorched when pressed directly. We sent the fix the same day — a buffer layer between the iron and the patch, and a shorter press — and the rest applied cleanly.\n\nWe would rather tell you that here than pretend every material behaves identically. Woven, embroidered and leather all take iron-on backing, but they do not all take the same iron. This order is why our iron-on application guide now calls leather out as an exception alongside PVC, rather than implying one setting covers every material. If you are ordering mixed materials, ask us for the per-material pressing guidance before your team starts applying them.",
+        image: {
+          src: "/assets/case-studies/karbach-design-leather-roundel.webp",
+          contain: true,
+          alt: "Round laser-engraved leather Karbach Brewing patch in tan leather with a stitched edge, the Karbach Brewing wordmark around the rim and a K with a star at the centre",
+          caption:
+            "The leather design from the same order. Leather takes the same iron-on backing as the woven patches but not the same iron — this is the patch behind the footnote above.",
+        },
         link: {
           href: "/custom-iron-on-patches",
           label: "Read the iron-on application guide, including the leather exception",

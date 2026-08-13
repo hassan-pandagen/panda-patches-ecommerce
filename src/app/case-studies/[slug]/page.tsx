@@ -207,7 +207,11 @@ export default async function CaseStudyDetailPage({
 
           {/* Image column */}
           {hasHero && cs.heroImage && (
-            <div className="relative min-h-[300px] sm:min-h-[380px] lg:min-h-full">
+            <div
+              className={`relative min-h-[300px] sm:min-h-[380px] lg:min-h-full ${
+                cs.heroImage.contain ? "bg-white p-6 sm:p-10" : ""
+              }`}
+            >
               <Image
                 src={cs.heroImage.src}
                 alt={cs.heroImage.alt}
@@ -215,10 +219,14 @@ export default async function CaseStudyDetailPage({
                 priority
                 quality={80}
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
+                className={cs.heroImage.contain ? "object-contain p-6 sm:p-10" : "object-cover"}
               />
-              {/* soft blend into the text panel on desktop */}
-              <div className="hidden lg:block absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-panda-dark to-transparent" />
+              {/* Soft blend into the text panel on desktop. Skipped for contained
+                  product shots — a dark gradient over a white studio background
+                  reads as a smudge, not a blend. */}
+              {!cs.heroImage.contain && (
+                <div className="hidden lg:block absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-panda-dark to-transparent" />
+              )}
               {cs.heroImage.credit && (
                 <p className="absolute bottom-2 right-3 text-[0.625rem] text-white/75 bg-panda-dark/45 px-1.5 py-0.5 rounded">
                   Photo: {cs.heroImage.credit}
@@ -285,26 +293,20 @@ export default async function CaseStudyDetailPage({
                 {p}
               </p>
             ))}
-            {sec.link && (
-              <p className="text-[1.0625rem] leading-[1.85] mb-4">
-                <Link
-                  href={sec.link.href}
-                  className="text-panda-green font-semibold underline"
-                >
-                  {sec.link.label}
-                </Link>
-              </p>
-            )}
             {sec.image?.src && (
               <figure className="mt-6">
-                <div className="relative w-full overflow-hidden rounded-2xl bg-gray-100 aspect-[16/10]">
+                <div
+                  className={`relative w-full overflow-hidden rounded-2xl aspect-[16/10] ${
+                    sec.image.contain ? "bg-white border border-gray-100" : "bg-gray-100"
+                  }`}
+                >
                   <Image
                     src={sec.image.src}
                     alt={sec.image.alt}
                     fill
                     quality={78}
                     sizes="(max-width: 760px) 100vw, 760px"
-                    className="object-cover"
+                    className={sec.image.contain ? "object-contain p-4" : "object-cover"}
                   />
                 </div>
                 {(sec.image.caption || sec.image.credit) && (
@@ -315,6 +317,16 @@ export default async function CaseStudyDetailPage({
                   </figcaption>
                 )}
               </figure>
+            )}
+            {sec.link && (
+              <p className="text-[1.0625rem] leading-[1.85] mt-5">
+                <Link
+                  href={sec.link.href}
+                  className="text-panda-green font-semibold underline"
+                >
+                  {sec.link.label}
+                </Link>
+              </p>
             )}
           </section>
         ))}
