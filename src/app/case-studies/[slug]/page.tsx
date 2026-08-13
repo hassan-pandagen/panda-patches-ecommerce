@@ -318,6 +318,19 @@ export default async function CaseStudyDetailPage({
             <footer className="text-[0.875rem] text-gray-500">
               {cs.quote.author}
               {cs.quote.role ? `, ${cs.quote.role}` : ""}
+              {cs.quote.sourceUrl && (
+                <>
+                  {" — "}
+                  <a
+                    href={cs.quote.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-panda-green font-semibold underline"
+                  >
+                    {cs.quote.sourceLabel ?? "Read the original review"}
+                  </a>
+                </>
+              )}
             </footer>
           </blockquote>
         )}
@@ -404,12 +417,11 @@ export default async function CaseStudyDetailPage({
       <section className="bg-panda-dark text-white px-6 py-16">
         <div className="max-w-[45rem] mx-auto text-center">
           <h2 className="text-[1.625rem] md:text-[2.125rem] font-black mb-3">
-            Got an event or a brand drop coming up?
+            {cs.ctaHeading ?? "Got an event or a brand drop coming up?"}
           </h2>
           <p className="text-[1rem] text-gray-300 leading-[1.7] mb-8 max-w-[540px] mx-auto">
-            We make custom patches at any scale, matched to your brand, with a
-            digital mockup in 12 to 24 hours. Tell us your date and we will hit
-            it.
+            {cs.ctaBody ??
+              "We make custom patches at any scale, matched to your brand, with a digital mockup in 12 to 24 hours. Tell us your date and we will hit it."}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link

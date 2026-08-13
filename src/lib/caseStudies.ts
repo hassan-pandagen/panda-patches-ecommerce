@@ -94,7 +94,16 @@ export interface CaseStudy {
 
   heroImage?: CaseStudyImage;
   gallery?: CaseStudyImage[];
-  quote?: { text: string; author: string; role?: string };
+  /**
+   * Closing testimonial. `sourceUrl` links the quote to its public source —
+   * required when the quote is lifted from a public review rather than private
+   * correspondence, so a reader can verify it rather than take our word.
+   */
+  quote?: { text: string; author: string; role?: string; sourceUrl?: string; sourceLabel?: string };
+
+  /** Overrides the default CTA heading/body on this case study only. */
+  ctaHeading?: string;
+  ctaBody?: string;
 
   tags?: string[];
 }
@@ -294,7 +303,13 @@ export const caseStudies: CaseStudy[] = [
         "Working with Lance and Panda Patches was a great experience… quality patches against a tight timeline… kept me in the loop from end to end… turned out great for the event!",
       author: "Kelly Paschall",
       role: "Verified Trustpilot review, August 2026",
+      sourceUrl: "https://www.trustpilot.com/review/pandapatches.com",
+      sourceLabel: "Read the review on Trustpilot",
     },
+
+    ctaHeading: "Need patches by a date?",
+    ctaBody:
+      "We confirm your exact in-hand date by email within 2 to 6 hours — before you pay any rush fee. Tell us your deadline and we plan production around it.",
 
     tags: ["Brand Activation", "Event", "Woven Patches", "Fast Turnaround"],
   },

@@ -66,3 +66,11 @@ add-to-vercel.txt
 # leave the tree perpetually dirty. Local-only. (.graphifyignore config +
 # .gitattributes merge mapping stay tracked.)
 graphify-out/
+
+# Client-supplied source imagery (raw originals). Never tracked: the published
+# derivatives live in public/assets/case-studies/ and the full-resolution
+# originals are archived in the Sanity asset library.
+/NASHVI_2/
+/NASHVI_2.ZIP
+/public/event/
+tsconfig.tsbuildinfo

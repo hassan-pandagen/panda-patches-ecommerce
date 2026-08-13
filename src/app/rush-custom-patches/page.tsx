@@ -261,7 +261,14 @@ export default function RushCustomPatchesPage() {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { title: "Events & activations", body: "Trade shows, launches, and brand activations — like Wise's 9,600-patch Nasdaq event, delivered on the contractual dates." },
+              {
+                title: "Events & activations",
+                body: "Trade shows, launches, and brand activations — like Wise's 9,600-patch Nasdaq event, delivered on the contractual dates.",
+                links: [
+                  { href: "/case-studies/karbach-brewing-patches", label: "Karbach Brewing: 1,200 patches, delivered a day early" },
+                  { href: "/case-studies/nashville-event-patches-2026", label: "1,500 event patches, 10 designs, 9 business days" },
+                ],
+              },
               { title: "Memorial patches", body: "Line-of-duty memorial patches for fire and police departments are treated as our highest priority." },
               { title: "Team deadlines", body: "Tournament weekends, season openers, and jersey deadlines for sports teams and schools." },
               { title: "Uniform rollouts", body: "New-hire batches and company rebrands that can't wait for standard production." },
@@ -269,6 +276,17 @@ export default function RushCustomPatchesPage() {
               <div key={u.title} className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
                 <h3 className="text-[1rem] font-black text-panda-dark mb-2">{u.title}</h3>
                 <p className="text-[0.875rem] text-gray-600 leading-[1.6]">{u.body}</p>
+                {u.links && (
+                  <ul className="mt-3 space-y-1.5">
+                    {u.links.map((l) => (
+                      <li key={l.href}>
+                        <Link href={l.href} className="text-[0.8125rem] text-panda-green font-semibold underline leading-[1.5]">
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             ))}
           </div>
