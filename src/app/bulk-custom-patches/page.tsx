@@ -413,7 +413,7 @@ export default async function BulkCustomPatchesPage() {
               { type: "PVC / Rubber", best: "Outdoor gear, tactical, waterproof use", from: "$1.40/pc", note: "Extremely durable" },
               { type: "Woven", best: "Fine detail, small text, labels", from: "$1.54/pc", note: "Thin and lightweight" },
               { type: "Chenille", best: "Varsity jackets, colleges, retro brands", from: "$1.31/pc", note: "Premium textured look" },
-              { type: "Leather", best: "Motorcycle clubs, luxury branding", from: "$1.74/pc", note: "Real or faux leather" },
+              { type: "Leather", best: "Motorcycle clubs, luxury branding", from: "$1.74/pc", note: "Genuine hide by default; PU on request" },
               { type: "Custom Die-Cut", best: "Any shape, any size, any style", from: "Custom quote", note: "Fully bespoke" },
             ].map((item, idx) => (
               <div key={idx} className="border border-gray-200 rounded-[14px] p-5 hover:border-panda-green hover:shadow-md transition-all">

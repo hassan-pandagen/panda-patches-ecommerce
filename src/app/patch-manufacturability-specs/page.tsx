@@ -30,8 +30,16 @@ const CANONICAL = `${BASE}/patch-manufacturability-specs`;
  * public/llms.txt AND Sanity content, with the result attached as evidence.
  * A changelog entry without sweep evidence is not done.
  */
-const SPEC_VERSION = "v1.4";
-const SPEC_DATE = "2026-08-07";
+// v1.5 (2026-08-14): adds the leather application row. Leather was the only
+// iron-on material with no stated rule, which is how an order went out pressed
+// bare and scorched. The factory confirmed leather uses the SAME heat-seal
+// adhesive as embroidered, so no new temperature or timing enters the canon —
+// the only new rule is that the pressing cloth is mandatory on leather. The
+// propagation sweep is therefore narrow: no existing figure changed, so nothing
+// carrying 350°F or 25-30s needed correcting. Surfaces touched: this page, the
+// iron-on application steps + FAQ, and the Karbach case study footnote.
+const SPEC_VERSION = "v1.5";
+const SPEC_DATE = "2026-08-14";
 const SPEC_DATE_LABEL = "August 2026";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -512,6 +520,14 @@ export default function PatchManufacturabilitySpecs() {
                 <strong className="text-panda-dark">Chenille is also pressed from behind</strong>, face-down, for 20&ndash;30
                 seconds. Direct heat on the pile flattens and scorches it. Chenille needs no adhesive spray &mdash; the
                 backing carries its own adhesive.
+              </li>
+              <li>
+                <strong className="text-panda-dark">Leather presses at the same settings, but the pressing cloth is mandatory.</strong>{" "}
+                Leather patches carry the same heat-seal adhesive as embroidered, so they take the identical
+                350&deg;F (175&deg;C), no steam, 25&ndash;30 seconds front and 10 seconds back. Do not press leather
+                cooler or shorter &mdash; the adhesive still needs full activation. What changes is that a hot iron
+                must never touch the leather face directly: it can stick or scorch. On woven and embroidered patches
+                the cloth is good practice; on leather it is required.
               </li>
               <li>
                 <strong className="text-panda-dark">Fabric rule.</strong> If the fabric itself cannot take a hot press

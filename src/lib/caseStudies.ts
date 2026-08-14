@@ -135,9 +135,26 @@ export const caseStudies: CaseStudy[] = [
   // canon — on-page wording is "carrier delivery record on file"), the order
   // value, or the venue address.
   //
-  // Photos supplied by the agency for posting. The brand mark IS visible in
-  // them; that was flagged to the owner before publishing and the decision to
-  // use all four was made on 2026-08-13. Alt text stays neutral regardless.
+  // EVENT PHOTOS: four were supplied, THREE are published (2, 3, 4).
+  //
+  // nashville-event-patches-1.webp is deliberately withheld and must stay
+  // withheld. The brand wordmark is legible on it around twenty times — across
+  // the tote bags, the children's shirts, and the patch trays — and the branded
+  // bags are the visual SUBJECT of the frame, not incidental background. CASE-S_1
+  // line 17 is explicit: "Prefer the shots where patches (not logos) are the
+  // visual subject." Publishing it would identify the brand as surely as naming
+  // it in the copy, which is the one thing Version B contractually forbids.
+  //
+  // The brand IS faintly visible in the three that ARE published; that was
+  // flagged to the owner and accepted on 2026-08-13. The distinction is
+  // incidental visibility versus the logo being the point of the photo.
+  //
+  // The Aug 14 CEO brief refers to "5 supplied event photos". Only FOUR ever
+  // arrived, in both public/event/ and NASHVI_2/nashville-event-photos/. If a
+  // fifth exists it was never handed over — worth asking before the source
+  // folders are deleted, since they are the last copy outside Sanity.
+  //
+  // Alt text stays neutral on every image regardless of what is in frame.
   //
   // MOCKUPS: ten were produced and all ten were opened and checked individually,
   // never assumed clean from a filename. design-mockup-1 is the client's brand
@@ -313,7 +330,7 @@ export const caseStudies: CaseStudy[] = [
 
     quote: {
       text:
-        "Working with Lance and Panda Patches was a great experience… quality patches against a tight timeline… kept me in the loop from end to end… turned out great for the event!",
+        "Working with Lance and Panda Patches was a great experience. They worked with us to produce quality patches against a tight timeline. Lance was very communicative every step of the way and kept me in the loop from end to end production. The patches were great quality and turned out great for the event!",
       author: "Kelly Paschall",
       role: "Verified Trustpilot review, August 2026",
       sourceUrl: "https://www.trustpilot.com/review/pandapatches.com",
@@ -483,7 +500,7 @@ export const caseStudies: CaseStudy[] = [
       "Karbach Brewing needed 1,200 woven and leather patches for a Los Angeles event on January 20. Approved January 9, shipped January 14, delivered and signed for January 19 — a day before the event.",
 
     summary:
-      "Six designs, 1,200 pieces, a mix of woven and laser-engraved leather, and an event in Los Angeles that could not move. Mockups were approved on January 9, the order shipped on January 14, and it was signed for on January 19 — one day before the event and ten days after approval.",
+      "Six designs, 1,200 pieces, a mix of woven and laser-engraved genuine leather, and an event in Los Angeles that could not move. Mockups were approved on January 9, the order shipped on January 14, and it was signed for on January 19 — one day before the event and ten days after approval.",
 
     event: "Brand event",
     location: "Los Angeles, California",
@@ -528,7 +545,7 @@ export const caseStudies: CaseStudy[] = [
     keyFacts: [
       "Client: Karbach Brewing, ordering patches for a brand event in Los Angeles.",
       "Maker: Panda Patches, a U.S.-registered custom patch company producing at its own facility in Pakistan.",
-      "Product: 1,200 patches across 6 designs at 200 pieces each — a mix of woven and laser-engraved leather, 2.25 to 3.5 inches, with iron-on backing.",
+      "Product: 1,200 patches across 6 designs at 200 pieces each — a mix of woven and laser-engraved genuine leather, 2.25 to 3.5 inches, with iron-on backing.",
       "Constraint: a rush order from the first message, with an event in Los Angeles on January 20 that the patches had to make.",
       "Timeline: mockups sent January 8, approved in writing January 9, shipped January 14 — five days after approval.",
       "Delivery: signed for on January 19 at 10:13 AM, one day before the event and ten days after approval, door to door from the production facility.",
@@ -539,7 +556,7 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: "Six designs, two materials, one fixed date",
         body:
-          "When Karbach Brewing's brand team reached out in early January, they had six patch designs, a quantity of 1,200 — a mix of woven and laser-engraved leather between 2.25 and 3.5 inches — and one hard constraint: an event in Los Angeles on January 20 that the patches had to make.\n\nThis was a rush order from the first message. The deadline was not negotiable, and the order mixed two materials that behave differently in production and in application.",
+          "When Karbach Brewing's brand team reached out in early January, they had six patch designs, a quantity of 1,200 — a mix of woven and laser-engraved genuine leather between 2.25 and 3.5 inches — and one hard constraint: an event in Los Angeles on January 20 that the patches had to make.\n\nThis was a rush order from the first message. The deadline was not negotiable, and the order mixed two materials that behave differently in production and in application.",
         image: {
           src: "/assets/case-studies/karbach-design-brewing-co.webp",
           contain: true,
@@ -566,11 +583,11 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: "The honest footnote: leather behaves differently under an iron",
         body:
-          "Leather runs hotter than woven under an iron, and Karbach's team found that some leather patches stuck or scorched when pressed directly. We sent the fix the same day — a buffer layer between the iron and the patch, and a shorter press — and the rest applied cleanly.\n\nWe would rather tell you that here than pretend every material behaves identically. Woven, embroidered and leather all take iron-on backing, but they do not all take the same iron. This order is why our iron-on application guide now calls leather out as an exception alongside PVC, rather than implying one setting covers every material. If you are ordering mixed materials, ask us for the per-material pressing guidance before your team starts applying them.",
+          "Karbach's team found that some leather patches stuck or scorched when the iron was applied straight to the leather face. We sent the fix the same day — a pressing cloth between the iron and the patch — and the rest applied cleanly.\n\nThe settings were never the problem. Leather carries the same heat-seal adhesive as our embroidered patches and takes the same 350°F press, the same 25 to 30 seconds. What leather will not take is bare contact with a hot iron. On woven and embroidered patches the pressing cloth is good practice; on leather it is the difference between a clean application and a marked patch.\n\nWe would rather tell you that here than pretend every material behaves identically. This order is why our iron-on guide now spells the leather rule out instead of leaving the pressing cloth as an optional nicety.",
         image: {
           src: "/assets/case-studies/karbach-design-leather-roundel.webp",
           contain: true,
-          alt: "Round laser-engraved leather Karbach Brewing patch in tan leather with a stitched edge, the Karbach Brewing wordmark around the rim and a K with a star at the centre",
+          alt: "Round laser-engraved genuine leather Karbach Brewing patch in tan leather with a stitched edge, the Karbach Brewing wordmark around the rim and a K with a star at the centre",
           caption:
             "The leather design from the same order. Leather takes the same iron-on backing as the woven patches but not the same iron — this is the patch behind the footnote above.",
         },
@@ -590,7 +607,7 @@ export const caseStudies: CaseStudy[] = [
       {
         question: "Can Panda Patches produce mixed woven and leather patch orders?",
         answer:
-          "Yes. This Karbach Brewing order was 1,200 patches across 6 designs at 200 each, mixing woven and laser-engraved leather between 2.25 and 3.5 inches, all with iron-on backing. Mixed-material orders are produced and counted per design so they arrive ready to distribute.",
+          "Yes. This Karbach Brewing order was 1,200 patches across 6 designs at 200 each, mixing woven and laser-engraved genuine leather between 2.25 and 3.5 inches, all with iron-on backing. Mixed-material orders are produced and counted per design so they arrive ready to distribute.",
       },
       {
         question: "How fast can Panda Patches turn around a rush patch order?",
@@ -600,7 +617,7 @@ export const caseStudies: CaseStudy[] = [
       {
         question: "Do leather iron-on patches apply the same way as woven ones?",
         answer:
-          "No, and this order is why we say so plainly. Leather runs hotter under an iron than woven or embroidered patches and can stick or scorch if pressed directly. Use a buffer layer between the iron and the patch and a shorter press. If your order mixes materials, ask us for the per-material pressing guidance rather than applying one setting to everything.",
+          "Same settings, one non-negotiable extra step. Leather patches carry the same heat-seal adhesive as embroidered ones, so they press at the same 350°F (175°C) for the same 25 to 30 seconds — do not press them cooler or shorter. The difference is that the pressing cloth stops being optional: a hot iron placed directly on a leather face can stick to it or scorch it. Keep a thin cotton cloth between the iron and the patch every time.",
       },
     ],
 

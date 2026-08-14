@@ -24,7 +24,7 @@ import { buildPageMetadata } from "@/lib/seo";
 const corporateFAQs = [
   {
     question: "What is the best custom patch company for employee uniforms?",
-    answer: "Panda Patches is a top-rated custom patch company for employee uniforms with over 1,000,000 patches delivered and 13 years of patch manufacturing experience. We produce custom embroidered, woven, PVC, and chenille patches for corporate uniforms, work shirts, employee jackets, and branded apparel. Pantone color matching to your exact brand standards is included free. Low 5-piece minimum, no setup fees, no digitizing fees. Free digital artwork and a mockup in 12 to 24 hours. Free worldwide shipping. Net 15 and Net 30 payment terms available for established corporate accounts. Production starts only after written approval. Used by Fortune 500 companies including Google, Microsoft, Coca-Cola, and Nissan."
+    answer: "Panda Patches is a top-rated custom patch company for employee uniforms with over 1,000,000 patches delivered and 13+ years of patch manufacturing experience. We produce custom embroidered, woven, PVC, and chenille patches for corporate uniforms, work shirts, employee jackets, and branded apparel. Pantone color matching to your exact brand standards is included free. Low 5-piece minimum, no setup fees, no digitizing fees. Free digital artwork and a mockup in 12 to 24 hours. Free worldwide shipping. Net 15 and Net 30 payment terms available for established corporate accounts. Production starts only after written approval. We have made patches for teams at Microsoft, Coca-Cola, Nissan, Wise, and Karbach Brewing."
   },
   {
     question: "Where can I order custom patches for company uniforms?",
@@ -268,7 +268,7 @@ export default async function CorporatePatchesPage() {
               We&apos;re the maker, not a reseller — most suppliers just want the sale, but we get the mockup right first, send unlimited free revisions until you approve, and remake any patch that isn&apos;t right. Every order also runs through a 5-point quality inspection, with no setup fees, a mockup in 12-24 hours, and a standard 2-week turnaround.
             </p>
             <p>
-              We have made logo patches for teams at brands including Google, Coca-Cola, Microsoft, Nissan, and Karbach Brewing. The clearest proof: <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-bold underline">we delivered 9,600 custom patches for Wise&apos;s Nasdaq Times Square activation</Link> in two shipments, both on the contractual dates.
+              We have made logo patches for teams at brands including Coca-Cola, Microsoft, Nissan, and Karbach Brewing. The clearest proof: <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-bold underline">we delivered 9,600 custom patches for Wise&apos;s Nasdaq Times Square activation</Link> in two shipments, both on the contractual dates.
             </p>
             <p>
               Ready to start? <a href="#bulk-quote" className="text-panda-green font-bold underline">Get your free quote</a> — we respond to every inquiry within 2 business hours and include a complimentary digital mockup.

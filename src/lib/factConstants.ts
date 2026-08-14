@@ -66,13 +66,25 @@ export const BRAND_ATTRIBUTION_HEADING = 'Patches Made For Teams At';
  * published file is a wordmark extracted from it rather than the full lockup.
  */
 export const BRAND_LOGOS = [
-  { src: '/assets/logo-google.svg', alt: 'Google' },
   { src: '/assets/logo-microsoft.svg', alt: 'Microsoft' },
   { src: '/assets/logo-cocacola.svg', alt: 'Coca-Cola' },
   { src: '/assets/logo-nissan.svg', alt: 'Nissan' },
   { src: '/assets/logo-wise.svg', alt: 'Wise' },
-  { src: '/assets/logo-karbach.svg', alt: 'Karbach Brewing' },
+  { src: '/assets/logo-karbach.png', alt: 'Karbach Brewing' },
 ] as const;
+
+/*
+ * Google was REMOVED on 2026-08-14 by CEO instruction: attested but no order
+ * record could be located, and it predates the CRM. Register wording:
+ * "unsubstantiated, removed Aug 13; eligible to return with record." Restore it
+ * only when a record exists — re-adding it is a claim, not a layout decision.
+ *
+ * Karbach uses the official client-supplied logo (Aug 13), not the wordmark
+ * previously derived from their patch artwork. The supplied file was black on
+ * an opaque white background, which `brightness(0)` would have rendered as a
+ * solid black rectangle; the published asset is the same mark keyed to
+ * transparency, with the gold star kept as a solid shape.
+ */
 
 // ── Contact ownership (owner decision Jul 21 2026, reconfirmed Aug 11) ──────
 /**
