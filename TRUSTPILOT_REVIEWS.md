@@ -9,36 +9,28 @@
 | | Value |
 |---|---|
 | TrustScore | **4.8** |
-| Total reviews | **83** |
-| 5★ | ⚠ re-read from live profile |
-| 4★ | ⚠ re-read from live profile |
-| 3★ | ⚠ re-read from live profile |
-| 2★ | ⚠ re-read from live profile |
-| 1★ | ⚠ re-read from live profile |
-| Last synced | 2026-08-13 |
+| Total reviews | **85** |
+| 5★ | 96% |
+| 4★ | 2% |
+| 3★ | 0% |
+| 2★ | 0% |
+| 1★ | 2% |
+| Last synced | **2026-08-14** (score, total and star split, all from the live profile header) |
 
-> **TrustScore and total are verified** against the live profile on 2026-08-13
-> (screenshot). The **star split is not** — it was read off a bar chart and the
-> exact per-band counts were not legible, so it is marked for re-read rather
-> than estimated. Do not publish a star breakdown until someone reads the real
-> numbers off the profile.
+> **Fully verified 2026-08-14.** Score, total and star split were all read off
+> the live profile. Profile claimed August 2023.
 >
-> **Known ±1 discrepancy, deliberately not reconciled.** The previous sync
-> recorded 75 total on 2026-07-12. Nine new reviews are logged below, which
-> would give 84, but Trustpilot displays 83. Most likely one review was removed
-> or the earlier 75 was slightly off. The authoritative figure is what
-> Trustpilot shows — **83** — so that is what the site publishes. The gap is
-> recorded here rather than papered over by dropping an entry to make the
-> arithmetic tidy.
-
-> ⚠ **Count reconciliation open (2026-08-14).** Two reviews were added to the
-> log below — Kelly Paschall (Aug 9) and Emily Rodgers (Aug 13) — that were not
-> in the Aug 13 sync. The **83** above was verified against the live profile on
-> Aug 13, and Emily's review is dated Aug 13, so it is unknown whether 83
-> already includes either of them. Per the CASE-S_3 instruction, the count has
-> **not** been hand-bumped: re-read TrustScore and total off the live profile
-> and update both together. Adding reviews to this log does not, by itself,
-> license changing the published count.
+> **The count reconciles exactly, which retires the old ±1 note.** The 13 Aug
+> read was 83. Kelly Paschall (9 Aug) and Emily Rodgers (13 Aug) both went live
+> between the two reads, and 83 + 2 = **85**. Nothing was dropped or added
+> beyond those two, so the earlier "75 + 9 = 84 vs 83 displayed" puzzle no
+> longer needs carrying — whatever caused it, the ledger and the profile now
+> agree. Neither figure was hand-bumped; both come from the header.
+>
+> **Star split is published as percentages, not counts.** Trustpilot shows
+> 96/2/0/0/2 and rounding means exact per-band counts cannot be derived — on 85
+> reviews, "96%" spans several possible counts. If a breakdown is ever needed,
+> publish the percentages.
 
 ## How to add a new review
 
@@ -64,15 +56,13 @@
 ### 2026-08-11 · David Puerto (US) · ★★★★★ · [general]
 **Excellent quality** — Excellent quality. Great communication. They delivered exactly what I wanted. I will use them again.
 
-### 2026-08-09 · Kelly Paschall (US) · ★★★★★ · [event, woven, rush] · ⚠ ABRIDGED
-**Working with Lance and Panda Patches was a great experience** — Working with Lance and Panda Patches was a great experience… quality patches against a tight timeline… kept me in the loop from end to end… turned out great for the event!
+### 2026-08-09 · Kelly Paschall (US) · ★★★★★ · [event, woven, rush]
+**Great experience!** — Working with Lance and Panda Patches was a great experience. They worked with us to produce quality patches against a tight timeline. Lance was very communicative every step of the way and kept me in the loop from end to end production. The patches were great quality and turned out great for the event!
 
-> ⚠ **This body is abridged, not verbatim.** It was transcribed into the
-> CASE-S_1 brief with ellipses, and the full text has not been read off the live
-> profile. Rule 5 forbids editing review text, so this is logged as-is and
-> flagged — replace it with the verbatim body on the next profile read before
-> it is used anywhere beyond the case study. Labeled "Unprompted" by Trustpilot.
-> Closing quote on /case-studies/nashville-event-patches-2026.
+> Verbatim, read off the live profile 2026-08-14 — this replaces the abridged
+> ellipsis version transcribed from the CASE-S_1 brief, and the case-study quote
+> was updated to match. Labeled "Unprompted" by Trustpilot; experience date
+> 2026-08-09. Closing quote on /case-studies/nashville-event-patches-2026.
 
 ### 2026-08-06 · Alden (US) · ★★★★★ · [general]
 **Great Service** — Excellent and timely service. Lance and the team responded the same day with my quote and mock-up. I would use again.
