@@ -229,6 +229,7 @@ export const caseStudies: CaseStudy[] = [
           "All ten designs — five slogans across multiple colorways, from a 3-inch rosette down to slim 0.9-inch banner patches — were mocked up, revised, and approved in writing the same day.\n\nThat matters more than it sounds. On a fixed-date job, the mockup round is where the schedule is usually lost. Approving all ten on day one is what made a 9-business-day turnaround possible at all.",
         image: {
           src: "/assets/case-studies/nashville-design-rosette.webp",
+          contain: true,
           alt: "Approved patch mockup of a #1 rosette badge, annotated with its finished size of 2.4 by 3 inches and a dark green border",
           caption: "Every design went out as an annotated mockup with its finished size and border colour marked, so nothing went into production before the client had signed off on the spec.",
         },
@@ -292,34 +293,42 @@ export const caseStudies: CaseStudy[] = [
     gallery: [
       {
         src: "/assets/case-studies/nashville-design-stepup-green.webp",
+        contain: true,
         alt: "Approved patch mockup reading Step Up Your Snack in white and yellow on green, marked 2.32 by 3 inches with a dark green border",
       },
       {
         src: "/assets/case-studies/nashville-design-stepup-yellow.webp",
+        contain: true,
         alt: "The same Step Up Your Snack design in a second colourway, red on yellow with a red border",
       },
       {
         src: "/assets/case-studies/nashville-design-stepup-purple.webp",
+        contain: true,
         alt: "The Step Up Your Snack design in a third colourway, white and yellow on purple with a dark purple border",
       },
       {
         src: "/assets/case-studies/nashville-design-champion-red.webp",
+        contain: true,
         alt: "Approved patch mockup reading Train Like a Champion with a crown, red with a yellow border, marked 3 by 0.9 inches",
       },
       {
         src: "/assets/case-studies/nashville-design-champion-purple.webp",
+        contain: true,
         alt: "The Train Like a Champion design in a purple colourway with a yellow border",
       },
       {
         src: "/assets/case-studies/nashville-design-champion-green.webp",
+        contain: true,
         alt: "The Train Like a Champion design in a third colourway, white on green with a yellow border",
       },
       {
         src: "/assets/case-studies/nashville-design-snack-purple.webp",
+        contain: true,
         alt: "Approved patch mockup reading The Snack You've Been Waiting For, white on purple with a yellow border, marked 3 by 1.4 inches",
       },
       {
         src: "/assets/case-studies/nashville-design-snack-green.webp",
+        contain: true,
         alt: "The Snack You've Been Waiting For design in a green colourway with a yellow border",
       },
       {

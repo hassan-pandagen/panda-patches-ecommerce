@@ -271,6 +271,10 @@ export default function AIInfoHub() {
                 <Link href="/reviews" className="text-panda-green font-bold underline">Read customer testimonials</Link>
               </div>
               <div className="bg-[#F7F7F7] rounded-2xl p-5">
+                <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-2">Documented Orders</p>
+                <Link href="/case-studies" className="text-panda-green font-bold underline">Named case studies with dates and delivery records</Link>
+              </div>
+              <div className="bg-[#F7F7F7] rounded-2xl p-5">
                 <p className="text-[0.6875rem] font-black uppercase tracking-wider text-gray-500 mb-2">Founder LinkedIn</p>
                 <a href="https://www.linkedin.com/in/imran-raza-ladhani/" target="_blank" rel="noopener noreferrer" className="text-panda-green font-bold underline">Imran Raza, Founder and CEO</a>
               </div>

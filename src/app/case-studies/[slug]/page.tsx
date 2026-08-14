@@ -48,6 +48,20 @@ function paragraphs(body: string): string[] {
   return body.split("\n\n").map((p) => p.trim()).filter(Boolean);
 }
 
+/**
+ * Grid columns for the stats strip, keyed by how many stats there are, so the
+ * last row is always full. Written as complete literal class strings because
+ * Tailwind scans source text and cannot see interpolated fragments.
+ */
+const STAT_GRID_COLS: Record<number, string> = {
+  1: "grid-cols-1",
+  2: "grid-cols-2",
+  3: "grid-cols-1 sm:grid-cols-3",
+  4: "grid-cols-2 sm:grid-cols-4",
+  5: "grid-cols-2 sm:grid-cols-5",
+  6: "grid-cols-2 sm:grid-cols-3",
+};
+
 export default async function CaseStudyDetailPage({
   params,
 }: {
@@ -240,7 +254,14 @@ export default async function CaseStudyDetailPage({
       {/* Stats strip */}
       {cs.stats.length > 0 && (
         <section className="bg-panda-light px-6 py-10">
-          <div className="max-w-[56.25rem] mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+          <div
+            className={`max-w-[56.25rem] mx-auto grid gap-6 text-center ${
+              // Columns follow the stat COUNT. Hardcoding 3 left a 4th stat
+              // stranded alone on a second row, left-aligned under the first
+              // column — which is what both 4-stat case studies were doing.
+              STAT_GRID_COLS[cs.stats.length] ?? "grid-cols-2 sm:grid-cols-3"
+            }`}
+          >
             {cs.stats.map((st) => (
               <div key={st.label}>
                 <div className="text-[1.875rem] md:text-[2.375rem] font-black text-panda-dark leading-none">
@@ -390,14 +411,18 @@ export default async function CaseStudyDetailPage({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {cs.gallery.map((img) => (
               <figure key={img.src}>
-                <div className="relative w-full overflow-hidden rounded-xl bg-gray-100 aspect-square">
+                <div
+                  className={`relative w-full overflow-hidden rounded-xl aspect-square ${
+                    img.contain ? "bg-white border border-gray-100" : "bg-gray-100"
+                  }`}
+                >
                   <Image
                     src={img.src}
                     alt={img.alt}
                     fill
                     quality={75}
                     sizes="(max-width: 1000px) 100vw, 333px"
-                    className="object-cover"
+                    className={img.contain ? "object-contain p-3" : "object-cover"}
                   />
                 </div>
                 {img.credit && (

@@ -51,6 +51,14 @@ const MAX_REVIEWS = 6;
  */
 const SPECIFIC_REVIEWS: CustomerReview[] = [
   {
+    name: "Emily Rodgers", date: "2026-08-13", rating: 5, tags: ["leather", "woven", "event", "rush", "hats"],
+    body: "Lance was great to work with and helped us out with a project that needed to be turned around quickly. He stayed on top of order and communicated well throughout the entire process. The patches ordered turned out great and our guests were excited to create their hats with the designs.",
+  },
+  {
+    name: "Kelly Paschall", date: "2026-08-09", rating: 5, tags: ["woven", "event", "rush"],
+    body: "Working with Lance and Panda Patches was a great experience. They worked with us to produce quality patches against a tight timeline. Lance was very communicative every step of the way and kept me in the loop from end to end production. The patches were great quality and turned out great for the event!",
+  },
+  {
     name: "Tim Roberts", date: "2026-06-16", rating: 5, tags: ["embroidered", "sports", "name"],
     body: "Ordered 100 embroidered patches for our youth wrestling club and couldn't be happier. The quality was exactly what we designed — clean stitching, colors came out great. When an unexpected customs fee came up on my end, Lance handled it immediately without any hassle.",
   },
@@ -162,6 +170,10 @@ const PRODUCT_TAGS: Record<string, string[]> = {
   "pvc": ["pvc"],
   "woven": ["woven", "label"],
   "embroidered": ["embroidered"],
+  // Added 2026-08-14 alongside the first genuinely leather-specific review.
+  // Until then the leather category page had no route here, so it fell back
+  // entirely to general filler.
+  "leather": ["leather"],
 };
 
 interface ReviewSchemaFragment {
