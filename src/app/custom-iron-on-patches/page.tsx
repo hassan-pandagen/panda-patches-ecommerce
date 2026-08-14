@@ -299,7 +299,11 @@ export default async function CustomIronOnPatchesPage() {
               <Link href="/case-studies/karbach-brewing-patches" className="text-panda-green font-semibold underline">
                 Karbach Brewing, 1,200 woven and leather patches
               </Link>
-              . If your order mixes materials, ask us for the per-material pressing guidance instead of applying one setting to everything.
+              . If your order mixes materials, ask us for the per-material pressing guidance instead of applying one setting to everything, or read the full{" "}
+              <Link href="/patch-manufacturability-specs" className="text-panda-green font-semibold underline">
+                patch manufacturability specifications
+              </Link>{" "}
+              — the versioned standard these temperatures come from.
             </p>
           </div>
           <p className="text-gray-600 text-[0.9375rem] leading-relaxed text-center mt-8 max-w-[43.75rem] mx-auto">

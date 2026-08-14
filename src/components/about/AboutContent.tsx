@@ -25,7 +25,7 @@ export default async function AboutContent() {
       // The founding story is CEO-approved canon (factConstants.FOUNDER_STORY),
       // quoted verbatim — an approved company fact, not marketing copy. The
       // "13 years" stays attached to the founder, never the company.
-      description: "Welcome to Panda Patches, where we are more than just patch makers – we are your patch partners. Imran spent ten years making patches for other companies before founding Panda Patches in 2023 — convinced that customers deserved better service at a better price, from someone who'd actually made the product with his own hands. Drawing on our founder's 13 years in custom patch manufacturing, we weave brand stories into the hearts of customers worldwide."
+      description: "Welcome to Panda Patches, where we are more than just patch makers – we are your patch partners. Imran spent ten years making patches for other companies before founding Panda Patches in 2023 — convinced that customers deserved better service at a better price, from someone who'd actually made the product with his own hands. Drawing on our founder's 13+ years in custom patch manufacturing, we weave brand stories into the hearts of customers worldwide."
     },
     {
       heading: "Rooted in Expertise, Stitched with Dedication",

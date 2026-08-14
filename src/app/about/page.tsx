@@ -25,11 +25,11 @@ export async function generateMetadata(): Promise<Metadata> {
     // in the SERP. "Family-owned" was also removed: it is not true and does not
     // enter canon (CEO, Aug 2026).
     title: "About Panda Patches | Our Story, Facility and Founder",
-    description: "Panda Patches is a US-registered custom patch manufacturer founded in 2023 by Imran Raza, who brings 13 years in patch manufacturing. Own facility, low minimums, mockup in 12-24 hours.",
+    description: "Panda Patches is a US-registered custom patch manufacturer founded in 2023 by Imran Raza, who brings 13+ years in patch manufacturing. Own facility, low minimums, mockup in 12-24 hours.",
     url: "https://www.pandapatches.com/about",
     image: { url: ogImage, alt: "About Panda Patches" },
-    ogDescription: "US-registered custom patch manufacturer founded in 2023 by Imran Raza, with 13 years in patch manufacturing. Own facility, low minimums, money-back guarantee.",
-    twitterDescription: "US-registered custom patch manufacturer founded in 2023 by Imran Raza, with 13 years in patch manufacturing. Low minimums, free design services.",
+    ogDescription: "US-registered custom patch manufacturer founded in 2023 by Imran Raza, with 13+ years in patch manufacturing. Own facility, low minimums, money-back guarantee.",
+    twitterDescription: "US-registered custom patch manufacturer founded in 2023 by Imran Raza, with 13+ years in patch manufacturing. Low minimums, free design services.",
   });
 }
 
