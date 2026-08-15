@@ -131,6 +131,23 @@ export default function Navbar() {
           so this single component gives every template the skip target without
           touching ~90 individual page files. */}
       <a href="#main-content" className="skip-link">Skip to main content</a>
+
+      {/*
+        AnnouncementBar sits OUTSIDE the sticky header on purpose.
+
+        It used to be inside it, and collapsed itself to zero height once you
+        scrolled past 120px so the sticky header would not eat the viewport
+        (WEBSIT_1.MD T9). That trimmed the height but did it by shrinking a
+        STICKY element mid-scroll: measured on a 390px viewport the header went
+        205px -> 150px, and every time it fired, all the content below jumped up
+        by 55px. That was the mobile scroll judder.
+
+        Out here it is a normal block that scrolls away by itself. The sticky
+        header is a constant 150px from first paint, so T9's goal is met without
+        anything resizing while the user is moving.
+      */}
+      <AnnouncementBar />
+
       <header
       suppressHydrationWarning
       className={`
@@ -138,7 +155,6 @@ export default function Navbar() {
       bg-white border-b border-gray-200
       ${scrolled ? 'shadow-md' : 'shadow-sm'}
     `}>
-      <AnnouncementBar />
       <TrustBar />
       <div className="w-full max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 xl:px-12 h-[70px] md:h-[100px] flex items-center justify-between">
 

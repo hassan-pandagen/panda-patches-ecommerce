@@ -6,11 +6,11 @@ import { X } from "lucide-react";
 
 const STORAGE_KEY = "announcement_dismissed_v4";
 
-// Collapse threshold (px). When the user scrolls past this, the announcement
-// bar shrinks to ~0 height with overflow-hidden so the sticky header trims
-// down to navbar plus trust bar only (~120px instead of ~165px). Fixes the
-// excessive sticky header height called out in WEBSIT_1.MD T9.
-const COLLAPSE_THRESHOLD_PX = 120;
+// This bar no longer collapses on scroll. It used to, to keep the sticky header
+// short (WEBSIT_1.MD T9) — but it was inside the sticky header at the time, so
+// collapsing resized a sticky element mid-scroll and shunted the page up by
+// 55px every time it fired. It now renders OUTSIDE the sticky header (see
+// Navbar) and simply scrolls away, which meets T9 without anything moving.
 
 export default function AnnouncementBar() {
   // Rendered VISIBLE by default so the bar ships in the server HTML and occupies
@@ -22,30 +22,12 @@ export default function AnnouncementBar() {
   // in layout.tsx (html.ann-dismissed #announcement-bar{display:none}); we mirror
   // that into state on mount so the scroll listener and unmount stay consistent.
   const [dismissed, setDismissed] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     if (document.documentElement.classList.contains("ann-dismissed")) {
       setDismissed(true);
     }
   }, []);
-
-  useEffect(() => {
-    if (dismissed) return;
-    let ticking = false;
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(() => {
-        setCollapsed(window.scrollY > COLLAPSE_THRESHOLD_PX);
-        ticking = false;
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    // Initial state for users who land mid-page (anchor links, refresh after scroll).
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [dismissed]);
 
   const dismiss = () => {
     try {
@@ -65,19 +47,18 @@ export default function AnnouncementBar() {
     <div
       id="announcement-bar"
       className={`w-full bg-panda-dark text-white text-[0.8125rem] font-semibold px-4 flex items-center justify-center gap-3 relative overflow-hidden transition-all duration-300 ease-out ${
-        collapsed ? "max-h-0 py-0 opacity-0" : "max-h-[60px] py-2 opacity-100"
+        "py-2"
       }`}
-      aria-hidden={collapsed}
     >
       <span className="text-panda-yellow font-black">🛡 10-Day Money-Back Guarantee.</span>
       <span className="hidden sm:inline">Save More on Bulk Orders. Free Worldwide Shipping.</span>
       {/* Relabeled: this pointed to /offers (fixed-price packages) under the label
           "Get a Free Quote", which has no quote form — mismatched destination
-          (audit P3). tabIndex mirrors `collapsed` so a hidden bar's link can't
-          still be keyboard-focused (WCAG 4.1.2/1.3.2). */}
+          (audit P3). The bar no longer collapses, so its links are always
+          visible and always keyboard-focusable (WCAG 4.1.2/1.3.2). */}
       <Link
         href="/offers"
-        tabIndex={collapsed ? -1 : 0}
+        tabIndex={0}
         className="underline font-black text-panda-yellow hover:opacity-80 whitespace-nowrap"
       >
         See Fixed-Price Offers
@@ -85,7 +66,7 @@ export default function AnnouncementBar() {
       <button
         onClick={dismiss}
         aria-label="Dismiss announcement"
-        tabIndex={collapsed ? -1 : 0}
+        tabIndex={0}
         className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
       >
         <X size={14} />

@@ -157,11 +157,11 @@ export default async function Hero() {
 
           {/* Mobile: 3 per row, 2 rows. Desktop: all 6 in one row. */}
           <style>{`
-            .panda-trust-grid-hero { display: grid; grid-template-columns: repeat(6, 1fr); column-gap: 0.75rem; row-gap: 0.75rem; }
-            .panda-trust-grid-hero > div { height: 3rem; grid-column: span 2; }
+            .panda-trust-grid-hero { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 0.75rem; row-gap: 0.75rem; }
+            .panda-trust-grid-hero > div { height: 3rem; flex: 0 0 calc(33.333% - 0.75rem); }
             @media (min-width: 768px) {
               .panda-trust-grid-hero { column-gap: 1rem; row-gap: 1rem; }
-              .panda-trust-grid-hero > div { height: 4rem; grid-column: span 1; }
+              .panda-trust-grid-hero > div { height: 4rem; flex: 1 1 0; max-width: 12rem; }
             }
           `}</style>
           <div className="panda-trust-grid-hero w-full max-w-5xl mx-auto">
@@ -172,7 +172,13 @@ export default async function Hero() {
                   alt={logo.alt}
                   width={120}
                   height={48}
-                  style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }}
+                  style={{
+                    maxHeight: '100%',
+                    maxWidth: '100%',
+                    objectFit: 'contain',
+                    filter: 'brightness(0)',
+                    transform: 'scale' in logo ? `scale(${logo.scale})` : undefined,
+                  }}
                   loading="lazy"
                 />
               </div>

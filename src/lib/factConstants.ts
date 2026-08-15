@@ -65,12 +65,20 @@ export const BRAND_ATTRIBUTION_HEADING = 'Patches Made For Teams At';
  * an unreadable silhouette — the Karbach source art did exactly that, and the
  * published file is a wordmark extracted from it rather than the full lockup.
  */
+/**
+ * `scale` optically balances a mark against the others. The wall sizes every
+ * logo to the same BOX, but a two-line lockup spends that height on two rows of
+ * type, so its letters land about half the size of a single-line wordmark next
+ * to it. Karbach is the only two-line mark here and read visibly smaller until
+ * it was scaled up. Use sparingly and only to match apparent size — it is not a
+ * way to make one brand louder than another.
+ */
 export const BRAND_LOGOS = [
   { src: '/assets/logo-microsoft.svg', alt: 'Microsoft' },
   { src: '/assets/logo-cocacola.svg', alt: 'Coca-Cola' },
   { src: '/assets/logo-nissan.svg', alt: 'Nissan' },
   { src: '/assets/logo-wise.svg', alt: 'Wise' },
-  { src: '/assets/logo-karbach.png', alt: 'Karbach Brewing' },
+  { src: '/assets/logo-karbach.png', alt: 'Karbach Brewing', scale: 1.35 },
 ] as const;
 
 /*

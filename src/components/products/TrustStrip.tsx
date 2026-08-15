@@ -12,20 +12,26 @@ export default function TrustStrip() {
 
         {/* Mobile: 3 per row, 2 rows. Desktop: all 6 in one row. */}
         <style>{`
-          .panda-trust-grid-products { display: grid; grid-template-columns: repeat(6, 1fr); column-gap: 1.5rem; row-gap: 1.5rem; }
-          .panda-trust-grid-products > div { height: 3.5rem; grid-column: span 2; }
-          @media (min-width: 768px) {
-            .panda-trust-grid-products { column-gap: 2rem; row-gap: 2rem; }
-            .panda-trust-grid-products > div { height: 4rem; grid-column: span 1; }
-          }
-        `}</style>
+          .panda-trust-grid-products { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 1.5rem; row-gap: 1.5rem; }
+            .panda-trust-grid-products > div { height: 3.5rem; flex: 0 0 calc(33.333% - 1.5rem); }
+            @media (min-width: 768px) {
+              .panda-trust-grid-products { column-gap: 2rem; row-gap: 2rem; }
+              .panda-trust-grid-products > div { height: 4rem; flex: 1 1 0; max-width: 12rem; }
+            }
+          `}</style>
         <div className="panda-trust-grid-products w-full max-w-5xl mx-auto">
           {BRAND_LOGOS.map((logo) => (
             <div key={logo.alt} className="flex items-center justify-center">
               <img
                 src={logo.src}
                 alt={logo.alt}
-                style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0)' }}
+                style={{
+                  maxHeight: '100%',
+                  maxWidth: '100%',
+                  objectFit: 'contain',
+                  filter: 'brightness(0)',
+                  transform: 'scale' in logo ? `scale(${logo.scale})` : undefined,
+                }}
               />
             </div>
           ))}
