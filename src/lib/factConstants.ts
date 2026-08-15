@@ -95,7 +95,7 @@ export const BRAND_LOGOS = [
   { src: '/assets/logo-cocacola.svg', alt: 'Coca-Cola', w: 112, h: 37 },
   { src: '/assets/logo-nissan.svg', alt: 'Nissan', w: 66, h: 46 },
   { src: '/assets/logo-wise.svg', alt: 'Wise', w: 300, h: 98 },
-  { src: '/assets/logo-karbach.png', alt: 'Karbach Brewing', w: 777, h: 178, scale: 1.12 },
+  { src: '/assets/logo-karbach.png', alt: 'Karbach Brewing', w: 400, h: 92, scale: 1.12 },
 ] as const;
 
 /*
