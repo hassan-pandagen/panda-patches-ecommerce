@@ -177,8 +177,8 @@ export default async function Hero() {
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  width={120}
-                  height={48}
+                  width={logo.w}
+                  height={logo.h}
                   style={{
                     filter: 'brightness(0)',
                     ...('scale' in logo ? { '--logo-scale': logo.scale } : {}),

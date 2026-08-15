@@ -87,11 +87,15 @@ export const BRAND_ATTRIBUTION_HEADING = 'Patches Made For Teams At';
  * pushed Karbach a third wider than everything else.
  */
 export const BRAND_LOGOS = [
-  { src: '/assets/logo-microsoft.svg', alt: 'Microsoft' },
-  { src: '/assets/logo-cocacola.svg', alt: 'Coca-Cola' },
-  { src: '/assets/logo-nissan.svg', alt: 'Nissan' },
-  { src: '/assets/logo-wise.svg', alt: 'Wise' },
-  { src: '/assets/logo-karbach.png', alt: 'Karbach Brewing', scale: 1.12 },
+  // w/h are the asset's INTRINSIC pixel dimensions. CSS still drives the
+  // rendered size (height 100%, width auto); these exist only so the browser
+  // knows the aspect ratio before the image arrives and reserves the right box.
+  // Without them the wall is the one place on the site with no dimension hint.
+  { src: '/assets/logo-microsoft.svg', alt: 'Microsoft', w: 156, h: 34 },
+  { src: '/assets/logo-cocacola.svg', alt: 'Coca-Cola', w: 112, h: 37 },
+  { src: '/assets/logo-nissan.svg', alt: 'Nissan', w: 66, h: 46 },
+  { src: '/assets/logo-wise.svg', alt: 'Wise', w: 300, h: 98 },
+  { src: '/assets/logo-karbach.png', alt: 'Karbach Brewing', w: 777, h: 178, scale: 1.12 },
 ] as const;
 
 /*
