@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { client, urlFor } from "@/lib/sanity";
 
 async function getData() {
@@ -88,6 +89,27 @@ export default async function AboutContent() {
 
             </div>
           ))}
+
+          {/*
+            The About hub previously linked to NEITHER of its own subpages, so
+            /about/imran-raza was reachable only from scattered deep links and
+            /about/digitizing-team only from that page — a two-hop chain off an
+            orphan. Google logged the team page as "Discovered - currently not
+            indexed" with no crawl ever attempted, which is what an unreachable
+            page looks like from outside. A hub that does not link its children
+            is the structural bug; these are the links that fix it.
+          */}
+          <p className="text-[0.8125rem] md:text-[0.9375rem] text-gray-600 leading-[1.6] mx-auto">
+            The people behind the patches:{" "}
+            <Link href="/about/imran-raza" className="text-panda-green font-semibold underline">
+              Imran Raza, our founder
+            </Link>
+            , and{" "}
+            <Link href="/about/digitizing-team" className="text-panda-green font-semibold underline">
+              the digitizing team
+            </Link>{" "}
+            who turn your artwork into a stitch file before anything reaches a machine.
+          </p>
 
         </div>
 
