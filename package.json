@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/sync-company-facts.mjs",
     "build": "next build",
+    "facts:sync": "node scripts/sync-company-facts.mjs",
+    "facts:check": "node scripts/sync-company-facts.mjs --check",
     "start": "next start",
     "lint": "eslint . --ext .ts,.tsx"
   },
