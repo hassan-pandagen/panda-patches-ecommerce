@@ -157,13 +157,20 @@ export default async function Hero() {
 
           {/* Mobile: 3 per row, 2 rows. Desktop: all 6 in one row. */}
           <style>{`
-            .panda-trust-grid-hero { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 0.75rem; row-gap: 0.75rem; }
-            .panda-trust-grid-hero > div { height: 3rem; flex: 0 0 calc(33.333% - 0.75rem); }
-            @media (min-width: 768px) {
-              .panda-trust-grid-hero { column-gap: 1rem; row-gap: 1rem; }
-              .panda-trust-grid-hero > div { height: 4rem; flex: 1 1 0; max-width: 12rem; }
-            }
-          `}</style>
+            .panda-trust-grid-hero { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 1.5rem; row-gap: 1.25rem; }
+              /* Cells HUG their logo (flex: 0 1 auto) rather than sharing equal
+                 widths. With equal cells a narrow badge like Nissan floats in a wide
+                 box and pools extra air on both sides, so the optical gaps came out
+                 56/86/86/56 even though the CSS gap was uniform. Hugging makes the
+                 gap between INK equal to the CSS gap for every pair. */
+              .panda-trust-grid-hero > div { height: 3rem; flex: 0 1 auto; }
+              .panda-trust-grid-hero img { height: 100%; width: auto; max-width: 5.5rem; object-fit: contain; }
+              @media (min-width: 768px) {
+                .panda-trust-grid-hero { column-gap: 2.5rem; row-gap: 1.5rem; }
+                .panda-trust-grid-hero > div { height: 4rem; }
+                .panda-trust-grid-hero img { max-width: 10rem; }
+              }
+            `}</style>
           <div className="panda-trust-grid-hero w-full max-w-5xl mx-auto">
             {BRAND_LOGOS.map((logo) => (
               <div key={logo.alt} className="flex items-center justify-center">
@@ -173,9 +180,6 @@ export default async function Hero() {
                   width={120}
                   height={48}
                   style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
                     filter: 'brightness(0)',
                   }}
                   loading="lazy"
