@@ -49,7 +49,7 @@ export default async function Hero() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='888' height='843' viewBox='0 0 888 843' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.15'%3E%3Cpath d='M601.312 0.5H887.5V842.5H241.688C108.483 842.5 0.5 734.517 0.5 601.312C0.500051 269.493 269.493 0.500053 601.312 0.5Z' fill='%233B7E00'/%3E%3Cpath d='M601.312 0.5H887.5V842.5H241.688C108.483 842.5 0.5 734.517 0.5 601.312C0.500051 269.493 269.493 0.500053 601.312 0.5Z' stroke='black'/%3E%3C/g%3E%3C/svg%3E")`,
           backgroundSize: 'cover',
           backgroundPosition: 'left bottom',
-        }}
+        } as React.CSSProperties}
       />
 
       {/* MAIN CONTENT — stays at Tailwind's default `container` cap on every
@@ -157,18 +157,18 @@ export default async function Hero() {
 
           {/* Mobile: 3 per row, 2 rows. Desktop: all 6 in one row. */}
           <style>{`
-            .panda-trust-grid-hero { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 1.5rem; row-gap: 1.25rem; }
+            .panda-trust-grid-hero { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; column-gap: 1.75rem; row-gap: 1.25rem; }
               /* Cells HUG their logo (flex: 0 1 auto) rather than sharing equal
                  widths. With equal cells a narrow badge like Nissan floats in a wide
                  box and pools extra air on both sides, so the optical gaps came out
                  56/86/86/56 even though the CSS gap was uniform. Hugging makes the
                  gap between INK equal to the CSS gap for every pair. */
               .panda-trust-grid-hero > div { height: 3rem; flex: 0 1 auto; }
-              .panda-trust-grid-hero img { height: 100%; width: auto; max-width: 5.5rem; object-fit: contain; }
+              .panda-trust-grid-hero img { height: 100%; width: auto; max-width: calc(5.5rem * var(--logo-scale, 1)); object-fit: contain; }
               @media (min-width: 768px) {
-                .panda-trust-grid-hero { column-gap: 2.5rem; row-gap: 1.5rem; }
+                .panda-trust-grid-hero { column-gap: 3.25rem; row-gap: 1.5rem; }
                 .panda-trust-grid-hero > div { height: 4rem; }
-                .panda-trust-grid-hero img { max-width: 10rem; }
+                .panda-trust-grid-hero img { max-width: calc(10rem * var(--logo-scale, 1)); }
               }
             `}</style>
           <div className="panda-trust-grid-hero w-full max-w-5xl mx-auto">
@@ -181,6 +181,7 @@ export default async function Hero() {
                   height={48}
                   style={{
                     filter: 'brightness(0)',
+                    ...('scale' in logo ? { '--logo-scale': logo.scale } : {}),
                   }}
                   loading="lazy"
                 />

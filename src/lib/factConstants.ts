@@ -66,27 +66,32 @@ export const BRAND_ATTRIBUTION_HEADING = 'Patches Made For Teams At';
  * published file is a wordmark extracted from it rather than the full lockup.
  */
 /**
- * SIZING NOTE. Both walls render each logo into an identical box with
- * object-fit: contain, using width/height 100% — NOT max-width/max-height.
- * That distinction is the whole ballgame: max-* only constrains, so a small
- * asset (Microsoft, 156x34) rendered at its natural size while a large one
- * (Wise, 300x98) was scaled down to fit, and the wall ended up with logo
- * heights of 34/37/46/58/47px with no relationship to each other.
+ * SIZING NOTE. Both walls size logos in CSS, not inline: height 100%, width
+ * auto, plus a max-width cap, and each cell hugs its logo so the gap between
+ * neighbouring artwork is identical for every pair.
  *
- * With width/height 100% every wordmark normalises to the same box (measured
- * 179px wide at 1280px) and only Nissan differs, correctly — it is a round
- * badge, so it is height-constrained at 92x64.
+ * Do NOT go back to max-width/max-height. Those only constrain, so a small
+ * asset (Microsoft, 156x34) rendered at natural size and never filled its box
+ * while a large one (Wise, 300x98) was scaled down — the wall ended up with
+ * heights of 34/37/46/58/47px bearing no relation to each other, and the same
+ * logo rendered differently on the two walls.
  *
- * A per-logo `scale` override was added while chasing this and has been
- * removed: it was compensating for the max-* bug rather than for anything about
- * the artwork. If a future logo genuinely needs optical balancing, measure the
- * rendered ink of its neighbours first — do not eyeball it.
- */export const BRAND_LOGOS = [
+ * `scale` is a per-logo OPTICAL adjustment, used once, for a real reason:
+ * Karbach is the only two-line lockup on the wall, so at a matched width it
+ * spends its height on two rows of type and its letters read smaller than the
+ * single-line wordmarks beside it. 1.12 is deliberately small — enough to even
+ * it up, not enough to make it the loudest mark there.
+ *
+ * If you reach for this again, measure the rendered ink of the neighbours
+ * first. An earlier pass used 1.35 to paper over the max-width bug above, which
+ * pushed Karbach a third wider than everything else.
+ */
+export const BRAND_LOGOS = [
   { src: '/assets/logo-microsoft.svg', alt: 'Microsoft' },
   { src: '/assets/logo-cocacola.svg', alt: 'Coca-Cola' },
   { src: '/assets/logo-nissan.svg', alt: 'Nissan' },
   { src: '/assets/logo-wise.svg', alt: 'Wise' },
-  { src: '/assets/logo-karbach.png', alt: 'Karbach Brewing' },
+  { src: '/assets/logo-karbach.png', alt: 'Karbach Brewing', scale: 1.12 },
 ] as const;
 
 /*
