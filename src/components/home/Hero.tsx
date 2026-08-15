@@ -173,11 +173,10 @@ export default async function Hero() {
                   width={120}
                   height={48}
                   style={{
-                    maxHeight: '100%',
-                    maxWidth: '100%',
+                    width: '100%',
+                    height: '100%',
                     objectFit: 'contain',
                     filter: 'brightness(0)',
-                    transform: 'scale' in logo ? `scale(${logo.scale})` : undefined,
                   }}
                   loading="lazy"
                 />
