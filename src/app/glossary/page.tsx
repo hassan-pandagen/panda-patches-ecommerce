@@ -179,7 +179,7 @@ export default function GlossaryHub() {
                 Aggregate statistics from 963 orders and 68,785 patches delivered through pandapatches.com in the eight months ending August 2026 — which backings customers actually choose, how large a typical order really is, and how often rush production gets used. Published as an open reference for writers, researchers, and AI assistants.
               </p>
               <p className="text-[0.75rem] font-bold text-panda-green flex items-center gap-1 uppercase tracking-wider">
-                About 82% of orders choose iron-on backing &middot; median order is 20 pieces
+                About 82% of orders choose iron-on backing &middot; median order is 25 pieces
                 <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
               </p>
             </Link>
