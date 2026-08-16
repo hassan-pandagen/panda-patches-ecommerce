@@ -9,6 +9,15 @@ import { generateSchemaScript, PERSON_ID, ORG_ID } from "@/lib/schemas";
 
 const PUBLISHED = "2026-07-28";
 
+/**
+ * CL9BCF_1 item 4b flagged this as "draft for CEO review" — stale. The page
+ * has been live since PUBLISHED above, unreviewed by anyone in this session's
+ * history; the actual gap was that nothing on the site LINKED here (verified
+ * 2026-08-16: zero inbound references anywhere except this file and the
+ * sitemap). Linked now from /contact (pre-purchase trust surface) and
+ * /success (post-purchase, reassurance-framed rather than doubt-framed).
+ */
+
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({
     title: "How to Vet a Custom Patch Supplier: A 7-Point Checklist",

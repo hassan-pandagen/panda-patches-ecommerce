@@ -8,6 +8,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: "Home", url: "https://www.pandapatches.com" },
   { name: "Contact", url: "https://www.pandapatches.com/contact" },
 ]);
+import Link from "next/link";
 import ContactHero from "@/components/contact/ContactHero";
 import Promises from "@/components/home/Promises";
 import PickPatch from "@/components/about/PickPatch";
@@ -43,6 +44,20 @@ export default function ContactPage() {
       
       {/* 2. Panda Promises (White Background) */}
       <Promises bgColor="bg-white" />
+
+      {/* CL9BCF_1 item 4b: this guide already existed (published Jul 28) but had
+          zero inbound links anywhere on the site. /contact is a genuine
+          pre-purchase trust surface — someone here is still deciding whether to
+          order, which is exactly who a supplier-vetting checklist serves. */}
+      <div className="w-full py-8 bg-white text-center">
+        <p className="text-[0.875rem] text-gray-500">
+          Not sure who to trust with a custom order?{" "}
+          <Link href="/how-to-vet-a-custom-patch-supplier" className="text-panda-green font-semibold underline">
+            Here&apos;s our own 7-point checklist
+          </Link>{" "}
+          for vetting any patch supplier &mdash; including us.
+        </p>
+      </div>
 
       {/* 3. Pick Your Patch (Reused) */}
       <PickPatch />

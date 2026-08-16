@@ -158,6 +158,21 @@ export default async function SuccessPage({
             </div>
           </div>
 
+          {/* CL9BCF_1 item 4b, second placement. Deliberately reassurance-framed,
+              not doubt-framed — this is post-payment, so "how to vet a supplier"
+              would read as second-guessing a decision already made. The guide's
+              own "Check the receipts" section walks each criterion against Panda
+              Patches directly, which is what this line points at. Kept small: one
+              line, not a card, so it doesn't compete with the actual next-step
+              content above it. */}
+          <p className="text-[0.8125rem] text-gray-400 mb-8">
+            Curious what a trustworthy patch supplier looks like on paper?{" "}
+            <Link href="/how-to-vet-a-custom-patch-supplier" className="text-panda-green font-semibold underline">
+              See the checklist we hold ourselves to
+            </Link>
+            .
+          </p>
+
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/">
