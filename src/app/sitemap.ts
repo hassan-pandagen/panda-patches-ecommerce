@@ -84,6 +84,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
+      url: `${baseUrl}/event-patches`,
+      lastModified: new Date('2026-08-16'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/ai-info`,
       lastModified: new Date('2026-04-11'),
       changeFrequency: 'weekly',

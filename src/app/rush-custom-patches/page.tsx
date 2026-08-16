@@ -265,6 +265,7 @@ export default function RushCustomPatchesPage() {
                 title: "Events & activations",
                 body: "Trade shows, launches, and brand activations — like Wise's 9,600-patch Nasdaq event, delivered on the contractual dates.",
                 links: [
+                  { href: "/event-patches", label: "Patches for brand activations & events" },
                   { href: "/case-studies/karbach-brewing-patches", label: "Karbach Brewing: 1,200 patches, delivered a day early" },
                   { href: "/case-studies/nashville-event-patches-2026", label: "1,500 event patches, 10 designs, 9 business days" },
                 ],

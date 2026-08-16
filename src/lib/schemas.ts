@@ -965,3 +965,34 @@ const faqSchema = generateFAQSchema([
   dangerouslySetInnerHTML={generateSchemaScript(faqSchema)}
 />
 */
+
+// ============================================
+// 12c. EVENT-ACTIVATION SERVICE SCHEMA (/event-patches)
+//
+// provider references the entity-graph Organization by @id, same rule as the
+// rush service above: aggregateRating and the other org facts live at the org
+// level only and must not be re-emitted as a second disconnected copy.
+//
+// Every claim here is sourced from a PUBLISHED case study. No new numbers.
+// ============================================
+
+export function generateEventPatchesServiceSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Custom Patches for Brand Activations and Events",
+    "serviceType": "Event and brand-activation custom patch manufacturing",
+    "description":
+      "Custom patches produced for brand activations, trade shows and events, including multi-design runs counted and bagged per design, peel-and-stick backing for on-site application, and an exact in-hand date confirmed by email within 2 to 6 hours of ordering.",
+    "url": "https://www.pandapatches.com/event-patches",
+    "provider": { "@id": ORG_ID },
+    "areaServed": "Worldwide",
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "USD",
+      "description":
+        "From 5 pieces, free 12-24 hour digital mockup, no setup or digitizing fees. Exact in-hand date confirmed by email within 2 to 6 hours of ordering.",
+    },
+  };
+}

@@ -75,6 +75,13 @@ export default function CaseStudiesPage() {
             across the country, here is how Panda Patches delivers custom
             patches at scale, on deadline, and exactly on brand.
           </p>
+          <p className="text-[0.9375rem] text-gray-400 leading-[1.7] max-w-[42.5rem] mt-4">
+            Planning an activation?{" "}
+            <Link href="/event-patches" className="text-panda-yellow font-semibold underline">
+              See how event patches work
+            </Link>{" "}
+            &mdash; multi-design runs, peel-and-stick backing, and confirmed in-hand dates.
+          </p>
         </div>
       </section>
 

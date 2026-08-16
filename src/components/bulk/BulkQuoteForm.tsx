@@ -9,7 +9,19 @@ import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 import { trackLead } from "@/lib/ga4";
 import { trackGoogleAdsLead } from "@/lib/googleAds";
 
-export default function BulkQuoteForm() {
+/**
+ * Shared quote form. `formName` and `contentName` only relabel the EXISTING
+ * lead events so a submission is attributed to the page it came from — no new
+ * events, no GTM container change, no tracking behaviour change. Defaults
+ * reproduce the original bulk-quote strings exactly.
+ */
+export default function BulkQuoteForm({
+  formName = "bulk_quote",
+  contentName = "Bulk Quote Request",
+}: {
+  formName?: string;
+  contentName?: string;
+} = {}) {
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
   const watchHearAbout = watch("hearAbout", "");
   const [hearAboutOther, setHearAboutOther] = useState("");
@@ -100,7 +112,7 @@ export default function BulkQuoteForm() {
     try {
       if (typeof (window as any).fbq === 'function') {
         (window as any).fbq('track', 'Lead', {
-          content_name: 'Bulk Quote Request',
+          content_name: contentName,
           content_category: 'Custom Patches',
           value: 0,
           currency: 'USD',
@@ -157,10 +169,10 @@ export default function BulkQuoteForm() {
       reset();
 
       // GA4 lead event, sent server-side via Measurement Protocol
-      trackLead({ form_name: 'bulk_quote', lead_source: window.location.pathname });
+      trackLead({ form_name: formName, lead_source: window.location.pathname });
 
       // Google Ads "Quote Form Sub" conversion (GTM → Enhanced Conversions).
-      trackGoogleAdsLead({ formName: 'bulk_quote', email: data.email, phone: data.phone });
+      trackGoogleAdsLead({ formName, email: data.email, phone: data.phone });
     } catch (error) {
       console.error("Bulk quote error:", error);
       setMessage({ type: "error", text: "Failed to submit. Please try again or call us at (302) 250-4340." });
