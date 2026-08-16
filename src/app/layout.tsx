@@ -92,10 +92,25 @@ export default function RootLayout({
          <script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem('announcement_dismissed_v4'))document.documentElement.classList.add('ann-dismissed')}catch(e){}` }} />
          {/* DNS prefetch to Sanity image CDN (preconnect dropped, unused on home) */}
          <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-         {/* Preconnect to Tawk.to embed (va.tawk.to preconnect dropped, unused on home) */}
+         {/* Tawk preconnects, verified against a real waterfall 2026-08-16 (CL9BCF_1
+             item: PSI flagged embed.tawk.to's preconnect as "unused" — a false
+             reading. Tawk deliberately no-ops when navigator.webdriver is true
+             (TawkToWidget.tsx bot-skip), which is exactly what Lighthouse/PSI set,
+             so PSI can never observe Tawk load at all. It isn't unused; PSI cannot
+             see it.
+             The earlier comment here claiming va.tawk.to was "dropped, unused on
+             home" was also wrong and unverified — TawkToWidget mounts sitewide in
+             this layout, so va.tawk.to is hit on every page the instant a visitor
+             interacts. Traced live: embed.tawk.to serves the widget bundle (7
+             requests); va.tawk.to serves widget-settings and session/start, the
+             POST that actually opens the chat session and the single slowest call
+             in the whole sequence (544ms). session/start had only dns-prefetch, so
+             it paid a cold TCP+TLS handshake on the path that makes Tawk
+             interactive — upgraded to preconnect. Re-verify with a fresh trace
+             before touching this again; do not trust the old comment's claim by
+             re-reading it. */}
          <link rel="preconnect" href="https://embed.tawk.to" crossOrigin="" />
-         <link rel="dns-prefetch" href="https://embed.tawk.to" />
-         <link rel="dns-prefetch" href="https://va.tawk.to" />
+         <link rel="preconnect" href="https://va.tawk.to" crossOrigin="" />
          {/* The homepage hero/LCP image is a Sanity-sourced Next/Image with priority,
              which emits its own preload — no manual hero preload needed here. */}
        </head>
