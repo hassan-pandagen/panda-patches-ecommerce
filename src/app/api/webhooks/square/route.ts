@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { customerOrderRef } from '@/lib/orderRef';
 import { resolveLeadSource } from '@/lib/attribution';
 import { sendMetaEvent, type Attribution } from '@/lib/metaCapi';
 import { sendCustomerEmail } from '@/lib/sendCustomerEmail';
@@ -131,8 +132,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Failed to create order' }, { status: 500 });
     }
 
-    const orderRef =
-      inserted.order_number || `PP-${String(inserted.id).padStart(5, '0')}`;
+    // Same helper the customer account uses, so the reference a buyer sees in
+    // their confirmation email and in /account/orders can never diverge.
+    const orderRef = customerOrderRef(inserted);
 
     // Customer payment-confirmation (branded edge template), send-once guarded.
     try {

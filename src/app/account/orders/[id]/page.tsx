@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { customerOrderRef } from "@/lib/orderRef";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
@@ -120,7 +121,7 @@ export default async function OrderDetailPage({
                 {order.patches_type || "Custom Patch Order"}
               </h1>
               <p className="text-[0.8125rem] text-gray-500 mt-2 font-mono">
-                Order #{String(order.id).slice(0, 8)} &middot; placed {formatDate(order.created_at)}
+                Order {customerOrderRef(order)} &middot; placed {formatDate(order.created_at)}
               </p>
             </div>
           </div>

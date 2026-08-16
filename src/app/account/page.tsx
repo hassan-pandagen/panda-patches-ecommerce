@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { customerOrderRef } from "@/lib/orderRef";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -57,7 +58,7 @@ export default async function AccountDashboardPage() {
   // Recent orders (RLS keeps this user-scoped)
   const { data: orders } = await supabase
     .from("orders")
-    .select("id, created_at, status, payment_status, amount_paid, patches_type, patches_quantity")
+    .select("id, order_number, created_at, status, payment_status, amount_paid, patches_type, patches_quantity")
     .order("created_at", { ascending: false })
     .limit(5);
 
@@ -144,10 +145,10 @@ export default async function AccountDashboardPage() {
                   >
                     <div className="flex-1 min-w-0">
                       <p className="text-[0.875rem] font-bold text-panda-dark truncate">
-                        {o.patches_type || "Custom Patch Order"}
+                        {customerOrderRef(o)}
                       </p>
                       <p className="text-[0.75rem] text-gray-500 mt-0.5">
-                        {formatDate(o.created_at)} &middot; {o.patches_quantity || 0} pcs &middot; #{String(o.id).slice(0, 8)}
+                        {o.patches_type || "Custom Patch Order"} &middot; {formatDate(o.created_at)} &middot; {o.patches_quantity || 0} pcs
                       </p>
                     </div>
                     <div className="flex items-center gap-4 ml-4 flex-shrink-0">

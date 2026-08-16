@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { customerOrderRef } from "@/lib/orderRef";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -59,7 +60,7 @@ export default async function OrdersPage({
 
   const { data: orders, count } = await supabase
     .from("orders")
-    .select("id, created_at, status, payment_status, amount_paid, patches_type, patches_quantity, design_size, design_backing", { count: "exact" })
+    .select("id, order_number, created_at, status, payment_status, amount_paid, patches_type, patches_quantity, design_size, design_backing", { count: "exact" })
     .order("created_at", { ascending: false })
     .range(from, to);
 
@@ -104,13 +105,18 @@ export default async function OrdersPage({
                     className="flex items-center justify-between gap-4 px-6 py-5 hover:bg-[#F9FAF5] transition-colors"
                   >
                     <div className="flex-1 min-w-0">
+                      {/* The order number leads. It is what the confirmation
+                          email, the CRM and any support reply all use, so it is
+                          the thing a customer needs to quote. */}
                       <p className="text-[0.875rem] font-bold text-panda-dark truncate">
+                        {customerOrderRef(o)}
+                      </p>
+                      <p className="text-[0.75rem] text-gray-600 mt-0.5 truncate">
                         {o.patches_type || "Custom Patch Order"}
                       </p>
                       <p className="text-[0.75rem] text-gray-500 mt-0.5">
                         {formatDate(o.created_at)} &middot; {o.patches_quantity || 0} pcs &middot; {o.design_size || "-"} &middot; {o.design_backing || "-"}
                       </p>
-                      <p className="text-[0.6875rem] text-gray-400 mt-1 font-mono">#{String(o.id).slice(0, 8)}</p>
                     </div>
                     <div className="flex flex-col items-end gap-2 flex-shrink-0">
                       {statusBadge(o.status, o.payment_status)}
