@@ -195,7 +195,11 @@ export default async function CustomIronOnPatchesPage() {
             Which Patch Types Support Iron-On?
           </h2>
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-8 max-w-[43.75rem] mx-auto">
-            Not every patch type accepts iron-on backing. PVC rubber cannot tolerate the heat-press, and chenille yarn has too much texture for the adhesive to bond. Here is the full compatibility matrix.
+            Not every patch type accepts iron-on backing. PVC rubber cannot tolerate the heat-press, and chenille yarn has too much texture for the adhesive to bond. Here is the full compatibility matrix. Across our own published order data,{" "}
+            <Link href="/custom-patch-production-data-2026" className="text-panda-green font-semibold underline">
+              81.3% of orders choose iron-on backing
+            </Link>{" "}
+            — it is the default for most patch types precisely because the compatibility list below is so wide.
           </p>
           <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-3">
             <table className="w-full text-sm">

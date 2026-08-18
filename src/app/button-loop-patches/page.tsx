@@ -154,7 +154,13 @@ export default async function ButtonLoopPatchesPage() {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { title: "Scouting", body: "Temporary patches and event insignia that hang from a uniform button and change through the year." },
+              {
+                title: "Scouting",
+                body: "Temporary patches and event insignia that hang from a uniform button and change through the year.",
+                links: [
+                  { href: "/boy-scout-patch-placements-a-complete-guide", label: "Boy Scout uniform badge & placement guide" },
+                ],
+              },
               { title: "Biker & club vests", body: "Club and rally patches that wearers add and rotate without altering the vest." },
               { title: "Trachten & lederhosen", body: "The classic hang-loop look for Bavarian and Alpine traditional dress." },
               { title: "Travel & souvenirs", body: "Collectors hang and swap destination patches across a strap or sash." },
@@ -162,6 +168,17 @@ export default async function ButtonLoopPatchesPage() {
               <div key={u.title} className="bg-white border border-gray-100 rounded-2xl p-6">
                 <h3 className="text-[1rem] font-black text-panda-dark mb-2">{u.title}</h3>
                 <p className="text-[0.875rem] text-gray-600 leading-[1.6]">{u.body}</p>
+                {u.links && (
+                  <ul className="mt-3 space-y-1.5">
+                    {u.links.map((l) => (
+                      <li key={l.href}>
+                        <Link href={l.href} className="text-[0.8125rem] text-panda-green font-semibold underline leading-[1.5]">
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             ))}
           </div>
