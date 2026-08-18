@@ -15,34 +15,32 @@ import { buildPageMetadata } from "@/lib/seo";
 import { getClusterPageData, getUseCaseImages } from "@/lib/clusterPageData";
 import { COUNTRY_HREFLANG } from "@/lib/countryHreflang";
 
-// CL532C_1 item B5 (optional, lowest priority). Same template as UK/CA/AU, with
-// ONE deliberate deviation: those three pages all claim a DDP (duty-paid)
-// basis with the country's own VAT/GST wording. That is NOT copied here.
+// CL532C_1 item B5. Same template as UK/CA/AU, including the DDP claim.
 //
-// Checked before writing: `orders` has exactly 2 German-destination rows. One
-// (a 1-piece Sample Box) has a confirmed FedEx delivery with a real
-// delivered_at timestamp — genuine evidence we can ship to and deliver in
-// Germany. The other is still in production. Neither row records how customs
-// or German import VAT (Einfuhrumsatzsteuer) was actually handled, and EU
-// import-VAT treatment is not the same regime as the UK's — verified true for
-// GB/CA/AU does not carry over automatically. Asserting DDP/no-VAT here would
-// be an unverified financial claim, not a product fact, so it stays out until
-// confirmed. See the FAQ below: shipping cost and timeline are stated plainly;
-// customs/VAT is deliberately not promised either way.
+// That claim was DELIBERATELY held back when this page was first written: the
+// orders table only shows 2 German-destination rows (one a 1-piece Sample Box
+// with a confirmed FedEx delivery, the other still in production), neither
+// recording how customs was actually handled, and EU import VAT
+// (Einfuhrumsatzsteuer) is not the same regime as the UK's post-Brexit one —
+// verified true for GB/CA/AU does not carry over automatically. That was a
+// financial claim without evidence, not a product fact, so it was left out.
+//
+// CEO confirmed 2026-08-18: German shipments clear customs DDP, import VAT
+// paid by us. Brought in line with UK/CA/AU in this pass.
 const CANONICAL = "https://www.pandapatches.com/custom-patches-germany";
 
 export const revalidate = 86400;
 
 const germanyFAQs = [
   {
-    question: "Do you ship custom patches to Germany?",
+    question: "Do I pay import VAT or customs at the border on custom patches in Germany?",
     answer:
-      "Yes, worldwide, including Germany. Shipping is free and handled by DHL or FedEx. The USD price you are quoted at checkout is what you pay Panda Patches; whether German import VAT (Einfuhrumsatzsteuer) or a customs handling fee applies on arrival depends on your order value and courier, so confirm current customs treatment with us before ordering if that matters for your budget.",
+      "No. Panda Patches ships to Germany on a DDP (delivered duty paid) basis, so German import VAT (Einfuhrumsatzsteuer), customs, and any duties are already included and settled before your parcel arrives. The USD price you are quoted is the full amount you pay. There is no import VAT to settle at the border, no duty owed, and no customs handling fee from the courier on delivery.",
   },
   {
     question: "What currency are your prices in?",
     answer:
-      "All prices are in US dollars (USD). We do not bill in EUR, but your card will convert at the day's rate when you pay.",
+      "All prices are in US dollars (USD), and that USD figure is the complete, delivered price. We do not bill in EUR, but your card converts at the day's rate. There are no separate shipping, VAT, or customs charges added at any point; the USD number you approve is exactly what reaches us.",
   },
   {
     question: "How long does delivery to Germany take?",
@@ -67,24 +65,24 @@ const germanyFAQs = [
 ];
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Custom Patches Germany | Worldwide Shipping, From 5 Pieces",
+  title: "Custom Patches Germany | Free Shipping, No Import VAT, From 5 Pieces",
   description:
-    "Custom patches shipped to Germany. Embroidered, PVC, woven, chenille, leather, and button-loop patches for trachten and lederhosen. Free 24h mockup, 5-piece minimum, free worldwide shipping.",
+    "Custom patches shipped to Germany, no import VAT, customs, or hidden fees. The USD price is all you pay. Embroidered, PVC, woven, chenille, leather, and button-loop patches for trachten and lederhosen. Free 24h mockup, 5-piece minimum.",
   url: CANONICAL,
   ogType: "article",
-  ogTitle: "Custom Patches Germany: Worldwide Shipping, Free 24-Hour Mockup",
+  ogTitle: "Custom Patches Germany: Free Shipping, No Import VAT, One All-In USD Price",
   ogDescription:
-    "We ship custom patches to Germany, including button-loop patches for trachten and lederhosen. Embroidered, PVC, woven, chenille and more. Free 24-hour mockup, low 5-piece minimum.",
+    "We ship custom patches to Germany on a DDP basis, no import VAT or customs on arrival. Embroidered, PVC, woven, chenille, leather, and button-loop patches for trachten and lederhosen. Free 24-hour mockup, low 5-piece minimum.",
   twitterDescription:
-    "Custom patches shipped to Germany, including trachten and lederhosen button-loop patches. Free 24h mockup, 5-piece minimum.",
+    "Custom patches shipped to Germany with no import VAT or customs. The USD price is all you pay. Free 24h mockup, 5-piece minimum.",
   robots: { index: true, follow: true },
   alternates: { languages: COUNTRY_HREFLANG },
 });
 
 const articleSchema = generateArticleSchema({
-  title: "Custom Patches in Germany: Worldwide Shipping, Free 24-Hour Mockup",
+  title: "Custom Patches in Germany: Free Shipping, No Import VAT, One All-In USD Price",
   description:
-    "How Panda Patches serves customers in Germany: worldwide shipping, all-in USD pricing, a low 5-piece minimum, a free 24-hour mockup, and button-loop patches for trachten and lederhosen.",
+    "How Panda Patches serves customers in Germany: free DDP delivery with no import VAT or customs, all-in USD pricing, a low 5-piece minimum, a free 24-hour mockup, and button-loop patches for trachten and lederhosen.",
   datePublished: "2026-08-18",
   dateModified: "2026-08-18",
   image: "https://www.pandapatches.com/assets/og-image.png",
@@ -104,7 +102,7 @@ const productSchema = {
   "@type": "Product",
   name: "Custom Patches Shipped to Germany",
   description:
-    "Custom embroidered, PVC, woven, chenille, leather, and button-loop patches shipped to Germany. All-in USD pricing, low 5-piece minimum, free 24-hour mockup.",
+    "Custom embroidered, PVC, woven, chenille, leather, and button-loop patches shipped to Germany on a DDP basis with no import VAT or customs. All-in USD pricing, low 5-piece minimum, free 24-hour mockup.",
   brand: { "@type": "Brand", name: "Panda Patches" },
   offers: {
     "@type": "AggregateOffer",
@@ -155,17 +153,18 @@ export default async function CustomPatchesGermanyPage() {
         simpleForm
         trustBadges={trustBadges}
         customHeading="Custom Patches Germany"
-        customSubheading="Worldwide Shipping, Free 24-Hour Mockup"
-        customDescription="Custom embroidered, PVC, woven, chenille, leather, and button-loop patches shipped to Germany. Free digital mockup within 24 hours, low 5-piece minimum, all-in USD pricing."
+        customSubheading="Free Shipping, No Import VAT, From 5 Pieces"
+        customDescription="Custom embroidered, PVC, woven, chenille, leather, and button-loop patches shipped to Germany on a DDP basis, so the USD price you see is exactly what you pay, with no import VAT or customs at the border. Free digital mockup within 24 hours, low 5-piece minimum."
       />
 
       {/* ANSWER-FIRST */}
       <section className="w-full py-10 md:py-14 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] max-w-[51.25rem]">
-            Yes, Panda Patches ships custom patches to Germany, from a low 5-piece minimum, with free worldwide
-            shipping via DHL or FedEx. Beyond standard embroidered, PVC, woven, chenille, and leather patches, we
-            also produce <strong>button-loop patches</strong> — the traditional hang-loop attachment used on{" "}
+            Yes, Panda Patches ships custom patches to Germany, from a low 5-piece minimum, with free shipping via
+            DHL or FedEx on a <strong>DDP (delivered duty paid)</strong> basis — no import VAT or customs fee on
+            arrival. Beyond standard embroidered, PVC, woven, chenille, and leather patches, we also produce{" "}
+            <strong>button-loop patches</strong> — the traditional hang-loop attachment used on{" "}
             <strong>trachten and lederhosen</strong>. Every order includes a free digital mockup within 24 hours,
             and production starts only after you approve it.
           </p>
