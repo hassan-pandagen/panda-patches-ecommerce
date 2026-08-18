@@ -174,6 +174,8 @@ const PRODUCT_TAGS: Record<string, string[]> = {
   // Until then the leather category page had no route here, so it fell back
   // entirely to general filler.
   "leather": ["leather"],
+  "custom-back-patches": ["embroidered", "sports"],
+  "custom-leather-hat-patches": ["leather"],
 };
 
 interface ReviewSchemaFragment {

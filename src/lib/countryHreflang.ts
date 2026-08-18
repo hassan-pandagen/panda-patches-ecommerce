@@ -12,6 +12,7 @@ export const COUNTRY_HREFLANG = {
   "en-GB": "https://www.pandapatches.com/custom-patches-uk",
   "en-AU": "https://www.pandapatches.com/custom-patches-australia",
   "en-CA": "https://www.pandapatches.com/custom-patches-canada",
+  "de-DE": "https://www.pandapatches.com/custom-patches-germany",
   "en-US": "https://www.pandapatches.com/custom-patches",
   "x-default": "https://www.pandapatches.com/custom-patches",
 } as const;

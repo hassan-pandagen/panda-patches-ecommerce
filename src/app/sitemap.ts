@@ -84,6 +84,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
+      url: `${baseUrl}/custom-patches-germany`,
+      lastModified: new Date('2026-08-18'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/custom-leather-hat-patches`,
+      lastModified: new Date('2026-08-18'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/custom-back-patches`,
+      lastModified: new Date('2026-08-18'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/event-patches`,
       lastModified: new Date('2026-08-16'),
       changeFrequency: 'monthly',
