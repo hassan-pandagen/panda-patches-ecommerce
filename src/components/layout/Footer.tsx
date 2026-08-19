@@ -172,6 +172,7 @@ export default function Footer() {
             <h3 className="font-bold text-lg text-panda-dark text-left pt-2">Patch Options</h3>
             <ul className="space-y-1 text-gray-700 [&_a]:block [&_a]:py-3">
               <li><Link prefetch={false} href="/custom-patches/backing-options">Backing Options</Link></li>
+              <li><Link prefetch={false} href="/custom-iron-on-patches">Iron-On Patches</Link></li>
               <li><Link prefetch={false} href="/sew-on-patches">Sew-On Patches</Link></li>
               <li><Link prefetch={false} href="/adhesive-patches">Adhesive Patches</Link></li>
               <li><Link prefetch={false} href="/magnetic-patches">Magnetic Patches</Link></li>
@@ -194,6 +195,7 @@ export default function Footer() {
               <li><Link prefetch={false} href="/custom-motorcycle-club-patches">Motorcycle Club Patches</Link></li>
               <li><Link prefetch={false} href="/custom-school-patches">School Patches</Link></li>
               <li><Link prefetch={false} href="/custom-fraternity-sorority-patches">Fraternity &amp; Sorority Patches</Link></li>
+              <li><Link prefetch={false} href="/event-patches">Event &amp; Activation Patches</Link></li>
               <li><Link prefetch={false} href="/offers">Patch Packages</Link></li>
               <li><Link prefetch={false} href="/rush-custom-patches">Rush Custom Patches</Link></li>
             </ul>
@@ -216,6 +218,8 @@ export default function Footer() {
               <li><Link prefetch={false} href="/christmas-patches">Christmas Patches</Link></li>
               <li><Link prefetch={false} href="/valentines-day-patches">Valentine&apos;s Day Patches</Link></li>
               <li><Link prefetch={false} href="/patches-for-hats">Patches For Hats</Link></li>
+              <li><Link prefetch={false} href="/custom-back-patches">Back Patches</Link></li>
+              <li><Link prefetch={false} href="/custom-leather-hat-patches">Leather Hat Patches</Link></li>
               <li><Link prefetch={false} href="/custom-jacket-patches">Jacket Patches</Link></li>
               <li><Link prefetch={false} href="/custom-logo-patches">Logo Patches</Link></li>
               <li><Link prefetch={false} href="/motorcycle-patches">Motorcycle Patches</Link></li>
@@ -269,6 +273,7 @@ export default function Footer() {
             <Link prefetch={false} href="/custom-patches-uk" className="inline-flex items-center bg-[#F9FAF5] border border-gray-200 hover:border-panda-green hover:text-panda-green text-panda-dark font-bold text-[0.8125rem] px-5 py-2 rounded-full transition-colors">United Kingdom</Link>
             <Link prefetch={false} href="/custom-patches-australia" className="inline-flex items-center bg-[#F9FAF5] border border-gray-200 hover:border-panda-green hover:text-panda-green text-panda-dark font-bold text-[0.8125rem] px-5 py-2 rounded-full transition-colors">Australia</Link>
             <Link prefetch={false} href="/custom-patches-canada" className="inline-flex items-center bg-[#F9FAF5] border border-gray-200 hover:border-panda-green hover:text-panda-green text-panda-dark font-bold text-[0.8125rem] px-5 py-2 rounded-full transition-colors">Canada</Link>
+            <Link prefetch={false} href="/custom-patches-germany" className="inline-flex items-center bg-[#F9FAF5] border border-gray-200 hover:border-panda-green hover:text-panda-green text-panda-dark font-bold text-[0.8125rem] px-5 py-2 rounded-full transition-colors">Germany</Link>
           </div>
         </div>
 

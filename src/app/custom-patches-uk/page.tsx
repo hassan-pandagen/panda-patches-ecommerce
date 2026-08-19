@@ -122,7 +122,7 @@ const UK_USE_CASES = [
   { title: "Regimental, Military & Veterans", body: "Unit, association, and commemorative patches for serving and ex-service communities.", href: "/custom-patches/embroidered", imgSlug: "custom-military-patches" },
   { title: "Football & Rugby Clubs", body: "Club crests, supporters' group patches, and matchday merch for grassroots and semi-pro sides.", href: "/custom-patches/woven", imgSlug: "industry-sports", contain: true },
   { title: "Scouts & Youth Groups", body: "Section badges, camp and event patches, and group identifiers.", href: "/custom-patches/embroidered", imgSlug: "custom-school-patches" },
-  { title: "Motorcycle Clubs", body: "Back patches, rockers, and centre patches for UK riding clubs.", href: "/custom-patches/leather", imgSlug: "custom-motorcycle-club-patches" },
+  { title: "Motorcycle Clubs", body: "Back patches, rockers, and centre patches for UK riding clubs.", href: "/custom-back-patches", imgSlug: "custom-motorcycle-club-patches" },
   { title: "Schools & Universities", body: "House, society, and society-trip patches plus varsity-style chenille.", href: "/custom-patches/chenille", imgSlug: "custom-fraternity-sorority-patches" },
   { title: "Business & Brand Branding", body: "Logo patches for workwear, caps, and streetwear labels.", href: "/custom-patches/pvc", imgSlug: "custom-corporate-patches" },
 ];

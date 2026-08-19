@@ -35,6 +35,8 @@ export default function VideoSwiper({ videos }: VideoSwiperProps) {
                     videoUrl={item.videoUrl}
                     thumbnail={item.thumbnail ? urlFor(item.thumbnail).width(290).height(410).format('webp').quality(45).url() : undefined}
                     instagramLink={item.link || "https://www.instagram.com/pandapatchesofficial/"}
+                    videoName={item.videoName}
+                    videoDescription={item.videoDescription}
                   />
                 ) : (
                   <div className="w-full h-full bg-gray-200 flex items-center justify-center flex-col gap-2">

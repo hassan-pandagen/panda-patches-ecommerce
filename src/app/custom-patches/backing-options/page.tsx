@@ -170,7 +170,7 @@ export default async function BackingOptionsHubPage() {
           </div>
           <p className="text-gray-500 text-sm leading-relaxed mt-3">
             For a deeper walk-through, see <Link href="/patch-backings-101-iron-on-vs-sew-on-vs-velcro" prefetch={false} className="text-panda-green underline font-semibold">Patch Backings 101</Link> and the
-            full <Link href="/ai-info/specs-and-care" prefetch={false} className="text-panda-green underline font-semibold">specs and care guide</Link>.
+            full <Link href="/ai-info/specs-and-care" prefetch={false} className="text-panda-green underline font-semibold">specs and care guide</Link>. Ordering for hats specifically? See <Link href="/custom-leather-hat-patches" prefetch={false} className="text-panda-green underline font-semibold">custom leather hat patches</Link> for panel sizing and engraving vs. UV printing.
           </p>
         </div>
       </section>

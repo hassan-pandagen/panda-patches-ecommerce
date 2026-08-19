@@ -362,6 +362,34 @@ export default function HeroForm({
          <div className="grid grid-cols-2 gap-3">
            <div className="relative">
              {isKeychains ? (
+               <select {...register("type")} defaultValue="" aria-label="Select keychain type" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+                 <option value="" disabled hidden>Keychain Type</option>
+                 <option value="chenille-keychain">Chenille Keychain</option>
+                 <option value="embroidered-keychain">Embroidered Keychain</option>
+                 <option value="leather-keychain">Leather Keychain</option>
+                 <option value="pvc-keychain">PVC Keychain</option>
+               </select>
+             ) : (
+               <select {...register("type")} defaultValue="" aria-label="Select patch type" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
+                 <option value="" disabled hidden>Patch Type</option>
+                 <option value="embroidered">Embroidered</option>
+                 <option value="3d-embroidered">3D Embroidered Transfers</option>
+                 <option value="chenille">Chenille</option>
+                 <option value="printed">Printed</option>
+                 <option value="pvc">PVC</option>
+                 <option value="woven">Woven</option>
+                 <option value="leather">Leather</option>
+                 <option value="silicone">Silicone Labels</option>
+                 <option value="sequin">Sequin</option>
+                 <option value="chenille-tpu">Chenille TPU</option>
+                 <option value="chenille-glitter">Chenille Glitter</option>
+               </select>
+             )}
+             <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
+           </div>
+
+           <div className="relative">
+             {isKeychains ? (
                <select {...register("size", { required: "Please select a side" })} defaultValue="" aria-label="Select single or double side" aria-invalid={!!errors.size} aria-describedby={errors.size ? "hero-size-error" : undefined} className={`form-input appearance-none text-gray-500 cursor-pointer pr-10 ${errors.size ? 'border-red-400 bg-red-50' : ''}`}>
                  <option value="" disabled hidden>Single or Double Side?</option>
                  <option value="single-side">Single Side</option>
@@ -389,34 +417,6 @@ export default function HeroForm({
              )}
              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
              {errors.size && <p id="hero-size-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.size.message)}</p>}
-           </div>
-
-           <div className="relative">
-             {isKeychains ? (
-               <select {...register("type")} defaultValue="" aria-label="Select keychain type" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
-                 <option value="" disabled hidden>Keychain Type</option>
-                 <option value="chenille-keychain">Chenille Keychain</option>
-                 <option value="embroidered-keychain">Embroidered Keychain</option>
-                 <option value="leather-keychain">Leather Keychain</option>
-                 <option value="pvc-keychain">PVC Keychain</option>
-               </select>
-             ) : (
-               <select {...register("type")} defaultValue="" aria-label="Select patch type" className="form-input appearance-none text-gray-500 cursor-pointer pr-10">
-                 <option value="" disabled hidden>Patch Type</option>
-                 <option value="embroidered">Embroidered</option>
-                 <option value="3d-embroidered">3D Embroidered Transfers</option>
-                 <option value="chenille">Chenille</option>
-                 <option value="printed">Printed</option>
-                 <option value="pvc">PVC</option>
-                 <option value="woven">Woven</option>
-                 <option value="leather">Leather</option>
-                 <option value="silicone">Silicone Labels</option>
-                 <option value="sequin">Sequin</option>
-                 <option value="chenille-tpu">Chenille TPU</option>
-                 <option value="chenille-glitter">Chenille Glitter</option>
-               </select>
-             )}
-             <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
            </div>
          </div>
 

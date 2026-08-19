@@ -44,7 +44,12 @@ const reviews = [
 
 function ReviewCard({ review }: { review: typeof reviews[0] }) {
   return (
-    <div className="bg-white rounded-[16px] p-5 border border-gray-100 shadow-sm h-full flex flex-col">
+    <a
+      href="https://www.trustpilot.com/review/pandapatches.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-white rounded-[16px] p-5 border border-gray-100 shadow-sm h-full flex flex-col hover:shadow-md hover:border-panda-green/40 transition-all"
+    >
       <h3 className="text-[0.875rem] font-bold text-panda-dark mb-2 leading-snug">
         {review.title}
       </h3>
@@ -60,7 +65,7 @@ function ReviewCard({ review }: { review: typeof reviews[0] }) {
           <p className="text-[0.6875rem] text-gray-600">{review.location} · {review.date}</p>
         </div>
       </div>
-    </div>
+    </a>
   );
 }
 

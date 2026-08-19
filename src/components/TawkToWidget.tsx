@@ -143,12 +143,24 @@ function loadTawkScript() {
     } catch { /* noop */ }
   };
 
-  // On mobile, keep widget minimized — do not auto-maximize (avoids CLS)
+  // On mobile, keep widget minimized — do not auto-maximize (avoids CLS).
+  // On desktop, auto-open once per session, 30s after the widget finishes
+  // loading (CL9EE9_1 C.4). The load trigger itself stays interaction-gated
+  // (see the scroll/click/touch listeners below) — this only adds a delayed
+  // open on top of it, it does not change when Tawk loads.
   Tawk_API.onLoad = function () {
     const isMobile = window.innerWidth < 768;
     if (isMobile && Tawk_API.minimize) {
       Tawk_API.minimize();
+      return;
     }
+    if (sessionStorage.getItem('tawk_auto_opened')) return;
+    sessionStorage.setItem('tawk_auto_opened', '1');
+    setTimeout(() => {
+      if ((window as any).Tawk_API?.maximize) {
+        (window as any).Tawk_API.maximize();
+      }
+    }, 30000);
   };
 
   const s1 = document.createElement("script");

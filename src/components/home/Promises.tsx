@@ -9,7 +9,7 @@ interface PromiseItem {
 const defaultPromises: PromiseItem[] = [
   { icon: "/assets/icon-money.svg", title: "Money Back Guarantee", desc: "Your satisfaction owns the patch; our promise ensures it's truly yours!" },
   { icon: "/assets/icon-check.svg", title: "Low Minimums", desc: "Craft your distinct style starting from just 5 patches. Low minimums, maximum creativity!" },
-  { icon: "/assets/icon-mail.svg", title: "Quick Turnaround", desc: "Need it tomorrow? Get it today! Skip the wait with the fast turnaround – 7-14 days, delivered." },
+  { icon: "/assets/icon-mail.svg", title: "Quick Turnaround", desc: "Standard 7-14 business days — rush in hand in as fast as 5 business days on qualifying orders." },
   { icon: "/assets/icon-check.svg", title: "Free Sample First", desc: "For orders 500+, get a free physical sample. Verify quality, color, and sizing before full production." },
 ];
 

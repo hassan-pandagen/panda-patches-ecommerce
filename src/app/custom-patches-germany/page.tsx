@@ -124,7 +124,7 @@ const productSchema = {
 
 const GERMANY_USE_CASES = [
   { title: "Trachten & Lederhosen", body: "Button-loop patches for the traditional hang-loop look on Bavarian and Alpine dress.", href: "/button-loop-patches", imgSlug: "custom-motorcycle-club-patches" },
-  { title: "Motorcycle Clubs", body: "Back patches, rockers, and centre patches in embroidered or chenille.", href: "/custom-patches/leather", imgSlug: "custom-motorcycle-club-patches" },
+  { title: "Motorcycle Clubs", body: "Back patches, rockers, and centre patches in embroidered or chenille.", href: "/custom-back-patches", imgSlug: "custom-motorcycle-club-patches" },
   { title: "Football & Sports Clubs", body: "Club crests and supporters' patches for grassroots and semi-pro sides.", href: "/custom-patches/woven", imgSlug: "industry-sports", contain: true },
   { title: "Scouts & Youth Groups", body: "Section badges, camp and event patches, and group identifiers.", href: "/custom-patches/embroidered", imgSlug: "custom-school-patches" },
   { title: "Schools & Universities", body: "House, society, and varsity-style chenille patches.", href: "/custom-patches/chenille", imgSlug: "custom-fraternity-sorority-patches" },

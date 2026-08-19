@@ -36,6 +36,14 @@ export const internalLinks: InternalLink[] = [
     keywords: ["chenille", "varsity", "letterman", "fuzzy"],
   },
   {
+    // Ordered before the generic leather-patches entry below: AutoLinker matches
+    // keywords in array order and "leather" alone would otherwise claim this text
+    // first, since \bleather\b matches inside "leather hat patch" too.
+    url: "/custom-leather-hat-patches",
+    anchor: "leather hat patches",
+    keywords: ["leather hat patch", "leather cap patch", "laser-engraved leather"],
+  },
+  {
     url: "/custom-patches/leather",
     anchor: "leather patches",
     keywords: ["leather", "premium", "luxury"],

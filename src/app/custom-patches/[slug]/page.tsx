@@ -369,9 +369,33 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
         </section>
       )}
 
-      {/* 13. SEO & FAQ */}
+      {/* LEATHER-ONLY GUIDE BRIDGE → dedicated hat-patch product page (CL9EE9_1 C.6). */}
+      {slug === "leather" && (
+        <section className="w-full py-10 md:py-14 bg-white border-t border-gray-100">
+          <div className="container mx-auto px-4 md:px-6 max-w-[50rem] text-center">
+            <p className="text-gray-500 text-[0.75rem] font-semibold uppercase tracking-widest mb-2">Popular Application</p>
+            <h2 className="text-[1.25rem] md:text-[1.625rem] font-black text-panda-dark mb-3 leading-tight">
+              Ordering leather patches for hats?
+            </h2>
+            <p className="text-gray-600 text-[0.875rem] md:text-[0.9375rem] leading-[1.7] mb-5 max-w-[38.75rem] mx-auto">
+              Hats need panel-specific sizing and a choice between laser engraving and UV printing. Our dedicated leather hat patches page covers both in detail.
+            </p>
+            <Link
+              href="/custom-leather-hat-patches"
+              prefetch={false}
+              className="inline-flex items-center gap-2 text-panda-green font-black text-[0.8125rem] uppercase tracking-widest underline underline-offset-4 hover:text-panda-dark transition-colors"
+            >
+              Custom leather hat patches →
+            </Link>
+          </div>
+        </section>
+      )}
+
+      {/* 13. SEO & FAQ — same source as the FAQPage schema above, so the visible
+          page matches what's marked up (was rendering genericFaqs while the
+          schema used the per-slug set; CL9EE9_1 follow-up). */}
       <ContentSection />
-      <FAQ />
+      <FAQ questions={slugFaqMap[slug] ?? genericFaqs} />
 
       {/* 13. CTA */}
       <CTASection />

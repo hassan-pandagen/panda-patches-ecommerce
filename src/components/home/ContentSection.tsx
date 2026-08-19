@@ -15,43 +15,23 @@ async function getContentData() {
 export default async function ContentSection() {
   const data = await getContentData();
 
-  // Fallback Data (Matches your Figma Screenshot)
+  // Fallback Data — single short section (no `content` doc exists in Sanity,
+  // so this is what actually renders). Replaces the legacy 2023-style triple
+  // keyword-filler section; routes the topical equity to the dedicated page
+  // instead of repeating it here. No new factual claims.
   const sections = data?.sections || [
     {
-      heading: "Delivering Personalized Iron On Patches Around the US",
+      heading: "Custom Iron-On Patches",
       body: [
         {
           _type: "block",
           children: [
-            { _type: "span", text: "If you are looking for Personalized Iron On Patches of top notch quality in the US, then you are at the right place. At Panda Patches, quality is our USP, and customer satisfaction has been our top priority from the beginning. As we say \"a happy customer is worth every Patch\"." }
-          ]
-        },
-        {
-          _type: "block",
-          children: [
-            { _type: "span", text: "From guiding our customers to delivering the top notch product at your door step, Panda Patches has got you covered. Whether it is a Custom Embroidered Patch, a Custom PVC Patch, or personalized patches for jackets, we ensure the best quality patches in the US." }
-          ]
-        }
-      ]
-    },
-    {
-      heading: "Get Your Favorite Iron On Patches In The US",
-      body: [
-        {
-          _type: "block",
-          children: [
-            { _type: "span", text: "Panda Patches is a leading provider of high-quality, personalized iron on patches in the United States. Known for our craftsmanship and attention to detail, we specialize in creating bespoke iron on patches that add a unique touch to any garment or accessory." }
-          ]
-        }
-      ]
-    },
-    {
-      heading: "Looking For Iron On Patches In The US?",
-      body: [
-        {
-          _type: "block",
-          children: [
-            { _type: "span", text: "We pride ourselves on offering the best iron on patches in the US that are tailor made to your specifications. Our design team works closely with clients to bring their visions to life, creating unique pieces that stand out." }
+            { _type: "span", text: "Iron-on is one of the backing options available on every custom patch we make. See sizing, pricing, and application details on our dedicated ", marks: [] },
+            { _type: "span", text: "custom iron-on patches page", marks: ["ironOnLink"] },
+            { _type: "span", text: ".", marks: [] }
+          ],
+          markDefs: [
+            { _key: "ironOnLink", _type: "link", href: "/custom-iron-on-patches" }
           ]
         }
       ]

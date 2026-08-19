@@ -317,7 +317,8 @@ export default async function LocationsHubPage() {
             Do not see your city?
           </h2>
           <p className="text-[0.875rem] md:text-[1rem] text-gray-300 mb-6 max-w-[560px] mx-auto leading-[1.6]">
-            Every order ships free worldwide. Use the main quote form or chat with us. We have shipped to all 50 states and 40+ countries.
+            Every order ships free worldwide, Duty-Paid with no VAT or customs on arrival — including{" "}
+            <Link href="/custom-patches-germany" className="underline hover:text-panda-yellow transition-colors">Germany</Link>. Use the main quote form or chat with us. We have shipped to all 50 states and 40+ countries.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link

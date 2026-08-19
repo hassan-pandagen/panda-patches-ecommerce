@@ -34,7 +34,7 @@ export const genericFaqs = [
   },
   {
     question: "Do you offer international shipping?",
-    answer: "YES! We ship to Canada, Mexico, UK, Europe, Australia, New Zealand, Japan, Asia, and most other countries. Shipping times: Canada 5-10 days ($15-30), Mexico 7-15 days ($20-40), UK/Europe 10-15 days ($25-60), Australia 12-20 days ($40-80), Asia 14-21 days ($50-100). Express option reduces delivery to 7-10 days post-customs."
+    answer: "YES — we ship worldwide, and it's free. Every order includes Duty-Paid (DDP) shipping: the price you see is the price you pay, with no VAT, GST, or customs charges on arrival. Standard delivery is 7 to 14 business days after you approve the digital mockup; an economy option (16 to 18 business days) saves 5 percent off the order total. We ship regularly to the UK, Australia, Canada, and Germany, plus most other countries worldwide."
   },
   {
     question: "What's your satisfaction guarantee?",

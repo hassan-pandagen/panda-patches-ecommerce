@@ -122,7 +122,7 @@ const AU_USE_CASES = [
   { title: "AFL, NRL & Rugby Clubs", body: "Club crests and supporter patches in fine woven detail for local sides.", href: "/custom-patches/woven", imgSlug: "industry-sports", contain: true },
   { title: "Scouts Australia", body: "Section badges, camp patches, and group identifiers.", href: "/custom-patches/embroidered", imgSlug: "custom-school-patches" },
   { title: "Mining, Trades & Hi-Vis", body: "Durable logo patches for workwear, hi-vis, and safety apparel branding.", href: "/custom-patches/pvc", imgSlug: "custom-corporate-patches" },
-  { title: "Motorcycle Clubs", body: "Back patches, rockers, and centre patches for Australian riding clubs.", href: "/custom-patches/leather", imgSlug: "custom-motorcycle-club-patches" },
+  { title: "Motorcycle Clubs", body: "Back patches, rockers, and centre patches for Australian riding clubs.", href: "/custom-back-patches", imgSlug: "custom-motorcycle-club-patches" },
 ];
 
 export default async function CustomPatchesAustraliaPage() {

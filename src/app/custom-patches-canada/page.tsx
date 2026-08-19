@@ -121,7 +121,7 @@ const CA_USE_CASES = [
   { title: "Scouts & Guides Canada", body: "Section badges, camp patches, and group identifiers.", href: "/custom-patches/embroidered", imgSlug: "custom-school-patches" },
   { title: "Fire, Police & EMS", body: "Service and unit patches for first responders.", href: "/custom-ems-patches", imgSlug: "custom-military-patches" },
   { title: "Schools & Universities", body: "Varsity letters, house patches, and faculty crests.", href: "/custom-letterman-patches", imgSlug: "custom-fraternity-sorority-patches" },
-  { title: "Motorcycle Clubs", body: "Back patches, rockers, and centre patches for Canadian riding clubs.", href: "/custom-patches/leather", imgSlug: "custom-motorcycle-club-patches" },
+  { title: "Motorcycle Clubs", body: "Back patches, rockers, and centre patches for Canadian riding clubs.", href: "/custom-back-patches", imgSlug: "custom-motorcycle-club-patches" },
   { title: "Business & Promo", body: "Logo patches for workwear, caps, and brand merch.", href: "/custom-patches/pvc", imgSlug: "custom-corporate-patches" },
 ];
 

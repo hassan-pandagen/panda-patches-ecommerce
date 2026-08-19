@@ -8,9 +8,12 @@ interface VideoPlayerProps {
   videoUrl: string;
   thumbnail?: string;
   instagramLink?: string;
+  videoName?: string;
+  videoDescription?: string;
 }
 
-export default function VideoPlayer({ videoUrl, thumbnail, instagramLink }: VideoPlayerProps) {
+export default function VideoPlayer({ videoUrl, thumbnail, instagramLink, videoName, videoDescription }: VideoPlayerProps) {
+  const altText = videoName || videoDescription || "Panda Patches customer order video";
   const [isHovered, setIsHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -121,13 +124,15 @@ export default function VideoPlayer({ videoUrl, thumbnail, instagramLink }: Vide
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleContainerClick}
+      role="button"
+      aria-label={`Play video: ${altText}`}
     >
       {/* Thumbnail (shown when not hovering or clicking) */}
       {!isHovered && !isClicked && thumbnail && (
         <div className="absolute inset-0 z-10">
           <Image
              src={thumbnail}
-             alt="Video thumbnail"
+             alt={altText}
              fill
              loading="lazy"
              className="object-cover"
