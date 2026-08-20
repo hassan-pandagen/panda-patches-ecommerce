@@ -92,8 +92,8 @@ export default function PandaVsSignature() {
             },
           ]}
           primaryQuote={{
-            text: "My experience with Panda Patches was quite positive. They were impressively on time with both delivery and service. The quality of the material used for the patches was excellent.",
-            author: "Taye S.",
+            text: "The patches were great. Had to figure out how to install but I asked for directions and you provided it. I will get more.",
+            author: "Jeffrey B.",
             role: "Verified customer",
           }}
           comparisonRows={[

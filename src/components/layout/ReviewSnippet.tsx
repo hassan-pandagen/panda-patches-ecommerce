@@ -7,11 +7,11 @@ const REVIEWS = [
     color: "bg-purple-500",
   },
   {
-    quote: "Impressively on time with both delivery and service. The quality of the material was excellent. I would recommend Panda Patches for anyone looking for reliable service.",
-    name: "Taye S.",
+    quote: "The patches were great. Had to figure out how to install but I asked for directions and you provided it. I will get more.",
+    name: "Jeffrey B.",
     location: "US",
-    initials: "TS",
-    color: "bg-teal-500",
+    initials: "JB",
+    color: "bg-blue-500",
   },
   {
     quote: "They make the greatest patch work I've seen. They are trustworthy and I have not once messaged them that they haven't messaged me back that same day or early the next.",

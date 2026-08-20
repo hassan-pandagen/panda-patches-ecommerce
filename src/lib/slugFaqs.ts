@@ -137,7 +137,7 @@ const leatherFaqs: FAQItem[] = [
   },
   {
     question: "What is the minimum order for leather patches?",
-    answer: "Our minimum order for leather patches is 10 pieces. For genuine leather, longer production time (14-18 business days) is standard due to material preparation and hand-finishing. Rush options are available."
+    answer: "Our minimum order for leather patches is 5 pieces, the same low minimum as embroidered, PVC, and chenille. Standard production is 7 to 14 business days after mockup approval, the same as every other patch type. Rush options are available."
   },
 ];
 

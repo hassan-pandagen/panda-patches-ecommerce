@@ -20,6 +20,18 @@ export const metadata: Metadata = buildPageMetadata({
 // Add new ones there first, then mirror here. Do not invent reviews.
 const FEATURED_REVIEWS = [
   {
+    name: "Emma U.",
+    date: "Aug 19, 2026",
+    title: "Panda patches delivered fast",
+    body: "Panda patches delivered fast and with excellent quality.",
+  },
+  {
+    name: "Jeffrey B.",
+    date: "Aug 15, 2026",
+    title: "The patches were great",
+    body: "The patches were great. Had to figure out how to install but I asked for directions and you provided it. I will get more. Just trying to to decide how many for what style.",
+  },
+  {
     name: "Whitney",
     date: "Jun 8, 2026",
     title: "Better than expected",
@@ -138,12 +150,6 @@ const FEATURED_REVIEWS = [
     date: "Nov 30, 2025",
     title: "Makes it simple",
     body: "Panda Patches makes it simple to do business with them. Great customer service and prompt with response.",
-  },
-  {
-    name: "Taye S.",
-    date: "Nov 28, 2025",
-    title: "Impressively on time",
-    body: "My experience with Panda Patches was quite positive. They were impressively on time with both delivery and service. No unexpected delays or last-minute changes. The quality of the material used for the patches was excellent. It felt sturdy yet flexible, which is essential for long-lasting wear.",
   },
   {
     name: "Wesley B.",

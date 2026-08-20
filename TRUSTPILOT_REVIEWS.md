@@ -9,14 +9,23 @@
 | | Value |
 |---|---|
 | TrustScore | **4.8** |
-| Total reviews | **85** |
-| 5★ | 96% |
-| 4★ | 2% |
-| 3★ | 0% |
-| 2★ | 0% |
-| 1★ | 2% |
-| Last synced | **2026-08-14** (score, total and star split, all from the live profile header) |
+| Total reviews | **87** |
+| 5★ | 96% (carried from 2026-08-14 read; not re-verified this pass — see note) |
+| 4★ | 2% (carried from 2026-08-14 read; not re-verified this pass — see note) |
+| 3★ | 0% (carried from 2026-08-14 read; not re-verified this pass — see note) |
+| 2★ | 0% (carried from 2026-08-14 read; not re-verified this pass — see note) |
+| 1★ | 2% (carried from 2026-08-14 read; not re-verified this pass — see note) |
+| Last synced | **2026-08-20** (score and total from the live profile header; star split carried forward, see note) |
 
+> **Verified 2026-08-20.** Score (4.8) and total (87) read off the live
+> profile header. Star-split percentages were NOT independently re-read this
+> pass — carried forward from the 2026-08-14 figures below since nothing
+> suggested a shift, not re-confirmed on-screen. Re-verify next sync.
+>
+> **The count reconciles exactly.** The 14 Aug read was 85. Jeffrey Bluford
+> (15 Aug) and Emma Ungstrup (19 Aug) both went live between the two reads,
+> and 85 + 2 = **87**. Nothing else changed. Both are logged below.
+>
 > **Fully verified 2026-08-14.** Score, total and star split were all read off
 > the live profile. Profile claimed August 2023.
 >
@@ -45,6 +54,12 @@
 ---
 
 ## Reviews (newest first)
+
+### 2026-08-19 · Emma Ungstrup (DK) · ★★★★★ · [general]
+**panda patches delivered fast** — panda patches delivered fast and with excellent quality
+
+### 2026-08-15 · Jeffrey Bluford (US) · ★★★★★ · [general]
+**The patches were great** — The patches were great. Had to figure out how to install but I asked for directions and you provided it. I will get more. Just trying to to decide how many for what style.
 
 ### 2026-08-13 · Emily Rodgers (US) · ★★★★★ · [event, hats, leather, woven, rush, repeat]
 **Exactly what we wanted!** — Lance was great to work with and helped us out with a project that needed to be turned around quickly. He stayed on top of order and communicated well throughout the entire process. The patches ordered turned out great and our guests were excited to create their hats with the designs.

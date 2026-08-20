@@ -11,11 +11,11 @@
  *   3. Update TRUSTPILOT_REVIEWS.md "last updated" date
  *   4. Ship the change
  *
- * Current: TrustScore 4.8, count 85, verified on the live profile 14 Aug 2026.
- * Previous: 4.8 / 83 (13 Aug), 4.7 / 76 (July 2026, MASTER brief v3 §0.9). The
- * 83 -> 85 step reconciles exactly: Kelly Paschall (9 Aug) and Emily Rodgers
- * (13 Aug) both went live between the two reads, and nothing else changed. That
- * also retires the old "±1 discrepancy" note in TRUSTPILOT_REVIEWS.md.
+ * Current: TrustScore 4.8, count 87, verified on the live profile 20 Aug 2026.
+ * Previous: 4.8 / 85 (14 Aug), 4.8 / 83 (13 Aug), 4.7 / 76 (July 2026, MASTER
+ * brief v3 §0.9). The 85 -> 87 step reconciles exactly: Jeffrey Bluford
+ * (15 Aug) and Emma Ungstrup (19 Aug) both went live between the two reads,
+ * and nothing else changed.
  *
  * Note an older brief flagged "4.8 from 72" as a stale error, so 4.8 is now
  * correct for a different reason. Check the COUNT, not just the score, before
@@ -36,7 +36,7 @@
  */
 
 export const TRUSTPILOT_RATING = "4.8";
-export const TRUSTPILOT_REVIEW_COUNT = 85;
+export const TRUSTPILOT_REVIEW_COUNT = 87;
 export const TRUSTPILOT_REVIEW_COUNT_STR = String(TRUSTPILOT_REVIEW_COUNT);
 export const TRUSTPILOT_PROFILE_URL =
   "https://www.trustpilot.com/review/pandapatches.com";

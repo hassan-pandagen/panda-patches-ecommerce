@@ -23,13 +23,16 @@ const reviews = [
     color: "bg-green-500",
   },
   {
-    name: "Taye S.",
+    // Replaced "Taye S." (Nov 28 2025) — not found in the canonical Trustpilot
+    // log despite the date range being covered; CEO confirmed 2026-08-20 no
+    // such review exists. Swapped for a real, verified review instead.
+    name: "Jeffrey B.",
     location: "US",
-    date: "Nov 28, 2025",
-    title: "On time and great quality",
-    body: "My experience was quite positive. They were impressively on time with both delivery and service. The quality of the material was excellent. It felt sturdy yet flexible, which is essential for long-lasting wear. I would recommend Panda Patches for anyone looking for reliable service.",
-    initials: "TS",
-    color: "bg-teal-500",
+    date: "Aug 15, 2026",
+    title: "The patches were great",
+    body: "The patches were great. Had to figure out how to install but I asked for directions and you provided it. I will get more. Just trying to to decide how many for what style.",
+    initials: "JB",
+    color: "bg-blue-500",
   },
   {
     name: "Javier P.",
