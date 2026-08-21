@@ -9,6 +9,7 @@ import AttributionCapture from "@/components/AttributionCapture";
 // Lazy load non-critical components
 const TawkToWidget = dynamic(() => import("@/components/TawkToWidget"), { ssr: true });
 const CallNowPopup = dynamic(() => import("@/components/CallNowPopup"), { ssr: true });
+const WebVitalsReporter = dynamic(() => import("@/components/WebVitalsReporter"), { ssr: true });
 
 // Configure Outfit Font — display:"optional" prevents font-swap CLS across the
 // whole site. Browser waits ~100ms for Outfit; if it arrives, use it, otherwise
@@ -186,6 +187,9 @@ if(d.readyState==='complete'){startTimers();}else{w.addEventListener('load',star
 
         {/* Call Now Popup — appears after 60s of browsing */}
         <CallNowPopup />
+
+        {/* Real-user Core Web Vitals + CLS attribution, see /api/web-vitals */}
+        <WebVitalsReporter />
 
       </body>
     </html>

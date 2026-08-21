@@ -18,7 +18,10 @@ const QuoteSchema = z.object({
   details: z.object({
     width: z.number().min(0).max(50),
     height: z.number().min(0).max(50),
-    quantity: z.number().int().min(5, 'Minimum order is 5 pieces').max(100000),
+    // Base sanity check only — the real 5-piece minimum is enforced below via
+    // superRefine, skipped when `serviceOnly` is set (digitizing/vector-conversion
+    // quotes aren't a patch-quantity order at all).
+    quantity: z.number().int().min(1).max(100000),
     backing: z.string().min(1).max(50),
     placement: z.string().max(200).optional().or(z.literal('')),
     instructions: z.string().max(2000).optional().or(z.literal('')),
@@ -59,6 +62,17 @@ const QuoteSchema = z.object({
   internalOnly: z.boolean().optional(),
   // Client-side bot-speed heuristic. Suspicious leads are FLAGGED, never dropped (P0-4).
   botSignal: z.boolean().optional(),
+  // Design-service quotes (embroidery digitizing, raster-to-vector conversion) are
+  // priced per job, not per patch — set true to skip the 5-piece minimum below.
+  serviceOnly: z.boolean().optional(),
+}).superRefine((data, ctx) => {
+  if (!data.serviceOnly && data.details.quantity < 5) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Minimum order is 5 pieces',
+      path: ['details', 'quantity'],
+    });
+  }
 });
 
 function esc(s: string) {

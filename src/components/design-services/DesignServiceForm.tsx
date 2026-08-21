@@ -19,8 +19,8 @@ const COPY = {
   digitizing: {
     heading: "Get Your Free Digitizing Quote",
     subheading: "Free trial. We respond within 2 hours.",
-    formatLabel: "Format Required",
-    formatPlaceholder: "Format Required (e.g. DST, PES, JEF)",
+    formatLabel: "Format (optional)",
+    formatPlaceholder: "Format, if known (e.g. DST, PES, JEF)",
     submitLabel: "Get My Digitizing Quote",
     successText: "Quote request received. Our design team will respond within 2 business hours.",
     sourceTag: "DIGITIZING_QUOTE_FORM",
@@ -30,8 +30,8 @@ const COPY = {
   vector: {
     heading: "Get Your Free Vector Quote",
     subheading: "Free trial. We respond within 2 hours.",
-    formatLabel: "Format Required",
-    formatPlaceholder: "Format Required (e.g. AI, EPS, SVG, PDF)",
+    formatLabel: "Format (optional)",
+    formatPlaceholder: "Format, if known (e.g. AI, EPS, SVG, PDF)",
     submitLabel: "Get My Vector Quote",
     successText: "Quote request received. Our design team will respond within 2 business hours.",
     sourceTag: "VECTOR_QUOTE_FORM",
@@ -164,6 +164,13 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
             email: sanitizeEmail(data.email),
             phone: sanitizePhone(data.phone || ""),
           },
+          // A digitizing/vector-conversion request is one job, not a patch order —
+          // serviceOnly tells /api/quote to skip the 5-piece patch minimum (it
+          // previously hardcoded quantity: 1 against that minimum with no flag,
+          // which failed 100% of submissions since this form shipped 2026-06-06,
+          // 3 days after the minimum was added in 67a1bae — confirmed zero rows in
+          // `quotes` from either DIGITIZING_QUOTE_FORM or VECTOR_QUOTE_FORM, ever).
+          serviceOnly: true,
           details: {
             quantity: 1,
             width: Math.min(isNaN(parsedW) ? 3 : parsedW, 50),
@@ -313,8 +320,8 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
               </div>
               <div>
                 <input
-                  {...register("formatRequired", { required: "Format is required" })}
-                  placeholder={`${copy.formatPlaceholder} *`}
+                  {...register("formatRequired")}
+                  placeholder={copy.formatPlaceholder}
                   aria-label={copy.formatPlaceholder}
                   aria-invalid={!!errors.formatRequired}
                   aria-describedby={errors.formatRequired ? "design-format-error" : undefined}
