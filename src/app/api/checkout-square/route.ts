@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 import { z } from 'zod';
 import { randomUUID } from 'crypto';
 import { calculatePatchPrice } from '@/lib/pricingCalculator';
@@ -240,23 +240,26 @@ export async function POST(req: Request) {
     // Server CAPI InitiateCheckout (mirrors browser fbq via shared eventId).
     if (initiateCheckoutEventId) {
       const [icFirstName, ...icLastParts] = (customer.name || '').trim().split(/\s+/);
-      sendMetaEvent({
-        eventName: 'InitiateCheckout',
-        eventId: initiateCheckoutEventId,
-        actionSource: 'website',
-        eventSourceUrl: pageUrl,
-        email: customer.email,
-        phone: customer.phone || null,
-        firstName: icFirstName,
-        lastName: icLastParts.join(' ') || null,
-        attribution: { ...(attribution || {}), client_ip: clientIp || undefined, client_ua: ua || undefined },
-        value: finalPrice,
-        currency: 'USD',
-        contentName: productName,
-        contentCategory: 'Custom Patches',
-        numItems: quantity,
-        orderId: token,
-      }).catch((err) => console.error('[META CAPI] InitiateCheckout (Square) send failed:', err));
+      // after(): see checkout-offers-square — avoids the fetch racing the response.
+      after(() =>
+        sendMetaEvent({
+          eventName: 'InitiateCheckout',
+          eventId: initiateCheckoutEventId,
+          actionSource: 'website',
+          eventSourceUrl: pageUrl,
+          email: customer.email,
+          phone: customer.phone || null,
+          firstName: icFirstName,
+          lastName: icLastParts.join(' ') || null,
+          attribution: { ...(attribution || {}), client_ip: clientIp || undefined, client_ua: ua || undefined },
+          value: finalPrice,
+          currency: 'USD',
+          contentName: productName,
+          contentCategory: 'Custom Patches',
+          numItems: quantity,
+          orderId: token,
+        }).catch((err) => console.error('[META CAPI] InitiateCheckout (Square) send failed:', err))
+      );
     }
 
     return NextResponse.json({ url });

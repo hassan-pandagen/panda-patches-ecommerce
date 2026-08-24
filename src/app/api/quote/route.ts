@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 import { z } from 'zod';
 import { SendMailClient } from 'zeptomail';
 import { sendMetaEvent } from '@/lib/metaCapi';
@@ -400,31 +400,39 @@ export async function POST(req: Request) {
       console.error('Supabase quotes insert error (non-blocking):', dbError);
     }
 
-    // Fire Meta CAPI Lead event (non-blocking).
+    // Fire Meta CAPI Lead event (non-blocking, but kept alive via after() — a bare
+    // fire-and-forget fetch races Next.js returning the response below, and Vercel
+    // can freeze/tear down the function mid-flight, which surfaces as a network-level
+    // "fetch failed" / SocketError rather than an actual Meta-side failure (seen
+    // recurring in production logs, 2026-08-24). after() defers this until the
+    // response has been sent WITHOUT blocking it, but keeps the function alive so the
+    // request actually completes instead of getting cut off.
     // Uses the client-supplied event_id if present so browser pixel + server dedupe.
     const leadEventId = clientEventId || `lead_${Date.now()}_${customer.email.slice(0, 8)}`;
     const [firstName, ...lastParts] = customer.name.trim().split(/\s+/);
     const lastName = lastParts.join(' ') || undefined;
     // Suspected bots never reach Meta — protects ad-optimization signal quality.
-    if (!suspectedBot) sendMetaEvent({
-      eventName: 'Lead',
-      eventId: leadEventId,
-      actionSource: 'website',
-      email: customer.email,
-      phone: customer.phone || null,
-      firstName,
-      lastName,
-      externalId: customer.email,
-      attribution,
-      eventSourceUrl: pageUrl || attribution.page_url,
-      // Always send value AND currency together. Meta rejects partial pairs (48% of Lead events were failing this).
-      // For leads with no priced calculator (home form, bulk form), send value: 0.
-      value: basePrice || 0,
-      currency: 'USD',
-      numItems: details.quantity,
-      contentName: isBulkOrder ? 'Bulk Quote Request' : 'Quote Request',
-      contentCategory: details.patchType || 'Custom Patches',
-    }).catch((err) => console.error('[META CAPI] Lead send failed (non-blocking):', err));
+    if (!suspectedBot) after(() =>
+      sendMetaEvent({
+        eventName: 'Lead',
+        eventId: leadEventId,
+        actionSource: 'website',
+        email: customer.email,
+        phone: customer.phone || null,
+        firstName,
+        lastName,
+        externalId: customer.email,
+        attribution,
+        eventSourceUrl: pageUrl || attribution.page_url,
+        // Always send value AND currency together. Meta rejects partial pairs (48% of Lead events were failing this).
+        // For leads with no priced calculator (home form, bulk form), send value: 0.
+        value: basePrice || 0,
+        currency: 'USD',
+        numItems: details.quantity,
+        contentName: isBulkOrder ? 'Bulk Quote Request' : 'Quote Request',
+        contentCategory: details.patchType || 'Custom Patches',
+      }).catch((err) => console.error('[META CAPI] Lead send failed (non-blocking):', err))
+    );
 
     return NextResponse.json({ success: true });
 

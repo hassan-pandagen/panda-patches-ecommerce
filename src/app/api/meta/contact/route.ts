@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse, after } from 'next/server';
 import { sendMetaEvent, type Attribution } from '@/lib/metaCapi';
 
 /**
@@ -30,18 +30,21 @@ export async function POST(req: NextRequest) {
       page_url: referer,
     };
 
-    sendMetaEvent({
-      eventName: 'Contact',
-      eventId,
-      actionSource: 'chat',
-      eventSourceUrl: referer,
-      email: typeof email === 'string' ? email : null,
-      phone: typeof phone === 'string' ? phone : null,
-      firstName: typeof firstName === 'string' ? firstName : null,
-      attribution,
-      contentName: 'Tawk Chat Started',
-      contentCategory: typeof source === 'string' ? source : 'tawk',
-    }).catch((err) => console.error('[META CAPI] Contact send failed:', err));
+    // after(): see /api/quote — avoids the fetch racing the response.
+    after(() =>
+      sendMetaEvent({
+        eventName: 'Contact',
+        eventId,
+        actionSource: 'chat',
+        eventSourceUrl: referer,
+        email: typeof email === 'string' ? email : null,
+        phone: typeof phone === 'string' ? phone : null,
+        firstName: typeof firstName === 'string' ? firstName : null,
+        attribution,
+        contentName: 'Tawk Chat Started',
+        contentCategory: typeof source === 'string' ? source : 'tawk',
+      }).catch((err) => console.error('[META CAPI] Contact send failed:', err))
+    );
 
     return NextResponse.json({ ok: true });
   } catch (err) {

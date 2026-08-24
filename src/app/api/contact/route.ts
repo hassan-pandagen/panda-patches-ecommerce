@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 import { z } from 'zod';
 import { SendMailClient } from 'zeptomail';
 import { getAttributionFromRequest } from '@/lib/attribution';
@@ -65,21 +65,24 @@ export async function POST(request: Request) {
     // platform the signal (P0-5). Suspected bots are excluded to protect signal quality.
     if (!suspectedBot) {
       const [firstName, ...lastParts] = name.trim().split(/\s+/);
-      sendMetaEvent({
-        eventName: 'Lead',
-        eventId: `contact_${Date.now()}_${email.slice(0, 8)}`,
-        actionSource: 'website',
-        email,
-        firstName,
-        lastName: lastParts.join(' ') || undefined,
-        externalId: email,
-        attribution,
-        eventSourceUrl: pageUrl || attribution.page_url,
-        value: 0,
-        currency: 'USD',
-        contentName: 'Contact Form',
-        contentCategory: 'Custom Patches',
-      }).catch((err) => console.error('[META CAPI] Contact Lead send failed (non-blocking):', err));
+      // after(): see /api/quote — avoids the fetch racing the response.
+      after(() =>
+        sendMetaEvent({
+          eventName: 'Lead',
+          eventId: `contact_${Date.now()}_${email.slice(0, 8)}`,
+          actionSource: 'website',
+          email,
+          firstName,
+          lastName: lastParts.join(' ') || undefined,
+          externalId: email,
+          attribution,
+          eventSourceUrl: pageUrl || attribution.page_url,
+          value: 0,
+          currency: 'USD',
+          contentName: 'Contact Form',
+          contentCategory: 'Custom Patches',
+        }).catch((err) => console.error('[META CAPI] Contact Lead send failed (non-blocking):', err))
+      );
     }
 
     // Escape HTML to prevent injection in email body

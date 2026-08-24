@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 import { sendMetaEvent } from '@/lib/metaCapi';
 import { getAttributionFromRequest } from '@/lib/attribution';
 import type { Attribution } from '@/lib/metaCapi';
@@ -46,19 +46,22 @@ export async function POST(req: Request) {
     const eventId = clientEventId || `contact_${Date.now()}_${email.slice(0, 8)}`;
     const [firstName, ...lastParts] = (name || '').trim().split(/\s+/);
     const lastName = lastParts.join(' ') || undefined;
-    sendMetaEvent({
-      eventName: 'Contact',
-      eventId,
-      actionSource: 'website',
-      email,
-      phone: phone || null,
-      firstName: firstName || undefined,
-      lastName,
-      attribution,
-      eventSourceUrl: attribution.page_url,
-      contentName: 'Partial Quote Form',
-      contentCategory: source || 'PARTIAL_LEAD',
-    }).catch((err) => console.error('[META CAPI] Contact send failed (non-blocking):', err));
+    // after(): see /api/quote — avoids the fetch racing the response.
+    after(() =>
+      sendMetaEvent({
+        eventName: 'Contact',
+        eventId,
+        actionSource: 'website',
+        email,
+        phone: phone || null,
+        firstName: firstName || undefined,
+        lastName,
+        attribution,
+        eventSourceUrl: attribution.page_url,
+        contentName: 'Partial Quote Form',
+        contentCategory: source || 'PARTIAL_LEAD',
+      }).catch((err) => console.error('[META CAPI] Contact send failed (non-blocking):', err))
+    );
 
     return NextResponse.json({ ok: true });
   } catch {

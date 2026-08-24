@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 import { customerOrderRef } from '@/lib/orderRef';
 import { resolveLeadSource } from '@/lib/attribution';
 import { sendMetaEvent, type Attribution } from '@/lib/metaCapi';
@@ -165,35 +165,45 @@ export async function POST(req: Request) {
     }
 
     // Auto-provision a customer account (non-blocking).
-    ensureCustomerAccount({
-      email: validEmail,
-      fullName: validName,
-      phone: d.customer_phone || null,
-      orderNumber: orderRef,
-    }).catch((e) => console.error('[square webhook] ensureCustomerAccount failed (non-blocking):', e));
+    // after(): both calls below are fire-and-forget background work that used to race
+    // this handler's response — Vercel can freeze/kill the function mid-flight once a
+    // response is returned, surfacing as a network-level SocketError rather than a
+    // real failure (recurring in prod logs, 2026-08-24 audit). after() defers each
+    // until the response has been sent, without blocking it, but keeps the function
+    // alive so they actually complete.
+    after(() =>
+      ensureCustomerAccount({
+        email: validEmail,
+        fullName: validName,
+        phone: d.customer_phone || null,
+        orderNumber: orderRef,
+      }).catch((e) => console.error('[square webhook] ensureCustomerAccount failed (non-blocking):', e))
+    );
 
     // Meta CAPI Purchase (non-blocking). Shared eventId with the browser pixel.
     const [firstName, ...lastParts] = validName.trim().split(/\s+/);
-    sendMetaEvent({
-      eventName: 'Purchase',
-      // Dedup key is the pending-order TOKEN, not payment.id, because the success
-      // page only knows the token (?ref=) and fires the browser pixel with the same
-      // `${token}_purchase`. Keeps Meta from double-counting Square purchases.
-      eventId: `${token}_purchase`,
-      actionSource: 'website',
-      email: validEmail,
-      phone: d.customer_phone || null,
-      firstName,
-      lastName: lastParts.join(' ') || undefined,
-      externalId: validEmail,
-      attribution,
-      value: amountPaid,
-      currency: 'USD',
-      orderId: orderRef,
-      numItems: inserted.patches_quantity || undefined,
-      contentName: d.product_name || 'Custom Patches Order',
-      contentCategory: 'Custom Patches',
-    }).catch((err) => console.error('[META CAPI] Purchase (Square) failed (non-blocking):', err));
+    after(() =>
+      sendMetaEvent({
+        eventName: 'Purchase',
+        // Dedup key is the pending-order TOKEN, not payment.id, because the success
+        // page only knows the token (?ref=) and fires the browser pixel with the same
+        // `${token}_purchase`. Keeps Meta from double-counting Square purchases.
+        eventId: `${token}_purchase`,
+        actionSource: 'website',
+        email: validEmail,
+        phone: d.customer_phone || null,
+        firstName,
+        lastName: lastParts.join(' ') || undefined,
+        externalId: validEmail,
+        attribution,
+        value: amountPaid,
+        currency: 'USD',
+        orderId: orderRef,
+        numItems: inserted.patches_quantity || undefined,
+        contentName: d.product_name || 'Custom Patches Order',
+        contentCategory: 'Custom Patches',
+      }).catch((err) => console.error('[META CAPI] Purchase (Square) failed (non-blocking):', err))
+    );
 
     // GA4 purchase server-side (non-blocking). Fires even when the buyer never
     // returns from Square's hosted page; GA4 dedupes on transaction_id against

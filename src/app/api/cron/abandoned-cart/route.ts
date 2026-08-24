@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 import { SendMailClient } from 'zeptomail';
 import { sendMetaEvent } from '@/lib/metaCapi';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
@@ -187,20 +187,23 @@ async function sendFirstEmail(row: CheckoutAttempt) {
 
   // Fire Meta CAPI Lead event so this contact joins lookalike audiences
   // (Optional but recommended — can comment out if not desired)
-  sendMetaEvent({
-    eventName: 'Lead',
-    eventId: `abandon_email_1_${row.id}`,
-    actionSource: 'email',
-    eventSourceUrl: row.return_url || 'https://www.pandapatches.com/',
-    email: row.customer_email,
-    phone: row.customer_phone,
-    firstName: fname !== 'there' ? fname : null,
-    attribution: row.attribution || undefined,
-    value: row.cart_value,
-    currency: 'USD',
-    contentName: 'Abandoned Cart Email 1',
-    contentCategory: 'Custom Patches',
-  }).catch(() => { /* non-blocking */ });
+  // after(): see /api/quote — avoids the fetch racing the cron response.
+  after(() =>
+    sendMetaEvent({
+      eventName: 'Lead',
+      eventId: `abandon_email_1_${row.id}`,
+      actionSource: 'email',
+      eventSourceUrl: row.return_url || 'https://www.pandapatches.com/',
+      email: row.customer_email,
+      phone: row.customer_phone,
+      firstName: fname !== 'there' ? fname : null,
+      attribution: row.attribution || undefined,
+      value: row.cart_value,
+      currency: 'USD',
+      contentName: 'Abandoned Cart Email 1',
+      contentCategory: 'Custom Patches',
+    }).catch(() => { /* non-blocking */ })
+  );
 }
 
 async function sendSecondEmail(row: CheckoutAttempt) {

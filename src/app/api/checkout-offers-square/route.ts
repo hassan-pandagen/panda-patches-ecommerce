@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 import { z } from 'zod';
 import { randomUUID } from 'crypto';
 import { lookupOfferPrice, calculateOfferTotal, OFFER_CATEGORIES } from '@/lib/offerPackages';
@@ -163,23 +163,28 @@ export async function POST(req: Request) {
 
     if (initiateCheckoutEventId) {
       const [icFirstName, ...icLastParts] = (customer.name || '').trim().split(/\s+/);
-      sendMetaEvent({
-        eventName: 'InitiateCheckout',
-        eventId: initiateCheckoutEventId,
-        actionSource: 'website',
-        eventSourceUrl: pageUrl,
-        email: customer.email,
-        phone: customer.phone || null,
-        firstName: icFirstName,
-        lastName: icLastParts.join(' ') || null,
-        attribution: { ...(attribution || {}), client_ip: clientIp || undefined, client_ua: ua || undefined },
-        value: finalPrice,
-        currency: 'USD',
-        contentName: productName,
-        contentCategory: 'Custom Patches',
-        numItems: qty,
-        orderId: token,
-      }).catch((err) => console.error('[META CAPI] InitiateCheckout (Offers Square) send failed:', err));
+      // after(): a bare fire-and-forget fetch here races the response below and gets
+      // killed mid-flight by Vercel, surfacing as a network-level SocketError rather
+      // than a real Meta-side failure (recurring in prod logs, 2026-08-24 audit).
+      after(() =>
+        sendMetaEvent({
+          eventName: 'InitiateCheckout',
+          eventId: initiateCheckoutEventId,
+          actionSource: 'website',
+          eventSourceUrl: pageUrl,
+          email: customer.email,
+          phone: customer.phone || null,
+          firstName: icFirstName,
+          lastName: icLastParts.join(' ') || null,
+          attribution: { ...(attribution || {}), client_ip: clientIp || undefined, client_ua: ua || undefined },
+          value: finalPrice,
+          currency: 'USD',
+          contentName: productName,
+          contentCategory: 'Custom Patches',
+          numItems: qty,
+          orderId: token,
+        }).catch((err) => console.error('[META CAPI] InitiateCheckout (Offers Square) send failed:', err))
+      );
     }
 
     return NextResponse.json({ url });

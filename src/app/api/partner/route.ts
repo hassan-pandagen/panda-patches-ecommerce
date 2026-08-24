@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 import { z } from 'zod';
 import { SendMailClient } from 'zeptomail';
 import { getAttributionFromRequest } from '@/lib/attribution';
@@ -100,22 +100,25 @@ export async function POST(req: Request) {
 
     // Meta CAPI Lead — partner applicants are high-value B2B prospects (P0-5).
     const [pFirst, ...pLast] = fullName.trim().split(/\s+/);
-    sendMetaEvent({
-      eventName: 'Lead',
-      eventId: `partner_${Date.now()}_${businessEmail.slice(0, 8)}`,
-      actionSource: 'website',
-      email: businessEmail,
-      phone: phone || null,
-      firstName: pFirst,
-      lastName: pLast.join(' ') || undefined,
-      externalId: businessEmail,
-      attribution,
-      eventSourceUrl: pageUrl || attribution.page_url,
-      value: 0,
-      currency: 'USD',
-      contentName: 'Partner Application',
-      contentCategory: 'Partner Program',
-    }).catch((err) => console.error('[META CAPI] Partner Lead send failed (non-blocking):', err));
+    // after(): see /api/quote — avoids the fetch racing the response.
+    after(() =>
+      sendMetaEvent({
+        eventName: 'Lead',
+        eventId: `partner_${Date.now()}_${businessEmail.slice(0, 8)}`,
+        actionSource: 'website',
+        email: businessEmail,
+        phone: phone || null,
+        firstName: pFirst,
+        lastName: pLast.join(' ') || undefined,
+        externalId: businessEmail,
+        attribution,
+        eventSourceUrl: pageUrl || attribution.page_url,
+        value: 0,
+        currency: 'USD',
+        contentName: 'Partner Application',
+        contentCategory: 'Partner Program',
+      }).catch((err) => console.error('[META CAPI] Partner Lead send failed (non-blocking):', err))
+    );
 
     const token = process.env.ZEPTOMAIL_TOKEN;
     if (!token) {
