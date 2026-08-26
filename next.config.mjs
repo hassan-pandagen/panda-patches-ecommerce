@@ -4,9 +4,15 @@ const nextConfig = {
   compress: true,
   experimental: {
     optimizePackageImports: ['lucide-react', 'swiper'],
-    // Split CSS per-route so home page doesn't download Tailwind utilities only
-    // used by /studio, /offers, etc. Shrinks the render-blocking CSS chunk.
-    cssChunking: 'strict',
+    // REMOVED 2026-08-26 with the Next 16.3.3 security upgrade (GHSA-2xp9-vwfh-vxw4):
+    //   cssChunking: 'strict'
+    // 16.3.3 hard-errors on it under Turbopack ("only supported with webpack"), so the
+    // build cannot complete with it set. It was there to split CSS per route, keeping
+    // /studio and /offers utilities out of the homepage's render-blocking chunk.
+    // Turbopack applies its own CSS chunking, so this is not necessarily a regression —
+    // but it is NOT the same strategy, so watch the homepage CSS payload and LCP after
+    // deploy. To get the old behaviour back you would have to build with webpack, which
+    // is a bigger trade than the security patch should carry.
   },
   // Tell Next.js NOT to bundle sharp — load it natively via Node.js require()
   // (native binary; can't be bundled).
@@ -36,7 +42,14 @@ const nextConfig = {
     deviceSizes: [420, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000, // 1 year for optimized images
-    formats: ['image/avif', 'image/webp'],
+    // AVIF REMOVED 2026-08-26 — GHSA-2xp9-vwfh-vxw4 (critical, unauthenticated RCE).
+    // A flaw in libheif (used by sharp) allows remote code execution when Next.js
+    // optimizes an attacker-controlled AVIF image. Next 16.3.3 already disables AVIF
+    // optimization itself until the upstream libheif fix propagates, so this is not
+    // fighting the patch — it makes the behaviour explicit and keeps the repo safe if
+    // someone later downgrades Next. Restore 'image/avif' only once libheif is fixed
+    // upstream AND the Next release notes say AVIF optimization is re-enabled.
+    formats: ['image/webp'],
     qualities: [55, 60, 65, 75, 80, 85, 90],
   },
   turbopack: {
