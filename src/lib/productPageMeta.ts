@@ -29,7 +29,7 @@ const productPageMeta: Record<string, ProductPageMeta> = {
   },
   "woven": {
     title: "Custom Woven Patches from $1.54/pc (1k) | 24h Mockup",
-    description: "Custom woven patches from $1.54/pc for 2x2 inches at 1,000 pieces; smaller orders cost more per piece. Ultra-fine detail, thin profile, perfect for small text and complex logos. 10-piece minimum. Digital mockup in 12 to 24 hours. Ships in 7-14 days.",
+    description: "Custom woven patches from $1.54/pc for 2x2 inches at 1,000 pieces; smaller orders cost more per piece. Ultra-fine detail, thin profile, perfect for small text and complex logos. 5-piece minimum. Digital mockup in 12 to 24 hours. Ships in 7-14 days.",
     ogTitle: "Custom Woven Patches from $1.54/pc (1k) | 24h Mockup",
     ogDescription: "Woven patches from $1.54/pc (2x2, 1,000 pcs); smaller orders cost more per piece. Ultra-fine detail for small text and complex logos. 12-24h mockup, ships in 7-14 days.",
   },

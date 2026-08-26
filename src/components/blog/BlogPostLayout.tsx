@@ -20,12 +20,17 @@ function slugifyBlock(value: any): string {
     .replace(/\s+/g, '-');
 }
 
-function getReadingTime(content: any[]): number {
-  if (!content) return 3;
-  const text = content
+/** Flatten portable-text blocks to plain text. */
+function blocksToText(content: any[]): string {
+  if (!content) return '';
+  return content
     .flatMap((block: any) => block.children?.map((c: any) => c.text || '') || [])
     .join(' ');
-  return Math.max(1, Math.round(text.split(/\s+/).length / 200));
+}
+
+function getReadingTime(content: any[]): number {
+  if (!content) return 3;
+  return Math.max(1, Math.round(blocksToText(content).split(/\s+/).length / 200));
 }
 
 export default function BlogPostLayout({ post, slug }: { post: any; slug?: string }) {
@@ -325,7 +330,12 @@ export default function BlogPostLayout({ post, slug }: { post: any; slug?: strin
       {/* Related Internal Links for SEO */}
       <div className="cv-auto">
         <RelatedLinks
-          content={post.title + " " + (post.excerpt || "")}
+          // Score against the BODY, not just title + excerpt (CLB408_1 §5).
+          // findRelevantLinks counts keyword hits, so feeding it two short
+          // strings meant a 2,000-word PVC guide scored the same as its title
+          // and frequently surfaced unrelated cards. The body is the signal
+          // that decides which product pages these ranking guides link to.
+          content={post.title + " " + (post.excerpt || "") + " " + blocksToText(content)}
           title="Related Pages You Might Like"
           maxLinks={4}
         />

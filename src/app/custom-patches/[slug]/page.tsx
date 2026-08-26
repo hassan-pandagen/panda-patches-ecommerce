@@ -8,6 +8,8 @@ import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema, generateSchemaScript } from "@/lib/schemas";
 import ProductReviews from "@/components/reviews/ProductReviews";
 import AeoAnswerBlock from "@/components/product/AeoAnswerBlock";
+import ProductDepthBlock from "@/components/product/ProductDepthBlock";
+import { getSpecsForSlug } from "@/lib/patchSpecs";
 import { aeoContent } from "@/lib/aeoContent";
 import { getSchemaPricingTiers } from "@/lib/pricingCalculator";
 import { genericFaqs } from "@/lib/genericFaqs";
@@ -175,6 +177,8 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
     // Merges a product aggregateRating only when enough real reviews exist;
     // the same reviews render below via <ProductReviews>.
     reviewKey: slug,
+    // Same rows the visible depth block renders — both read patchSpecs.ts.
+    specs: getSpecsForSlug(slug),
   });
 
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -284,6 +288,14 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
           layout="left"
         />
       )}
+
+      {/* 8.5 DEPTH BLOCK — construction + production limits + live cost ladder
+          (CLB408_1 §5). Product pages were losing their own head terms to our
+          guides because the guides carried the substance. Placed after the
+          option carousels (so a ready buyer still hits the calculator first)
+          but above the generic process/timeline sections, which are identical
+          on every page and carry no head-term weight. */}
+      <ProductDepthBlock slug={slug} productName={data.title} title={data.title} />
 
       {/* 9. GORILLA SKETCH PROCESS */}
       <ProcessSection />

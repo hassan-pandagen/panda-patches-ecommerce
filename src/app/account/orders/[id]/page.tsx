@@ -1,16 +1,86 @@
 import type { Metadata } from "next";
 import { customerOrderRef } from "@/lib/orderRef";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { requireUser } from "@/lib/supabase/guards";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { ChevronLeft, CheckCircle, Circle, Clock, ExternalLink } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Order Details | Panda Patches",
-  robots: { index: false, follow: false },
-};
+/**
+ * This route accepts EITHER identifier (CL0FAA §3):
+ *   /account/orders/PP-11248  canonical — what the CRM, invoices and every
+ *                             support conversation use. Always redirected to.
+ *   /account/orders/1149      legacy database id. Still resolves, then 308s to
+ *                             the canonical URL above.
+ *
+ * Why it matters beyond tidiness: the CEO watches tawk.to's live-visitor view,
+ * which shows the URL and page title of whoever is chatting. A bare "1149"
+ * matches nothing support can search — the CRM only knows PP-11248.
+ */
+const CANONICAL_REF = /^PP-\d+$/i;
+const NUMERIC_ID = /^\d+$/;
+
+/** Resolve an order by whichever identifier the URL carried. RLS scopes the read. */
+async function findOrderByParam(
+  supabase: Awaited<ReturnType<typeof createSupabaseServerClient>>,
+  key: string,
+  columns = "*"
+) {
+  if (CANONICAL_REF.test(key)) {
+    const { data } = await supabase
+      .from("orders")
+      .select(columns)
+      .eq("order_number", key.toUpperCase())
+      .maybeSingle();
+    return data as any;
+  }
+  // Guard the bigint column: passing a non-numeric string to .eq("id", ...)
+  // is a Postgres type error, not a clean "not found".
+  if (!NUMERIC_ID.test(key)) return null;
+  const { data } = await supabase
+    .from("orders")
+    .select(columns)
+    .eq("id", key)
+    .maybeSingle();
+  return data as any;
+}
+
+/**
+ * Title carries the canonical number because tawk.to shows it next to the URL —
+ * this is what lets support identify a live chatter (CL0FAA §3.4).
+ * Never redirects: metadata generation must not fight the page's auth guard, so
+ * an unauthenticated or not-yours order just falls back to the generic title.
+ */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const generic: Metadata = {
+    title: "Order Details | Panda Patches",
+    robots: { index: false, follow: false },
+  };
+  try {
+    const { id } = await params;
+    const supabase = await createSupabaseServerClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return generic;
+
+    const order = await findOrderByParam(supabase, id, "id, order_number");
+    if (!order) return generic;
+
+    return {
+      title: `Order ${customerOrderRef(order)} — Panda Patches`,
+      robots: { index: false, follow: false },
+    };
+  } catch {
+    return generic;
+  }
+}
 
 function formatDate(iso?: string | null) {
   if (!iso) return "-";
@@ -77,14 +147,17 @@ export default async function OrderDetailPage({
   const { id } = await params;
   const { supabase } = await requireUser(`/account/orders/${id}`);
 
-  const { data: order, error } = await supabase
-    .from("orders")
-    .select("*")
-    .eq("id", id)
-    .maybeSingle();
+  const order = await findOrderByParam(supabase, id);
 
-  if (error || !order) {
+  if (!order) {
     notFound();
+  }
+
+  // Legacy numeric-id URL → 308 to the canonical PP-xxxxx form (CL0FAA §3.3).
+  // Guarded on order_number existing so a row in the gap before the numbering
+  // trigger fires can still be viewed rather than redirect-looping.
+  if (!CANONICAL_REF.test(id) && order.order_number) {
+    permanentRedirect(`/account/orders/${order.order_number}`);
   }
 
   const timeline = buildTimeline(order);

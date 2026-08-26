@@ -14,26 +14,38 @@ export interface InternalLink {
  * Add new links here as new pages are created
  */
 export const internalLinks: InternalLink[] = [
-  // Patch Types
+  // ── Patch types ───────────────────────────────────────────────────────────
+  // ANCHORS ARE THE HEAD TERMS ON PURPOSE (CLB408_1 §5). These product pages
+  // lose their own head terms to our guides — "custom pvc patches" sits at 56.6
+  // and "custom leather patches" at 67.5 while the guides covering the same
+  // topics rank 4-10. <RelatedLinks> renders `anchor` verbatim as the link text
+  // on every guide, so this field is the one lever that decides what anchor text
+  // those ranking pages actually pass down. "PVC patches" passed a partial term;
+  // "Custom PVC Patches" passes the whole one.
+  //
+  // The head term is also the FIRST keyword in each list. <AutoLinker> links the
+  // matched TEXT (not `anchor`) and tries keywords in array order, so putting the
+  // full phrase first makes it link "custom pvc patches" rather than the bare
+  // "pvc" sitting inside it. Same ordering rule as the leather-hat entry below.
   {
     url: "/custom-patches/embroidered",
-    anchor: "embroidered patches",
-    keywords: ["embroidered", "embroidery", "thread", "stitched"],
+    anchor: "Custom Embroidered Patches",
+    keywords: ["custom embroidered patches", "embroidered patches", "embroidered", "embroidery", "thread", "stitched"],
   },
   {
     url: "/custom-patches/pvc",
-    anchor: "PVC patches",
-    keywords: ["pvc", "rubber", "3d", "raised"],
+    anchor: "Custom PVC Patches",
+    keywords: ["custom pvc patches", "pvc patches", "pvc", "rubber", "3d", "raised"],
   },
   {
     url: "/custom-patches/woven",
-    anchor: "woven patches",
-    keywords: ["woven", "woven label", "fine detail"],
+    anchor: "Custom Woven Patches",
+    keywords: ["custom woven patches", "woven patches", "woven", "woven label", "fine detail"],
   },
   {
     url: "/custom-patches/chenille",
-    anchor: "chenille patches",
-    keywords: ["chenille", "varsity", "letterman", "fuzzy"],
+    anchor: "Custom Chenille Patches",
+    keywords: ["custom chenille patches", "chenille patches", "chenille", "varsity", "letterman", "fuzzy"],
   },
   {
     // Ordered before the generic leather-patches entry below: AutoLinker matches
@@ -45,8 +57,8 @@ export const internalLinks: InternalLink[] = [
   },
   {
     url: "/custom-patches/leather",
-    anchor: "leather patches",
-    keywords: ["leather", "premium", "luxury"],
+    anchor: "Custom Leather Patches",
+    keywords: ["custom leather patches", "leather patches", "leather", "premium", "luxury"],
   },
   {
     url: "/patch-types-compared",

@@ -34,7 +34,7 @@ interface SuccessSearchParams {
  */
 async function verifyPayment(
   params: SuccessSearchParams
-): Promise<{ verified: boolean; paymentPending?: boolean; amount?: number; orderNumber?: string }> {
+): Promise<{ verified: boolean; paymentPending?: boolean; amount?: number; orderNumber?: string; orderId?: number }> {
   if (!params.ref) return { verified: false };
   try {
     for (let attempt = 0; attempt < 3; attempt++) {
@@ -53,15 +53,25 @@ async function verifyPayment(
         // dedupes the tag against the Data Manager import — no double-count
         // (claude-code-task-website-conversions.md Fix 2). The webhook stamps
         // attribution.checkout_token = this token on the order.
+        // `id` is also needed: the Meta Purchase event_id is keyed on it
+        // (`order_<id>_purchase`) so the browser pixel dedupes against BOTH
+        // server senders — this route's CAPI call and the Postgres-triggered
+        // send-meta-purchase edge function (CL4DE6 §1.3).
         const { data: order } = await supabase
           .from("orders")
-          .select("order_number, amount_paid")
+          .select("id, order_number, amount_paid, order_amount")
           .eq("attribution->>checkout_token", params.ref)
           .maybeSingle();
         return {
           verified: true,
-          amount: (order?.amount_paid as number | undefined) ?? amt,
+          // order_amount (not amount_paid) so the pixel quotes the same figure as
+          // both server senders under the shared event_id.
+          amount:
+            (order?.order_amount as number | undefined) ??
+            (order?.amount_paid as number | undefined) ??
+            amt,
           orderNumber: (order?.order_number as string | undefined) ?? undefined,
+          orderId: (order?.id as number | undefined) ?? undefined,
         };
       }
       if (attempt < 2) {
@@ -85,7 +95,7 @@ export default async function SuccessPage({
   searchParams: Promise<SuccessSearchParams>;
 }) {
   const params = await searchParams;
-  const { verified, paymentPending, amount, orderNumber } = await verifyPayment(params);
+  const { verified, paymentPending, amount, orderNumber, orderId } = await verifyPayment(params);
 
   // Anyone hitting /success without a verified paid order is sent home. Stops
   // random visitors, refreshes, and bookmark visits from showing a fake receipt.
@@ -100,7 +110,7 @@ export default async function SuccessPage({
       {/* Browser purchase conversions fire ONLY for webhook-confirmed payments;
           if the webhook is still in flight, the server-side CAPI + GA4 events
           cover the conversion when it lands (audit P1). */}
-      {!paymentPending && <PurchaseConversion orderNumber={orderNumber} amount={amount} />}
+      {!paymentPending && <PurchaseConversion orderNumber={orderNumber} amount={amount} orderId={orderId} />}
 
       <div className="container mx-auto px-6 py-20">
         <div className="max-w-2xl mx-auto text-center">

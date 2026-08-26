@@ -101,7 +101,11 @@ export default async function OrdersPage({
                 {rows.map((o: any) => (
                   <Link
                     key={o.id}
-                    href={`/account/orders/${o.id}`}
+                    // Link canonically (CL0FAA §3.2) so a customer's URL bar,
+                    // bookmarks and tawk.to all show PP-xxxxx. Falls back to the
+                    // id only if order_number is somehow unset, which the detail
+                    // route then resolves and redirects.
+                    href={`/account/orders/${o.order_number || o.id}`}
                     className="flex items-center justify-between gap-4 px-6 py-5 hover:bg-[#F9FAF5] transition-colors"
                   >
                     <div className="flex-1 min-w-0">

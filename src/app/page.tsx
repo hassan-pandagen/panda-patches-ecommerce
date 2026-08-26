@@ -217,8 +217,12 @@ export default function Home() {
         <BlogSection />
       </div>
 
-      {/* SEO Content Section */}
-      <div className="cv-auto" style={{ containIntrinsicSize: "auto 1074px" }}>
+      {/* SEO Content Section — 1074px was the legacy three-block version's height.
+          The rewritten single-block section renders 238px at every width tested
+          (360/390/1440), so the stale reservation collapsed by ~836px the moment
+          it scrolled into view, jerking CTASection + Footer upward. Scroll-
+          triggered, so lab CLS never sees it (CLB408_1 §1). */}
+      <div className="cv-auto" style={{ containIntrinsicSize: "auto 240px" }}>
         <ContentSection />
       </div>
 

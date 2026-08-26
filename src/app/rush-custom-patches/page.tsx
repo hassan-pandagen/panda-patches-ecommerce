@@ -54,7 +54,7 @@ const rushFAQs = [
   },
   {
     question: "Which patch types can be rushed?",
-    answer: "Embroidered, PVC, chenille, and woven patches all qualify for rush production, from 5 pieces (woven from 10). Backing options — iron-on, sew-on, Velcro, sticker — don't affect the rush timeline. Patch type affects speed because of the production steps involved: simpler, single-technique designs in smaller quantities move fastest, while multi-step techniques like chenille and 3D puff embroidery — or very large quantities — need more production passes. That's why we confirm your exact date within 2-6 hours instead of quoting one number for every order.",
+    answer: "Embroidered, PVC, chenille, and woven patches all qualify for rush production, from 5 pieces. Backing options — iron-on, sew-on, Velcro, sticker — don't affect the rush timeline. Patch type affects speed because of the production steps involved: simpler, single-technique designs in smaller quantities move fastest, while multi-step techniques like chenille and 3D puff embroidery — or very large quantities — need more production passes. That's why we confirm your exact date within 2-6 hours instead of quoting one number for every order.",
   },
   {
     question: "What do I need to start a rush order?",

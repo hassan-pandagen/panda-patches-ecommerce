@@ -198,18 +198,41 @@ export const RUSH_CANON_STATEMENT =
 export const ECONOMY_DELIVERY = '16-18 business days';
 
 // ── Minimums ────────────────────────────────────────────────────────────────
-/** Default minimum order (most patch types). */
+/** Minimum order — 5 pieces on EVERY patch type. */
 export const MIN_ORDER_DEFAULT = 5;
 /**
  * Exceptions enforced by the pricing calculator.
- * 3D transfers corrected 10 → 5 per SEDAA3_1 §A.4 (owner decision, 2026-07-20);
- * woven remains the only 10-piece minimum.
+ *
+ * The distinction that matters (CEO, 2026-08-26): the "5 pieces, no exceptions"
+ * ruling was about PIECE minimums — 5 vs 10 vs 25 as a commercial floor. It was
+ * NOT about production-run constraints. Woven's 10 was a piece minimum and
+ * correctly dropped to 5. The two below are run constraints, restored after the
+ * sweep removed them, and both are PENDING SHOP-FLOOR CONFIRMATION.
+ *
+ * Every entry here MUST be enforced by pricingCalculator, or copy and checkout
+ * disagree — the bug class that shipped twice this month. `npm run verify:canon`
+ * fails the build if they drift apart.
+ *
+ * Oversized chenille is NOT in this map: its floor is size-conditional (25 at
+ * 12 inches and up, 5 below), which a product-name key cannot express. It lives
+ * in `chenillePricing.oversizeMinQty` and is mirrored by OVERSIZE_CHENILLE below.
  */
 export const MIN_ORDER_EXCEPTIONS: Record<string, number> = {
-  'Custom Woven Patches': 10,
+  'Custom 3D Embroidered Transfer': 10,
+  'Custom 3D Embroidery Transfer': 10,
+  'Custom 3D Embroidered Transfers': 10,
 };
+
+/**
+ * Size-conditional floor for oversized chenille — the larger loom run.
+ * Mirrors `chenillePricing.oversizeMinQty`; verify:canon asserts they agree.
+ * PENDING SHOP-FLOOR CONFIRMATION.
+ */
+export const OVERSIZE_CHENILLE = { fromSizeInches: 12, minQty: 25 } as const;
+
 /** Compliance-safe phrasing for generic copy. */
-export const MIN_ORDER_COPY = 'from 5 pieces on most patch types (woven: 10)';
+export const MIN_ORDER_COPY =
+  '5 pieces on every patch type, except oversized 12-inch chenille (25) and 3D embroidered transfers (10)';
 
 // ── Canonical "from" prices (option A — live calculator basis, July 2026) ──
 /** The basis EVERY advertised from-price must state. */

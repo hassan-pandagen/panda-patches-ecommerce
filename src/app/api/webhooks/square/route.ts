@@ -66,6 +66,12 @@ export async function POST(req: Request) {
 
     const d = claimed.order_data as Record<string, any>;
     const amountPaid = (payment.amount_money?.amount ?? 0) / 100;
+    // The order total as persisted below. Meta's Purchase `value` must be this,
+    // NOT amountPaid: the send-meta-purchase edge function fires on the same
+    // order with the same event_id and sends order_amount, and two events sharing
+    // an event_id must agree on value or which figure survives dedup is Meta's
+    // choice, not ours (CL4DE6 §1.1).
+    const orderAmount = d.order_amount ? parseFloat(String(d.order_amount)) : amountPaid;
 
     const validName = (d.customer_name || '').trim();
     const validEmail = (d.customer_email || '').trim();
@@ -105,7 +111,7 @@ export async function POST(req: Request) {
         delivery_option: d.delivery_option || 'standard',
         rush_date: d.rush_date || null,
         website_addons: Array.isArray(d.website_addons) ? d.website_addons : null,
-        order_amount: d.order_amount ? parseFloat(String(d.order_amount)) : amountPaid,
+        order_amount: orderAmount,
         amount_paid: amountPaid,
         // Pipeline stage, not 'PAID'; payment tracked via payment_status (matches Stripe).
         status: 'NEW_ORDER',
@@ -185,10 +191,14 @@ export async function POST(req: Request) {
     after(() =>
       sendMetaEvent({
         eventName: 'Purchase',
-        // Dedup key is the pending-order TOKEN, not payment.id, because the success
-        // page only knows the token (?ref=) and fires the browser pixel with the same
-        // `${token}_purchase`. Keeps Meta from double-counting Square purchases.
-        eventId: `${token}_purchase`,
+        // Dedup key is `order_<id>_purchase` — the SAME key the Postgres-triggered
+        // `send-meta-purchase` edge function uses, and the same one the /success
+        // pixel now fires with. It was `${token}_purchase`, which only matched the
+        // pixel: the edge function fires on this very insert (its trigger treats
+        // OLD IS NULL + amount_paid > 0 as "first payment"), so every web-checkout
+        // order was sending TWO Purchase events Meta could not dedupe — 16 of them
+        // in the 90 days to 2026-08-27. All three senders now agree (CL4DE6 §1.3).
+        eventId: `order_${inserted.id}_purchase`,
         actionSource: 'website',
         email: validEmail,
         phone: d.customer_phone || null,
@@ -196,12 +206,14 @@ export async function POST(req: Request) {
         lastName: lastParts.join(' ') || undefined,
         externalId: validEmail,
         attribution,
-        value: amountPaid,
+        // Order total, matching the edge function's value under the shared event_id.
+        value: orderAmount,
         currency: 'USD',
         orderId: orderRef,
         numItems: inserted.patches_quantity || undefined,
         contentName: d.product_name || 'Custom Patches Order',
         contentCategory: 'Custom Patches',
+        contentType: 'product',
       }).catch((err) => console.error('[META CAPI] Purchase (Square) failed (non-blocking):', err))
     );
 

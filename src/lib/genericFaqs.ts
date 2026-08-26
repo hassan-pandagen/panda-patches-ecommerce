@@ -1,3 +1,7 @@
+// Minimums are interpolated from canon, never typed — see the note at the top
+// of slugFaqs.ts for the drift this prevents.
+import { MIN_ORDER_DEFAULT } from "@/lib/factConstants";
+
 export const genericFaqs = [
   // TIER 1 - CORE FAQs (1-6)
   {
@@ -26,7 +30,7 @@ export const genericFaqs = [
   },
   {
     question: "What are your minimum order quantities?",
-    answer: "The minimum order at Panda Patches is 5 pieces across embroidered, PVC, chenille, and leather. Woven patches have a 10-piece minimum because the schiffli loom needs a slightly longer setup run. There are no setup fees, no digitizing fees, and no small-order surcharges. The 5-piece price uses the same materials, the same Pantone matching, and the same money-back guarantee as a 1,000-piece order. Pricing scales by quantity: 50 embroidered = $3.60 each, 100 = $2.40 each, 500 = $1.50 each, 1,000 = $1.20 each. Economy delivery saves 5 percent off the order total."
+    answer: `The minimum order at Panda Patches is ${MIN_ORDER_DEFAULT} pieces on every patch type — embroidered, woven, PVC, chenille, leather, printed, and sequin alike. Two production-run exceptions apply: oversized 12-inch chenille starts at 25 pieces because of the larger loom run, and 3D embroidered transfers start at 10. There are no setup fees, no digitizing fees, and no small-order surcharges. The ${MIN_ORDER_DEFAULT}-piece price uses the same materials, the same Pantone matching, and the same money-back guarantee as a 1,000-piece order. Pricing scales by quantity: 50 embroidered = $3.60 each, 100 = $2.40 each, 500 = $1.50 each, 1,000 = $1.20 each. Economy delivery saves 5 percent off the order total.`
   },
   {
     question: "What file formats do you accept for patch design?",

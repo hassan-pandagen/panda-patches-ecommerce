@@ -54,7 +54,7 @@ const faqs = [
   {
     question: "Can Panda Patches deliver a large order on a tight deadline?",
     answer:
-      "Yes. Panda Patches produced 9,600 woven patches across 16 designs for Wise's Nasdaq Times Square listing activation, delivered in two shipments on May 4 and May 7 — both on the contractual dates. Mockups for the first 10 designs were delivered under 3 hours after artwork receipt. The vertically integrated production model, with the design team, production team, and quality-control team reporting to the same operations leadership, is what makes high-volume rush turnaround possible. Rush availability extends from roughly 10-piece orders up to 10,000-piece orders, with the team confirming the exact delivery date by email within 2 to 6 hours of order placement.",
+      "Yes. Panda Patches produced 9,600 woven patches across 16 designs for Wise's Nasdaq Times Square listing activation, delivered in two shipments on May 4 and May 7 — both on the contractual dates. Mockups for the first 10 designs were delivered under 3 hours after artwork receipt. The vertically integrated production model, with the design team, production team, and quality-control team reporting to the same operations leadership, is what makes high-volume rush turnaround possible. Rush availability extends from 5-piece orders up to 10,000-piece orders, with the team confirming the exact delivery date by email within 2 to 6 hours of order placement.",
   },
   {
     question: "Do bulk and wholesale rush orders cost extra?",

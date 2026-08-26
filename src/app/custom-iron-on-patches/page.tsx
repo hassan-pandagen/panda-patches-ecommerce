@@ -41,7 +41,7 @@ const ironOnFAQs = [
   {
     question: "What is the minimum order for custom iron-on patches?",
     answer:
-      "5 pieces. The 5-piece minimum applies across embroidered, printed, and leather iron-on patches. Woven iron-on patches have a 10-piece minimum because of the schiffli loom setup. There are no setup fees, no digitizing fees, and no small-order surcharges. The 5-piece tier uses the same materials, the same Pantone color matching, and the same money-back guarantee as a 1,000-piece order.",
+      "5 pieces. The 5-piece minimum applies across every iron-on patch type — embroidered, woven, printed, and leather alike. There are no setup fees, no digitizing fees, and no small-order surcharges. The 5-piece tier uses the same materials, the same Pantone color matching, and the same money-back guarantee as a 1,000-piece order.",
   },
   {
     question: "How do I apply an iron-on patch?",
@@ -324,7 +324,7 @@ export default async function CustomIronOnPatchesPage() {
           </h2>
           <div className="text-[0.9375rem] md:text-[1rem] text-gray-600 leading-[1.8] space-y-4">
             <p>
-              Custom iron-on patches are the easiest way to brand a hat, jacket, backpack, or t-shirt without sewing. Panda Patches produces iron-on backing as standard on embroidered, woven, printed, and leather patches with no upcharge. The 5-piece minimum applies (10 pieces on woven). Every order ships with free worldwide shipping, a digital mockup delivered in 12 to 24 hours, unlimited free revisions, and our money-back guarantee.
+              Custom iron-on patches are the easiest way to brand a hat, jacket, backpack, or t-shirt without sewing. Panda Patches produces iron-on backing as standard on embroidered, woven, printed, and leather patches with no upcharge. The 5-piece minimum applies on every type. Every order ships with free worldwide shipping, a digital mockup delivered in 12 to 24 hours, unlimited free revisions, and our money-back guarantee.
             </p>
             <p>
               Iron-on patches work best on cotton, denim, canvas, and most natural-fiber garments. They are not the right choice for nylon athletic wear, polyester performance fabrics, waterproof shells, or industrially-washed uniforms. For heat-sensitive or specialty fabrics, choose sew-on or Velcro backing instead. For garments washed frequently, reinforce the iron-on edge with a few stitches for permanent attachment.

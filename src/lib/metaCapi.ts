@@ -80,12 +80,36 @@ export interface MetaEventInput {
   contentIds?: string[];
   numItems?: number;
   orderId?: string;
+  /**
+   * Meta `content_type` — 'product' for a normal purchasable item. Improves
+   * delivery matching (CL4DE6 §1.2). The CRM edge function already sends
+   * 'product' on Purchase; this keeps the website senders consistent.
+   */
+  contentType?: 'product' | 'product_group';
 }
 
 export async function sendMetaEvent(input: MetaEventInput): Promise<{ success: boolean; error?: string }> {
   if (!ACCESS_TOKEN) {
     console.warn('[META CAPI] META_ACCESS_TOKEN not set, skipping event', input.eventName);
     return { success: false, error: 'no_token' };
+  }
+
+  // PURCHASE VALUE GUARD (CL4DE6 §1.1). Events Manager's top flagged action is
+  // "send higher-quality price data for more accurate ROAS". A Purchase with a
+  // missing, zero or negative value is worse than no Purchase at all: Meta
+  // cannot compute ROAS from it, and a purchase-optimized campaign learns that
+  // a conversion is worth nothing. Refuse to send and log loudly so the calling
+  // path gets fixed, rather than quietly polluting the dataset.
+  if (input.eventName === 'Purchase') {
+    const v = input.value;
+    if (typeof v !== 'number' || !Number.isFinite(v) || v <= 0) {
+      console.error(
+        `[META CAPI] BLOCKED Purchase with invalid value (${JSON.stringify(v)}) — ` +
+          `event_id=${input.eventId}, order_id=${input.orderId ?? 'n/a'}. ` +
+          `Every Purchase must carry the real order total. Fix the caller.`
+      );
+      return { success: false, error: 'purchase_missing_value' };
+    }
   }
 
   const attr = input.attribution || {};
@@ -126,6 +150,10 @@ export async function sendMetaEvent(input: MetaEventInput): Promise<{ success: b
   } else if (input.currency) {
     // Edge case: currency provided without value. Don't send orphan currency.
   }
+  // content_type defaults to 'product' on Purchase so every Purchase carries it
+  // without each call site having to remember (CL4DE6 §1.2).
+  const contentType = input.contentType ?? (input.eventName === 'Purchase' ? 'product' : undefined);
+  if (contentType) custom_data.content_type = contentType;
   if (input.contentName) custom_data.content_name = input.contentName;
   if (input.contentCategory) custom_data.content_category = input.contentCategory;
   if (input.contentIds) custom_data.content_ids = input.contentIds;

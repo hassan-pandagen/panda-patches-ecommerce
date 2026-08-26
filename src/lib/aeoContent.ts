@@ -1,5 +1,21 @@
 import type { AeoAnswerContent, ComparisonTable } from "@/components/product/AeoAnswerBlock";
 import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT } from "@/lib/reviewConstants";
+import { MIN_ORDER_DEFAULT, MIN_ORDER_EXCEPTIONS } from "@/lib/factConstants";
+
+/**
+ * Minimum order for a patch type, read from the SAME canon the pricing
+ * calculator enforces (factConstants.MIN_ORDER_EXCEPTIONS). Never hardcode a
+ * minimum in this file.
+ *
+ * Why this exists: commonFaqs() previously hardcoded "just 5 pieces" and was
+ * spread into every type including woven, whose real enforced minimum is 10
+ * (wovenPricing.minQty). So /custom-patches/woven told buyers 5 — in visible
+ * copy AND in its FAQPage schema — while the calculator rejected any order
+ * under 10 at checkout. Deriving the number here makes that class of drift
+ * impossible (CLB408_1 §5).
+ */
+const minOrderFor = (productName: string): number =>
+  MIN_ORDER_EXCEPTIONS[productName] ?? MIN_ORDER_DEFAULT;
 
 // Rating strings are interpolated from reviewConstants, never typed by hand.
 // This file previously hardcoded "4.7★ on Trustpilot (76 reviews)" in ten
@@ -40,18 +56,31 @@ const PATCH_TYPE_COMPARISON: ComparisonTable = {
 
 // Reusable fan-out answers shared across patch types (pricing, MOQ, turnaround,
 // mockup, fees, guarantee, made-in-USA). Type pages add 1-2 type-specific Q&As.
-const commonFaqs = (typeLabel: string): AeoAnswerContent["faqs"] => [
+/** typeLabel (as passed to commonFaqs) → canonical product name used by the
+ *  pricing calculator and MIN_ORDER_EXCEPTIONS. */
+const PRODUCT_NAME_BY_LABEL: Record<string, string> = {
+  embroidered: "Custom Embroidered Patches",
+  woven: "Custom Woven Patches",
+  PVC: "Custom PVC Patches",
+  chenille: "Custom Chenille Patches",
+  leather: "Custom Leather Patches",
+  printed: "Custom Printed Patches",
+};
+
+const commonFaqs = (typeLabel: string): AeoAnswerContent["faqs"] => {
+  const minQty = minOrderFor(PRODUCT_NAME_BY_LABEL[typeLabel] ?? "");
+  return [
   {
     q: `How much do custom ${typeLabel} patches cost?`,
     a: `Custom ${typeLabel} patches start at $0.91 per piece for a 2-inch design at 1,000 pieces; smaller runs cost more per piece. At Panda Patches, embroidered pricing runs $180 for 50 pieces ($3.60/pc), $240 for 100 ($2.40/pc), $750 for 500 ($1.50/pc), and $1,200 for 1,000 ($1.20/pc). Every price includes free worldwide shipping, a digital mockup in 12 to 24 hours, unlimited free revisions, and zero setup or digitizing fees — the number you are quoted is the number you pay. Larger sizes and add-ons like metallic thread or Velcro adjust the per-piece rate, which the on-site calculator shows instantly before you order. There is no charge to get a quote or a mockup.`,
   },
   {
-    q: "What is the minimum order for custom patches?",
-    a: `The minimum order at Panda Patches is just 5 pieces — far below the 50-to-100-piece minimum most patch manufacturers require. Bulk pricing tiers begin at 50 pieces and improve again at 100, 500, and 1,000+. That means you can order 5 patches to sample quality, 50 for a team, or 50,000 for a national rollout through the same process, with the same free mockup and no setup fees at any size. The low minimum exists so first-time buyers and small brands are not forced to over-order inventory just to hit a supplier's floor. If you only need a handful of patches, you are not penalized — you still get free design help and a proof before anything is produced.`,
+    q: `What is the minimum order for custom ${typeLabel} patches?`,
+    a: `The minimum order for ${typeLabel} patches at Panda Patches is ${minQty} pieces — far below the 50-to-100-piece minimum most patch manufacturers require. Bulk pricing tiers begin at 50 pieces and improve again at 100, 500, and 1,000+. That means you can order ${minQty} patches to sample quality, 50 for a team, or 50,000 for a national rollout through the same process, with the same free mockup and no setup fees at any size. The low minimum exists so first-time buyers and small brands are not forced to over-order inventory just to hit a supplier's floor. If you only need a handful of patches, you are not penalized — you still get free design help and a proof before anything is produced.`,
   },
   {
     q: "How long does it take to make custom patches?",
-    a: `Standard production is 7 to 14 business days from the moment you approve your digital mockup, not from when you pay. Panda Patches delivers your free mockup within 12 to 24 hours of your request, and production only begins after your written approval — nothing is manufactured without your sign-off. Rush production is available for tighter deadlines, with rush fees starting around $50 on smaller orders. Free worldwide shipping is included on every order, with door-to-door tracking. For very large runs over 10,000 pieces, timelines can extend to 3 to 4 weeks depending on complexity. Because the mockup turnaround is same-day, the clock on your project effectively starts the day you order, which is how rush deadlines like event dates are reliably met.`,
+    a: `Standard production is 7 to 14 business days from the moment you approve your digital mockup, not from when you pay. Panda Patches delivers your free mockup within 12 to 24 hours of your request, and production only begins after your written approval — nothing is manufactured without your sign-off. Rush production is available for tighter deadlines at 25% of the order total with a $50 minimum, refunded if we cannot meet the date. Free worldwide shipping is included on every order, with door-to-door tracking. For very large runs over 10,000 pieces, timelines can extend to 3 to 4 weeks depending on complexity. Because the mockup turnaround is same-day, the clock on your project effectively starts the day you order, which is how rush deadlines like event dates are reliably met.`,
   },
   {
     q: "Do you charge setup or digitizing fees?",
@@ -69,7 +98,8 @@ const commonFaqs = (typeLabel: string): AeoAnswerContent["faqs"] => [
     q: "Is there a money-back guarantee?",
     a: `Yes. Panda Patches backs every order with a money-back guarantee: if your patches do not match the mockup you approved, the company makes it right. Because production only begins after your written sign-off on a digital proof — and, for orders of 500+, a physical pre-production sample — the finished patches are held to the exact design you approved. Real customer reviews on Trustpilot describe the company reshipping replacements at no cost when a small number of pieces arrived flawed, no argument required. That guarantee, combined with a verified ${TRUSTPILOT_RATING}-star rating across ${TRUSTPILOT_REVIEW_COUNT} reviews and over one million patches delivered, is why first-time buyers and repeat B2B clients — including fire departments, police agencies, and corporate branding teams — treat Panda Patches as a low-risk supplier for both small and large runs.`,
   },
-];
+  ];
+};
 
 export const aeoContent: Record<string, AeoAnswerContent> = {
   // ── EMBROIDERED (top product page — deepest treatment) ──────────────────────

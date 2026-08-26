@@ -558,7 +558,11 @@ export const caseStudies: CaseStudy[] = [
       "Constraint: a rush order from the first message, with an event in Los Angeles on January 20 that the patches had to make.",
       "Timeline: mockups sent January 8, approved in writing January 9, shipped January 14 — five days after approval.",
       "Delivery: signed for on January 19 at 10:13 AM, one day before the event and ten days after approval, door to door from the production facility.",
-      "Outcome: Karbach came back for a second patch order in August 2026.",
+      // Softened per CEO 2026-08-26: the repeat order was requested Aug 6 and
+      // quoted Aug 13 but has NOT closed. "Came back for a second order" reads
+      // as a settled sale; a quote open for a month is not that. Restore the
+      // stronger wording only when the order actually closes.
+      "Outcome: Karbach were back in touch about their next order in August 2026.",
     ],
 
     sections: [
@@ -608,7 +612,7 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: "Two weeks later, and then again in August",
         body:
-          "At the end of January: \"The patches went over really well and the quality was great… Amazing job and we'll definitely order from you again!\"\n\nWhat the patches were actually for: guests at the event used them to customize their own hats, which is why six designs at 200 each mattered more than one design at 1,200 — everyone got a choice.\n\nIn August 2026 they came back for their next patch order, and left a five-star review. The return is the part of a case study you cannot write on the day you ship.",
+          "At the end of January: \"The patches went over really well and the quality was great… Amazing job and we'll definitely order from you again!\"\n\nWhat the patches were actually for: guests at the event used them to customize their own hats, which is why six designs at 200 each mattered more than one design at 1,200 — everyone got a choice.\n\nIn August 2026 they were back in touch about their next order, and left a five-star review. The return is the part of a case study you cannot write on the day you ship.",
       },
     ],
 

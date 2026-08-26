@@ -148,6 +148,21 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // CRM ORDER-LINK ALIAS (CL0FAA §3.2). The CRM emails customers links shaped
+      // https://<portal>/customer/order/${order.orderNumber}. This app serves the
+      // customer portal at /account/orders/:ref, so without these the emailed
+      // links 404. /account/orders/[id] accepts PP-xxxxx directly, so the ref
+      // passes straight through.
+      // NOTE FOR THE CRM SIDE: those emails point at login.pandapatches.com,
+      // which is NOT a domain this app answers on (canonical host is
+      // www.pandapatches.com). These aliases fix the PATH; the HOST still has to
+      // be resolved by either aliasing login.pandapatches.com to this deployment
+      // or changing the CRM to build www.pandapatches.com links.
+      { source: '/customer/order/:ref', destination: '/account/orders/:ref', permanent: true },
+      { source: '/customer/order/:ref/', destination: '/account/orders/:ref', permanent: true },
+      { source: '/customer/orders/:ref', destination: '/account/orders/:ref', permanent: true },
+      { source: '/customer/orders/:ref/', destination: '/account/orders/:ref', permanent: true },
+
       // WORDPRESS TAXONOMY PATHS — /category/* and /tag/* never existed in Next.js
       // Redirect to blogs to preserve crawl budget and avoid 404s Google is tracking
       {

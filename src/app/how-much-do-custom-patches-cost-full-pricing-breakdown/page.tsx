@@ -289,7 +289,7 @@ export default function PricingPage() {
       ))} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(buildProductSchema(
         'Custom Woven Patches',
-        'Custom woven patches with fine-detail thread, minimum 10 pieces. From $1.54/pc at 2x2 inches and 1,000 pieces; smaller orders cost more per piece.',
+        'Custom woven patches with fine-detail thread, minimum 5 pieces. From $1.54/pc at 2x2 inches and 1,000 pieces; smaller orders cost more per piece.',
         wovenTiers
       ))} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(buildProductSchema(

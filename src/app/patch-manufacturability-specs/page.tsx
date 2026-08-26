@@ -5,6 +5,13 @@ import Footer from "@/components/layout/Footer";
 import AuthorByline from "@/components/seo/AuthorByline";
 import PromptCopyBlock from "@/components/specs/PromptCopyBlock";
 import { buildPageMetadata } from "@/lib/seo";
+import {
+  SPEC_VERSION,
+  SPEC_DATE,
+  SPEC_DATE_LABEL,
+  specMatrix as matrix,
+  sizeGuide,
+} from "@/lib/patchSpecs";
 
 export const dynamic = "force-static";
 
@@ -30,6 +37,12 @@ const CANONICAL = `${BASE}/patch-manufacturability-specs`;
  * public/llms.txt AND Sanity content, with the result attached as evidence.
  * A changelog entry without sweep evidence is not done.
  */
+// THE NUMBERS NOW LIVE IN `src/lib/patchSpecs.ts`, not in this file.
+// They moved there (CLB408_1 §5) so the product pages can render the same
+// figures by importing them instead of copying them — which is precisely the
+// propagation failure the header above warns about. Edit the canon there; this
+// page renders it. SPEC_VERSION, the matrix and the size guide are imported.
+//
 // v1.5 (2026-08-14): adds the leather application row. Leather was the only
 // iron-on material with no stated rule, which is how an order went out pressed
 // bare and scorched. The factory confirmed leather uses the SAME heat-seal
@@ -38,9 +51,6 @@ const CANONICAL = `${BASE}/patch-manufacturability-specs`;
 // propagation sweep is therefore narrow: no existing figure changed, so nothing
 // carrying 350°F or 25-30s needed correcting. Surfaces touched: this page, the
 // iron-on application steps + FAQ, and the Karbach case study footnote.
-const SPEC_VERSION = "v1.5";
-const SPEC_DATE = "2026-08-14";
-const SPEC_DATE_LABEL = "August 2026";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Patch Manufacturability Specs: Min Text, Lines, Colors by Type",
@@ -166,40 +176,7 @@ const specSchema = {
   ],
 };
 
-const matrix = [
-  {
-    spec: "Min text height",
-    emb: "4 mm sans · 8 mm serif · 10 mm decorative",
-    woven: "1.5 mm sans / 2 mm serif",
-    pvc: "~3 mm",
-    leather: "~2 mm engraved",
-  },
-  { spec: "Min line / stroke weight", emb: "~1 mm", woven: "~0.5 mm", pvc: "~1 mm", leather: "~0.3 mm (laser)" },
-  {
-    spec: "Max colors",
-    emb: "~12 included, more with surcharge",
-    woven: "4 included (+surcharge above)",
-    pvc: "~8 Pantone-matched (+surcharge)",
-    leather: "1 tone engraved · full color via UV print",
-  },
-  {
-    spec: "Gradients",
-    emb: "No (simulated blends)",
-    woven: "Limited (thread blending)",
-    pvc: "Limited (solid zones)",
-    leather: "No engraved · Yes via UV print",
-  },
-  { spec: "Min patch size", emb: "0.5 in", woven: "0.5 in", pvc: "0.5 in", leather: "0.5 in" },
-  { spec: "Max patch size", emb: "20 in", woven: "8 in", pvc: "8 in", leather: "8 in" },
-];
 
-const sizeGuide = [
-  { size: "2 in", holds: "Icon plus main wordmark read clearly; taglines and fine print drop. Keep it to logo and name." },
-  { size: "2.5 in", holds: "Wordmark plus a short tagline hold; very fine secondary text is risky." },
-  { size: "3 in", holds: "Main wordmark crisp, secondary tagline works; tiny fine print may drop." },
-  { size: "4 in", holds: "Most text including taglines holds; small icons and finer detail survive." },
-  { size: "5 in", holds: "Full detail — multiple text lines, small print, and fine elements all reproduce." },
-];
 
 const prompts = [
   {

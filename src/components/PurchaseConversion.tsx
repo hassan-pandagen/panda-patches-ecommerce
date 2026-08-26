@@ -14,17 +14,26 @@ import { trackGoogleAdsPurchase } from '@/lib/googleAds';
  *    the import (claude-code-task-website-conversions.md Fix 2). Fired ONLY when
  *    the order number is resolved; if a webhook-lag race leaves it unresolved, we
  *    skip the Google Ads tag and let the import count the order (no double-count).
- *  - GA4 + Meta: the checkout token (`?ref=`), pairing the Meta pixel with its
- *    CAPI event (`${token}_purchase`). NOTE: the webhook's server-side GA4 keys on
- *    order_number, so GA4 browser/server don't currently dedupe — pre-existing,
+ *  - Meta: `order_<id>_purchase`. This is the ONE key all three Meta senders
+ *    share — this pixel, the Square webhook's CAPI call, and the Postgres-
+ *    triggered `send-meta-purchase` edge function. It used to be
+ *    `${token}_purchase`, which only matched the webhook; the edge function fires
+ *    on the same order with `order_<id>_purchase`, so every web-checkout order
+ *    produced TWO undedupable Purchase events (16 of them in the 90 days to
+ *    2026-08-27). Keying on the order id collapses all three into one event
+ *    (CL4DE6 §1.3). Do not change this without changing the other two.
+ *  - GA4: the checkout token (`?ref=`). NOTE: the webhook's server-side GA4 keys
+ *    on order_number, so GA4 browser/server don't currently dedupe — pre-existing,
  *    out of scope here, flagged for a separate pass.
  */
 export default function PurchaseConversion({
   orderNumber,
   amount,
+  orderId,
 }: {
   orderNumber?: string;
   amount?: number;
+  orderId?: number;
 }) {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -58,9 +67,14 @@ export default function PurchaseConversion({
       trackGoogleAdsPurchase({ transactionId: orderNumber, value });
     }
 
-    if (!token) return;
+    // Meta browser pixel Purchase — pairs with BOTH server senders via the shared
+    // `order_<id>_purchase` eventID. Skipped entirely when the order id has not
+    // resolved yet (webhook-lag race): firing without the canonical key would
+    // produce an event Meta cannot dedupe against the server side, which is worse
+    // than not firing — the CAPI senders still count the order. Same reasoning as
+    // the Google Ads tag above.
+    if (!orderId || !(value > 0)) return;
 
-    // Meta browser pixel Purchase — pairs with the CAPI event via shared eventID.
     // The pixel loads via a staggered/deferred loader so fbq may not exist yet on
     // mount. Poll every 300ms for up to 15 seconds.
     let attempts = 0;
@@ -70,7 +84,7 @@ export default function PurchaseConversion({
           'track',
           'Purchase',
           { currency: 'USD', value },
-          { eventID: `${token}_purchase` }
+          { eventID: `order_${orderId}_purchase` }
         );
         return;
       }
@@ -80,7 +94,7 @@ export default function PurchaseConversion({
       }
     };
     firePixel();
-  }, [orderNumber, amount]);
+  }, [orderNumber, amount, orderId]);
 
   return null;
 }

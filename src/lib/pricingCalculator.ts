@@ -71,6 +71,16 @@ const chenillePricing = {
     14: [80.00, 56.25, 48.33, 44.38, 42.00, 40.42, 39.29, 38.44, 37.78, 37.25, 29.79, 26.82, 22.34, 15.65, 13.41, 12.67, 12.67],
   },
   minQty: 5,
+  // OVERSIZED CHENILLE — 25-piece floor at 12 inches and up (CEO, 2026-08-26),
+  // PENDING SHOP-FLOOR CONFIRMATION.
+  // Restored after being dropped in the Aug 2026 "5-piece minimum, no exceptions"
+  // sweep. That ruling was about PIECE minimums (5 vs 10 vs 25), not about
+  // production-run constraints, and the original copy cited a specific reason —
+  // the larger chenille loom run. Advertising 5 on a run the factory cannot do
+  // economically is the PVC bug inverted, so the floor stands until the shop
+  // floor says otherwise. If they confirm 12-inch runs are fine at 5, delete
+  // these three lines and sweep the copy; it is a one-line change either way.
+  oversizeMinQty: { fromSize: 12, minQty: 25 },
   minSize: 1,
   maxSize: 14
 };
@@ -129,7 +139,13 @@ const threeDEmbroideryTransferPricing = {
     13: [88.00, 61.47, 52.62, 48.20, 45.54, 43.78, 42.52, 41.57, 40.83, 40.24, 32.19, 28.99, 24.15, 16.91, 14.49, 13.68, 13.68],
     14: [88.00, 64.15, 56.21, 52.23, 49.85, 48.26, 47.12, 46.27, 45.61, 45.08, 36.05, 32.45, 27.03, 18.94, 16.23, 15.33, 15.33],
   },
-  minQty: 5,
+  // 3D EMBROIDERED TRANSFERS — 10-piece floor (CEO, 2026-08-26), PENDING
+  // SHOP-FLOOR CONFIRMATION. Same reasoning as oversized chenille above: the
+  // constraint cited was the transfer-paper run, which is a production-run
+  // limit, not a piece minimum. Note this reverses SEDAA3_1 §A.4 (2026-07-20),
+  // which moved 3D transfers 10 -> 5; that change is what the "no exceptions"
+  // sweep inherited. Drop back to 5 only on shop-floor confirmation.
+  minQty: 10,
   minSize: 1,
   maxSize: 14
 };
@@ -186,12 +202,19 @@ const pvcPricing = {
 };
 
 // Woven Pricing - 10% below previous benchmark (additional 5% off competitor-benchmarked prices)
-// Minimum order: 10 patches | Qty breaks: 10, 25, 50, 100, 200, 500, 1000, 5000 | Sizes 1-8
+// Qty breaks: 10, 25, 50, 100, 200, 500, 1000, 5000 | Sizes 1-8
 // Sizes 1-2 at 1,000 and 5,000 qty set to 1.40 base ($1.54/pc) to match PVC at volume
 // per CEO, June 2026. Keeps the advertised 2"x2"/1,000 "from" price level with PVC.
+//
+// MINIMUM 10 -> 5 (CEO, Aug 2026): woven was the last type with a 10-piece
+// minimum; canon is now "5-piece minimum on every patch type", no exceptions.
+// The table still starts at a qty-10 column, so orders of 5-9 fall through to
+// that column and are then lifted by SPECIALTY_MIN_ORDER_VALUE ($140 total) —
+// which is exactly the intended 5-piece entry price, so no new qty-5 column is
+// needed here. Do NOT add one without re-checking the floor.
 const wovenPricing = {
   qtyBreaks: [10, 25, 50, 100, 200, 500, 1000, 5000],
-  minQty: 10,
+  minQty: 5,
   prices: {
     //         10      25      50     100    200    500   1000   5000
     1:  [12.50,  5.60,  4.51,  2.62,  2.46,  1.63,  1.40,  1.40],
@@ -280,6 +303,28 @@ interface PricingTable {
   minSize: number;
   maxSize: number;
   minQty?: number;
+  /**
+   * A HIGHER minimum that applies only at or above a given size, for types where
+   * the constraint is the production run rather than the piece count. Flat
+   * `minQty` cannot express this: 12-inch chenille needs 25 pieces while a 3-inch
+   * chenille is fine at 5, and they share one table.
+   */
+  oversizeMinQty?: { fromSize: number; minQty: number };
+}
+
+/**
+ * The quantity this table will actually accept at a given size.
+ *
+ * MUST be the only place a minimum is derived. Copy that states a minimum the
+ * calculator does not enforce is the bug class that shipped twice this month —
+ * once turning away orders we would have taken (PVC advertised 10, accepted 5),
+ * once promising orders we would reject (woven advertised 5, enforced 10).
+ */
+function effectiveMinQty(pricing: PricingTable, lookupSize: number): number {
+  const base = pricing.minQty ?? 1;
+  const over = pricing.oversizeMinQty;
+  if (over && lookupSize >= over.fromSize) return Math.max(base, over.minQty);
+  return base;
 }
 
 // Product name to pricing table mapping (exact match first)
@@ -332,6 +377,43 @@ function getTypeUplift(pricing: PricingTable): number {
   return (pricing === chenillePricing || pricing === leatherPricing) ? CHENILLE_LEATHER_UPLIFT : 1.0;
 }
 
+/**
+ * Minimum ORDER VALUE for the specialty types (CEO, Aug 2026).
+ *
+ * PVC, woven and sequin carry a $140 floor on the order TOTAL — $20 above the
+ * $120 floor already baked into the embroidered qty-5 rows.
+ *
+ * Why a total floor rather than just raising the qty-5 cell: the sub-10 rows
+ * graduate so that the TOTAL rises with quantity. Lifting only the 5-piece price
+ * to $140 would leave 6, 7, 8, 9 — and even 10 — costing less in total than 5
+ * (their natural totals sit around $134-$136), an "order more, pay less"
+ * inversion. That is the exact trap the embroidered 5-piece floor comment warns
+ * about. Flooring the total keeps the ladder monotonic: anything below $140 is
+ * charged $140, and normal per-piece pricing resumes as soon as the natural
+ * total clears the floor (PVC 2": at 11 pieces).
+ *
+ * Scope is name-based, not table-based, because sequinPricing IS tpuPricing (the
+ * same object) while PLAIN chenille is a different table that must stay out.
+ *
+ * TPU and glitter were added to the floor 2026-08-26 (CEO). They were initially
+ * out of scope, which left sequin at $140 and TPU/glitter at $112.81 for five
+ * pieces of what is effectively the same hand-finished product.
+ */
+const SPECIALTY_MIN_ORDER_VALUE = 140;
+
+function getOrderValueFloor(productName: string): number {
+  const name = productName.toLowerCase();
+  // TPU/glitter FIRST: their names also contain "chenille", and plain chenille
+  // is deliberately NOT in scope (it stays at its natural ~$119.81 at qty 5).
+  if (name.includes('tpu') || name.includes('glitter')) return SPECIALTY_MIN_ORDER_VALUE;
+  // "Silicone / Woven Labels" resolves to the silicone table, not woven.
+  if (name.includes('silicone')) return 0;
+  if (name.includes('pvc') || name.includes('woven') || name.includes('sequin')) {
+    return SPECIALTY_MIN_ORDER_VALUE;
+  }
+  return 0;
+}
+
 interface PriceResult {
   unitPrice: number;
   totalPrice: number;
@@ -357,8 +439,8 @@ export function calculatePatchPrice(
   // Bound size to available range
   const lookupSize = Math.max(pricing.minSize, Math.min(pricing.maxSize, avgSize));
 
-  // Enforce per-product minimum quantity
-  const minQty: number = pricing.minQty ?? 1;
+  // Enforce per-product minimum quantity (size-aware — see effectiveMinQty).
+  const minQty: number = effectiveMinQty(pricing, lookupSize);
   if (quantity < minQty) {
     return {
       unitPrice: 0,
@@ -377,8 +459,15 @@ export function calculatePatchPrice(
   }
 
   // Get unit price (apply global 10% uplift + any per-type uplift)
-  const unitPrice = pricing.prices[lookupSize][tierIndex] * PRICE_MULTIPLIER * getTypeUplift(pricing);
-  const totalPrice = unitPrice * quantity;
+  let unitPrice = pricing.prices[lookupSize][tierIndex] * PRICE_MULTIPLIER * getTypeUplift(pricing);
+  let totalPrice = unitPrice * quantity;
+
+  // Specialty minimum order value (PVC / woven / sequin) — see SPECIALTY_MIN_ORDER_VALUE.
+  const orderFloor = getOrderValueFloor(productName);
+  if (orderFloor > 0 && totalPrice < orderFloor) {
+    totalPrice = orderFloor;
+    unitPrice = orderFloor / quantity;
+  }
 
   return {
     unitPrice,

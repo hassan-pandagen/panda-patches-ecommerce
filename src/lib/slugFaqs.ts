@@ -1,5 +1,14 @@
 // Per-slug unique FAQs for custom-patches/[slug] product pages.
 // Each patch type gets distinct questions relevant to that material.
+//
+// MINIMUMS ARE INTERPOLATED, NEVER TYPED. Every "minimum order" answer below
+// reads MIN_ORDER_DEFAULT rather than spelling the number out. This file used to
+// hardcode them and drifted badly: it claimed 10 pieces for PVC, printed and
+// sequin (the calculator accepts 5, so we were turning away orders) while the
+// AEO block claimed 5 for woven (the calculator enforced 10, so buyers hit a
+// wall at checkout — and it was in FAQPage schema). Interpolating makes that
+// class of contradiction impossible. See also `npm run verify:canon`.
+import { MIN_ORDER_DEFAULT } from "@/lib/factConstants";
 
 interface FAQItem {
   question: string;
@@ -29,7 +38,7 @@ const embroideredFaqs: FAQItem[] = [
   },
   {
     question: "What is your minimum order for embroidered patches?",
-    answer: "Our minimum order is 5 pieces for embroidered patches. Volume discounts apply at 50, 100, 200, and 500+ pieces. The more you order, the lower the per-patch price."
+    answer: `Our minimum order is ${MIN_ORDER_DEFAULT} pieces for embroidered patches. Volume discounts apply at 50, 100, 200, and 500+ pieces. The more you order, the lower the per-patch price.`
   },
 ];
 
@@ -52,7 +61,7 @@ const pvcFaqs: FAQItem[] = [
   },
   {
     question: "What is the minimum order for PVC patches?",
-    answer: "Our minimum order for PVC patches is 10 pieces. Volume discounts apply from 50 pieces upward. Rush production (7 business days) is available for an additional fee."
+    answer: `Our minimum order for PVC patches is ${MIN_ORDER_DEFAULT} pieces. Volume discounts apply from 50 pieces upward. Rush production (7 business days) is available for an additional fee.`
   },
   {
     question: "How durable are PVC patches compared to embroidered patches?",
@@ -83,7 +92,7 @@ const wovenFaqs: FAQItem[] = [
   },
   {
     question: "What is the minimum order for woven patches?",
-    answer: "Our minimum order for woven patches is 10 pieces. Orders of 50, 100, and 500+ pieces receive volume discounts. Woven patches have slightly higher setup costs than embroidered patches due to the weaving process."
+    answer: `Our minimum order for woven patches is ${MIN_ORDER_DEFAULT} pieces, the same as every other patch type. Orders of 50, 100, and 500+ pieces receive volume discounts. Woven patches have slightly higher setup costs than embroidered patches due to the weaving process, which is reflected in the per-piece price rather than a higher minimum.`
   },
 ];
 
@@ -106,7 +115,7 @@ const chenilleFaqs: FAQItem[] = [
   },
   {
     question: "What is the minimum order for chenille patches?",
-    answer: "Our minimum order for chenille patches is 5 pieces. Due to the hand-finishing involved, chenille patches cost more per piece than embroidered patches, but volume pricing makes them competitive for team and school orders of 50+ pieces."
+    answer: `Our minimum order for chenille patches is ${MIN_ORDER_DEFAULT} pieces. Due to the hand-finishing involved, chenille patches cost more per piece than embroidered patches, but volume pricing makes them competitive for team and school orders of 50+ pieces.`
   },
   {
     question: "Can you make chenille letter patches for varsity jackets?",
@@ -137,7 +146,7 @@ const leatherFaqs: FAQItem[] = [
   },
   {
     question: "What is the minimum order for leather patches?",
-    answer: "Our minimum order for leather patches is 5 pieces, the same low minimum as embroidered, PVC, and chenille. Standard production is 7 to 14 business days after mockup approval, the same as every other patch type. Rush options are available."
+    answer: `Our minimum order for leather patches is ${MIN_ORDER_DEFAULT} pieces, the same low minimum as embroidered, PVC, and chenille. Standard production is 7 to 14 business days after mockup approval, the same as every other patch type. Rush options are available.`
   },
 ];
 
@@ -160,7 +169,7 @@ const printedFaqs: FAQItem[] = [
   },
   {
     question: "What is the minimum order for printed patches?",
-    answer: "Our minimum order for printed patches is 10 pieces. Unlike embroidered patches, there are no color limitations — full-color printing is included at the same price regardless of the number of colors in your design."
+    answer: `Our minimum order for printed patches is ${MIN_ORDER_DEFAULT} pieces. Unlike embroidered patches, there are no color limitations — full-color printing is included at the same price regardless of the number of colors in your design.`
   },
   {
     question: "Can printed patches be used for photo patches or memorial patches?",
@@ -191,7 +200,7 @@ const sequinFaqs: FAQItem[] = [
   },
   {
     question: "What is the minimum order for sequin patches?",
-    answer: "Our minimum order for sequin patches is 10 pieces. Due to the hand-finishing and sequential placement of sequins, production times are slightly longer (14-18 days). Rush production is available for an additional fee."
+    answer: `Our minimum order for sequin patches is ${MIN_ORDER_DEFAULT} pieces. Due to the hand-finishing and sequential placement of sequins, production times are slightly longer (14-18 days). Rush production is available for an additional fee.`
   },
 ];
 
