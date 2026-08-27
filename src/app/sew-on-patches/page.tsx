@@ -51,7 +51,7 @@ const sewOnFAQs = [
   {
     question: "What is the minimum order for sew-on patches?",
     answer:
-      "5 pieces across embroidered, woven, printed, leather, PVC, and standard-size chenille. Oversized 12-inch chenille starts at 25 pieces and 3D embroidered transfers at 10, both because of the production run rather than the piece count. Base patches start at " + getFromPriceLabel("Custom Embroidered Patches") + " per piece for embroidered at 2 by 2 inches and 1,000 pieces, with no setup or digitizing fees. Every order includes free worldwide shipping and a digital mockup in 12 to 24 hours.",
+      "5 pieces on every patch type and every size — embroidered, woven, printed, leather, PVC, and chenille alike, with no exceptions. Base patches start at " + getFromPriceLabel("Custom Embroidered Patches") + " per piece for embroidered at 2 by 2 inches and 1,000 pieces, with no setup or digitizing fees. Every order includes free worldwide shipping and a digital mockup in 12 to 24 hours.",
   },
 ];
 

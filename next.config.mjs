@@ -148,16 +148,22 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // CRM ORDER-LINK ALIAS (CL0FAA §3.2). The CRM emails customers links shaped
-      // https://<portal>/customer/order/${order.orderNumber}. This app serves the
-      // customer portal at /account/orders/:ref, so without these the emailed
-      // links 404. /account/orders/[id] accepts PP-xxxxx directly, so the ref
-      // passes straight through.
-      // NOTE FOR THE CRM SIDE: those emails point at login.pandapatches.com,
-      // which is NOT a domain this app answers on (canonical host is
-      // www.pandapatches.com). These aliases fix the PATH; the HOST still has to
-      // be resolved by either aliasing login.pandapatches.com to this deployment
-      // or changing the CRM to build www.pandapatches.com links.
+      // CRM ORDER-LINK ALIAS (CL0FAA §3.2) — LOAD-BEARING, DO NOT REMOVE.
+      //
+      // The CRM emails customers order links shaped
+      // https://www.pandapatches.com/customer/order/${order.orderNumber}
+      // (orderService.ts + the notify-order-message edge function). This app
+      // serves the customer portal at /account/orders/:ref, and
+      // /account/orders/[id] accepts PP-xxxxx directly, so the ref passes
+      // straight through these rules.
+      //
+      // History: the CRM originally built login.pandapatches.com links, a host
+      // this app does not answer on, so every emailed order link was dead.
+      // Resolved 2026-08-27 by the CRM switching to www.pandapatches.com rather
+      // than adding a DNS alias — which means these rules are the ONLY thing
+      // connecting a customer's emailed link to the portal. Deleting them breaks
+      // every order link in every past and future CRM email. If the portal ever
+      // does move to its own subdomain, retire these only alongside a CRM deploy.
       { source: '/customer/order/:ref', destination: '/account/orders/:ref', permanent: true },
       { source: '/customer/order/:ref/', destination: '/account/orders/:ref', permanent: true },
       { source: '/customer/orders/:ref', destination: '/account/orders/:ref', permanent: true },

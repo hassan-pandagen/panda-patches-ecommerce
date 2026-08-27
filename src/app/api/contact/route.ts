@@ -77,8 +77,8 @@ export async function POST(request: Request) {
           externalId: email,
           attribution,
           eventSourceUrl: pageUrl || attribution.page_url,
-          value: 0,
-          currency: 'USD',
+          // No value on a contact-form Lead — an enquiry has no monetary value and
+          // sending 0 is malformed price data, not a neutral placeholder (CL4DE6 §3).
           contentName: 'Contact Form',
           contentCategory: 'Custom Patches',
         }).catch((err) => console.error('[META CAPI] Contact Lead send failed (non-blocking):', err))

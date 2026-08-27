@@ -144,12 +144,28 @@ export async function sendMetaEvent(input: MetaEventInput): Promise<{ success: b
   // Defaults missing currency to USD — safe today because all Panda Patches revenue is in USD.
   // IMPORTANT: Update this default when adding multi-currency support (CAD, GBP, EUR, AUD, etc).
   // The fallback would silently miscategorize non-USD orders if international sales launch.
-  if (input.value !== undefined) {
+  //
+  // A ZERO VALUE IS OMITTED ENTIRELY, NOT SENT AS 0 (CL4DE6 §3, Aug 2026).
+  // Events Manager reported "57% of price data from website Lead events has
+  // formatting issues or missing values". The cause was three Lead senders
+  // hardcoding `value: 0` — contact, partner, and (highest volume by far) the
+  // quote route, which sent 0 for any form without a priced calculator. A Lead
+  // does not need a price: an unpriced enquiry genuinely has no monetary value,
+  // and "0" is not a neutral placeholder — Meta reads it as malformed price data
+  // and it drags the whole dataset's quality score down.
+  //
+  // So: send value only when it is a real positive number. Where a lead DOES
+  // carry a real figure (a priced calculator quote, an abandoned cart), that
+  // value still goes through and remains useful for value-based optimisation.
+  // Purchase is stricter still and is blocked outright above.
+  const hasRealValue =
+    typeof input.value === 'number' && Number.isFinite(input.value) && input.value > 0;
+  if (hasRealValue) {
     custom_data.value = input.value;
     custom_data.currency = input.currency || 'USD';
-  } else if (input.currency) {
-    // Edge case: currency provided without value. Don't send orphan currency.
   }
+  // Note: currency is never sent without value — an orphan currency is the other
+  // half of the same formatting complaint.
   // content_type defaults to 'product' on Purchase so every Purchase carries it
   // without each call site having to remember (CL4DE6 §1.2).
   const contentType = input.contentType ?? (input.eventName === 'Purchase' ? 'product' : undefined);

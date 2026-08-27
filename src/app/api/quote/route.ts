@@ -425,8 +425,14 @@ export async function POST(req: Request) {
         attribution,
         eventSourceUrl: pageUrl || attribution.page_url,
         // Always send value AND currency together. Meta rejects partial pairs (48% of Lead events were failing this).
-        // For leads with no priced calculator (home form, bulk form), send value: 0.
-        value: basePrice || 0,
+        // Only send a value when the calculator actually priced this lead.
+        // Unpriced forms (home form, bulk form) send NO value — this route is the
+        // highest-volume Lead source on the site and sending 0 for every unpriced
+        // form is what produced Events Manager's "57% of price data from website
+        // Lead events has formatting issues or missing values" (CL4DE6 §3).
+        // metaCapi drops a non-positive value and its currency; passing it
+        // explicitly here keeps the intent readable at the call site.
+        value: basePrice && basePrice > 0 ? basePrice : undefined,
         currency: 'USD',
         numItems: details.quantity,
         contentName: isBulkOrder ? 'Bulk Quote Request' : 'Quote Request',

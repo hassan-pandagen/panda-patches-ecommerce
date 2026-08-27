@@ -197,7 +197,14 @@ async function sendFirstEmail(row: CheckoutAttempt) {
       email: row.customer_email,
       phone: row.customer_phone,
       firstName: fname !== 'there' ? fname : null,
+      // external_id (hashed email) — Meta's "improve match quality by sending
+      // more parameters" action asks for External ID on Lead events, and this
+      // was the one Lead sender missing it (CL4DE6 §3). fbp/fbc ride along in
+      // `attribution` when the original session captured them.
+      externalId: row.customer_email,
       attribution: row.attribution || undefined,
+      // A real cart value when we have one; metaCapi omits it if it is 0/null
+      // rather than sending a malformed zero.
       value: row.cart_value,
       currency: 'USD',
       contentName: 'Abandoned Cart Email 1',

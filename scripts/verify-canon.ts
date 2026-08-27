@@ -23,7 +23,7 @@ import { calculatePatchPrice } from "../src/lib/pricingCalculator";
 import { aeoContent } from "../src/lib/aeoContent";
 import { slugFaqMap } from "../src/lib/slugFaqs";
 import { genericFaqs } from "../src/lib/genericFaqs";
-import { MIN_ORDER_EXCEPTIONS, MIN_ORDER_DEFAULT, OVERSIZE_CHENILLE } from "../src/lib/factConstants";
+import { MIN_ORDER_EXCEPTIONS, MIN_ORDER_DEFAULT } from "../src/lib/factConstants";
 
 const PRODUCTS: Record<string, string> = {
   embroidered: "Custom Embroidered Patches",
@@ -118,23 +118,29 @@ for (const [productName, declared] of Object.entries(MIN_ORDER_EXCEPTIONS)) {
   }
 }
 
-// 4. The size-conditional oversized-chenille floor must be real, and must NOT
-//    leak down to normal sizes. A run constraint that silently applied to a
-//    3-inch chenille would block orders we can happily make.
-{
-  const { fromSizeInches, minQty } = OVERSIZE_CHENILLE;
-  const atOversize = enforcedMinimum("Custom Chenille Patches", fromSizeInches);
-  const belowOversize = enforcedMinimum("Custom Chenille Patches", fromSizeInches - 1);
-  if (atOversize !== minQty) {
-    failures.push(
-      `OVERSIZE_CHENILLE: declares ${minQty} at ${fromSizeInches}in, calculator enforces ${atOversize}`
-    );
+// 4. The minimum must not vary by SIZE. Canon is 5 at every size (production
+//    floor, 2026-08-27), and a size-conditional floor is exactly how an
+//    unadvertised minimum crept in before. Sample across the full size range so
+//    a reintroduced oversize rule fails the build instead of silently turning
+//    away large-format orders.
+for (const [slug, productName] of Object.entries(PRODUCTS)) {
+  const base = enforcedMinimum(productName, 2);
+  for (const size of [4, 8, 12, 14]) {
+    const atSize = enforcedMinimum(productName, size);
+    if (atSize !== base) {
+      failures.push(
+        `${slug}: minimum varies by size — ${base} at 2in but ${atSize} at ${size}in. ` +
+          `Canon is one minimum at every size.`
+      );
+    }
   }
-  if (belowOversize !== MIN_ORDER_DEFAULT) {
-    failures.push(
-      `OVERSIZE_CHENILLE: floor leaked below ${fromSizeInches}in — ` +
-        `chenille at ${fromSizeInches - 1}in enforces ${belowOversize}, expected ${MIN_ORDER_DEFAULT}`
-    );
+}
+
+// 5. Extra types that are not product pages but still take orders.
+for (const name of ["Custom 3D Embroidered Transfer", "Custom Chenille TPU Patches", "Custom Chenille Glitter Patches"]) {
+  const m = enforcedMinimum(name);
+  if (m !== MIN_ORDER_DEFAULT) {
+    failures.push(`${name}: enforces ${m}, canon default is ${MIN_ORDER_DEFAULT}`);
   }
 }
 
@@ -142,7 +148,7 @@ const summary = Object.entries(PRODUCTS)
   .map(([slug, n]) => `${slug}=${enforcedMinimum(n)}`)
   .join("  ") +
   `  |  3D-transfer=${enforcedMinimum("Custom 3D Embroidered Transfer")}` +
-  `  chenille@${OVERSIZE_CHENILLE.fromSizeInches}in=${enforcedMinimum("Custom Chenille Patches", OVERSIZE_CHENILLE.fromSizeInches)}`;
+  `  chenille@12in=${enforcedMinimum("Custom Chenille Patches", 12)}`;
 
 if (failures.length) {
   console.error("\nCANON CHECK FAILED\n");

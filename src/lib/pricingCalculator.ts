@@ -70,17 +70,12 @@ const chenillePricing = {
     13: [80.00, 54.03, 45.37, 41.04, 38.44, 36.71, 35.48, 34.55, 33.83, 33.25, 26.60, 23.95, 19.95, 13.97, 11.97, 11.31, 11.31],
     14: [80.00, 56.25, 48.33, 44.38, 42.00, 40.42, 39.29, 38.44, 37.78, 37.25, 29.79, 26.82, 22.34, 15.65, 13.41, 12.67, 12.67],
   },
+  // 5 pieces at EVERY size, including 12-inch. The production floor confirmed
+  // 2026-08-27 that the larger chenille loom run is viable at 5, so the interim
+  // 25-piece oversize floor (`oversizeMinQty`) is removed permanently rather
+  // than left in place "just in case" — a floor nobody enforces is a floor that
+  // silently turns away orders.
   minQty: 5,
-  // OVERSIZED CHENILLE — 25-piece floor at 12 inches and up (CEO, 2026-08-26),
-  // PENDING SHOP-FLOOR CONFIRMATION.
-  // Restored after being dropped in the Aug 2026 "5-piece minimum, no exceptions"
-  // sweep. That ruling was about PIECE minimums (5 vs 10 vs 25), not about
-  // production-run constraints, and the original copy cited a specific reason —
-  // the larger chenille loom run. Advertising 5 on a run the factory cannot do
-  // economically is the PVC bug inverted, so the floor stands until the shop
-  // floor says otherwise. If they confirm 12-inch runs are fine at 5, delete
-  // these three lines and sweep the copy; it is a one-line change either way.
-  oversizeMinQty: { fromSize: 12, minQty: 25 },
   minSize: 1,
   maxSize: 14
 };
@@ -139,13 +134,12 @@ const threeDEmbroideryTransferPricing = {
     13: [88.00, 61.47, 52.62, 48.20, 45.54, 43.78, 42.52, 41.57, 40.83, 40.24, 32.19, 28.99, 24.15, 16.91, 14.49, 13.68, 13.68],
     14: [88.00, 64.15, 56.21, 52.23, 49.85, 48.26, 47.12, 46.27, 45.61, 45.08, 36.05, 32.45, 27.03, 18.94, 16.23, 15.33, 15.33],
   },
-  // 3D EMBROIDERED TRANSFERS — 10-piece floor (CEO, 2026-08-26), PENDING
-  // SHOP-FLOOR CONFIRMATION. Same reasoning as oversized chenille above: the
-  // constraint cited was the transfer-paper run, which is a production-run
-  // limit, not a piece minimum. Note this reverses SEDAA3_1 §A.4 (2026-07-20),
-  // which moved 3D transfers 10 -> 5; that change is what the "no exceptions"
-  // sweep inherited. Drop back to 5 only on shop-floor confirmation.
-  minQty: 10,
+  // 5 pieces. The production floor confirmed 2026-08-27 that the transfer-paper
+  // run is viable at 5, so the interim 10-piece floor is gone for good. This
+  // settles a value that has moved three times (10 -> 5 in SEDAA3_1 §A.4, back
+  // to 10 pending confirmation, now 5 on the floor's answer): there is no
+  // production constraint here, so do not reintroduce one without a new one.
+  minQty: 5,
   minSize: 1,
   maxSize: 14
 };
@@ -303,28 +297,26 @@ interface PricingTable {
   minSize: number;
   maxSize: number;
   minQty?: number;
-  /**
-   * A HIGHER minimum that applies only at or above a given size, for types where
-   * the constraint is the production run rather than the piece count. Flat
-   * `minQty` cannot express this: 12-inch chenille needs 25 pieces while a 3-inch
-   * chenille is fine at 5, and they share one table.
-   */
-  oversizeMinQty?: { fromSize: number; minQty: number };
 }
 
 /**
- * The quantity this table will actually accept at a given size.
+ * The quantity this table will actually accept.
  *
  * MUST be the only place a minimum is derived. Copy that states a minimum the
- * calculator does not enforce is the bug class that shipped twice this month —
+ * calculator does not enforce is the bug class that shipped twice in Aug 2026 —
  * once turning away orders we would have taken (PVC advertised 10, accepted 5),
  * once promising orders we would reject (woven advertised 5, enforced 10).
+ * `npm run verify:canon` fails the build if the two drift apart.
+ *
+ * There is deliberately NO size-conditional variant any more. One briefly existed
+ * for a 12-inch chenille floor; the production floor confirmed 2026-08-27 that the
+ * run is fine at 5, so the mechanism was removed rather than left dormant. An
+ * unused escape hatch is how an unadvertised minimum gets added without a canon
+ * sweep. If a genuine production constraint ever appears, add it back together
+ * with the copy sweep and a verify:canon assertion — not on its own.
  */
-function effectiveMinQty(pricing: PricingTable, lookupSize: number): number {
-  const base = pricing.minQty ?? 1;
-  const over = pricing.oversizeMinQty;
-  if (over && lookupSize >= over.fromSize) return Math.max(base, over.minQty);
-  return base;
+function effectiveMinQty(pricing: PricingTable): number {
+  return pricing.minQty ?? 1;
 }
 
 // Product name to pricing table mapping (exact match first)
@@ -439,8 +431,8 @@ export function calculatePatchPrice(
   // Bound size to available range
   const lookupSize = Math.max(pricing.minSize, Math.min(pricing.maxSize, avgSize));
 
-  // Enforce per-product minimum quantity (size-aware — see effectiveMinQty).
-  const minQty: number = effectiveMinQty(pricing, lookupSize);
+  // Enforce per-product minimum quantity — see effectiveMinQty.
+  const minQty: number = effectiveMinQty(pricing);
   if (quantity < minQty) {
     return {
       unitPrice: 0,

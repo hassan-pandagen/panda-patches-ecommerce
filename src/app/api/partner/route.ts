@@ -113,8 +113,8 @@ export async function POST(req: Request) {
         externalId: businessEmail,
         attribution,
         eventSourceUrl: pageUrl || attribution.page_url,
-        value: 0,
-        currency: 'USD',
+        // No value on a partner-application Lead — see CL4DE6 §3. A zero here was
+        // part of the 57% malformed-price-data figure on website Lead events.
         contentName: 'Partner Application',
         contentCategory: 'Partner Program',
       }).catch((err) => console.error('[META CAPI] Partner Lead send failed (non-blocking):', err))
