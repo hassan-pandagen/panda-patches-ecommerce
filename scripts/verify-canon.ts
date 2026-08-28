@@ -364,6 +364,50 @@ for (const h of proseHits) {
   );
 }
 
+// ---------------------------------------------------------------------------
+// 8. PROSE SIZE CLAIMS (CL5E74 §3.3).
+//
+// A global sentence cannot state an instant-pricing ceiling, because there are
+// seven of them and they move as price rows land. Two versions of that sentence
+// shipped and went stale within a day of each other — "up to 14 inches (8 for
+// woven, leather and PVC)" was untrue when written, since the real ceilings were
+// 14/14/7/6/8/12/14.
+//
+// So: no prose anywhere may state a blanket instant-pricing figure. Per-type
+// numbers come from instantPricingLine(), derived from AUTO_PRICE_CEILING_IN.
+// Manufacturing maximums ARE quotable, because they are stable and per-type.
+// ---------------------------------------------------------------------------
+const BLANKET_PRICING_CLAIM = [
+  /instant(?:\s+on-site)?\s+pricing[^.]{0,40}\bup to\s+\d+\s*(?:in\b|inch)/gi,
+  /pric(?:es|ing|ed)\s+instantly[^.]{0,30}\bup to\s+\d+\s*(?:in\b|inch)/gi,
+];
+
+for (const file of files) {
+  if (path.resolve(file) === path.resolve("scripts/verify-canon.ts")) continue;
+  const text = stripComments(fs.readFileSync(file, "utf8"), file);
+  for (const re of BLANKET_PRICING_CLAIM) {
+    re.lastIndex = 0;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) {
+      const at = m.index;
+      failures.push(
+        `${file}:${text.slice(0, at).split("\n").length}: prose states a blanket instant-pricing ` +
+          `ceiling — "${m[0].replace(/\s+/g, " ")}". There are seven different ceilings ` +
+          `(${Object.entries(AUTO_PRICE_CEILING_IN).map(([k, v]) => `${k} ${v}in`).join(", ")}) ` +
+          `and they change as price rows land. Use instantPricingLine(slug) per type instead.`
+      );
+    }
+  }
+}
+
+// The global size sentence must stay numberless — that is the whole point of it.
+if (/\d/.test(STANDARD_SIZE_SENTENCE)) {
+  failures.push(
+    `STANDARD_SIZE_SENTENCE contains a digit ("${STANDARD_SIZE_SENTENCE}"). It is global ` +
+      `copy and must carry no numbers; per-type figures belong in instantPricingLine().`
+  );
+}
+
 const summary = Object.entries(PRODUCTS)
   .map(([slug, n]) => `${slug}=${enforcedMinimum(n)}`)
   .join("  ") +
