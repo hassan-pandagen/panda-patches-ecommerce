@@ -211,6 +211,56 @@ for (const [slug, productName] of Object.entries(PRODUCTS)) {
 }
 
 // ---------------------------------------------------------------------------
+// 6c. MONOTONICITY — price must never DECREASE as a patch gets bigger.
+//
+// Shipped as an ADVISORY first, deliberately. There is a live inversion today
+// (leather at qty 200: 5in $4.61 -> 6in $3.94, then flat to 8in), so making this
+// a hard failure would block every build until the floor answers. Advisory-first
+// means the assertion exists before anyone assumes it does — which is the exact
+// gap that let the inversion survive this long.
+//
+// FLIP TO HARD FAILURE the moment the floor's corrected qty-200 leather numbers
+// land: set MONOTONICITY_ENFORCED = true. That is the whole change.
+//
+// Where this sits among the three checks:
+//   duplicate-top-row  catches FABRICATED data (a row copied from its neighbour)
+//   ceiling            catches UNPRICEABLE data (a selectable size with no row)
+//   monotonicity       catches INCOHERENT data (bigger patch, smaller price)
+// The class none of them catch is data that is distinct, priceable, coherent —
+// and simply wrong. Only the floor confirming a number covers that, or the
+// "CEO-DERIVED, NOT factory-quoted" label saying it never was confirmed.
+// ---------------------------------------------------------------------------
+const MONOTONICITY_ENFORCED = false;
+
+/** Sampling every real tier break; calculatePatchPrice snaps to the tier itself. */
+const QTY_BREAKS = [5, 10, 25, 50, 100, 200, 500, 1000, 5000];
+
+const inversions: string[] = [];
+
+for (const [slug, productName] of Object.entries(PRODUCTS)) {
+  const ceiling = AUTO_PRICE_CEILING_IN[slug as keyof typeof AUTO_PRICE_CEILING_IN];
+  for (const qty of QTY_BREAKS) {
+    let prevPrice = -1;
+    let prevSize = 0;
+    for (let size = 1; size <= ceiling; size++) {
+      const r = calculatePatchPrice(productName, size, size, qty);
+      if (r.error) continue;
+      if (prevPrice >= 0 && r.unitPrice < prevPrice - 0.001) {
+        inversions.push(
+          `${slug} @ qty ${qty}: ${prevSize}in $${prevPrice.toFixed(2)} -> ${size}in $${r.unitPrice.toFixed(2)}`
+        );
+      }
+      prevPrice = r.unitPrice;
+      prevSize = size;
+    }
+  }
+}
+
+if (inversions.length && MONOTONICITY_ENFORCED) {
+  inversions.forEach((i) => failures.push(`price decreases as size increases — ${i}`));
+}
+
+// ---------------------------------------------------------------------------
 // 7. PROSE SWEEP — every minimum claim in shipped copy, not just the FAQ modules.
 //
 // Sections 1-5 only see values that flow through aeoContent/slugFaqs/genericFaqs.
@@ -414,7 +464,20 @@ const summary = Object.entries(PRODUCTS)
   `  |  3D-transfer=${enforcedMinimum("Custom 3D Embroidered Transfer")}` +
   `  chenille@12in=${enforcedMinimum("Custom Chenille Patches", 12)}`;
 
+/** Advisories print on BOTH the pass and fail paths — a warning nobody sees is not a warning. */
+function printAdvisories() {
+  if (inversions.length && !MONOTONICITY_ENFORCED) {
+    console.log("\n⚠ Price DECREASES as size increases — a bigger patch costs less per piece:");
+    inversions.forEach((i) => console.log(`   ${i}`));
+    console.log(
+      `   ${inversions.length} inversion(s). Advisory only until the floor confirms the correct\n` +
+        "   figures; set MONOTONICITY_ENFORCED = true to make this fail the build."
+    );
+  }
+}
+
 if (failures.length) {
+  printAdvisories();
   console.error("\nCANON CHECK FAILED\n");
   failures.forEach((f) => console.error("  x " + f));
   console.error(`\nEnforced minimums: ${summary}`);
@@ -446,3 +509,4 @@ if (blocked.length) {
   console.log("   Raise each ceiling only after replacing the duplicated top price rows.");
 }
 console.log(`Prose sweep: ${files.length} files scanned, 0 unwaived minimum claims.`);
+printAdvisories();
