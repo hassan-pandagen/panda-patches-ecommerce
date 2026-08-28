@@ -224,6 +224,10 @@ const wovenPricing = {
     // Continues the percentage step between the last two GENUINE sizes at every
     // quantity break (CEO method, 2026-08-28). Replace with real factory numbers
     // when they arrive; until then these are an informed continuation, not data.
+    // CONSTRAINT: per-column growth rates differ, so at the top size they can
+    // CROSS and make a bigger order cost MORE per piece. Where that happened the
+    // qty column is re-derived from the last genuine row's own quantity step
+    // instead. Monotonic in BOTH axes is the requirement, not just in size.
     8:  [25.06, 10.33,  7.36,  6.38,  5.69,  5.27,  4.24,  4.24],
   },
   minSize: 1,
@@ -242,16 +246,25 @@ const leatherPricing = {
     3:  [80.00, 47.50, 32.83, 25.49, 21.09, 18.16, 16.06, 14.49, 13.27, 12.29,  6.15,  4.53,  3.74,  3.20,  2.14,  1.49,  1.49],
     4:  [80.00, 47.50, 33.05, 25.83, 21.50, 18.61, 16.54, 15.00, 13.79, 12.83,  6.42,  4.82,  4.11,  3.55,  2.40,  2.14,  2.14],
     5:  [80.00, 47.50, 33.95, 27.17, 23.10, 20.39, 18.46, 17.00, 15.87, 14.97,  7.29,  5.18,  4.38,  3.74,  2.67,  2.39,  2.39],
-    6:  [80.00, 47.50, 35.73, 29.84, 26.31, 23.95, 22.27, 21.01, 20.03, 19.24,  9.22,  5.89,  5.35,  3.20,  3.20,  2.67,  2.67],
+    6:  [80.00, 47.50, 35.73, 29.84, 26.31, 23.95, 22.27, 21.01, 20.03, 19.24,  9.22,  5.89,  5.35,  4.15,  3.20,  2.67,  2.67],
     // ---- CEO-DERIVED, Sept 2026 — NOT factory-quoted. ----
     // Continues the percentage step between the last two GENUINE sizes at every
     // quantity break (CEO method, 2026-08-28). Replace with real factory numbers
     // when they arrive; until then these are an informed continuation, not data.
-    // NOTE: the qty-200 column is held FLAT at 3.20 rather than stepped. The
-    // existing size-6 row already dips there (3.20 vs 3.74 at size 5), so
-    // continuing that ratio would price an 8in BELOW a 5in. Flagged separately.
-    7:  [80.00, 47.50, 37.60, 32.77, 29.97, 28.13, 26.87, 25.97, 25.28, 24.73, 11.66,  6.70,  6.53,  3.20,  3.84,  2.98,  2.98],
-    8:  [80.00, 47.50, 39.57, 35.99, 34.13, 33.04, 32.42, 32.10, 31.91, 31.78, 14.75,  7.62,  7.98,  3.20,  4.60,  3.33,  3.33],
+    // CONSTRAINT: per-column growth rates differ, so at the top size they can
+    // CROSS and make a bigger order cost MORE per piece. Where that happened the
+    // qty column is re-derived from the last genuine row's own quantity step
+    // instead. Monotonic in BOTH axes is the requirement, not just in size.
+    // qty-200 COLUMN CORRECTED — CEO-DERIVED, Sept 2026, NOT factory-quoted.
+    // It read 3.20 at sizes 6/7/8 against 3.74 at size 5: a bigger patch cost
+    // LESS per piece, and had done for as long as the table has existed.
+    // Rebuilt by continuing that column's own geometric progression across its
+    // genuine sizes 1-5 (+10.93% per size): 6in 4.15, 7in 4.60, 8in 5.10.
+    // NOT the last-single-step reading (+5.35%) — that was tested and produced
+    // 8in@200 = 4.37 BELOW 8in@500 = 4.60, i.e. it fixed the size axis by
+    // breaking the quantity axis. Coherent on both is the requirement.
+    7:  [80.00, 47.50, 37.60, 32.77, 29.97, 28.13, 26.87, 25.97, 25.28, 24.73, 11.66,  6.70,  6.53,  4.60,  3.84,  2.98,  2.98],
+    8:  [80.00, 47.50, 39.57, 35.99, 34.13, 33.04, 32.42, 32.10, 31.91, 31.78, 14.75,  7.62,  6.92,  5.10,  4.60,  3.33,  3.33],
   },
   minQty: 5,
   minSize: 1,
@@ -299,8 +312,12 @@ const sublimatedPricing = {
     // Continues the percentage step between the last two GENUINE sizes at every
     // quantity break (CEO method, 2026-08-28). Replace with real factory numbers
     // when they arrive; until then these are an informed continuation, not data.
+    // CONSTRAINT: per-column growth rates differ, so at the top size they can
+    // CROSS and make a bigger order cost MORE per piece. Where that happened the
+    // qty column is re-derived from the last genuine row's own quantity step
+    // instead. Monotonic in BOTH axes is the requirement, not just in size.
     13: [80.00, 50.00, 42.85, 39.35, 37.26, 35.88, 34.90, 34.19, 33.64, 33.19, 29.83, 25.06, 24.38, 19.52, 17.34, 15.16, 15.16],
-    14: [80.00, 50.00, 44.36, 41.75, 40.23, 39.27, 38.61, 38.16, 37.82, 37.54, 34.30, 27.84, 29.26, 22.51, 20.50, 18.52, 18.52],
+    14: [80.00, 50.00, 44.36, 41.75, 40.23, 39.27, 38.61, 38.16, 37.82, 37.54, 34.30, 27.84, 25.06, 22.51, 20.50, 18.52, 18.52],
   },
   minQty: 5,
   minSize: 1,

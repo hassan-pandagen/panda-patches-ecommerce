@@ -213,14 +213,17 @@ for (const [slug, productName] of Object.entries(PRODUCTS)) {
 // ---------------------------------------------------------------------------
 // 6c. MONOTONICITY — price must never DECREASE as a patch gets bigger.
 //
-// Shipped as an ADVISORY first, deliberately. There is a live inversion today
-// (leather at qty 200: 5in $4.61 -> 6in $3.94, then flat to 8in), so making this
-// a hard failure would block every build until the floor answers. Advisory-first
-// means the assertion exists before anyone assumes it does — which is the exact
-// gap that let the inversion survive this long.
+// NOW ENFORCED. Shipped as an advisory for one build, then flipped once the table
+// was clean (CEO, 2026-08-28: correct by derivation rather than wait for the
+// factory). The advisory found the live leather qty-200 inversion; enforcing it
+// means this class cannot regress silently.
 //
-// FLIP TO HARD FAILURE the moment the floor's corrected qty-200 leather numbers
-// land: set MONOTONICITY_ENFORCED = true. That is the whole change.
+// Two axes, both required:
+//   size     bigger patch must never cost LESS per piece
+//   quantity bigger order must never cost MORE per piece
+// The second was added after the narrower qty-200 derivation fixed the size axis
+// by breaking the quantity one. A table can satisfy either alone and still be
+// incoherent.
 //
 // Where this sits among the three checks:
 //   duplicate-top-row  catches FABRICATED data (a row copied from its neighbour)
@@ -230,7 +233,7 @@ for (const [slug, productName] of Object.entries(PRODUCTS)) {
 // and simply wrong. Only the floor confirming a number covers that, or the
 // "CEO-DERIVED, NOT factory-quoted" label saying it never was confirmed.
 // ---------------------------------------------------------------------------
-const MONOTONICITY_ENFORCED = false;
+const MONOTONICITY_ENFORCED = true;
 
 /** Sampling every real tier break; calculatePatchPrice snaps to the tier itself. */
 const QTY_BREAKS = [5, 10, 25, 50, 100, 200, 500, 1000, 5000];
@@ -256,8 +259,33 @@ for (const [slug, productName] of Object.entries(PRODUCTS)) {
   }
 }
 
+// The OTHER axis: per-piece price must never RISE as quantity rises. Added after
+// correcting the qty-200 leather column, where the narrower derivation would have
+// fixed the size axis by breaking this one (8in@200 $4.37 vs 8in@500 $4.60 — pay
+// more per piece for ordering more). A table can be monotonic in size and still
+// be incoherent in quantity; both need asserting or a fix on one axis can quietly
+// damage the other.
+for (const [slug, productName] of Object.entries(PRODUCTS)) {
+  const ceiling = AUTO_PRICE_CEILING_IN[slug as keyof typeof AUTO_PRICE_CEILING_IN];
+  for (let size = 1; size <= ceiling; size++) {
+    let prevPrice = Number.POSITIVE_INFINITY;
+    let prevQty = 0;
+    for (const qty of QTY_BREAKS) {
+      const r = calculatePatchPrice(productName, size, size, qty);
+      if (r.error) continue;
+      if (r.unitPrice > prevPrice + 0.001) {
+        inversions.push(
+          `${slug} @ ${size}in: qty ${prevQty} $${prevPrice.toFixed(2)} -> qty ${qty} $${r.unitPrice.toFixed(2)} (per-piece RISES with volume)`
+        );
+      }
+      prevPrice = r.unitPrice;
+      prevQty = qty;
+    }
+  }
+}
+
 if (inversions.length && MONOTONICITY_ENFORCED) {
-  inversions.forEach((i) => failures.push(`price decreases as size increases — ${i}`));
+  inversions.forEach((i) => failures.push(`price incoherence — ${i}`));
 }
 
 // ---------------------------------------------------------------------------
