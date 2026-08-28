@@ -83,34 +83,32 @@ export const MANUFACTURING_MAX_IN: Record<SpecSlug, number> = {
 };
 
 /**
- * ⚠ THREE TYPES SIT BELOW THEIR INTENDED CEILING — BLOCKED, NOT A CHOICE.
+ * All seven now sit at their CL5E74 target.
  *
- * CL5E74 §1 sets woven/leather to 8 and printed to 14. They sit lower because
- * those are the last sizes with GENUINE price data:
- *   woven    size-8 row is a byte-identical copy of size 7        -> ceiling 7
- *   leather  size-7 and size-8 rows are copies of size 6          -> ceiling 6
- *   printed  table ends at size 12; 13-14 would reuse the 12 row  -> ceiling 12
+ * HOW THEY GOT THERE MATTERS. woven@8, leather@7-8 and printed@13-14 previously
+ * had no genuine price data — woven's size-8 row was a byte-copy of size 7,
+ * leather's 7 and 8 were copies of 6, and printed's table stopped at 12. Those
+ * duplicates are what billed a 12-inch leather patch at the 6-inch rate.
  *
- * Those duplicates are exactly what billed a 12-inch leather patch at the 6-inch
- * rate. Pricing an 8-inch woven from a copied 7-inch row is the same defect
- * wearing a different number, so each ceiling sits at real data until the floor
- * supplies actual per-quantity prices. I will not invent them — a fabricated
- * price row is indistinguishable from a real one once it ships.
+ * Those rows are now CEO-DERIVED (Sept 2026), not factory-quoted: each continues
+ * the percentage step between the last two GENUINE sizes at every quantity break.
+ * They are marked as such in pricingCalculator.ts and should be replaced the
+ * moment real factory numbers arrive.
  *
  * (printed was NOT in the original leak report. verify:canon's duplicate-top-row
- * assertion found it on its first run, which is the case for having the check.)
+ * assertion found it on first run, which is the case for having the check.)
  *
- * WHEN THE NUMBERS ARRIVE: replace the duplicated rows, raise the ceiling here,
- * and verify:canon confirms the top row is genuinely more expensive than the one
- * below it.
+ * Embroidered and chenille stay at 14 against a 25-inch manufacturing max BY
+ * DESIGN, not for want of data: a 25-inch piece can be a million stitches, and
+ * complexity rather than area drives that cost, so it cannot come from a size row.
  */
 export const AUTO_PRICE_CEILING_IN: Record<SpecSlug, number> = {
   embroidered: 14,
   chenille: 14,
-  woven: 7, // CL5E74 wants 8 — blocked on real size-8 price data
-  leather: 6, // CL5E74 wants 8 — blocked on real size-7/8 price data
+  woven: 8, // rows to 8in derived (CEO method, Sept 2026)
+  leather: 8, // rows to 8in derived (CEO method, Sept 2026)
   pvc: 8,
-  printed: 12, // CL5E74 wants 14 — blocked on real size-13/14 price data
+  printed: 14, // rows to 14in derived (CEO method, Sept 2026)
   sequin: 14,
 };
 

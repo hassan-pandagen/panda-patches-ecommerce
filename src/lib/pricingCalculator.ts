@@ -220,7 +220,11 @@ const wovenPricing = {
     5:  [18.05,  9.25,  5.87,  4.63,  4.07,  3.61,  2.94,  2.94],
     6:  [20.31,  9.64,  6.49,  5.46,  4.43,  4.07,  3.07,  3.07],
     7:  [22.56,  9.98,  6.91,  5.90,  5.02,  4.63,  3.61,  3.61],
-    8:  [22.56,  9.98,  6.91,  5.90,  5.02,  4.63,  3.61,  3.61],
+    // ---- CEO-DERIVED, Sept 2026 — NOT factory-quoted. ----
+    // Continues the percentage step between the last two GENUINE sizes at every
+    // quantity break (CEO method, 2026-08-28). Replace with real factory numbers
+    // when they arrive; until then these are an informed continuation, not data.
+    8:  [25.06, 10.33,  7.36,  6.38,  5.69,  5.27,  4.24,  4.24],
   },
   minSize: 1,
   maxSize: 8
@@ -239,8 +243,15 @@ const leatherPricing = {
     4:  [80.00, 47.50, 33.05, 25.83, 21.50, 18.61, 16.54, 15.00, 13.79, 12.83,  6.42,  4.82,  4.11,  3.55,  2.40,  2.14,  2.14],
     5:  [80.00, 47.50, 33.95, 27.17, 23.10, 20.39, 18.46, 17.00, 15.87, 14.97,  7.29,  5.18,  4.38,  3.74,  2.67,  2.39,  2.39],
     6:  [80.00, 47.50, 35.73, 29.84, 26.31, 23.95, 22.27, 21.01, 20.03, 19.24,  9.22,  5.89,  5.35,  3.20,  3.20,  2.67,  2.67],
-    7:  [80.00, 47.50, 35.73, 29.84, 26.31, 23.95, 22.27, 21.01, 20.03, 19.24,  9.22,  5.89,  5.35,  3.20,  3.20,  2.67,  2.67],
-    8:  [80.00, 47.50, 35.73, 29.84, 26.31, 23.95, 22.27, 21.01, 20.03, 19.24,  9.22,  5.89,  5.35,  3.20,  3.20,  2.67,  2.67],
+    // ---- CEO-DERIVED, Sept 2026 — NOT factory-quoted. ----
+    // Continues the percentage step between the last two GENUINE sizes at every
+    // quantity break (CEO method, 2026-08-28). Replace with real factory numbers
+    // when they arrive; until then these are an informed continuation, not data.
+    // NOTE: the qty-200 column is held FLAT at 3.20 rather than stepped. The
+    // existing size-6 row already dips there (3.20 vs 3.74 at size 5), so
+    // continuing that ratio would price an 8in BELOW a 5in. Flagged separately.
+    7:  [80.00, 47.50, 37.60, 32.77, 29.97, 28.13, 26.87, 25.97, 25.28, 24.73, 11.66,  6.70,  6.53,  3.20,  3.84,  2.98,  2.98],
+    8:  [80.00, 47.50, 39.57, 35.99, 34.13, 33.04, 32.42, 32.10, 31.91, 31.78, 14.75,  7.62,  7.98,  3.20,  4.60,  3.33,  3.33],
   },
   minQty: 5,
   minSize: 1,
@@ -284,10 +295,16 @@ const sublimatedPricing = {
     10: [80.00, 50.00, 39.04, 33.56, 30.27, 28.08, 26.51, 25.33, 24.42, 23.69, 20.31, 16.92, 14.67, 12.41, 10.16,  8.46,  8.46],
     11: [80.00, 50.00, 39.98, 34.96, 31.96, 29.95, 28.52, 27.44, 26.61, 25.94, 22.56, 20.31, 16.92, 14.67, 12.41, 10.16, 10.16],
     12: [80.00, 50.00, 41.39, 37.09, 34.51, 32.78, 31.55, 30.63, 29.92, 29.34, 25.94, 22.56, 20.31, 16.92, 14.67, 12.41, 12.41],
+    // ---- CEO-DERIVED, Sept 2026 — NOT factory-quoted. ----
+    // Continues the percentage step between the last two GENUINE sizes at every
+    // quantity break (CEO method, 2026-08-28). Replace with real factory numbers
+    // when they arrive; until then these are an informed continuation, not data.
+    13: [80.00, 50.00, 42.85, 39.35, 37.26, 35.88, 34.90, 34.19, 33.64, 33.19, 29.83, 25.06, 24.38, 19.52, 17.34, 15.16, 15.16],
+    14: [80.00, 50.00, 44.36, 41.75, 40.23, 39.27, 38.61, 38.16, 37.82, 37.54, 34.30, 27.84, 29.26, 22.51, 20.50, 18.52, 18.52],
   },
   minQty: 5,
   minSize: 1,
-  maxSize: 12
+  maxSize: 14
 };
 
 // Sequin Pricing - Same as TPU/Glitter (Chenille + 10%, 1-9 graduated from $80)
