@@ -1,4 +1,4 @@
-import { AUTO_PRICE_CEILING_IN, type SpecSlug } from './patchSpecs';
+import { AUTO_PRICE_CEILING_IN, specSlugForProductName } from './patchSpecs';
 
 /**
  * PATCH PRICING CALCULATOR - Updated with new pricing
@@ -421,25 +421,6 @@ interface PriceResult {
   quoteOnly?: boolean;
 }
 
-/**
- * Resolve a product name to its spec slug for the auto-price ceiling lookup.
- * Mirrors getPricingTable's ordering, because the same "chenille" substring
- * appears inside "Chenille TPU" and the first match must win the same way.
- */
-function specSlugFor(productName: string): SpecSlug | null {
-  const name = productName.toLowerCase();
-  if (name.includes('tpu') || name.includes('glitter')) return 'chenille';
-  if (name.includes('chenille')) return 'chenille';
-  if (name.includes('3d embroid')) return 'embroidered';
-  if (name.includes('pvc')) return 'pvc';
-  if (name.includes('woven')) return 'woven';
-  if (name.includes('leather')) return 'leather';
-  if (name.includes('silicone')) return null; // labels, own size range
-  if (name.includes('sublim') || name.includes('print')) return 'printed';
-  if (name.includes('sequin')) return 'sequin';
-  if (name.includes('embroid')) return 'embroidered';
-  return null;
-}
 
 /**
  * Calculate patch price based on product type, dimensions, and quantity
@@ -464,7 +445,7 @@ export function calculatePatchPrice(
   // woven/leather the rows above the ceiling are duplicates of smaller sizes.
   // Returning quoteOnly (rather than a number) is what stopped a 12-inch leather
   // patch being billed at the 6-inch rate.
-  const slug = specSlugFor(productName);
+  const slug = specSlugForProductName(productName);
   const ceiling = slug ? AUTO_PRICE_CEILING_IN[slug] : 0;
   if (ceiling > 0 && avgSize > ceiling) {
     return {

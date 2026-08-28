@@ -224,17 +224,60 @@ export const specMatrix: SpecRow[] = [
 ];
 
 /**
- * THE canonical customer-facing size sentence (CL5E74 §2.4). Supersedes the
- * earlier "Standard sizes are available up to 14 inches for chenille…" string,
- * which conflated manufacturing limits with priceable ones. No variants, no
- * paraphrases — exported so a drift check finds one definition, not five.
+ * THE global size sentence — DELIBERATELY CARRIES NO NUMBERS (CEO, 2026-08-28).
+ *
+ * Two earlier versions of this string both went stale within a week, because a
+ * single global sentence cannot describe seven ceilings that differ per type and
+ * move as price rows land. "Instant pricing up to 14 inches (8 for woven,
+ * leather and PVC)" was already untrue on the day it was written: the real
+ * ceilings were 14/14/7/6/8/12/14.
+ *
+ * So the numbers live per-type in `instantPricingLine()`, derived from
+ * AUTO_PRICE_CEILING_IN, and this string states only what is true everywhere.
+ * It self-heals when the floor's rows arrive, and no page can over-promise.
+ *
+ * DO NOT put a number back in here.
  */
 export const STANDARD_SIZE_SENTENCE =
-  "Instant pricing is available up to 14 inches (8 inches for woven, leather and PVC). Larger sizes up to 25 inches are available by quote.";
+  "Larger custom sizes are available by quote.";
+
+/**
+ * Per-type instant-pricing statement, derived — never typed. Renders as
+ * "Instant pricing up to 7 inches — larger sizes by quote."
+ */
+export function instantPricingLine(slug: string): string | null {
+  const ceiling = AUTO_PRICE_CEILING_IN[slug as SpecSlug];
+  if (!ceiling) return null;
+  return `Instant pricing up to ${ceiling} inches — larger sizes by quote.`;
+}
 
 /** The largest size the calculator will price for a type; 0 for unknown slugs. */
 export function getAutoPriceCeiling(slug: string): number {
   return AUTO_PRICE_CEILING_IN[slug as SpecSlug] ?? 0;
+}
+
+/**
+ * Resolve a product name to its spec slug. THE one implementation — the pricing
+ * calculator and the UI must agree on which type a product is, or the UI offers
+ * a size the pricing function refuses.
+ *
+ * Order matters and mirrors getPricingTable: "chenille" appears inside
+ * "Chenille TPU", so the more specific match has to win first, exactly as it
+ * does when the price table is chosen.
+ */
+export function specSlugForProductName(productName: string): SpecSlug | null {
+  const name = productName.toLowerCase();
+  if (name.includes("tpu") || name.includes("glitter")) return "chenille";
+  if (name.includes("chenille")) return "chenille";
+  if (name.includes("3d embroid")) return "embroidered";
+  if (name.includes("pvc")) return "pvc";
+  if (name.includes("woven")) return "woven";
+  if (name.includes("leather")) return "leather";
+  if (name.includes("silicone")) return null; // labels, own size range
+  if (name.includes("sublim") || name.includes("print")) return "printed";
+  if (name.includes("sequin")) return "sequin";
+  if (name.includes("embroid")) return "embroidered";
+  return null;
 }
 
 /**

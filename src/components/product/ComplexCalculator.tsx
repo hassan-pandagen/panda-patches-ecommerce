@@ -2,6 +2,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, useRef } from "react";
+import { getAutoPriceCeiling, MANUFACTURING_MAX_IN, specSlugForProductName } from "@/lib/patchSpecs";
 import Image from "next/image";
 import { UploadCloud, Check, ChevronDown, ShoppingCart, FileText, Lightbulb } from "lucide-react";
 import HeroForm from "@/components/home/HeroForm";
@@ -336,6 +337,16 @@ export default function ComplexCalculator({
   // Step validation
   const validateStep = (step: number): boolean => {
     if (step === 1) {
+      // An oversize request is NOT a validation failure. It used to be reported
+      // through fieldErrors.name, which rendered a size warning underneath
+      // CONTACT INFORMATION and refused to advance with no way forward — a hard
+      // block, which CL5E74 §2.2 rules out. The quote panel above carries the
+      // route instead, so scroll the customer to it rather than erroring.
+      if (priceResult.quoteOnly) {
+        setFieldErrors({});
+        calcRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        return false;
+      }
       if (priceResult.error) {
         setFieldErrors({ name: priceResult.error });
         return false;
@@ -642,19 +653,24 @@ export default function ComplexCalculator({
     }
   };
 
-  // Get max size based on product type
-  const getMaxSize = () => {
-    const type = productType.toLowerCase();
-    if (type.includes('pvc')) return 8;
-    if (type.includes('woven') || type.includes('leather')) return 12;
-    if (type.includes('embroid')) return 14;
-    return 14; // Default max
-  };
+  // Largest size the calculator may PRICE, straight from canon (CL5E74 §2.2).
+  // This replaced a hardcoded map that disagreed with both the canon and the
+  // price tables — it offered 12in for woven and leather, whose real price data
+  // stops at 7in and 6in, which is how a 12-inch leather patch came to bill at
+  // the 6-inch rate. Never hardcode these again.
+  const specSlug = specSlugForProductName(productType);
+  const maxSize = getAutoPriceCeiling(specSlug ?? "") || 14;
+  // The input may go up to what we can MAKE; pricing stops at maxSize.
+  const inputMaxSize = (specSlug && MANUFACTURING_MAX_IN[specSlug]) || maxSize;
 
-  const maxSize = getMaxSize();
+  // Above the ceiling the size is still producible — it just cannot be priced
+  // automatically. That is a QUOTE, not an error, so the input is allowed to go
+  // past maxSize and the UI offers a route instead of blocking (the brief is
+  // explicit: warn, do not hard-block).
+  const overCeiling = Math.max(width, height) > maxSize;
 
   const handleInc = (setter: any, val: number) => {
-    if (val < maxSize) {
+    if (val < inputMaxSize) {
       setter(val + 0.5);
     }
   };
@@ -889,7 +905,7 @@ export default function ComplexCalculator({
                       type="text"
                       inputMode="decimal"
                       min="1"
-                      max={maxSize}
+                      max={inputMaxSize}
                       aria-label="Width (inches)"
                       value={widthInput}
                       onChange={(e) => {
@@ -897,19 +913,19 @@ export default function ComplexCalculator({
                         if (/^\d*\.?\d*$/.test(raw)) {
                           setWidthInput(raw);
                           const val = parseFloat(raw);
-                          if (!isNaN(val) && val >= 1) setWidth(Math.min(Math.ceil(val), maxSize));
+                          if (!isNaN(val) && val >= 1) setWidth(Math.min(Math.ceil(val), inputMaxSize));
                         }
                       }}
                       onBlur={(e) => {
                         const val = parseFloat(e.target.value);
                         if (isNaN(val) || val < 1) { setWidth(1); setWidthInput('1'); }
-                        else { const clamped = Math.min(val, maxSize); setWidth(Math.ceil(clamped)); setWidthInput(String(clamped)); }
+                        else { const clamped = Math.min(val, inputMaxSize); setWidth(Math.ceil(clamped)); setWidthInput(String(clamped)); }
                       }}
                       className="w-full text-center font-black text-black text-xl outline-none bg-transparent min-w-0"
                     />
                     <span className="text-gray-400 text-sm font-medium flex-shrink-0">W</span>
                   </div>
-                  <button type="button" onClick={() => { const cur = parseFloat(widthInput) || width; const v = Math.min(maxSize, Math.ceil(cur) + 1); setWidth(v); setWidthInput(String(v)); }} className="px-4 hover:bg-black hover:text-white text-gray-500 border-l border-gray-400 transition-colors font-black text-xl h-full flex-shrink-0">+</button>
+                  <button type="button" onClick={() => { const cur = parseFloat(widthInput) || width; const v = Math.min(inputMaxSize, Math.ceil(cur) + 1); setWidth(v); setWidthInput(String(v)); }} className="px-4 hover:bg-black hover:text-white text-gray-500 border-l border-gray-400 transition-colors font-black text-xl h-full flex-shrink-0">+</button>
                 </div>
                 <div style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: '#9ca3af' }} className="flex items-center rounded-[12px] overflow-hidden h-[52px] focus-within:border-black transition-all">
                   <button type="button" onClick={() => { const cur = parseFloat(heightInput) || height; const v = Math.max(1, Math.floor(cur) - 1); setHeight(v); setHeightInput(String(v)); }} className="px-4 hover:bg-gray-100 text-gray-500 font-black text-xl border-r border-gray-400 h-full flex-shrink-0">-</button>
@@ -918,7 +934,7 @@ export default function ComplexCalculator({
                       type="text"
                       inputMode="decimal"
                       min="1"
-                      max={maxSize}
+                      max={inputMaxSize}
                       aria-label="Height (inches)"
                       value={heightInput}
                       onChange={(e) => {
@@ -926,19 +942,19 @@ export default function ComplexCalculator({
                         if (/^\d*\.?\d*$/.test(raw)) {
                           setHeightInput(raw);
                           const val = parseFloat(raw);
-                          if (!isNaN(val) && val >= 1) setHeight(Math.min(Math.ceil(val), maxSize));
+                          if (!isNaN(val) && val >= 1) setHeight(Math.min(Math.ceil(val), inputMaxSize));
                         }
                       }}
                       onBlur={(e) => {
                         const val = parseFloat(e.target.value);
                         if (isNaN(val) || val < 1) { setHeight(1); setHeightInput('1'); }
-                        else { const clamped = Math.min(val, maxSize); setHeight(Math.ceil(clamped)); setHeightInput(String(clamped)); }
+                        else { const clamped = Math.min(val, inputMaxSize); setHeight(Math.ceil(clamped)); setHeightInput(String(clamped)); }
                       }}
                       className="w-full text-center font-black text-black text-xl outline-none bg-transparent min-w-0"
                     />
                     <span className="text-gray-400 text-sm font-medium flex-shrink-0">H</span>
                   </div>
-                  <button type="button" onClick={() => { const cur = parseFloat(heightInput) || height; const v = Math.min(maxSize, Math.ceil(cur) + 1); setHeight(v); setHeightInput(String(v)); }} className="px-4 hover:bg-black hover:text-white text-gray-500 border-l border-gray-400 transition-colors font-black text-xl h-full flex-shrink-0">+</button>
+                  <button type="button" onClick={() => { const cur = parseFloat(heightInput) || height; const v = Math.min(inputMaxSize, Math.ceil(cur) + 1); setHeight(v); setHeightInput(String(v)); }} className="px-4 hover:bg-black hover:text-white text-gray-500 border-l border-gray-400 transition-colors font-black text-xl h-full flex-shrink-0">+</button>
                 </div>
               </div>
 
@@ -947,6 +963,36 @@ export default function ComplexCalculator({
                 <p className="mt-2 text-[0.8125rem] font-bold text-gray-700">
                   {`📐 Selected Size: ${widthInput}" × ${heightInput}"`}
                 </p>
+              )}
+
+              {/* OVER THE AUTO-PRICE CEILING (CL5E74 §2.2).
+                  Shown HERE, at the size picker, not in the price summary — the
+                  summary only renders on step 2, so a customer who never gets
+                  past step 1 would otherwise see nothing at all. This is the
+                  route forward; the step-1 gate no longer reports it as a name
+                  validation error. */}
+              {overCeiling && (
+                <div className="mt-3 rounded-[12px] border-2 border-panda-dark bg-[#F9FAF5] p-4">
+                  <p className="text-[0.6875rem] font-black uppercase tracking-widest text-panda-green mb-1">
+                    Quoted individually
+                  </p>
+                  <p className="text-panda-dark font-black text-[0.9375rem] leading-snug mb-1.5">
+                    We make this size — it just needs a quote.
+                  </p>
+                  <p className="text-gray-600 text-[0.8125rem] leading-[1.6] mb-3">
+                    Instant pricing runs up to {maxSize}&quot; here. Above that, cost follows
+                    design complexity rather than size alone, so we price it by hand and come
+                    back to you with a real number.
+                  </p>
+                  <a
+                    href={`/contact?subject=${encodeURIComponent(
+                      `Quote request: ${widthInput}" x ${heightInput}" ${productType}`
+                    )}`}
+                    className="inline-flex items-center justify-center bg-panda-dark text-panda-yellow font-black text-[0.75rem] uppercase tracking-widest px-5 py-3 rounded-full hover:bg-black transition-colors"
+                  >
+                    Get a quote for {widthInput}&quot; × {heightInput}&quot; →
+                  </a>
+                </div>
               )}
 
               {/* Unsure of size nudge */}
@@ -1188,7 +1234,33 @@ export default function ComplexCalculator({
 
             {/* PRICE SUMMARY */}
             <div className="bg-white border-2 border-black p-5 rounded-[16px] shadow-lg">
-              {priceResult.error ? (
+              {priceResult.quoteOnly ? (
+                /* Producible, just not auto-priceable — offer a route, not a wall.
+                   Presented as an outcome rather than an error: an oversize order
+                   is a bigger order, and treating it as a validation failure was
+                   losing it. */
+                <div className="py-2">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+                    Quoted individually
+                  </p>
+                  <p className="text-panda-dark font-black text-[1.0625rem] leading-snug mb-2">
+                    We make this size — it just needs a quote.
+                  </p>
+                  <p className="text-gray-600 text-[0.8125rem] leading-[1.6] mb-3">
+                    Instant pricing runs up to {maxSize} inches for {productType.toLowerCase()}.
+                    Above that, cost follows design complexity rather than size alone, so we
+                    price it by hand. Send the design and we will come back with a number.
+                  </p>
+                  <a
+                    href={`/contact?subject=${encodeURIComponent(
+                      `Quote request: ${width}" x ${height}" ${productType}`
+                    )}`}
+                    className="inline-flex items-center justify-center w-full bg-panda-dark text-panda-yellow font-black text-[0.875rem] uppercase tracking-widest px-6 py-3.5 rounded-full hover:bg-black transition-colors"
+                  >
+                    Get a quote for {width}&quot; × {height}&quot; →
+                  </a>
+                </div>
+              ) : priceResult.error ? (
                 <div className="text-center py-2">
                   <p className="text-red-600 font-bold text-base">{priceResult.error}</p>
                 </div>
