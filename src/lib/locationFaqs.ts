@@ -1,12 +1,22 @@
+// Per-location FAQ copy.
+//
+// MINIMUMS ARE INTERPOLATED, NEVER TYPED. This file carried 29 hand-typed
+// "5 pieces" claims, and one had silently drifted to "Our minimum order for
+// custom hat patches is 50 pieces" — a first-person, customer-facing claim
+// contradicting canon. Nothing caught it until `npm run verify:canon` learned
+// to scan prose (2026-08-27). Reading MIN_ORDER_DEFAULT makes that class of
+// drift impossible here. Same reasoning as the note atop slugFaqs.ts.
+import { MIN_ORDER_DEFAULT } from "@/lib/factConstants";
+
 const locationFaqs: Record<string, Array<{ question: string; answer: string }>> = {
   "custom-patches-in-jacksonville": [
     {
       question: "Do you make military squadron and command patches?",
-      answer: "Yes — we produce squadron, command, and morale patches to your specification. We match OCP and subdued color standards, reproduce the insignia you supply precisely, and offer PVC for gear that takes weather and abrasion. Low 5-piece minimum for small unit runs, with a mockup in 12 to 24 hours before anything is produced."
+      answer: `Yes — we produce squadron, command, and morale patches to your specification. We match OCP and subdued color standards, reproduce the insignia you supply precisely, and offer PVC for gear that takes weather and abrasion. Low ${MIN_ORDER_DEFAULT}-piece minimum for small unit runs, with a mockup in 12 to 24 hours before anything is produced.`
     },
     {
       question: "Can Jacksonville motorcycle clubs order custom biker and club patches?",
-      answer: "Absolutely — MC and riding club patches are one of our most-requested Jacksonville orders. We produce full back patches, rockers, and small club patches in embroidered or leather, in the size, shape, and thread colors your club specifies. Orders start at a 5-piece minimum, artwork and mockups are free, and we keep your design on file so future member patches match exactly."
+      answer: `Absolutely — MC and riding club patches are one of our most-requested Jacksonville orders. We produce full back patches, rockers, and small club patches in embroidered or leather, in the size, shape, and thread colors your club specifies. Orders start at a ${MIN_ORDER_DEFAULT}-piece minimum, artwork and mockups are free, and we keep your design on file so future member patches match exactly.`
     },
     {
       question: "Can you make department-style patches for first responders?",
@@ -24,11 +34,11 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
   "alabama-patches": [
     {
       question: "What kinds of custom patches do you make for Alabama orders?",
-      answer: "We produce the full range for Alabama orders — military- and service-style unit patches, industrial and automotive uniform patches, school and team sports patches, and first-responder-style department patches. Every order includes free design and a mockup in 12 to 24 hours, from a 5-piece minimum."
+      answer: `We produce the full range for Alabama orders — military- and service-style unit patches, industrial and automotive uniform patches, school and team sports patches, and first-responder-style department patches. Every order includes free design and a mockup in 12 to 24 hours, from a ${MIN_ORDER_DEFAULT}-piece minimum.`
     },
     {
       question: "Can Alabama sports teams get custom patches for their uniforms?",
-      answer: "Yes. We work with high school, college, and semi-pro sports teams across Alabama. Whether you need embroidered sleeve patches for a football program, chenille letterman patches for a basketball team, or woven patches for a soccer club, we handle orders from 5 pieces to 10,000 with free design included."
+      answer: `Yes. We work with high school, college, and semi-pro sports teams across Alabama. Whether you need embroidered sleeve patches for a football program, chenille letterman patches for a basketball team, or woven patches for a soccer club, we handle orders from ${MIN_ORDER_DEFAULT} pieces to 10,000 with free design included.`
     },
     {
       question: "What patch type holds up best in Alabama's hot and humid summers?",
@@ -40,7 +50,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Do Alabama churches and civic organizations qualify for bulk patch discounts?",
-      answer: "Absolutely. Churches, civic clubs, Scout troops, and community organizations throughout Alabama regularly order from us. Our minimum order is just 5 pieces, and pricing drops significantly at 25, 50, 100, and 200 pieces. We offer free digital proofs before production so every detail is exactly right."
+      answer: `Absolutely. Churches, civic clubs, Scout troops, and community organizations throughout Alabama regularly order from us. Our minimum order is just ${MIN_ORDER_DEFAULT} pieces, and pricing drops significantly at 25, 50, 100, and 200 pieces. We offer free digital proofs before production so every detail is exactly right.`
     }
   ],
   "custom-austin-patches": [
@@ -50,7 +60,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can Austin music venues and bands get custom patches for merch?",
-      answer: "Yes. Austin's iconic music scene on 6th Street and Red River Cultural District means many bands and venues order patches for jackets, hats, and merchandise tables. We produce fully custom band logo patches in any shape starting at a 5-piece minimum, perfect for indie artists selling merch at ACL Fest or SXSW."
+      answer: `Yes. Austin's iconic music scene on 6th Street and Red River Cultural District means many bands and venues order patches for jackets, hats, and merchandise tables. We produce fully custom band logo patches in any shape starting at a ${MIN_ORDER_DEFAULT}-piece minimum, perfect for indie artists selling merch at ACL Fest or SXSW.`
     },
     {
       question: "What patch styles are popular with Austin's outdoor and cycling community?",
@@ -62,7 +72,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Do you work with Austin food trucks and small businesses for custom patches?",
-      answer: "Absolutely. Austin's famous food truck culture and independent business scene means we regularly produce small runs of 10-50 patches for new brands. Whether it's for staff uniforms, branded merchandise, or customer loyalty rewards, our minimum order is just 5 pieces and we offer free design assistance."
+      answer: `Absolutely. Austin's famous food truck culture and independent business scene means we regularly produce small runs of 10-50 patches for new brands. Whether it's for staff uniforms, branded merchandise, or customer loyalty rewards, our minimum order is just ${MIN_ORDER_DEFAULT} pieces and we offer free design assistance.`
     }
   ],
   "custom-patches-in-boston": [
@@ -102,7 +112,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Do California school districts and youth sports leagues qualify for custom patches?",
-      answer: "Yes. We work with K-12 schools, community youth leagues, and booster clubs across California from San Diego to Sacramento. Our minimum order is just 5 pieces, so a small order is as welcome as an order of 1,000. We offer free design services and digital approval before production, which is especially helpful for PTA committees and volunteer organizations managing patch programs."
+      answer: `Yes. We work with K-12 schools, community youth leagues, and booster clubs across California from San Diego to Sacramento. Our minimum order is just ${MIN_ORDER_DEFAULT} pieces, so a small order is as welcome as an order of 1,000. We offer free design services and digital approval before production, which is especially helpful for PTA committees and volunteer organizations managing patch programs.`
     },
     {
       question: "How do you handle trademark-sensitive designs for California entertainment clients?",
@@ -128,7 +138,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "What is the minimum order for custom patches delivered to the Chicago area?",
-      answer: "Our minimum order at Panda Patches is just 5 pieces. Chicago customers can order a small batch or thousands. Shipping goes directly to any Chicago neighborhood or suburb including Oak Park, Evanston, Naperville, Aurora, and Joliet. Volume discounts begin at 25 pieces and scale down significantly at 100, 200, and 500 pieces."
+      answer: `Our minimum order at Panda Patches is just ${MIN_ORDER_DEFAULT} pieces. Chicago customers can order a small batch or thousands. Shipping goes directly to any Chicago neighborhood or suburb including Oak Park, Evanston, Naperville, Aurora, and Joliet. Volume discounts begin at 25 pieces and scale down significantly at 100, 200, and 500 pieces.`
     }
   ],
   "custom-patches-colorado": [
@@ -168,7 +178,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Do Dallas school districts and youth sports leagues use custom patches?",
-      answer: "Absolutely. Dallas ISD, Plano ISD, Frisco ISD, and dozens of youth leagues across North Texas order patches for everything from varsity letter patches to tournament patches to academic achievement patches. Our minimum order is just 5 pieces and we provide free proof approval, making us easy to work with for school boosters and athletic directors."
+      answer: `Absolutely. Dallas ISD, Plano ISD, Frisco ISD, and dozens of youth leagues across North Texas order patches for everything from varsity letter patches to tournament patches to academic achievement patches. Our minimum order is just ${MIN_ORDER_DEFAULT} pieces and we provide free proof approval, making us easy to work with for school boosters and athletic directors.`
     },
     {
       question: "How do you ship to the entire Dallas-Fort Worth Metroplex?",
@@ -208,7 +218,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can Florida youth sports leagues order custom patches for baseball and soccer?",
-      answer: "Yes. Florida's year-round sports culture means youth baseball, soccer, football, and lacrosse leagues operate continuously. We produce tournament patches, participation patches, and achievement patches for leagues from Pensacola to Key West. A low 5-piece minimum, free design, and fast 7-14 business day turnaround makes us a reliable partner for league coordinators."
+      answer: `Yes. Florida's year-round sports culture means youth baseball, soccer, football, and lacrosse leagues operate continuously. We produce tournament patches, participation patches, and achievement patches for leagues from Pensacola to Key West. A low ${MIN_ORDER_DEFAULT}-piece minimum, free design, and fast 7-14 business day turnaround makes us a reliable partner for league coordinators.`
     },
     {
       question: "Can you make patches for law enforcement and corrections agencies?",
@@ -234,7 +244,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can Houston restaurants and food businesses order small batches of staff patches?",
-      answer: "Absolutely. Houston's world-renowned restaurant scene, from Tex-Mex on Navigation to fine dining in River Oaks, means many restaurants order staff uniform patches in quantities as low as 10-25 pieces. Our minimum order is just 5 pieces and we provide free proofs to make sure every patch matches your brand before production begins."
+      answer: `Absolutely. Houston's world-renowned restaurant scene, from Tex-Mex on Navigation to fine dining in River Oaks, means many restaurants order staff uniform patches in quantities as low as 10-25 pieces. Our minimum order is just ${MIN_ORDER_DEFAULT} pieces and we provide free proofs to make sure every patch matches your brand before production begins.`
     },
     {
       question: "How do Houston medical centers and healthcare organizations order patches?",
@@ -256,7 +266,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can Kentucky bluegrass and country music artists order patches for merch?",
-      answer: "Yes. Kentucky's rich musical heritage, from Renfro Valley to Louisville's bluegrass scene, means artists order patches for merchandise tables, fan clubs, and instrument cases. We produce fully custom artist patches starting at a 5-piece minimum, with free design assistance and a digital proof before production. Small orders for independent artists are as welcome as bulk orders for major tours."
+      answer: `Yes. Kentucky's rich musical heritage, from Renfro Valley to Louisville's bluegrass scene, means artists order patches for merchandise tables, fan clubs, and instrument cases. We produce fully custom artist patches starting at a ${MIN_ORDER_DEFAULT}-piece minimum, with free design assistance and a digital proof before production. Small orders for independent artists are as welcome as bulk orders for major tours.`
     },
     {
       question: "How fast can custom patches be delivered to Louisville, Lexington, and rural Kentucky?",
@@ -314,11 +324,11 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can NYC small businesses and bodegas order branded staff patches?",
-      answer: "Yes. New York City's dense small business ecosystem, from bodegas to boutiques to specialty food shops, orders staff uniform patches in small quantities. Our minimum order is just 5 pieces, which makes us accessible to independent businesses that only need 5-10 patches for their team. Free design help and fast turnaround make it easy for busy NYC business owners to manage."
+      answer: `Yes. New York City's dense small business ecosystem, from bodegas to boutiques to specialty food shops, orders staff uniform patches in small quantities. Our minimum order is just ${MIN_ORDER_DEFAULT} pieces, which makes us accessible to independent businesses that only need 5-10 patches for their team. Free design help and fast turnaround make it easy for busy NYC business owners to manage.`
     },
     {
       question: "What patch types work best for streetwear and apparel brands?",
-      answer: "Embroidered patches with bold lettering, chenille patches in varsity styles, and woven patches for precise logo reproduction are the most popular choices for apparel and streetwear. Limited runs of 25 to 100 pieces are typical for drops and collaborations, and our 5-piece minimum makes a small test run practical before committing to a full batch."
+      answer: `Embroidered patches with bold lettering, chenille patches in varsity styles, and woven patches for precise logo reproduction are the most popular choices for apparel and streetwear. Limited runs of 25 to 100 pieces are typical for drops and collaborations, and our ${MIN_ORDER_DEFAULT}-piece minimum makes a small test run practical before committing to a full batch.`
     },
     {
       question: "Do you make memorial and retirement patches?",
@@ -344,7 +354,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Do Ohio youth sports leagues and club programs order patches for their uniforms?",
-      answer: "Ohio's active youth sports culture, particularly baseball, football, hockey, and wrestling, generates strong demand for tournament patches, participation patches, and league championship patches. We work with coaches, league directors, and boosters throughout the state. A low 5-piece minimum means a small wrestling club can order 15 patches as easily as a large travel baseball organization ordering 200."
+      answer: `Ohio's active youth sports culture, particularly baseball, football, hockey, and wrestling, generates strong demand for tournament patches, participation patches, and league championship patches. We work with coaches, league directors, and boosters throughout the state. A low ${MIN_ORDER_DEFAULT}-piece minimum means a small wrestling club can order 15 patches as easily as a large travel baseball organization ordering 200.`
     },
     {
       question: "How quickly can custom patches be delivered to Cleveland, Columbus, Cincinnati, and Dayton?",
@@ -358,7 +368,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "What patch styles are popular with Portland's progressive and DIY culture?",
-      answer: "Portland's DIY ethos drives demand for iron-on and sew-on embroidered patches that people apply themselves to denim, canvas bags, and overalls. Social justice messaging patches, environmental cause patches, and local art collective patches are popular. We produce fully custom designs starting at a 5-piece minimum, respecting freedom of expression in patch design for Portland's diverse community."
+      answer: `Portland's DIY ethos drives demand for iron-on and sew-on embroidered patches that people apply themselves to denim, canvas bags, and overalls. Social justice messaging patches, environmental cause patches, and local art collective patches are popular. We produce fully custom designs starting at a ${MIN_ORDER_DEFAULT}-piece minimum, respecting freedom of expression in patch design for Portland's diverse community.`
     },
     {
       question: "Are PVC patches popular with Portland's outdoor and overlanding community?",
@@ -366,7 +376,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can Portland breweries and food businesses order small runs of staff patches?",
-      answer: "Absolutely. Portland's renowned food and drink scene means independent breweries, food carts, and restaurants regularly order small batches of 10-25 staff patches. Our minimum order is just 5 pieces, plus free design assistance and a quick approval process that works for busy restaurant and brewery owners managing dozens of priorities."
+      answer: `Absolutely. Portland's renowned food and drink scene means independent breweries, food carts, and restaurants regularly order small batches of 10-25 staff patches. Our minimum order is just ${MIN_ORDER_DEFAULT} pieces, plus free design assistance and a quick approval process that works for busy restaurant and brewery owners managing dozens of priorities.`
     },
     {
       question: "How do you handle shipping to Portland and the wider Pacific Northwest?",
@@ -406,7 +416,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can Texas ranches and rodeo teams order custom patches for their operations?",
-      answer: "Yes. Texas ranching operations, rodeo teams, and western equestrian clubs order custom patches for work shirts, chaps, vests, and saddle bags. We produce traditional rope-bordered western patches, longhorn and cattle brand designs, and competition number patches for rodeo events. A low 5-piece minimum and free design help makes it easy for ranch owners to get professional-looking patches."
+      answer: `Yes. Texas ranching operations, rodeo teams, and western equestrian clubs order custom patches for work shirts, chaps, vests, and saddle bags. We produce traditional rope-bordered western patches, longhorn and cattle brand designs, and competition number patches for rodeo events. A low ${MIN_ORDER_DEFAULT}-piece minimum and free design help makes it easy for ranch owners to get professional-looking patches.`
     },
     {
       question: "What patch backing is best for Texas outdoor workers in extreme summer heat?",
@@ -432,7 +442,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can Utah Scout troops and youth organizations order small-batch patches?",
-      answer: "Absolutely. Utah's active Scout and youth organization culture means we regularly fulfill orders for troop patches, activity merit patches, and event commemorative patches. A low 5-piece minimum makes us accessible for troop leaders working with small budgets. We offer free digital proofs and fast turnaround to support Utah's active youth program calendar."
+      answer: `Absolutely. Utah's active Scout and youth organization culture means we regularly fulfill orders for troop patches, activity merit patches, and event commemorative patches. A low ${MIN_ORDER_DEFAULT}-piece minimum makes us accessible for troop leaders working with small budgets. We offer free digital proofs and fast turnaround to support Utah's active youth program calendar.`
     },
     {
       question: "How quickly can custom patches reach Salt Lake City, Provo, Ogden, and rural Utah?",
@@ -472,7 +482,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can I order a single custom anime patch for my cosplay costume?",
-      answer: "Yes, absolutely. Our minimum order is just 5 pieces, so small cosplay runs are fully welcome. Cosplayers ordering rank insignia, organization logos, or fictional faction patches for their costumes are among our most creative customers. We offer free digital proof approval so your cosplay patch is screen-accurate before we produce it. Rush production is available for convention deadlines."
+      answer: `Yes, absolutely. Our minimum order is just ${MIN_ORDER_DEFAULT} pieces, so small cosplay runs are fully welcome. Cosplayers ordering rank insignia, organization logos, or fictional faction patches for their costumes are among our most creative customers. We offer free digital proof approval so your cosplay patch is screen-accurate before we produce it. Rush production is available for convention deadlines.`
     },
     {
       question: "What is the difference between embroidered and woven anime patches?",
@@ -534,7 +544,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can I order a single custom Valentine's Day patch as a personalized gift?",
-      answer: "Yes. Small Valentine's patch orders are fully welcome with a low 5-piece minimum. A custom patch with your partner's name, a meaningful date, or an inside joke makes a unique, handmade-quality gift that mass-produced options cannot match. Order at least 14 days before February 14 for standard delivery, or choose rush production for orders placed after February 1."
+      answer: `Yes. Small Valentine's patch orders are fully welcome with a low ${MIN_ORDER_DEFAULT}-piece minimum. A custom patch with your partner's name, a meaningful date, or an inside joke makes a unique, handmade-quality gift that mass-produced options cannot match. Order at least 14 days before February 14 for standard delivery, or choose rush production for orders placed after February 1.`
     },
     {
       question: "What patch type works best for Valentine's Day apparel — embroidered or woven?",
@@ -564,7 +574,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "What is the typical morale patch order size for a military unit or squad?",
-      answer: "Squad-level morale patch orders typically range from 12-25 pieces for a single platoon or team. Company-level orders range from 50-150 pieces. Our minimum order is just 5 pieces, so a small scout sniper team can order 5 patches as easily as a battalion can order 800. Pricing scales with quantity, with significant per-unit reductions at 25, 50, 100, and 500 pieces."
+      answer: `Squad-level morale patch orders typically range from 12-25 pieces for a single platoon or team. Company-level orders range from 50-150 pieces. Our minimum order is just ${MIN_ORDER_DEFAULT} pieces, so a small scout sniper team can order 5 patches as easily as a battalion can order 800. Pricing scales with quantity, with significant per-unit reductions at 25, 50, 100, and 500 pieces.`
     },
     {
       question: "Can I design a humorous or irreverent morale patch and will Panda Patches produce it?",
@@ -652,7 +662,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can small police departments and sheriff's offices order patches in low quantities?",
-      answer: "Yes. Small departments with 10-50 officers order from us regularly. A low 5-piece minimum means a six-person police department can order exactly the patches they need without paying for overstock. We understand that small department budgets are tight and price our low-quantity orders fairly. Volume pricing becomes most significant at 50 and 100 pieces for larger departments."
+      answer: `Yes. Small departments with 10-50 officers order from us regularly. A low ${MIN_ORDER_DEFAULT}-piece minimum means a six-person police department can order exactly the patches they need without paying for overstock. We understand that small department budgets are tight and price our low-quantity orders fairly. Volume pricing becomes most significant at 50 and 100 pieces for larger departments.`
     },
     {
       question: "Do you produce subdued and tactical colorway patches for law enforcement?",
@@ -670,7 +680,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can I order logo patches for my business employee uniforms with a low minimum?",
-      answer: "Yes. Our minimum order is just 5 pieces. A company with 5 employees can order 5 patches. A franchise with 200 locations can order 10,000. Our pricing scales, so you pay more per unit at very low quantities, but there are no setup fees that price out small businesses. Free design services are included regardless of order size."
+      answer: `Yes. Our minimum order is just ${MIN_ORDER_DEFAULT} pieces. A company with 5 employees can order 5 patches. A franchise with 200 locations can order 10,000. Our pricing scales, so you pay more per unit at very low quantities, but there are no setup fees that price out small businesses. Free design services are included regardless of order size.`
     },
     {
       question: "What size should my company logo patch be for a uniform shirt?",
@@ -732,7 +742,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can independent and unsigned bands order small runs of patches for their merch table?",
-      answer: "Absolutely, and this is where we shine. Independent artists can start at our 5-piece minimum and produce 10-25 patches for their merch table at their first shows. No setup fee, free design help, and low per-unit pricing at small quantities makes us accessible to bands at every level of their career. Orders of 25-50 patches are practical for a regional tour or release event."
+      answer: `Absolutely, and this is where we shine. Independent artists can start at our ${MIN_ORDER_DEFAULT}-piece minimum and produce 10-25 patches for their merch table at their first shows. No setup fee, free design help, and low per-unit pricing at small quantities makes us accessible to bands at every level of their career. Orders of 25-50 patches are practical for a regional tour or release event.`
     },
     {
       question: "How do I use my band's existing artwork to create a patch design?",
@@ -788,7 +798,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "What minimum order applies to custom Velcro PVC patches?",
-      answer: "Our minimum order at Panda Patches is just 5 pieces, so small custom Velcro PVC patch orders are fully welcome. That said, per-unit cost drops significantly at 10, 25, and 50 pieces. For military units, first responder companies, or retailer restocking, ordering at the 25-50 piece tier provides the best balance of price and quantity. Free design and a digital proof are included regardless of order size."
+      answer: `Our minimum order at Panda Patches is just ${MIN_ORDER_DEFAULT} pieces, so small custom Velcro PVC patch orders are fully welcome. That said, per-unit cost drops significantly at 10, 25, and 50 pieces. For military units, first responder companies, or retailer restocking, ordering at the 25-50 piece tier provides the best balance of price and quantity. Free design and a digital proof are included regardless of order size.`
     },
     // Merged from the retired custom-velcro-patches-guide blog (301'd here,
     // July 2026 cannibalization fix) — the one FAQ this page lacked.
@@ -838,7 +848,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "Can veterans and retired military order single commemorative patches for shadow boxes?",
-      answer: "Yes. Small orders for retirement shadow boxes, memorial displays, or unit reunion patches are fully welcome. Our minimum order is just 5 pieces, and producing precise commemorative patches to honor a service member's career or a unit's history is a meaningful order we take seriously. Veterans who served in units with no commercially available patches can order a faithful reproduction from reference photographs."
+      answer: `Yes. Small orders for retirement shadow boxes, memorial displays, or unit reunion patches are fully welcome. Our minimum order is just ${MIN_ORDER_DEFAULT} pieces, and producing precise commemorative patches to honor a service member's career or a unit's history is a meaningful order we take seriously. Veterans who served in units with no commercially available patches can order a faithful reproduction from reference photographs.`
     }
   ],
   "custom-biker-patches": [
@@ -882,7 +892,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "What is a good gift idea for a motorcycle enthusiast who already has everything?",
-      answer: "A custom patch made from their bike's model, a meaningful road trip route, or their riding nickname is a uniquely personal gift that most motorcycle enthusiasts do not already have. Small custom patch orders are fully available with our 5-piece minimum. A 4-inch embroidered patch with their bike model artwork or their rider name in a style matching their cut is a thoughtful, affordable gift that stands out from generic moto merchandise."
+      answer: `A custom patch made from their bike's model, a meaningful road trip route, or their riding nickname is a uniquely personal gift that most motorcycle enthusiasts do not already have. Small custom patch orders are fully available with our ${MIN_ORDER_DEFAULT}-piece minimum. A 4-inch embroidered patch with their bike model artwork or their rider name in a style matching their cut is a thoughtful, affordable gift that stands out from generic moto merchandise.`
     }
   ],
   "custom-uniform-patches": [
@@ -997,7 +1007,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "What is the minimum order for custom hat patches?",
-      answer: "Our minimum order for custom hat patches is 50 pieces. Pricing drops at 100, 500, and 1,000 pieces. For a full price breakdown, see our offers page. Every order includes a digital mockup in 12 to 24 hours, unlimited revisions, and production only starts after you approve the design."
+      answer: `Our minimum order for custom hat patches is ${MIN_ORDER_DEFAULT} pieces, the same as every other patch type. Pricing drops at 50, 100, 500, and 1,000 pieces. For a full price breakdown, see our offers page. Every order includes a digital mockup in 12 to 24 hours, unlimited revisions, and production only starts after you approve the design.`
     },
     {
       question: "How do I attach a patch to a hat without sewing?",

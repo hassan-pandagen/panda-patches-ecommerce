@@ -11,6 +11,8 @@ import {
   SPEC_DATE_LABEL,
   specMatrix as matrix,
   sizeGuide,
+  specNotes,
+  STANDARD_SIZE_SENTENCE,
 } from "@/lib/patchSpecs";
 
 export const dynamic = "force-static";
@@ -55,12 +57,12 @@ const CANONICAL = `${BASE}/patch-manufacturability-specs`;
 export const metadata: Metadata = buildPageMetadata({
   title: "Patch Manufacturability Specs: Min Text, Lines, Colors by Type",
   description:
-    "The real production limits for custom patches: minimum text height 4mm embroidered / 1.5mm woven, line weights, color counts, gradients, and max sizes by patch type. Published by Panda Patches, free to cite.",
+    "The real production limits for custom patches: minimum text height 4mm embroidered, 1.5mm woven, 12mm chenille, 2mm printed, line weights, color counts, gradients and maximum standard sizes by patch type. Published by Panda Patches, free to cite.",
   url: CANONICAL,
   ogType: "article",
   ogTitle: "Patch Manufacturability Specifications",
   ogDescription:
-    "What reproduces at patch size and why — minimum text, line weight, colors, and gradients for embroidered, woven, PVC and leather patches.",
+    "What reproduces at patch size and why — minimum text, line weight, colors, and gradients for embroidered, woven, PVC, leather, chenille, printed and sequin patches.",
   robots: {
     index: true,
     follow: true,
@@ -102,7 +104,7 @@ const faqs = [
   {
     question: "How big can a custom patch be?",
     answer:
-      "Embroidered patches go up to 20 inches, which covers full jacket-back pieces. Woven, PVC, and leather max out at 8 inches. The minimum across every type is 0.5 inches, though what actually reproduces at that size is limited — see the size-to-detail guide on this page.",
+      `Embroidered patches go up to 20 inches, which covers full jacket-back pieces. Woven, PVC, and leather reach 8 inches. ${STANDARD_SIZE_SENTENCE} The minimum across every type is 0.5 inches, though what actually reproduces at that size is limited — see the size-to-detail guide on this page.`,
   },
 ];
 
@@ -114,7 +116,7 @@ const specSchema = {
       "@id": `${CANONICAL}#dataset`,
       name: "Panda Patches Patch Manufacturability Specifications",
       description:
-        "Production limits for custom patch manufacturing by patch type: minimum text height, minimum line weight, maximum color count, gradient support, and minimum/maximum patch size for embroidered, woven, PVC and leather patches.",
+        "Production limits for custom patch manufacturing by patch type: minimum text height, minimum line weight, maximum color count, gradient support, and minimum/maximum standard patch size for embroidered, woven, PVC, leather, chenille, printed and sequin patches.",
       url: CANONICAL,
       version: SPEC_VERSION,
       creator: { "@id": `${BASE}/#organization` },
@@ -126,6 +128,23 @@ const specSchema = {
         { "@type": "PropertyValue", name: "Minimum text height, woven", value: "1.5 mm sans-serif / 2 mm serif" },
         { "@type": "PropertyValue", name: "Minimum text height, PVC", value: "3 mm" },
         { "@type": "PropertyValue", name: "Minimum text height, leather engraved", value: "2 mm" },
+        { "@type": "PropertyValue", name: "Minimum text height, chenille", value: "12 mm" },
+        { "@type": "PropertyValue", name: "Minimum text height, printed", value: "2 mm" },
+        { "@type": "PropertyValue", name: "Minimum text height, sequin", value: "12 mm" },
+        { "@type": "PropertyValue", name: "Minimum line weight, chenille", value: "3 mm (3-4 mm recommended)" },
+        { "@type": "PropertyValue", name: "Minimum line weight, printed", value: "0.3 mm (0.5 mm recommended)" },
+        { "@type": "PropertyValue", name: "Minimum line weight, sequin", value: "3 mm (6 mm recommended for filled areas)" },
+        { "@type": "PropertyValue", name: "Colors included, chenille", value: "3 yarn colors + base" },
+        { "@type": "PropertyValue", name: "Colors included, printed", value: "Full color, no fixed limit" },
+        { "@type": "PropertyValue", name: "Colors included, sequin", value: "4 sequin colors/types" },
+        { "@type": "PropertyValue", name: "Gradients, printed", value: "Yes (dye-sublimation)" },
+        { "@type": "PropertyValue", name: "Gradients, chenille / sequin", value: "No" },
+        { "@type": "PropertyValue", name: "Maximum standard size, chenille", value: "14 inches (larger by quote)" },
+        { "@type": "PropertyValue", name: "Maximum standard size, printed / sequin", value: "12 inches (larger by quote)" },
+        { "@type": "PropertyValue", name: "Minimum standalone letter size, chenille", value: "2 inches (50.8 mm); 3 inches or larger recommended" },
+        { "@type": "PropertyValue", name: "Sequin diameter", value: "3 mm" },
+        { "@type": "PropertyValue", name: "Minimum corner radius, sequin", value: "3 mm" },
+        { "@type": "PropertyValue", name: "Minimum point angle, sequin", value: "about 60 degrees" },
         { "@type": "PropertyValue", name: "Minimum line weight, embroidered", value: "1 mm" },
         { "@type": "PropertyValue", name: "Minimum line weight, woven", value: "0.5 mm" },
         { "@type": "PropertyValue", name: "Minimum line weight, leather laser-engraved", value: "0.3 mm" },
@@ -234,7 +253,7 @@ export default function PatchManufacturabilitySpecs() {
           <div className="container mx-auto max-w-[62.5rem]">
             <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-5">Quick-reference matrix</h2>
             <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
-              <table className="w-full text-[0.8125rem] md:text-[0.9375rem] border-collapse min-w-[720px]">
+              <table className="w-full text-[0.8125rem] md:text-[0.9375rem] border-collapse min-w-[1180px]">
                 <thead>
                   <tr className="border-b-2 border-panda-dark text-left">
                     <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">Spec</th>
@@ -242,6 +261,9 @@ export default function PatchManufacturabilitySpecs() {
                     <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">Woven</th>
                     <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">PVC</th>
                     <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">Leather</th>
+                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">Chenille</th>
+                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">Printed</th>
+                    <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">Sequin</th>
                   </tr>
                 </thead>
                 <tbody className="text-gray-700 font-medium">
@@ -252,6 +274,9 @@ export default function PatchManufacturabilitySpecs() {
                       <td className="py-3 px-4">{row.woven}</td>
                       <td className="py-3 px-4">{row.pvc}</td>
                       <td className="py-3 px-4">{row.leather}</td>
+                      <td className="py-3 px-4">{row.chenille}</td>
+                      <td className="py-3 px-4">{row.printed}</td>
+                      <td className="py-3 px-4">{row.sequin}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -259,6 +284,13 @@ export default function PatchManufacturabilitySpecs() {
             </div>
             <p className="text-[0.8125rem] text-gray-500 mt-3 font-medium">
               All figures are for finished patches. Minimum text height assumes a clean sans-serif; serif and decorative fonts need more room.
+            </p>
+            <p className="text-[0.8125rem] text-gray-500 mt-2 font-medium">
+              <strong className="text-panda-dark">Maximum standard size and instant pricing are different limits.</strong>{" "}
+              The maximum is what we can manufacture. Instant pricing is the largest size the
+              on-site calculator prices by itself — above it we quote, because on a large piece the
+              cost follows design complexity (stitch count, colour count, finishing) rather than
+              area alone. {STANDARD_SIZE_SENTENCE}
             </p>
           </div>
         </section>
@@ -305,6 +337,55 @@ export default function PatchManufacturabilitySpecs() {
             <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium">
               Choose engraved for a classic tonal crest, UV print when you need exact brand colors. Maximum size 8 inches. See{" "}
               <Link href="/custom-patches/leather" prefetch={false} className="text-panda-green underline font-semibold">custom leather patches</Link>.
+            </p>
+
+            <h3 className="text-[1.125rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Chenille</h3>
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-3">
+              Looped pile yarn on a structural felt or twill base — the same construction as a varsity
+              letter. The yarn loop is thick, and that thickness sets every limit: text needs 12 mm and
+              lines need 3 mm (3&ndash;4 mm recommended), roughly three times what embroidery requires.
+              Three yarn colors plus the base, no gradients. It is a bold-shapes medium, not a
+              fine-detail one.
+            </p>
+            <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
+              {(specNotes.chenille ?? []).map((n) => (
+                <li key={n}>{n}</li>
+              ))}
+            </ul>
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
+              Maximum standard size 14 inches, larger by quote. See{" "}
+              <Link href="/custom-patches/chenille" prefetch={false} className="text-panda-green underline font-semibold">custom chenille patches</Link>.
+            </p>
+
+            <h3 className="text-[1.125rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Printed</h3>
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
+              Dye-sublimation puts the artwork into the fabric rather than building it from thread or
+              moulded rubber. It is the only type with no practical colour limit and true gradient
+              support, so photographs, soft shading and unlimited colours all reproduce — and it is the
+              finest-detail option we make, holding text to 2 mm and lines to 0.3 mm (0.5 mm
+              recommended). The trade-off is texture: printed patches are completely flat. Maximum
+              standard size 12 inches, larger by quote. See{" "}
+              <Link href="/custom-patches/printed" prefetch={false} className="text-panda-green underline font-semibold">custom printed patches</Link>.
+            </p>
+
+            <h3 className="text-[1.125rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Sequin</h3>
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-3">
+              Individual 3 mm sequins placed across the patch face, which makes the sequin diameter the
+              unit every limit is measured in. Nothing can be finer than one sequin, so text needs
+              12 mm and features bottom out at 3 mm. Four sequin colors or types, no gradients.
+            </p>
+            <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
+              {(specNotes.sequin ?? []).map((n) => (
+                <li key={n}>{n}</li>
+              ))}
+            </ul>
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
+              Maximum standard size 12 inches, larger by quote. See{" "}
+              <Link href="/custom-patches/sequin" prefetch={false} className="text-panda-green underline font-semibold">custom sequin patches</Link>.
+            </p>
+
+            <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
+              {STANDARD_SIZE_SENTENCE}
             </p>
           </div>
         </section>

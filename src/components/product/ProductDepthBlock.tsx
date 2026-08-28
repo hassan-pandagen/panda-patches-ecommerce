@@ -4,7 +4,14 @@ import {
   formatMoney,
   FROM_PRICE_QUALIFIER,
 } from "@/lib/pricingCalculator";
-import { construction, getSpecsForSlug, hasSpecCanon, SPEC_VERSION, SPEC_DATE_LABEL } from "@/lib/patchSpecs";
+import {
+  construction,
+  getSpecsForSlug,
+  getSpecNotesForSlug,
+  hasSpecCanon,
+  SPEC_VERSION,
+  SPEC_DATE_LABEL,
+} from "@/lib/patchSpecs";
 import { MIN_ORDER_DEFAULT } from "@/lib/factConstants";
 
 /**
@@ -43,6 +50,7 @@ interface Props {
 
 export default function ProductDepthBlock({ slug, productName, title }: Props) {
   const specs = getSpecsForSlug(slug);
+  const notes = getSpecNotesForSlug(slug);
   const build = hasSpecCanon(slug) ? construction[slug] : null;
 
   const ladder = LADDER_QTYS.map((qty) => {
@@ -52,7 +60,7 @@ export default function ProductDepthBlock({ slug, productName, title }: Props) {
   }).filter((r): r is { qty: number; unit: number; total: number } => r !== null);
 
   // Nothing authored and nothing priceable — render nothing rather than an empty shell.
-  if (!build && specs.length === 0 && ladder.length === 0) return null;
+  if (!build && specs.length === 0 && notes.length === 0 && ladder.length === 0) return null;
 
   return (
     <section className="w-full py-12 md:py-16 bg-white border-t border-gray-100">
@@ -103,6 +111,13 @@ export default function ProductDepthBlock({ slug, productName, title }: Props) {
                 </tbody>
               </table>
             </div>
+            {notes.length > 0 && (
+              <ul className="list-disc pl-5 space-y-2 text-gray-700 leading-[1.8] text-[0.875rem] md:text-[0.9375rem] font-medium mb-4">
+                {notes.map((n) => (
+                  <li key={n}>{n}</li>
+                ))}
+              </ul>
+            )}
             <p className="text-[0.8125rem] text-gray-500 mb-8 font-medium">
               From our published{" "}
               <Link

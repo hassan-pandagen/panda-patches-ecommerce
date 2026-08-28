@@ -1,3 +1,5 @@
+import { AUTO_PRICE_CEILING_IN, type SpecSlug } from './patchSpecs';
+
 /**
  * PATCH PRICING CALCULATOR - Updated with new pricing
  * NOW STARTING FROM 1 PATCH!
@@ -411,6 +413,32 @@ interface PriceResult {
   totalPrice: number;
   patchSize: number;
   error?: string;
+  /**
+   * True when the size is producible but deliberately NOT auto-priced — the
+   * caller should offer a quote path, not treat this as an invalid input.
+   * Distinct from `error` alone, which also covers below-minimum quantities.
+   */
+  quoteOnly?: boolean;
+}
+
+/**
+ * Resolve a product name to its spec slug for the auto-price ceiling lookup.
+ * Mirrors getPricingTable's ordering, because the same "chenille" substring
+ * appears inside "Chenille TPU" and the first match must win the same way.
+ */
+function specSlugFor(productName: string): SpecSlug | null {
+  const name = productName.toLowerCase();
+  if (name.includes('tpu') || name.includes('glitter')) return 'chenille';
+  if (name.includes('chenille')) return 'chenille';
+  if (name.includes('3d embroid')) return 'embroidered';
+  if (name.includes('pvc')) return 'pvc';
+  if (name.includes('woven')) return 'woven';
+  if (name.includes('leather')) return 'leather';
+  if (name.includes('silicone')) return null; // labels, own size range
+  if (name.includes('sublim') || name.includes('print')) return 'printed';
+  if (name.includes('sequin')) return 'sequin';
+  if (name.includes('embroid')) return 'embroidered';
+  return null;
 }
 
 /**
@@ -430,6 +458,23 @@ export function calculatePatchPrice(
 
   // Bound size to available range
   const lookupSize = Math.max(pricing.minSize, Math.min(pricing.maxSize, avgSize));
+
+  // AUTO-PRICE CEILING (CL5E74 §2.2). Above this the size is producible but is
+  // NOT auto-priced — cost depends on design complexity, not area alone, and for
+  // woven/leather the rows above the ceiling are duplicates of smaller sizes.
+  // Returning quoteOnly (rather than a number) is what stopped a 12-inch leather
+  // patch being billed at the 6-inch rate.
+  const slug = specSlugFor(productName);
+  const ceiling = slug ? AUTO_PRICE_CEILING_IN[slug] : 0;
+  if (ceiling > 0 && avgSize > ceiling) {
+    return {
+      unitPrice: 0,
+      totalPrice: 0,
+      patchSize: avgSize,
+      quoteOnly: true,
+      error: `Sizes above ${ceiling}" are quoted individually`,
+    };
+  }
 
   // Enforce per-product minimum quantity — see effectiveMinQty.
   const minQty: number = effectiveMinQty(pricing);
