@@ -14,6 +14,22 @@ const redis = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_RE
     })
   : null;
 
+// Every limiter below is `limiter ? guard : skip`. Without Redis they are all
+// null, so EVERY rate limit silently disappears — no error, no log, no 429,
+// just an uncapped site. That is the worst failure mode a guard can have: it
+// looks identical to "no attack". Say so once at cold start.
+//
+// Deliberately not fatal. A checkout that still works unthrottled beats a
+// checkout that 500s because a cache is unreachable. The AI generation route
+// is the exception and is handled separately below, because it spends money.
+if (!redis) {
+  console.error(
+    '[proxy] UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN not set — ALL rate ' +
+    'limits are DISABLED (checkout, quote, contact, sample box, signup, AI generation). ' +
+    'Set both in the Vercel project environment.',
+  );
+}
+
 // Create rate limiters for different endpoints
 const checkoutLimiter = redis
   ? new Ratelimit({
@@ -254,8 +270,30 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  if (pathname === '/api/ai-patch/generate' && aiGenLimiter) {
-    const ip = request.headers.get('x-forwarded-for') || 'anonymous';
+  // AI generation is the one route where a missing limiter costs real money on
+  // every request, so it does NOT fall through silently the way the form routes
+  // do. `x-forwarded-for` can carry a client-supplied prefix ahead of the real
+  // address; keying on the whole header would let an attacker mint a fresh
+  // bucket per request. Take the LAST hop — the one the platform appended — and
+  // prefer x-real-ip, which is not client-writable.
+  if (pathname === '/api/ai-patch/generate') {
+    if (!aiGenLimiter) {
+      console.error(
+        '[proxy] /api/ai-patch/generate hit with NO rate limiter (Redis unavailable). ' +
+        'Refusing rather than allowing uncapped paid generations.',
+      );
+      return NextResponse.json(
+        { ok: false, error: 'Image generation is temporarily unavailable. Please try again shortly.' },
+        { status: 503, headers: { 'Retry-After': '300' } },
+      );
+    }
+
+    const forwarded = request.headers.get('x-forwarded-for') || '';
+    const ip =
+      request.headers.get('x-real-ip') ||
+      forwarded.split(',').map((v) => v.trim()).filter(Boolean).pop() ||
+      'anonymous';
+
     const { success, reset } = await aiGenLimiter.limit(ip);
     if (!success) {
       return NextResponse.json(

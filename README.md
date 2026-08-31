@@ -281,6 +281,15 @@ ZEPTOMAIL_TOKEN=<send-token>
 FAL_API_KEY=<fal-key>
 AI_GEN_PROVIDER=fal                                # or "mock" for local dev
 AI_GEN_MODEL=<model-id>                            # e.g. fal-ai/flux/schnell
+AI_GEN_DAILY_BUDGET_USD=5                          # optional, defaults to 5.
+                                                   # Global spend ceiling across ALL
+                                                   # callers, resets at UTC midnight.
+                                                   # Busiest real day to date: $0.069
+                                                   # (23 images, 2026-08-06), so 5 is
+                                                   # ~72x normal. Raise it if demand
+                                                   # grows; do not remove it — the
+                                                   # per-IP limit does nothing against
+                                                   # rotating IPs.
 
 # ── Meta CAPI ──
 META_PIXEL_ID=<pixel-id>
