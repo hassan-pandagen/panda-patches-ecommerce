@@ -13,6 +13,7 @@ import {
   sizeGuide,
   specNotes,
   STANDARD_SIZE_SENTENCE,
+  MANUFACTURING_MAX_IN,
 } from "@/lib/patchSpecs";
 
 export const dynamic = "force-static";
@@ -53,6 +54,25 @@ const CANONICAL = `${BASE}/patch-manufacturability-specs`;
 // propagation sweep is therefore narrow: no existing figure changed, so nothing
 // carrying 350°F or 25-30s needed correcting. Surfaces touched: this page, the
 // iron-on application steps + FAQ, and the Karbach case study footnote.
+
+/**
+ * Every maximum-size figure on this page is derived from MANUFACTURING_MAX_IN,
+ * never retyped.
+ *
+ * v1.7 (2026-09-01) — SEVEN size figures on this page were stale: the FAQ and
+ * three JSON-LD entries still said embroidered 20 in / chenille 14 in /
+ * printed-sequin 12 in, and the per-type prose repeated the same three. The
+ * quick-reference matrix was correct throughout because it renders `specMatrix`
+ * by import, so the page stated two different maxima for the same patch type —
+ * and the wrong one was the machine-readable Dataset block that exists to be
+ * cited.
+ *
+ * That is exactly the propagation failure the header above warns about, so the
+ * fix is not "correct the numbers" but "remove the second copy". Anything that
+ * needs a maximum size now reads it from canon. `npm run verify:canon` asserts
+ * no bare inch figure survives here (verify-canon.ts §9).
+ */
+const MAX = (slug: keyof typeof MANUFACTURING_MAX_IN) => `${MANUFACTURING_MAX_IN[slug]} inches`;
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Patch Manufacturability Specs: Min Text, Lines, Colors by Type",
@@ -104,7 +124,7 @@ const faqs = [
   {
     question: "How big can a custom patch be?",
     answer:
-      `Embroidered patches go up to 20 inches, which covers full jacket-back pieces. Woven, PVC, and leather reach 8 inches. ${STANDARD_SIZE_SENTENCE} The minimum across every type is 0.5 inches, though what actually reproduces at that size is limited — see the size-to-detail guide on this page.`,
+      `Embroidered and chenille patches go up to ${MAX("embroidered")}, which covers full jacket-back pieces. Printed and sequin reach ${MAX("printed")}; woven, PVC, and leather reach ${MAX("woven")}. ${STANDARD_SIZE_SENTENCE} The minimum across every type is 0.5 inches, though what actually reproduces at that size is limited — see the size-to-detail guide on this page.`,
   },
 ];
 
@@ -139,8 +159,8 @@ const specSchema = {
         { "@type": "PropertyValue", name: "Colors included, sequin", value: "4 sequin colors/types" },
         { "@type": "PropertyValue", name: "Gradients, printed", value: "Yes (dye-sublimation)" },
         { "@type": "PropertyValue", name: "Gradients, chenille / sequin", value: "No" },
-        { "@type": "PropertyValue", name: "Maximum standard size, chenille", value: "14 inches (larger by quote)" },
-        { "@type": "PropertyValue", name: "Maximum standard size, printed / sequin", value: "12 inches (larger by quote)" },
+        { "@type": "PropertyValue", name: "Maximum standard size, chenille", value: `${MAX("chenille")} (larger by quote)` },
+        { "@type": "PropertyValue", name: "Maximum standard size, printed / sequin", value: `${MAX("printed")} (larger by quote)` },
         { "@type": "PropertyValue", name: "Minimum standalone letter size, chenille", value: "2 inches (50.8 mm); 3 inches or larger recommended" },
         { "@type": "PropertyValue", name: "Sequin diameter", value: "3 mm" },
         { "@type": "PropertyValue", name: "Minimum corner radius, sequin", value: "3 mm" },
@@ -155,8 +175,8 @@ const specSchema = {
         { "@type": "PropertyValue", name: "Colors included, PVC", value: "~8 Pantone-matched zones, surcharge beyond" },
         { "@type": "PropertyValue", name: "Minimum raised element width, PVC", value: "0.3 mm (raised dot or line)" },
         { "@type": "PropertyValue", name: "PVC raised layer height", value: "0.5 mm per layer, max 5 layers" },
-        { "@type": "PropertyValue", name: "Maximum patch size, embroidered", value: "20 inches" },
-        { "@type": "PropertyValue", name: "Maximum patch size, woven / PVC / leather", value: "8 inches" },
+        { "@type": "PropertyValue", name: "Maximum patch size, embroidered", value: MAX("embroidered") },
+        { "@type": "PropertyValue", name: "Maximum patch size, woven / PVC / leather", value: MAX("woven") },
         { "@type": "PropertyValue", name: "Merrowed border size addition", value: "2-4 mm per edge" },
         { "@type": "PropertyValue", name: "3D puff relief height", value: "3 mm" },
       ],
@@ -308,14 +328,14 @@ export default function PatchManufacturabilitySpecs() {
 
             <h3 className="text-[1.125rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Woven</h3>
             <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
-              Woven uses finer threads on a loom, reproducing detail roughly 2–4× finer than embroidery. That means smaller text — down to 1.5 mm for sans-serif, 2 mm for serif or script — and cleaner small logos, with up to 4 colors included and a surcharge above that. The trade-off is a flatter surface with no raised embroidered texture, and a maximum size of 8 inches. See{" "}
+              Woven uses finer threads on a loom, reproducing detail roughly 2–4× finer than embroidery. That means smaller text — down to 1.5 mm for sans-serif, 2 mm for serif or script — and cleaner small logos, with up to 4 colors included and a surcharge above that. The trade-off is a flatter surface with no raised embroidered texture, and a maximum size of {MAX("woven")}. See{" "}
               <Link href="/custom-patches/woven" prefetch={false} className="text-panda-green underline font-semibold">custom woven patches</Link> or the{" "}
               <Link href="/woven-vs-embroidered-patches-which-is-right-for-you" prefetch={false} className="text-panda-green underline font-semibold">woven vs embroidered comparison</Link>.
             </p>
 
             <h3 className="text-[1.125rem] md:text-[1.25rem] font-black text-panda-dark mb-2">PVC</h3>
             <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
-              Moulded soft rubber, built in layers. Our PVC starts from a 2.5 mm base, with raised elements added in 0.5 mm layers up to a maximum of five — so a full 3D PVC patch reaches about 5 mm total thickness with roughly 2.5 mm of stacked relief. Colors are Pantone-matched solid zones (about 8 included, more with a surcharge). A raised element needs to be at least about 0.3 mm wide — that is its width, not its height. A 2D mould uses flat stepped levels, so it holds slightly thinner, sharper lines and smaller details; a 3D mould uses rounded slopes, so fine elements narrow toward the top and can soften or disappear, and need to be broader. On a hybrid design, keep small text and fine detail in 2D and reserve 3D for larger logos, faces, mascots, or other prominent shapes. PVC renders bold dimensional logos beautifully but does not do smooth gradients; color lives in discrete zones. Maximum size 8 inches. See{" "}
+              Moulded soft rubber, built in layers. Our PVC starts from a 2.5 mm base, with raised elements added in 0.5 mm layers up to a maximum of five — so a full 3D PVC patch reaches about 5 mm total thickness with roughly 2.5 mm of stacked relief. Colors are Pantone-matched solid zones (about 8 included, more with a surcharge). A raised element needs to be at least about 0.3 mm wide — that is its width, not its height. A 2D mould uses flat stepped levels, so it holds slightly thinner, sharper lines and smaller details; a 3D mould uses rounded slopes, so fine elements narrow toward the top and can soften or disappear, and need to be broader. On a hybrid design, keep small text and fine detail in 2D and reserve 3D for larger logos, faces, mascots, or other prominent shapes. PVC renders bold dimensional logos beautifully but does not do smooth gradients; color lives in discrete zones. Maximum size {MAX("pvc")}. See{" "}
               <Link href="/custom-patches/pvc" prefetch={false} className="text-panda-green underline font-semibold">custom PVC patches</Link>.
             </p>
 
@@ -335,7 +355,7 @@ export default function PatchManufacturabilitySpecs() {
               Both genuine and premium synthetic (faux) leather take engraving and printing, and every leather patch gets a protective coating for durability and water resistance. Standard colors are natural, tan, brown, black, navy, and dark green; custom dyeing is available on genuine leather only. Minimum text is about 2 mm whether engraved or printed.
             </p>
             <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium">
-              Choose engraved for a classic tonal crest, UV print when you need exact brand colors. Maximum size 8 inches. See{" "}
+              Choose engraved for a classic tonal crest, UV print when you need exact brand colors. Maximum size {MAX("leather")}. See{" "}
               <Link href="/custom-patches/leather" prefetch={false} className="text-panda-green underline font-semibold">custom leather patches</Link>.
             </p>
 
@@ -353,7 +373,7 @@ export default function PatchManufacturabilitySpecs() {
               ))}
             </ul>
             <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
-              Maximum standard size 14 inches, larger by quote. See{" "}
+              Maximum standard size {MAX("chenille")}, larger by quote. See{" "}
               <Link href="/custom-patches/chenille" prefetch={false} className="text-panda-green underline font-semibold">custom chenille patches</Link>.
             </p>
 
@@ -364,7 +384,7 @@ export default function PatchManufacturabilitySpecs() {
               support, so photographs, soft shading and unlimited colours all reproduce — and it is the
               finest-detail option we make, holding text to 2 mm and lines to 0.3 mm (0.5 mm
               recommended). The trade-off is texture: printed patches are completely flat. Maximum
-              standard size 12 inches, larger by quote. See{" "}
+              standard size {MAX("printed")}, larger by quote. See{" "}
               <Link href="/custom-patches/printed" prefetch={false} className="text-panda-green underline font-semibold">custom printed patches</Link>.
             </p>
 
@@ -380,7 +400,7 @@ export default function PatchManufacturabilitySpecs() {
               ))}
             </ul>
             <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
-              Maximum standard size 12 inches, larger by quote. See{" "}
+              Maximum standard size {MAX("sequin")}, larger by quote. See{" "}
               <Link href="/custom-patches/sequin" prefetch={false} className="text-panda-green underline font-semibold">custom sequin patches</Link>.
             </p>
 

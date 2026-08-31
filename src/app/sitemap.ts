@@ -263,9 +263,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     // Named standard (CL9F69 Workstream D). Bump lastModified only on a spec
     // version bump — the page's value is that citations stay traceable.
+    //
+    // The rule was right and was not followed. SPEC_VERSION reached v1.7 on
+    // 2026-08-28 (CL5E74 size ceilings) while this date stayed at 2026-07-20 —
+    // one day BEFORE the page's own first commit. A page advertising a
+    // six-week-old modification date, never crawled since discovery, sorts to
+    // the bottom of the crawl queue, which is where GSC found it: "Discovered –
+    // currently not indexed", last crawled N/A.
     {
       url: `${baseUrl}/patch-manufacturability-specs`,
-      lastModified: new Date('2026-07-20'),
+      lastModified: new Date('2026-08-28'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },

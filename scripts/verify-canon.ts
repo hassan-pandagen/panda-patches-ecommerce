@@ -504,6 +504,62 @@ function printAdvisories() {
   }
 }
 
+// ---------------------------------------------------------------------------
+// 9. The specs page may not restate a maximum size as a literal.
+//
+// WHY THIS EXISTS. /patch-manufacturability-specs is the published, versioned
+// standard — its whole value is that a citation stays traceable. On 2026-09-01
+// it carried SEVEN stale size figures: the FAQ and three JSON-LD entries said
+// embroidered 20in / chenille 14in / printed-sequin 12in, and the per-type prose
+// repeated the same three. The quick-reference matrix was correct the whole time
+// because it renders `specMatrix` by import.
+//
+// So the page stated two different maxima for the same patch type, and the WRONG
+// one sat in the Dataset block — the half written to be machine-read and quoted.
+// A human comparing table to prose would catch it; nothing else would.
+//
+// Sections 6-8 check that CANON agrees with the CALCULATOR. None of them look at
+// whether a PAGE agrees with canon, which is why this survived a passing build.
+// The fix in the page was to delete the second copy: every figure is now derived
+// through a MAX() helper reading MANUFACTURING_MAX_IN. This assertion keeps it
+// that way — retyping a number is the defect, not getting it wrong.
+const SPECS_PAGE = path.join(process.cwd(), "src/app/patch-manufacturability-specs/page.tsx");
+
+if (fs.existsSync(SPECS_PAGE)) {
+  const raw = stripComments(fs.readFileSync(SPECS_PAGE, "utf8"), SPECS_PAGE);
+
+  // Only the inch values that ARE maximum-size claims. Minimum text height,
+  // letter minimums (2in / 3in chenille), merrow minimums (0.8in) and mm
+  // conversions are legitimate literals and must not trip this.
+  const MAX_CLAIM =
+    /(maximum(?:\s+standard)?(?:\s+patch)?\s+size[^.<>{}]{0,40}?|(?:go|goes|reach(?:es)?|up)\s+to\s+)(\d+(?:\.\d+)?)\s*(?:in\b|inch|inches)/gi;
+
+  const canonInches = new Set(Object.values(MANUFACTURING_MAX_IN).map(String));
+  const offenders: string[] = [];
+
+  for (const m of raw.matchAll(MAX_CLAIM)) {
+    const line = raw.slice(0, m.index ?? 0).split("\n").length;
+    offenders.push(
+      `patch-manufacturability-specs/page.tsx:${line}: maximum size written as the literal ` +
+        `"${m[2]} in". Derive it — MAX("<type>") reads MANUFACTURING_MAX_IN. ` +
+        (canonInches.has(m[2])
+          ? "It happens to be correct today; it will not survive the next version bump."
+          : `Canon has no type with a ${m[2]}in maximum, so this figure is already wrong.`)
+    );
+  }
+
+  if (offenders.length) failures.push(...offenders);
+
+  // The derivation must actually be wired up, or the check above passes on a
+  // page that simply stopped mentioning sizes.
+  if (!raw.includes("MANUFACTURING_MAX_IN")) {
+    failures.push(
+      "patch-manufacturability-specs/page.tsx: does not import MANUFACTURING_MAX_IN. " +
+        "Every maximum-size figure on the published standard must be derived from canon."
+    );
+  }
+}
+
 if (failures.length) {
   printAdvisories();
   console.error("\nCANON CHECK FAILED\n");
