@@ -85,9 +85,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/custom-patches-germany`,
-      lastModified: new Date('2026-08-18'),
+      // Finished 2026-09-01 — was 3 sections against its siblings' 8, and the
+      // only one of the four not indexed. Now at parity, so priority matches
+      // UK/CA/AU rather than flagging it as the lesser page.
+      lastModified: new Date('2026-09-01'),
       changeFrequency: 'monthly',
-      priority: 0.6,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/custom-leather-hat-patches`,
