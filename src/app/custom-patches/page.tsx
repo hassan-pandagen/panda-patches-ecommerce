@@ -400,7 +400,7 @@ export default async function ProductLandingPage() {
             Patch pricing depends on three main factors: patch type, size, and quantity. The more you order, the lower the per-piece cost. Here is a general pricing guide for embroidered patches under 4 inches:
           </p>
           <ul className="space-y-2 mb-6 text-[1.0625rem] leading-[1.8] text-gray-600">
-            <li><strong className="text-panda-dark">50 pieces:</strong> $180 total ($3.60/pc)</li>
+            <li><strong className="text-panda-dark">50 pieces:</strong> $180 total ($3.60/pc) as a fixed-price pack &mdash; $196 ($3.92/pc) priced by size on the calculator</li>
             <li><strong className="text-panda-dark">100 pieces:</strong> $240 total ($2.40/pc)</li>
             <li><strong className="text-panda-dark">500 pieces:</strong> $750 total ($1.50/pc)</li>
             <li><strong className="text-panda-dark">1,000 pieces:</strong> $1,200 total ($1.20/pc)</li>

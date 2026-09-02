@@ -26,7 +26,7 @@ export default async function ContentSection() {
         {
           _type: "block",
           children: [
-            { _type: "span", text: "Iron-on is one of the backing options available on every custom patch we make. See sizing, pricing, and application details on our dedicated ", marks: [] },
+            { _type: "span", text: "Iron-on backing is available on embroidered, woven, printed and leather patches. PVC is moulded rubber and cannot take the heat press, so it ships sew-on or Velcro instead. See sizing, pricing, and application details on our dedicated ", marks: [] },
             { _type: "span", text: "custom iron-on patches page", marks: ["ironOnLink"] },
             { _type: "span", text: ".", marks: [] }
           ],

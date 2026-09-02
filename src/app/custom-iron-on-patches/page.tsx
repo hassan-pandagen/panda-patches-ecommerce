@@ -31,7 +31,7 @@ const ironOnFAQs = [
   {
     question: "Which patch types support iron-on backing?",
     answer:
-      "Iron-on backing is available on embroidered, woven, printed (sublimation), and leather patches. It is not available on PVC (the molded rubber cannot tolerate the heat-press temperature) or on chenille (the textured yarn surface prevents reliable adhesive bond). For PVC and chenille, the default backing is sew-on, and Velcro (hook-and-loop, charged separately on every order) is available as an alternative.",
+      "Iron-on backing is available on every patch type we make. What changes is the technique, not the availability. Embroidered, woven, printed (sublimation) and leather are pressed from the front. PVC and chenille are pressed from behind, through the garment, so the heat reaches the adhesive without touching the moulded rubber or flattening the yarn pile. Sew-on and Velcro (hook-and-loop, charged separately on every order) remain available on every type.",
   },
   {
     question: "Can I also sew my iron-on patch onto the garment?",
@@ -170,7 +170,7 @@ export default async function CustomIronOnPatchesPage() {
         trustBadges={trustBadges}
         customHeading="Custom Iron-On Patches"
         customSubheading="Heat-Seal Backing, From 5 Pieces, Free Worldwide Shipping"
-        customDescription="Iron-on adhesive backing on embroidered, woven, printed, and leather patches. Stays on for roughly 50 washes. Mockup in 12 to 24 hours. Money-back guarantee on every order."
+        customDescription="Iron-on adhesive backing on every patch type. Properly heat-pressed, the bond is near-permanent and both machine washing and dry cleaning are safe. Mockup in 12 to 24 hours. Money-back guarantee on every order."
       />
 
       {/* 2. WORK GALLERY */}
@@ -195,7 +195,7 @@ export default async function CustomIronOnPatchesPage() {
             Which Patch Types Support Iron-On?
           </h2>
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-8 max-w-[43.75rem] mx-auto">
-            Not every patch type accepts iron-on backing. PVC rubber cannot tolerate the heat-press, and chenille yarn has too much texture for the adhesive to bond. Here is the full compatibility matrix. Across our own published order data,{" "}
+            Every patch type accepts iron-on backing. What differs is how it is applied: most types are pressed from the front, while PVC and chenille are pressed from behind so the heat never touches the rubber face or the yarn pile. Here is the full matrix. Across our own published order data,{" "}
             <Link href="/custom-patch-production-data-2026" className="text-panda-green font-semibold underline">
               81.3% of orders choose iron-on backing
             </Link>{" "}
@@ -216,8 +216,8 @@ export default async function CustomIronOnPatchesPage() {
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Woven</td><td className="px-5 py-4 font-black bg-panda-green/10">Yes</td><td className="px-5 py-4">Iron-on or sew-on</td><td className="px-5 py-4 text-gray-600">Fine detail option. Free.</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Printed (Sublimation)</td><td className="px-5 py-4 font-black bg-panda-green/10">Yes</td><td className="px-5 py-4">Iron-on or sew-on</td><td className="px-5 py-4 text-gray-600">Unlimited colors. Free.</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Leather</td><td className="px-5 py-4 font-black bg-panda-green/10">Yes</td><td className="px-5 py-4">Iron-on or sew-on</td><td className="px-5 py-4 text-gray-600">Premium hat brands. Free.</td></tr>
-                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">PVC</td><td className="px-5 py-4 text-red-600 font-bold">No</td><td className="px-5 py-4">Sew-on (default)</td><td className="px-5 py-4 text-gray-600">Heat damages rubber. Use sew-on or Velcro (charged separately).</td></tr>
-                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Chenille</td><td className="px-5 py-4 text-red-600 font-bold">No</td><td className="px-5 py-4">Sew-on (default)</td><td className="px-5 py-4 text-gray-600">Texture prevents adhesive bond. Use sew-on.</td></tr>
+                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">PVC</td><td className="px-5 py-4 text-panda-green font-bold">Yes</td><td className="px-5 py-4">Iron-on, sew-on or Velcro</td><td className="px-5 py-4 text-gray-600">Press from behind only, 25&ndash;30 seconds. Direct front heat melts the rubber.</td></tr>
+                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Chenille</td><td className="px-5 py-4 text-panda-green font-bold">Yes</td><td className="px-5 py-4">Iron-on, sew-on or Velcro</td><td className="px-5 py-4 text-gray-600">Press from behind only, 20&ndash;30 seconds, no adhesive spray. Direct heat flattens the pile.</td></tr>
               </tbody>
             </table>
           </div>

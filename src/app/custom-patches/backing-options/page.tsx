@@ -228,7 +228,7 @@ export default async function BackingOptionsHubPage() {
             <div className="bg-[#F9FAF5] border border-gray-100 rounded-2xl p-6">
               <span className="text-[0.75rem] font-black text-panda-green uppercase tracking-wider">Question 3</span>
               <h3 className="text-[1.0625rem] font-black text-panda-dark mt-1 mb-2">What patch type is it?</h3>
-              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">PVC and chenille cannot take iron-on heat, so they default to sew-on or Velcro. Embroidered, woven, printed, and leather accept every backing.</p>
+              <p className="text-[0.875rem] text-gray-600 leading-[1.6]">Every type accepts every backing. PVC and chenille are pressed from behind rather than from the front, so the heat reaches the adhesive without touching the moulded rubber or the yarn pile.</p>
             </div>
           </div>
         </div>

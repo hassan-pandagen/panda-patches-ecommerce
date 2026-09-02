@@ -41,7 +41,7 @@ const adhesiveFAQs = [
   {
     question: "Can I wash a garment with an adhesive patch on it?",
     answer:
-      "No. Adhesive patches are not wash-durable, the bond breaks down in water and detergent. If you need a patch that survives the wash, order the same design with iron-on (lasts roughly 50 washes) or sew-on (permanent) backing. Many customers order adhesive for the event, then reorder a sew-on batch for the keepsake version.",
+      "No. Adhesive patches are not wash-durable, the bond breaks down in water and detergent. If you need a patch that survives the wash, order the same design with iron-on (near-permanent once properly heat-pressed) or sew-on (permanent) backing. Many customers order adhesive for the event, then reorder a sew-on batch for the keepsake version.",
   },
   {
     question: "How much do adhesive patches cost?",

@@ -910,7 +910,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     },
     {
       question: "What backing type is best for uniform patches that will be washed frequently?",
-      answer: "For uniforms washed daily or multiple times per week — common in healthcare, food service, and manufacturing — sew-on backing is significantly more durable than iron-on. Iron-on patches can loosen at edges after 20-50 washes in hot water or commercial laundry cycles. Sew-on patches with a clean perimeter stitch maintain their attachment through hundreds of commercial wash cycles when properly stitched."
+      answer: "For uniforms washed daily or multiple times per week — common in healthcare, food service, and manufacturing — sew-on backing is significantly more durable than iron-on. Iron-on patches can loosen at the edges under repeated hot-water or commercial laundry cycles, which are harsher than domestic washing. Sew-on patches with a clean perimeter stitch maintain their attachment through hundreds of commercial wash cycles when properly stitched."
     },
     {
       question: "Can we order trial patches before committing to a full staff order?",

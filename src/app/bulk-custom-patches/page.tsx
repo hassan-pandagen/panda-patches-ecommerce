@@ -205,7 +205,7 @@ const faqSchema = {
       name: "Where can I order custom patches in bulk with no setup fee?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Panda Patches offers bulk custom patches with zero setup fees, zero digitizing fees, and no hidden charges on any order size. Bulk pricing starts at 50 pieces: embroidered patches from $180 for 50 pieces ($3.60/pc), $240 for 100 pieces ($2.40/pc), $750 for 500 pieces ($1.50/pc), and $1,200 for 1,000 pieces ($1.20/pc). Every bulk order includes a digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, and a money-back guarantee. Production starts only after your written approval — nothing is manufactured without your sign-off.",
+        text: "Panda Patches offers bulk custom patches with zero setup fees, zero digitizing fees, and no hidden charges on any order size. Bulk pricing starts at 50 pieces. Our fixed-price packs are the cheapest route at these quantities: embroidered from $180 for 50 pieces ($3.60/pc), $240 for 100 pieces ($2.40/pc), $750 for 500 pieces ($1.50/pc), and $1,200 for 1,000 pieces ($1.20/pc). Every bulk order includes a digital mockup in 12 to 24 hours, unlimited free revisions, free worldwide shipping, and a money-back guarantee. Production starts only after your written approval — nothing is manufactured without your sign-off.",
       },
     },
     {

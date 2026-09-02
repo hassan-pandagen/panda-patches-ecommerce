@@ -76,7 +76,7 @@ const faqs = [
   {
     question: "What backings does Panda Patches offer?",
     answer:
-      "Backing options at Panda Patches: iron-on (heat-activated adhesive, included free), sew-on (flat fabric back for stitching, included free), adhesive sticker (peel and stick for short-term wear, included free), and Velcro (hook-and-loop both sides included, charged separately on every order). Iron-on, sew-on, and sticker are interchangeable on embroidered, woven, leather, and printed patches. Velcro is available on embroidered, PVC, woven, and leather. Iron-on is not available on PVC (rubber cannot tolerate the heat press) or on chenille (the chenille texture interferes with adhesive bond). Sew-on is the default backing on chenille and PVC.",
+      "Backing options at Panda Patches: iron-on (heat-activated adhesive, included free), sew-on (flat fabric back for stitching, included free), adhesive sticker (peel and stick for short-term wear, included free), and Velcro (hook-and-loop both sides included, charged separately on every order). Iron-on, sew-on and sticker are interchangeable on every patch type, and Velcro is available on every type as a paid add-on. What differs is the iron-on technique, not its availability: embroidered, woven, leather and printed are pressed from the front, while PVC and chenille are pressed from behind, through the garment, so the heat never touches the moulded rubber face or flattens the chenille pile. PVC takes the full 25 to 30 seconds from behind; chenille takes 20 to 30 seconds from behind with no adhesive spray.",
   },
 ];
 
@@ -307,7 +307,7 @@ export default function SpecsAndCareClusterPage() {
               <strong className="text-panda-dark">Wash care.</strong> Iron-on patches survive normal machine washing on cold or warm with the garment turned inside out. Hot water, high-heat tumble drying, and aggressive agitation shorten iron-on lifespan over many wash cycles. For items washed 30+ times per season (game jerseys, work uniforms), sew-on backing is the more reliable choice. For hats, casual jackets, backpacks, denim, and items washed less frequently, iron-on is the most convenient option.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              <strong className="text-panda-dark">When iron-on is not available.</strong> Iron-on backing is not applied to PVC patches (the rubber cannot tolerate the heat-press step) or to chenille (the chenille texture interferes with adhesive bond). Use sew-on or Velcro backing for PVC. Use sew-on as the default backing for chenille.
+              <strong className="text-panda-dark">When the press technique changes.</strong> PVC and chenille are pressed from behind only, never from the front: direct heat on a moulded rubber face melts it, and direct heat on chenille flattens the yarn pile. PVC takes the full 25&ndash;30 seconds from behind; chenille takes 20&ndash;30 seconds from behind and needs no adhesive spray. Sew-on and Velcro remain available on both.
             </p>
           </section>
 
