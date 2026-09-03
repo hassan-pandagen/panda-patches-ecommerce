@@ -437,6 +437,20 @@ const nextConfig = {
         permanent: true,
       },
 
+      // CHENILLE SEASON CLUSTER (CL4FD2 §3) — the 2024 seasonal post is retired.
+      //
+      // It was ~800 words of trend copy naming 2024 five times, with a corrupted
+      // publishedAt of 0202-10-11 that had been emitting an invalid Article date.
+      // The date was repaired BEFORE this redirect went in, deliberately: a 301
+      // does not stop a crawler that already holds the old URL from re-fetching
+      // it, so the invalid schema had to stop being served first.
+      //
+      // Replaced rather than rewritten — nearly every paragraph would have had to
+      // go, and the new page is written from the manufacturability canon and the
+      // order book instead of trend prose.
+      { source: '/varsity-jacket-patches-winter-trend-2024', destination: '/varsity-jacket-patches-2026-27', permanent: true },
+      { source: '/varsity-jacket-patches-winter-trend-2024/', destination: '/varsity-jacket-patches-2026-27', permanent: true },
+
       // CANNIBALIZATION CONSOLIDATION (July 2026 keyword audit) — overlapping
       // blog posts merged into their canonical page, then 301'd. The unique
       // content (FAQs, sections) was ported into each canonical BEFORE these

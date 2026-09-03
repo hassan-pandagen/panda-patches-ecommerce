@@ -49,7 +49,19 @@ const embroideryPricing = {
   maxSize: 14
 };
 
-// Chenille/TPU/Glitter Pricing - competitor-benchmarked, 5% below market
+// Chenille/TPU/Glitter Pricing.
+//
+// "competitor-benchmarked, 5% below market" WITHDRAWN 2026-09-03. A real
+// benchmark (12 competitors, 19 comparable listed-price points, register row
+// "Chenille pack pricing vs listed competitors") disproved it as a blanket
+// statement. It is directionally right for the 50-100 piece packs and inverted
+// at volume:
+//   4in x 50    $5.00 vs median $5.67   -11.8%
+//   4in x 100   $3.50 vs median $3.88    -9.8%
+//   2x2in x1000 $1.47 vs median $0.749  +96.3%  (above EVERY listed competitor)
+//
+// Do not restate a sitewide "below market" claim from this comment. Any public
+// pricing comparison must name its segment and cite the dated benchmark.
 // Qty breaks 1-9: totals graduate smoothly from $80 (1pc flat) toward the 10pc total for each size.
 // Formula: total_q = 80 + (total_10 - 80) * (q - 1) / 9, unit = total_q / q
 // Qty breaks: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25, 50, 100, 200, 500, 1000, 5000

@@ -1,4 +1,6 @@
 const locationDescriptions: Record<string, string> = {
+  "chenille-letters":
+    "Individual chenille varsity letters, names and year numerals from 5 pieces. Looped yarn on a felt base, three colours plus the base, sized from 2 inches up. Order the whole set in one batch so every letter comes from the same dye lot.",
   "custom-patches-in-jacksonville": "Custom patches delivered across Jacksonville and Northeast Florida. Durable embroidered, PVC, woven, chenille, and leather patches with a low 5-piece minimum, free design, a mockup in 12 to 24 hours, and free shipping.",
   "alabama-patches": "Celebrate Southern pride with our custom Alabama Patches. Our collection features distinctive designs including the classic Alabama Flag Patch, perfect for enhancing your apparel and accessories. Crafted with care and attention to detail, these patches showcase true Alabama spirit. Order now to express your heritage with high quality patches today.",
   "custom-austin-patches": "Custom patches delivered across Austin and Central Texas. Embroidered, PVC, woven, chenille, and leather patches with a low 5-piece minimum, free design, a mockup in 12 to 24 hours, and free shipping across Central Texas.",

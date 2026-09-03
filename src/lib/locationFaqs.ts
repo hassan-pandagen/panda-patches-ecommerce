@@ -9,6 +9,41 @@
 import { MIN_ORDER_DEFAULT } from "@/lib/factConstants";
 
 const locationFaqs: Record<string, Array<{ question: string; answer: string }>> = {
+  // CL4FD2 §2 + §5(d). LocationLayout renders these visibly and generates the
+  // FAQPage schema from the same array, so the visible Q&A and the schema can
+  // never drift apart.
+  "chenille-letters": [
+    {
+      question: "What is the minimum letter size for chenille?",
+      answer:
+        "A standalone chenille letter needs to be at least 2 inches tall, and we recommend 3 inches or larger for clean loops. The limit comes from the yarn itself: chenille is looped pile, and below 2 inches the loop cannot hold the shape of the letter. The varsity convention for a main chest letter is 6 to 8 inches on an adult jacket and 4 to 6 on youth sizing, but that is tradition rather than a production limit.",
+    },
+    {
+      question: "How many colours can a chenille letter have?",
+      answer:
+        "Three yarn colours plus the base colour. Chenille does not reproduce gradients, so the design has to work in flat colour, which is exactly what a letter is. If you need more colours or fine detail inside the letter, we add embroidery on top of the chenille base.",
+    },
+    {
+      question: "Will all the letters in my order look identical?",
+      answer:
+        "Yes. Our chenille machines are digitally controlled, so the loop path is programmed once from your approved mockup and every piece in the run is made from that same path. Much of the industry still runs hand-guided machines, where an operator steers each piece by hand, which produces visible variation across a run and renders light yarns unevenly, white in particular. Order the whole set in one batch and the yarn also comes from a single dye lot.",
+    },
+    {
+      question: "What is the minimum order for chenille letters?",
+      answer:
+        "Five pieces, at every size. There are no setup fees, no digitizing fees and no small-order surcharge, so a five-letter order gets the same free digital mockup and unlimited revisions as a five-hundred-letter order.",
+    },
+    {
+      question: "Can I order year numerals for a graduating class?",
+      answer:
+        "Yes. Year numerals such as “27” for the class of 2027 use exactly the same construction as letters and are typically 3 to 4 inches tall. Order them in the same batch as the letters so the yarn colours match.",
+    },
+    {
+      question: "Should chenille letters be sew-on or iron-on?",
+      answer:
+        "We recommend sew-on for letterman jackets. Wool and leather bodies do not take a heat press well, and a sewn letter can be repositioned by a tailor if the layout changes over the years. Iron-on is available and is pressed from behind only, for 20 to 30 seconds with no adhesive spray, because direct heat on the pile flattens and scorches it.",
+    },
+  ],
   "custom-patches-in-jacksonville": [
     {
       question: "Do you make military squadron and command patches?",

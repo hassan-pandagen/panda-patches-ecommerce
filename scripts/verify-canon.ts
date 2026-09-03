@@ -560,6 +560,53 @@ if (fs.existsSync(SPECS_PAGE)) {
   }
 }
 
+// ---------------------------------------------------------------------------
+// 10. No ADJACENT size rows may be byte-identical above the small-size floor.
+//
+// Section 6a checks only the TOP row of each table, and says why: sizes 1 and 2
+// legitimately share a price on several tables. That exclusion is correct --
+// 6 of 9 tables share size-1/size-2 pricing (embroidery, chenille, TPU, 3D
+// transfer, PVC, sublimated), because both sit at the small-piece production
+// floor.
+//
+// But "only the top" leaves the whole middle unchecked. Woven's size-8 row was
+// a copy of size 7 and leather's 7 and 8 were copies of 6; had either landed one
+// row lower, section 6a would have passed and a 12-inch patch would still be
+// billing at a smaller size's rate. This closes that gap: from size 3 upward,
+// no two adjacent rows may be identical.
+//
+// Reads the source text rather than the exported tables, because the defect is
+// a literal copy-paste of a row and that is what has to be visible.
+const PRICING_SRC = path.join(process.cwd(), "src/lib/pricingCalculator.ts");
+const SMALL_SIZE_FLOOR = 3; // sizes 1-2 may legitimately share a price
+
+if (fs.existsSync(PRICING_SRC)) {
+  const src = fs.readFileSync(PRICING_SRC, "utf8");
+  const tables = src.matchAll(/const (\w*[Pp]ricing)\s*=\s*\{([\s\S]*?)\n\};/g);
+
+  for (const t of tables) {
+    const [, tableName, body] = t;
+    const rows = new Map<number, string>();
+    for (const r of body.matchAll(/^\s*(\d+):\s*\[([^\]]+)\]/gm)) {
+      rows.set(Number(r[1]), r[2].replace(/\s+/g, ""));
+    }
+    const sizes = [...rows.keys()].sort((a, b) => a - b);
+    for (let i = 1; i < sizes.length; i++) {
+      const prev = sizes[i - 1];
+      const cur = sizes[i];
+      if (cur < SMALL_SIZE_FLOOR) continue;
+      if (rows.get(prev) === rows.get(cur)) {
+        failures.push(
+          `pricingCalculator.ts: ${tableName} size ${cur} is a byte-identical copy of ` +
+            `size ${prev}. A duplicated row prices the larger size at the smaller one's ` +
+            `rate — the defect that billed a 12-inch leather patch at the 6-inch price. ` +
+            `Derive the row or mark it CEO-DERIVED with the method.`
+        );
+      }
+    }
+  }
+}
+
 if (failures.length) {
   printAdvisories();
   console.error("\nCANON CHECK FAILED\n");

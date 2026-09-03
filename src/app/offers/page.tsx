@@ -155,8 +155,8 @@ const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   'embroidered-u4': 'Custom embroidered patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free worldwide shipping, mockup in 12-24 hours, and money-back guarantee.',
   'embroidered-12in': 'Custom 12-inch embroidered patches across the chest. Fixed-price packs from 25 to 100 pieces with free worldwide shipping and mockup in 12-24 hours.',
   'pvc-u4': 'Custom PVC patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free worldwide shipping, mockup in 12-24 hours, and money-back guarantee.',
-  'chenille-u4': 'Custom chenille patches under 4 inches. Fixed-price packs from 25 to 100 pieces with free worldwide shipping and mockup in 12-24 hours.',
-  'chenille-12in': 'Custom 12-inch chenille patches. Fixed-price packs from 25 to 100 pieces with free worldwide shipping and mockup in 12-24 hours.',
+  'chenille-u4': 'Custom chenille patches under 4 inches. Fixed-price packs from 25 to 100 pieces with free worldwide shipping and mockup in 12-24 hours. Full 2026 pricing and design limits at /custom-chenille-patches-cost-and-specs-2026.',
+  'chenille-12in': 'Custom 12-inch chenille patches. Fixed-price packs from 25 to 100 pieces with free worldwide shipping and mockup in 12-24 hours. Full 2026 pricing and design limits at /custom-chenille-patches-cost-and-specs-2026.',
   'leather-u4': 'Custom leather patches under 4 inches. Fixed-price packs from 50 to 1000 pieces with free worldwide shipping, mockup in 12-24 hours, and money-back guarantee.',
 };
 

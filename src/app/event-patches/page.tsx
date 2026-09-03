@@ -87,7 +87,7 @@ const eventFAQs = [
 export const metadata: Metadata = buildPageMetadata({
   title: "Custom Patches for Brand Activations & Events | Panda Patches",
   description:
-    "Custom patches for brand activations, trade shows and events — patch bars, hat customisation and tote decorating. Multi-design runs bagged per design, peel-and-stick backing, exact in-hand date confirmed within 2-6 hours.",
+    "Custom patches for brand activations, trade shows and events — patch bars, hat customisation and tote decorating. Multi-design runs bagged per design, peel-and-stick backing, exact in-hand date confirmed within 2-6 hours. Ordering for varsity season instead? See /varsity-jacket-patches-2026-27.",
   url: "https://www.pandapatches.com/event-patches",
   ogTitle: "Custom Patches for Brand Activations & Events",
   ogDescription:

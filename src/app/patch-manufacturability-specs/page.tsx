@@ -374,7 +374,7 @@ export default function PatchManufacturabilitySpecs() {
             </ul>
             <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-6">
               Maximum standard size {MAX("chenille")}, larger by quote. See{" "}
-              <Link href="/custom-patches/chenille" prefetch={false} className="text-panda-green underline font-semibold">custom chenille patches</Link>.
+              <Link href="/custom-patches/chenille" prefetch={false} className="text-panda-green underline font-semibold">custom chenille patches</Link> and <Link href="/chenille-letters" prefetch={false} className="text-panda-green underline font-semibold">individual chenille letters</Link>.
             </p>
 
             <h3 className="text-[1.125rem] md:text-[1.25rem] font-black text-panda-dark mb-2">Printed</h3>

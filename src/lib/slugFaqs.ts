@@ -97,6 +97,26 @@ const wovenFaqs: FAQItem[] = [
 ];
 
 const chenilleFaqs: FAQItem[] = [
+  // CL4FD2 §5 — the three additions below are the citation bait. We are the only
+  // supplier publishing the letter minimum and the yarn-colour count as figures,
+  // and the consistency answer is the machine differentiator in Q&A form. All
+  // three are canon: patchSpecs.ts (2 in letter, 12 mm text, 3 yarn + base) and
+  // the Lejia equipment record in the claims register.
+  {
+    question: "What is the minimum letter size for chenille?",
+    answer:
+      "A standalone chenille letter needs to be at least 2 inches tall, and 3 inches or larger is where it looks right. The limit comes from the yarn: chenille is looped pile, roughly three times thicker than embroidery thread, so below 2 inches the loop cannot hold the shape of the letter. Text inside a chenille patch needs 12 mm of height for the same reason. The varsity convention for a main chest letter is 6 to 8 inches on an adult jacket, but that is tradition rather than a production limit.",
+  },
+  {
+    question: "How many colors can a chenille patch have?",
+    answer:
+      "Three yarn colors plus the base color, and chenille does not reproduce gradients. Each color is a separate run of looped yarn, which is why the count is lower than embroidery's twelve. Designs that respect the limit read as intentional; designs that fight it read as a compromise. If you need more colors or fine detail inside the shape, we add embroidery on top of the chenille base, which is the standard construction on high-end varsity patches.",
+  },
+  {
+    question: "Will all the patches in my order look identical?",
+    answer:
+      "Yes. Our chenille machines are digitally controlled, so the loop path is programmed once from your approved mockup and every piece in the run is produced from that same path. Much of the industry still runs hand-guided chenille machines, where an operator steers each piece by hand, which produces visible variation across a run and renders light yarns unevenly, white in particular. Ordering the whole set in one batch also keeps every piece in a single dye lot.",
+  },
   {
     question: "What are chenille patches and what do they feel like?",
     answer: "Chenille patches are made from a looped pile yarn (the same material as varsity sweaters and luxury towels), giving them a distinctive fuzzy, raised texture. They have a premium, tactile quality that makes them popular for varsity jackets, athletic wear, and fashion apparel."

@@ -221,6 +221,7 @@ export default function Footer() {
               <li><Link prefetch={false} href="/custom-back-patches">Back Patches</Link></li>
               <li><Link prefetch={false} href="/custom-leather-hat-patches">Leather Hat Patches</Link></li>
               <li><Link prefetch={false} href="/custom-jacket-patches">Jacket Patches</Link></li>
+              <li><Link prefetch={false} href="/chenille-letters">Chenille Letters</Link></li>
               <li><Link prefetch={false} href="/custom-logo-patches">Logo Patches</Link></li>
               <li><Link prefetch={false} href="/motorcycle-patches">Motorcycle Patches</Link></li>
               <li><Link prefetch={false} href="/custom-name-patches">Name Patches</Link></li>

@@ -12,6 +12,16 @@ interface PatchStyleMeta {
 }
 
 const patchStyleMeta: Record<string, PatchStyleMeta> = {
+  // CL4FD2 §2 — the structural gap: competitors merchandise letters as a
+  // category and we had no page for them. Sizes are stated as varsity
+  // CONVENTION, never as our measured data (CEO ruling 2026-09-02: our own
+  // chenille orders are 61% at 12in+, i.e. back pieces, not letter sets).
+  "chenille-letters": {
+    title: "Custom Chenille Letters | Individual Varsity Letters from 5 Pieces",
+    description: "Individual chenille varsity letters and year numerals from 5 pieces. 2 in minimum, 3 in+ recommended. Three yarn colours plus base, felt base included. Free mockup in 12-24 hours, no setup fees.",
+    ogTitle: "Custom Chenille Letters | Individual Varsity Letters, From 5 Pieces",
+    ogDescription: "Single letters, names, full A-Z sets and year numerals. One batch means one dye lot. Free digital mockup in 12 to 24 hours.",
+  },
   "patches-for-hats": {
     title: "Custom Patches for Hats | Embroidered, Leather & PVC | Panda Patches",
     description: "Custom hat patches for snapbacks, truckers, fitted caps & beanies. Embroidered, woven & leather options. Mockup in 12-24 hours, ships in 7-14 days. From $0.91/pc (2x2, 1,000 pcs). Get a free quote!",
