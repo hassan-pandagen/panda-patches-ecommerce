@@ -122,10 +122,12 @@ export default function HeroForm({
     try {
       if (typeof (window as any).fbq === 'function') {
         (window as any).fbq('track', 'Lead', {
+          // NO value, NO currency on Lead. Ever. (Events Manager, Sept 2026:
+          // 9% of pixel Leads sent malformed currency, 48% sent none at all.)
+          // We do not value-optimize leads, so there is nothing to send — and a
+          // partial or zero pair is read as malformed price data, not as neutral.
           content_name: 'Quote Request',
           content_category: 'Custom Patches',
-          value: 0,
-          currency: 'USD',
         }, { eventID: eventId });
       }
     } catch { /* noop */ }

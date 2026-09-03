@@ -154,11 +154,24 @@ export async function sendMetaEvent(input: MetaEventInput): Promise<{ success: b
   // and "0" is not a neutral placeholder — Meta reads it as malformed price data
   // and it drags the whole dataset's quality score down.
   //
-  // So: send value only when it is a real positive number. Where a lead DOES
-  // carry a real figure (a priced calculator quote, an abandoned cart), that
-  // value still goes through and remains useful for value-based optimisation.
-  // Purchase is stricter still and is blocked outright above.
+  // LEAD SENDS NO VALUE AND NO CURRENCY, EVER (Sept 2026).
+  //
+  // The Aug 2026 fix omitted only NON-POSITIVE values, so a priced calculator
+  // quote still sent a figure. That left Lead value present on some paths and
+  // absent on others, which is itself the malformed-price complaint: Events
+  // Manager still reported 9% of Lead events with malformed currency and 48%
+  // with none. Mixed presence reads worse than consistent absence.
+  //
+  // We do not value-optimize leads. There is no campaign objective consuming a
+  // Lead value, so the correct figure to send is none — on every Lead path,
+  // whether or not a price happens to be available. The pixel side is aligned
+  // to this same rule in the five fbq('track','Lead') call sites.
+  //
+  // Purchase is unaffected and still carries value+currency; it is also blocked
+  // outright above when the value is missing, zero or negative.
+  const isLead = input.eventName === 'Lead';
   const hasRealValue =
+    !isLead &&
     typeof input.value === 'number' && Number.isFinite(input.value) && input.value > 0;
   if (hasRealValue) {
     custom_data.value = input.value;

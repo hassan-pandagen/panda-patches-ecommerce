@@ -401,11 +401,15 @@ export default function ComplexCalculator({
     try {
       if (typeof (window as any).fbq === 'function') {
         (window as any).fbq('track', 'Lead', {
+          // NO value, NO currency on Lead. Ever. (Events Manager, Sept 2026:
+          // 9% of pixel Leads sent malformed currency, 48% sent none at all.)
+          // We do not value-optimize leads, so there is nothing to send — and a
+          // partial or zero pair is read as malformed price data, not as neutral.
+          // This path HAD a real calculator price and still sends nothing: the rule
+          // is per-event-type, not per-availability. Mixed presence across Lead
+          // senders is what produced the malformed-currency percentage.
           content_name: 'Calculator Quote',
           content_category: productType,
-          // Always send value AND currency together; Meta rejects partial pairs
-          value: priceResult.error ? 0 : basePrice,
-          currency: 'USD',
         }, { eventID: eventId });
       }
     } catch { /* noop */ }

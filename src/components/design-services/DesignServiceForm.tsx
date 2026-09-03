@@ -131,10 +131,9 @@ export default function DesignServiceForm({ serviceType }: DesignServiceFormProp
           "track",
           "Lead",
           {
+            // NO value, NO currency on Lead. Ever. See metaCapi.ts for the reasoning.
             content_name: copy.pixelEventName,
             content_category: "Design Services",
-            value: 0,
-            currency: "USD",
           },
           { eventID: eventId }
         );
