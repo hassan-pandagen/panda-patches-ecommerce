@@ -111,6 +111,23 @@ export async function POST(req: Request) {
         delivery_option: d.delivery_option || 'standard',
         rush_date: d.rush_date || null,
         website_addons: Array.isArray(d.website_addons) ? d.website_addons : null,
+
+        // COLOUR-MATCH GATE (CLDB68) — MAPPING PENDING THE CRM MIGRATION.
+        //
+        // checkout-letters-square writes five extra keys into order_data:
+        //   colour_match_required, colour_match_status, customer_colour_input,
+        //   customer_colour_hex, matched_yarn
+        // They are NOT mapped here yet because the columns do not exist on
+        // `orders`. This insert lists columns explicitly, so the keys are
+        // currently dropped rather than throwing — the data survives in
+        // square_pending_orders.order_data, and the human-readable
+        // "COLOUR MATCH REQUIRED / DO NOT START PRODUCTION" text reaches the
+        // order through `instructions` regardless.
+        //
+        // SEQUENCE, do not reorder: (1) CRM migration adds the columns and the
+        // COLOUR_MATCH_PENDING status, (2) this block maps them and sets the
+        // status from d.colour_match_required, (3) deploy together. Mapping
+        // before (1) fails the insert on an unknown column and kills the order.
         order_amount: orderAmount,
         amount_paid: amountPaid,
         // Pipeline stage, not 'PAID'; payment tracked via payment_status (matches Stripe).
