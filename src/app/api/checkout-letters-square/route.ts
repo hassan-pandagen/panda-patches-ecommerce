@@ -97,7 +97,16 @@ export async function POST(req: Request) {
 
     const gate = letterColourGate(letterColour);
 
-    const productName =
+    // STABLE product name. The CRM maps this to patches_type via
+    // normalizePatchType and keys its customs-category map off it, so it must be
+    // identical on every order of this package — no size, no colour, no glitter
+    // baked in. Those live in design_size, customer_colour_input and
+    // website_addons respectively, where the CRM already reads them.
+    const productName = pkg.name;
+
+    // Human-readable variant for the Square line item and the customer's receipt,
+    // where a bare package name would not tell them what they bought.
+    const lineItemName =
       `${pkg.name} — ${size}" ${gate.raw}` + (glitter ? ` + ${glitter} glitter` : '');
 
     const origin = req.headers.get('origin') || req.headers.get('referer')?.split('/').slice(0, 3).join('/');
@@ -169,7 +178,7 @@ export async function POST(req: Request) {
 
     const { url } = await createSquarePaymentLink({
       token,
-      itemName: productName.substring(0, 255),
+      itemName: lineItemName.substring(0, 255),
       amount: price.total,
       buyerEmail: customer.email,
       redirectUrl,
@@ -183,7 +192,7 @@ export async function POST(req: Request) {
           customer_email: customer.email,
           customer_name: customer.name,
           customer_phone: customer.phone || null,
-          product_name: productName,
+          product_name: lineItemName,
           quantity: pkg.pieces,
           design_size: `${size}" tall`,
           backing: backing || null,

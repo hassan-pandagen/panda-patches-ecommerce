@@ -27,7 +27,14 @@ function statusBadge(status?: string | null, paymentStatus?: string | null) {
   const p = (paymentStatus || "").toLowerCase();
   let label = s || (p ? p.charAt(0).toUpperCase() + p.slice(1) : "Pending");
   let cls = "bg-gray-100 text-gray-700";
-  if (p === "paid" || s === "PAID" || s === "CONFIRMED") {
+  // COLOUR_MATCH_PENDING is checked BEFORE the paid branch on purpose. These
+  // orders ARE paid, so the paid branch would swallow them and show "Paid" —
+  // which tells a customer who still has to approve a yarn colour nothing at
+  // all, and hides the fact that we are waiting on them. (CLDB68 colour gate.)
+  if (s === "COLOUR_MATCH_PENDING") {
+    label = "Confirming Colour";
+    cls = "bg-orange-100 text-orange-800";
+  } else if (p === "paid" || s === "PAID" || s === "CONFIRMED") {
     label = "Paid";
     cls = "bg-green-100 text-green-800";
   } else if (s === "SHIPPED") {

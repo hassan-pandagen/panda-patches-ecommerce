@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import RushEstimator from "@/components/rush/RushEstimator";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
@@ -197,6 +198,26 @@ export default function RushCustomPatchesPage() {
             in two shipments, both on the contractual dates. We confirm your exact in-hand delivery date by
             email within 2-6 hours of ordering — if we can&apos;t hit your deadline, we remove the rush fee.
           </p>
+        </div>
+      </section>
+
+      {/* RUSH PATCH PRICE CALCULATOR (CLC97E §2) — built FIRST, ahead of the
+          evidence blocks, on measured demand: 249 impressions/month across
+          "rush patch price calculator" and its variants, all at position 23-29
+          with zero clicks. The exact phrase is the H2 because that is the query;
+          the anchor is #calculator so links can point straight at the tool. */}
+      <section id="calculator" className="w-full py-10 md:py-14 bg-[#F9FAF5] scroll-mt-24">
+        <div className="container mx-auto px-4 md:px-6 max-w-[62.5rem]">
+          <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-3">
+            Rush Patch Price Calculator
+          </h2>
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.7] mb-6 max-w-[47.5rem]">
+            Pick a type, size and quantity to see the rush fee, the total, and the
+            earliest date we would put them in your hands. The rush fee is 25% of the
+            order with a $50 minimum, and shipping is already included &mdash; there is
+            nothing added at checkout.
+          </p>
+          <RushEstimator />
         </div>
       </section>
 

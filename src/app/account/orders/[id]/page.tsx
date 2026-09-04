@@ -106,8 +106,12 @@ function buildTimeline(order: any): TimelineStep[] {
   // PRODUCTION_COMPLETE the same as IN_PRODUCTION for the timeline (the next
   // visible step is still "Shipped" until tracking goes out). NEW_ORDER on
   // its own does not advance the timeline beyond "Order placed".
+  // COLOUR_MATCH_PENDING (CLDB68) is a PAID order held before production while
+  // the yarn colour is agreed. It must count as paid or the timeline regresses
+  // for a customer who has already been charged.
   const paid =
     p === "paid" ||
+    s === "COLOUR_MATCH_PENDING" ||
     s === "PAID" ||
     s === "CONFIRMED" ||
     s === "MOCKUP_SENT" ||
