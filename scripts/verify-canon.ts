@@ -21,7 +21,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { calculatePatchPrice } from "../src/lib/pricingCalculator";
+import { calculatePatchPrice, getFromPrice } from "../src/lib/pricingCalculator";
 import { aeoContent } from "../src/lib/aeoContent";
 import { slugFaqMap } from "../src/lib/slugFaqs";
 import { genericFaqs } from "../src/lib/genericFaqs";
@@ -31,6 +31,8 @@ import {
   MANUFACTURING_MAX_IN,
   STANDARD_SIZE_SENTENCE,
 } from "../src/lib/patchSpecs";
+
+const fromPriceIssues: string[] = [];
 
 const PRODUCTS: Record<string, string> = {
   embroidered: "Custom Embroidered Patches",
@@ -606,6 +608,116 @@ if (fs.existsSync(PRICING_SRC)) {
     }
   }
 }
+
+// ---------------------------------------------------------------------------
+// 11. FROM-PRICES: SINGLE-TYPE LINES MUST MATCH THE CALCULATOR (CL0852 P0-1).
+//
+// The 31 Aug audit found /custom-patches/chenille quoting THREE from-prices on
+// one page: $1.31 in the hero table, $1.47 in the comparison table, and $0.91 in
+// the cost FAQ -- which is EMBROIDERED's price, with embroidered pack prices
+// quoted under it as though they were chenille's.
+//
+// DELIBERATELY NARROW, and it took two rewrites to get here. A +/-90 character
+// window flagged 19 correct lines. Attributing each price to its NEAREST type
+// name still flagged 11, because in a list like "embroidered $0.91, PVC $1.40,
+// woven $1.54" the types and prices interleave and "nearest" stops meaning
+// anything.
+//
+// So: only lines naming EXACTLY ONE patch type and quoting EXACTLY ONE per-piece
+// price are checked. There the attribution is unambiguous. Multi-type lines are
+// skipped entirely -- real coverage lost, in exchange for zero false positives,
+// which is the right trade for a check that fails the build. A guard that cries
+// wolf gets switched off, and then it protects nothing at all.
+//
+// This still catches the bug that prompted it: a chenille FAQ answer quoting
+// embroidered's price is a single-type line.
+const FROM_PRICE_TYPES: Record<string, string> = {
+  embroidered: "Custom Embroidered Patches",
+  pvc: "Custom PVC Patches",
+  woven: "Custom Woven Patches",
+  chenille: "Custom Chenille Patches",
+  leather: "Custom Leather Patches",
+  printed: "Custom Printed Patches",
+  sequin: "Custom Sequin Patches",
+};
+
+{
+  const realFrom = new Map<string, number>();
+  for (const [slug, product] of Object.entries(FROM_PRICE_TYPES)) {
+    realFrom.set(slug, Number(getFromPrice(product).toFixed(2)));
+  }
+  const priceOwner = new Map<number, string>();
+  for (const [slug, v] of realFrom) priceOwner.set(v, slug);
+
+  // A partner-discounted or pack figure is SUPPOSED to differ from the retail
+  // from-price, so those lines are not from-price claims at all.
+  // NARROW ON PURPOSE. The first version also skipped lines containing "pack",
+  // "starter", "team", "business", "club" — pack NAMES — which silently disabled
+  // the check across most product copy: the chenille answer says "schools, teams,
+  // and retro fashion brands", so "team" matched and the line was never examined.
+  // A skip list built from ordinary marketing vocabulary turns a guard off
+  // without anyone noticing. Only genuine non-retail pricing contexts belong here.
+  const SKIP = /wholesale|partner tier|% off|discount/i;
+
+
+  for (const file of files) {
+    const text = stripComments(fs.readFileSync(file, "utf8"), file);
+    const lines = text.split("\n");
+
+    lines.forEach((line, idx) => {
+      if (SKIP.test(line)) return;
+      // Only prices that are actually CLAIMED as a starting price, and the cue
+      // has to sit immediately before the figure. Without this the check reports
+      // every legitimate per-piece figure on the site: $3.92/pc is the 50-piece
+      // embroidered rate, $0.35/pc is the Velcro fee, $6.00/pc a small-quantity
+      // price. A line-wide cue test is not enough either — "costs $3.92 per
+      // piece at 50 ... free worldwide shipping" would still pass it.
+      const FROM_CUE = /\b(?:from|start(?:s|ing)?(?:\s+at)?|as low as)\s*$/i;
+      // A price qualified by a quantity is a tier rate, not a from-price.
+      const QTY_QUALIFIED = /^\s*at\s+[\d,]+/i;
+      // Compound product names that CONTAIN a base type name but are priced from
+      // their own table: "3D Embroidered Transfers" is not "embroidered", and
+      // "Chenille TPU"/"Chenille Glitter" are not "chenille". Without this the
+      // check reports four correct 3D-transfer lines as embroidered drift.
+      if (/\b3d\s+embroider|chenille\s+(?:tpu|glitter)/i.test(line)) return;
+
+      // String.raw, not a plain template literal: inside `...`, \b is the
+      // BACKSPACE escape (U+0008), not a regex word boundary. Written as
+      // `\b${slug}\b` this matched a literal backspace, found nothing, and the
+      // whole check passed silently on every file — which is the worst way for a
+      // guard to fail, because it looks exactly like "no problems found".
+      const typesOnLine = [...realFrom.keys()].filter((slug) =>
+        new RegExp(String.raw`\b` + slug + String.raw`\b`, "i").test(line),
+      );
+      if (typesOnLine.length !== 1) return;
+
+      const prices = [...line.matchAll(/\$(\d+\.\d{2})\s*(?:\/\s*(?:pc|piece)|per piece)/gi)];
+      if (prices.length !== 1) return;
+
+      const at = prices[0].index ?? 0;
+      const before = line.slice(Math.max(0, at - 40), at);
+      const after = line.slice(at + prices[0][0].length, at + prices[0][0].length + 20);
+      if (!FROM_CUE.test(before)) return;
+      if (QTY_QUALIFIED.test(after)) return;
+
+      const slug = typesOnLine[0];
+      const expected = realFrom.get(slug)!;
+      const found = Number(Number(prices[0][1]).toFixed(2));
+      if (Math.abs(found - expected) < 0.005) return;
+
+      const owner = priceOwner.get(found);
+      fromPriceIssues.push(
+        `${file}:${idx + 1}: "$${prices[0][1]}/pc" on a ${slug}-only line, but ` +
+          (owner && owner !== slug
+            ? `that is ${owner.toUpperCase()}'s from-price. `
+            : `${slug} starts at $${expected.toFixed(2)}. `) +
+          `Derive it with getFromPriceLabel("${FROM_PRICE_TYPES[slug]}").`,
+      );
+    });
+  }
+}
+
+if (fromPriceIssues.length) failures.push(...[...new Set(fromPriceIssues)]);
 
 if (failures.length) {
   printAdvisories();
