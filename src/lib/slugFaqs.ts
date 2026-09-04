@@ -131,7 +131,7 @@ const chenilleFaqs: FAQItem[] = [
   },
   {
     question: "What sizes do chenille patches come in?",
-    answer: "Chenille patches are typically produced in larger sizes (3 inches and up) because the fuzzy texture does not read well at very small sizes. Most popular sizes are 4-8 inches for jackets and large letter patches. Smaller chenille elements are often combined with embroidery for detail."
+    answer: "Chenille suits larger pieces because the looped yarn is thick: text needs 12 mm and lines need 3 mm, roughly three times what embroidery requires, so fine detail does not survive at small sizes. A standalone letter can go down to 2 inches, and 3 inches or more is where it looks right. Most popular sizes are 4-8 inches for jackets and large letter patches. Smaller chenille elements are often combined with embroidery for detail."
   },
   {
     question: "What is the minimum order for chenille patches?",
@@ -139,7 +139,7 @@ const chenilleFaqs: FAQItem[] = [
   },
   {
     question: "Can you make chenille letter patches for varsity jackets?",
-    answer: "Yes. Chenille letter patches are one of our specialties. We produce chenille alphabet letters in any size, color, and font. We also produce school mascots, athletic numbers, and award patches using chenille fill with embroidered detail."
+    answer: "Yes. Chenille letter patches are one of our specialties. A standalone chenille letter needs a minimum height of 2 inches, and 3 inches or larger is where the loop texture looks right; the varsity convention for a main chest letter is 6 to 8 inches. Within that we produce any colour and font. We also produce school mascots, athletic numbers, and award patches using chenille fill with embroidered detail."
   },
 ];
 
