@@ -14,6 +14,16 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
   // never drift apart.
   "chenille-letters": [
     {
+      question: "Can I buy a full chenille alphabet?",
+      answer:
+        "Yes. The Chenille Alphabet Package is all 26 letters for $150, which works out at about $5.77 a letter. You pick one size for the whole set, from 2 to 4 inches in half-inch steps, and one colour. A glitter background in gold, silver or red is $50 more. There is no mockup cycle because these are standard varsity glyphs — we confirm the yarn colour with you and the set goes straight to production. The price is all-in: free worldwide shipping, no setup or digitizing fees, and no duties on arrival.",
+    },
+    {
+      question: "Do you make chenille numbers?",
+      answer:
+        "Yes. The Chenille Numbers Package is 0 through 9 for $120, at $12 a numeral, in one size from 2 to 5 inches. A glitter background is $30 more. Same construction as the alphabet set and the same felt base, so a year on a sleeve matches the letters on the chest when you order them together.",
+    },
+    {
       question: "What is the minimum letter size for chenille?",
       answer:
         "A standalone chenille letter needs to be at least 2 inches tall, and we recommend 3 inches or larger for clean loops. The limit comes from the yarn itself: chenille is looped pile, and below 2 inches the loop cannot hold the shape of the letter. The varsity convention for a main chest letter is 6 to 8 inches on an adult jacket and 4 to 6 on youth sizing, but that is tradition rather than a production limit.",

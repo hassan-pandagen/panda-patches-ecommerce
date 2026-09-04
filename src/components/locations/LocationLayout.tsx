@@ -10,6 +10,7 @@ import CategoryZigZag from "@/components/product/CategoryZigZag";
 import ProcessSection from "@/components/home/ProcessSection";
 import IndustrySection from "@/components/home/IndustrySection";
 import FAQ from "@/components/home/FAQ";
+import LetterPackageCards from "@/components/letters/LetterPackageCards";
 import CTASection from "@/components/home/CTASection";
 import LocationSEOSections from "@/components/locations/LocationSEOSections";
 import Craftsmanship from "@/components/home/Craftsmanship";
@@ -193,6 +194,21 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
       ) : (
         <>
           {/* DEFAULT ORDER — all other location / patch style pages */}
+
+          {/* 2b. LETTER/NUMBER PACKAGES (CLDB68 §4.2).
+              Slug-gated rather than a new route: /chenille-letters is a live
+              Sanity patchStyle with the designer's images, and moving it to a
+              repo route would orphan that content. Placed directly under the
+              hero because the brief says the page LEADS with the products; the
+              quote form stays below for custom fonts, multi-colour letters,
+              sizes above the range and partial sets. */}
+          {slug === "chenille-letters" && (
+            <section id="packages" className="py-10 md:py-14 bg-white scroll-mt-24">
+              <div className="container mx-auto px-6 max-w-[62.5rem]">
+                <LetterPackageCards />
+              </div>
+            </section>
+          )}
 
           {/* 3. PICK YOUR PATCH */}
           <PickPatch />

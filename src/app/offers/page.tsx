@@ -4,6 +4,8 @@ import Navbar from '@/components/layout/Navbar';
 import FreeSamplePackBanner from '@/components/samplebox/FreeSamplePackBanner';
 import Footer from '@/components/layout/Footer';
 import OffersClient from '@/components/offers/OffersClient';
+import LetterPackageCards from '@/components/letters/LetterPackageCards';
+import { LETTER_PACKAGES, perGlyphPrice } from '@/lib/letterPackages';
 import Craftsmanship from '@/components/home/Craftsmanship';
 import { generateSchemaScript } from '@/lib/schemas';
 import { OFFER_CATEGORIES } from '@/lib/offerPackages';
@@ -164,6 +166,25 @@ export default async function OffersPage() {
   const [categoryImages, ctaImageUrl, industryImages] = await Promise.all([getCategoryImages(), getCtaImage(), getIndustryImages()]);
 
   const slugSchemaCount: Record<string, number> = {};
+  // Fixed-price letter sets carry their own Product schema: they are single
+  // SKUs with one price, not a quantity ladder like the packs below.
+  const letterSchemas = LETTER_PACKAGES.map((p) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: p.name,
+    description: `${p.blurb} ${p.pieces} pieces at ${perGlyphPrice(p).toFixed(2)} each. All-in: free worldwide shipping, no setup or digitizing fees, and no duties on arrival (DDP).`,
+    brand: { '@type': 'Brand', name: 'Panda Patches' },
+    offers: {
+      '@type': 'Offer',
+      price: p.price.toFixed(2),
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition',
+      url: 'https://www.pandapatches.com/chenille-letters',
+      seller: { '@type': 'Organization', name: 'Panda Patches' },
+    },
+  }));
+
   const productSchemas = OFFER_CATEGORIES.map(cat => {
     const count = slugSchemaCount[cat.slug] || 0;
     slugSchemaCount[cat.slug] = count + 1;
@@ -194,10 +215,23 @@ export default async function OffersPage() {
     <main className="min-h-screen bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(breadcrumbSchema)} />
       <script type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(faqSchema)} />
+      {letterSchemas.map((schema, i) => (
+        <script key={`letter-schema-${i}`} type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      ))}
       {productSchemas.map((schema, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={generateSchemaScript(schema)} />
       ))}
       <Navbar />
+      {/* CLDB68 §4.1 — letter/number sets alongside the existing packs. Same
+          component as /chenille-letters so a price or size option cannot differ
+          between the two surfaces. */}
+      <section id="letter-packages" className="w-full py-10 md:py-14 bg-white scroll-mt-24">
+        <div className="container mx-auto px-4 md:px-6 max-w-[62.5rem]">
+          <LetterPackageCards />
+        </div>
+      </section>
+
       <OffersClient categoryImages={categoryImages} ctaImageUrl={ctaImageUrl ?? undefined} industryImages={industryImages} craftmanshipSlot={<Craftsmanship />} />
       {/* Free-sample-with-first-order offer (PAC949 Part 2), surfaced on the
           primary buy page below the offer cards. */}
