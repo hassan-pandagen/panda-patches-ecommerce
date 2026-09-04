@@ -124,6 +124,25 @@ export const STANDARD_YARN_COLOURS = [
 
 export type ColourMatchPath = "standard" | "needs-customer-confirmation";
 
+/**
+ * Customer-facing helper text for the colour input.
+ *
+ * States the counterintuitive part plainly, flagged by the CRM dev 2026-09-04: a
+ * PRECISE input is SLOWER than a vague one. "Royal blue" is a stocked yarn, so a
+ * supervisor confirms it and the set goes straight to production. "#1E3A8A" or
+ * "PMS 186 C" is exact but is not a yarn we hold, so someone has to pick the
+ * nearest and YOU have to approve it before we start.
+ *
+ * That is the right way round — we would rather wait than guess a $150 set — but
+ * a customer who types a Pantone code expecting speed should not be surprised by
+ * the wait, so the page says so before they type.
+ */
+export const COLOUR_INPUT_HELP =
+  "Enter a Pantone code, a colour name, or a hex code. If you name a yarn we stock " +
+  "(white, black, red, navy, royal blue and the rest), we match it and go straight to " +
+  "production. Anything else is exact but not a yarn we hold, so we will email you the " +
+  "closest match to approve first — precise codes take a little longer, not less.";
+
 export interface ColourGateResult {
   /** Exactly what the customer typed. Never normalised away. */
   raw: string;

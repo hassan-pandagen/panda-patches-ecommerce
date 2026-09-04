@@ -20,6 +20,22 @@
  * changelog entry without sweep evidence is not done.
  */
 
+// v1.8 (2026-09-04): NO FIGURE CHANGED — the published page was corrected to
+// match figures v1.7 already set, and that is exactly why the version moves.
+//
+// Between v1.7 shipping and 2026-09-01 the specs page carried SEVEN stale size
+// values while the imported matrix beside them was correct: the FAQ and three
+// JSON-LD entries said embroidered 20 in / chenille 14 in / printed-sequin
+// 12 in, and the per-type prose repeated the same three. So a citation of "v1.7"
+// taken before 1 September disagrees with one taken after it, on the same
+// version string. A versioned standard whose published numbers move without the
+// version moving is not a standard, so this bump exists to make those two
+// citations distinguishable.
+//
+// The fix was structural rather than numeric: every maximum-size figure on the
+// page is now DERIVED from MANUFACTURING_MAX_IN through a MAX() helper, and
+// verify:canon section 9 fails the build if any of them is retyped as a literal.
+//
 // v1.7 (2026-08-27): separates MANUFACTURING maximum from AUTO-PRICE ceiling
 // (CL5E74). Embroidered/chenille manufacturing max raised to 25 in; printed and
 // sequin corrected 12 -> 14 in; "Larger custom sizes: Available by quote" now
@@ -30,9 +46,9 @@
 // (CL260A_1). Also renames the size row to "Maximum standard size": these are
 // standard limits, not absolute caps, and larger is available by quote.
 // v1.5 (2026-08-14): adds the leather application row.
-export const SPEC_VERSION = "v1.7";
-export const SPEC_DATE = "2026-08-27";
-export const SPEC_DATE_LABEL = "August 2026";
+export const SPEC_VERSION = "v1.8";
+export const SPEC_DATE = "2026-09-04";
+export const SPEC_DATE_LABEL = "September 2026";
 
 /** Column key per patch type. All seven now have confirmed spec canon. */
 export const SPEC_COLUMN = {
