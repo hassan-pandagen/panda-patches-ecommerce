@@ -182,8 +182,12 @@ export default function ProductDepthBlock({ slug, productName, title }: Props) {
               Per-piece figures are rounded to the nearest cent, so multiplying one out
               can land a few cents from the order total — the total column is what
               checkout charges. Advertised &ldquo;from&rdquo; prices elsewhere on the site
-              use a {FROM_PRICE_QUALIFIER} basis; larger sizes cost more per piece. Use the
-              calculator at the top of this page for your exact size and quantity.
+              use a {FROM_PRICE_QUALIFIER} basis; larger sizes cost more per piece. For your
+              exact size and quantity, use the{" "}
+              <Link href="/custom-patches" prefetch={false} className="text-panda-green underline font-semibold">
+                instant calculator
+              </Link>
+              .
             </p>
           </>
         )}

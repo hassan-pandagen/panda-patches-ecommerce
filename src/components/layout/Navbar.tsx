@@ -69,7 +69,10 @@ const navLinks = [
   { name: "RUSH ORDER", href: "/rush-custom-patches" },
   {
     name: "RESOURCES",
-    href: "/assets/thread-color-chart",
+    // Was /assets/thread-color-chart — one of this dropdown's own children, so
+    // clicking the parent jumped straight to a leaf. Every other parent points
+    // at a hub (/custom-products, /offers); the glossary is this group's.
+    href: "/glossary",
     dropdown: [
       { name: "Patch Types Compared", href: "/patch-types-compared" },
       { name: "Thread Color Chart", href: "/assets/thread-color-chart" },

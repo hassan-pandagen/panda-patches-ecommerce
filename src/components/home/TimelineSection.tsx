@@ -35,7 +35,7 @@ export default async function TimelineSection() {
       number: "2", 
       title: "Sample Of Your Perfect Patch", 
       subtitle: "We Want You to Love It",
-      description: "Your satisfaction comes first! After your order, we'll send a sample patch and refine it until it's perfect." 
+      description: "Your satisfaction comes first! After your order we send a free digital mockup within 12 to 24 hours, and revise it as many times as you need before anything is produced." 
     },
     { 
       number: "3", 
