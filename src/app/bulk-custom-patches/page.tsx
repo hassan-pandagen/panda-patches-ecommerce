@@ -412,7 +412,7 @@ export default async function BulkCustomPatchesPage() {
               { type: "Embroidered", best: "Uniforms, teams, classic logos", from: "$0.91/pc", note: "Most popular for bulk" },
               { type: "PVC / Rubber", best: "Outdoor gear, tactical, waterproof use", from: "$1.40/pc", note: "Extremely durable" },
               { type: "Woven", best: "Fine detail, small text, labels", from: "$1.54/pc", note: "Thin and lightweight" },
-              { type: "Chenille", best: "Varsity jackets, colleges, retro brands", from: "$1.47/pc", note: "Premium textured look" },
+              { type: "Chenille", best: "Varsity jackets, colleges, retro brands", from: "$1.30/pc", note: "Premium textured look" },
               { type: "Leather", best: "Motorcycle clubs, luxury branding", from: "$1.74/pc", note: "Genuine hide by default; PU on request" },
               { type: "Custom Die-Cut", best: "Any shape, any size, any style", from: "Custom quote", note: "Fully bespoke" },
             ].map((item, idx) => (

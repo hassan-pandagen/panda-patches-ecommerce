@@ -234,7 +234,7 @@ export const FROM_PRICE_LEATHER = '$1.74';
 // drifted to a 3"/5,000 basis quoting $1.19 — the RAW table value, pre-uplift. Two
 // errors compounding: wrong basis and no uplift. Every from-price now states the
 // same 2"x2"/1,000 tuple, so a basis mismatch is visible instead of plausible.
-export const FROM_PRICE_CHENILLE = '$1.47';
+export const FROM_PRICE_CHENILLE = '$1.30'; // CEO 2026-09-04, was $1.47
 
 // ── Support ────────────────────────────────────────────────────────────────
 /** Main line. Replaced (302) 773-8982 per SEDAA3_1 §A.3 — the old number must

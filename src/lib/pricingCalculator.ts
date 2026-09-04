@@ -65,12 +65,27 @@ const embroideryPricing = {
 // Qty breaks 1-9: totals graduate smoothly from $80 (1pc flat) toward the 10pc total for each size.
 // Formula: total_q = 80 + (total_10 - 80) * (q - 1) / 9, unit = total_q / q
 // Qty breaks: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25, 50, 100, 200, 500, 1000, 5000
+// CHENILLE FROM-PRICE SET TO $1.30 (CEO, 2026-09-04). Was $1.47.
+//
+// THE CELL IS 1.0552, NOT 1.30, AND THAT IS NOT A TYPO. calculatePatchPrice
+// applies a 1.232 multiplier at the 2x2in basis, so the table cell is the price
+// BEFORE it. Writing 1.30 here would publish $1.60 — the opposite of the
+// intended cut. Derived: 1.30 / 1.232 = 1.0552.
+//
+// Both the size-1 and size-2 rows move, because they are one shared small-piece
+// floor, and the 5,000 tier moves with the 1,000 tier: leaving 5,000 at the old
+// 1.19 would make the per-piece price RISE with quantity and fail the
+// monotonicity guard's quantity axis.
+//
+// Commercial context in the claims register: at $1.30 the 2x2/1,000 point equals
+// Stadri and still sits above EverLighten and UltraPatches, so NO "below market"
+// claim is permitted at volume. The 25-100 piece pack claim is unaffected.
 const chenillePricing = {
   qtyBreaks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25, 50, 100, 200, 500, 1000, 5000],
   prices: {
     //          1      2      3      4      5      6      7      8      9     10      25      50     100    200    500   1000   5000
-    1:  [80.00, 42.16, 29.54, 23.23, 19.45, 16.93, 15.12, 13.77, 12.72, 11.88,  5.94,  3.27,  2.97,  2.08,  1.48,  1.19,  1.19],
-    2:  [80.00, 42.16, 29.54, 23.23, 19.45, 16.93, 15.12, 13.77, 12.72, 11.88,  5.94,  3.27,  2.97,  2.08,  1.48,  1.19,  1.19],
+    1:  [80.00, 42.16, 29.54, 23.23, 19.45, 16.93, 15.12, 13.77, 12.72, 11.88, 5.94, 3.27, 2.97, 2.08, 1.48, 1.0552, 1.0552],
+    2:  [80.00, 42.16, 29.54, 23.23, 19.45, 16.93, 15.12, 13.77, 12.72, 11.88, 5.94, 3.27, 2.97, 2.08, 1.48, 1.0552, 1.0552],
     3:  [80.00, 42.16, 29.54, 23.23, 19.45, 16.93, 15.12, 13.77, 12.72, 11.88,  5.94,  4.16,  3.56,  2.67,  1.79,  1.48,  1.48],
     4:  [80.00, 42.81, 30.41, 24.22, 20.50, 18.02, 16.25, 14.92, 13.89, 13.06,  6.54,  4.75,  4.16,  3.56,  2.38,  2.08,  2.08],
     5:  [80.00, 43.47, 31.30, 25.21, 21.56, 19.12, 17.38, 16.08, 15.06, 14.25,  7.72,  6.54,  5.94,  4.16,  2.97,  2.67,  2.67],

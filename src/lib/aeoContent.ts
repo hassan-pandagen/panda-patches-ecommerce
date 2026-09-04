@@ -48,7 +48,7 @@ const PATCH_TYPE_COMPARISON: ComparisonTable = {
     ["Embroidered", "Uniforms, teams, classic logos", "Medium", "High", "$0.91/pc"],
     ["Woven", "Fine detail, small text, labels", "Very high", "High", "$1.54/pc"],
     ["PVC / Rubber", "Outdoor, tactical, waterproof use", "Medium", "Very high", "$1.40/pc"],
-    ["Chenille", "Varsity jackets, letterman, retro", "Low", "Medium", "$1.47/pc"],
+    ["Chenille", "Varsity jackets, letterman, retro", "Low", "Medium", "$1.30/pc"],
     ["Leather", "Hat lines, luxury branding", "Low-Med", "High", "$1.74/pc"],
     ["Printed / Sublimated", "Full-color art, gradients, photos", "Photographic", "Medium", "from quote"],
   ],
@@ -185,9 +185,9 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
   chenille: {
     heading: "Custom Chenille Patches: Pricing, Minimums & Turnaround",
     answer:
-      "Custom chenille patches from Panda Patches start at $1.47 per piece (2-inch, 1,000 pieces) with a low minimum, a free 12–24 hour mockup, and no setup fees. Chenille's soft, fuzzy, raised texture is the classic varsity-jacket and letterman look for schools, teams, and retro fashion brands.",
+      "Custom chenille patches from Panda Patches start at $1.30 per piece (2-inch, 1,000 pieces), all-in — free worldwide shipping, no setup or digitizing fees, and no tariffs or duties on arrival (DDP). That includes a low minimum and a free 12–24 hour mockup. Chenille's soft, fuzzy, raised texture is the classic varsity-jacket and letterman look for schools, teams, and retro fashion brands.",
     keyFacts: [
-      { label: "Price from", value: "$1.47/pc (2\", 1,000 pc); smaller runs cost more per piece" },
+      { label: "Price from", value: "$1.30/pc (2\", 1,000 pc), all-in with free worldwide shipping, no setup fees and no duties on arrival (DDP); smaller runs cost more per piece" },
       { label: "Minimum order", value: "Low minimums; bulk tiers improve at 100, 500, 1,000+" },
       { label: "Turnaround", value: "7–14 business days after mockup approval; rush available" },
       { label: "Mockup", value: "Free digital proof in 12–24 hours, unlimited revisions" },
@@ -199,7 +199,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
     faqs: [
       {
         q: "What are chenille patches best for?",
-        a: `Chenille patches are best for varsity jackets, letterman wear, school and college spirit gear, and retro-inspired fashion brands that want a soft, fuzzy, raised-yarn texture. This is the classic "letter" patch — the big block letters on a high-school or college jacket are chenille — and it carries a nostalgic, premium feel that flat patches cannot match. Because the yarn is thick and the look is bold, chenille suits large, simple designs like single letters, mascots, and numbers rather than fine detail. Panda Patches produces custom chenille patches from $1.47 per piece at volume, often blended with embroidery for outlines and small text. Fashion and streetwear labels use chenille as a centerpiece branding element on hats and jackets. A free mockup shows your exact letter, color, and border before production.`,
+        a: `Chenille patches are best for varsity jackets, letterman wear, school and college spirit gear, and retro-inspired fashion brands that want a soft, fuzzy, raised-yarn texture. This is the classic "letter" patch — the big block letters on a high-school or college jacket are chenille — and it carries a nostalgic, premium feel that flat patches cannot match. Because the yarn is thick and the look is bold, chenille suits large, simple designs like single letters, mascots, and numbers rather than fine detail. Panda Patches produces custom chenille patches from $1.30 per piece at volume, often blended with embroidery for outlines and small text. Fashion and streetwear labels use chenille as a centerpiece branding element on hats and jackets. A free mockup shows your exact letter, color, and border before production.`,
       },
       ...commonFaqs("chenille"),
     ],
