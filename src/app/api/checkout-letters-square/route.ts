@@ -14,13 +14,19 @@
  *
  * THE GATE IS ENFORCED IN THE CRM, NOT HERE (CEO, 2026-09-03). This route's job
  * is to make the requirement unmissable and machine-readable:
- *   - colour_match_required: true      <- the flag the webhook reads
- *   - colour_match_status              <- which confirmation path applies
+ *   - colour_match_required            <- the flag the webhook reads
+ *   - colour_match_status              <- 'yarn-code' or 'needs-customer-confirmation'
  *   - customer_colour_input (verbatim) <- never normalised away
- *   - customer_colour_hex              <- parsed when parseable
- *   - instructions                     <- human-readable DO NOT START text
+ *   - customer_colour_hex              <- the chart hex, or a parsed one
+ *   - matched_yarn                     <- the chart code when the customer picked one
+ *   - instructions                     <- human-readable text for whoever opens it
  * The CRM sets COLOUR_MATCH_PENDING from the flag and blocks the transition to
  * IN_PRODUCTION while matched_yarn is empty. See the CRM brief for that half.
+ *
+ * MOST ORDERS NO LONGER TOUCH THE GATE (CEO, 2026-09-06). The supplier's yarn
+ * chart is published on the page, so a customer picks a CODE and the cone is
+ * decided at checkout — nothing to email, nothing to confirm. The gate now
+ * exists for the minority who need a colour the chart does not carry.
  */
 import { NextResponse, after } from 'next/server';
 import { z } from 'zod';
@@ -45,9 +51,13 @@ const supabase = createSupabaseAdminClient();
 const Schema = z.object({
   packageId: z.enum(['chenille-alphabet', 'chenille-numbers']),
   size: z.number().min(2).max(5),
-  /** Verbatim customer input. Deliberately permissive — a Pantone code, a colour
-   *  name and a hex are all valid, and rejecting an unrecognised string here
-   *  would be the website guessing, which is exactly what the gate prevents. */
+  /** Either a yarn code from the published chart (the normal case) or free text.
+   *  Deliberately permissive — a Pantone code, a colour name and a hex are all
+   *  valid, and rejecting an unrecognised string here would be the website
+   *  guessing, which is exactly what the gate prevents. letterColourGate()
+   *  decides which path it takes, and checks free text against the chart too, so
+   *  a customer who types "10029" into the fallback box still gets the fast
+   *  path. */
   letterColour: z.string().min(1).max(60),
   glitter: z.enum(GLITTER_OPTIONS).nullable().optional(),
   backing: z.string().min(1).max(50),
@@ -159,11 +169,21 @@ export async function POST(req: Request) {
       // --- the colour-match contract with the CRM ---------------------------
       // These five are what the CRM reads. Renaming any of them is a breaking
       // change to the gate; coordinate with the CRM repo before touching them.
-      colour_match_required: true,
-      colour_match_status: gate.path, // 'standard' | 'needs-customer-confirmation'
+      //
+      // TWO PATHS SINCE 2026-09-06 (yarn chart). A customer who picks a code has
+      // already chosen the cone, so the order arrives pre-matched and production
+      // is not blocked: required=false AND matched_yarn set. Both are written,
+      // not just one, because the DB trigger tests
+      //   status='IN_PRODUCTION' AND colour_match_required AND matched_yarn=''
+      // and the CRM's app layer assigns COLOUR_MATCH_PENDING off the flag. Set
+      // only the flag and the trigger still guards an order nobody needs to
+      // guard; set only matched_yarn and the order sits in a pending queue it
+      // should never have entered. Free text is unchanged: gated, as before.
+      colour_match_required: gate.path !== "yarn-code",
+      colour_match_status: gate.path, // 'yarn-code' | 'needs-customer-confirmation'
       customer_colour_input: gate.raw,
       customer_colour_hex: gate.hex,
-      matched_yarn: null, // a supervisor fills this; production is blocked until they do
+      matched_yarn: gate.yarnCode, // set by the customer's own choice, else null for a supervisor
     };
 
     const { error: pendingErr } = await supabase

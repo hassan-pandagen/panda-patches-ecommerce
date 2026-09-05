@@ -24,6 +24,7 @@ import path from "node:path";
 import { execSync } from "node:child_process";
 import { calculatePatchPrice, getFromPrice, getFromPriceLabel } from "../src/lib/pricingCalculator";
 import { aeoContent, AEO_LAST_UPDATED } from "../src/lib/aeoContent";
+import { YARN_COLOURS, YARN_FAMILIES, HEX_PROVENANCE } from "../src/lib/yarnColours";
 import { OFFER_CATEGORIES } from "../src/lib/offerPackages";
 import { AI_INFO_UPDATED } from "../src/lib/aiInfoDates";
 import { slugFaqMap } from "../src/lib/slugFaqs";
@@ -498,7 +499,21 @@ const summary = Object.entries(PRODUCTS)
   `  chenille@12in=${enforcedMinimum("Custom Chenille Patches", 12)}`;
 
 /** Advisories print on BOTH the pass and fail paths — a warning nobody sees is not a warning. */
+const extraAdvisories: string[] = [];
+
 function printAdvisories() {
+  if (HEX_PROVENANCE === "estimated") {
+    console.log("");
+    console.log("\u26a0 Yarn chart hex values are ESTIMATED, not sampled. The codes are exact");
+    console.log("   and the picker is safe (the code is what we match), but the swatches are");
+    console.log("   a guess, and the browns and taupes may be in the wrong order.");
+    console.log("   Replace with the supplier list, or:");
+    console.log("   npx tsx scripts/sample-yarn-chart.ts <chart-image>");
+  }
+  if (extraAdvisories.length) {
+    console.log("");
+    extraAdvisories.forEach((a) => console.log("\u26a0 " + a));
+  }
   if (inversions.length && !MONOTONICITY_ENFORCED) {
     console.log("\n⚠ Price DECREASES as size increases — a bigger patch costs less per piece:");
     inversions.forEach((i) => console.log(`   ${i}`));
@@ -847,6 +862,37 @@ const FROM_PRICE_TYPES: Record<string, string> = {
     });
   }
   if (unlabelled.length) failures.push(...[...new Set(unlabelled)]);
+}
+
+
+// 15. THE YARN CHART IS A PRODUCTION INSTRUCTION, NOT DECORATION (CEO, 2026-09-06).
+//
+// A picked code sets `matched_yarn` at checkout and clears the order for
+// production with no human in between. That is the whole point — and it means a
+// duplicated or malformed code in this table is not a display bug, it is a
+// wrong cone on a $150 set that nobody is asked to check. The old twenty-name
+// list had the same failure mode and it was the launch blocker for six weeks.
+{
+  const seen = new Map<string, number>();
+  YARN_COLOURS.forEach((c, i) => {
+    if (!/^\d{5}$/.test(c.code))
+      failures.push(`yarnColours: "${c.code}" is not a 5-digit supplier code`);
+    if (!/^#[0-9A-F]{6}$/i.test(c.hex))
+      failures.push(`yarnColours: ${c.code} has malformed hex "${c.hex}"`);
+    const prev = seen.get(c.code);
+    if (prev !== undefined)
+      failures.push(
+        `yarnColours: code ${c.code} appears twice (entries ${prev + 1} and ${i + 1}). ` +
+          `A duplicate silently shadows one of them in the code lookup.`,
+      );
+    seen.set(c.code, i);
+  });
+  if (!YARN_FAMILIES.every((f) => YARN_COLOURS.some((c) => c.family === f.id))) {
+    // Advisory rather than a failure: an empty family is a dead filter chip, not
+    // a wrong cone.
+    const empty = YARN_FAMILIES.filter((f) => !YARN_COLOURS.some((c) => c.family === f.id));
+    extraAdvisories.push(`Yarn families with no colours (dead filter chips): ${empty.map((f) => f.id).join(", ")}`);
+  }
 }
 
 if (fromPriceIssues.length) failures.push(...[...new Set(fromPriceIssues)]);

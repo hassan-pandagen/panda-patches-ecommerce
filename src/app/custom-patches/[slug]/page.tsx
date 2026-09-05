@@ -9,6 +9,7 @@ import { generateProductSchema, generateBreadcrumbSchema, generateFAQSchema, gen
 import ProductReviews from "@/components/reviews/ProductReviews";
 import AeoAnswerBlock from "@/components/product/AeoAnswerBlock";
 import ProductDepthBlock from "@/components/product/ProductDepthBlock";
+import YarnColourChart from "@/components/letters/YarnColourChart";
 import { getSpecsForSlug } from "@/lib/patchSpecs";
 import { aeoContent } from "@/lib/aeoContent";
 import { getSchemaPricingTiers } from "@/lib/pricingCalculator";
@@ -360,6 +361,18 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
 
       {/* 12b. WOVEN-ONLY GUIDE BRIDGE → AI-design blog (CL9F69). Woven is the fix
           for detailed/AI-generated art that embroidery blurs, so this is the natural cross-link. */}
+      {/* Chenille is the only type with a published yarn chart, because it is the
+          only one where the customer picks a cone rather than approving a
+          mockup colour. Quoting a code on a custom order skips the same
+          confirmation round trip the letter packages skip. */}
+      {slug === "chenille" && (
+        <section id="yarn-colours" className="w-full py-12 md:py-16 bg-[#F9FAF5] border-t border-gray-100 scroll-mt-24">
+          <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+            <YarnColourChart />
+          </div>
+        </section>
+      )}
+
       {slug === "woven" && (
         <section className="w-full py-10 md:py-14 bg-white border-t border-gray-100">
           <div className="container mx-auto px-4 md:px-6 max-w-[50rem] text-center">

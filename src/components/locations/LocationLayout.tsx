@@ -11,6 +11,7 @@ import ProcessSection from "@/components/home/ProcessSection";
 import IndustrySection from "@/components/home/IndustrySection";
 import FAQ from "@/components/home/FAQ";
 import LetterPackageCards from "@/components/letters/LetterPackageCards";
+import YarnColourChart from "@/components/letters/YarnColourChart";
 import CTASection from "@/components/home/CTASection";
 import LocationSEOSections from "@/components/locations/LocationSEOSections";
 import Craftsmanship from "@/components/home/Craftsmanship";
@@ -210,11 +211,23 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
               quote form stays below for custom fonts, multi-colour letters,
               sizes above the range and partial sets. */}
           {slug === "chenille-letters" && (
-            <section id="packages" className="py-10 md:py-14 bg-white scroll-mt-24">
-              <div className="container mx-auto px-6 max-w-[62.5rem]">
-                <LetterPackageCards />
-              </div>
-            </section>
+            <>
+              <section id="packages" className="py-10 md:py-14 bg-white scroll-mt-24">
+                <div className="container mx-auto px-6 max-w-[62.5rem]">
+                  <LetterPackageCards />
+                </div>
+              </section>
+              {/* The chart sits BELOW the picker, not above it. Someone ready to
+                  buy should meet the configurator first; the full chart is the
+                  reference they scroll to when they want to compare, and the
+                  page it anchors (#yarn-colours) is what we link from a quote
+                  conversation. */}
+              <section id="yarn-colours" className="py-10 md:py-14 bg-[#F9FAF5] scroll-mt-24">
+                <div className="container mx-auto px-6 max-w-[62.5rem]">
+                  <YarnColourChart />
+                </div>
+              </section>
+            </>
           )}
 
           {/* 3. PICK YOUR PATCH */}

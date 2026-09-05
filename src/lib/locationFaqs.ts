@@ -34,6 +34,16 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
         "Three yarn colours plus the base colour. Chenille does not reproduce gradients, so the design has to work in flat colour, which is exactly what a letter is. If you need more colours or fine detail inside the letter, we add embroidery on top of the chenille base.",
     },
     {
+      question: "What chenille yarn colours can I choose from?",
+      answer:
+        "There are 140 chenille yarn colours, and the full chart with every code is published on this page. Pick a code when you order and that is the cone we pull, so there is nothing to confirm and the set goes straight to production. Screens vary, so treat the swatches as a guide and the code as the promise. If the colour you need is not on the chart, give us a Pantone code, a colour name or a hex instead and we will email you the closest yarn to approve before we start.",
+    },
+    {
+      question: "Do I have to approve the colour before you make my letters?",
+      answer:
+        "Only if you asked for a colour that is not on our yarn chart. Choosing a chart code decides the yarn at checkout, so there is no approval step and no waiting: standard glyphs mean there is no mockup to approve either. If you gave us a Pantone reference, a colour name or a hex, someone picks the closest yarn we stock and emails it to you, and production does not start until you accept it. That approval usually adds a day or two.",
+    },
+    {
       question: "Will all the letters in my order look identical?",
       answer:
         "Yes. Our chenille machines are digitally controlled, so the loop path is programmed once from your approved mockup and every piece in the run is made from that same path. Much of the industry still runs hand-guided machines, where an operator steers each piece by hand, which produces visible variation across a run and renders light yarns unevenly, white in particular. Order the whole set in one batch and the yarn also comes from a single dye lot.",

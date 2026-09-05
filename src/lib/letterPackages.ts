@@ -18,6 +18,7 @@
  */
 import { VELCRO_PER_PIECE_FEE } from "@/lib/checkoutConfig";
 import { roundMoney } from "@/lib/pricingCalculator";
+import { findYarnColour } from "@/lib/yarnColours";
 
 export interface LetterPackage {
   id: "chenille-alphabet" | "chenille-numbers";
@@ -116,50 +117,55 @@ export function calculateLetterPackageTotal(input: {
  * cost of an unnecessary email is one email, the cost of a wrong assumption is
  * a 26-piece set remade.
  */
-export const STANDARD_YARN_COLOURS = [
-  "white", "black", "red", "navy", "royal blue", "columbia blue", "gold",
-  "silver", "grey", "gray", "kelly green", "forest green", "maroon", "orange",
-  "purple", "pink", "yellow", "brown", "cream", "vegas gold",
-] as const;
-
-export type ColourMatchPath = "standard" | "needs-customer-confirmation";
+export type ColourMatchPath = "yarn-code" | "needs-customer-confirmation";
 
 /**
- * Customer-facing helper text for the colour input.
+ * Customer-facing helper text for the colour step.
  *
- * States the counterintuitive part plainly, flagged by the CRM dev 2026-09-04: a
- * PRECISE input is SLOWER than a vague one. "Royal blue" is a stocked yarn, so a
- * supervisor confirms it and the set goes straight to production. "#1E3A8A" or
- * "PMS 186 C" is exact but is not a yarn we hold, so someone has to pick the
- * nearest and YOU have to approve it before we start.
- *
- * That is the right way round — we would rather wait than guess a $150 set — but
- * a customer who types a Pantone code expecting speed should not be surprised by
- * the wait, so the page says so before they type.
+ * WHAT CHANGED, 2026-09-06. This used to explain a genuinely confusing rule: a
+ * PRECISE input (a hex, a Pantone code) was SLOWER than a vague one, because a
+ * colour NAME could be matched to one of twenty stocked yarns while an exact
+ * code could not. The supplier chart removes the confusion at the source. Pick a
+ * code and there is nothing to interpret; the cone is chosen. Type anything else
+ * and a person still has to choose the nearest cone and you still have to
+ * approve it. Fast is now the same thing as precise, which is what a customer
+ * expected all along.
  */
 export const COLOUR_INPUT_HELP =
-  "Enter a Pantone code, a colour name, or a hex code. If you name a yarn we stock " +
-  "(white, black, red, navy, royal blue and the rest), we match it and go straight to " +
-  "production. Anything else is exact but not a yarn we hold, so we will email you the " +
-  "closest match to approve first — precise codes take a little longer, not less.";
+  "Pick a yarn code from the chart and we go straight to production — the code is the " +
+  "cone, so there is nothing to confirm. If the colour you need is not on the chart, " +
+  "type a Pantone code, a colour name or a hex instead and we will email you the closest " +
+  "yarn to approve before we start.";
 
 export interface ColourGateResult {
-  /** Exactly what the customer typed. Never normalised away. */
+  /** Exactly what the customer submitted. Never normalised away. */
   raw: string;
   /** Six-digit hex if the input parses as one, else null. */
   hex: string | null;
-  /** Matched standard colour name, else null. */
-  standard: string | null;
+  /** The stocked yarn code, when one was chosen. Null on the free-text path. */
+  yarnCode: string | null;
   path: ColourMatchPath;
 }
 
 /**
- * Classify a colour submission. Does NOT decide the yarn — a person does that.
- * This only decides which confirmation path the order takes.
+ * Decide which path a colour submission takes.
+ *
+ * A CODE ENDS THE QUESTION. If the input is a code from the supplier chart, the
+ * yarn is already chosen — no email, no supervisor decision, no gate. Anything
+ * else (a Pantone reference, "royal blue", a hex) is exact about intent but says
+ * nothing about which cone we hold, so it keeps the confirmation path.
+ *
+ * Free text is checked against the chart too, deliberately: a customer who types
+ * "10029" into the fallback box has picked a code, whatever box they used.
  */
 export function letterColourGate(rawInput: string): ColourGateResult {
   const raw = rawInput.trim();
   const lowered = raw.toLowerCase();
+
+  const yarn = findYarnColour(raw);
+  if (yarn) {
+    return { raw, hex: yarn.hex, yarnCode: yarn.code, path: "yarn-code" };
+  }
 
   const hexMatch = lowered.match(/^#?([0-9a-f]{6}|[0-9a-f]{3})$/);
   const hex = hexMatch
@@ -169,34 +175,31 @@ export function letterColourGate(rawInput: string): ColourGateResult {
         : hexMatch[1])
     : null;
 
-  const standard =
-    STANDARD_YARN_COLOURS.find((c) => c === lowered) ??
-    STANDARD_YARN_COLOURS.find((c) => lowered === `${c} chenille` || lowered === `${c} yarn`) ??
-    null;
-
-  return {
-    raw,
-    hex,
-    standard: standard ?? null,
-    // A hex or a Pantone code is NOT a standard match: it still needs a human to
-    // pick the nearest yarn and the customer to accept it.
-    path: standard ? "standard" : "needs-customer-confirmation",
-  };
+  return { raw, hex, yarnCode: null, path: "needs-customer-confirmation" };
 }
 
 /**
- * The line written onto the order record. Deliberately verbose and unmissable:
- * production must not start until a supervisor records the matched yarn, and
- * this string is what tells them so.
+ * The line written onto the order record.
+ *
+ * Two different jobs depending on the path. On the code path it is a receipt:
+ * this is the cone, start work. On the free-text path it is still the unmissable
+ * DO NOT START notice it always was, because that order genuinely cannot be
+ * produced until someone picks a yarn and the customer accepts it.
  */
 export function colourGateOrderNote(gate: ColourGateResult): string {
-  const parts = [
+  if (gate.yarnCode) {
+    return [
+      `YARN CODE SELECTED BY CUSTOMER: ${gate.yarnCode}`,
+      "No colour match needed — the code is the yarn. Cleared for production.",
+    ].join(" | ");
+  }
+  return [
     `COLOUR MATCH REQUIRED — customer entered: "${gate.raw}"`,
     gate.hex ? `parsed hex ${gate.hex}` : null,
-    gate.standard
-      ? `matches standard yarn "${gate.standard}" — supervisor confirm, no customer email needed`
-      : `NOT a standard yarn colour — email closest match to customer and get confirmation before production`,
+    "NOT a chart yarn code — email the closest yarn to the customer and get confirmation before production",
     "DO NOT START PRODUCTION until the matched yarn is recorded on this order.",
-  ].filter(Boolean);
-  return parts.join(" | ");
+  ]
+    .filter(Boolean)
+    .join(" | ");
 }
+

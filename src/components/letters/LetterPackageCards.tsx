@@ -11,11 +11,12 @@
  * before production. The only approval step is the COLOUR MATCH, and the copy
  * says so plainly rather than letting a buyer expect a proof that never comes.
  *
- * WHY THE COLOUR HELP TEXT IS PROMINENT rather than a tooltip: a precise input
- * (a hex, a Pantone code) is SLOWER than naming a stocked yarn, which is the
- * opposite of what anyone expects. That is the right way round — we would rather
- * wait than guess a $150 set — but it has to be said before they type, not after
- * they have waited.
+ * COLOUR IS A PICKER NOW, NOT A TEXT BOX (CEO, 2026-09-06). The supplier chart
+ * is published, so the customer chooses a yarn CODE and the cone is decided at
+ * checkout — no approval email, no supervisor step. Free text still exists for a
+ * colour the chart does not carry, and still takes the confirmation path. The
+ * old help text explained why precision was slower than vagueness; the chart
+ * removes that trap rather than explaining it.
  *
  * Totals are shown from the same helper the server prices with. The client never
  * sends a price; checkout-letters-square recalculates from canon.
@@ -27,11 +28,11 @@ import {
   GLITTER_OPTIONS,
   calculateLetterPackageTotal,
   perGlyphPrice,
-  COLOUR_INPUT_HELP,
   type GlitterOption,
   type LetterPackage,
 } from "@/lib/letterPackages";
 import { SELECTABLE_BACKINGS } from "@/lib/factConstants";
+import YarnCodePicker from "@/components/letters/YarnCodePicker";
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 
 const money = (n: number) =>
@@ -123,10 +124,7 @@ function PackageCard({ pkg }: { pkg: LetterPackage }) {
       </div>
 
       <div className="mt-4">
-        <label htmlFor={`${pkg.id}-colour`} className={label}>Letter colour</label>
-        <input id={`${pkg.id}-colour`} className={field} value={colour} placeholder="Pantone code, colour name, or hex"
-               onChange={(e) => setColour(e.target.value)} />
-        <p className="mt-1.5 text-[0.75rem] text-gray-600 leading-[1.5]">{COLOUR_INPUT_HELP}</p>
+        <YarnCodePicker value={colour} onChange={setColour} idPrefix={pkg.id} />
       </div>
 
       <div className="mt-4">
@@ -179,7 +177,7 @@ function PackageCard({ pkg }: { pkg: LetterPackage }) {
 
       <p className="mt-3 text-[0.75rem] text-gray-500 leading-[1.55]">
         <strong className="text-panda-dark">No mockup cycle.</strong> These are standard varsity glyphs, so there is
-        nothing to proof. We confirm the yarn colour with you and the set goes straight to production. Every letter in
+        nothing to proof. Pick a yarn code and the set goes straight to production. Every letter in
         the set is made from one programmed loop path on a digitally controlled machine, so piece one and piece{" "}
         {pkg.pieces} are identical &mdash; and one batch means one dye lot.
       </p>
