@@ -12,6 +12,7 @@
  * in" is a question we currently answer with adjectives on every competitor's
  * site, and this answers it with 140 codes.
  */
+import Image from "next/image";
 import { YARN_COLOURS, YARN_FAMILIES, YARN_CHART_DISCLAIMER } from "@/lib/yarnColours";
 
 export default function YarnColourChart({ heading = true }: { heading?: boolean }) {
@@ -62,6 +63,32 @@ export default function YarnColourChart({ heading = true }: { heading?: boolean 
       <p className="mt-3 text-[0.8125rem] text-gray-600 leading-[1.6] max-w-[47.5rem]">
         {YARN_CHART_DISCLAIMER}
       </p>
+
+      {/* The supplier's own chart, folded away by default. The swatches above are
+          sampled from THIS image, so it is the document they answer to — worth
+          publishing for anyone who wants to see the source, and worth collapsing
+          because it is 1,600px tall and would bury the rest of the page. A plain
+          <details> keeps it free: no JavaScript, and the image is not fetched
+          until someone opens it. */}
+      <details className="mt-4 group">
+        <summary className="cursor-pointer text-[0.8125rem] font-bold text-panda-green underline">
+          View the supplier&rsquo;s original chart
+        </summary>
+        <figure className="mt-3 m-0">
+          <Image
+            src="/assets/yarn-chart.jpeg"
+            alt="Supplier chenille yarn colour chart: 140 numbered yarn swatches, codes 10000 to 10552"
+            width={827}
+            height={1600}
+            sizes="(max-width: 48rem) 100vw, 33rem"
+            className="w-full max-w-[33rem] h-auto rounded-xl border border-gray-200"
+          />
+          <figcaption className="mt-2 text-[0.75rem] text-gray-500">
+            The chart our floor works from. The swatches above are sampled from this image, so a
+            colour here and a colour there are the same reading of the same yarn.
+          </figcaption>
+        </figure>
+      </details>
     </div>
   );
 }

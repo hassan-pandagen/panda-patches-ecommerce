@@ -175,7 +175,17 @@ export default function YarnCodePicker({ value, onChange, idPrefix }: Props) {
 
       <p className="mt-2 text-[0.6875rem] text-gray-500 leading-[1.5]">
         {YARN_CHART_DISCLAIMER}
-        {HEX_PROVENANCE === "estimated" && " Swatches on this page are being replaced with values taken from the supplier's own chart."}
+        {HEX_PROVENANCE === "estimated" &&
+          " Swatches on this page are being replaced with values taken from the supplier's own chart."}
+        {HEX_PROVENANCE === "sampled" && (
+          <>
+            {" "}
+            <a href="#yarn-colours" className="underline">
+              See the full chart
+            </a>
+            .
+          </>
+        )}
       </p>
     </div>
   );
