@@ -22,22 +22,27 @@ export const FACTORY_VIDEO = {
   embedUrl: "https://www.youtube.com/embed/iNgcyC6gYPY",
 
   /**
-   * The name the CEO specified for structured data.
+   * EXACTLY the YouTube title, character for character.
    *
-   * ⚠ IT DIFFERS FROM THE YOUTUBE TITLE, which is "How Custom Patches Are Made
-   * — Full Factory Tour | Panda Patches". Google asks that `name` be the title
-   * of the video, so these should be reconciled: either rename the video on
-   * YouTube, or change this. Flagged 2026-09-06; using the specified name until
-   * the CEO picks one.
+   * It briefly was not. A working title went into the schema while the video was
+   * published under a different one, which is the kind of drift nobody notices
+   * until a rich result quotes a name that appears nowhere on YouTube. CEO ruled
+   * 2026-09-06: change the schema, not the video. Both this and `description`
+   * are transcribed from the video's own metadata, so if either is edited on
+   * YouTube it has to be re-copied here — there is no feed keeping them in step.
    */
-  name: "Inside Our Patch Factory: Embroidery, Chenille, PVC & Laser Leather",
-  youtubeTitle: "How Custom Patches Are Made — Full Factory Tour | Panda Patches",
+  name: "How Custom Patches Are Made — Full Factory Tour | Panda Patches",
 
+  /** The first two paragraphs of the YouTube description, verbatim. */
   description:
-    "A walk through the Panda Patches production floor: our own facility in Pakistan, " +
-    "operated by Panda Apparel & Technology. Computerized embroidery machines, digitally " +
-    "controlled chenille, PVC moulding, and laser-engraved leather, ending in the stock " +
-    "room where finished orders wait to ship. Production starts once you approve your mockup.",
+    "This is where your patches are made. A full walk through our production facility — " +
+    "computerized embroidery, digitally controlled chenille (every piece in a run identical), " +
+    "PVC moulding, laser-engraved leather, and the stock room that lets us start production " +
+    "the day you approve your mockup.\n\n" +
+    "Panda Patches is a US-registered company (Austin, TX) with its own production facility in " +
+    "Pakistan, operated by Panda Apparel & Technology. Owning the floor is why we can offer a " +
+    "5-piece minimum, a free digital mockup in 12–24 hours, no setup or digitizing fees, free " +
+    "worldwide shipping, and rush orders in hand in as fast as 5 business days.",
 
   /** Read from the player metadata, 2026-09-06. 88 seconds. */
   duration: "PT1M28S",
@@ -68,6 +73,14 @@ export const FACTORY_VIDEO = {
   posterWidth: 405,
   posterHeight: 720,
 
+  /**
+   * The chenille machine is running at 0:10 (CEO, scrubbed 2026-09-06). Used by
+   * the claims register to cite a moment rather than 88 seconds: "somewhere in
+   * this video" is an assertion, a timestamp is evidence.
+   */
+  chenilleTimestampSeconds: 10,
+  chenilleTimestampUrl: "https://youtube.com/shorts/iNgcyC6gYPY?t=10",
+
   /** Native stream aspect: 1080x1920. */
   aspect: "9 / 16",
 } as const;
@@ -82,7 +95,11 @@ export const FACTORY_VIDEO = {
  * `Craftsmanship.tsx`). /about carries a dedicated section, a large player and
  * a written summary of what the video shows, so it clears that bar. The other
  * three placements are references beside other arguments and deliberately do
- * not emit it — flip `emitVideoSchema` per page if the CEO wants them to.
+ * not emit it.
+ *
+ * CONFIRMED BY THE CEO, 2026-09-06, after the brief had asked for all four:
+ * "30 Search Console warnings for an incidental video is exactly the trade you
+ * should refuse." Do not add it to the other three without reopening that.
  */
 export function factoryVideoSchema(orgId: string) {
   return {
