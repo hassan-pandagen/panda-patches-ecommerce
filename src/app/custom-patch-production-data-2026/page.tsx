@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import AuthorByline from "@/components/seo/AuthorByline";
 import { buildPageMetadata } from "@/lib/seo";
+import FactoryVideo from "@/components/media/FactoryVideo";
 
 export const dynamic = "force-static";
 
@@ -248,6 +249,21 @@ export default function ProductionData2026() {
             <h2 className="text-[1.25rem] md:text-[1.625rem] font-black text-panda-dark uppercase tracking-wide mb-6">
               Methodology
             </h2>
+
+            {/* Small embed beside the method. A data page's weakest point is that
+                a reader cannot tell whether the orders behind it are real work or
+                a spreadsheet; this is the floor those 963 orders came off. Kept
+                narrow, because the numbers are the subject here and the video is
+                corroboration. */}
+            <div className="mb-7 flex flex-col sm:flex-row gap-4 items-start">
+              <FactoryVideo maxWidth="11rem" className="w-full sm:w-auto flex-shrink-0" />
+              <p className="text-[0.8125rem] md:text-[0.875rem] text-gray-600 leading-[1.7]">
+                <strong className="text-panda-dark">The floor these orders came off.</strong> Every
+                order counted here was produced at our own facility in Pakistan, operated by Panda
+                Apparel &amp; Technology &mdash; embroidery, chenille, PVC and laser-engraved
+                leather, filmed September 2026.
+              </p>
+            </div>
             <ul className="space-y-3 text-gray-700 leading-[1.7] text-[0.875rem] md:text-[0.9375rem] font-medium list-disc pl-5">
               <li>
                 <strong>Sample:</strong> every order delivered through pandapatches.com for the window December 8, 2025 through August 5, 2026 — <strong>963 orders, 68,785 patches</strong>. Includes both web-checkout orders and orders managed by our sales team; no sampling. Our factory also produces patches for other patch brands and resellers, and those orders are not in this dataset.
@@ -263,6 +279,15 @@ export default function ProductionData2026() {
               </li>
               <li>
                 <strong>Rush definition, updated 6 September 2026:</strong> the 4.9% above counts orders inside this edition&rsquo;s window under the flag available when it was published. An all-time re-run using the CRM&rsquo;s full rush marker (urgent flag OR a customer deadline date) gives 9.8% — 117 of 1,200 orders. Both are correct for what they measure; the third edition will restate the window figure under the wider definition so the two are directly comparable. <strong>Comparability between editions:</strong> before publishing this edition we re-ran every query against the first edition&rsquo;s window and reproduced its published figures (median 20, 61.3% at 25 or fewer, 5.1% rush, 81.6% iron-on). Differences between editions are real movement in the data, not changes in how we count.
+              </li>
+              <li>
+                <strong>Where the orders are made:</strong> every order counted here was
+                produced at our own facility in Pakistan, operated by Panda Apparel &amp;
+                Technology. The processes behind these figures are on video:{" "}
+                <Link href="/about#see-it-made" className="text-panda-green underline">
+                  a walk through the floor
+                </Link>{" "}
+                covering embroidery, chenille, PVC and laser-engraved leather.
               </li>
               <li>
                 <strong>What this is not:</strong> these are window figures, not lifetime totals, and they describe Panda Patches customers — a low-minimum-friendly supplier — so the order-size distribution may skew smaller than suppliers with 50-to-100-piece minimums.

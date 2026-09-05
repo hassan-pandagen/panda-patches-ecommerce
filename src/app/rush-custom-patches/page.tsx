@@ -18,6 +18,7 @@ import { generateSchemaScript, generateFAQSchema, generateBreadcrumbSchema, gene
 import { buildPageMetadata } from "@/lib/seo";
 import { MOCKUP_SLA, STANDARD_DELIVERY } from "@/lib/factConstants";
 import { addBusinessDays, formatShortDate } from "@/lib/businessDays";
+import FactoryVideo from "@/components/media/FactoryVideo";
 
 // Rush landing page (RUSH-C_1.MD, July 2026 rewrite). COMPLIANCE: rush is stated
 // in business days only; "24 hours" refers ONLY to the digital mockup; "from 5
@@ -212,6 +213,25 @@ export default function RushCustomPatchesPage() {
             in two shipments, both on the contractual dates. We confirm your exact in-hand delivery date by
             email within 2-6 hours of ordering — if we can&apos;t hit your deadline, we remove the rush fee.
           </p>
+
+          {/* The claim above is "we own our production facility", and this is the
+              evidence for it. Deliberately narrow: it sits beside the sentence it
+              supports rather than opening a section of its own, because the
+              subject of this page is the rush service, not the video. */}
+          <div className="mt-7 flex flex-col sm:flex-row gap-5 items-start">
+            <FactoryVideo maxWidth="15rem" className="w-full sm:w-auto flex-shrink-0" />
+            <p className="text-[0.875rem] text-gray-600 leading-[1.7]">
+              <strong className="text-panda-dark">The floor this runs on.</strong> Our own facility
+              in Pakistan, operated by Panda Apparel &amp; Technology: computerized embroidery,
+              digitally controlled chenille, PVC moulding and laser-engraved leather, ending in the
+              stock room. Owning the floor is why rush capacity is ours to schedule rather than
+              something we queue for.{" "}
+              <Link href="/about#see-it-made" className="text-panda-green font-semibold underline">
+                More about how we make patches
+              </Link>
+              .
+            </p>
+          </div>
         </div>
       </section>
 

@@ -23,6 +23,7 @@ import ProductHero from "@/components/product/ProductHero";
 import TrustStrip from "@/components/products/TrustStrip";
 import Promises from "@/components/home/Promises";
 import ProductInfoCarousel from "@/components/product/ProductInfoCarousel";
+import FactoryVideo from "@/components/media/FactoryVideo";
 
 // Lazy load below-fold components to improve initial page load
 const ProcessSection = dynamic(() => import("@/components/home/ProcessSection"), { ssr: true });
@@ -369,6 +370,25 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
         <section id="yarn-colours" className="w-full py-12 md:py-16 bg-[#F9FAF5] border-t border-gray-100 scroll-mt-24">
           <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
             <YarnColourChart />
+
+            {/* Chenille reference until a dedicated chenille clip is cut. The
+                copy names the chenille segment rather than pretending the whole
+                video is about chenille — it is a factory tour, and saying so is
+                the difference between evidence and a stretched claim. */}
+            <div className="mt-9 pt-8 border-t border-gray-200 flex flex-col sm:flex-row gap-5 items-start">
+              <FactoryVideo maxWidth="15rem" className="w-full sm:w-auto flex-shrink-0" />
+              <p className="text-[0.875rem] text-gray-600 leading-[1.7]">
+                <strong className="text-panda-dark">Chenille on our own machines.</strong> Our
+                factory tour includes the digitally controlled chenille machines that lay the
+                looped yarn pile, alongside embroidery, PVC moulding and laser-engraved leather.
+                One programmed loop path per design is why every letter in a set comes out
+                identical.{" "}
+                <Link href="/about#see-it-made" className="text-panda-green font-semibold underline">
+                  See the full tour
+                </Link>
+                .
+              </p>
+            </div>
           </div>
         </section>
       )}

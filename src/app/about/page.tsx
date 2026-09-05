@@ -10,7 +10,9 @@ import CTASection from "@/components/home/CTASection";
 import FactorySection from "@/components/about/FactorySection";
 import PickPatch from "@/components/about/PickPatch";
 import ProcessSection from "@/components/home/ProcessSection";
-import { generatePersonSchema, generateSchemaScript } from "@/lib/schemas";
+import { generatePersonSchema, generateSchemaScript, ORG_ID } from "@/lib/schemas";
+import SeeItMadeSection from "@/components/media/SeeItMadeSection";
+import { factoryVideoSchema } from "@/lib/factoryVideo";
 import { buildPageMetadata } from "@/lib/seo";
 
 const ReviewsSection = dynamic(() => import("@/components/home/ReviewsSection"), { ssr: true });
@@ -42,6 +44,17 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={generateSchemaScript(generatePersonSchema())}
       />
 
+      {/* VideoObject lives HERE and nowhere else. This page gives the factory
+          tour its own section, a large player and a written account of what it
+          shows, which is Google's bar for video structured data. The three
+          other placements are references beside a different argument, and
+          emitting it there is what produced 30 "Video isn't on a watch page"
+          warnings in August (see Craftsmanship.tsx). */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateSchemaScript(factoryVideoSchema(ORG_ID))}
+      />
+
       <Navbar />
       
       {/* 1. Main Text & Badges */}
@@ -58,6 +71,10 @@ export default function AboutPage() {
 
       {/* 4. Factory Section (White Background) */}
       <FactorySection />
+
+      {/* 4b. See it made — the factory tour, immediately after the section that
+             describes the factory in prose. */}
+      <SeeItMadeSection />
 
       {/* 5. Pick Your Patch (White Background) */}
       <PickPatch />
