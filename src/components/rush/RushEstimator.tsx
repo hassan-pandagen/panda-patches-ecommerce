@@ -35,7 +35,9 @@ const TYPES = [
   { label: "Printed", product: "Custom Printed Patches" },
 ] as const;
 
-const QUANTITIES = [10, 25, 50, 100, 250, 500, 1000] as const;
+// Starts at the canon minimum (5, every type, every size). It started at 10 for
+// its first three days while the page above it said "from 5 pieces" (CLD22B B2).
+const QUANTITIES = [5, 10, 25, 50, 100, 250, 500, 1000] as const;
 const SIZES = [2, 2.5, 3, 3.5, 4, 5, 6, 8] as const;
 
 /**

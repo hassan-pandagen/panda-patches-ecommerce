@@ -55,7 +55,7 @@ const rushFAQs = [
   },
   {
     question: "Which patch types can be rushed?",
-    answer: "Embroidered, PVC, chenille, and woven patches all qualify for rush production, from 5 pieces. Backing options — iron-on, sew-on, Velcro, sticker — don't affect the rush timeline. Patch type affects speed because of the production steps involved: simpler, single-technique designs in smaller quantities move fastest, while multi-step techniques like chenille and 3D puff embroidery — or very large quantities — need more production passes. That's why we confirm your exact date within 2-6 hours instead of quoting one number for every order.",
+    answer: "All six patch types the calculator prices qualify for rush production, from 5 pieces: embroidered, PVC, woven, chenille, leather, and printed. That is not a policy line; it is the order book. Rush orders in our CRM through 5 September 2026 break down as embroidered 62, PVC 15, printed 14, chenille 12, woven 11, leather 2, and the production log below carries a leather and a printed example alongside the others. Backing options — iron-on, sew-on, Velcro, sticker — don't affect the rush timeline. Patch type affects speed because of the production steps involved: simpler, single-technique designs in smaller quantities move fastest, while multi-step techniques like chenille and 3D puff embroidery — or very large quantities — need more production passes. That's why we confirm your exact date within 2-6 hours instead of quoting one number for every order.",
   },
   {
     question: "What do I need to start a rush order?",
@@ -90,7 +90,12 @@ const serviceSchema = generateRushServiceSchema();
 // dateModified: bump whenever RECENT_RUSH_ORDERS entries change (RECENT_1.MD's
 // freshness-signal ask). WebPage is the correct schema.org type for this
 // property — not bolted onto the Service schema above.
-const RUSH_ORDERS_LAST_UPDATED = "2026-07-07";
+// Set to the day a RECENT_RUSH_ORDERS row last changed (6 Sept 2026: leather
+// and printed rows added). The visible "Last updated" line below is derived from this
+// constant so the two can no longer disagree, which they did for eight weeks.
+const RUSH_ORDERS_LAST_UPDATED = "2026-09-06";
+const RUSH_ORDERS_LAST_UPDATED_LABEL = new Date(RUSH_ORDERS_LAST_UPDATED + "T00:00:00Z")
+  .toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" });
 const webPageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -107,7 +112,8 @@ const webPageSchema = {
 // <!-- To add a new entry: pick a DELIVERED rush order from
 // portal.pandapatches.com, verify created date and delivered date in the
 // order's activity log, count business days, add row, remove the oldest row.
-// Keep 4-6 rows. Never publish names or amounts. -->
+// Keep 5-8 rows and at least one row per patch type the FAQ says qualifies.
+// Never publish names or amounts. -->
 const RECENT_RUSH_ORDERS = [
   // Destination is state-only because the CRM record carries no ship city for
   // this order. Case study: /case-studies/nashville-event-patches-2026.
@@ -121,6 +127,14 @@ const RECENT_RUSH_ORDERS = [
   { id: "PP-10191", desc: "1,200 woven + leather patches, 6 designs", dest: "Los Angeles, CA", ordered: "Jan 8, 2026", inHand: "Jan 19, 2026", turnaround: "7 business days" },
   { id: "PP-10788", desc: "4 oversized 3D puff patches (up to 12\")", dest: "Gardiner, MT", ordered: "May 12, 2026", inHand: "Shipped May 14 via FedEx", turnaround: "Produced in 2 days" },
   { id: "PP-10241", desc: "100 patches (embroidered + leather)", dest: "Las Vegas, NV", ordered: "Jan 28, 2026", inHand: "Feb 4, 2026", turnaround: "5 business days" },
+  // Pure-leather and pure-printed rows added 6 Sept 2026 (CLD22B, CEO
+  // correction): the FAQ says all six types qualify, so the log has to show
+  // it. Both verified in order_history: PP-11219 approved Aug 7, DHL Aug 11,
+  // marked delivered Aug 19 by staff (not the Aug 19 10:38 batch stamp).
+  // PP-11413 approved Sep 4, FedEx Sep 5; in transit at time of writing, so it
+  // follows the PP-10788 "shipped" convention rather than claiming an in-hand.
+  { id: "PP-11219", desc: "420 leather patches, 2\" x 1.5\"", dest: "Huntington Beach, CA", ordered: "Aug 7, 2026", inHand: "Aug 19, 2026", turnaround: "8 business days" },
+  { id: "PP-11413", desc: "175 printed (sublimation) patches, 2-3\"", dest: "Granby, MA", ordered: "Sep 3, 2026", inHand: "Shipped Sep 5 via FedEx", turnaround: "Produced in 2 days" },
   { id: "PP-10231", desc: "12 embroidered patches", dest: "Woodmere, NY", ordered: "Jan 22, 2026", inHand: "Jan 28, 2026", turnaround: "~5 business days" },
   { id: "PP-10091", desc: "200 embroidered patches", dest: "Miami, FL", ordered: "Dec 18, 2025", inHand: "Dec 26, 2025", turnaround: "5 business days (over Christmas)" },
 ];
@@ -129,7 +143,7 @@ const RECENT_RUSH_ORDERS = [
 const rushTrustStats = [
   { icon: Award, label: "4,000+", sub: "Bulk Orders" },
   { icon: Shield, label: "ASI", sub: "Verified" },
-  { icon: Gift, label: "Free Sample", sub: "500+ Orders" },
+  { icon: Gift, label: "Free Sample", sub: "on orders of 500+ pcs" },
   { icon: Clock, label: "5-Day In-Hand", sub: "earliest, rush orders" },
 ];
 
@@ -244,8 +258,8 @@ export default function RushCustomPatchesPage() {
           <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-2">
             Recent Rush Orders
           </h2>
-          <p className="text-[0.875rem] text-gray-500 mb-1">Real orders from our production log — updated monthly.</p>
-          <p className="text-[0.75rem] text-gray-400 mb-6">Last updated: July 2026</p>
+          <p className="text-[0.875rem] text-gray-500 mb-1">Real orders from our production log — updated as rush orders complete. About 1 in 10 orders is a rush job: 117 of 1,200 orders to 5 September 2026 were flagged urgent or placed against a customer deadline.</p>
+          <p className="text-[0.75rem] text-gray-400 mb-6">Last updated: {RUSH_ORDERS_LAST_UPDATED_LABEL}</p>
           <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
             <table className="w-full text-sm">
               <thead>

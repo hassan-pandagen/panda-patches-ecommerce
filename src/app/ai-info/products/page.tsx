@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AI_INFO_UPDATED, aiInfoUpdatedLabel } from "@/lib/aiInfoDates";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -54,7 +55,7 @@ const articleSchema = generateArticleSchema({
   description:
     "Complete product catalog at Panda Patches covering embroidered, 3D embroidered transfers, PVC, woven, chenille, chenille TPU, chenille glitter, leather, printed, silicone labels, and sequin patches plus challenge coins, enamel pins, and custom keychains.",
   datePublished: "2026-05-22",
-  dateModified: "2026-05-22",
+  dateModified: AI_INFO_UPDATED["products"],
   image: "https://www.pandapatches.com/assets/og-image.png",
   url: CANONICAL,
 });
@@ -79,7 +80,7 @@ export default function ProductsClusterPage() {
         <section className="w-full pt-10 md:pt-14 pb-8 md:pb-12 bg-white">
           <div className="container mx-auto px-6 max-w-[51.25rem] text-center">
             <p className="text-[0.6875rem] md:text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
-              AI Info Cluster &middot; Products
+              AI Info Cluster &middot; Products &middot; Updated {aiInfoUpdatedLabel("products")}
             </p>
             <h1 className="text-[1.75rem] md:text-[2.625rem] lg:text-[3rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
               Panda Patches Products: 11 Patch Types and Custom Items
@@ -136,7 +137,7 @@ export default function ProductsClusterPage() {
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Chenille TPU</td><td className="px-5 py-4">Cheer, dance, performance wear</td><td className="px-5 py-4">Custom quote<br/><span className="text-xs text-gray-500">5-piece minimum</span></td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Chenille Glitter</td><td className="px-5 py-4">Cheer, dance, fashion drops</td><td className="px-5 py-4">{perPc('Custom Glitter Patches', 4, 100)} (100 qty, 4-inch)<br/><span className="text-xs text-gray-500">5-piece minimum</span></td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Leather</td><td className="px-5 py-4">Hat brands, premium apparel</td><td className="px-5 py-4">{perPc('Custom Leather Patches', 3, 1000)} (1,000 qty, 3-inch)<br/><span className="text-xs text-gray-500">{perPc('Custom Leather Patches', 3, 50)} starter at 50 qty</span></td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Printed</td><td className="px-5 py-4">Photo, gradients, full color</td><td className="px-5 py-4">{perPc('Custom Printed Patches', 2, 5000)} (5,000 qty, 2&quot;)<br/><span className="text-xs text-gray-500">Volume calculator quote</span></td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Printed</td><td className="px-5 py-4">Photo, gradients, full color</td><td className="px-5 py-4">{perPc('Custom Printed Patches', 2, 1000)} (1,000 qty, 2&quot;)</td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Silicone labels</td><td className="px-5 py-4">Apparel, bag brands</td><td className="px-5 py-4">Custom quote</td></tr>
                   <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Sequin (flip / reversible)</td><td className="px-5 py-4">Costume, fashion, gameday</td><td className="px-5 py-4">{perPc('Custom Sequin Patches', 2, 100)} (100 qty, 2&quot;)<br/><span className="text-xs text-gray-500">~{perPc('Custom Sequin Patches', 2, 1000)} at 1,000 qty, 2&quot;</span></td></tr>
                   <tr className="border-t-2 border-gray-300 bg-gray-50"><td className="px-5 py-4 font-bold text-gray-600 italic">Velcro backing<br/><span className="text-xs font-normal not-italic">(backing option, not a type)</span></td><td className="px-5 py-4 text-gray-600">Tactical, removable patches</td><td className="px-5 py-4 text-gray-600">+$0.35 per piece, every quantity</td></tr>

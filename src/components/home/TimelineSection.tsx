@@ -1,11 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
+import type { ReactNode } from "react";
 import { client, urlFor } from "@/lib/sanity";
 
 interface TimelineStep {
   number: string;
   title: string;
   subtitle: string;
-  description: string;
+  description: ReactNode;
 }
 
 interface TimelineData {
@@ -41,7 +43,12 @@ export default async function TimelineSection() {
       number: "3", 
       title: "Production Begins!",
       subtitle: "We Turn Ideas into Reality",
-      description: "After approval, our skilled team begins production with attention to every detail. In a hurry? We also offer rush orders." 
+      description: (
+        <>
+          After approval, our skilled team begins production with attention to every detail. In a hurry?{" "}
+          <Link href="/rush-custom-patches" className="text-panda-green font-semibold underline">We also offer rush orders</Link>.
+        </>
+      ),
     },
     { 
       number: "4", 

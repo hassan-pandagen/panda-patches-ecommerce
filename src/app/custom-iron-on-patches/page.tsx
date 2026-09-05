@@ -31,7 +31,7 @@ const ironOnFAQs = [
   {
     question: "Which patch types support iron-on backing?",
     answer:
-      "Iron-on backing is available on every patch type we make. What changes is the technique, not the availability. Embroidered, woven, printed (sublimation) and leather are pressed from the front. PVC and chenille are pressed from behind, through the garment, so the heat reaches the adhesive without touching the moulded rubber or flattening the yarn pile. Sew-on and Velcro (hook-and-loop, charged separately on every order) remain available on every type.",
+      "Iron-on backing is available on every patch type we make. What changes is the technique, not the availability. Embroidered, woven, printed (sublimation), leather and sequin are pressed from the front. PVC and chenille are pressed from behind, through the garment, so the heat reaches the adhesive without touching the moulded rubber or flattening the yarn pile. Sew-on and Velcro (hook-and-loop, charged separately on every order) remain available on every type.",
   },
   {
     question: "Can I also sew my iron-on patch onto the garment?",
@@ -215,6 +215,7 @@ export default async function CustomIronOnPatchesPage() {
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Embroidered</td><td className="px-5 py-4 font-black bg-panda-green/10">Yes</td><td className="px-5 py-4">Iron-on or sew-on</td><td className="px-5 py-4 text-gray-600">Most common combo. Free.</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Woven</td><td className="px-5 py-4 font-black bg-panda-green/10">Yes</td><td className="px-5 py-4">Iron-on or sew-on</td><td className="px-5 py-4 text-gray-600">Fine detail option. Free.</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Printed (Sublimation)</td><td className="px-5 py-4 font-black bg-panda-green/10">Yes</td><td className="px-5 py-4">Iron-on or sew-on</td><td className="px-5 py-4 text-gray-600">Unlimited colors. Free.</td></tr>
+                <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Sequin</td><td className="px-5 py-4 font-black bg-panda-green/10">Yes</td><td className="px-5 py-4">Iron-on or sew-on</td><td className="px-5 py-4 text-gray-600">Press from the front through a cloth; sequins sit in a stitched base, so standard settings apply. Free.</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Leather</td><td className="px-5 py-4 font-black bg-panda-green/10">Yes</td><td className="px-5 py-4">Iron-on or sew-on</td><td className="px-5 py-4 text-gray-600">Premium hat brands. Free.</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">PVC</td><td className="px-5 py-4 text-panda-green font-bold">Yes</td><td className="px-5 py-4">Iron-on, sew-on or Velcro</td><td className="px-5 py-4 text-gray-600">Press from behind only, 25&ndash;30 seconds. Direct front heat melts the rubber.</td></tr>
                 <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Chenille</td><td className="px-5 py-4 text-panda-green font-bold">Yes</td><td className="px-5 py-4">Iron-on, sew-on or Velcro</td><td className="px-5 py-4 text-gray-600">Press from behind only, 20&ndash;30 seconds, no adhesive spray. Direct heat flattens the pile.</td></tr>
@@ -268,7 +269,7 @@ export default async function CustomIronOnPatchesPage() {
             How To Apply An Iron-On Patch
           </h2>
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-600 leading-[1.7] text-center mb-10 max-w-[43.75rem] mx-auto">
-            This six-step process works on embroidered, woven, printed, and leather iron-on patches on cotton, denim, canvas, and most natural-fiber fabrics. Total time is roughly 90 seconds per patch including cool-down. Leather uses the same settings, with one step that stops being optional — see the note below.
+            This six-step process works on embroidered, woven, printed, sequin, and leather iron-on patches on cotton, denim, canvas, and most natural-fiber fabrics. Total time is roughly 90 seconds per patch including cool-down. Leather uses the same settings, with one step that stops being optional — see the note below.
           </p>
           <div className="grid md:grid-cols-2 gap-5 max-w-[50rem] mx-auto">
             {[

@@ -68,7 +68,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Patches for LA Sports Teams and Fan Gear",
         content: (
           <p className="text-[1.0625rem] leading-[1.8] text-gray-600">
-            Los Angeles is home to some of the most passionate sports communities in the country. Youth leagues, rec leagues, and fan clubs across the city order custom patches for jerseys, jackets, and hats. Whether you need 50 patches for a Little League team or 1,000 for a fan club event, our <Link href="/offers" className="text-purple-600 hover:underline font-medium">patch packages</Link> start at $0.91 per piece for a 2x2-inch design at 1,000 pieces; smaller orders cost more per piece. All orders include free design help, unlimited revisions, and your approval before production.
+            Los Angeles is home to some of the most passionate sports communities in the country. Youth leagues, rec leagues, and fan clubs across the city order custom patches for jerseys, jackets, and hats. Whether you need 50 patches for a Little League team or 1,000 for a fan club event, our <Link href="/offers" className="text-purple-600 hover:underline font-medium">patch packages</Link> start at $0.91 per piece embroidered for a 2x2-inch design at 1,000 pieces; smaller orders cost more per piece. All orders include free design help, unlimited revisions, and your approval before production.
           </p>
         )
       }
@@ -170,7 +170,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "Chi-Town Sports and Culture",
         content: (
           <p className="text-[1.0625rem] leading-[1.8] text-gray-600">
-            Chicago sports culture runs deep. Bears, Cubs, Bulls, Blackhawks, White Sox, Fire. Fan clubs, tailgate groups, and youth leagues across Chicagoland order custom patches for jackets, jerseys, and gear. We also serve Chicago's music scene, neighborhood associations, and community organizations that use patches for identity and belonging. <Link href="/custom-sports-patches" className="text-purple-600 hover:underline font-medium">Custom sports patches</Link> start at $0.91 per piece for a 2x2-inch design at 1,000 pieces; smaller orders cost more per piece. Free design, free shipping, free revisions. <Link href="/offers" className="text-purple-600 hover:underline font-medium">See pricing</Link>.
+            Chicago sports culture runs deep. Bears, Cubs, Bulls, Blackhawks, White Sox, Fire. Fan clubs, tailgate groups, and youth leagues across Chicagoland order custom patches for jackets, jerseys, and gear. We also serve Chicago's music scene, neighborhood associations, and community organizations that use patches for identity and belonging. <Link href="/custom-sports-patches" className="text-purple-600 hover:underline font-medium">Custom sports patches</Link> start at $0.91 per piece embroidered for a 2x2-inch design at 1,000 pieces; smaller orders cost more per piece. Free design, free shipping, free revisions. <Link href="/offers" className="text-purple-600 hover:underline font-medium">See pricing</Link>.
           </p>
         )
       }
@@ -266,7 +266,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "DFW Sports and Event Patches",
         content: (
           <p className="text-[1.0625rem] leading-[1.8] text-gray-600">
-            Dallas loves its sports. Cowboys, Mavericks, Stars, FC Dallas, Rangers. Youth leagues, fan clubs, and sports organizations across the DFW metro order custom patches for jerseys, jackets, and caps. We also produce patches for the Texas State Fair, rodeo events, and the DFW conference circuit. <Link href="/custom-sports-patches" className="text-purple-600 hover:underline font-medium">Sports patches</Link> from $0.91/piece for a 2x2-inch design at 1,000 pieces; smaller orders cost more per piece. <Link href="/offers" className="text-purple-600 hover:underline font-medium">View all packages</Link>.
+            Dallas loves its sports. Cowboys, Mavericks, Stars, FC Dallas, Rangers. Youth leagues, fan clubs, and sports organizations across the DFW metro order custom patches for jerseys, jackets, and caps. We also produce patches for the Texas State Fair, rodeo events, and the DFW conference circuit. <Link href="/custom-sports-patches" className="text-purple-600 hover:underline font-medium">Sports patches</Link> from $0.91/piece embroidered for a 2x2-inch design at 1,000 pieces; smaller orders cost more per piece. <Link href="/offers" className="text-purple-600 hover:underline font-medium">View all packages</Link>.
           </p>
         )
       }
@@ -824,7 +824,7 @@ export default function LocationSEOSections({ slug }: { slug: string }) {
         heading: "",
         content: (
           <div className="bg-panda-dark rounded-[16px] p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <p className="text-[0.9375rem] text-white font-medium leading-[1.6] max-w-[520px]">Custom hat patches from $0.91/pc (2x2 inches, 1,000 pcs). Smaller orders cost more per piece. Get your exact quote in under 24 hours.</p>
+            <p className="text-[0.9375rem] text-white font-medium leading-[1.6] max-w-[520px]">Custom embroidered hat patches from $0.91/pc (2x2 inches, 1,000 pcs). Smaller orders cost more per piece. Get your exact quote in under 24 hours.</p>
             <Link href="/contact" className="flex-shrink-0 bg-panda-yellow text-panda-dark font-black text-[0.875rem] px-6 py-3 rounded-full hover:opacity-90 transition-opacity whitespace-nowrap">Get Your Free Quote</Link>
           </div>
         )

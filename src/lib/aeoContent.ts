@@ -1,6 +1,16 @@
 import type { AeoAnswerContent, ComparisonTable } from "@/components/product/AeoAnswerBlock";
 import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT } from "@/lib/reviewConstants";
 import { MIN_ORDER_DEFAULT, MIN_ORDER_EXCEPTIONS } from "@/lib/factConstants";
+import { getFromPriceLabel } from "@/lib/pricingCalculator";
+import { OFFER_CATEGORIES } from "@/lib/offerPackages";
+
+/**
+ * One stamp for every AEO block. The cost FAQ below is shared by every type, so
+ * an edit to it is an edit to all of them; a per-type "July 2026" string (which
+ * is what this replaced, seven copies) went stale the moment the shared text
+ * moved. verify:canon section 12 fails the build if this lags the file's git date.
+ */
+export const AEO_LAST_UPDATED = "September 2026";
 
 /**
  * Minimum order for a patch type, read from the SAME canon the pricing
@@ -50,7 +60,7 @@ const PATCH_TYPE_COMPARISON: ComparisonTable = {
     ["PVC / Rubber", "Outdoor, tactical, waterproof use", "Medium", "Very high", "$1.40/pc"],
     ["Chenille", "Varsity jackets, letterman, retro", "Low", "Medium", "$1.30/pc"],
     ["Leather", "Hat lines, luxury branding", "Low-Med", "High", "$1.74/pc"],
-    ["Printed / Sublimated", "Full-color art, gradients, photos", "Photographic", "Medium", "from quote"],
+    ["Printed / Sublimated", "Full-color art, gradients, photos", "Photographic", "Medium", "$0.74/pc"],
   ],
 };
 
@@ -67,12 +77,55 @@ const PRODUCT_NAME_BY_LABEL: Record<string, string> = {
   printed: "Custom Printed Patches",
 };
 
+/** Which /offers category carries a type's under-4-inch packs. Printed has a
+ *  from-price (published 6 Sept 2026) but no pack line, so its answer carries
+ *  the price and no pack sentence rather than borrowing another type's packs. */
+const OFFER_SLUG_BY_LABEL: Record<string, string> = {
+  embroidered: "embroidered",
+  woven: "woven",
+  PVC: "pvc",
+  chenille: "chenille",
+  leather: "leather",
+  printed: "printed",
+};
+
+/**
+ * THE COST ANSWER IS BUILT, NOT TYPED. Until 6 Sept 2026 this template carried
+ * embroidered's "$0.91 ... $180 for 50 ... $1,200 for 1,000" verbatim under
+ * `Custom ${typeLabel} patches`, so /custom-patches/chenille told buyers
+ * chenille starts at $0.91 while its hero said $1.30 (CLD22B A1). verify:canon
+ * section 11 never saw it because the type name was a variable, not a literal.
+ * Every figure here now comes from the calculator and the offers file, and
+ * section 12 renders each type's answer and checks it.
+ */
+function costAnswer(typeLabel: string): string {
+  const product = PRODUCT_NAME_BY_LABEL[typeLabel];
+  const slug = OFFER_SLUG_BY_LABEL[typeLabel];
+  const packs = slug
+    ? OFFER_CATEGORIES.find((c) => c.slug === slug && c.subtitle === "Under 4 Inches")?.packs
+    : undefined;
+
+  const lead = slug && product
+    ? `Custom ${typeLabel} patches start at ${getFromPriceLabel(product)} per piece for a 2-inch design at 1,000 pieces; smaller runs cost more per piece.`
+    : `Custom ${typeLabel} patches are quoted per size and quantity, and the on-site calculator shows the exact figure instantly before you order.`;
+
+  const packLine = packs && packs.length
+    ? ` At Panda Patches, ${typeLabel} pack pricing under 4 inches runs ${packs
+        .map((p, i) => `$${p.price.toLocaleString("en-US")} for ${p.qty.toLocaleString("en-US")}${i === 0 ? " pieces" : ""} ($${p.perPiece.toFixed(2)}/pc)`)
+        .reduce((acc, part, i, arr) => (i === 0 ? part : i === arr.length - 1 ? `${acc}, and ${part}` : `${acc}, ${part}`), "")}.`
+    : "";
+
+  return (
+    `${lead}${packLine} Every price includes free worldwide shipping, a digital mockup in 12 to 24 hours, unlimited free revisions, and zero setup or digitizing fees — the number you are quoted is the number you pay. Larger sizes and add-ons like metallic thread or Velcro adjust the per-piece rate, which the on-site calculator shows instantly before you order. There is no charge to get a quote or a mockup.`
+  );
+}
+
 const commonFaqs = (typeLabel: string): AeoAnswerContent["faqs"] => {
   const minQty = minOrderFor(PRODUCT_NAME_BY_LABEL[typeLabel] ?? "");
   return [
   {
     q: `How much do custom ${typeLabel} patches cost?`,
-    a: `Custom ${typeLabel} patches start at $0.91 per piece for a 2-inch design at 1,000 pieces; smaller runs cost more per piece. At Panda Patches, embroidered pricing runs $180 for 50 pieces ($3.60/pc), $240 for 100 ($2.40/pc), $750 for 500 ($1.50/pc), and $1,200 for 1,000 ($1.20/pc). Every price includes free worldwide shipping, a digital mockup in 12 to 24 hours, unlimited free revisions, and zero setup or digitizing fees — the number you are quoted is the number you pay. Larger sizes and add-ons like metallic thread or Velcro adjust the per-piece rate, which the on-site calculator shows instantly before you order. There is no charge to get a quote or a mockup.`,
+    a: costAnswer(typeLabel),
   },
   {
     q: `What is the minimum order for custom ${typeLabel} patches?`,
@@ -126,7 +179,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       },
       ...commonFaqs("embroidered"),
     ],
-    updated: "July 2026",
+    updated: AEO_LAST_UPDATED,
   },
 
   // ── WOVEN ───────────────────────────────────────────────────────────────────
@@ -152,7 +205,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       },
       ...commonFaqs("woven"),
     ],
-    updated: "July 2026",
+    updated: AEO_LAST_UPDATED,
   },
 
   // ── PVC ─────────────────────────────────────────────────────────────────────
@@ -178,7 +231,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       },
       ...commonFaqs("PVC"),
     ],
-    updated: "July 2026",
+    updated: AEO_LAST_UPDATED,
   },
 
   // ── CHENILLE ────────────────────────────────────────────────────────────────
@@ -203,7 +256,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       },
       ...commonFaqs("chenille"),
     ],
-    updated: "July 2026",
+    updated: AEO_LAST_UPDATED,
   },
 
   // ── LEATHER ─────────────────────────────────────────────────────────────────
@@ -228,16 +281,16 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       },
       ...commonFaqs("leather"),
     ],
-    updated: "July 2026",
+    updated: AEO_LAST_UPDATED,
   },
 
   // ── PRINTED / SUBLIMATED ────────────────────────────────────────────────────
   printed: {
     heading: "Custom Printed & Sublimated Patches: Pricing & Turnaround",
     answer:
-      "Custom printed (dye-sublimated) patches from Panda Patches reproduce full-color artwork, gradients, and photographic detail that thread cannot hold, with a 5-piece minimum, a free 12–24 hour mockup, and no setup fees. Ideal for complex, multicolor, or photo-based designs.",
+      "Custom printed (dye-sublimated) patches from Panda Patches start at $0.74 per piece (2-inch design, 1,000 pieces) and reproduce full-color artwork, gradients, and photographic detail that thread cannot hold, with a 5-piece minimum, a free 12–24 hour mockup, and no setup fees. Ideal for complex, multicolor, or photo-based designs.",
     keyFacts: [
-      { label: "Price", value: "Quote-based by size/complexity; free mockup and quote" },
+      { label: "Price from", value: "$0.74/pc (2\", 1,000 pc); smaller runs cost more per piece" },
       { label: "Minimum order", value: "5 pieces (bulk tiers at 50, 100, 500, 1,000+)" },
       { label: "Turnaround", value: "7–14 business days after mockup approval; rush available" },
       { label: "Mockup", value: "Free digital proof in 12–24 hours, unlimited revisions" },
@@ -253,7 +306,7 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
       },
       ...commonFaqs("printed"),
     ],
-    updated: "July 2026",
+    updated: AEO_LAST_UPDATED,
   },
 
   // ── BULK PAGE ───────────────────────────────────────────────────────────────
@@ -296,6 +349,6 @@ export const aeoContent: Record<string, AeoAnswerContent> = {
         a: `Yes. Panda Patches works as a behind-the-scenes patch supplier for promotional-products distributors, ASI members, and resellers, with special wholesale pricing, white-label and blind shipping, and Net 15/30 payment terms available to qualified accounts after a few completed projects. Distributor partners frequently place recurring monthly orders at locked-in volume rates, with a dedicated account manager as a single point of contact from quote to delivery. As an ASI-verified supplier, the company understands the workflow distributors need — consistent color matching across reorders, saved artwork for repeat runs, and packaging that ships under your brand, not ours. This makes it practical to resell patches at a healthy margin without holding inventory or managing production yourself. Retail-account terms differ from partner terms; ask when you request a quote and the team will confirm what your account qualifies for.`,
       },
     ],
-    updated: "July 2026",
+    updated: AEO_LAST_UPDATED,
   },
 };

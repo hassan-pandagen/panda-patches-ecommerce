@@ -45,6 +45,15 @@ const productPageMeta: Record<string, ProductPageMeta> = {
     ogTitle: "Custom Leather Patches from $1.74/pc (1k) | 24h Mockup",
     ogDescription: "Leather patches from $1.74/pc (2x2, 1,000 pcs); smaller orders cost more per piece. Premium real and vegan leather for hats, bags, apparel. 12-24h mockup, ships in 7-14 days.",
   },
+  // Before this entry existed the page fell back to Sanity's description cut
+  // at 160 chars: "...Sublimation printing e". From-price published 6 Sept 2026
+  // on the CEO's instruction, same 2x2/1,000 basis as every other type.
+  "printed": {
+    title: "Custom Printed Patches from $0.74/pc (1k) | 24h Mockup",
+    description: "Custom printed (sublimation) patches from $0.74/pc for 2x2 inches at 1,000 pieces; smaller orders cost more per piece. Photos, gradients, unlimited colours. 5-piece minimum, free shipping.",
+    ogTitle: "Custom Printed Patches from $0.74/pc (1k) | 24h Mockup",
+    ogDescription: "Sublimation patches from $0.74/pc (2x2, 1,000 pcs); smaller orders cost more per piece. Photos, gradients, unlimited colours. 5-piece minimum, mockup in 12-24 hours.",
+  },
   "custom-3d-embroidered-transfers": {
     title: "Custom 3D Embroidered Transfers from $1.58/pc (1k)",
     description: "Custom 3D embroidered transfers from $1.58/pc for 2x2 inches at 1,000 pieces; smaller orders cost more per piece. Raised foam-underlay texture, heat-pressed onto apparel with no sewing. Digital mockup in 12 to 24 hours. 5-piece minimum. Ships in 7-14 days.",

@@ -22,10 +22,10 @@ const CANONICAL = `${BASE}/how-much-do-custom-patches-cost-full-pricing-breakdow
 export const metadata: Metadata = buildPageMetadata({
   title: 'How Much Do Custom Patches Cost? $0.91/pc at 1,000 (2026)',
   description:
-    'Custom patches cost from $0.91/pc at 1,000 pieces; smaller orders cost more per piece. Full 2026 price tables for embroidered, woven, PVC, chenille, and leather by quantity and size. Free shipping included.',
+    'Custom patches cost from $0.91/pc embroidered, or $0.74 printed, at 1,000 pieces; smaller orders cost more per piece. Full 2026 price tables by type, quantity and size. Free shipping included.',
   url: CANONICAL,
   ogDescription:
-    'Custom patch pricing in 2026. From $0.91/pc at 1,000 pieces up to $80 flat for a single patch. Smaller orders cost more per piece. Full tables by type and quantity. Free shipping.',
+    'Custom patch pricing in 2026. Embroidered from $0.91/pc at 1,000 pieces, up to $80 flat for a single patch. Smaller orders cost more per piece. Full tables by type and quantity.',
   image: { url: `${BASE}/assets/og-image.png`, width: 1200, height: 630, alt: 'Custom Patch Pricing' },
   robots: { index: true, follow: true },
 });

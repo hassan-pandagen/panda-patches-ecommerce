@@ -231,7 +231,7 @@ export default function ProductionData2026() {
               About 1 in 20 orders is a rush job — and most patches are small
             </h2>
             <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-4">
-              Rush production (as soon as 5 business days instead of the standard 7–14) was used on <strong>4.9% of orders</strong> in the window — 47 of 963. Deadlines matter, but the overwhelming majority of customers plan far enough ahead for standard turnaround.
+              <Link href="/rush-custom-patches" className="text-panda-green underline">Rush production</Link> (as soon as 5 business days instead of the standard 7–14) was used on <strong>4.9% of orders</strong> in the window — 47 of 963. Deadlines matter, but the overwhelming majority of customers plan far enough ahead for standard turnaround.
             </p>
             <p className="text-gray-700 leading-[1.8] text-[0.9375rem] md:text-[1rem] font-medium mb-4">
               On sizing: <strong>53.7% of orders were sized 2 to 5 inches</strong> at the largest listed dimension (as of August 2026). A real large-format segment accounts for most of the rest — 37.0% of sized orders list a dimension of 8 inches or more, overwhelmingly letterman and back patches quoted through our sales team rather than web checkout.
@@ -262,7 +262,7 @@ export default function ProductionData2026() {
                 <strong>Size figures:</strong> free-text size entries were normalized to their largest listed dimension in inches. Our first edition withheld a measured share because we could not rule out that the 12-inch entries were a sales-team default; we have since checked, and the 217 twelve-inch orders span 44 distinct descriptions rather than one repeated value, so the large-format segment is real. The remaining limitation is multi-dimension orders, described above. We still do not publish a &ldquo;most popular size,&rdquo; because attributing multi-size orders to one bucket makes a modal claim unsafe.
               </li>
               <li>
-                <strong>Comparability between editions:</strong> before publishing this edition we re-ran every query against the first edition&rsquo;s window and reproduced its published figures (median 20, 61.3% at 25 or fewer, 5.1% rush, 81.6% iron-on). Differences between editions are real movement in the data, not changes in how we count.
+                <strong>Rush definition, updated 6 September 2026:</strong> the 4.9% above counts orders inside this edition&rsquo;s window under the flag available when it was published. An all-time re-run using the CRM&rsquo;s full rush marker (urgent flag OR a customer deadline date) gives 9.8% — 117 of 1,200 orders. Both are correct for what they measure; the third edition will restate the window figure under the wider definition so the two are directly comparable. <strong>Comparability between editions:</strong> before publishing this edition we re-ran every query against the first edition&rsquo;s window and reproduced its published figures (median 20, 61.3% at 25 or fewer, 5.1% rush, 81.6% iron-on). Differences between editions are real movement in the data, not changes in how we count.
               </li>
               <li>
                 <strong>What this is not:</strong> these are window figures, not lifetime totals, and they describe Panda Patches customers — a low-minimum-friendly supplier — so the order-size distribution may skew smaller than suppliers with 50-to-100-piece minimums.

@@ -21,8 +21,11 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { calculatePatchPrice, getFromPrice } from "../src/lib/pricingCalculator";
-import { aeoContent } from "../src/lib/aeoContent";
+import { execSync } from "node:child_process";
+import { calculatePatchPrice, getFromPrice, getFromPriceLabel } from "../src/lib/pricingCalculator";
+import { aeoContent, AEO_LAST_UPDATED } from "../src/lib/aeoContent";
+import { OFFER_CATEGORIES } from "../src/lib/offerPackages";
+import { AI_INFO_UPDATED } from "../src/lib/aiInfoDates";
 import { slugFaqMap } from "../src/lib/slugFaqs";
 import { genericFaqs } from "../src/lib/genericFaqs";
 import { MIN_ORDER_EXCEPTIONS, MIN_ORDER_DEFAULT } from "../src/lib/factConstants";
@@ -715,6 +718,135 @@ const FROM_PRICE_TYPES: Record<string, string> = {
       );
     });
   }
+}
+
+
+// 12. THE RENDERED COST FAQ, PER TYPE (CLD22B A1).
+//
+// Section 11 checks source lines that name a type literally. The bug it was
+// written for (chenille quoting embroidered's $0.91) survived it anyway, because
+// the offending line was a shared template — `Custom ${typeLabel} patches start
+// at $0.91` — and a variable is not a literal. So this section does what a
+// buyer does: it reads the RENDERED answer for each type and checks the numbers
+// against the calculator and the offers file. Templates cannot hide from that.
+{
+  const OTHER_TYPES = ["embroidered", "woven", "pvc", "chenille", "leather", "printed", "sequin"];
+  for (const [slug, product] of Object.entries(PRODUCTS)) {
+    const block = aeoContent[slug];
+    if (!block) continue;
+    const faq = block.faqs.find((f) => /^How much do custom .* cost\?$/i.test(f.q));
+    if (!faq) continue;
+    const a = faq.a;
+
+    // (a) The lead from-price must be THIS type's calculator price.
+    const lead = a.match(/start at \$(\d+\.\d{2}) per piece/);
+    const real = getFromPrice(product).toFixed(2);
+    if (!lead) failures.push(`aeoContent[${slug}] cost FAQ states no from-price (expected $${real})`);
+    else if (lead[1] !== real)
+      failures.push(`aeoContent[${slug}] cost FAQ says $${lead[1]}/pc; calculator says $${real}`);
+
+    // (b) No other type may be named in this type's cost answer. That is exactly
+    //     how "embroidered pricing runs $180 for 50" ended up under chenille.
+    for (const other of OTHER_TYPES) {
+      if (other === slug) continue;
+      if (new RegExp(`\b${other}\b`, "i").test(a))
+        failures.push(`aeoContent[${slug}] cost FAQ mentions "${other}" — another type's figures are leaking in`);
+    }
+
+    // (c) Every pack figure quoted must exist in that type's own under-4in packs.
+    const cat = OFFER_CATEGORIES.find((c) => c.slug === slug && c.subtitle === "Under 4 Inches");
+    for (const m of a.matchAll(/\$([\d,]+) for ([\d,]+)/g)) {
+      const price = Number(m[1].replace(/,/g, ""));
+      const qty = Number(m[2].replace(/,/g, ""));
+      if (!cat?.packs.some((p) => p.price === price && p.qty === qty))
+        failures.push(`aeoContent[${slug}] cost FAQ quotes $${price} for ${qty}, which is not a ${slug} pack in offerPackages`);
+    }
+  }
+}
+
+// 13. DATE STAMPS MUST NOT LAG THE EDITS THEY DESCRIBE (CLD22B A2/A3).
+//
+// Every /ai-info page carried dateModified "2026-05-22" while git showed edits
+// through September, and seven AEO blocks said "July 2026" for the same reason:
+// a hand-typed date is a claim nobody re-reads. So the claim is checked against
+// git. Skipped on shallow clones (Vercel), where every file's last commit is
+// HEAD and the comparison would be meaningless.
+{
+  const git = (cmd: string) => { try { return execSync(cmd, { encoding: "utf8" }).trim(); } catch { return ""; } };
+  const shallow = process.env.VERCEL || git("git rev-parse --is-shallow-repository") === "true";
+  if (!shallow && git("git rev-parse --is-inside-work-tree") === "true") {
+    // Local date, to match git's %cs (committer-local). UTC put "today" a day
+    // behind for anyone east of Greenwich.
+    const today = new Date().toLocaleDateString("en-CA");
+    const check = (file: string, declared: string, label: string) => {
+      const last = git(`git log -1 --format=%cs -- "${file}"`);
+      const dirty = git(`git status --porcelain -- "${file}"`) !== "";
+      if (last && declared < last)
+        failures.push(`${label} declares ${declared} but ${file} was last committed ${last} — update the date`);
+      if (dirty && declared !== today)
+        failures.push(`${label} declares ${declared} but ${file} has uncommitted edits — set it to ${today}`);
+    };
+    for (const [page, date] of Object.entries(AI_INFO_UPDATED)) {
+      const file = page === "hub" ? "src/app/ai-info/page.tsx" : `src/app/ai-info/${page}/page.tsx`;
+      check(file, date, `AI_INFO_UPDATED.${page}`);
+    }
+    // aeoContent is stamped to the month. Compare on the month.
+    const aeoFile = "src/lib/aeoContent.ts";
+    const last = git(`git log -1 --format=%cs -- "${aeoFile}"`);
+    const dirty = git(`git status --porcelain -- "${aeoFile}"`) !== "";
+    const monthOf = (iso: string) => new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" });
+    const expected = monthOf(dirty ? today : (last || today));
+    if (AEO_LAST_UPDATED !== expected)
+      failures.push(`AEO_LAST_UPDATED is "${AEO_LAST_UPDATED}" but aeoContent.ts was last edited ${dirty ? "today" : last} — expected "${expected}"`);
+  }
+}
+
+
+// 14. AN ADVERTISED FROM-PRICE MUST NAME ITS TYPE (CEO, 2026-09-06).
+//
+// Publishing printed at $0.74 ended the era when one bare number could stand
+// for the whole catalogue. "Custom Patches from $0.91/pc" was true only while
+// embroidered was the cheapest thing we made; the moment printed went live at
+// $0.74 the same sentence became false on the homepage title, the
+// /custom-patches title, a pricing-page meta description and three location
+// surfaces. The CEO's rule: never a bare lowest-price without the type beside
+// it.
+//
+// WINDOW, NOT LINE. The price and its type label are often on different lines —
+// a comparison-table row puts `type: "Embroidered"` four lines above
+// `price: "From $0.91/pc"`, and that renders as a labelled table cell. So a type
+// name anywhere in the preceding LOOKBACK lines counts as labelled. That is
+// deliberately generous: this check exists to catch a headline price with no
+// type anywhere near it, not to police prose it cannot see rendered.
+{
+  const LOOKBACK = 5;
+  const FROM_CUE = /\b(?:from|start(?:s|ing)?(?:\s+at)?|as low as)\s*$/i;
+  const QTY_QUALIFIED = /^\s*at\s+[\d,]+/i;
+  // Wider than section 11's: an unlabelled price is just as misleading written
+  // "per patch", which is how the /custom-patches FAQ carried it.
+  const PRICE = /\$(\d+\.\d{2})\s*(?:\/\s*(?:pc|piece)|per\s+(?:piece|patch))/gi;
+  const TYPE_WORDS = /\b(?:embroider(?:ed|y)?|pvc|woven|chenille|leather|printed|sublimat(?:ed|ion)|sequin|silicone|transfers?)\b/i;
+  const unlabelled: string[] = [];
+
+  for (const file of files) {
+    const text = stripComments(fs.readFileSync(file, "utf8"), file);
+    const lines = text.split("\n");
+    lines.forEach((line, idx) => {
+      if (/wholesale|partner tier|% off|discount/i.test(line)) return;
+      for (const m of line.matchAll(PRICE)) {
+        const at = m.index ?? 0;
+        if (!FROM_CUE.test(line.slice(Math.max(0, at - 40), at))) continue;
+        if (QTY_QUALIFIED.test(line.slice(at + m[0].length, at + m[0].length + 20))) continue;
+        const window = lines.slice(Math.max(0, idx - LOOKBACK), idx + 1).join(" ");
+        if (TYPE_WORDS.test(window)) continue;
+        unlabelled.push(
+          `${path.relative(process.cwd(), file)}:${idx + 1}: advertised "${m[0]}" with no patch type named within ${LOOKBACK} lines. ` +
+            `A bare from-price reads as the whole catalogue's floor; printed starts at ${getFromPriceLabel("Custom Printed Patches")}, embroidered at ${getFromPriceLabel("Custom Embroidered Patches")}. Name the type beside the figure.`,
+        );
+      }
+    });
+  }
+  if (unlabelled.length) failures.push(...[...new Set(unlabelled)]);
 }
 
 if (fromPriceIssues.length) failures.push(...[...new Set(fromPriceIssues)]);

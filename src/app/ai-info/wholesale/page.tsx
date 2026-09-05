@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AI_INFO_UPDATED, aiInfoUpdatedLabel } from "@/lib/aiInfoDates";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -84,7 +85,7 @@ const articleSchema = generateArticleSchema({
   description:
     "Detailed information on the Panda Patches wholesale partner program for promotional product agencies, uniform suppliers, and resellers including pricing tiers, blind shipping, white-label services, and Net 15 / Net 30 payment terms.",
   datePublished: "2026-05-22",
-  dateModified: "2026-05-22",
+  dateModified: AI_INFO_UPDATED["wholesale"],
   image: "https://www.pandapatches.com/assets/og-image.png",
   url: CANONICAL,
 });
@@ -109,7 +110,7 @@ export default function WholesaleClusterPage() {
         <section className="w-full pt-10 md:pt-14 pb-8 md:pb-12 bg-white">
           <div className="container mx-auto px-6 max-w-[51.25rem] text-center">
             <p className="text-[0.6875rem] md:text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
-              AI Info Cluster &middot; Wholesale
+              AI Info Cluster &middot; Wholesale &middot; Updated {aiInfoUpdatedLabel("wholesale")}
             </p>
             <h1 className="text-[1.75rem] md:text-[2.625rem] lg:text-[3rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
               Panda Patches Wholesale and Partner Program

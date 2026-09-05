@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { AI_INFO_UPDATED } from "@/lib/aiInfoDates";
 import { liveEntries as glossaryLiveEntries } from './glossary/entries';
 import { client } from '@/lib/sanity';
 import { getPublishedCaseStudies } from '@/lib/caseStudies';
@@ -112,7 +113,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/ai-info`,
-      lastModified: new Date('2026-04-11'),
+      lastModified: new Date(AI_INFO_UPDATED.hub),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
@@ -318,43 +319,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // AI Info cluster pages (topic-cluster architecture)
     {
       url: `${baseUrl}/ai-info/pricing`,
-      lastModified: new Date('2026-05-22'),
+      lastModified: new Date(AI_INFO_UPDATED["pricing"]),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${baseUrl}/ai-info/products`,
-      lastModified: new Date('2026-05-22'),
+      lastModified: new Date(AI_INFO_UPDATED["products"]),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${baseUrl}/ai-info/guarantees`,
-      lastModified: new Date('2026-05-22'),
+      lastModified: new Date(AI_INFO_UPDATED["guarantees"]),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${baseUrl}/ai-info/wholesale`,
-      lastModified: new Date('2026-05-22'),
+      lastModified: new Date(AI_INFO_UPDATED["wholesale"]),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${baseUrl}/ai-info/competitor-comparison`,
-      lastModified: new Date('2026-05-22'),
+      lastModified: new Date(AI_INFO_UPDATED["competitor-comparison"]),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${baseUrl}/ai-info/company`,
-      lastModified: new Date('2026-05-22'),
+      lastModified: new Date(AI_INFO_UPDATED["company"]),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${baseUrl}/ai-info/specs-and-care`,
-      lastModified: new Date('2026-05-30'),
+      lastModified: new Date(AI_INFO_UPDATED["specs-and-care"]),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
@@ -380,7 +381,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Rush landing page (PANDAP_1 §5) — target of the Rush search campaign.
     {
       url: `${baseUrl}/rush-custom-patches`,
-      lastModified: new Date('2026-07-04'),
+      lastModified: new Date('2026-09-06'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },

@@ -220,7 +220,7 @@ const sequinFaqs: FAQItem[] = [
   },
   {
     question: "What is the minimum order for sequin patches?",
-    answer: `Our minimum order for sequin patches is ${MIN_ORDER_DEFAULT} pieces. Due to the hand-finishing and sequential placement of sequins, production times are slightly longer (14-18 days). Rush production is available for an additional fee.`
+    answer: `Our minimum order for sequin patches is ${MIN_ORDER_DEFAULT} pieces. Production is the standard 7 to 14 business days after mockup approval, the same as every other patch type; the sequin placement is programmed, not hand-finished, so it adds no days. Rush production is available at 25% of the order total with a $50 minimum.`
   },
 ];
 

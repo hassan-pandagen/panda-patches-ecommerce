@@ -30,7 +30,7 @@ const ProcessSection = dynamic(() => import("@/components/home/ProcessSection"),
 export async function generateMetadata(): Promise<Metadata> {
   const ogImage = await getSanityOgImage();
   return buildPageMetadata({
-    title: "Custom Patches from $0.91/pc (1k) | Free Design | Panda Patches",
+    title: "Custom Patches from $0.91/pc (embroidered, 1k) | Free Design",
     description: "Order custom patches in any style: embroidered, PVC, woven, chenille & leather. As low as 5 patches. Free artwork plus a mockup in 12-24 hours. Ships in 7-14 days. Patches made for brands, teams and departments nationwide. Get a free quote!",
     url: "https://www.pandapatches.com/custom-patches",
     image: { url: ogImage, alt: "Panda Patches - Custom Patches" },
@@ -171,7 +171,7 @@ const faqSchema = {
       name: "How much do custom patches cost?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Pricing starts from $0.91 per patch for a 2x2-inch design at 1,000 pieces. Smaller orders cost more per piece, so small first runs of 5 to 10 patches typically range from $13 to $24 each. The price depends on patch type, size, and quantity. Get a free instant quote by uploading your design.",
+        text: "Embroidered pricing starts from $0.91 per patch for a 2x2-inch design at 1,000 pieces, and printed (sublimation) from $0.74 on the same basis. Smaller orders cost more per piece, so small first runs of 5 to 10 patches typically range from $13 to $24 each. The price depends on patch type, size, and quantity. Get a free instant quote by uploading your design.",
       },
     },
     {

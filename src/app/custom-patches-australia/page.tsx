@@ -224,7 +224,7 @@ export default async function CustomPatchesAustraliaPage() {
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-4">
             Standard delivery to Australia is approximately <strong>10 to 20 business days</strong> from mockup
             approval: production takes 7 to 14 business days and international transit to Australia runs by DHL or
-            FedEx with full tracking. <strong>Rush production is available</strong> when a deadline is tight, with
+            FedEx with full tracking. <strong><Link href="/rush-custom-patches" className="text-panda-green underline">Rush production is available</Link></strong> when a deadline is tight, with
             the confirmed delivery date emailed shortly after you order.
           </p>
           <p className="text-[0.875rem] text-gray-500 leading-[1.7]">

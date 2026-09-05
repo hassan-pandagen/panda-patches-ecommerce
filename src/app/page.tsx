@@ -43,19 +43,23 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   // Title 60 chars, meta 155 chars per WEBSIT_1.MD T8. Canonical "from"
-  // price is $0.91/pc, the embroidered rate the calculator returns at the
+  // price is $0.91/pc, the EMBROIDERED rate the calculator returns at the
   // 2"x2", 1,000-pc basis (getFromPrice in pricingCalculator.ts). PAE792
   // supersedes the earlier $0.85 teaser: every advertised "from" price now
   // states that 2x2/1,000 basis so it can never be misread as a 5-piece
   // price, and it equals what the live configurator quotes at that basis.
+  // TYPE LABEL REQUIRED (CEO, 2026-09-06). Printed publishes at $0.74, below
+  // embroidered's $0.91, so a bare "from $0.91" is no longer the site floor —
+  // it is false. Every advertised from-price now names its type beside the
+  // figure, and verify:canon section 14 fails the build on an unlabelled one.
   return buildPageMetadata({
-    title: "Custom Patches from $0.91/pc (1k) | Free Design, 24h Mockup",
-    description: "Custom embroidered, PVC, woven & leather patches from $0.91/pc (2x2, 1,000 pcs). Smaller orders cost more per piece. 5-piece minimum, free worldwide shipping.",
+    title: "Custom Patches from $0.91/pc (embroidered, 1k) | 24h Mockup",
+    description: "Custom patches: embroidered from $0.91/pc, printed from $0.74 (2x2, 1,000 pcs). Smaller orders cost more per piece. 5-piece minimum, free worldwide shipping.",
     url: "https://www.pandapatches.com",
-    image: { url: ogImageUrl, alt: "Panda Patches custom embroidered, PVC, and woven patches from $0.91 per piece at 2x2 inches and 1,000 pieces" },
-    ogTitle: "Custom Patches from $0.91/pc (1k). Free Design. 24h Mockup.",
-    ogDescription: "1,000,000+ patches delivered. Custom embroidered, PVC, chenille and woven from $0.91/pc (2x2, 1,000 pcs) with free artwork, no setup fees, mockup in 12 to 24 hours.",
-    twitterDescription: "1,000,000+ patches delivered. From $0.91/pc (2x2, 1k pcs). Free artwork, no setup fees, mockup in 12-24 hours.",
+    image: { url: ogImageUrl, alt: "Panda Patches custom embroidered patches from $0.91 per piece at 2x2 inches and 1,000 pieces" },
+    ogTitle: "Custom Patches from $0.91/pc (embroidered, 1k). 24h Mockup.",
+    ogDescription: "1,000,000+ patches delivered. Embroidered from $0.91/pc, printed from $0.74/pc (2x2, 1,000 pcs), with free artwork, no setup fees, mockup in 12 to 24 hours.",
+    twitterDescription: "1,000,000+ patches delivered. Embroidered from $0.91/pc, printed from $0.74/pc (2x2, 1k pcs). Free artwork, no setup fees, mockup in 12-24 hours.",
     robots: {
       index: true,
       follow: true,

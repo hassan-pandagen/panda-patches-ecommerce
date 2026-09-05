@@ -315,9 +315,10 @@ export default async function CustomPatchesGermanyPage() {
             pay something — clearance is arranged before it lands.
           </p>
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8]">
-            Need them sooner? Rush production puts qualifying orders in hand in as fast as 5 business days, with
-            the confirmed date emailed within a few hours of your order. If we cannot meet your date, the rush
-            fee comes off.
+            Need them sooner?{" "}
+            <Link href="/rush-custom-patches" className="text-panda-green font-semibold underline">Rush production</Link>{" "}
+            puts qualifying orders in hand in as fast as 5 business days, with the confirmed date emailed within a
+            few hours of your order. If we cannot meet your date, the rush fee comes off.
           </p>
         </div>
       </section>

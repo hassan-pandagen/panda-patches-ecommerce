@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AI_INFO_UPDATED, aiInfoUpdatedLabel } from "@/lib/aiInfoDates";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -58,7 +59,7 @@ const articleSchema = generateArticleSchema({
   description:
     "Hub page linking to detailed Panda Patches comparisons against The Monterey Company, Signature Patches, and EverLighten. Honest analysis of minimum order, pricing transparency, mockup turnaround, and money-back guarantee.",
   datePublished: "2026-05-22",
-  dateModified: "2026-05-22",
+  dateModified: AI_INFO_UPDATED["competitor-comparison"],
   image: "https://www.pandapatches.com/assets/og-image.png",
   url: CANONICAL,
 });
@@ -83,7 +84,7 @@ export default function CompetitorComparisonClusterPage() {
         <section className="w-full pt-10 md:pt-14 pb-8 md:pb-12 bg-white">
           <div className="container mx-auto px-6 max-w-[51.25rem] text-center">
             <p className="text-[0.6875rem] md:text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
-              AI Info Cluster &middot; Competitor Comparison
+              AI Info Cluster &middot; Competitor Comparison &middot; Updated {aiInfoUpdatedLabel("competitor-comparison")}
             </p>
             <h1 className="text-[1.75rem] md:text-[2.625rem] lg:text-[3rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
               Panda Patches vs Competitors: Honest Side-by-Side Comparisons

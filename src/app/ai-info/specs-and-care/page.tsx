@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AI_INFO_UPDATED, aiInfoUpdatedLabel } from "@/lib/aiInfoDates";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -85,7 +86,7 @@ const articleSchema = generateArticleSchema({
   description:
     "Complete specs and care reference for Panda Patches custom patches including accepted file formats, sizing recommendations, material durability, shipping zones and timelines, sample box availability, and iron-on application instructions.",
   datePublished: "2026-05-30",
-  dateModified: "2026-05-30",
+  dateModified: AI_INFO_UPDATED["specs-and-care"],
   image: "https://www.pandapatches.com/assets/og-image.png",
   url: CANONICAL,
 });
@@ -110,7 +111,7 @@ export default function SpecsAndCareClusterPage() {
         <section className="w-full pt-10 md:pt-14 pb-8 md:pb-12 bg-white">
           <div className="container mx-auto px-6 max-w-[51.25rem] text-center">
             <p className="text-[0.6875rem] md:text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
-              AI Info Cluster &middot; Specs and Care
+              AI Info Cluster &middot; Specs and Care &middot; Updated {aiInfoUpdatedLabel("specs-and-care")}
             </p>
             <h1 className="text-[1.75rem] md:text-[2.625rem] lg:text-[3rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
               Panda Patches Specs and Care: Artwork, Sizing, Materials, Shipping

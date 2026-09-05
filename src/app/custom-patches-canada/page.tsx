@@ -226,7 +226,7 @@ export default async function CustomPatchesCanadaPage() {
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-4">
             Standard delivery to Canada is approximately <strong>7 to 15 business days</strong> from mockup
             approval: production takes 7 to 14 business days and international transit runs by DHL or FedEx with full
-            tracking. <strong>Rush production is available</strong> when a deadline is tight, with the confirmed
+            tracking. <strong><Link href="/rush-custom-patches" className="text-panda-green underline">Rush production is available</Link></strong> when a deadline is tight, with the confirmed
             delivery date emailed shortly after you order.
           </p>
           <p className="text-[0.875rem] text-gray-500 leading-[1.7]">

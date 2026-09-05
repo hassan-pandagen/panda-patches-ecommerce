@@ -229,7 +229,7 @@ export default async function CustomPatchesUKPage() {
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-4">
             Standard UK delivery is approximately <strong>7 to 15 business days</strong> from the moment you approve
             your mockup: production takes 7 to 14 business days and international transit is by DHL or FedEx with
-            full tracking. Need them sooner? <strong>Rush production is available</strong>, with the confirmed
+            full tracking. Need them sooner? <strong><Link href="/rush-custom-patches" className="text-panda-green underline">Rush production is available</Link></strong>, with the confirmed
             delivery date emailed within a few hours of your order.
           </p>
           <p className="text-[0.875rem] text-gray-500 leading-[1.7]">

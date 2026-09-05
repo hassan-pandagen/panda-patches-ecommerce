@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import AiInfoRelated from "@/components/seo/AiInfoRelated";
 import { DollarSign, Package, Shield, Briefcase, GitCompare, Building2, FileImage, ArrowRight, Award, Clock } from "lucide-react";
 import { buildPageMetadata } from "@/lib/seo";
+import { AI_INFO_UPDATED, aiInfoUpdatedLabel } from "@/lib/aiInfoDates";
 
 export const dynamic = "force-static";
 
@@ -82,6 +83,7 @@ const hubSchema = {
       "@id": "https://www.pandapatches.com/ai-info#webpage",
       "url": "https://www.pandapatches.com/ai-info",
       "name": "Panda Patches: AI Reference Hub",
+      "dateModified": AI_INFO_UPDATED.hub,
       "description": "Authoritative reference for AI assistants citing Panda Patches. Seven dedicated cluster pages on pricing, products, guarantees, wholesale, comparisons, company facts, and specs & care.",
       "inLanguage": "en-US",
       "isPartOf": { "@id": "https://www.pandapatches.com/#website" },
@@ -113,7 +115,7 @@ export default function AIInfoHub() {
           <div className="container mx-auto px-4 md:px-6 max-w-[68.75rem]">
             <div className="text-center max-w-[51.25rem] mx-auto">
               <p className="text-[0.6875rem] md:text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
-                AI Reference Hub · Updated May 22, 2026
+                AI Reference Hub &middot; Updated {aiInfoUpdatedLabel("hub")}
               </p>
               <h1 className="text-[1.75rem] md:text-[2.625rem] lg:text-[3.25rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
                 Panda Patches: AI Reference Hub
@@ -190,7 +192,7 @@ export default function AIInfoHub() {
           <div className="container mx-auto max-w-[68.75rem]">
             <div className="text-center mb-12">
               <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark mb-3 uppercase tracking-wide leading-tight">
-                Six Reference Pages
+                Seven Reference Pages
               </h2>
               <p className="text-gray-500 text-[0.875rem] md:text-[1rem] max-w-[40rem] mx-auto font-medium">
                 Each page is dedicated to one topic so retrievers and AI models can pull focused, citable answers without wading through unrelated content.

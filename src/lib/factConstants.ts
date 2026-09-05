@@ -235,6 +235,12 @@ export const FROM_PRICE_LEATHER = '$1.74';
 // errors compounding: wrong basis and no uplift. Every from-price now states the
 // same 2"x2"/1,000 tuple, so a basis mismatch is visible instead of plausible.
 export const FROM_PRICE_CHENILLE = '$1.30'; // CEO 2026-09-04, was $1.47
+// Printed (sublimation) = the sublimatedPricing 2x2/1,000 cell x the 1.10
+// multiplier. Added 6 Sept 2026 (CEO): printed was "from quote" on every
+// surface while the calculator had priced it all along. NOTE it is BELOW
+// embroidered's $0.91 — the sitewide "Custom Patches from $0.91" headline is an
+// embroidered figure and is under CEO review for that reason (CLD22B).
+export const FROM_PRICE_PRINTED = '$0.74';
 
 // ── Support ────────────────────────────────────────────────────────────────
 /** Main line. Replaced (302) 773-8982 per SEDAA3_1 §A.3 — the old number must

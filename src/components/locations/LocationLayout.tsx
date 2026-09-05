@@ -48,10 +48,17 @@ export default async function LocationLayout({ data, slug }: { data: any; slug?:
 
   // Construct Hero Data with Multiple Images
   // For patch style pages, use the title directly. For location pages, add "Custom Patches in" prefix
+  // H1 overrides for pages whose headline should sell a product rather than
+  // name a category. Only the hero H1 changes; breadcrumb, reviews and schema
+  // keep the Sanity title, because "…Alphabet Set $150 reviews" reads wrong.
+  const H1_OVERRIDE: Record<string, string> = {
+    // CLDB68 §4.2: the package is the conversion; the H1 should say so.
+    "chenille-letters": "Custom Chenille Letters: Full A-Z Alphabet Set $150",
+  };
   const heroData = {
-    title: data.isPatchStyle
+    title: (slug && H1_OVERRIDE[slug]) ?? (data.isPatchStyle
       ? data.locationName
-      : `Custom Patches in ${data.locationName}`,
+      : `Custom Patches in ${data.locationName}`),
     description: locationDescription || (data.isPatchStyle
       ? `The best source for ${data.locationName}. High quality, fast turnaround, and free design services.`
       : `The best source for Custom Patches in ${data.locationName}. High quality, fast turnaround, and free design services.`),

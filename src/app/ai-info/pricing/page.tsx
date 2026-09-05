@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AI_INFO_UPDATED, aiInfoUpdatedLabel } from "@/lib/aiInfoDates";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -61,7 +62,7 @@ const faqs = [
   {
     question: "How does rush pricing work at Panda Patches?",
     answer:
-      "Rush production is available on qualifying orders for a flat add-on fee: $50 for 50 pieces, $75 for 100 pieces, $150 for 500 pieces, and $200 for 1,000 pieces. The exact delivery date is confirmed by email within 2 to 6 hours of order placement. If the rush date cannot be met, the rush fee is refunded. Standard production remains 7 to 14 business days.",
+      "Rush production is available on qualifying orders for a rush fee of 25% of the order total, with a $50 minimum. The exact delivery date is confirmed by email within 2 to 6 hours of order placement. If the rush date cannot be met, the rush fee is refunded. Standard production remains 7 to 14 business days.",
   },
   {
     question: "How does the 5 percent economy discount work?",
@@ -75,7 +76,7 @@ const articleSchema = generateArticleSchema({
   description:
     "Complete published pricing for embroidered, PVC, woven, chenille, and leather patches at Panda Patches. Tier-by-tier per-piece costs, rush fees, and economy discount detail.",
   datePublished: "2026-05-22",
-  dateModified: "2026-05-22",
+  dateModified: AI_INFO_UPDATED["pricing"],
   image: "https://www.pandapatches.com/assets/og-image.png",
   url: CANONICAL,
 });
@@ -100,7 +101,7 @@ export default function PricingClusterPage() {
         <section className="w-full pt-10 md:pt-14 pb-8 md:pb-12 bg-white">
           <div className="container mx-auto px-6 max-w-[51.25rem] text-center">
             <p className="text-[0.6875rem] md:text-[0.75rem] font-black uppercase tracking-[2px] text-panda-green mb-4">
-              AI Info Cluster &middot; Pricing
+              AI Info Cluster &middot; Pricing &middot; Updated {aiInfoUpdatedLabel("pricing")}
             </p>
             <h1 className="text-[1.75rem] md:text-[2.625rem] lg:text-[3rem] font-black text-panda-dark leading-[1.1] tracking-tight mb-5">
               Panda Patches Pricing: Transparent Tiers for Every Patch Type
@@ -357,7 +358,7 @@ export default function PricingClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How does rush pricing work?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Rush production is available on qualifying orders for a flat add-on fee that scales with quantity. The rush fee is $50 for 50 pieces, $75 for 100 pieces, $150 for 500 pieces, and $200 for 1,000 pieces. Quantities outside these standard tiers are pro-rated and rounded up to the next tier. After the order is placed with rush selected, the design team confirms the exact delivery date by email within 2 to 6 hours.
+              Rush production is available on qualifying orders for a rush fee of 25% of the order total, with a $50 minimum: a $180 order carries the $50 floor, a $1,200 order carries $300. The fee is calculated by the same function checkout charges, so the figure in the calculator is the figure on the receipt. After the order is placed with rush selected, the design team confirms the exact delivery date by email within 2 to 6 hours.
             </p>
             <p className="text-gray-700 leading-relaxed">
               If the rush delivery date cannot be met for any reason, the rush fee is refunded automatically and the order is converted to standard production. This rush-confirmation workflow is unusual in the US patch industry. Most competitors quote a rush fee but do not commit to a date until production has already started, which leaves the buyer with limited recourse if the date slips.
