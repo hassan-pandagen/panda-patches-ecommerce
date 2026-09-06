@@ -25,6 +25,8 @@ import { execSync } from "node:child_process";
 import { calculatePatchPrice, getFromPrice, getFromPriceLabel } from "../src/lib/pricingCalculator";
 import { aeoContent, AEO_LAST_UPDATED } from "../src/lib/aeoContent";
 import { YARN_COLOURS, YARN_FAMILIES, HEX_PROVENANCE } from "../src/lib/yarnColours";
+import { TYPE_CLUSTERS } from "../src/lib/typeClusters";
+import { liveEntries as glossaryLiveEntries } from "../src/app/glossary/entries";
 import { OFFER_CATEGORIES } from "../src/lib/offerPackages";
 import { AI_INFO_UPDATED } from "../src/lib/aiInfoDates";
 import { slugFaqMap } from "../src/lib/slugFaqs";
@@ -986,6 +988,34 @@ const FROM_PRICE_TYPES: Record<string, string> = {
         `(Sanity blog bodies are NOT scanned, so some of these may be linked from guides):\n     ` +
         orphans.sort().join("\n     "),
     );
+  }
+}
+
+
+// 18. THE TYPE-PAGE CLUSTER MUST NOT LINK TO PAGES THAT DO NOT EXIST (CL3A9B A3.1).
+//
+// GoingDeeperBlock puts these links on the highest-authority pages we have, so
+// a dead one is a dead link on a money page. Glossary entries and app routes
+// are checkable here; the Sanity blog slugs are not, since their documents live
+// in a CMS this script cannot reach. Those were verified by hand against the
+// dataset on 2026-09-07 (10 of 10 present) and would need a network call to
+// re-check, which does not belong in a build guard.
+{
+  const glossarySlugs = new Set(glossaryLiveEntries().map((e) => e.slug));
+  for (const [type, cluster] of Object.entries(TYPE_CLUSTERS)) {
+    if (cluster.glossary && !glossarySlugs.has(cluster.glossary)) {
+      failures.push(
+        `typeClusters[${type}] links /glossary/${cluster.glossary}, which is not a live glossary entry.`,
+      );
+    }
+    for (const extra of cluster.extra ?? []) {
+      const routeDir = path.join(process.cwd(), "src", "app", extra.href.replace(/^\//, ""));
+      const isAppRoute = fs.existsSync(path.join(routeDir, "page.tsx"));
+      const looksLikeBlogSlug = /^\/[a-z0-9-]+$/.test(extra.href);
+      if (!isAppRoute && !looksLikeBlogSlug) {
+        failures.push(`typeClusters[${type}] extra link ${extra.href} is neither an app route nor a blog slug.`);
+      }
+    }
   }
 }
 
