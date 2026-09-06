@@ -30,7 +30,15 @@ import {
   generateFAQSchema,
 } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
-import { REMOVED_CHARGES, MIN_ORDER_PER_DESIGN, CONSTRAINT_HUBS } from "@/lib/constraintsRemoved";
+import {
+  REMOVED_CHARGES,
+  MIN_ORDER_PER_DESIGN,
+  CONSTRAINT_HUBS,
+  DIFFERENTIATORS,
+  MOULD_COMPARATIVE,
+  SAMPLE_COMPARATIVE,
+  BENCHMARK_NOTE,
+} from "@/lib/constraintsRemoved";
 import { getFromPriceLabel } from "@/lib/pricingCalculator";
 
 const CANONICAL = "https://www.pandapatches.com/custom-patches-no-setup-fees";
@@ -204,12 +212,61 @@ export default function NoSetupFeesPage() {
             revisions, and production does not start until you approve.
           </p>
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-8">
-            Worth checking on any quote you compare, ours included: many published patch prices
-            exclude shipping, backing or setup, so the figure you see first is not always the figure
-            you pay. Our published from-prices already include shipping and a standard backing —
+            Our published from-prices already include shipping and a standard backing —
             embroidered from {getFromPriceLabel("Custom Embroidered Patches")} and PVC from{" "}
             {getFromPriceLabel("Custom PVC Patches")} per piece at 2 by 2 inches and 1,000 pieces,
             with smaller orders costing more per piece.
+          </p>
+
+          {/* THE HONEST VERSION OF THIS PAGE'S ARGUMENT. We benchmarked 14
+              published US suppliers in September 2026 and it did not say what we
+              expected: free setup and free artwork are the industry norm, not our
+              edge. Saying so costs us a talking point and buys the rest of the
+              page its credibility, and the things that DO differ are stronger
+              than the one we were leaning on. */}
+          <h2 className="text-[1.25rem] md:text-[1.625rem] font-black text-panda-dark mb-3">
+            Where we are genuinely different, and where we are not
+          </h2>
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-5">
+            We benchmarked fourteen published US patch suppliers in September 2026, quoting their
+            own public pages. It is worth reporting the part that went against us: <strong>free
+            setup and free artwork are the norm, not a differentiator</strong>. None of the
+            fourteen publishes a setup charge, seven state it is free, and nine include artwork.
+            Our $0 on both is true and it is unremarkable. What follows is what actually differs.
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white mb-4">
+            <table className="w-full text-[0.875rem] md:text-[0.9375rem] border-collapse min-w-[30rem]">
+              <thead>
+                <tr className="border-b-2 border-panda-dark text-left">
+                  <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">
+                    Panda Patches
+                  </th>
+                  <th className="py-3 px-4 font-black text-panda-dark uppercase tracking-wider text-[0.6875rem]">
+                    What competitors publish
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="text-gray-700">
+                {DIFFERENTIATORS.map((d) => (
+                  <tr key={d.ours} className="border-b border-gray-100 last:border-0">
+                    <th scope="row" className="py-3 px-4 font-bold text-panda-dark text-left align-top">
+                      {d.ours}
+                    </th>
+                    <td className="py-3 px-4 leading-[1.6]">{d.theirs}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-4">
+            {MOULD_COMPARATIVE}
+          </p>
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-3">
+            {SAMPLE_COMPARATIVE}
+          </p>
+          <p className="text-[0.8125rem] text-gray-500 mb-8">
+            {BENCHMARK_NOTE} Suppliers change their pricing without telling us, so every figure here
+            is re-checked at least every six months.
           </p>
 
           <h2 className="text-[1.25rem] md:text-[1.625rem] font-black text-panda-dark mb-4">

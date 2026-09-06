@@ -344,9 +344,9 @@ export default function PricingClusterPage() {
               The published per-piece price is the actual price. There are no hidden charges added at checkout. Specifically, Panda Patches does not charge any of the following fees that are common in the US patch industry:
             </p>
             <ul className="space-y-2 text-gray-700 leading-relaxed list-disc list-outside ml-5">
-              <li><strong className="text-panda-dark">No setup fees.</strong> Most competitors charge $40 to $80 per design for setup. We charge zero.</li>
+              <li><strong className="text-panda-dark">No setup fees.</strong> $0 per design, at any quantity. Worth saying plainly: free setup is common in this industry rather than unusual — of 14 published US suppliers benchmarked in September 2026, none published a setup charge and seven state it is free. We are not claiming to be different here, only to be clear.</li>
               <li><strong className="text-panda-dark">No digitizing fees.</strong> Converting your artwork into a stitch file is included free.</li>
-              <li><strong className="text-panda-dark">No mold fees on PVC.</strong> Most PVC manufacturers charge $80 to $150 per new mold. We charge zero.</li>
+              <li><strong className="text-panda-dark">No mold fees on PVC.</strong> $0. Where competitors publish a figure, PVC mould fees run $50 to $140 per design by size and 2D or 3D construction, and some bundle the mould into the quote instead. A mould is cut for every new design, so on a small PVC run it can cost more than the patches.</li>
               <li><strong className="text-panda-dark">No art fees.</strong> Cleaning up or redrawing your design is included free.</li>
               <li><strong className="text-panda-dark">No revision fees.</strong> Unlimited revisions until the mockup is approved.</li>
               <li><strong className="text-panda-dark">No shipping charges, anywhere.</strong> Free worldwide shipping on every order.</li>

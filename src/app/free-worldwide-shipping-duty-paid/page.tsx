@@ -72,6 +72,11 @@ const faqs = [
     answer: `No. ${MIN_ORDER_PER_DESIGN} Shipping is free at that quantity too, which is unusual: a supplier who ships free only above a threshold is using shipping as a minimum by another name.`,
   },
   {
+    question: "Do other patch suppliers not offer free shipping?",
+    answer:
+      "Many do, and the catch is usually a condition rather than a charge. In a September 2026 benchmark of fourteen published US patch suppliers, none published a shipping rate at all, and the six offering free shipping mostly limited it to the continental United States or to orders above a spend threshold such as $75 or $200. None offered delivered-duty-paid shipping. So the useful question to ask any supplier is not whether shipping is free, but whether it is free to your address at your order size, and whether anything is owed to the courier on arrival.",
+  },
+  {
     question: "Which countries do you ship to?",
     answer:
       "Worldwide. The United States is our largest market, and we ship regularly to Canada, the United Kingdom, Germany and the rest of the EU, Australia and New Zealand. Every destination is free and delivered duty paid on the same terms.",
@@ -139,7 +144,11 @@ export default function FreeShippingDutyPaidPage() {
           </h2>
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-4">
             &ldquo;Free shipping&rdquo; and &ldquo;no customs charges&rdquo; are different promises,
-            and only the second one decides whether a parcel arrives with a bill. Most overseas
+            and only the second one decides whether a parcel arrives with a bill. Free shipping is
+            common in this industry, but usually with a condition attached: of fourteen published US
+            suppliers benchmarked in September 2026, the six offering it mostly limited it to the
+            continental United States or to orders above a spend threshold, and none offered
+            duty-paid delivery. Most overseas
             orders travel delivered at place, which means the courier pays the duty at the border
             and then collects it from you, plus a handling charge for the favour, before releasing
             the goods. The shipping was free; the delivery was not.
