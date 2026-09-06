@@ -10,7 +10,8 @@
     "facts:check": "node scripts/sync-company-facts.mjs --check",
     "start": "next start",
     "lint": "eslint . --ext .ts,.tsx",
-    "verify:canon": "tsx scripts/verify-canon.ts"
+    "verify:canon": "tsx scripts/verify-canon.ts",
+    "audit:sanity": "tsx scripts/audit-sanity-canon.ts"
   },
   "dependencies": {
     "@portabletext/react": "^3.0.0",
