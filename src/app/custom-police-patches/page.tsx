@@ -20,6 +20,7 @@ import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
 import { calculatePatchPrice } from "@/lib/pricingCalculator";
 import NoChargeBlock from "@/components/product/NoChargeBlock";
+import IndustryGuidesBlock from "@/components/product/IndustryGuidesBlock";
 
 // Police-specific FAQs
 const policeFAQs = [
@@ -331,6 +332,7 @@ export default async function PolicePatchesPage() {
       {/* 7. CTA */}
       <CTASection />
 
+      <IndustryGuidesBlock slug="custom-police-patches" />
       <NoChargeBlock />
       <Footer />
     </main>

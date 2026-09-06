@@ -20,6 +20,7 @@ import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
 import { calculatePatchPrice } from "@/lib/pricingCalculator";
 import NoChargeBlock from "@/components/product/NoChargeBlock";
+import IndustryGuidesBlock from "@/components/product/IndustryGuidesBlock";
 
 // Fire Department-specific FAQs
 const fireFAQs = [
@@ -341,6 +342,7 @@ export default async function FireDepartmentPatchesPage() {
       {/* 7. CTA */}
       <CTASection />
 
+      <IndustryGuidesBlock slug="custom-fire-department-patches" />
       <NoChargeBlock />
       <Footer />
     </main>

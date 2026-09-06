@@ -26,6 +26,7 @@ import { calculatePatchPrice, getFromPrice, getFromPriceLabel } from "../src/lib
 import { aeoContent, AEO_LAST_UPDATED } from "../src/lib/aeoContent";
 import { YARN_COLOURS, YARN_FAMILIES, HEX_PROVENANCE } from "../src/lib/yarnColours";
 import { TYPE_CLUSTERS } from "../src/lib/typeClusters";
+import { INDUSTRY_GUIDES } from "../src/lib/industryGuides";
 import { liveEntries as glossaryLiveEntries } from "../src/app/glossary/entries";
 import { OFFER_CATEGORIES } from "../src/lib/offerPackages";
 import { AI_INFO_UPDATED } from "../src/lib/aiInfoDates";
@@ -65,7 +66,24 @@ function enforcedMinimum(productName: string, size = 2): number {
  * suppliers, not our floor, and must not be read as a claim about us.
  */
 function statedMinimums(text: string): number[] {
-  const t = text.replace(/50-to-100-piece minimum most patch manufacturers require/gi, "");
+  // Sentences about OTHER suppliers' minimums are not claims about ours.
+  //
+  // This used to strip one hard-coded competitor clause, which worked until the
+  // PVC mold block needed to say why competitors set 50 and 100-piece PVC
+  // minimums — a true statement about them that the check read as a false one
+  // about us. Stripping by SENTENCE and only where a third-party subject is
+  // present keeps the check honest: "our minimum is 50 pieces" still fails,
+  // because there is no other supplier in that sentence.
+  //
+  // Deliberately narrow. "Team", "club" and similar were left out on purpose —
+  // section 11 records what happens when a skip list is built from ordinary
+  // marketing vocabulary: the guard switches itself off and nobody notices.
+  const THIRD_PARTY =
+    /\b(?:other|others|competitor|competitors|rival|elsewhere|most (?:patch )?(?:suppliers|manufacturers|shops|companies)|their|they)\b/i;
+  const t = text
+    .split(/(?<=[.?!])\s+/)
+    .filter((sentence) => !THIRD_PARTY.test(sentence))
+    .join(" ");
   const found = new Set<number>();
   const patterns = [
     /minimum(?: order)?(?: for [^.]{0,40})? (?:at Panda Patches )?is (?:just )?(\d{1,3}) pieces/gi,
@@ -329,7 +347,7 @@ const CLAIM_PATTERNS: RegExp[] = [
 const WAIVERS: { re: RegExp; why: string }[] = [
   { re: /most patch manufacturers require/i, why: "describes competitors, not us" },
   { re: /competitors?\b/i, why: "competitor comparison" },
-  { re: /other patch (makers|shops|manufacturers)/i, why: "competitor comparison" },
+  { re: /other (patch |PVC |)\w*\s?(makers|shops|manufacturers|suppliers)/i, why: "competitor comparison" },
   { re: /(Monterey|Signature Patches|EverLighten|ShipBob|Wikipedia|IBISWorld|PPAI)/i, why: "third-party cited source" },
   { re: /starter pack|fixed-price pack|offer pack|packs? (begin|start)/i, why: "fixed-price packs, not the order minimum" },
   { re: /median|average order|% of orders|share of orders/i, why: "production statistic, not a minimum" },
@@ -1015,6 +1033,26 @@ const FROM_PRICE_TYPES: Record<string, string> = {
       if (!isAppRoute && !looksLikeBlogSlug) {
         failures.push(`typeClusters[${type}] extra link ${extra.href} is neither an app route nor a blog slug.`);
       }
+    }
+  }
+}
+
+
+// 19. INDUSTRY-PAGE GUIDE LINKS MUST POINT AT A REAL PAGE (CL3A9B A3.4).
+//
+// Same reasoning as section 18: these sit on commercial pages, so a dead one is
+// a dead link where a buyer is deciding. The blog slugs cannot be checked from
+// here (they live in Sanity), but the KEY of each entry must be a real app
+// route, which catches the likelier mistake of renaming an industry page and
+// leaving this map behind.
+{
+  for (const industrySlug of Object.keys(INDUSTRY_GUIDES)) {
+    const routeDir = path.join(process.cwd(), "src", "app", industrySlug);
+    if (!fs.existsSync(path.join(routeDir, "page.tsx"))) {
+      failures.push(
+        `industryGuides has an entry for /${industrySlug}, which is not an app route. ` +
+          `Renaming a page without updating this map leaves the guides orphaned again.`,
+      );
     }
   }
 }

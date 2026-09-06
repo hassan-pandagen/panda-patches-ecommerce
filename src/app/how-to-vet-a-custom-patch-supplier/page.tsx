@@ -140,6 +140,30 @@ export default function VetSupplierGuide() {
             </Link>
             , and every order includes a digital mockup before you pay.
           </p>
+          <p className="text-[1rem] text-gray-700 leading-[1.8] mt-4">
+            We have also run the checklist against three named competitors and published the
+            results, minimums, published pricing and turnaround included:{" "}
+            <Link href="/panda-patches-vs-monterey-company" prefetch={false} className="text-panda-green font-semibold underline">
+              Panda Patches vs Monterey Company
+            </Link>
+            ,{" "}
+            <Link href="/panda-patches-vs-signature-patches" prefetch={false} className="text-panda-green font-semibold underline">
+              vs Signature Patches
+            </Link>{" "}
+            and{" "}
+            <Link href="/panda-patches-vs-everlighten" prefetch={false} className="text-panda-green font-semibold underline">
+              vs EverLighten
+            </Link>
+            . For a wider view of the market, our{" "}
+            <Link href="/top-10-custom-patch-manufacturers-in-the-usa-2026-honest-review" prefetch={false} className="text-panda-green font-semibold underline">
+              review of ten US patch manufacturers
+            </Link>{" "}
+            compares minimums, published pricing and review scores across the field, and{" "}
+            <Link href="/case-studies" prefetch={false} className="text-panda-green font-semibold underline">
+              our case studies
+            </Link>{" "}
+            show the same checks applied to real orders.
+          </p>
         </section>
 
         <div className="mt-12">

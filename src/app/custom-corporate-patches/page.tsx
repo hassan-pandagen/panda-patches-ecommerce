@@ -20,6 +20,7 @@ import ProductReviews from "@/components/reviews/ProductReviews";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
 import NoChargeBlock from "@/components/product/NoChargeBlock";
+import IndustryGuidesBlock from "@/components/product/IndustryGuidesBlock";
 
 // Corporate-specific FAQs
 const corporateFAQs = [
@@ -283,6 +284,7 @@ export default async function CorporatePatchesPage() {
       {/* 7. CTA */}
       <CTASection />
 
+      <IndustryGuidesBlock slug="custom-corporate-patches" />
       <NoChargeBlock />
       <Footer />
     </main>

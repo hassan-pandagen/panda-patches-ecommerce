@@ -290,6 +290,33 @@ export default function EventPatchesPage() {
 
         <MakerNote intro="Event work is judged on one thing: whether the boxes are there on the day. That is why the in-hand date is confirmed in writing before any rush fee is charged, and why every design is counted and bagged on its own before it ships." />
       </main>
+            <section className="w-full pb-2 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-[56.25rem]">
+          {/* A3.6: the case studies belong beside the claims they prove, not in
+              a nav list. Each of these three pages makes a volume-and-deadline
+              promise that one of the studies is the receipt for. */}
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mt-6">
+            Three event orders we have written up in full:{" "}
+            <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-semibold underline">
+              9,600 patches for Wise&rsquo;s Nasdaq Times Square activation
+            </Link>
+            , 1,500 patches in nine business days for{" "}
+            <Link href="/case-studies/nashville-event-patches-2026" className="text-panda-green font-semibold underline">
+              a Nashville activation
+            </Link>
+            , and 1,200 woven and leather patches for{" "}
+            <Link href="/case-studies/karbach-brewing-patches" className="text-panda-green font-semibold underline">
+              Karbach Brewing
+            </Link>
+            .{" "}
+            <Link href="/case-studies" className="text-panda-green font-semibold underline">
+              All case studies
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+
       <NoChargeBlock />
       <Footer />
     </>

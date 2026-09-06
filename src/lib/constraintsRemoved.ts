@@ -179,7 +179,7 @@ export const DIFFERENTIATORS: Differentiator[] = [
  * mold comparative permitted. The figures are UltraPatches' published range by
  * size and 2D/3D construction; Vivipins bundles a $50 mold into the quote.
  */
-export const MOULD_COMPARATIVE =
+export const MOLD_COMPARATIVE =
   "Where competitors publish a figure, PVC mold fees run $50 to $140 per design, and some bundle the mold into the quote instead. A new mold is cut for every design, so on a small PVC run it can cost more than the patches. We charge $0.";
 
 /**

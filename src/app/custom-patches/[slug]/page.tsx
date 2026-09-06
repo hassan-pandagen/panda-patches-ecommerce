@@ -12,6 +12,7 @@ import ProductDepthBlock from "@/components/product/ProductDepthBlock";
 import YarnColourChart from "@/components/letters/YarnColourChart";
 import NoChargeBlock from "@/components/product/NoChargeBlock";
 import GoingDeeperBlock from "@/components/product/GoingDeeperBlock";
+import PvcMoldBlock, { PVC_MOLD_FAQS } from "@/components/product/PvcMoldBlock";
 import { getSpecsForSlug } from "@/lib/patchSpecs";
 import { aeoContent } from "@/lib/aeoContent";
 import { getSchemaPricingTiers } from "@/lib/pricingCalculator";
@@ -208,7 +209,7 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
       {/* FAQ Schema for SEO — unique per product slug to avoid duplicate FAQPage errors */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={generateSchemaScript(generateFAQSchema(slugFaqMap[slug] ?? genericFaqs))}
+        dangerouslySetInnerHTML={generateSchemaScript(generateFAQSchema([...(slugFaqMap[slug] ?? genericFaqs), ...(slug === "pvc" ? PVC_MOLD_FAQS : [])]))}
       />
 
       <Navbar />
@@ -442,6 +443,10 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
           page matches what's marked up (was rendering genericFaqs while the
           schema used the per-slug set; CL9EE9_1 follow-up). */}
       <ContentSection />
+      {/* PVC alone gets a mold block. It is the one fee competitors publish,
+          and the reason their PVC minimums are 50-100 while ours is 5. */}
+      {slug === "pvc" && <PvcMoldBlock />}
+
       <GoingDeeperBlock slug={slug} title={data.title} />
 
       <NoChargeBlock />

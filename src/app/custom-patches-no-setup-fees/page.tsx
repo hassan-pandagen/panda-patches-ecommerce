@@ -35,7 +35,7 @@ import {
   MIN_ORDER_PER_DESIGN,
   CONSTRAINT_HUBS,
   DIFFERENTIATORS,
-  MOULD_COMPARATIVE,
+  MOLD_COMPARATIVE,
   SAMPLE_COMPARATIVE,
   BENCHMARK_NOTE,
 } from "@/lib/constraintsRemoved";
@@ -259,7 +259,7 @@ export default function NoSetupFeesPage() {
             </table>
           </div>
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-4">
-            {MOULD_COMPARATIVE}
+            {MOLD_COMPARATIVE}
           </p>
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-3">
             {SAMPLE_COMPARATIVE}
