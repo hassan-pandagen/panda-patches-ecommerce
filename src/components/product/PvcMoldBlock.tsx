@@ -4,10 +4,13 @@
  * WHY PVC GETS ITS OWN BLOCK when the shared NoChargeBlock already lists mold
  * at $0: on every other type, free setup is unremarkable — the September 2026
  * benchmark found none of fourteen published US suppliers charging for it. The
- * mold is the exception. It is the one fee competitors do publish, at $50 to
- * $140 per design, and it is the reason six of those fourteen set their PVC
- * minimum at 50 or 100 pieces. A tooling charge and a high minimum are the same
- * decision: spread the mold across enough units that it stops being visible.
+ * mold is the exception. It is the one fee suppliers in this market do charge,
+ * and it is the reason six of those fourteen set their PVC minimum at 50 or 100
+ * pieces. A tooling charge and a high minimum are the same decision: spread the
+ * mold across enough units that it stops being visible.
+ *
+ * No figure and no competitor named, by owner decision on 2026-09-07. The claim
+ * is true if a single supplier charges a mold fee, so nothing here goes stale.
  *
  * So this block does the thing the generic list cannot. It explains why the
  * fee exists, what it does to a small order, and what removing it actually
@@ -25,12 +28,12 @@ export const PVC_MOLD_FAQS = [
   {
     question: "Do PVC patches have a mold fee?",
     answer:
-      "No. The mold is $0 at Panda Patches, at every quantity. Every PVC design needs its own mold cut before production, and it is the one fee competitors in this market do publish: where a figure is given it runs $50 to $140 per design, varying by size and by whether the patch is 2D or 3D. Some suppliers bundle it into the quote instead of listing it. We do not charge it separately or fold it into the per-piece price.",
+      "No. The mold is $0 at Panda Patches, at every quantity. Every PVC design needs its own mold cut before production, and billing that tooling back as a separate one-time charge per design is normal in this industry — some suppliers list it, others fold it into the quote. We do neither. It is not charged separately and it is not buried in the per-piece price.",
   },
   {
     question: "Why do other PVC suppliers have a 50 or 100-piece minimum?",
     answer:
-      "Because of the mold. A tooling charge and a high minimum are the same decision viewed from two sides: if a supplier spends $50 to $140 cutting a mold, they either bill it to you or set a minimum large enough to absorb it across the run. In a September 2026 benchmark of fourteen published US patch suppliers, six set their PVC minimum at 50 to 100 pieces. Including the mold is what lets our PVC minimum be 5 pieces per design like every other type.",
+      "Because of the mold. A tooling charge and a high minimum are the same decision viewed from two sides: cutting a mold costs a supplier real money, so they either bill it to you or set a minimum large enough to absorb it across the run. In a September 2026 benchmark of fourteen published US patch suppliers, six set their PVC minimum at 50 to 100 pieces. Including the mold is what lets our PVC minimum be 5 pieces per design like every other type.",
   },
   {
     question: "Do I pay for a new mold if I reorder the same PVC design?",
@@ -54,10 +57,10 @@ export default function PvcMoldBlock() {
         </p>
         <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-6">
           That is also why PVC minimums are usually so high elsewhere. For a supplier, a tooling
-          charge and a high minimum are the same decision seen from two sides: spend $50 to $140
-          cutting a mold and you either bill it to the customer or set a floor big enough to bury
-          it. Six of the fourteen suppliers we benchmarked set their PVC minimum at 50 to 100
-          pieces. Including the mold is what lets our PVC minimum be{" "}
+          charge and a high minimum are the same decision seen from two sides: cutting a mold costs
+          real money, so you either bill it to the customer or set a floor big enough to bury it.
+          Six of the fourteen suppliers we benchmarked set their PVC minimum at 50 to 100 pieces.
+          Including the mold is what lets our PVC minimum be{" "}
           <Link href={CONSTRAINT_HUBS.minimum} className="text-panda-green font-semibold underline">
             {MIN_ORDER_DEFAULT} pieces per design
           </Link>
@@ -76,7 +79,7 @@ export default function PvcMoldBlock() {
         </div>
 
         <p className="mt-6 text-[0.8125rem] text-gray-500">
-          Competitor figures come from a September 2026 benchmark of fourteen published US patch
+          Minimum-order figures come from a September 2026 benchmark of fourteen published US patch
           suppliers, quoted from their own public pages. More on{" "}
           <Link href={CONSTRAINT_HUBS.fees} className="text-panda-green underline">
             what we do not charge for

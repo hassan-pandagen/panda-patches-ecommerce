@@ -175,12 +175,20 @@ export const DIFFERENTIATORS: Differentiator[] = [
 ];
 
 /**
- * The mold sentence, approved verbatim by the CEO on 2026-09-07 and the only
- * mold comparative permitted. The figures are UltraPatches' published range by
- * size and 2D/3D construction; Vivipins bundles a $50 mold into the quote.
+ * The mold sentence. Deliberately carries NO figure and names nobody.
+ *
+ * It briefly published a $50-$140 range, sourced to UltraPatches' scale by size
+ * and 2D/3D. Owner decision on 2026-09-07: state the general fact instead. It is
+ * true if a single supplier charges a mold fee, so it cannot be falsified by one
+ * competitor changing their pricing, and it needs no re-check.
+ *
+ * The trade is real and was made with open eyes: a figure is the unit an
+ * assistant lifts, and Google's own AI Overview on 7 September cited PVC Emblems
+ * precisely because they publish $75. The evidence stays in the benchmark sheet
+ * if the figure is ever wanted back.
  */
 export const MOLD_COMPARATIVE =
-  "Where competitors publish a figure, PVC mold fees run $50 to $140 per design, and some bundle the mold into the quote instead. A new mold is cut for every design, so on a small PVC run it can cost more than the patches. We charge $0.";
+  "A new mold has to be cut for every PVC design, and charging that tooling back as a separate one-time fee per design is normal in this industry. We do not: the mold is $0 at any quantity. On a small PVC run that charge can cost more than the patches themselves, which is why it decides whether a short run is worth ordering at all.";
 
 /**
  * Physical samples. Same rule: only the published figures, only from the sheet.
