@@ -67,7 +67,7 @@ const faqs = [
   {
     question: "Is there a charge for the mockup itself?",
     answer:
-      "No. The digital mockup is $0 and arrives within 12 to 24 hours. You see your design as a patch before you commit to production.",
+      "No. The digital mockup is $0 and arrives within 12 to 24 hours, at every order size, with unlimited free revisions. This one is worth checking on any quote you compare: proof fees are real in this industry. One large US patch supplier publishes a $19.99 charge for a proof on orders under $300, free only above that, which means a small buyer either pays to see their design or sends it to production unseen. Ours is free at five pieces and at five thousand.",
   },
   {
     question: "Do you charge for shipping?",
@@ -194,6 +194,14 @@ export default function NoSetupFeesPage() {
             The same logic runs through PVC and its mould. A mould is cut for each new design, and
             on a small PVC order that tooling can cost more than the patches. Included, it stops
             being a reason to over-order.
+          </p>
+          <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-4">
+            The proof is the one people forget to check. Seeing your design before it is
+            manufactured reads like a basic courtesy rather than a line item, and it is not always
+            free: one large US patch supplier publishes a $19.99 proof charge on orders under $300,
+            waived above it. That is the wrong way round, because the buyer ordering ten patches is
+            the one who most needs to see it first. Ours is free at every size, with unlimited
+            revisions, and production does not start until you approve.
           </p>
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-8">
             Worth checking on any quote you compare, ours included: many published patch prices
