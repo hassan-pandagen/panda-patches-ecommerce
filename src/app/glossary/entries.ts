@@ -193,7 +193,7 @@ export const glossaryEntries: GlossaryEntry[] = [
     definition:
       "A morale patch is a small, usually humorous or symbolic patch worn on tactical gear, uniforms, and packs to signal identity, unit affiliation, or attitude rather than rank. Almost always Velcro-backed so it can be swapped freely, it is a cultural format rather than a manufacturing method — morale patches are made in embroidery, PVC, or woven.",
     fact:
-      "More than half of the Velcro-backed orders we produce — 55% — are PVC rather than embroidered. Moulded rubber has quietly overtaken thread as the default morale-patch material.",
+      "More than half of the Velcro-backed orders we produce — 55% — are PVC rather than embroidered. Molded rubber has quietly overtaken thread as the default morale-patch material.",
     factNote: "facts bank 2026-07-19: velcro×type crosstab n=73",
     whenToChoose: [
       "Choose PVC for morale patches that live outdoors on plate carriers and packs: it shrugs off rain, mud, and abrasion, and holds crisp small detail.",
@@ -219,7 +219,7 @@ export const glossaryEntries: GlossaryEntry[] = [
     category: "Patch Types",
     mode: "stub",
     definition:
-      "A PVC patch is moulded from soft, flexible rubber rather than stitched or woven from thread. Colour is built up in layers inside a custom mould, producing a waterproof, dimensional patch that holds sharp edges and small detail. Unlike thread, PVC does not fray, absorb water, or fade under sun and abrasion.",
+      "A PVC patch is molded from soft, flexible rubber rather than stitched or woven from thread. Colour is built up in layers inside a custom mold, producing a waterproof, dimensional patch that holds sharp edges and small detail. Unlike thread, PVC does not fray, absorb water, or fade under sun and abrasion.",
     fact:
       "The median PVC order we produce is 40 pieces — four times the chenille median and well above the 20-piece all-type median. PVC is bought by teams and units, rarely by individuals.",
     factNote: "facts bank 2026-07-19: median qty n=98",
@@ -229,7 +229,7 @@ export const glossaryEntries: GlossaryEntry[] = [
     ],
     photo: {
       src: "/assets/glossary/pvc-patch.webp",
-      alt: "Triangular moulded PVC patch in black and cream, showing the raised rubber layers and crisp fine lettering",
+      alt: "Triangular molded PVC patch in black and cream, showing the raised rubber layers and crisp fine lettering",
     },
     fullGuide: { href: "/custom-patches/pvc", label: "Custom PVC Patches" },
     related: [
@@ -312,7 +312,7 @@ export const glossaryEntries: GlossaryEntry[] = [
       "Embroidery digitizing is the conversion of artwork into a stitch file — a machine-readable map of every stitch's type, direction, sequence, and density. It is not an automatic image conversion: a digitizer makes judgement calls about underlay, pull compensation, and stitch angle that decide whether the finished patch lies flat or puckers.",
     fact:
       "We charge nothing for digitizing, on any order — an industry outlier, since setup and digitizing fees of $20 to $100 per design are standard elsewhere and are the most common hidden cost on a first patch order.",
-    factNote: "verified against site pricing policy (no setup/digitizing/mould/art fees)",
+    factNote: "verified against site pricing policy (no setup/digitizing/mold/art fees)",
     whenToChoose: [
       "Every embroidered patch needs digitizing — the question is only who does it and what they charge. Supply vector artwork (AI, EPS, PDF, SVG) where possible; it digitizes cleaner than a low-resolution raster.",
       "Expect a proof before production. A design digitized well at one size does not automatically scale — resizing a stitch file significantly usually means redigitizing it.",

@@ -382,7 +382,7 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
               <p className="text-[0.875rem] text-gray-600 leading-[1.7]">
                 <strong className="text-panda-dark">Chenille on our own machines.</strong> Our
                 factory tour includes the digitally controlled chenille machines that lay the
-                looped yarn pile, alongside embroidery, PVC moulding and laser-engraved leather.
+                looped yarn pile, alongside embroidery, PVC molding and laser-engraved leather.
                 One programmed loop path per design is why every letter in a set comes out
                 identical.{" "}
                 <Link href="/about#see-it-made" className="text-panda-green font-semibold underline">

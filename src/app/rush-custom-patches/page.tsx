@@ -223,7 +223,7 @@ export default function RushCustomPatchesPage() {
             <p className="text-[0.875rem] text-gray-600 leading-[1.7]">
               <strong className="text-panda-dark">The floor this runs on.</strong> Our own facility
               in Pakistan, operated by Panda Apparel &amp; Technology: computerized embroidery,
-              digitally controlled chenille, PVC moulding and laser-engraved leather, ending in the
+              digitally controlled chenille, PVC molding and laser-engraved leather, ending in the
               stock room. Owning the floor is why rush capacity is ours to schedule rather than
               something we queue for.{" "}
               <Link href="/about#see-it-made" className="text-panda-green font-semibold underline">

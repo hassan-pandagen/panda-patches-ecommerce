@@ -86,7 +86,7 @@ export default function GoingDeeperBlock({ slug, title }: { slug: string; title:
           </Link>
           , with{" "}
           <Link href={CONSTRAINT_HUBS.fees} className={link}>
-            no setup, digitizing or mould fees
+            no setup, digitizing or mold fees
           </Link>
           . For a fixed price with no calculator, see{" "}
           <Link href="/offers" className={link}>

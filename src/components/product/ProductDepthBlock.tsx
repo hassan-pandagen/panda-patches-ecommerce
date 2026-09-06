@@ -139,7 +139,7 @@ export default function ProductDepthBlock({ slug, productName, title }: Props) {
             </h3>
             <p className="text-gray-600 text-[0.875rem] leading-[1.7] font-medium mb-4">
               Live prices for a {LADDER_SIZE}-inch design, straight from the same calculator
-              that runs checkout — not an estimate. No setup, digitizing, or mould fees, and
+              that runs checkout — not an estimate. No setup, digitizing, or mold fees, and
               free worldwide shipping is included at every quantity.
             </p>
             <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white mb-3">

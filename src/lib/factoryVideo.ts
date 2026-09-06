@@ -33,7 +33,15 @@ export const FACTORY_VIDEO = {
    */
   name: "How Custom Patches Are Made — Full Factory Tour | Panda Patches",
 
-  /** The first two paragraphs of the YouTube description, verbatim. */
+  /**
+   * The first two paragraphs of the YouTube description, VERBATIM.
+   *
+   * Note "moulding" below. The rest of the site was normalised to US spelling
+   * on 2026-09-07 ("mold"), and this string was deliberately left alone,
+   * because it is a quotation: schema `description` has to match what the video
+   * actually says, and the video says "moulding". Fix it on YouTube and re-copy
+   * it here — do not fix it here alone, or the two silently diverge.
+   */
   description:
     "This is where your patches are made. A full walk through our production facility — " +
     "computerized embroidery, digitally controlled chenille (every piece in a run identical), " +

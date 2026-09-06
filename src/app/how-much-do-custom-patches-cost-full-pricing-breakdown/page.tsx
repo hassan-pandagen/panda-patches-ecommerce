@@ -167,10 +167,10 @@ const faqSchema = {
     },
     {
       '@type': 'Question',
-      name: 'Do you charge a PVC mould fee?',
+      name: 'Do you charge a PVC mold fee?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: `No. There is no PVC mould (mold) fee at Panda Patches. Custom PVC patches elsewhere often carry a one-time mould charge of $50 to $100; our PVC price is all-in with no separate tooling fee. A single PVC patch is a flat $100, and 100 PVC patches cost ${orderTotal('Custom PVC Patches', 3, 100)} (${calcPerPc('Custom PVC Patches', 3, 100)} per piece) for a 3-inch patch.`,
+        text: `No. There is no PVC mold (mold) fee at Panda Patches. Custom PVC patches elsewhere often carry a one-time mold charge of $50 to $100; our PVC price is all-in with no separate tooling fee. A single PVC patch is a flat $100, and 100 PVC patches cost ${orderTotal('Custom PVC Patches', 3, 100)} (${calcPerPc('Custom PVC Patches', 3, 100)} per piece) for a 3-inch patch.`,
       },
     },
     {
@@ -308,7 +308,7 @@ export default function PricingPage() {
             How Much Do Custom Patches Cost?
           </h1>
           <p className="text-lg text-gray-200 leading-relaxed max-w-3xl">
-            <Link href="/custom-patches/embroidered" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Custom embroidered patches</Link> cost <strong className="text-[#dcff70]">$0.90 to $5.87 per piece</strong> for a 3-inch patch, depending on quantity. A 25-pack runs about $147 total; a 100-pack runs about $255. Smaller orders cost more per piece. Free worldwide shipping and a mockup in 12-24 hours are included on every order. No setup fees — your quoted price is all-in, with no digitizing, setup, or PVC mould fees. <Link href="/custom-patches/woven" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Woven patches</Link> cost more per piece because of the finer weave.
+            <Link href="/custom-patches/embroidered" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Custom embroidered patches</Link> cost <strong className="text-[#dcff70]">$0.90 to $5.87 per piece</strong> for a 3-inch patch, depending on quantity. A 25-pack runs about $147 total; a 100-pack runs about $255. Smaller orders cost more per piece. Free worldwide shipping and a mockup in 12-24 hours are included on every order. No setup fees — your quoted price is all-in, with no digitizing, setup, or PVC mold fees. <Link href="/custom-patches/woven" className="text-[#dcff70] underline decoration-2 underline-offset-4 hover:no-underline">Woven patches</Link> cost more per piece because of the finer weave.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
@@ -510,7 +510,7 @@ export default function PricingPage() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-black text-gray-900 mb-4">Fees Other Patch Companies Charge — and Panda Patches Doesn&apos;t</h2>
           <p className="text-gray-600 leading-relaxed mb-6 max-w-3xl">
-            Most custom patch quotes aren&apos;t the price you actually pay. Across the US market, companies commonly add a <strong>digitizing fee ($10–$30)</strong>, a <strong>PVC mould fee ($50–$100)</strong>, plus art, proof, and setup fees on top of the advertised per-patch price — which is how a &quot;$1 patch&quot; becomes $3–$5 at checkout. <strong className="text-gray-900">At Panda Patches, your quoted price is the all-in price.</strong>
+            Most custom patch quotes aren&apos;t the price you actually pay. Across the US market, companies commonly add a <strong>digitizing fee ($10–$30)</strong>, a <strong>PVC mold fee ($50–$100)</strong>, plus art, proof, and setup fees on top of the advertised per-patch price — which is how a &quot;$1 patch&quot; becomes $3–$5 at checkout. <strong className="text-gray-900">At Panda Patches, your quoted price is the all-in price.</strong>
           </p>
           <div className="overflow-x-auto rounded-2xl border border-gray-200">
             <table className="w-full text-sm">
@@ -525,7 +525,7 @@ export default function PricingPage() {
                 {[
                   { fee: 'Setup fee', other: '$20–$50', panda: '$0' },
                   { fee: 'Digitizing fee', other: '$10–$30', panda: '$0' },
-                  { fee: 'PVC mould fee', other: '$50–$100', panda: '$0' },
+                  { fee: 'PVC mold fee', other: '$50–$100', panda: '$0' },
                   { fee: 'Art / proof fee', other: '$10–$25', panda: '$0' },
                   { fee: 'Revisions', other: 'Per revision', panda: '$0 — unlimited' },
                   { fee: 'Iron-on & sew-on backing', other: 'Sometimes extra', panda: '$0 (both free)' },

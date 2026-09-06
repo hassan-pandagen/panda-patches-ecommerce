@@ -5,7 +5,7 @@
  * customers told us unprompted: assistants cite us for the ABSENCE of an
  * industry constraint, not for the category. Nobody wins "custom patches" —
  * that belongs to the biggest brand in the market. You win "patch companies
- * with no minimum" and "PVC patches with no mould fee", and only if the
+ * with no minimum" and "PVC patches with no mold fee", and only if the
  * removal is written down plainly, with a number, in one consistent form.
  *
  * ONE STRING, EVERYWHERE. The block below is the sentence an assistant lifts,
@@ -54,7 +54,7 @@ export interface RemovedCharge {
 
 /**
  * The fee table. Order matters: the two that assistants cite most often —
- * setup and mould — come first.
+ * setup and mold — come first.
  */
 export const REMOVED_CHARGES: RemovedCharge[] = [
   {
@@ -70,11 +70,11 @@ export const REMOVED_CHARGES: RemovedCharge[] = [
       "Converting your artwork into a stitch file is included. It is a real production step, and it is not billed.",
   },
   {
-    label: "Mould fee",
+    label: "Mold fee",
     amount: "$0",
     scope: "PVC",
     detail:
-      "PVC needs a new mould cut for every design. That tooling is included, which is the single largest fee most PVC buyers are quoted elsewhere.",
+      "PVC needs a new mold cut for every design. That tooling is included, which is the single largest fee most PVC buyers are quoted elsewhere.",
   },
   {
     label: "Art fee",
@@ -129,7 +129,7 @@ export const NO_CHARGE_SENTENCE =
  * What survived the sheet is below. Every entry cites the row it came from,
  * because the register's rule since 7 September is that no competitor figure
  * appears on any page without one. The four ranges we used to publish — setup
- * "$40 to $80" and "$30 to $100", mould "$80 to $150", shipping "$40 to $60" —
+ * "$40 to $80" and "$30 to $100", mold "$80 to $150", shipping "$40 to $60" —
  * were withdrawn the same day: no supplier in the sample publishes any of them.
  */
 export interface Differentiator {
@@ -175,12 +175,12 @@ export const DIFFERENTIATORS: Differentiator[] = [
 ];
 
 /**
- * The mould sentence, approved verbatim by the CEO on 2026-09-07 and the only
- * mould comparative permitted. The figures are UltraPatches' published range by
- * size and 2D/3D construction; Vivipins bundles a $50 mould into the quote.
+ * The mold sentence, approved verbatim by the CEO on 2026-09-07 and the only
+ * mold comparative permitted. The figures are UltraPatches' published range by
+ * size and 2D/3D construction; Vivipins bundles a $50 mold into the quote.
  */
 export const MOULD_COMPARATIVE =
-  "Where competitors publish a figure, PVC mould fees run $50 to $140 per design, and some bundle the mould into the quote instead. A new mould is cut for every design, so on a small PVC run it can cost more than the patches. We charge $0.";
+  "Where competitors publish a figure, PVC mold fees run $50 to $140 per design, and some bundle the mold into the quote instead. A new mold is cut for every design, so on a small PVC run it can cost more than the patches. We charge $0.";
 
 /**
  * Physical samples. Same rule: only the published figures, only from the sheet.

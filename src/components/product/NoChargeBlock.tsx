@@ -54,7 +54,7 @@ export default function NoChargeBlock({ className = "" }: { className?: string }
         <p className="text-[0.875rem] text-gray-600 leading-[1.7]">
           The per-piece price is the whole price.{" "}
           <Link href={CONSTRAINT_HUBS.fees} className="text-panda-green font-semibold underline">
-            What no setup, digitizing or mould fees actually saves you
+            What no setup, digitizing or mold fees actually saves you
           </Link>
           ,{" "}
           <Link href={CONSTRAINT_HUBS.minimum} className="text-panda-green font-semibold underline">

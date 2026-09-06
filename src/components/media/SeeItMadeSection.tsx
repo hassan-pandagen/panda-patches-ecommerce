@@ -40,7 +40,7 @@ export default function SeeItMadeSection() {
             <p className="mb-4">
               The tour runs through the four processes behind most of what we ship: computerized
               embroidery machines stitching thread onto twill, digitally controlled chenille
-              machines laying the looped yarn that gives varsity letters their pile, PVC moulding
+              machines laying the looped yarn that gives varsity letters their pile, PVC molding
               for the soft rubber patches, and a laser engraving genuine leather.
             </p>
             <p className="mb-0">

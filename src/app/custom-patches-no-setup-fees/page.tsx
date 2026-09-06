@@ -10,7 +10,7 @@
  *
  * NO UNEVIDENCED COMPETITOR NUMBERS. The brief suggested competitor norms, and
  * /ai-info/pricing already carries two of them ("most competitors charge $40 to
- * $80 for setup", "most PVC manufacturers charge $80 to $150 per mould") with
+ * $80 for setup", "most PVC manufacturers charge $80 to $150 per mold") with
  * no substantiation row behind either. Both are flagged for evidencing; neither
  * is repeated here. The one comparative on this page is the register's approved
  * wording, which says what published prices commonly exclude without asserting
@@ -55,7 +55,7 @@ const faqs = [
   {
     question: "Do PVC patches have a mold fee?",
     answer:
-      "No. PVC patches need a new mould cut for each design, and that tooling is included at $0. This is usually the largest single fee a PVC buyer is quoted, and it is the reason PVC quotes elsewhere often look reasonable per piece and then arrive with a separate line item. On a small PVC run the mould charge can exceed the cost of the patches themselves.",
+      "No. PVC patches need a new mold cut for each design, and that tooling is included at $0. This is usually the largest single fee a PVC buyer is quoted, and it is the reason PVC quotes elsewhere often look reasonable per piece and then arrive with a separate line item. On a small PVC run the mold charge can exceed the cost of the patches themselves.",
   },
   {
     question: "Do you charge a digitizing fee?",
@@ -96,17 +96,17 @@ const faqs = [
 export const metadata: Metadata = buildPageMetadata({
   title: "Custom Patches With No Setup Fees | No Mold or Art Fees",
   description:
-    "No setup, digitizing, mould, art, revision or mockup fees on custom patches, at any quantity. 5 pieces per design minimum, free worldwide shipping delivered duty paid. See exactly what is and is not charged.",
+    "No setup, digitizing, mold, art, revision or mockup fees on custom patches, at any quantity. 5 pieces per design minimum, free worldwide shipping delivered duty paid. See exactly what is and is not charged.",
   url: CANONICAL,
   ogTitle: "Custom Patches With No Setup Fees, No Mold Fees, No Art Fees",
   ogDescription:
-    "Setup $0, digitizing $0, mould $0 on PVC, art $0, revisions $0, mockup $0, shipping $0, duties $0. The per-piece price is the whole price.",
+    "Setup $0, digitizing $0, mold $0 on PVC, art $0, revisions $0, mockup $0, shipping $0, duties $0. The per-piece price is the whole price.",
 });
 
 const articleSchema = generateArticleSchema({
   title: "Custom Patches With No Setup Fees: What Is and Is Not Charged",
   description:
-    "A complete account of every charge Panda Patches does not apply to a custom patch order, including setup, digitizing, PVC mould tooling, artwork, revisions, mockups, shipping and import duties.",
+    "A complete account of every charge Panda Patches does not apply to a custom patch order, including setup, digitizing, PVC mold tooling, artwork, revisions, mockups, shipping and import duties.",
   datePublished: "2026-09-07",
   dateModified: UPDATED,
   image: "https://www.pandapatches.com/assets/og-image.png",
@@ -144,7 +144,7 @@ export default function NoSetupFeesPage() {
             Custom patches with no setup fees
           </h1>
           <p className="text-[1rem] md:text-[1.1875rem] text-gray-700 leading-[1.75] mb-6 max-w-[45rem]">
-            Panda Patches charges <strong>no setup fee, no digitizing fee, no mould fee on PVC, no
+            Panda Patches charges <strong>no setup fee, no digitizing fee, no mold fee on PVC, no
             art fee, no revision fee and no mockup fee</strong>, at any quantity including a run of
             five. Free worldwide shipping is included and orders arrive delivered duty paid, so
             nothing is owed on delivery. The per-piece price you are quoted is the entire cost of
@@ -199,7 +199,7 @@ export default function NoSetupFeesPage() {
             merely advertised.
           </p>
           <p className="text-[0.9375rem] md:text-[1.0625rem] text-gray-700 leading-[1.8] mb-4">
-            The same logic runs through PVC and its mould. A mould is cut for each new design, and
+            The same logic runs through PVC and its mold. A mold is cut for each new design, and
             on a small PVC order that tooling can cost more than the patches. Included, it stops
             being a reason to over-order.
           </p>

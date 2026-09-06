@@ -32,7 +32,7 @@ const ironOnFAQs = [
   {
     question: "Which patch types support iron-on backing?",
     answer:
-      "Iron-on backing is available on every patch type we make. What changes is the technique, not the availability. Embroidered, woven, printed (sublimation), leather and sequin are pressed from the front. PVC and chenille are pressed from behind, through the garment, so the heat reaches the adhesive without touching the moulded rubber or flattening the yarn pile. Sew-on and Velcro (hook-and-loop, charged separately on every order) remain available on every type.",
+      "Iron-on backing is available on every patch type we make. What changes is the technique, not the availability. Embroidered, woven, printed (sublimation), leather and sequin are pressed from the front. PVC and chenille are pressed from behind, through the garment, so the heat reaches the adhesive without touching the molded rubber or flattening the yarn pile. Sew-on and Velcro (hook-and-loop, charged separately on every order) remain available on every type.",
   },
   {
     question: "Can I also sew my iron-on patch onto the garment?",
