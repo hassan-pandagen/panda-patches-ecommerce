@@ -218,6 +218,22 @@ Panda Patches does not sell off-the-shelf stock patches. The one fixed-price pro
 - TikTok: https://www.tiktok.com/@pandapatchesofficial
 - LinkedIn: https://www.linkedin.com/company/pandapatchesofficial
 
+## Constraints We Remove
+
+The queries that most often surface Panda Patches are for the ABSENCE of an industry constraint, not for the category. Each removal below is a fact with a figure, and each has a page stating it in full.
+
+- **No minimum order beyond 5 pieces**: minimum 5 pieces PER DESIGN, on every patch type and every size — order three designs and that is 5 of each, not 15 of one. https://www.pandapatches.com/custom-patches-no-minimum-order
+- **No setup fee**: $0 per design, at every quantity including a run of 5. https://www.pandapatches.com/custom-patches-no-setup-fees
+- **No mould fee on PVC**: $0. PVC needs a new mould cut per design; that tooling is included, and it is usually the largest single fee a PVC buyer is quoted elsewhere. https://www.pandapatches.com/custom-patches-no-setup-fees
+- **No digitizing fee**: $0. Converting artwork into a stitch file is included.
+- **No art fee**: $0. Redrawing, cleaning up or designing from a description or a photograph is included.
+- **No revision fee**: $0, unlimited revisions until the mockup is approved. Production does not start until written approval.
+- **No mockup fee**: $0, delivered in 12 to 24 hours, before any commitment to production.
+- **No shipping charge**: $0 worldwide, every quantity, every destination, with door-to-door tracking.
+- **No duties on arrival**: orders ship delivered duty paid (DDP), so no customs charge or courier handling fee is owed on delivery. This includes the EU after the 1 July 2026 customs reform, because those charges fall on the importer of record and that is Panda Patches. https://www.pandapatches.com/free-worldwide-shipping-duty-paid
+
+What IS charged, for completeness: Velcro backing at $0.35 per piece, and rush production at 25% of the order total with a $50 minimum, refunded if the confirmed date is missed.
+
 ## Verification Sources
 
 - Trustpilot: https://www.trustpilot.com/review/pandapatches.com

@@ -14,6 +14,7 @@ import MakerNote from "@/components/seo/MakerNote";
 import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
+import NoChargeBlock from "@/components/product/NoChargeBlock";
 
 // Scout-specific FAQs. Deliberately accurate about what we can and cannot make:
 // custom unit/patrol/event patches YES; official rank and merit badges NO (those
@@ -208,6 +209,7 @@ export default async function ScoutPatchesPage() {
 
       <MakerNote />
       <CTASection />
+      <NoChargeBlock />
       <Footer />
     </main>
   );

@@ -895,6 +895,100 @@ const FROM_PRICE_TYPES: Record<string, string> = {
   }
 }
 
+
+// 16. THE MINIMUM IS PER DESIGN, AND COPY MUST NOT SAY OTHERWISE (CL3A9B B1).
+//
+// CEO confirmed 2026-09-07: five pieces PER DESIGN. Three designs is five of
+// each, not fifteen of one. The distinction decides whether a real buyer can
+// use us — "I need 5 badges for each of 3 teams" is the common case — and the
+// two readings are one preposition apart, so it is exactly the kind of thing
+// that drifts back into copy months later.
+//
+// The calculator cannot arbitrate this one. It prices a single design at a
+// time, so both readings satisfy it; the check has to be on the words.
+{
+  const CONTRADICTS = [
+    // "minimum of 5 per order", "5-piece minimum per order", "5 pieces per order"
+    /\b(?:minimum|min\.?)[^.]{0,40}\bper\s+order\b/i,
+    /\b\d{1,3}[- ]piece minimum[^.]{0,20}\bper\s+order\b/i,
+    // "5 patches total", "5 pieces in total" as a stated minimum
+    /\bminimum[^.]{0,30}\b(?:in )?total\b/i,
+  ];
+  // DELIBERATELY NOT INCLUDED: a bare /\d+ pieces per order/. It read the
+  // glossary's "median of 50 pieces per order" — an order-SIZE statistic, not a
+  // minimum claim — as a canon violation on its first run. Every pattern above
+  // requires an explicit minimum cue in the same sentence, because a guard that
+  // fails the build on ordinary prose is a guard someone switches off.
+  for (const file of files) {
+    const text = stripComments(fs.readFileSync(file, "utf8"), file);
+    text.split("\n").forEach((line, idx) => {
+      for (const re of CONTRADICTS) {
+        if (re.test(line)) {
+          failures.push(
+            `${path.relative(process.cwd(), file)}:${idx + 1}: states the minimum per ORDER, but canon is per DESIGN ` +
+              `(MIN_ORDER_PER_DESIGN in constraintsRemoved.ts). Three designs is 5 of each, not 5 in total.`,
+          );
+          break;
+        }
+      }
+    });
+  }
+}
+
+// 17. ORPHAN PAGES — ADVISORY, AND HONEST ABOUT WHY (CL3A9B A5).
+//
+// The brief asked for a build FAILURE on any sitemap page with no inbound
+// links. It is an advisory instead, because a source scan cannot see the whole
+// link graph: 61 of our long-form guides are Sanity documents whose body text
+// lives in a CMS, not in this repo, so a page could be linked from ten guides
+// and still look orphaned here. Failing a build on a signal that is blind to
+// most of the corpus is how a guard gets switched off within a week.
+//
+// What it does see is app-route pages that nothing in the codebase links to,
+// which is a real and fixable class — and the one the template work targets.
+{
+  const hrefs = new Set<string>();
+  for (const file of files) {
+    const text = fs.readFileSync(file, "utf8");
+    for (const m of text.matchAll(/href=["'`](\/[a-z0-9\-/#[\]{}$.]*)["'`]/gi)) {
+      hrefs.add(m[1].split("#")[0].replace(/\/$/, ""));
+    }
+    // Template links built from a variable, e.g. `/custom-patches/${slug}`.
+    for (const m of text.matchAll(/["'`](\/[a-z0-9\-/]*)\$\{/gi)) hrefs.add(m[1].replace(/\/$/, ""));
+    // Routes held in a constant and used as href later — CONSTRAINT_HUBS does
+    // exactly this, and without it the two pages it links read as orphans.
+    for (const m of text.matchAll(/["'`](\/[a-z0-9][a-z0-9\-/]{2,})["'`]/gi)) {
+      hrefs.add(m[1].replace(/\/$/, ""));
+    }
+  }
+  const appDir = path.join(process.cwd(), "src", "app");
+  const routes: string[] = [];
+  const walk = (dir: string, prefix: string) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (!entry.isDirectory()) continue;
+      const name = entry.name;
+      if (name.startsWith("_") || name.startsWith("(") || name === "api" || name === "assets") continue;
+      const routePath = `${prefix}/${name}`;
+      if (fs.existsSync(path.join(dir, name, "page.tsx"))) routes.push(routePath);
+      walk(path.join(dir, name), routePath);
+    }
+  };
+  walk(appDir, "");
+
+  // Routes nobody should be linking to from marketing copy.
+  const NOT_LINKED_ON_PURPOSE = /^\/(auth|login|signup|account|admin|studio|checkout|success|error|forgot-password|reset-password|cart)/;
+  const orphans = routes.filter(
+    (r) => !r.includes("[") && !NOT_LINKED_ON_PURPOSE.test(r) && !hrefs.has(r),
+  );
+  if (orphans.length) {
+    extraAdvisories.push(
+      `${orphans.length} app route(s) with no inbound link anywhere in the codebase ` +
+        `(Sanity blog bodies are NOT scanned, so some of these may be linked from guides):\n     ` +
+        orphans.sort().join("\n     "),
+    );
+  }
+}
+
 if (fromPriceIssues.length) failures.push(...[...new Set(fromPriceIssues)]);
 
 if (failures.length) {

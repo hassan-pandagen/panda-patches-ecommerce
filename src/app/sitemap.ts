@@ -414,6 +414,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
+      // Constraint-removal hubs (CL3A9B B2). High priority: these target the
+      // queries that actually produce AI citations — the absence of a fee or a
+      // minimum — rather than the category, which we do not win.
+      url: `${baseUrl}/custom-patches-no-setup-fees`,
+      lastModified: new Date('2026-09-07'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/free-worldwide-shipping-duty-paid`,
+      lastModified: new Date('2026-09-07'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/adhesive-patches`,
       lastModified: new Date('2026-06-18'),
       changeFrequency: 'monthly',

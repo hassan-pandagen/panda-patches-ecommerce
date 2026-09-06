@@ -18,6 +18,7 @@ import { getProductReviewSchema } from "@/lib/productReviews";
 import ProductReviews from "@/components/reviews/ProductReviews";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
+import NoChargeBlock from "@/components/product/NoChargeBlock";
 
 // Sports-specific FAQs
 const sportsFAQs = [
@@ -278,6 +279,7 @@ export default async function SportsPatchesPage() {
       {/* 7. CTA */}
       <CTASection />
 
+      <NoChargeBlock />
       <Footer />
     </main>
   );

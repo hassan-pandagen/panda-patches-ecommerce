@@ -17,6 +17,7 @@ import ProductReviews from "@/components/reviews/ProductReviews";
 import { buildPageMetadata } from "@/lib/seo";
 import { getClusterPageData } from "@/lib/clusterPageData";
 import { getFromPriceLabel } from "@/lib/pricingCalculator";
+import NoChargeBlock from "@/components/product/NoChargeBlock";
 
 const CANONICAL = "https://www.pandapatches.com/button-loop-patches";
 
@@ -233,6 +234,7 @@ export default async function ButtonLoopPatchesPage() {
 
       <CategoryFAQ title="Button-Loop Patches FAQ" faqs={buttonLoopFAQs} />
       <CTASection />
+      <NoChargeBlock />
       <Footer />
     </main>
   );

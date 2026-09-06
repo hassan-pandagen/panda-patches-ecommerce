@@ -10,6 +10,7 @@ import ProductReviews from "@/components/reviews/ProductReviews";
 import AeoAnswerBlock from "@/components/product/AeoAnswerBlock";
 import ProductDepthBlock from "@/components/product/ProductDepthBlock";
 import YarnColourChart from "@/components/letters/YarnColourChart";
+import NoChargeBlock from "@/components/product/NoChargeBlock";
 import { getSpecsForSlug } from "@/lib/patchSpecs";
 import { aeoContent } from "@/lib/aeoContent";
 import { getSchemaPricingTiers } from "@/lib/pricingCalculator";
@@ -440,6 +441,8 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
           page matches what's marked up (was rendering genericFaqs while the
           schema used the per-slug set; CL9EE9_1 follow-up). */}
       <ContentSection />
+      <NoChargeBlock />
+
       <FAQ questions={slugFaqMap[slug] ?? genericFaqs} />
 
       {/* 13. CTA */}

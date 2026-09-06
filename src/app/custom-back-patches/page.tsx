@@ -19,6 +19,7 @@ import { buildPageMetadata } from "@/lib/seo";
 import { getClusterPageData } from "@/lib/clusterPageData";
 import { getFromPriceLabel } from "@/lib/pricingCalculator";
 import { perPc } from "@/lib/priceDisplay";
+import NoChargeBlock from "@/components/product/NoChargeBlock";
 
 // CL532C_1 item B2. Cites the 37.0% stat from /custom-patch-production-data-2026
 // verbatim ("of sized orders", not of all orders) — that page carries the full
@@ -312,6 +313,7 @@ export default async function CustomBackPatchesPage() {
       <CategoryFAQ title="Custom Back Patches FAQ" faqs={backPatchFAQs} />
 
       <CTASection />
+      <NoChargeBlock />
       <Footer />
     </main>
   );

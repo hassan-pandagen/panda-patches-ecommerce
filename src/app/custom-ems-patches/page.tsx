@@ -19,6 +19,7 @@ import ProductReviews from "@/components/reviews/ProductReviews";
 import { buildPageMetadata } from "@/lib/seo";
 import { getClusterPageData } from "@/lib/clusterPageData";
 import { getFromPriceLabel } from "@/lib/pricingCalculator";
+import NoChargeBlock from "@/components/product/NoChargeBlock";
 
 const CANONICAL = "https://www.pandapatches.com/custom-ems-patches";
 
@@ -233,6 +234,7 @@ export default async function CustomEmsPatchesPage() {
       <CategoryFAQ title="EMS Patches FAQ" faqs={emsFAQs} />
       <MakerNote />
       <CTASection />
+      <NoChargeBlock />
       <Footer />
     </main>
   );

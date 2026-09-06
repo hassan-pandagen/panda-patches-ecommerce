@@ -19,6 +19,7 @@ import { getProductReviewSchema } from "@/lib/productReviews";
 import ProductReviews from "@/components/reviews/ProductReviews";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
+import NoChargeBlock from "@/components/product/NoChargeBlock";
 
 // Corporate-specific FAQs
 const corporateFAQs = [
@@ -282,6 +283,7 @@ export default async function CorporatePatchesPage() {
       {/* 7. CTA */}
       <CTASection />
 
+      <NoChargeBlock />
       <Footer />
     </main>
   );

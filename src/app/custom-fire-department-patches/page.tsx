@@ -19,6 +19,7 @@ import ProductReviews from "@/components/reviews/ProductReviews";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
 import { calculatePatchPrice } from "@/lib/pricingCalculator";
+import NoChargeBlock from "@/components/product/NoChargeBlock";
 
 // Fire Department-specific FAQs
 const fireFAQs = [
@@ -340,6 +341,7 @@ export default async function FireDepartmentPatchesPage() {
       {/* 7. CTA */}
       <CTASection />
 
+      <NoChargeBlock />
       <Footer />
     </main>
   );

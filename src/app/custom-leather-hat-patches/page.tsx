@@ -18,6 +18,7 @@ import ProductReviews from "@/components/reviews/ProductReviews";
 import { buildPageMetadata } from "@/lib/seo";
 import { getClusterPageData } from "@/lib/clusterPageData";
 import { perPc } from "@/lib/priceDisplay";
+import NoChargeBlock from "@/components/product/NoChargeBlock";
 
 // CL532C_1 item B3. Bridges the two existing parent pages: /custom-patches/leather
 // (product category) and /patches-for-hats (Sanity patchStyle, verified live
@@ -237,6 +238,7 @@ export default async function CustomLeatherHatPatchesPage() {
       <CategoryFAQ title="Custom Leather Hat Patches FAQ" faqs={leatherHatFAQs} />
 
       <CTASection />
+      <NoChargeBlock />
       <Footer />
     </main>
   );

@@ -23,6 +23,7 @@ import AeoAnswerBlock from "@/components/product/AeoAnswerBlock";
 import { aeoContent } from "@/lib/aeoContent";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
+import NoChargeBlock from "@/components/product/NoChargeBlock";
 
 // ISR: Revalidate every 24 hours
 export const revalidate = 86400;
@@ -592,6 +593,7 @@ export default async function BulkCustomPatchesPage() {
       {/* 12. CTA */}
       <CTASection />
 
+      <NoChargeBlock />
       <Footer />
     </main>
   );

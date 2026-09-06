@@ -17,6 +17,7 @@ import ProductReviews from "@/components/reviews/ProductReviews";
 import { buildPageMetadata } from "@/lib/seo";
 import { getClusterPageData } from "@/lib/clusterPageData";
 import { getFromPriceLabel } from "@/lib/pricingCalculator";
+import NoChargeBlock from "@/components/product/NoChargeBlock";
 
 const CANONICAL = "https://www.pandapatches.com/adhesive-patches";
 
@@ -230,6 +231,7 @@ export default async function AdhesivePatchesPage() {
 
       <CategoryFAQ title="Adhesive Patches FAQ" faqs={adhesiveFAQs} />
       <CTASection />
+      <NoChargeBlock />
       <Footer />
     </main>
   );

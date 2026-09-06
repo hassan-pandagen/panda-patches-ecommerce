@@ -15,6 +15,7 @@ import {
 } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
 import { caseStudies } from "@/lib/caseStudies";
+import NoChargeBlock from "@/components/product/NoChargeBlock";
 
 /**
  * /event-patches — hub for the agency / event-planner buyer.
@@ -289,6 +290,7 @@ export default function EventPatchesPage() {
 
         <MakerNote intro="Event work is judged on one thing: whether the boxes are there on the day. That is why the in-hand date is confirmed in writing before any rush fee is charged, and why every design is counted and bagged on its own before it ships." />
       </main>
+      <NoChargeBlock />
       <Footer />
     </>
   );

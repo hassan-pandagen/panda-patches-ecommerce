@@ -19,6 +19,7 @@ import { getProductReviewSchema } from "@/lib/productReviews";
 import ProductReviews from "@/components/reviews/ProductReviews";
 import { client } from "@/lib/sanity";
 import { buildPageMetadata } from "@/lib/seo";
+import NoChargeBlock from "@/components/product/NoChargeBlock";
 
 const CANONICAL = "https://www.pandapatches.com/custom-iron-on-patches";
 
@@ -340,6 +341,7 @@ export default async function CustomIronOnPatchesPage() {
       {/* 10. CTA */}
       <CTASection />
 
+      <NoChargeBlock />
       <Footer />
     </main>
   );
