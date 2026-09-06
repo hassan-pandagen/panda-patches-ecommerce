@@ -21,6 +21,12 @@ interface SanitySlugItem {
 // docs. Excluded so the sitemap never lists a redirecting URL as canonical
 // (audit P2-3). Keep this in sync with the redirects() block in next.config.mjs.
 const REDIRECTED_SLUGS = new Set([
+  // 301'd 2026-09-03 to /varsity-jacket-patches-2026-27 (next.config.mjs) but
+  // never excluded here, so the sitemap was advertising a redirecting URL as
+  // canonical for four days. Found by the Sanity orphan check on 7 Sept: the
+  // post read as an orphan because nothing links to it, correctly, since it
+  // 301s. That is the second thing this list has caught by being out of sync.
+  'varsity-jacket-patches-winter-trend-2024',
   'custom-patches-no-minimum-5-pieces-2026',
   'custom-patches-no-minimum-order-5-pieces',
   'custom-soccer-patches-guide-2026',

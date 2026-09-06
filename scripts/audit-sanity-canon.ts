@@ -105,9 +105,78 @@ const RULES: { name: string; test: RegExp; note: string }[] = [
   },
 ];
 
+
+/**
+ * Posts nothing links to.
+ *
+ * On 7 September a crawl found 23 live posts with no inbound contextual link
+ * from anywhere — not another post, not the codebase. Several were our longest
+ * work: a 3,900-word manufacturers review, a 3,200-word PVC guide. The sitemap
+ * got them indexed, and nothing on the site said they mattered. All 23 were
+ * given inbound links the same day.
+ *
+ * This exists so the next one is caught in a week rather than a year. A new
+ * post starts life as an orphan by definition, so it is a report rather than a
+ * failure — the point is that somebody sees it.
+ *
+ * Repo links count: a post linked from a type page's cluster block is not an
+ * orphan even if no other post mentions it.
+ */
+function reportOrphans(docs: any[]) {
+  const blogs = docs.filter((d) => d.type === "blog" && d.slug);
+  const slugs = new Set<string>(blogs.map((b) => b.slug));
+
+  // Slugs that 301 elsewhere are not supposed to be linked.
+  const redirected = new Set<string>();
+  const sitemapPath = path.join(process.cwd(), "src", "app", "sitemap.ts");
+  if (fs.existsSync(sitemapPath)) {
+    for (const m of fs.readFileSync(sitemapPath, "utf8").matchAll(/'([a-z0-9-]{6,})'/g)) {
+      redirected.add(m[1]);
+    }
+  }
+
+  const inbound = new Map<string, number>();
+  for (const s of slugs) inbound.set(s, 0);
+  for (const b of blogs) {
+    for (const href of (b.hrefs ?? []) as string[]) {
+      if (typeof href !== "string") continue;
+      const target = href.replace(/^\//, "").split("#")[0].split("?")[0];
+      if (slugs.has(target) && target !== b.slug) {
+        inbound.set(target, (inbound.get(target) ?? 0) + 1);
+      }
+    }
+  }
+
+  // Anything named anywhere in the codebase is reachable.
+  let source = "";
+  const walk = (dir: string) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, e.name);
+      if (e.isDirectory()) walk(full);
+      else if (/\.(ts|tsx)$/.test(e.name)) source += fs.readFileSync(full, "utf8");
+    }
+  };
+  const srcDir = path.join(process.cwd(), "src");
+  if (fs.existsSync(srcDir)) walk(srcDir);
+
+  const orphans = [...slugs]
+    .filter((s) => !redirected.has(s))
+    .filter((s) => (inbound.get(s) ?? 0) === 0 && !source.includes(s))
+    .sort();
+
+  const live = [...slugs].filter((s) => !redirected.has(s)).length;
+  if (orphans.length === 0) {
+    console.log(`Inbound links: all ${live} live posts are linked from somewhere.\n`);
+    return;
+  }
+  console.log(`⚠ ${orphans.length} of ${live} live posts have NO inbound link (post or code):`);
+  for (const o of orphans) console.log(`     ${o}`);
+  console.log("");
+}
+
 async function main() {
   const token = readToken();
-  const query = `*[_type in ["blog","productPage","patchStyle"]]{"slug": slug.current, "type": _type, faqItems, content}`;
+  const query = `*[_type in ["blog","productPage","patchStyle"]]{"slug": slug.current, "type": _type, faqItems, content, "hrefs": content[].markDefs[].href}`;
   const url = `https://${PROJECT}.api.sanity.io/v2024-01-01/data/query/${DATASET}?query=${encodeURIComponent(query)}`;
   const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
   if (!res.ok) throw new Error(`Sanity query failed: ${res.status} ${res.statusText}`);
@@ -147,6 +216,8 @@ async function main() {
       }
     }
   }
+
+  reportOrphans(docs);
 
   console.log(`Scanned ${docs.length} Sanity documents.\n`);
   if (findings.length === 0) {
