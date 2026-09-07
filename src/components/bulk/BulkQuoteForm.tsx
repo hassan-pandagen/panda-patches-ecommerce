@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { UploadCloud, CheckCircle, Phone, Clock, ShieldCheck, Check } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { sanitizeString, sanitizeEmail, sanitizePhone } from "@/lib/sanitize";
+import { addBusinessDays } from "@/lib/businessDays";
 import FormFeedback from "@/components/feedback/FormFeedback";
 import { getStoredAttribution, generateEventId } from "@/lib/clientAttribution";
 import { trackLead } from "@/lib/ga4";
@@ -23,6 +24,9 @@ export default function BulkQuoteForm({
   contentName?: string;
 } = {}) {
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
+  // Three business days is the floor the rush service can hit, so the picker
+  // never offers a date we would have to decline.
+  const minDeadline = addBusinessDays(new Date(), 3).toISOString().split('T')[0];
   const watchHearAbout = watch("hearAbout", "");
   const [hearAboutOther, setHearAboutOther] = useState("");
   const partialSaved = useRef(false);
@@ -135,6 +139,10 @@ export default function BulkQuoteForm({
             phone: sanitizePhone(data.phone || ""),
           },
           details: {
+            // Optional; /api/quote writes it to orders.rush_date when it parses,
+            // so a bulk order with a real deadline is a filterable rush rather
+            // than a sentence buried in instructions.
+            deadline: sanitizeString(data.deadline || ""),
             quantity: parseInt(data.quantityRange?.split("-")[0] || "100"),
             width: Math.min(parseFloat(data.size?.toLowerCase().split(/\s*x\s*/i)[0]) || 3, 50),
             height: Math.min(parseFloat(data.size?.toLowerCase().split(/\s*x\s*/i)[1]) || 3, 50),
@@ -321,6 +329,27 @@ export default function BulkQuoteForm({
             </select>
             <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-[0.625rem]">&#9660;</div>
           </div>
+        </div>
+
+        {/* Deadline — optional. Bulk buyers usually have an event date, and it is
+            the single most useful thing to know before quoting. */}
+        <div>
+          <label htmlFor="bulk-deadline" className="text-[0.75rem] font-bold text-panda-dark block mb-1">
+            When do you need them in hand?{" "}
+            <span className="text-gray-400 font-medium">(optional)</span>
+          </label>
+          <input
+            id="bulk-deadline"
+            type="date"
+            min={minDeadline}
+            {...register("deadline")}
+            aria-describedby="bulk-deadline-help"
+            className="bulk-field text-gray-500"
+          />
+          <p id="bulk-deadline-help" className="text-gray-400 text-[0.6875rem] mt-1">
+            Leave blank for standard 7&ndash;14 business days. Give us a date and we will tell you
+            within 2&ndash;6 hours whether we can hit it.
+          </p>
         </div>
 
         {/* Row 4: Size + Backing */}

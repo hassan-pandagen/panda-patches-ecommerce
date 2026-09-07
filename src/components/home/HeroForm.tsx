@@ -18,7 +18,10 @@ interface HeroFormProps {
   subhead?: string;
   ctaText?: string;
   ctaMicrocopy?: React.ReactNode;
+  /** Rush page: the date is the point of the page, so it is required there. */
   showDeadlineField?: boolean;
+  /** Set "off" to hide the optional deadline entirely (e.g. a service quote). */
+  deadlineMode?: "optional" | "off";
   showZipField?: boolean;
 }
 
@@ -30,10 +33,15 @@ export default function HeroForm({
   ctaText,
   ctaMicrocopy,
   showDeadlineField = false,
+  deadlineMode = "optional",
   showZipField = false,
 }: HeroFormProps) {
   const isKeychains = productSlug === 'keychains';
-  const minDeadline = showDeadlineField ? addBusinessDays(new Date(), 3).toISOString().split('T')[0] : undefined;
+  const deadlineRequired = showDeadlineField;
+  const showDeadline = deadlineRequired || deadlineMode === "optional";
+  // Three business days is the floor the rush service can actually hit, so the
+  // picker will not offer a date we would have to decline.
+  const minDeadline = showDeadline ? addBusinessDays(new Date(), 3).toISOString().split('T')[0] : undefined;
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
   const watchHearAbout = watch("hearAbout", "");
   const [hearAboutOther, setHearAboutOther] = useState("");
@@ -151,7 +159,7 @@ export default function HeroForm({
             backing: sanitizeString(data.backing || 'iron'),
             instructions: sanitizeString([data.instructions || '', isCustomSize && customSize ? `Custom Size: ${customSize}` : '', data.hearAbout ? `Source: ${data.hearAbout === 'Other' ? (hearAboutOther.trim() || 'Other') : data.hearAbout}` : ''].filter(Boolean).join(' | ')),
             patchType: sanitizeString(data.type || ''),
-            ...(showDeadlineField ? { deadline: sanitizeString(data.deadline || '') } : {}),
+            ...(showDeadline ? { deadline: sanitizeString(data.deadline || '') } : {}),
             ...(showZipField ? { country: sanitizeString(data.zip || '') } : {}),
           },
           artworkUrl: uploadedFiles[0]?.url || null,
@@ -336,14 +344,19 @@ export default function HeroForm({
         {/* Deadline — rush pages only (RUSH-C_1.MD). type="date" inputs ignore
             placeholder text, unlike the rest of this form's fields, so this one
             needs a real visible label. */}
-        {showDeadlineField && (
+        {showDeadline && (
           <div>
             <label htmlFor="hero-deadline" className="text-[0.75rem] font-bold text-panda-dark block mb-1">
-              When do you need them in hand? <span className="text-red-500">*</span>
+              When do you need them in hand?{" "}
+              {deadlineRequired ? (
+                <span className="text-red-500">*</span>
+              ) : (
+                <span className="text-gray-400 font-medium">(optional)</span>
+              )}
             </label>
             <input
               id="hero-deadline"
-              {...register("deadline", { required: "Please tell us when you need these" })}
+              {...register("deadline", deadlineRequired ? { required: "Please tell us when you need these" } : {})}
               type="date"
               min={minDeadline}
               aria-invalid={!!errors.deadline}
@@ -354,7 +367,9 @@ export default function HeroForm({
               <p id="hero-deadline-error" className="text-red-500 text-[0.6875rem] mt-1 font-semibold">⚠ {String(errors.deadline.message)}</p>
             ) : (
               <p id="hero-deadline-help" className="text-gray-400 text-[0.6875rem] mt-1">
-                We confirm whether we can hit this date within 2–6 hours — before you pay any rush fee.
+                {deadlineRequired
+                  ? "We confirm whether we can hit this date within 2–6 hours — before you pay any rush fee."
+                  : "Leave blank for standard 7–14 business days. Give us a date and we will tell you within 2–6 hours whether we can hit it."}
               </p>
             )}
           </div>

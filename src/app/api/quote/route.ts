@@ -180,6 +180,17 @@ export async function POST(req: Request) {
     };
     // Rush landing page's deadline field, when present, gets its own triage-friendly
     // subject line so rush requests jump out in the inbox (RUSH-C_1.MD).
+    // A date column will reject anything that is not a real date, and the field
+    // is a free-ish string on the way in, so it is validated before it is written.
+    // An unparseable value loses the structured flag but must never fail the lead:
+    // a quote that 500s because someone typed a bad date is a lost customer.
+    const rushDateIso = (() => {
+      const raw = (details.deadline || '').trim();
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(raw)) return null;
+      const d = new Date(raw + 'T00:00:00');
+      return Number.isNaN(d.getTime()) ? null : raw;
+    })();
+
     const deadlineLabel = details.deadline
       ? new Date(details.deadline + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
       : null;
@@ -385,6 +396,17 @@ export async function POST(req: Request) {
           deadlineLabel ? `[NEEDED BY: ${deadlineLabel}${country ? `, ${country}` : ''}]` : '',
           flaggedInstructions || details.placement || '',
         ].filter(Boolean).join(' ').trim(),
+        // STRUCTURED, not just the string above. Until 2026-09-07 a customer's
+        // deadline lived only in `instructions` and the email subject, so a rush
+        // quote could not be filtered, sorted or counted — the only signal was
+        // the quote amount looking higher, which is inference rather than data.
+        // `rush_date` already existed and was populated by web checkout, so this
+        // makes the field mean the same thing however the order arrived.
+        //
+        // The instructions text stays. It is what a human reads on the order page
+        // today, and dropping it before the CRM surfaces the column would make
+        // this worse rather than better.
+        rush_date: rushDateIso,
         customer_attachment_urls: [artworkUrl, artworkUrl2].filter(Boolean) as string[],
         sales_agent: 'WEBSITE_BOT',
         // Real marketing channel, NOT the form/page name (deriveLeadSource was the
