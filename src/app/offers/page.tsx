@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import type { Metadata } from 'next';
 import { buildPageMetadata } from '@/lib/seo';
 import Navbar from '@/components/layout/Navbar';
@@ -149,6 +151,31 @@ const getCategoryImages = cache(async (): Promise<Record<string, string>> => {
  */
 const LETTER_PHOTO_INDEX = 4;
 
+/**
+ * Real product photographs, per SKU, once they exist.
+ *
+ * Drop the files at these exact paths and the next build uses them. Nothing
+ * else needs changing: the schema checks whether each file is present and falls
+ * back to the representative chenille letter above when it is not, so the
+ * Search Console "missing image" fix holds either way.
+ *
+ * Shoot them square. Google renders product images at 1:1, 4:3 and 16:9, and a
+ * square original crops cleanly to all three; a wide one loses the top and
+ * bottom of the set. 1200px on the short edge is the practical floor.
+ */
+const LETTER_PHOTOS: Record<string, string> = {
+  'chenille-alphabet': '/assets/chenille-alphabet-set.jpg',
+  'chenille-numbers': '/assets/chenille-numbers-set.jpg',
+};
+
+/** Present in `public/`? Checked at build time, so a missing file never 404s. */
+function localPhotoFor(packageId: string): string | null {
+  const rel = LETTER_PHOTOS[packageId];
+  if (!rel) return null;
+  const onDisk = path.join(process.cwd(), 'public', rel.replace(/^\//, ''));
+  return fs.existsSync(onDisk) ? `https://www.pandapatches.com${rel}` : null;
+}
+
 const getLetterImages = cache(async (): Promise<string[]> => {
   try {
     const query = `*[_type == "patchStyle" && slug.current == "chenille-letters"][0].workSamples`;
@@ -220,9 +247,13 @@ export default async function OffersPage() {
     // the schema was valid, and the two SKUs were still excluded from product
     // rich results. The fallback is a last resort for a build where Sanity is
     // unreachable — a non-product image beats a missing required field.
-    image: letterImages.length
-      ? letterImages
-      : ['https://www.pandapatches.com/assets/og-image.png'],
+    image: (() => {
+      const own = localPhotoFor(p.id);
+      if (own) return [own];
+      return letterImages.length
+        ? letterImages
+        : ['https://www.pandapatches.com/assets/og-image.png'];
+    })(),
     brand: { '@type': 'Brand', name: 'Panda Patches' },
     offers: {
       '@type': 'Offer',
