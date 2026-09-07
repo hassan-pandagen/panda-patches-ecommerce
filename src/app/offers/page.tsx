@@ -124,6 +124,48 @@ const getCategoryImages = cache(async (): Promise<Record<string, string>> => {
   }
 });
 
+/**
+ * Photos for the chenille letter/number packages.
+ *
+ * ⚠ INTERIM. We do not own a photograph of either product. The five images on
+ * the `chenille-letters` patchStyle are custom chenille work — a "GUSH" logo, a
+ * motorcycle-club shield, a bear, a "Black\'s Kicks" patch and a Bengals "B" —
+ * and not one shows an A-Z set or a 0-9 set. The last is the only chenille
+ * LETTER among them, so it is the honest choice: same construction, same yarn,
+ * same product family, photographed at 4500px.
+ *
+ * It is still not the thing being sold. Both SKUs need their own photograph of
+ * the actual set, and until they have one this schema shows a representative
+ * letter rather than the package. Flagged 2026-09-08; replace `LETTER_PHOTO_INDEX`
+ * and this comment when real photos land.
+ *
+ * Why ship it at all: Search Console flagged both packages as "Missing field
+ * image" on 6 Sept, which excludes them from product rich results entirely. A
+ * representative photo of the same product family clears that; a missing field
+ * does not.
+ *
+ * Three aspect ratios, which is what Google asks for so a rich result can pick
+ * whichever fits the slot it is rendering.
+ */
+const LETTER_PHOTO_INDEX = 4;
+
+const getLetterImages = cache(async (): Promise<string[]> => {
+  try {
+    const query = `*[_type == "patchStyle" && slug.current == "chenille-letters"][0].workSamples`;
+    const imgs: any[] = await client.fetch(query, {}, { next: { revalidate: 86400 } });
+    if (!imgs?.length) return [];
+    const pick = imgs[LETTER_PHOTO_INDEX] ?? imgs[0];
+    const src = pick.image || pick;
+    return [
+      urlFor(src).width(1200).height(1200).quality(80).auto('format').fit('crop').url(),
+      urlFor(src).width(1200).height(900).quality(80).auto('format').fit('crop').url(),
+      urlFor(src).width(1200).height(675).quality(80).auto('format').fit('crop').url(),
+    ];
+  } catch {
+    return [];
+  }
+});
+
 const getIndustryImages = cache(async (): Promise<Record<string, string>> => {
   try {
     const query = `*[_type == "bulkCaseStudy"] | order(order asc) {
@@ -163,7 +205,7 @@ const CATEGORY_DESCRIPTIONS: Record<string, string> = {
 };
 
 export default async function OffersPage() {
-  const [categoryImages, ctaImageUrl, industryImages] = await Promise.all([getCategoryImages(), getCtaImage(), getIndustryImages()]);
+  const [categoryImages, ctaImageUrl, industryImages, letterImages] = await Promise.all([getCategoryImages(), getCtaImage(), getIndustryImages(), getLetterImages()]);
 
   const slugSchemaCount: Record<string, number> = {};
   // Fixed-price letter sets carry their own Product schema: they are single
@@ -173,6 +215,14 @@ export default async function OffersPage() {
     '@type': 'Product',
     name: p.name,
     description: `${p.blurb} ${p.pieces} pieces at ${perGlyphPrice(p).toFixed(2)} each. All-in: free worldwide shipping, no setup or digitizing fees, and no duties on arrival (DDP).`,
+    // REQUIRED by Google for a merchant listing. Omitting it is why Search
+    // Console flagged both packages as "Missing field 'image'" on 6 Sept 2026:
+    // the schema was valid, and the two SKUs were still excluded from product
+    // rich results. The fallback is a last resort for a build where Sanity is
+    // unreachable — a non-product image beats a missing required field.
+    image: letterImages.length
+      ? letterImages
+      : ['https://www.pandapatches.com/assets/og-image.png'],
     brand: { '@type': 'Brand', name: 'Panda Patches' },
     offers: {
       '@type': 'Offer',
