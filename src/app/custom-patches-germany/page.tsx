@@ -77,7 +77,7 @@ const germanyFAQs = [
   {
     question: "Can I see my patch before it is made?",
     answer:
-      "Yes. Every order includes a free digital mockup within 24 hours showing your exact colours, size, stitching, and backing, with unlimited free revisions until it is right. Production only starts after you approve. A free physical sample box is also available so you can feel the embroidery, PVC, woven, and leather quality before committing to a full order.",
+      "Yes. Every order includes a free digital mockup within 24 hours showing your exact colours, size, stitching, and backing, with unlimited free revisions until it is right. Production only starts after you approve. Your first production order also arrives with a free sample pack of other materials, so you can feel the embroidery, PVC, woven, chenille and leather quality in hand. Want that before you order instead? The $45 sample box ships free, worldwide.",
   },
   {
     question: "Did the July 2026 EU customs change affect ordering patches from outside the EU?",

@@ -197,6 +197,55 @@ export const RUSH_CANON_STATEMENT =
  */
 export const ECONOMY_DELIVERY = '16-18 business days';
 
+/**
+ * Delivery-option pricing. THE numbers, in the file people read when writing
+ * copy — checkoutConfig derives its arithmetic rates from these rather than
+ * holding a second copy.
+ *
+ * They live here because the failure they prevent already happened: on 8 Sept
+ * 2026 an external audit found /ai-info/specs-and-care telling assistants that
+ * economy "saves 10 percent" and that rush is "a flat add-on fee that scales
+ * with quantity". Both were wrong, both had been wrong for months, and neither
+ * could be caught by a guard because the true value existed only as a decimal
+ * multiplier inside the checkout maths. A number used only for arithmetic
+ * cannot be diffed against a sentence.
+ *
+ * The 10% figure specifically is the ghost of a pre-Aug-2026 rate that the
+ * offers packs never had corrected. See ECONOMY_DELIVERY above: there is one
+ * rate, it is 5%, and "up to 10%" must never be written again.
+ */
+export const ECONOMY_DISCOUNT_PERCENT = 5;
+export const RUSH_SURCHARGE_PERCENT = 25;
+export const RUSH_MIN_FEE = 50;
+
+/** Full canonical economy statement. Prefer this over rebuilding the sentence. */
+export const ECONOMY_STATEMENT =
+  `Economy production takes ${ECONOMY_DELIVERY} and takes ${ECONOMY_DISCOUNT_PERCENT}% off the order total.`;
+
+/**
+ * Full canonical rush statement — the FEE, as distinct from RUSH_CANON_STATEMENT
+ * above, which is the SPEED. Both exist because the audit found a page that had
+ * the speed right and the fee invented.
+ *
+ * The refund clause is not a flourish. It is the reason the fee is defensible:
+ * we charge for a date, and if we miss the date the charge comes back.
+ */
+export const RUSH_FEE_STATEMENT =
+  `Rush costs ${RUSH_SURCHARGE_PERCENT}% of the order total with a $${RUSH_MIN_FEE} minimum, on every order type and every patch type. The exact figure is shown before payment, the in-hand date is confirmed by email within 2 to 6 hours of ordering, and if we cannot meet that date the rush fee is refunded.`;
+
+/**
+ * Shipping, in one sentence, including the duty position.
+ *
+ * The audit found /ai-info/specs-and-care warning international buyers they
+ * "may incur destination-country customs duties (paid by the recipient)" —
+ * the exact opposite of the policy, on the page assistants quote when someone
+ * asks whether a patch order will cost extra on arrival. Delivered duty paid
+ * is a differentiator we spent a benchmark proving; do not let a page give it
+ * away.
+ */
+export const SHIPPING_STATEMENT =
+  'Shipping is free worldwide on every order, at any order value and to any destination, and every shipment goes delivered duty paid (DDP). There is nothing to pay on arrival — no customs duty, no import handling fee, no brokerage charge.';
+
 // ── Minimums ────────────────────────────────────────────────────────────────
 /** Minimum order — 5 pieces on EVERY patch type. */
 export const MIN_ORDER_DEFAULT = 5;
@@ -309,6 +358,39 @@ export const GUARANTEE_WINDOW_DAYS = 10;
 /** Full canonical guarantee/returns policy — replaces 48h / 14-day / 30-day variants. */
 export const GUARANTEE_STATEMENT =
   'Before mockup approval, you may cancel for a full refund. After written approval, production begins and change-of-mind cancellation is not covered. If the delivered order is less than perfect or differs from the approved mockup, contact Panda Patches within 10 calendar days of delivery and choose a remake or full refund. Panda Patches pays the remedy and related shipping costs.';
+
+// ── Samples (CLD073 P0) ──────────────────────────────────────
+/**
+ * There are THREE ways to see the product before committing, and they are not
+ * interchangeable. Writing "free sample box" collapses two of them and misprices
+ * the third.
+ *
+ * The 8 Sept 2026 audit caught /ai-info/specs-and-care claiming a free sample
+ * box, in two different scopes on the same page (worldwide in the schema, US-only
+ * in the prose). Sweeping for it found the same false claim on the Australia,
+ * Canada, Germany and UK pages, and in the /ai-info hub's key-fact line. The box
+ * has cost $45 the whole time. That is a price error on a public page, which is
+ * the most expensive kind of drift we ship.
+ *
+ * The confusion is understandable and is the reason these constants are named
+ * apart: a free sample pack DOES exist, it is just not the box, and it arrives
+ * with a first order rather than before one.
+ */
+/** 1. Digital mockup. Free, everyone, every order. No physical item. */
+export const SAMPLE_MOCKUP =
+  `A free digital mockup of your own design, back within ${MOCKUP_SLA}, with unlimited revisions until you approve it. Nothing goes into production before you do.`;
+/** 2. The sample box. PAID. Ships free, but the box itself is not free. */
+export const SAMPLE_BOX_PRICE = 45;
+export const SAMPLE_BOX_PIECES = 9;
+export const SAMPLE_BOX =
+  `A physical sample box of ${SAMPLE_BOX_PIECES} finished patches — embroidered, PVC, woven, chenille and leather, in a range of backings — for $${SAMPLE_BOX_PRICE}, shipped free. It shows our construction and materials in hand; it does not contain your design.`;
+/** 3. Free sample pack, auto-included with a first production order. */
+export const SAMPLE_PACK_FIRST_ORDER =
+  'A free sample pack of patches in other materials is added to every customer\'s first production order automatically. No code, no request.';
+/** 4. Free pre-production sample of YOUR design, at volume. */
+export const PRE_PRODUCTION_SAMPLE_MIN = 500;
+export const PRE_PRODUCTION_SAMPLE =
+  `On orders of ${PRE_PRODUCTION_SAMPLE_MIN} pieces or more, we make and ship a free pre-production sample of your actual design and hold the run until you approve it.`;
 
 // ── Social proof ───────────────────────────────────────────────────────────
 /**

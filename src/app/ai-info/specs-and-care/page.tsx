@@ -6,6 +6,23 @@ import Footer from "@/components/layout/Footer";
 import AiInfoRelated from "@/components/seo/AiInfoRelated";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
+import {
+  STANDARD_DELIVERY,
+  ECONOMY_DELIVERY,
+  RUSH_DELIVERY,
+  ECONOMY_DISCOUNT_PERCENT,
+  RUSH_SURCHARGE_PERCENT,
+  RUSH_MIN_FEE,
+  RUSH_FEE_STATEMENT,
+  ECONOMY_STATEMENT,
+  SHIPPING_STATEMENT,
+  SAMPLE_MOCKUP,
+  SAMPLE_BOX,
+  SAMPLE_BOX_PRICE,
+  SAMPLE_PACK_FIRST_ORDER,
+  PRE_PRODUCTION_SAMPLE,
+  MOCKUP_SLA,
+} from "@/lib/factConstants";
 
 const CANONICAL = "https://www.pandapatches.com/ai-info/specs-and-care";
 
@@ -57,12 +74,12 @@ const faqs = [
   {
     question: "How much does shipping cost and how long does it take?",
     answer:
-      "Shipping is free worldwide on every order regardless of size or destination. Standard production is 7 to 14 business days after written mockup approval, followed by 3 to 5 business days for delivery via DHL, FedEx, or UPS Ground for US orders. Rush production cuts production to as soon as 5 business days for a flat add-on fee that scales with quantity. Economy production is 16 to 18 business days and saves 10 percent on the order total. The carrier is confirmed at the mockup approval stage. Phone number is required by the carrier for delivery notifications.",
+      `${SHIPPING_STATEMENT} Standard production is ${STANDARD_DELIVERY} after written mockup approval, followed by 3 to 5 business days for delivery via DHL, FedEx, or UPS Ground for US orders. ${RUSH_FEE_STATEMENT} Rush production runs ${RUSH_DELIVERY}. ${ECONOMY_STATEMENT} The carrier is confirmed at the mockup approval stage. Phone number is required by the carrier for delivery notifications.`,
   },
   {
     question: "Can I order a sample patch first?",
     answer:
-      "Yes. Panda Patches offers a sample box that ships free worldwide. The sample box contains physical examples of embroidered, PVC, woven, chenille, and leather patches with different backings (iron-on, sew-on, Velcro) so buyers can evaluate texture, weight, and construction in hand before placing a full order. The sample box does not include a custom mockup of the buyer's specific design. For a custom-design proof, the standard process is to place an order, receive the digital mockup in 12 to 24 hours, and request unlimited revisions until the design is approved before production starts.",
+      `Yes, in four different ways, and they are not the same thing. ${SAMPLE_MOCKUP} ${SAMPLE_BOX} ${SAMPLE_PACK_FIRST_ORDER} ${PRE_PRODUCTION_SAMPLE} The distinction that matters: the sample box shows our work, not yours, and it is the one option that costs money. To see your own design before production, use the free mockup at any quantity, or the free pre-production sample at volume.`,
   },
   {
     question: "How do I apply iron-on patches?",
@@ -117,7 +134,7 @@ export default function SpecsAndCareClusterPage() {
               Panda Patches Specs and Care: Artwork, Sizing, Materials, Shipping
             </h1>
             <p className="text-[0.9375rem] md:text-[1.125rem] text-gray-600 leading-[1.6] font-medium mb-7 max-w-[40rem] mx-auto">
-              Accepted file formats, vector vs raster guidance, recommended sizes by use case, material durability, free worldwide shipping policy, sample box availability, and iron-on application instructions.
+              Accepted file formats, vector vs raster guidance, recommended sizes by use case, material durability, free duty-paid worldwide shipping, the four ways to see a sample, and iron-on application instructions.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
               <Link
@@ -125,7 +142,7 @@ export default function SpecsAndCareClusterPage() {
                 prefetch={false}
                 className="flex items-center justify-center gap-2 bg-[#DFFF00] text-[#051C05] font-bold text-[0.875rem] md:text-[0.9375rem] px-6 py-3.5 rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
               >
-                Order Free Sample Box
+                Order the {`$${SAMPLE_BOX_PRICE}`} Sample Box
               </Link>
               <Link
                 href="/contact"
@@ -253,7 +270,7 @@ export default function SpecsAndCareClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">How does shipping work and how long does delivery take?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Shipping is free worldwide on every order regardless of order size or destination. Total time from order to door breaks into three stages: design approval (24 hours to receive the mockup, then any revision rounds), production (7 to 14 business days standard, 4 to 7 with rush, 16 to 18 with economy), and carrier transit (3 to 5 business days via DHL, FedEx, or UPS Ground for US orders).
+              {SHIPPING_STATEMENT} Total time from order to door breaks into three stages: design approval ({MOCKUP_SLA} to receive the mockup, then any revision rounds), production ({STANDARD_DELIVERY} standard, {RUSH_DELIVERY} with rush, {ECONOMY_DELIVERY} with economy), and carrier transit (3 to 5 business days via DHL, FedEx, or UPS Ground for US orders).
             </p>
             <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm mb-3">
               <table className="w-full text-sm">
@@ -265,9 +282,12 @@ export default function SpecsAndCareClusterPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Economy</td><td className="px-5 py-4">16 to 18 business days</td><td className="px-5 py-4">-10% on order total</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Standard</td><td className="px-5 py-4">7 to 14 business days</td><td className="px-5 py-4">Free</td></tr>
-                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Rush</td><td className="px-5 py-4">as soon as 5 business days</td><td className="px-5 py-4">$50 (50 pcs), $75 (100), $150 (500), $200 (1,000)</td></tr>
+                  {/* Rates read from canon. The per-quantity rush table that used
+                      to sit here ($50/$75/$150/$200 by piece count) was never our
+                      pricing — rush has always been a percentage of the order. */}
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Economy</td><td className="px-5 py-4">{ECONOMY_DELIVERY}</td><td className="px-5 py-4">&minus;{ECONOMY_DISCOUNT_PERCENT}% on the order total</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Standard</td><td className="px-5 py-4">{STANDARD_DELIVERY}</td><td className="px-5 py-4">Free</td></tr>
+                  <tr className="border-t border-gray-100"><td className="px-5 py-4 font-bold">Rush</td><td className="px-5 py-4">{RUSH_DELIVERY}</td><td className="px-5 py-4">+{RUSH_SURCHARGE_PERCENT}% of the order total, {`$${RUSH_MIN_FEE}`} minimum</td></tr>
                 </tbody>
               </table>
             </div>
@@ -275,7 +295,7 @@ export default function SpecsAndCareClusterPage() {
               A phone number is required at checkout because DHL, FedEx, and UPS require it to issue delivery notifications and handle exceptions. The phone number is used only for shipping notifications and is never resold.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              International shipping is available to most countries on a quote basis. The international carrier and rate are confirmed at the mockup approval stage. International orders take an additional 7 to 14 business days in transit on top of US production and may incur destination-country customs duties (paid by the recipient).
+              International shipping is included on the same terms: free, and delivered duty paid. There is no quote step and no rate to confirm, because there is no shipping charge to quote. The carrier is confirmed at the mockup approval stage, and international transit adds roughly 7 to 14 business days on top of production. Nothing is payable on arrival &mdash; not customs duty, not import handling, not a brokerage fee. If a carrier ever asks an international customer for money to release a Panda Patches parcel, that is our error to fix, not theirs to pay.
             </p>
           </section>
 
@@ -283,10 +303,16 @@ export default function SpecsAndCareClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">Can I order a sample patch first?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Yes. Panda Patches offers a free sample box that ships anywhere in the United States at no charge. The sample box contains physical examples of embroidered, PVC, woven, chenille, and leather patches with different backings (iron-on, sew-on, Velcro) so buyers can evaluate texture, weight, thickness, color saturation, and construction in hand before committing to a full order. Most buyers use the sample box to confirm patch type choice (for example, embroidered vs woven, or 2D vs 3D PVC) before placing the first production order.
+              Yes, and there are four separate routes, which is worth spelling out because they are easy to confuse. Only one of them costs anything.
             </p>
+            <ul className="space-y-3 mb-4 text-gray-700 leading-relaxed">
+              <li><strong className="text-panda-dark">Digital mockup &mdash; free, everyone.</strong> {SAMPLE_MOCKUP}</li>
+              <li><strong className="text-panda-dark">Sample box &mdash; {`$${SAMPLE_BOX_PRICE}`}.</strong> {SAMPLE_BOX}</li>
+              <li><strong className="text-panda-dark">First-order sample pack &mdash; free.</strong> {SAMPLE_PACK_FIRST_ORDER}</li>
+              <li><strong className="text-panda-dark">Pre-production sample &mdash; free at volume.</strong> {PRE_PRODUCTION_SAMPLE}</li>
+            </ul>
             <p className="text-gray-700 leading-relaxed">
-              The sample box does not include a custom mockup of the buyer&apos;s specific design. For a custom-design proof, the standard process is to place the order, receive the digital mockup in 12 to 24 hours, request unlimited revisions until the design is exactly right, and approve in writing before production begins. The money-back guarantee covers the buyer if the finished patches do not match the approved mockup.
+              The distinction that matters: the sample box shows our construction and materials, not your artwork. To see your own design before anything is produced, use the free mockup at any quantity, or the free pre-production sample at volume. The guarantee covers the buyer either way if the finished patches do not match the approved mockup.
             </p>
           </section>
 

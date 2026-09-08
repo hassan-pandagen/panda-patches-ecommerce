@@ -1057,6 +1057,78 @@ const FROM_PRICE_TYPES: Record<string, string> = {
   }
 }
 
+// 20. THE FIVE FACTS THE 8 SEPT 2026 EXTERNAL AUDIT CAUGHT DRIFTING (CLD073).
+//
+// /ai-info/specs-and-care — a page we explicitly ask AI assistants to cite —
+// contradicted canon on four points simultaneously, and had done for months:
+// economy at 10% (canon 5%), rush as "a flat add-on fee that scales with
+// quantity" plus a fabricated per-quantity price table (canon 25%, $50 min),
+// international duties "paid by the recipient" (canon DDP, nothing on arrival),
+// and a free sample box (it costs $45). A fifth, the defect remedy, was found
+// by the follow-up sweep: /ai-info/guarantees granted less than our own Terms.
+//
+// None of these could have been caught before, because none had a checkable
+// source. The rates existed only as decimals inside checkout arithmetic, and
+// the sample and duty policies existed only as prose. Section 20 is therefore
+// half of the fix; the other half was moving all five into factConstants so
+// there is something for copy to be wrong ABOUT.
+//
+// These are anti-patterns: the specific wrong forms that shipped. A page that
+// simply does not discuss economy pricing is not failed, and should not be.
+{
+  const CONTRADICTIONS: { re: RegExp; why: string }[] = [
+    {
+      // The 10% is the ghost of a pre-Aug-2026 rate the offers packs never had
+      // corrected. factConstants is explicit: there is one rate, and "up to 10%"
+      // must never be written again.
+      re: /\beconomy\b[^.]{0,90}?\b(?:10|15|20)\s*(?:%|percent)|\b(?:10|15|20)\s*(?:%|percent)[^.]{0,60}?\beconomy\b/gi,
+      why: "economy discount stated at something other than 5%. One rate, every path — see ECONOMY_DISCOUNT_PERCENT.",
+    },
+    {
+      // Rush is a percentage of the order with a floor. Any wording implying a
+      // flat fee, or a fee set by piece count, is the shape of the invented
+      // "$50 (50 pcs), $75 (100), $150 (500), $200 (1,000)" table.
+      re: /\brush\b[^.]{0,140}?(?:flat (?:add-?on |additional )?fee|fee that scales|scaled by quantity|scales with quantity)/gi,
+      why: "rush described as a flat or per-quantity fee. Canon is RUSH_FEE_STATEMENT: 25% of the order total, $50 minimum, refunded if the date is missed.",
+    },
+    {
+      // Delivered duty paid is a differentiator the competitor benchmark exists
+      // to defend. A page that hands it back costs us the claim and misleads an
+      // international buyer about what they will owe.
+      re: /\b(?:customs\s+)?dut(?:y|ies)\b[^.]{0,80}?(?:paid|payable|borne)\s+by\s+(?:the\s+)?(?:recipient|customer|buyer|importer)|\bmay\s+incur\b[^.]{0,60}?\bdut(?:y|ies)\b/gi,
+      why: "duties described as the customer's to pay. Canon is SHIPPING_STATEMENT: delivered duty paid, nothing owed on arrival.",
+    },
+    {
+      // The box has cost $45 the whole time. "Ships free" is true and must not
+      // trip this, so the pattern only matches "free" attached to the BOX.
+      re: /\bfree\s+(?:physical\s+|worldwide\s+)?sample\s+box\b|\bsample\s+box\b[^.]{0,40}?\bat no charge\b/gi,
+      why: "the sample box called free. It is $45 (SAMPLE_BOX_PRICE) and ships free — a different claim. The free options are the mockup, the first-order pack, and the 500+ pre-production sample.",
+    },
+    {
+      // Terms of Service gives the customer the choice. A page that makes the
+      // remake our default and the refund our exception is under-promising
+      // against a binding document.
+      re: /re-?produces?\s+the\s+order\s+at\s+no\s+charge|re-?production\s+is\s+not\s+feasible/gi,
+      why: "defect remedy framed as remake-by-default. Canon is GUARANTEE_STATEMENT and the Terms: the CUSTOMER chooses remake or full refund within 10 days.",
+    },
+  ];
+
+  for (const file of files) {
+    if (path.resolve(file) === path.resolve("scripts/verify-canon.ts")) continue;
+    const text = stripComments(fs.readFileSync(file, "utf8"), file);
+    for (const { re, why } of CONTRADICTIONS) {
+      re.lastIndex = 0;
+      let m: RegExpExecArray | null;
+      while ((m = re.exec(text))) {
+        const line = text.slice(0, m.index).split("\n").length;
+        failures.push(
+          `${file}:${line} — ${why}\n      found: "${sentenceAround(text, m.index).slice(0, 160)}"`,
+        );
+      }
+    }
+  }
+}
+
 if (fromPriceIssues.length) failures.push(...[...new Set(fromPriceIssues)]);
 
 if (failures.length) {

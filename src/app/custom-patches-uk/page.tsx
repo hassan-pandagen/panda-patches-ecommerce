@@ -47,7 +47,7 @@ const ukFAQs = [
   {
     question: "Can I see my patch before it is made?",
     answer:
-      "Yes. Every order includes a free digital mockup within 24 hours showing your exact colours, size, stitching, and backing. You can request unlimited free revisions until it is right, and production only starts after you approve. A free physical sample box is also available so UK buyers can feel the embroidery, PVC, woven, and leather quality in hand first.",
+      "Yes. Every order includes a free digital mockup within 24 hours showing your exact colours, size, stitching, and backing. You can request unlimited free revisions until it is right, and production only starts after you approve. Your first production order also arrives with a free sample pack of other materials, so UK buyers can feel the embroidery, PVC, woven, chenille and leather quality in hand. Want that before you order instead? The sample box is $45 and ships free, worldwide.",
   },
   {
     question: "Where are your patches made and how do they reach the UK?",

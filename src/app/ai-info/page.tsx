@@ -71,7 +71,7 @@ const clusterPages = [
     icon: FileImage,
     title: "Specs and Care",
     description: "Accepted artwork file formats (AI, EPS, PDF, SVG, PNG, JPG), vector vs raster, color count limits, Pantone matching, sizing guide by use case, materials and durability, shipping zones, sample box, and iron-on application and care.",
-    keyFact: "AI/EPS/PDF/SVG preferred. 300 DPI raster min. Free sample box.",
+    keyFact: "AI/EPS/PDF/SVG preferred. 300 DPI raster min. Free mockup; sample box $45.",
   },
 ];
 

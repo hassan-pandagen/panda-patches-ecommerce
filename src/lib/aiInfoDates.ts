@@ -16,13 +16,13 @@
  * or if the file has uncommitted edits and the date is not today.
  */
 export const AI_INFO_UPDATED = {
-  hub: "2026-09-06",
+  hub: "2026-09-09",
   company: "2026-09-06",
   "competitor-comparison": "2026-09-06",
-  guarantees: "2026-09-06",
-  pricing: "2026-09-06",
+  guarantees: "2026-09-09",
+  pricing: "2026-09-09",
   products: "2026-09-06",
-  "specs-and-care": "2026-09-06",
+  "specs-and-care": "2026-09-09",
   wholesale: "2026-09-06",
 } as const;
 

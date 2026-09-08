@@ -14,10 +14,23 @@ export const ALLOWED_ORIGINS = [
   'https://panda-patches-ecommerce-7w28lefz.vercel.app',
 ] as const;
 
-import { isVelcroBacking } from '@/lib/factConstants';
+import {
+  isVelcroBacking,
+  ECONOMY_DISCOUNT_PERCENT,
+  RUSH_SURCHARGE_PERCENT,
+  RUSH_MIN_FEE,
+} from '@/lib/factConstants';
 
-/** Economy delivery gives a 5% discount. */
-export const ECONOMY_DISCOUNT_RATE = 0.95;
+/**
+ * Economy discount, DERIVED from the canon percentage rather than restated.
+ *
+ * It used to be the literal 0.95, which meant the number customers are told and
+ * the number they are charged were two independent facts that happened to agree.
+ * They stopped agreeing: /ai-info/specs-and-care advertised 10% for months while
+ * checkout took 5%. Deriving it means a future rate change is one edit in
+ * factConstants and cannot leave the prose behind.
+ */
+export const ECONOMY_DISCOUNT_RATE = 1 - ECONOMY_DISCOUNT_PERCENT / 100;
 
 /** Velcro backing: +$0.35 per piece, every quantity. No flat fee, no minimum. */
 export const VELCRO_PER_PIECE_FEE = 0.35;
@@ -39,8 +52,8 @@ export const VELCRO_PER_PIECE_FEE = 0.35;
  * If large-rush orders start balking, the pre-agreed lever is a cap: add
  * RUSH_MAX here and clamp. One value, no refactor.
  */
-export const RUSH_SURCHARGE_RATE = 0.25;
-export const RUSH_MIN = 50;
+export const RUSH_SURCHARGE_RATE = RUSH_SURCHARGE_PERCENT / 100;
+export const RUSH_MIN = RUSH_MIN_FEE;
 
 /** @param subtotal Order subtotal BEFORE rush is added (after velcro/economy). */
 export function getRushSurcharge(subtotal: number): number {

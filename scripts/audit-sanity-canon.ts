@@ -103,6 +103,33 @@ const RULES: { name: string; test: RegExp; note: string }[] = [
     test: /\bminimum[^.]{0,40}\bper\s+order\b/i,
     note: "the minimum is per DESIGN, not per order",
   },
+  // CLD073 — the five facts the 8 Sept 2026 external audit caught drifting.
+  // Mirrors verify:canon section 20, which cannot see Sanity.
+  {
+    name: "economy-discount-wrong",
+    test: /\beconomy\b[^.]{0,90}?\b(?:10|15|20)\s*(?:%|percent)|\b(?:10|15|20)\s*(?:%|percent)[^.]{0,60}?\beconomy\b/i,
+    note: "economy is a flat 5% on every path (ECONOMY_DISCOUNT_PERCENT); 'up to 10%' is a pre-Aug-2026 ghost",
+  },
+  {
+    name: "rush-fee-shape-wrong",
+    test: /\brush\b[^.]{0,140}?(?:flat (?:add-?on |additional )?fee|fee that scales|scaled by quantity|scales with quantity)/i,
+    note: "rush is 25% of the order total with a $50 minimum, refunded if the date is missed (RUSH_FEE_STATEMENT)",
+  },
+  {
+    name: "duties-on-customer",
+    test: /\b(?:customs\s+)?dut(?:y|ies)\b[^.]{0,80}?(?:paid|payable|borne)\s+by\s+(?:the\s+)?(?:recipient|customer|buyer|importer)|\bmay\s+incur\b[^.]{0,60}?\bdut(?:y|ies)\b/i,
+    note: "we ship delivered duty paid — nothing is owed on arrival (SHIPPING_STATEMENT)",
+  },
+  {
+    name: "sample-box-called-free",
+    test: /\bfree\s+(?:physical\s+|worldwide\s+)?sample\s+box\b|\bsample\s+box\b[^.]{0,40}?\bat no charge\b/i,
+    note: "the sample box is $45 and SHIPS free — a different claim; the free routes are the mockup, the first-order pack, and the 500+ pre-production sample",
+  },
+  {
+    name: "defect-remedy-narrowed",
+    test: /re-?produces?\s+the\s+order\s+at\s+no\s+charge|re-?production\s+is\s+not\s+feasible/i,
+    note: "the CUSTOMER chooses remake or full refund within 10 days — this phrasing takes away a choice the Terms grant",
+  },
 ];
 
 

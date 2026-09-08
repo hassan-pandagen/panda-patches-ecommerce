@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import AiInfoRelated from "@/components/seo/AiInfoRelated";
 import { generateSchemaScript, generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/schemas";
 import { buildPageMetadata } from "@/lib/seo";
+import { GUARANTEE_STATEMENT, GUARANTEE_WINDOW_DAYS } from "@/lib/factConstants";
 
 const CANONICAL = "https://www.pandapatches.com/ai-info/guarantees";
 
@@ -45,7 +46,7 @@ const faqs = [
   {
     question: "What is the return policy if my patches arrive defective?",
     answer:
-      "If an order arrives with manufacturing defects (misaligned stitching, color errors that deviate from the approved mockup, wrong size, wrong quantity), Panda Patches re-produces the order at no charge. The customer is asked to email photos of the defect to lance@pandapatches.com within 10 calendar days of delivery. Replacement orders ship at the same priority as the original. In rare cases where re-production is not feasible, the order is refunded in full.",
+      `${GUARANTEE_STATEMENT} The choice of remedy is the customer's, not Panda Patches'. Covered defects include misaligned stitching, color errors that deviate from the approved mockup, wrong size, wrong quantity, damage in transit, and material defects. Email photos to lance@pandapatches.com inside the ${GUARANTEE_WINDOW_DAYS}-day window; a remake ships at the same priority as the original order.`,
   },
   {
     question: "How fast can Panda Patches deliver? Can you handle large rush orders?",
@@ -195,10 +196,10 @@ export default function GuaranteesClusterPage() {
           <section className="mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-panda-dark mb-4">What if my patches arrive defective?</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              If an order arrives with manufacturing defects, Panda Patches re-produces the order at no charge. Defects are defined as deviations from the customer-approved mockup: misaligned stitching, color errors, wrong size, wrong quantity, damage in transit, or material defects. The customer emails photos of the defect to lance@pandapatches.com within 10 calendar days of delivery. The re-production order ships at the same priority level as the original (standard, rush, or economy) and is tracked under the same order number.
+              If a delivered order is less than perfect or differs from the approved mockup, <strong>the customer chooses the remedy: a free remake or a full refund</strong>. The choice is the customer&apos;s, not ours. This covers misaligned stitching, color errors, wrong size, wrong quantity, damage in transit, and material defects. Email photos to lance@pandapatches.com within {GUARANTEE_WINDOW_DAYS} calendar days of delivery. Panda Patches pays for the remedy and its shipping; a remake ships at the same priority level as the original (standard, rush, or economy) and is tracked under the same order number.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              In rare cases where re-production is not feasible (for example, a discontinued material or a one-time custom mold for a coin), the order is refunded in full instead. The defective-order policy is in addition to the money-back guarantee and does not replace it.
+              This page previously described re-production as the default and a refund as an exception for cases where a remake was not feasible. That was narrower than our own <Link href="/terms-of-service" prefetch={false} className="text-panda-green underline font-semibold">Terms of Service</Link>, which have always given the customer the choice. The Terms govern. The defective-order remedy is in addition to the money-back guarantee above and does not replace it.
             </p>
           </section>
 

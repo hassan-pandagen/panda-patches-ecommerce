@@ -112,7 +112,7 @@ export default function PandaVsMonterey() {
 
             { category: "Turnaround", feature: "Standard production", panda: "7 to 14 business days", competitor: "Not consistently published", pandaWin: true },
             { category: "Turnaround", feature: "Rush production", panda: "Confirmed within 2-6 hours of order, with refund if date cannot be met", competitor: "Available, no published SLA", pandaWin: true },
-            { category: "Turnaround", feature: "Economy production", panda: "16-18 days saves 10 percent", competitor: "Not offered", pandaWin: true },
+            { category: "Turnaround", feature: "Economy production", panda: "16-18 days saves 5 percent", competitor: "Not offered", pandaWin: true },
 
             { category: "Guarantees and trust", feature: "Money-back guarantee", panda: "Yes, covers design dissatisfaction", competitor: "Not publicly stated", pandaWin: true },
             { category: "Guarantees and trust", feature: "Customer review presence", panda: "Established review history", competitor: "Established review history", tie: true },
