@@ -56,16 +56,21 @@ export default function robots(): MetadataRoute.Robots {
           'WhatsApp', 'Discordbot', 'TelegramBot', 'Pinterestbot', 'redditbot',
         ],
         allow: '/',
-        disallow: [
-          '/studio/',
-          '/api/',
-          // Image-optimizer endpoint URLs were getting indexed as separate "pages"
-          // (~30 showing up in GSC with impressions/positions) — crawl waste, not
-          // real content (audit P2-3). Image/Shopping-specific bots that actually
-          // need to see the rendered photos get their own rule below instead of
-          // being blanket-blocked here.
-          '/_next/image',
-        ],
+        // /_next/image was here until 9 Sept 2026 and should not have been.
+        //
+        // The reasoning was that ~30 optimizer URLs were showing in GSC with
+        // impressions, so they looked like crawl waste. Two things were wrong
+        // with that. Those impressions are image-search results, which for a
+        // business selling a visual product is traffic, not waste. And blocking
+        // the endpoint does not just hide those URLs — every <img> on the site
+        // is served through it, so Googlebot was rendering every page with no
+        // images at all, bingbot got none, and every AI crawler in this same
+        // group saw a site of pure text. The separate image-bot rule below did
+        // not save it: Googlebot-Image indexes images, it does not render pages.
+        //
+        // The general lesson: robots.txt controls CRAWLING, and noindex controls
+        // INDEXING. Reaching for the first to achieve the second costs rendering.
+        disallow: ['/studio/', '/api/'],
       },
       // Image & Shopping crawlers — every on-page <img> is served through
       // /_next/image, so blocking it here (like the general rule above) would

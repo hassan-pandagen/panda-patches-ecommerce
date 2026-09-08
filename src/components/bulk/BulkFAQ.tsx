@@ -2,42 +2,17 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-const bulkFAQs = [
-  {
-    question: "What's the minimum order for bulk pricing?",
-    answer: "Our overall minimum order is 5 pieces. Bulk pricing tiers kick in at 50 pieces, with better rates at 100+, 500+, and 1,000+. Whether you need 50 patches for your team or 50,000 for a national rollout, we've got you covered."
-  },
-  {
-    question: "Can I get a pre-production sample before placing a large order?",
-    answer: "Absolutely! For orders of 500+ pieces, we provide a free pre-production sample so you can verify quality, color accuracy, and sizing before we run the full batch. For smaller orders, samples are available for $25-$50 (credited toward your order)."
-  },
-  {
-    question: "What file formats do you accept for artwork?",
-    answer: "We accept all formats: AI, EPS, PDF, SVG (vector — preferred), as well as PNG, JPG, TIFF (raster). Don't have artwork? Send us a sketch, photo, or description and our design team will create a professional mockup for free."
-  },
-  {
-    question: "Do you offer distributor or wholesale pricing?",
-    answer: "Yes! We work with promotional products distributors, ASI members, and resellers. Contact us for special distributor rates, white-label options, and Net 15/30 payment terms. We're set up to be your go-to patch supplier."
-  },
-  {
-    question: "What's the turnaround time for 1,000+ pieces?",
-    answer: "Standard production is 2 weeks (10-14 business days) for most bulk orders, regardless of quantity. Rush orders of 7 business days are available for an additional fee. For orders over 10,000 pieces, turnaround may be 3-4 weeks depending on complexity."
-  },
-  {
-    question: "Do returning customers get better pricing?",
-    answer: "Yes! Returning bulk customers receive priority pricing, faster turnaround, and a dedicated account manager. Many of our bulk clients place recurring monthly orders and enjoy consistent volume discounts that improve over time."
-  },
-  {
-    question: "Can you handle multiple patch designs in one order?",
-    answer: "Absolutely. We frequently handle orders with 5-20+ different designs in a single run. Each design gets its own mockup approval process. Volume pricing is based on total pieces across all designs, so you still get bulk rates."
-  },
-  {
-    question: "What quality standards do you follow?",
-    answer: "Every patch goes through our 5-point quality inspection: thread tension verification, color matching, backing durability test, stitch integrity check, and final visual inspection. We use military-grade thread and professional twill backing. We have made patches for fire departments, police departments, and Fortune 500 teams."
-  },
-];
-
-export default function BulkFAQ() {
+export default function BulkFAQ({
+  questions,
+}: {
+  /**
+   * REQUIRED. The page owns this list so the same array feeds the visible
+   * accordion and the FAQPage schema. This component used to hold its own
+   * hardcoded list, which is how the page ended up marking up eleven questions
+   * it never displayed and displaying eight it never marked up.
+   */
+  questions: { question: string; answer: string }[];
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -52,7 +27,7 @@ export default function BulkFAQ() {
 
         {/* FAQ Items */}
         <div className="space-y-3">
-          {bulkFAQs.map((faq, idx) => (
+          {questions.map((faq, idx) => (
             <div
               key={idx}
               className="bg-white rounded-[12px] border border-gray-100 overflow-hidden shadow-sm"

@@ -6,6 +6,7 @@ import { client } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { generateSchemaScript, BRAND_ID, ORG_ID } from "@/lib/schemas";
+import { getFromPriceLabel } from "@/lib/pricingCalculator";
 import MakerNote from "@/components/seo/MakerNote";
 import { buildPageMetadata } from "@/lib/seo";
 import { COUNTRY_HREFLANG } from "@/lib/countryHreflang";
@@ -42,56 +43,77 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-// Product schema for the main patches landing page
-const productSchema = {
+/**
+ * CollectionPage + ItemList — NOT a Product.
+ *
+ * This page was a single `Product` named "Custom Patches" with an AggregateOffer
+ * of $0.91-$6.00 over six offers. It is a category listing: nobody buys "a
+ * custom patch", they buy an embroidered one or a PVC one, and each of those has
+ * its own page carrying its own Product markup. Claiming product-hood here put
+ * the same entity in two places and invited Google to rank the weaker one.
+ *
+ * The offer figures had also gone stale in three separate ways: printed was
+ * missing entirely (it got a published from-price on 6 Sept, and at $0.74 it is
+ * cheaper than the $0.91 low this page advertised), highPrice was $6.00 with
+ * nothing in the list above $1.74 to support it, and the shipping block promised
+ * 10-14 days handling against a canon of 7-14 while limiting free shipping to
+ * four countries we claim to ship worldwide from everywhere else.
+ *
+ * Prices below now come from getFromPriceLabel, the live calculator, so this
+ * list cannot drift from the type pages the way printed did.
+ */
+const TYPE_LISTING: { name: string; product: string; href: string }[] = [
+  { name: "Custom Embroidered Patches", product: "Custom Embroidered Patches", href: "/custom-patches/embroidered" },
+  { name: "Custom PVC Patches", product: "Custom PVC Patches", href: "/custom-patches/pvc" },
+  { name: "Custom Woven Patches", product: "Custom Woven Patches", href: "/custom-patches/woven" },
+  { name: "Custom Chenille Patches", product: "Custom Chenille Patches", href: "/custom-patches/chenille" },
+  { name: "Custom Leather Patches", product: "Custom Leather Patches", href: "/custom-patches/leather" },
+  { name: "Custom Printed Patches", product: "Custom Printed Patches", href: "/custom-patches/printed" },
+  { name: "Custom Sequin Patches", product: "Custom Sequin Patches", href: "/custom-patches/sequin" },
+];
+
+const collectionSchema = {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "CollectionPage",
+  "@id": "https://www.pandapatches.com/custom-patches#collection",
   name: "Custom Patches",
-  description: "Custom embroidered patches, PVC patches, woven patches, chenille patches, and leather patches with low minimums, free design services, and 7-14 day delivery.",
-  image: "https://www.pandapatches.com/assets/og-image.png",
-  brand: { "@id": BRAND_ID },
-  manufacturer: { "@id": ORG_ID },
-  // No aggregateRating: Trustpilot reviews are company-wide, not specific to
-  // this landing page's "Custom Patches" Product entity. The org-level
-  // rating already renders via generateEntityGraph() in the root layout —
-  // duplicating it here is the same "multiple aggregate ratings" pattern
-  // Google flagged on /reviews (GSC Review snippets, 2026-07-07).
-  hasMerchantReturnPolicy: {
-    "@type": "MerchantReturnPolicy",
-    applicableCountry: "US",
-    returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
-    merchantReturnDays: 10,
-    returnMethod: "https://schema.org/ReturnByMail",
-    returnFees: "https://schema.org/FreeReturn",
-  },
-  offers: {
-    "@type": "AggregateOffer",
-    priceCurrency: "USD",
-    lowPrice: "0.91",
-    highPrice: "6.00",
-    offerCount: "6",
-    availability: "https://schema.org/InStock",
-    itemCondition: "https://schema.org/NewCondition",
-    shippingDetails: {
-      "@type": "OfferShippingDetails",
-      shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" },
-      shippingDestination: [{ "@type": "DefinedRegion", addressCountry: "US" }, { "@type": "DefinedRegion", addressCountry: "CA" }, { "@type": "DefinedRegion", addressCountry: "GB" }, { "@type": "DefinedRegion", addressCountry: "AU" }],
-      deliveryTime: {
-        "@type": "ShippingDeliveryTime",
-        handlingTime: { "@type": "QuantitativeValue", minValue: 10, maxValue: 14, unitCode: "DAY" },
-        transitTime: { "@type": "QuantitativeValue", minValue: 3, maxValue: 5, unitCode: "DAY" },
+  description:
+    "Custom embroidered, PVC, woven, chenille, leather, printed and sequin patches. Five-piece minimum on every type, free digital mockup, no setup or digitizing fees, and free worldwide shipping delivered duty paid.",
+  url: "https://www.pandapatches.com/custom-patches",
+  isPartOf: { "@id": "https://www.pandapatches.com/#website" },
+  about: { "@id": ORG_ID },
+  mainEntity: {
+    "@type": "ItemList",
+    name: "Patch types",
+    numberOfItems: TYPE_LISTING.length,
+    itemListOrder: "https://schema.org/ItemListUnordered",
+    itemListElement: TYPE_LISTING.map((t, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      // The Product node is a pointer to the type page's own entity, carrying
+      // just enough to be useful in a list. The full Product markup, with its
+      // offers and specifications, lives on that page and stays authoritative.
+      item: {
+        "@type": "Product",
+        name: t.name,
+        url: `https://www.pandapatches.com${t.href}`,
+        brand: { "@id": BRAND_ID },
+        manufacturer: { "@id": ORG_ID },
+        offers: {
+          "@type": "Offer",
+          price: getFromPriceLabel(t.product).replace("$", ""),
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+          itemCondition: "https://schema.org/NewCondition",
+          // Stated so the price is not read as a flat unit price: it is the
+          // per-piece figure at the canonical basis, and smaller runs cost more.
+          eligibleQuantity: { "@type": "QuantitativeValue", value: 1000, unitCode: "C62" },
+        },
       },
-    },
-    offers: [
-      { "@type": "Offer", name: "Embroidered Patches", price: "0.91", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition" },
-      { "@type": "Offer", name: "PVC Patches", price: "1.40", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition" },
-      { "@type": "Offer", name: "Woven Patches", price: "1.54", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition" },
-      { "@type": "Offer", name: "Chenille Patches", price: "1.30", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition" },
-      { "@type": "Offer", name: "Leather Patches", price: "1.74", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition" },
-      { "@type": "Offer", name: "Sequin Patches", price: "1.44", priceCurrency: "USD", availability: "https://schema.org/InStock", itemCondition: "https://schema.org/NewCondition" },
-    ],
+    })),
   },
 };
+
 
 // Breadcrumb schema
 const breadcrumbSchema = {
@@ -209,6 +231,20 @@ const faqSchema = {
   ],
 };
 
+/**
+ * The FAQPage entries, flattened for the visible accordion.
+ *
+ * Both halves come from one array now. Until 9 Sept 2026 this page marked up
+ * ten questions that appeared nowhere on it, while the accordion below rendered
+ * ten different generic ones that nothing marked up — so the markup was
+ * ineligible under Google's FAQ policy AND the better answers were the ones
+ * nobody could read.
+ */
+const faqEntries = faqSchema.mainEntity.map((q) => ({
+  question: q.name,
+  answer: q.acceptedAnswer.text,
+}));
+
 // ISR: Revalidate main patches page every 24 hours
 export const revalidate = 86400;
 
@@ -241,7 +277,7 @@ export default async function ProductLandingPage() {
       {/* Schemas */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={generateSchemaScript(productSchema)}
+        dangerouslySetInnerHTML={generateSchemaScript(collectionSchema)}
       />
       <script
         type="application/ld+json"
@@ -295,7 +331,7 @@ export default async function ProductLandingPage() {
       <IndustrySection />
 
       {/* 8. FAQ & SEO */}
-      <FAQ />
+      <FAQ questions={faqEntries} heading="Custom Patch FAQs" />
       <ContentSection />
 
       {/* 9. EXPANDED SEO CONTENT — custom patches guide */}

@@ -1,7 +1,8 @@
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { generateSchemaScript } from "@/lib/schemas";
+import { generateSchemaScript, generateFAQSchema } from "@/lib/schemas";
+import { genericFaqs } from "@/lib/genericFaqs";
 import { buildPageMetadata } from "@/lib/seo";
 import { client, urlFor } from "@/lib/sanity";
 import Hero from "@/components/home/Hero";
@@ -74,76 +75,24 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const homeFaqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is Panda Patches?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Panda Patches is a custom patch company founded by Imran Raza, U.S.-registered with a mailing address in Austin, Texas, built on 13+ years of patch experience. We design and produce embroidered, PVC, woven, chenille, and leather patches for small businesses, sports teams, military units, schools, motorcycle clubs, and brands across the United States. We have delivered over 1,000,000 custom patches with a digital mockup in 12 to 24 hours, low 5-piece minimum, and money-back guarantee on every order.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "Does Panda Patches have a minimum order?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The minimum order at Panda Patches is 5 pieces on all patch types. There are no setup fees, no digitizing fees, and no hidden charges on any order size.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "Does Panda Patches include a mockup with every order?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Every order includes a digital mockup delivered in 12 to 24 hours. Unlimited free revisions are included until you approve the design. Production never starts until you give written approval on the mockup.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "How much do custom patches cost at Panda Patches?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Custom embroidered patches cost about $3.92 per piece at 50 pieces, $2.55 at 100 pieces, $1.18 at 500 pieces, and $1.05 at 1,000 pieces for a 3-inch patch. PVC patches cost about $6.19 at 50 pieces, $4.33 at 100, $3.10 at 500, and $2.78 at 1,000. Smaller orders cost more per piece. All prices include free worldwide shipping and a digital mockup in 12 to 24 hours. No setup fees on any order.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "How long does it take to get custom patches from Panda Patches?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Standard production is 7-14 business days after you approve your digital mockup. Rush production is available in as soon as 5 business days on qualifying orders (large or complex orders split-ship: first batch in 5 business days, remainder in 8-11), with your exact date confirmed by email within 2-6 hours of ordering. Economy delivery (16-18 business days) saves 5% off the order total. Free worldwide shipping is included on all orders.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "What types of custom patches does Panda Patches make?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Panda Patches makes embroidered patches, PVC patches, woven patches, chenille patches, and leather patches. All types are available with iron-on, sew-on, or Velcro backing. Iron-on and sew-on are included in the patch price; Velcro is charged separately on every order. Every order includes a digital mockup in 12 to 24 hours, free worldwide shipping, and no setup fees.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "Does Panda Patches offer free shipping?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Free worldwide shipping is included on every order regardless of size, with no hidden fees and no setup charges. Our minimum order is 5 pieces per design.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "Does Panda Patches have a money-back guarantee?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Panda Patches offers a full money-back guarantee. If we cannot produce a design you are happy with after unlimited free revisions, you receive a full refund. Production never starts until you approve the mockup, so you are never charged for patches you have not approved.",
-      },
-    },
-  ],
-};
+/**
+ * Homepage FAQ schema, generated from the SAME array the visible accordion
+ * renders. It has to be, and it was not.
+ *
+ * Until 9 Sept 2026 this was a hand-written FAQPage of eight questions that
+ * appeared nowhere on the page — "What is Panda Patches?", "Does Panda Patches
+ * have a minimum order?" — while the accordion showed ten entirely different
+ * ones from genericFaqs. Google requires FAQ markup to be visible on the page,
+ * so all eight were ineligible, and the divergence had a second cost: the
+ * hand-written copy was the stale one. It still quoted the pre-correction rush
+ * and pricing lines that genericFaqs had already been fixed for.
+ *
+ * Deriving it means the two cannot disagree again. Edit the answers in
+ * genericFaqs and the markup follows.
+ */
+const homeFaqSchema = generateFAQSchema(
+  genericFaqs.map((f) => ({ question: f.question, answer: f.answer })),
+);
 
 // 1. THIS MUST BE A SERVER COMPONENT (No 'use client')
 export default function Home() {

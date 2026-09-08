@@ -9,6 +9,7 @@
 
 import { TRUSTPILOT_RATING, TRUSTPILOT_REVIEW_COUNT } from '@/lib/reviewConstants';
 import { getProductReviewSchema } from '@/lib/productReviews';
+import { GUARANTEE_WINDOW_DAYS } from '@/lib/factConstants';
 
 // ============================================
 // HELPER FUNCTION
@@ -328,7 +329,12 @@ interface ProductVariant {
 interface ProductSchemaParams {
   name: string;
   description: string;
-  image: string;
+  /**
+   * One URL, or several. Google accepts an array and recommends supplying the
+   * same photo at 1:1, 4:3 and 16:9 so a rich result can pick the ratio that
+   * fits the slot it is rendering.
+   */
+  image: string | string[];
   url: string;
   sku?: string;
   gtin?: string;
@@ -360,7 +366,12 @@ export function generateProductSchema(params: ProductSchemaParams) {
     description,
     image,
     url,
-    sku = "custom-product",
+    // No default. This used to be "custom-product", which meant every product
+    // page on the site declared the same sku — an identifier shared by seven
+    // different products, telling Google they are one product with seven URLs.
+    // Absent is correct for a made-to-order item with no real stock unit; pages
+    // that want a stable per-type ID pass one.
+    sku,
     gtin,
     brand = "Panda Patches",
     priceRange = "$50-$500",
@@ -398,26 +409,65 @@ export function generateProductSchema(params: ProductSchemaParams) {
   const shippingDetails = {
     "@type": "OfferShippingDetails",
     "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
+    // schema.org has no "ships everywhere" token, so a free-worldwide policy
+    // cannot be stated exactly. This lists the markets we hold dedicated pages
+    // and delivery data for, which UNDERSTATES the real policy rather than
+    // contradicting it. Free shipping applies beyond this list.
     "shippingDestination": [
       { "@type": "DefinedRegion", "addressCountry": "US" },
       { "@type": "DefinedRegion", "addressCountry": "CA" },
       { "@type": "DefinedRegion", "addressCountry": "GB" },
-      { "@type": "DefinedRegion", "addressCountry": "AU" }
+      { "@type": "DefinedRegion", "addressCountry": "AU" },
+      { "@type": "DefinedRegion", "addressCountry": "DE" },
+      { "@type": "DefinedRegion", "addressCountry": "IE" },
+      { "@type": "DefinedRegion", "addressCountry": "NZ" }
     ],
     "deliveryTime": {
       "@type": "ShippingDeliveryTime",
-      "handlingTime": { "@type": "QuantitativeValue", "minValue": 10, "maxValue": 14, "unitCode": "DAY" },
-      "transitTime": { "@type": "QuantitativeValue", "minValue": 3, "maxValue": 5, "unitCode": "DAY" }
+      // 7-14, from STANDARD_DELIVERY. This said 10-14 until 9 Sept 2026 — the
+      // markup was promising a slower turnaround than the page it sat on.
+      "handlingTime": { "@type": "QuantitativeValue", "minValue": 7, "maxValue": 14, "unitCode": "DAY" },
+      "transitTime": { "@type": "QuantitativeValue", "minValue": 3, "maxValue": 5, "unitCode": "DAY" },
+      "businessDays": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "https://schema.org/Monday",
+          "https://schema.org/Tuesday",
+          "https://schema.org/Wednesday",
+          "https://schema.org/Thursday",
+          "https://schema.org/Friday"
+        ]
+      }
     }
   };
 
+  /**
+   * The DEFECT remedy, which is the only return we actually offer.
+   *
+   * This previously described a generic change-of-mind window — finite window,
+   * return by mail, free returns — which we have never offered on custom goods.
+   * After written mockup approval an order is non-cancellable; before it, the
+   * customer can cancel for a full refund and nothing has been made yet.
+   *
+   * What the 10 days are really for: if the delivered order is less than
+   * perfect or differs from the approved mockup, the CUSTOMER chooses a remake
+   * or a full refund and we pay for it. The itemDefect* properties say exactly
+   * that, and are the reason this is no longer a generic policy with the right
+   * number of days by coincidence.
+   */
   const merchantReturnPolicy = {
     "@type": "MerchantReturnPolicy",
-    "applicableCountry": "US",
+    "applicableCountry": ["US", "CA", "GB", "AU", "DE", "IE", "NZ"],
     "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-    "merchantReturnDays": 10,
+    "merchantReturnDays": GUARANTEE_WINDOW_DAYS,
     "returnMethod": "https://schema.org/ReturnByMail",
-    "returnFees": "https://schema.org/FreeReturn"
+    "returnFees": "https://schema.org/FreeReturn",
+    // We pay the remedy and its shipping — GUARANTEE_STATEMENT.
+    "itemDefectReturnFees": "https://schema.org/FreeReturn",
+    "itemDefectReturnLabelSource": "https://schema.org/ReturnLabelDownloadAndPrint",
+    "itemDefectReturnShippingFeesAmount": {
+      "@type": "MonetaryAmount", "value": 0, "currency": "USD"
+    }
   };
 
   const productSchema: Record<string, any> = {
@@ -427,7 +477,7 @@ export function generateProductSchema(params: ProductSchemaParams) {
     "description": description,
     "image": image,
     "url": url,
-    "sku": sku,
+    ...(sku ? { "sku": sku } : {}),
     "brand": brand === "Panda Patches" ? { "@id": BRAND_ID } : { "@type": "Brand", "name": brand },
     "manufacturer": { "@id": ORG_ID },
     "hasMerchantReturnPolicy": merchantReturnPolicy,

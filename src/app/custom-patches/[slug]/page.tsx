@@ -42,6 +42,27 @@ const Footer = dynamic(() => import("@/components/layout/Footer"), { ssr: true }
 // ISR: Revalidate product pages every 24 hours (products rarely change)
 export const revalidate = 86400;
 
+/**
+ * Product images for the schema: the hero if one exists, else the page's own
+ * work samples, else the OG card as a last resort.
+ *
+ * Three aspect ratios per image because Google renders product images at 1:1,
+ * 4:3 and 16:9 and picks whichever fits the slot.
+ */
+function productImages(data: any): string[] {
+  const src = data?.heroImage ?? data?.workSamples?.[0]?.image ?? data?.workSamples?.[0] ?? null;
+  if (!src) return ['https://www.pandapatches.com/assets/og-image.png'];
+  try {
+    return [
+      urlFor(src).width(1200).height(1200).fit('crop').format('jpg').quality(80).url(),
+      urlFor(src).width(1200).height(900).fit('crop').format('jpg').quality(80).url(),
+      urlFor(src).width(1200).height(675).fit('crop').format('jpg').quality(80).url(),
+    ];
+  } catch {
+    return ['https://www.pandapatches.com/assets/og-image.png'];
+  }
+}
+
 async function getProductData(slug: string) {
   // Validate slug format to prevent injection (alphanumeric and hyphens only)
   if (!/^[a-z0-9-]+$/i.test(slug)) {
@@ -174,8 +195,24 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
   const productSchema = generateProductSchema({
     name: data.title,
     description: data.description || `High-quality ${data.title.toLowerCase()} with low minimums, fast delivery, and free design services.`,
-    image: data.heroImage ? urlFor(data.heroImage).width(1200).height(630).fit('crop').format('jpg').quality(80).url() : 'https://www.pandapatches.com/assets/og-image.png',
+    // Real photographs of the actual patch type, in the three aspect ratios
+    // Google recommends for Product images.
+    //
+    // Every one of the seven type pages was falling through to the OG card,
+    // because none has a heroImage set — while six of the seven carry four to
+    // seven real work-sample photographs that this query already fetched and
+    // the schema never looked at. The OG card is our logo lockup: valid markup,
+    // and useless as a product image on a shopping surface.
+    //
+    // Sequin is the exception. It has no photographs at all in Sanity, so it
+    // still falls back to the OG card until someone uploads one. Flagged
+    // 9 Sept 2026.
+    image: productImages(data),
     url: `https://www.pandapatches.com/custom-patches/${slug}`,
+    // A stable per-type identifier. The shared template used to default every
+    // product on the site to sku "custom-product", which told Google that seven
+    // different products were one product with seven URLs.
+    sku: `PP-${slug.toUpperCase()}`,
     priceRange: computedPriceRange,
     pricingTiers: pricingTiers.length > 0 ? pricingTiers : undefined,
     // These slugs are all patch types, so genuine patch-order reviews apply.

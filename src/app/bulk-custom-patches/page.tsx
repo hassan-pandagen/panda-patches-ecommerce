@@ -8,6 +8,7 @@ import BulkHero from "@/components/bulk/BulkHero";
 import BulkPricingTable from "@/components/bulk/BulkPricingTable";
 import BulkCaseStudies from "@/components/bulk/BulkCaseStudies";
 import BulkFAQ from "@/components/bulk/BulkFAQ";
+import { bulkFaqs } from "@/lib/bulkFaqs";
 import Promises from "@/components/home/Promises";
 import ProcessSection from "@/components/home/ProcessSection";
 import TrustStrip from "@/components/products/TrustStrip";
@@ -144,6 +145,7 @@ const productSchema = {
   ...(getProductReviewSchema("bulk-custom-patches") ?? {}),
 };
 
+
 // Breadcrumb schema
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -163,6 +165,26 @@ const breadcrumbSchema = {
     },
   ],
 };
+
+/**
+ * One array for the markup and the accordion.
+ *
+ * The schema block below and BulkFAQ's own list were two separate sets: eleven
+ * questions marked up and never shown, eight shown and never marked up. The
+ * schema copy is the stronger of the two — it carries live calculator totals —
+ * so it leads, and BulkFAQ's own entries follow for the distributor and
+ * multi-design ground it covers that the schema does not.
+ */
+function mergeFaqs(
+  primary: { question: string; answer: string }[],
+  extra: { question: string; answer: string }[],
+) {
+  const seen = new Set(primary.map((f) => f.question.toLowerCase().replace(/[^a-z0-9]/g, "")));
+  return [
+    ...primary,
+    ...extra.filter((f) => !seen.has(f.question.toLowerCase().replace(/[^a-z0-9]/g, ""))),
+  ];
+}
 
 // FAQPage schema (server-side for guaranteed crawlability)
 const faqSchema = {
@@ -259,6 +281,11 @@ const faqSchema = {
     },
   ],
 };
+
+const bulkFaqEntries = mergeFaqs(
+  faqSchema.mainEntity.map((q) => ({ question: q.name, answer: q.acceptedAnswer.text })),
+  bulkFaqs,
+);
 
 export default async function BulkCustomPatchesPage() {
   const { workSamples, heroImage, trustBadges } = await getBulkPageData();
@@ -485,7 +512,7 @@ export default async function BulkCustomPatchesPage() {
       {/* 8. BULK QUOTE FORM — Now in Hero section */}
 
       {/* 9. BULK FAQ */}
-      <BulkFAQ />
+      <BulkFAQ questions={bulkFaqEntries} />
 
       {/* 10. WHY BUSINESSES CHOOSE PANDA */}
       <section className="w-full py-8 md:py-12 bg-panda-light">
