@@ -49,7 +49,20 @@ const dataSchema = {
       description:
         "Aggregate order statistics from Panda Patches' production records: backing-type mix, order-size distribution, rush-order share, and size distribution across 963 custom patch orders (68,785 patches) delivered through pandapatches.com between December 2025 and August 2026. Counts finished patches only; non-patch items are excluded from both totals and percentages.",
       url: `${BASE}/custom-patch-production-data-2026`,
-      creator: { "@id": `${BASE}/#organization` },
+      // Typed inline for the same reason as the manufacturability specs: a
+      // bare {"@id"} reference gives Google's Dataset validator no type to read
+      // when the Organization node sits in the root layout's separate JSON-LD
+      // block. The @id keeps it pointing at that one entity.
+      creator: {
+        "@type": "Organization",
+        "@id": `${BASE}/#organization`,
+        name: "Panda Patches",
+        url: BASE,
+      },
+      // "Free to cite with attribution", as the page says below, in a field a
+      // machine can read. Our own terms rather than CC BY, which would also let
+      // anyone republish the figures as their own with a credit line.
+      license: `${BASE}/custom-patch-production-data-2026#cite`,
       temporalCoverage: "2025-12-08/2026-08-05",
       isAccessibleForFree: true,
       variableMeasured: [
@@ -299,8 +312,9 @@ export default function ProductionData2026() {
           </div>
         </section>
 
-        {/* CITE THIS */}
-        <section className="w-full py-12 md:py-16 px-6 bg-white">
+        {/* CITE THIS — #cite is the target of the Dataset `license` field, so
+            this section is the published licence. Do not rename the id. */}
+        <section id="cite" className="w-full py-12 md:py-16 px-6 bg-white">
           <div className="container mx-auto max-w-[51.25rem]">
             <div className="mb-10">
               <AuthorByline datePublished="2026-07-18" dateModified="2026-08-06" />

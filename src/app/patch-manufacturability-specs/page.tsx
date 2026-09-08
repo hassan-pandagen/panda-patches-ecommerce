@@ -139,7 +139,21 @@ const specSchema = {
         "Production limits for custom patch manufacturing by patch type: minimum text height, minimum line weight, maximum color count, gradient support, and minimum/maximum standard patch size for embroidered, woven, PVC, leather, chenille, printed and sequin patches.",
       url: CANONICAL,
       version: SPEC_VERSION,
-      creator: { "@id": `${BASE}/#organization` },
+      // Typed inline, not a bare {"@id"}. The Organization node lives in the
+      // root layout's own JSON-LD block, and Google's Dataset validator will not
+      // cross blocks to find its type — hence "Invalid object type for field
+      // 'creator'" in Search Console, first detected 1 Sept 2026. The @id stays,
+      // so this still resolves to the one organisation entity rather than a second.
+      creator: {
+        "@type": "Organization",
+        "@id": `${BASE}/#organization`,
+        name: "Panda Patches",
+        url: BASE,
+      },
+      // The terms this page already states in prose, where a machine can read
+      // them. Our own terms, deliberately, not a CC licence: "free to cite with
+      // attribution" does not grant redistribution or remixing of the specs.
+      license: `${CANONICAL}#cite`,
       isAccessibleForFree: true,
       datePublished: SPEC_DATE,
       dateModified: SPEC_DATE,
@@ -632,8 +646,9 @@ export default function PatchManufacturabilitySpecs() {
           </div>
         </section>
 
-        {/* BYLINE + CITE */}
-        <section className="w-full py-10 md:py-16 px-4 md:px-6 bg-[#F7F7F7]">
+        {/* BYLINE + CITE — #cite is the target of the Dataset `license` field,
+            so this section is the published licence. Do not rename the id. */}
+        <section id="cite" className="w-full py-10 md:py-16 px-4 md:px-6 bg-[#F7F7F7]">
           <div className="container mx-auto max-w-[51.25rem]">
             <div className="mb-10">
               <AuthorByline datePublished={SPEC_DATE} dateModified={SPEC_DATE} reviewedBy="the Panda Patches digitizing team" />
