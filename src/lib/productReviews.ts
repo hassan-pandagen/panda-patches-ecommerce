@@ -236,11 +236,39 @@ function averageRating(reviews: CustomerReview[]): string {
 }
 
 /**
- * Build the { aggregateRating, review[] } fragment to spread into a Product schema.
- * Returns null when the product lacks enough genuine reviews — caller emits no rating.
- * The reviews here MUST also be shown on the page (ProductReviews.tsx).
+ * PRODUCT RATING MARKUP IS OFF. This returns null for every product, on purpose.
+ *
+ * An external audit on 8 Sept 2026 found the same people credited as reviewers
+ * of different products: Paul Hart, Javier Pena Ineditas and Mike on PVC,
+ * leather AND sequin; Sam Jefferson and Robert Fisher on leather and sequin.
+ * Every type page carried aggregateRating 5 from 6 reviews.
+ *
+ * The reviews are real. The ratings were not, because these are reviews of the
+ * COMPANY, not of a product. Look at what they say — "Lance has been very
+ * communicative", "I felt like family, not just a customer" — and at how they
+ * were selected: GENERAL_REVIEWS is filler, dealt out to any page short of its
+ * own. There is no "chenille" key in PRODUCT_TAGS, so the chenille rating was
+ * computed from 100% filler. Leather had one leather review and five fillers.
+ *
+ * Google's rule is not "reviews must be genuine", which these are. It is that a
+ * Product.aggregateRating must be specific to that product. Filler makes it not,
+ * and the MIN_REVIEWS gate below never tested for that — it counted reviews and
+ * ignored where they came from, so it passed on all seven type pages.
+ *
+ * THE CONDITION FOR TURNING THIS BACK ON: an order-linked review record. A
+ * review that arrived through /r/:token, tied to an order whose patches_type we
+ * know. review_invitations already exist in Supabase; the redirect that would
+ * attribute them does not. When it ships and real per-type reviews accumulate,
+ * delete the early return and add a provenance check here — NOT just a count.
+ *
+ * Until then the honest markup is none. The testimonials stay visible and
+ * attributed as company reviews (ProductReviews.tsx); it is the star rating on
+ * a product that had no product reviews behind it that had to go.
  */
 export function getProductReviewSchema(productKey?: string): ReviewSchemaFragment | null {
+  return null;
+
+  // eslint-disable-next-line no-unreachable
   const reviews = getProductReviews(productKey);
   if (!reviews.length) return null;
 

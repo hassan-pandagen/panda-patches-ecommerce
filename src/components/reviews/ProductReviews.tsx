@@ -1,11 +1,24 @@
 import { getProductReviews } from "@/lib/productReviews";
+import { TRUSTPILOT_PROFILE_URL } from "@/lib/reviewConstants";
 
 /**
- * Visible customer reviews for a product page. Google requires the reviews that
- * back a Product.aggregateRating to be visible on the page — this renders exactly
- * the set returned by getProductReviews(productKey), the same set fed to the
- * Product schema. Renders nothing when the product has too few genuine reviews
- * (matches the schema, which then omits aggregateRating).
+ * Customer testimonials, shown on product pages.
+ *
+ * These are real Trustpilot reviews of Panda Patches, and that is now what the
+ * page says they are. Until 9 Sept 2026 this block was headed "<Product>
+ * Reviews" and led with "4.8 out of 5 from 6 verified customer reviews", which
+ * presented company reviews as ratings of the specific product — the same claim
+ * the Product schema was making, and the reason both had to change. See the
+ * long note in productReviews.ts.
+ *
+ * The per-product selection is kept: tag-matching still surfaces the most
+ * relevant testimonial first, and rotation stops every page showing the same
+ * six. That is a reasonable thing to do with testimonials. Computing an average
+ * from them and calling it a product rating was not.
+ *
+ * Individual star counts stay because each is that reviewer's real Trustpilot
+ * score. What is gone is the aggregate, which is the number that implied a
+ * product had been rated.
  */
 export default function ProductReviews({
   productKey,
@@ -16,9 +29,6 @@ export default function ProductReviews({
 }) {
   const reviews = getProductReviews(productKey);
   if (!reviews.length) return null;
-
-  const avg = reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
-  const avgLabel = (Math.round(avg * 10) / 10).toString();
 
   const formatDate = (iso: string) => {
     const [y, m, d] = iso.split("-").map(Number);
@@ -31,11 +41,19 @@ export default function ProductReviews({
       <div className="container mx-auto px-4 md:px-6 max-w-[68.75rem]">
         <div className="text-center mb-8">
           <h2 className="text-[1.5rem] md:text-[2rem] font-black text-panda-dark tracking-tight mb-2">
-            {productName} Reviews
+            What customers say about working with us
           </h2>
           <p className="text-[0.875rem] md:text-[0.9375rem] text-gray-600 font-medium">
-            <span className="font-bold text-panda-dark">{avgLabel} out of 5</span>
-            {" "}from {reviews.length} verified customer {reviews.length === 1 ? "review" : "reviews"}
+            Verified reviews of Panda Patches on{" "}
+            <a
+              href={TRUSTPILOT_PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-panda-green underline font-semibold"
+            >
+              Trustpilot
+            </a>
+            . These are reviews of our company and service, not ratings of {productName} specifically.
           </p>
         </div>
 
