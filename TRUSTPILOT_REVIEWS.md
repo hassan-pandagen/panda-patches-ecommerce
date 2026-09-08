@@ -2,6 +2,17 @@
 
 **Canonical, deduplicated record of every Trustpilot review.** Single source of truth for:
 - `src/lib/reviewConstants.ts` — the sitewide Organization aggregateRating (rating + count).
+
+> ⚠ **Where to actually change the number.** `reviewConstants.ts` and the four
+> Trustpilot lines in `public/llms.txt` are GENERATED. `prebuild` runs
+> `scripts/sync-company-facts.mjs`, which reads the `companyFacts` singleton in
+> Sanity and rewrites them. Editing either file by hand works until the next
+> build and is then silently reverted — that is exactly what happened to the
+> 4.7/95 correction on 9 Sept 2026, which was typed into the constants,
+> overwritten by the build, and committed reverted.
+>
+> The order is: update `companyFacts` in Sanity → `npm run facts:sync` → update
+> this log → commit all of it together.
 - `src/lib/productReviews.ts` — the per-product reviews shown on product pages + their Product.aggregateRating.
 
 ## Live stats (verify against https://www.trustpilot.com/review/pandapatches.com)

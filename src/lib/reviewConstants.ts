@@ -5,6 +5,18 @@
  * https://www.trustpilot.com/review/pandapatches.com so the visible site
  * rating and any future schema markup stay legally accurate.
  *
+ * ⚠ THESE THREE CONSTANTS ARE GENERATED. Do not hand-edit them.
+ *
+ * `prebuild` runs scripts/sync-company-facts.mjs, which reads the `companyFacts`
+ * singleton in Sanity and rewrites the three export lines below plus four lines
+ * in public/llms.txt. A hand edit here survives until the next build and is then
+ * silently reverted — which happened on 9 Sept 2026: the 4.7/95 correction was
+ * typed into this file, overwritten by the build minutes later, and committed in
+ * its reverted state. Only the surrounding comments survived, so the note said
+ * 4.7 while the constant said 4.8.
+ *
+ * THE ONLY CORRECT UPDATE PATH is the Sanity document, then `npm run facts:sync`.
+ *
  * Update path:
  *   1. Open the Trustpilot profile, read the TrustScore + total review count
  *   2. Update both constants below
@@ -44,13 +56,13 @@
  *   - Plain text + plain link to the profile is allowed
  */
 
-export const TRUSTPILOT_RATING = "4.8";
-export const TRUSTPILOT_REVIEW_COUNT = 87;
+export const TRUSTPILOT_RATING = "4.7";
+export const TRUSTPILOT_REVIEW_COUNT = 95;
 export const TRUSTPILOT_REVIEW_COUNT_STR = String(TRUSTPILOT_REVIEW_COUNT);
 export const TRUSTPILOT_PROFILE_URL =
   "https://www.trustpilot.com/review/pandapatches.com";
 /** Date the rating + count above were last verified on the live profile. */
-export const TRUSTPILOT_LAST_CHECKED = "August 2026";
+export const TRUSTPILOT_LAST_CHECKED = "September 2026";
 
 /**
  * Ready-to-render copy variants for in-page use. Keep these plain text so
