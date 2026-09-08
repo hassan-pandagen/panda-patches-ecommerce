@@ -18,8 +18,8 @@ const patchStyleMeta: Record<string, PatchStyleMeta> = {
   // chenille orders are 61% at 12in+, i.e. back pieces, not letter sets).
   "chenille-letters": {
     title: "Custom Chenille Letters | Full A-Z Set $150, Numbers $120",
-    description: "Complete chenille alphabet, 26 letters for $150, or the 0-9 number set for $120, in your size and yarn colour. Single letters and names from 5 pieces. 2 in minimum, 3 in+ recommended. Free worldwide shipping, no setup fees.",
-    ogTitle: "Custom Chenille Letters | Full A-Z Alphabet Set $150, 0-9 Numbers $120",
+    description: "Complete chenille alphabet, 26 letters for $150, or the 1-10 number set for $120, in your size and yarn colour. Single letters and names from 5 pieces. 2 in minimum, 3 in+ recommended. Free worldwide shipping, no setup fees.",
+    ogTitle: "Custom Chenille Letters | Full A-Z Alphabet Set $150, 1-10 Numbers $120",
     ogDescription: "Single letters, names, full A-Z sets and year numerals. One batch means one dye lot. Free digital mockup in 12 to 24 hours.",
   },
   "patches-for-hats": {

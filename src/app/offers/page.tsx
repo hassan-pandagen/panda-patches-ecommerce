@@ -132,7 +132,7 @@ const getCategoryImages = cache(async (): Promise<Record<string, string>> => {
  * ⚠ INTERIM. We do not own a photograph of either product. The five images on
  * the `chenille-letters` patchStyle are custom chenille work — a "GUSH" logo, a
  * motorcycle-club shield, a bear, a "Black\'s Kicks" patch and a Bengals "B" —
- * and not one shows an A-Z set or a 0-9 set. The last is the only chenille
+ * and not one shows an A-Z set or a number set. The last is the only chenille
  * LETTER among them, so it is the honest choice: same construction, same yarn,
  * same product family, photographed at 4500px.
  *

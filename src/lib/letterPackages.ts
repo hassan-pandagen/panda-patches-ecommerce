@@ -47,13 +47,13 @@ export const LETTER_PACKAGES: LetterPackage[] = [
   },
   {
     id: "chenille-numbers",
-    name: "Chenille Numbers Package (0–9)",
+    name: "Chenille Numbers Package (1–10)",
     pieces: 10,
     price: 120,
     glitterFee: 30,
     sizes: [2, 2.5, 3, 3.5, 4, 4.5, 5],
     blurb:
-      "All ten numerals in one set, one size, one colour. Same construction as the alphabet package.",
+      "Ten numerals in one set — 1 through 9 plus a 10 — one size, one colour. Same construction as the alphabet package. Need a 0, or a numeral this set does not carry? Order it individually from 5 pieces.",
     href: "/chenille-letters",
   },
 ];

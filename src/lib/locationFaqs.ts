@@ -21,7 +21,7 @@ const locationFaqs: Record<string, Array<{ question: string; answer: string }>> 
     {
       question: "Do you make chenille numbers?",
       answer:
-        "Yes. The Chenille Numbers Package is 0 through 9 for $120, at $12 a numeral, in one size from 2 to 5 inches. A glitter background is $30 more. Same construction as the alphabet set and the same felt base, so a year on a sleeve matches the letters on the chest when you order them together.",
+        "Yes. The Chenille Numbers Package is 1 through 9 plus a 10, ten pieces for $120, at $12 a numeral, in one size from 2 to 5 inches. If you need a 0, or any numeral the set does not carry, order it individually from 5 pieces. A glitter background is $30 more. Same construction as the alphabet set and the same felt base, so a year on a sleeve matches the letters on the chest when you order them together.",
     },
     {
       question: "What is the minimum letter size for chenille?",
