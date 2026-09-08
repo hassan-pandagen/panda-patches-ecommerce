@@ -28,6 +28,12 @@
 | 1★ | 3% (read on-screen 2026-09-09) |
 | Last synced | **2026-09-09** (score, total and star split all read off the live profile) |
 
+> **Eight entries added 2026-09-09**, covering 25 Aug - 5 Sept, supplied by the
+> owner from the live profile. The TOTAL does not move: the 95 read on 9 Sept
+> already included them. The log was current on the number and behind on the
+> entries, which is the gap that let the 4.8 sit unchallenged — a count you
+> cannot reconcile against a list is a count nobody checks.
+>
 > **Fully verified 2026-09-09.** Score (4.7), total (95) and the star split
 > were all read off the live profile, and Trustpilot's own aggregateRating in
 > the page's structured data agrees: 4.7 from 95.
@@ -85,6 +91,59 @@
 ---
 
 ## Reviews (newest first)
+
+### 2026-09-05 · JAM ATHLETICS LLC (US) · ★★★★★ · [general]
+**Excellent work** — Excellent work. Delivery on time. Cost friendly.
+
+### 2026-09-05 · Jarrett McDowell (US) · ★★★★★ · [general]
+**Great Customer Service** — Great response when I had questions. Great customer service and informed me of status every step of the way.
+
+### 2026-09-05 · Sara (PH) · ★★★★★ · [printed, hats]
+**We received the patch earlier than…** — We received the patch earlier than expected. Patches are of high quality, even though it's just printed patches. They looked great and were used for our beanies
+
+> First genuinely PRINTED-specific review in the log, and the first from the
+> Philippines. Printed previously had no product-specific review at all, so its
+> page fell back entirely to general filler — see the withdrawn product-rating
+> row in the claims register. Note the customer's own framing, "even though it's
+> just printed patches": printed is read as the budget option and beat the
+> expectation that comes with that.
+
+### 2026-09-05 · Jaime Cuolahan (US) · ★☆☆☆☆ · [negative, turnaround, 3d-puff]
+**I ordered on and paid on 7/8, Received 8/28** — I ordered on and paid on July 8th, 2026. Was told it would be around a 10 day turn around for patches. I reached out in mid August regarding patches and was told that they would be shipping asap... It took another 10 days to receive patches. This leads me to believe that my order was forgotten about and then made after my inquiry. Customer has received patches, and they are satisfied but not overly impressed. That we would return as customers. I can order patches cheaper directly china, which I am sure these came from, with a similar turn around time.
+_Business reply (2026-09-09): apologised, asked them to email sales@ and offered a refund for the experience._
+
+> **The order record supports the complaint.** This is **PP-11085** — paid
+> 2026-07-08, 50 3D Embroidery Puff patches, $210, not marked urgent.
+> `production_completed_at` is **2026-08-19**, forty-two days after payment, and
+> the customer's mid-August chase falls between those two dates.
+> `delivered_at` is 2026-09-01 with `delivered_at_estimated = false`, so it is a
+> verified date rather than a backfill; the customer says 8/28, which is close
+> enough that either could be right.
+>
+> Their inference that the order sat until they asked about it is what the
+> timeline shows. Nothing here contradicts them.
+>
+> **The "10 day turn around" they were told is not our published promise**
+> either — canon is 7-14 business days after mockup approval, plus transit. If a
+> salesperson quoted 10 days on a 50-piece 3D-puff run, that is a second problem
+> underneath the first.
+>
+> **Second China allegation in three months.** Sander (2026-06-27) said the same
+> thing. We produce in Pakistan, and `PRODUCTION_ORIGIN` says so on
+> /ai-info/company — but two customers have now guessed China unprompted, which
+> says the origin is not visible where it would answer the question.
+
+### 2026-09-03 · Stefan Erdtmann (DE) · ★★★★★ · [general]
+**Would order again** — Fast service, good quality, price ok.
+
+### 2026-09-01 · Anthony Tazinator (US) · ★★★★★ · [general]
+**Patches came out fantastic** — Patches came out fantastic. Couldnt be more happy with the quality and results.
+
+### 2026-08-28 · Luke (US) · ★★★★★ · [general]
+**Great customer service** — Great customer service. Very speedy responses to my emails on specific wants and needs!
+
+### 2026-08-25 · Etoy McDaniel (US) · ★★★★★ · [general]
+**Very nice patches** — Very nice patches. Thanks Panda Patches
 
 ### 2026-08-19 · Emma Ungstrup (DK) · ★★★★★ · [general]
 **panda patches delivered fast** — panda patches delivered fast and with excellent quality

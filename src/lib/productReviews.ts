@@ -8,8 +8,8 @@
  * specific to THAT product and the rated reviews must be VISIBLE on the page. So we
  * cannot reuse the org number on product pages. Instead:
  *   1. Every review below is a REAL Trustpilot review (see TRUSTPILOT_REVIEWS.md,
- *      the full 75-review log). This file is a curated working subset — it does not
- *      need all 75. Do not invent reviews or ratings.
+ *      the full log, 95 reviews as of 9 Sept 2026). This file is a curated working
+ *      subset — it does not need all of them. Do not invent reviews or ratings.
  *   2. A product page only emits aggregateRating when at least MIN_REVIEWS genuine,
  *      on-topic reviews back it — otherwise it stays rating-less (valid, no stars),
  *      which is the correct outcome, not a bug.
@@ -50,6 +50,15 @@ const MAX_REVIEWS = 6;
  * relevant, never as filler on an unrelated product.
  */
 const SPECIFIC_REVIEWS: CustomerReview[] = [
+  {
+    // The first PRINTED-specific review we have had. Until this one, "printed"
+    // had no entry in PRODUCT_TAGS below and the printed page therefore showed
+    // six general company testimonials and nothing about printed patches.
+    // Note her own framing — "even though it's just printed patches" — printed
+    // is read as the budget option, and this beat the expectation that carries.
+    name: "Sara", date: "2026-09-05", rating: 5, tags: ["printed", "hats"],
+    body: "We received the patch earlier than expected. Patches are of high quality, even though it's just printed patches. They looked great and were used for our beanies",
+  },
   {
     name: "Emily Rodgers", date: "2026-08-13", rating: 5, tags: ["leather", "woven", "event", "rush", "hats"],
     body: "Lance was great to work with and helped us out with a project that needed to be turned around quickly. He stayed on top of order and communicated well throughout the entire process. The patches ordered turned out great and our guests were excited to create their hats with the designs.",
@@ -122,6 +131,14 @@ const SPECIFIC_REVIEWS: CustomerReview[] = [
  * averages stay honest. Order here + per-key rotation determines what shows where.
  */
 const GENERAL_REVIEWS: CustomerReview[] = [
+  // Added 2026-09-09 from the 25 Aug - 5 Sept batch. Newest first; the pool had
+  // gone three weeks stale, so every page was showing reviews from July at best.
+  { name: "JAM ATHLETICS LLC", date: "2026-09-05", rating: 5, tags: ["general"], body: "Excellent work. Delivery on time. Cost friendly." },
+  { name: "Jarrett McDowell", date: "2026-09-05", rating: 5, tags: ["general"], body: "Great response when I had questions. Great customer service and informed me of status every step of the way." },
+  { name: "Stefan Erdtmann", date: "2026-09-03", rating: 5, tags: ["general"], body: "Fast service, good quality, price ok." },
+  { name: "Anthony Tazinator", date: "2026-09-01", rating: 5, tags: ["general"], body: "Patches came out fantastic. Couldnt be more happy with the quality and results." },
+  { name: "Luke", date: "2026-08-28", rating: 5, tags: ["general"], body: "Great customer service. Very speedy responses to my emails on specific wants and needs!" },
+  { name: "Etoy McDaniel", date: "2026-08-25", rating: 5, tags: ["general"], body: "Very nice patches. Thanks Panda Patches" },
   { name: "Daniel Pop", date: "2026-06-17", rating: 5, tags: ["general"], body: "Excellent service and top-quality products! I was impressed by how promptly they replied. The order arrived incredibly fast, and the quality of the patches is outstanding — they look absolutely amazing!" },
   { name: "David Newbert", date: "2026-05-14", rating: 5, tags: ["general"], body: "Very happy with my order from Panda Patches! They were precise with my custom order, had great communication, and delivered faster than promised. The patches came in looking great and the quality was excellent. 100% will order again!" },
   { name: "kimberly", date: "2026-07-07", rating: 5, tags: ["general"], body: "Came faster than expected, loved it. Great customer service. Kept me updated all the time." },
@@ -170,6 +187,10 @@ const PRODUCT_TAGS: Record<string, string[]> = {
   "pvc": ["pvc"],
   "woven": ["woven", "label"],
   "embroidered": ["embroidered"],
+  // Added 2026-09-09 with the first printed-specific review. Before this there
+  // was no "printed" key, so the printed page fell through to general filler
+  // entirely — the same hole chenille and sequin are still in.
+  "printed": ["printed"],
   // Added 2026-08-14 alongside the first genuinely leather-specific review.
   // Until then the leather category page had no route here, so it fell back
   // entirely to general filler.
