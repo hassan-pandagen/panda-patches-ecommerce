@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { REDIRECTED_SLUGS } from "@/lib/redirectedSlugs";
 import { AI_INFO_UPDATED } from "@/lib/aiInfoDates";
 import { liveEntries as glossaryLiveEntries } from './glossary/entries';
 import { client } from '@/lib/sanity';
@@ -17,51 +18,7 @@ interface SanitySlugItem {
   _updatedAt: string;
 }
 
-// Slugs that 301 away in next.config.mjs but may still exist as published Sanity
-// docs. Excluded so the sitemap never lists a redirecting URL as canonical
-// (audit P2-3). Keep this in sync with the redirects() block in next.config.mjs.
-const REDIRECTED_SLUGS = new Set([
-  // 301'd 2026-09-03 to /varsity-jacket-patches-2026-27 (next.config.mjs) but
-  // never excluded here, so the sitemap was advertising a redirecting URL as
-  // canonical for four days. Found by the Sanity orphan check on 7 Sept: the
-  // post read as an orphan because nothing links to it, correctly, since it
-  // 301s. That is the second thing this list has caught by being out of sync.
-  'varsity-jacket-patches-winter-trend-2024',
-  'custom-patches-no-minimum-5-pieces-2026',
-  'custom-patches-no-minimum-order-5-pieces',
-  'custom-soccer-patches-guide-2026',
-  'custom-velcro-patches-styles-uses-and-how-to-order',
-  // Glossary Batch 0 (2026-07-18, CL2051_2) — cluster losers 301'd in next.config.mjs;
-  // their Sanity docs stay live until deleted post-deploy, so exclude here.
-  'know-your-patch-types-which-is-best-for-you',
-  'how-to-iron-a-patch-on-a-shirt',
-  'embroidery-vs-woven-patches-what-to-choose',
-  // Location page consolidation (July 2026, CLAUDE_4.MD) — kept only Austin,
-  // Texas, New York, Los Angeles. These 16 301 away in next.config.mjs.
-  'alabama-patches',
-  'custom-patches-in-boston',
-  'custom-california-patches',
-  'custom-patches-in-chicago',
-  'custom-patches-colorado',
-  'custom-patches-dallas',
-  'custom-denver-patches',
-  'custom-patches-in-florida',
-  'custom-patches-houston',
-  'kentucky-patches',
-  'custom-miami-patches',
-  'custom-ohio-state-patches',
-  'custom-patches-portland',
-  'custom-patches-in-san-francisco',
-  'custom-utah-patches',
-  'custom-patches-in-washington',
-  // CL051B Path B (2026-08-03, CEO approved) — the last 3 standalone city pages
-  // 301 to /locations. Measured 51% byte-identical with city-token substitution
-  // (Google's textbook doorway pattern); consolidated into the delivery hub with
-  // a city selector instead. No standalone city pages going forward.
-  'custom-patches-in-new-york',
-  'custom-patches-los-angeles',
-  'custom-austin-patches',
-]);
+
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.pandapatches.com';
@@ -598,8 +555,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // Combine all pages
-  return [
+  // Combine all pages, then dedupe by URL.
+  //
+  // A Sanity document whose slug matches an app route is emitted twice: once by
+  // the curated static block above, once by the loop over its document type.
+  // On 9 Sept 2026 that put /custom-corporate-patches,
+  // /custom-fire-department-patches and the pricing-breakdown post in the file
+  // twice each — 173 entries for 170 URLs.
+  //
+  // ORDER MATTERS. staticPages is spread first and first-wins, so a curated
+  // entry keeps its hand-set priority, changeFrequency and lastModified instead
+  // of being replaced by the generic 0.8/monthly a document loop assigns. Do
+  // not reorder this list to put a dynamic section ahead of staticPages.
+  const all: MetadataRoute.Sitemap = [
     ...staticPages,
     ...caseStudyPages,
     ...productPages,
@@ -611,4 +579,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...ironOnPages,
     ...categoryPages,
   ];
+
+  const seen = new Set<string>();
+  return all.filter((entry) => {
+    // Trailing slash is not a distinct URL to us — every canonical is written
+    // without one — so normalise before comparing or a collision could slip
+    // through on a slug that happens to carry it.
+    const key = entry.url.replace(/\/+$/, "");
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }

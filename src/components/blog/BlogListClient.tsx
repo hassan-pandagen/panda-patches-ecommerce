@@ -29,11 +29,28 @@ function formatBlogDate(iso?: string): string | null {
   }
 }
 
-export default function BlogListClient({ blogs }: { blogs: Blog[] }) {
+export default function BlogListClient({
+  blogs,
+  initialPage = 1,
+}: {
+  blogs: Blog[];
+  /**
+   * Which page /blogs?page=N asked for. The server reads it so the URL and the
+   * rendered list agree — before this, ?page=3 rendered page 1 and the reader
+   * had no way to tell the link had not worked.
+   */
+  initialPage?: number;
+}) {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [activeTag, setActiveTag] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(initialPage);
+
+  /**
+   * Any filter narrowing the list? Pagination can only be real URLs when the
+   * answer is no, because ?page=N carries no filter state.
+   */
+  const filtersActive = Boolean(search || activeCategory || activeTag);
 
   // Derive categories and tags from actual blog data
   const categories = useMemo(() => {
@@ -218,31 +235,70 @@ export default function BlogListClient({ blogs }: { blogs: Blog[] }) {
         {/* PAGINATION */}
         {totalPages > 1 && (
           <div className="flex justify-center gap-2 mt-12">
-            <button
-              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-              disabled={currentPage === 1}
-              className={`px-6 py-2 border rounded-md transition-all ${currentPage === 1 ? "border-gray-300 text-gray-400 cursor-not-allowed" : "border-gray-300 text-black hover:bg-gray-100"}`}
-            >
-              Previous
-            </button>
-
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            {filtersActive || currentPage === 1 ? (
               <button
-                key={page}
-                onClick={() => setCurrentPage(page)}
-                className={`px-4 py-2 rounded-md transition-all ${currentPage === page ? "bg-black text-white" : "border border-gray-300 text-black hover:bg-gray-100"}`}
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className={`px-6 py-2 border rounded-md transition-all ${currentPage === 1 ? "border-gray-300 text-gray-400 cursor-not-allowed" : "border-gray-300 text-black hover:bg-gray-100"}`}
               >
-                {page}
+                Previous
               </button>
-            ))}
+            ) : (
+              <Link
+                href={currentPage === 2 ? "/blogs" : `/blogs?page=${currentPage - 1}`}
+                rel="prev"
+                className="px-6 py-2 border rounded-md transition-all border-gray-300 text-black hover:bg-gray-100"
+              >
+                Previous
+              </Link>
+            )}
 
-            <button
-              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-              disabled={currentPage >= totalPages}
-              className={`px-6 py-2 border rounded-md transition-all ${currentPage >= totalPages ? "border-gray-300 text-gray-400 cursor-not-allowed" : "border-gray-300 text-black hover:bg-gray-100"}`}
-            >
-              Next
-            </button>
+            {/* Real links when the page number IS a real URL.
+
+                A filtered result set cannot be reproduced from ?page=N alone,
+                so while a search, category or tag is active these stay buttons
+                — linking there would hand out a URL that does not restore what
+                the reader is looking at. Unfiltered, they are anchors, which is
+                what makes pages 2-5 reachable by a crawler and by anyone with
+                JavaScript off. */}
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) =>
+              filtersActive ? (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`px-4 py-2 rounded-md transition-all ${currentPage === page ? "bg-black text-white" : "border border-gray-300 text-black hover:bg-gray-100"}`}
+                >
+                  {page}
+                </button>
+              ) : (
+                <Link
+                  key={page}
+                  href={page === 1 ? "/blogs" : `/blogs?page=${page}`}
+                  aria-current={currentPage === page ? "page" : undefined}
+                  className={`px-4 py-2 rounded-md transition-all ${currentPage === page ? "bg-black text-white" : "border border-gray-300 text-black hover:bg-gray-100"}`}
+                >
+                  {page}
+                </Link>
+              ),
+            )}
+
+            {filtersActive || currentPage >= totalPages ? (
+              <button
+                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                disabled={currentPage >= totalPages}
+                className={`px-6 py-2 border rounded-md transition-all ${currentPage >= totalPages ? "border-gray-300 text-gray-400 cursor-not-allowed" : "border-gray-300 text-black hover:bg-gray-100"}`}
+              >
+                Next
+              </button>
+            ) : (
+              <Link
+                href={`/blogs?page=${currentPage + 1}`}
+                rel="next"
+                className="px-6 py-2 border rounded-md transition-all border-gray-300 text-black hover:bg-gray-100"
+              >
+                Next
+              </Link>
+            )}
           </div>
         )}
       </div>
