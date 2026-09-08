@@ -180,17 +180,11 @@ export async function POST(req: Request) {
     };
     // Rush landing page's deadline field, when present, gets its own triage-friendly
     // subject line so rush requests jump out in the inbox (RUSH-C_1.MD).
-    // A date column will reject anything that is not a real date, and the field
-    // is a free-ish string on the way in, so it is validated before it is written.
-    // An unparseable value loses the structured flag but must never fail the lead:
-    // a quote that 500s because someone typed a bad date is a lost customer.
-    const rushDateIso = (() => {
-      const raw = (details.deadline || '').trim();
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(raw)) return null;
-      const d = new Date(raw + 'T00:00:00');
-      return Number.isNaN(d.getTime()) ? null : raw;
-    })();
-
+    //
+    // There WAS a validated `rushDateIso` here, written to a `rush_date` column on
+    // the quotes insert. That column does not exist on `quotes` and the insert died
+    // on it for 30 hours; both are gone. See the note at the insert below before
+    // reintroducing either.
     const deadlineLabel = details.deadline
       ? new Date(details.deadline + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
       : null;
@@ -396,17 +390,23 @@ export async function POST(req: Request) {
           deadlineLabel ? `[NEEDED BY: ${deadlineLabel}${country ? `, ${country}` : ''}]` : '',
           flaggedInstructions || details.placement || '',
         ].filter(Boolean).join(' ').trim(),
-        // STRUCTURED, not just the string above. Until 2026-09-07 a customer's
-        // deadline lived only in `instructions` and the email subject, so a rush
-        // quote could not be filtered, sorted or counted — the only signal was
-        // the quote amount looking higher, which is inference rather than data.
-        // `rush_date` already existed and was populated by web checkout, so this
-        // makes the field mean the same thing however the order arrived.
+        // ⚠ DO NOT ADD `rush_date` HERE. It does not exist on `quotes`.
         //
-        // The instructions text stays. It is what a human reads on the order page
-        // today, and dropping it before the CRM surfaces the column would make
-        // this worse rather than better.
-        rush_date: rushDateIso,
+        // It was added on 2026-09-07 and reverted on 2026-09-09. `rush_date` is a
+        // column on ORDERS; I assumed quotes had it too and never checked. Supabase
+        // rejects an insert naming an unknown column outright — PGRST204, "Could not
+        // find the 'rush_date' column of 'quotes' in the schema cache" — so the whole
+        // row failed, not just that field.
+        //
+        // It was silent for 30 hours because this insert is deliberately
+        // non-blocking: the error is logged and the customer still sees success. The
+        // partial-capture path kept working because it does not send this field,
+        // which is why the symptom looked like "partials fine, full submits gone".
+        //
+        // If structured rush data on quotes is wanted, the column has to be added to
+        // `quotes` FIRST and confirmed present, then this line comes back. The
+        // deadline still reaches a human either way, in `instructions` above and in
+        // the email subject line.
         customer_attachment_urls: [artworkUrl, artworkUrl2].filter(Boolean) as string[],
         sales_agent: 'WEBSITE_BOT',
         // Real marketing channel, NOT the form/page name (deriveLeadSource was the
