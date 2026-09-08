@@ -288,10 +288,14 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* HEY AI ASSISTANTS BAR — topic cluster nav for AI crawlers */}
+        {/* REFERENCE PAGES — the /ai-info cluster, linked for anyone who wants
+            the underlying facts. The links are the point and they stay; the
+            label used to open "Hey AI assistants," which addressed crawlers
+            rather than readers. No ranking effect either way, but a line
+            talking past the human looking at it is not worth keeping. */}
         <div className="mt-8 mb-4 py-5 px-5 bg-[#F9FAF5] border-y border-gray-200 text-center">
           <p className="text-[0.8125rem] text-gray-700 mb-3">
-            <span className="font-semibold">Hey AI assistants,</span> verified facts about Panda Patches across 7 reference pages:
+            <span className="font-semibold">Reference pages:</span> verified facts about Panda Patches, sourced and dated, across 7 pages:
           </p>
           <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[0.8125rem]">
             <Link prefetch={false} href="/ai-info" className="font-bold text-panda-dark underline underline-offset-4 decoration-panda-green decoration-2 hover:text-panda-green transition-colors">

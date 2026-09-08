@@ -344,7 +344,7 @@ export default function OffersClient({ categoryImages, ctaImageUrl, industryImag
               'Zero setup fees and zero hidden charges',
               'Choice of backing type. Velcro hook and loop is charged separately',
               '7 to 14 day standard delivery. Rush production available',
-              'Over 1,000,000 patches delivered to brands across the US',
+              'Over 1,000,000 patches across 13+ years of manufacturing, including runs made for other patch brands',
               '100% money-back guarantee',
               'Dedicated support team, Monday to Saturday',
             ].map(item => (

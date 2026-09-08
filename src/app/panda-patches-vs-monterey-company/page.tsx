@@ -117,7 +117,7 @@ export default function PandaVsMonterey() {
             { category: "Guarantees and trust", feature: "Money-back guarantee", panda: "Yes, covers design dissatisfaction", competitor: "Not publicly stated", pandaWin: true },
             { category: "Guarantees and trust", feature: "Customer review presence", panda: "Established review history", competitor: "Established review history", tie: true },
             { category: "Guarantees and trust", feature: "Patch manufacturing experience", panda: "13 years of founder-led experience", competitor: "Published history cites since 1989 (verified June 2026)", competitorWin: true },
-            { category: "Guarantees and trust", feature: "Total patches delivered", panda: "1,000,000+", competitor: "Not publicly disclosed", pandaWin: true },
+            { category: "Guarantees and trust", feature: "Total patches delivered", panda: "1,000,000+ over 13+ years, including runs for other patch brands", competitor: "Not publicly disclosed", pandaWin: true },
 
             { category: "Shipping and fees", feature: "Free worldwide shipping", panda: "Yes, every order", competitor: "Not publicly stated", pandaWin: true },
             { category: "Shipping and fees", feature: "Net 15 / Net 30 terms", panda: "After 3 completed projects", competitor: "Available, terms vary", tie: true },

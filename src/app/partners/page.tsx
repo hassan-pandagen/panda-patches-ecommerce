@@ -459,7 +459,7 @@ export default async function PartnersPage() {
                   <p className="text-[1rem] text-gray-700 leading-relaxed mb-3">
                     Most patch companies broker to Asia and add a markup. We own our production, which means we control lead times, quality, and your margin. When something goes wrong we fix it same day, and for repeat partners we usually absorb rush at no extra charge &mdash; we delivered 9,600 patches for <Link href="/case-studies/wise-nasdaq-times-square-activation" className="text-panda-green font-semibold underline">Wise&apos;s Nasdaq launch</Link> on the contractual dates with no rush fee.
                   </p>
-                  <p className="text-[0.875rem] text-gray-500">1,000,000+ patches delivered. Built on 13 years of patch manufacturing experience. Zero middlemen.</p>
+                  <p className="text-[0.875rem] text-gray-500">1,000,000+ patches across 13 years of manufacturing, including runs made for other patch brands. Zero middlemen.</p>
                 </div>
               </div>
 

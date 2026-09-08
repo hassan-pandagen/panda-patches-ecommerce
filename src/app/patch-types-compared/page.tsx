@@ -257,7 +257,7 @@ export default async function PatchTypesComparedPage() {
             <p className="text-[13.5px] md:text-[0.875rem] text-gray-600 leading-[1.75]">
               <strong className="text-panda-dark">Durability</strong> reflects internal wash and abrasion testing
               (50+ standard home-wash cycles) plus field feedback across <strong className="text-panda-dark">1,000,000+
-              patches delivered</strong>. <strong className="text-panda-dark">Cost</strong> ($&ndash;$$$) is the
+              patches</strong> made over 13+ years of manufacturing, including runs produced for other patch brands. <strong className="text-panda-dark">Cost</strong> ($&ndash;$$$) is the
               relative per-piece price at our standard 100-piece, 3-inch basis from the live configurator &mdash;
               smaller orders cost more per piece. <strong className="text-panda-dark">Detail level</strong> reflects
               the smallest legible text and finest line each method reliably holds. These are guidelines, not

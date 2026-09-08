@@ -103,9 +103,14 @@ export default function ImranRazaPage() {
             <h2 className="text-[1.625rem] font-black text-panda-dark mb-3">The company he built</h2>
             <p className="text-[1rem] leading-[1.8]">
               Panda Patches is the trade name of <strong>MC Patches LLC</strong>, a U.S.-registered company formed in
-              December 2023, with a mailing address in Austin, Texas. Under Imran&rsquo;s leadership the company has
-              delivered over 1,000,000 custom patches to small businesses, sports teams, first responders, military
-              units, streetwear brands, and Fortune 500 corporations. Patches are produced at the company&rsquo;s own
+              December 2023, with a mailing address in Austin, Texas. Across his 13+ years in manufacturing &mdash; this
+              company and, before it, production runs made for other patch brands &mdash; Imran has overseen more than
+              1,000,000 patches for small businesses, sports teams, first responders, military units, streetwear
+              brands, and Fortune 500 corporations. That is a career total, not this store&rsquo;s order count: what
+              Panda Patches itself has shipped is published in full, order by order, at{" "}
+              <Link href="/custom-patch-production-data-2026" prefetch={false} className="text-panda-green underline font-semibold">
+                our production data
+              </Link>. Patches are produced at the company&rsquo;s own
               facility in Pakistan, operated by Panda Apparel &amp; Technology; no products are manufactured in the
               United States. Owning production end-to-end is what lets Panda Patches publish wholesale-level pricing,
               hold a low 5-piece minimum, and keep design, production, and quality control under one operations team.

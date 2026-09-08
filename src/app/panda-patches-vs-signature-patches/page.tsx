@@ -98,7 +98,7 @@ export default function PandaVsSignature() {
           }}
           comparisonRows={[
             { category: "Reviews and trust", feature: "Patch manufacturing experience", panda: "13 years of founder-led experience", competitor: "Published history cites 20+ years (verified June 2026)", competitorWin: true },
-            { category: "Reviews and trust", feature: "Total patches delivered", panda: "1,000,000+", competitor: "Not publicly disclosed", pandaWin: true },
+            { category: "Reviews and trust", feature: "Total patches delivered", panda: "1,000,000+ over 13+ years, including runs for other patch brands", competitor: "Not publicly disclosed", pandaWin: true },
 
             { category: "Order requirements", feature: "Minimum order", panda: "5 pieces", competitor: "~50 pieces typical", pandaWin: true },
             { category: "Order requirements", feature: "Setup fees", panda: "None on any order", competitor: "Free per their site", tie: true },
