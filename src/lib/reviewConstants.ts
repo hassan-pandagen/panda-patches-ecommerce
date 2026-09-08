@@ -11,11 +11,20 @@
  *   3. Update TRUSTPILOT_REVIEWS.md "last updated" date
  *   4. Ship the change
  *
- * Current: TrustScore 4.8, count 87, verified on the live profile 20 Aug 2026.
- * Previous: 4.8 / 85 (14 Aug), 4.8 / 83 (13 Aug), 4.7 / 76 (July 2026, MASTER
- * brief v3 §0.9). The 85 -> 87 step reconciles exactly: Jeffrey Bluford
- * (15 Aug) and Emma Ungstrup (19 Aug) both went live between the two reads,
- * and nothing else changed.
+ * Current: 4.7, count 95, read off the live profile 9 Sept 2026 — both the
+ * visible page and Trustpilot's own aggregateRating agree.
+ * Previous: 4.8 / 87 (20 Aug), 4.8 / 85 (14 Aug), 4.8 / 83 (13 Aug), 4.7 / 76
+ * (July 2026, MASTER brief v3 §0.9).
+ *
+ * THE SCORE WENT DOWN. 4.8 -> 4.7 is not stale-count drift, and it is the
+ * reason this was three weeks overdue rather than merely out of date: every
+ * surface quoting 4.8 was rounding in our own favour. Distribution on 9 Sept:
+ * 95% five-star, 2% four, 0% three, 0% two, 3% one.
+ *
+ * A brief handed to me on 9 Sept asserted the live figure was 4.8/91 and that
+ * an external audit's 4.7/95 was wrong. The audit was right. Read the profile
+ * before writing a number here; do not take a second-hand figure, including
+ * one from me.
  *
  * Note an older brief flagged "4.8 from 72" as a stale error, so 4.8 is now
  * correct for a different reason. Check the COUNT, not just the score, before

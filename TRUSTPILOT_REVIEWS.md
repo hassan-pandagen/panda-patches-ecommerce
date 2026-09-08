@@ -8,16 +8,36 @@
 
 | | Value |
 |---|---|
-| TrustScore | **4.8** |
-| Total reviews | **87** |
-| 5★ | 96% (carried from 2026-08-14 read; not re-verified this pass — see note) |
-| 4★ | 2% (carried from 2026-08-14 read; not re-verified this pass — see note) |
-| 3★ | 0% (carried from 2026-08-14 read; not re-verified this pass — see note) |
-| 2★ | 0% (carried from 2026-08-14 read; not re-verified this pass — see note) |
-| 1★ | 2% (carried from 2026-08-14 read; not re-verified this pass — see note) |
-| Last synced | **2026-08-20** (score and total from the live profile header; star split carried forward, see note) |
+| TrustScore | **4.7** |
+| Total reviews | **95** |
+| 5★ | 95% (read on-screen 2026-09-09) |
+| 4★ | 2% (read on-screen 2026-09-09) |
+| 3★ | 0% (read on-screen 2026-09-09) |
+| 2★ | 0% (read on-screen 2026-09-09) |
+| 1★ | 3% (read on-screen 2026-09-09) |
+| Last synced | **2026-09-09** (score, total and star split all read off the live profile) |
 
-> **Verified 2026-08-20.** Score (4.8) and total (87) read off the live
+> **Fully verified 2026-09-09.** Score (4.7), total (95) and the star split
+> were all read off the live profile, and Trustpilot's own aggregateRating in
+> the page's structured data agrees: 4.7 from 95.
+>
+> **The score went DOWN, 4.8 to 4.7.** That is the part that matters. A stale
+> count understates us; a stale score overstates us, and for three weeks every
+> surface on the site claimed 4.8. The 1★ share moved 2% to 3% and the 5★ share
+> 96% to 95% over the same period, which is consistent with the drop.
+>
+> **A second-hand figure was wrong, in our favour.** A brief on 9 Sept asserted
+> the live figure was 4.8/91 and that an external audit's 4.7/95 was mistaken.
+> The audit was right. Read the profile; do not accept a relayed number, from
+> any source, including a previous entry in this file.
+>
+> **Also visible on the profile, for whoever owns it:** the business address
+> reads 1914 Quail Feather Court, Missouri City, with admin@pandapatches.com,
+> against the site's 701 Tillery St, Austin and sales@. Trustpilot is also
+> showing "No recent history of asking for reviews" and "Replied to 50% of
+> negative reviews".
+>
+> **Previously verified 2026-08-20.** Score (4.8) and total (87) read off the live
 > profile header. Star-split percentages were NOT independently re-read this
 > pass — carried forward from the 2026-08-14 figures below since nothing
 > suggested a shift, not re-confirmed on-screen. Re-verify next sync.
