@@ -1,13 +1,18 @@
 import { MetadataRoute } from 'next';
 
-// ── ALLOW-LIST STRATEGY (July 2026) ─────────────────────────────────────────
-// Previous approach: allow everything by default, block a growing list of
-// known-bad scrapers one at a time (AhrefsBot, SemrushBot, MJ12bot, DotBot,
-// PetalBot, Bytespider, ...) — a never-ending game of whack-a-mole.
+// ── OPEN TO ALL (CEO decision, 9 Sept 2026) ─────────────────────────────────
+// Everything is crawlable except /studio/ (the CMS) and /api/. Nothing else is
+// blocked, for any agent.
 //
-// New approach: default DENY. Only the crawlers that actually matter (real
-// search engines, real AI assistants, and social link-preview bots) are
-// explicitly allowed; everything else gets nothing.
+// This REVERSES the July 2026 allow-list, which defaulted to deny and named the
+// crawlers that mattered. That approach did keep out SEO scrapers, Bytespider,
+// PetalBot and the rest — and it also meant every crawler nobody had thought to
+// list got nothing, including new AI assistants as they appear. The CEO's call
+// is that discovery is worth more than the crawl budget the scrapers cost.
+//
+// The named group below now grants nothing the default does not. It stays as
+// documentation of which crawlers we actively want, and as the place a
+// per-agent rule would go if one is ever needed again.
 //
 // IMPORTANT: robots.txt is a REQUEST, honored only by well-behaved bots. The
 // crawlers below (Google, OpenAI, Anthropic, etc.) respect it. Data-center
@@ -83,11 +88,14 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/studio/', '/api/'],
       },
-      // Everyone else — unknown crawlers, SEO scrapers (DotBot, MJ12bot,
-      // DataForSeoBot), Bytespider, PetalBot, etc. — denied.
+      // Everyone else — allowed, same as the named agents above.
+      //
+      // This was `disallow: '/'` until 9 Sept 2026, which denied every crawler
+      // not explicitly listed. Opened on CEO instruction.
       {
         userAgent: '*',
-        disallow: '/',
+        allow: '/',
+        disallow: ['/studio/', '/api/'],
       },
     ],
     sitemap: 'https://www.pandapatches.com/sitemap.xml',

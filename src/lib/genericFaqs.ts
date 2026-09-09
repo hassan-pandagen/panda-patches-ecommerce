@@ -1,6 +1,6 @@
 // Minimums are interpolated from canon, never typed — see the note at the top
 // of slugFaqs.ts for the drift this prevents.
-import { MIN_ORDER_DEFAULT } from "@/lib/factConstants";
+import { MIN_ORDER_DEFAULT, PRODUCTION_ORIGIN } from "@/lib/factConstants";
 
 export const genericFaqs = [
   // TIER 1 - CORE FAQs (1-6)
@@ -35,6 +35,17 @@ export const genericFaqs = [
   {
     question: "What file formats do you accept for patch design?",
     answer: "PREFERRED: EPS, AI, PDF, SVG (vector formats — sharpest quality). ALSO ACCEPTED: PNG, JPG, TIFF (raster formats). EVEN HAND-DRAWN: Sketches, photos, rough concepts. Pro tips: Vector files are best for sharpness, high resolution (300 DPI minimum for raster), transparent background helpful, 8-10 colors ideal for embroidered, bold lines (avoid thin delicate lines). Can't find a file? Describe your design and we'll design it for you."
+  },
+  {
+    // CEO decision, 9 Sept 2026: origin is answered on the FAQ and /about, not on
+    // product pages. Added because two 1-star reviewers in three months assumed
+    // China unprompted and had nowhere on the site to check — it was stated only
+    // on /ai-info/company, which is written for assistants rather than buyers.
+    //
+    // Leads with the fact, then the reason, because the reason is the good part:
+    // owning the factory is why the published pricing works at all.
+    question: "Where are the patches made?",
+    answer: `${PRODUCTION_ORIGIN} We are the manufacturer, not a broker or a drop-shipper — the design team, the production floor and quality control all report to the same operations leadership. That is what makes wholesale-level published pricing possible, and it is why a rush job means moving our own queue rather than asking someone else to move theirs. Shipping is free worldwide and delivered duty paid, so there is nothing to pay on arrival wherever you are.`
   },
   {
     question: "Do you offer international shipping?",
