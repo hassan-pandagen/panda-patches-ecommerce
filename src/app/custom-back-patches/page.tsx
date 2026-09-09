@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { representativeImage } from "@/lib/representativeImages";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
@@ -96,6 +97,11 @@ const faqSchema = generateFAQSchema(backPatchFAQs);
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
+  // REQUIRED by Google: a Product with no image is an INVALID merchant
+  // listing, not merely a thin one, and invalid items get no rich result.
+  // This page is about an attribute or an audience rather than a distinct
+  // product, so it shows a real embroidered patch — the type it actually sells.
+  image: representativeImage("embroidered", 0),
   name: "Custom Back Patches",
   description:
     "Large-format custom back patches, 8 to 14 inches, in embroidered or chenille construction. Sew-on or iron-on backing. Low 5-piece minimum, free worldwide shipping.",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { representativeImage } from "@/lib/representativeImages";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
@@ -86,6 +87,11 @@ const faqSchema = generateFAQSchema(borderFAQs);
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
+  // REQUIRED by Google: a Product with no image is an INVALID merchant
+  // listing, not merely a thin one, and invalid items get no rich result.
+  // This page is about an attribute or an audience rather than a distinct
+  // product, so it shows a real embroidered patch — the type it actually sells.
+  image: representativeImage("embroidered", 4),
   name: "Custom Patches with Choice of Border",
   description:
     "Custom patches with a choice of border: merrowed rope edge, satin embroidered border, or hot-cut laser edge. Matched to your shape. Low 5-piece minimum, free worldwide shipping, mockup in 12 to 24 hours.",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { representativeImage } from "@/lib/representativeImages";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
@@ -90,6 +91,11 @@ const faqSchema = generateFAQSchema(lettermanFAQs);
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
+  // REQUIRED by Google: a Product with no image is an INVALID merchant
+  // listing, not merely a thin one, and invalid items get no rich result.
+  // This page is about an attribute or an audience rather than a distinct
+  // product, so it shows a real chenille patch — the type it actually sells.
+  image: representativeImage("chenille", 0),
   name: "Custom Letterman & Varsity Patches",
   description:
     "Custom chenille letterman and varsity patches: school letters, mascots, sport icons, and award patches with felt sew-on backing. School-color matched. Low 5-piece minimum, free worldwide shipping.",

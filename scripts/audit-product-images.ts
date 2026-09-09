@@ -20,45 +20,27 @@
  *
  *   npm run build && npm run audit:products
  *
- * KNOWN_MISSING below is a debt list, not a waiver list. Every entry is a real
- * invalid merchant listing on a live page. They are grandfathered so this can
- * gate NEW ones today rather than waiting for a content project, and the count
- * is printed on every run so the debt stays visible instead of settling in.
+ * KNOWN_MISSING is now empty. It briefly held eighteen routes whose Product
+ * schema omitted `image`; all eighteen were given real photographs the same
+ * day. An entry here means shipping a knowingly invalid merchant listing, so
+ * add one only with a reason and a date to remove it.
  */
 import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = path.join(process.cwd(), ".next", "server", "app");
 
-/**
- * Routes with a hand-written Product schema that omits `image`, as of
- * 2026-09-09. All are attribute or audience pages — a backing type, a country,
- * a use case — whose underlying product is an ordinary custom patch, so fixing
- * them means choosing a representative photograph per page from the Sanity
- * product galleries. That is a content decision per page, not a mechanical edit,
- * which is why they are listed rather than silently defaulted to the logo card.
- *
- * Shrink this list. Do not add to it.
- */
-const KNOWN_MISSING = new Set([
-  "/adhesive-patches",
-  "/button-loop-patches",
-  "/custom-airsoft-patches",
-  "/custom-back-patches",
-  "/custom-ems-patches",
-  "/custom-iron-on-patches",
-  "/custom-leather-hat-patches",
-  "/custom-letterman-patches",
-  "/custom-martial-arts-patches",
-  "/custom-patches/backing-options",
-  "/custom-patches-australia",
-  "/custom-patches-canada",
-  "/custom-patches-germany",
-  "/custom-patches-uk",
-  "/magnetic-patches",
-  "/patch-borders",
-  "/patch-threads-and-twills",
-  "/sew-on-patches",
+/** Routes allowed to ship a Product with no image. Should be empty. */
+const KNOWN_MISSING = new Set<string>([
+  // EMPTY, and it should stay that way.
+  //
+  // Eighteen routes sat here for a few hours on 2026-09-09 — attribute, audience
+  // and country pages whose hand-written Product schema omitted `image`. All
+  // eighteen now carry a real photograph from the Sanity product galleries,
+  // chosen per page for the patch type that page actually sells.
+  //
+  // Adding an entry here means shipping a knowingly invalid merchant listing.
+  // Do it only with a reason written beside it and a date to remove it.
 ]);
 
 function walk(dir: string, out: string[] = []): string[] {

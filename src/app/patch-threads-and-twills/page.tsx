@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { representativeImage } from "@/lib/representativeImages";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
@@ -85,6 +86,11 @@ const faqSchema = generateFAQSchema(threadFAQs);
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
+  // REQUIRED by Google: a Product with no image is an INVALID merchant
+  // listing, not merely a thin one, and invalid items get no rich result.
+  // This page is about an attribute or an audience rather than a distinct
+  // product, so it shows a real embroidered patch — the type it actually sells.
+  image: representativeImage("embroidered", 5),
   name: "Custom Patches with Thread and Twill Options",
   description:
     "Custom patches with thread options (standard polyester, metallic, glow-in-the-dark, neon) and twill backgrounds including camo twill. Free Pantone matching. Low 5-piece minimum, free worldwide shipping.",

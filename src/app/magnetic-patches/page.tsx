@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { representativeImage } from "@/lib/representativeImages";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
@@ -100,6 +101,11 @@ const faqSchema = generateFAQSchema(magneticFAQs);
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
+  // REQUIRED by Google: a Product with no image is an INVALID merchant
+  // listing, not merely a thin one, and invalid items get no rich result.
+  // This page is about an attribute or an audience rather than a distinct
+  // product, so it shows a real woven patch — the type it actually sells.
+  image: representativeImage("woven", 0),
   name: "Custom Magnetic Patches and Name Badges",
   description:
     "Custom patches with no-hole magnetic backing for suits, blazers, and uniforms. Reusable, fabric-safe name badges and ID patches. Low 5-piece minimum, free worldwide shipping.",

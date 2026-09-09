@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { representativeImage } from "@/lib/representativeImages";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
@@ -90,6 +91,11 @@ const faqSchema = generateFAQSchema(martialArtsFAQs);
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
+  // REQUIRED by Google: a Product with no image is an INVALID merchant
+  // listing, not merely a thin one, and invalid items get no rich result.
+  // This page is about an attribute or an audience rather than a distinct
+  // product, so it shows a real embroidered patch — the type it actually sells.
+  image: representativeImage("embroidered", 2),
   name: "Custom Martial Arts & BJJ Gi Patches",
   description:
     "Custom embroidered and woven patches for jiu-jitsu gis and martial arts uniforms. Academy, rank, team, and sponsor designs with sew-on backing. Low 5-piece minimum, free worldwide shipping.",

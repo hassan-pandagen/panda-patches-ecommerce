@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { representativeImage } from "@/lib/representativeImages";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
@@ -132,6 +133,11 @@ const faqSchema = generateFAQSchema(germanyFAQs);
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
+  // REQUIRED by Google: a Product with no image is an INVALID merchant
+  // listing, not merely a thin one, and invalid items get no rich result.
+  // This page is about an attribute or an audience rather than a distinct
+  // product, so it shows a real woven patch — the type it actually sells.
+  image: representativeImage("woven", 4),
   name: "Custom Patches Shipped to Germany",
   description:
     "Custom embroidered, PVC, woven, chenille, leather, and button-loop patches shipped to Germany on a DDP basis with no import VAT or customs. All-in USD pricing, low 5-piece minimum, free 24-hour mockup.",

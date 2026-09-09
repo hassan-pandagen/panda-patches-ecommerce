@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { representativeImage } from "@/lib/representativeImages";
 import { cache } from "react";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
@@ -127,6 +128,11 @@ const faqSchema = generateFAQSchema(ironOnFAQs);
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
+  // REQUIRED by Google: a Product with no image is an INVALID merchant
+  // listing, not merely a thin one, and invalid items get no rich result.
+  // This page is about an attribute or an audience rather than a distinct
+  // product, so it shows a real embroidered patch — the type it actually sells.
+  image: representativeImage("embroidered", 1),
   name: "Custom Iron-On Patches",
   description:
     "Custom iron-on patches with heat-activated adhesive backing. Available on embroidered, woven, printed, and leather patches. Low 5-piece minimum, free worldwide shipping, mockup in 12 to 24 hours.",

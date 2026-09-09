@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { representativeImage } from "@/lib/representativeImages";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
@@ -91,6 +92,11 @@ const faqSchema = generateFAQSchema(emsFAQs);
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
+  // REQUIRED by Google: a Product with no image is an INVALID merchant
+  // listing, not merely a thin one, and invalid items get no rich result.
+  // This page is about an attribute or an audience rather than a distinct
+  // product, so it shows a real embroidered patch — the type it actually sells.
+  image: representativeImage("embroidered", 1),
   name: "Custom EMS, EMT & Paramedic Patches",
   description:
     "Custom embroidered EMS, EMT, and paramedic patches for duty uniforms. Shoulder, rank, name-tape, and reflective designs with sew-on backing. Low 5-piece minimum, free worldwide shipping.",

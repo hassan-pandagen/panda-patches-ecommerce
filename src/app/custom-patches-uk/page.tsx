@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { representativeImage } from "@/lib/representativeImages";
 import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
@@ -92,6 +93,11 @@ const faqSchema = generateFAQSchema(ukFAQs);
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
+  // REQUIRED by Google: a Product with no image is an INVALID merchant
+  // listing, not merely a thin one, and invalid items get no rich result.
+  // This page is about an attribute or an audience rather than a distinct
+  // product, so it shows a real woven patch — the type it actually sells.
+  image: representativeImage("woven", 1),
   name: "Custom Patches Shipped Free to the UK",
   description:
     "Custom embroidered, PVC, woven, chenille and leather patches shipped free to the UK on a DDP basis with no VAT or customs. All-in USD pricing, low 5-piece minimum, free 24-hour mockup.",

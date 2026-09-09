@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { representativeImage } from "@/lib/representativeImages";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
@@ -85,6 +86,11 @@ const faqSchema = generateFAQSchema(buttonLoopFAQs);
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
+  // REQUIRED by Google: a Product with no image is an INVALID merchant
+  // listing, not merely a thin one, and invalid items get no rich result.
+  // This page is about an attribute or an audience rather than a distinct
+  // product, so it shows a real leather patch — the type it actually sells.
+  image: representativeImage("leather", 1),
   name: "Custom Button-Loop Patches",
   description:
     "Custom embroidered and woven patches with a traditional button-loop backing that hangs from an existing button. Removable, tool-free. Low 5-piece minimum, free worldwide shipping.",
