@@ -70,15 +70,6 @@ const LIVE_LOCATION_SLUGS = new Set([
   "custom-patches-in-texas",
 ]);
 
-// Nearby-cities cross-link map. Only the 4 live pages remain, so cross-links
-// point solely to other live pages (Austin <-> Texas). LA and New York have no
-// surviving in-region neighbor, so they render no nearby module rather than
-// link to a redirected slug.
-const NEARBY: Record<string, string[]> = {
-  // Texas is the only surviving location page, so it has no neighbour to
-  // cross-link to. Every other slug 301s away; linking one would be a dead hop.
-  "custom-patches-in-texas": [],
-};
 
 interface LocationDoc {
   _id: string;
@@ -341,31 +332,4 @@ export default async function LocationsHubPage() {
       <Footer />
     </main>
   );
-}
-
-/**
- * Helper used by individual location pages to render their nearby-cities
- * cross-link module. Exported so LocationLayout can call it without
- * duplicating the NEARBY map.
- */
-export function getNearbyCities(slug: string): Array<{ slug: string; name: string }> {
-  const nearbySlugs = NEARBY[slug] || [];
-  return nearbySlugs.map((s) => ({
-    slug: s,
-    name: humanizeLocationName(s),
-  }));
-}
-
-function humanizeLocationName(slug: string): string {
-  // Strip "custom-" prefix, "-patches" suffix, "-patches-in" infix
-  const cleaned = slug
-    .replace(/^custom-/, "")
-    .replace(/-patches$/, "")
-    .replace(/^patches-in-/, "")
-    .replace(/^patches-/, "")
-    .replace(/-state$/, "");
-  return cleaned
-    .split("-")
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
 }
