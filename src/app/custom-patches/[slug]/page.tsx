@@ -50,7 +50,22 @@ export const revalidate = 86400;
  * 4:3 and 16:9 and picks whichever fits the slot.
  */
 function productImages(data: any): string[] {
-  const src = data?.heroImage ?? data?.workSamples?.[0]?.image ?? data?.workSamples?.[0] ?? null;
+  // Order matters, and `gallery` leads for a reason found the hard way: I
+  // reported on 9 Sept that sequin had "no photographs at all in Sanity" after
+  // checking only `workSamples`. It has three, in `gallery`, with alt text.
+  // Every one of the seven types has a gallery; only six have work samples.
+  //
+  // Both hold real 4500px photographs of the patch type, so the tie-breaker is
+  // coverage and consistency: gallery is the product gallery, it exists
+  // everywhere, and using it means all seven pages source their schema image
+  // the same way instead of six one way and one the other.
+  const src =
+    data?.heroImage ??
+    data?.gallery?.[0]?.image ??
+    data?.gallery?.[0] ??
+    data?.workSamples?.[0]?.image ??
+    data?.workSamples?.[0] ??
+    null;
   if (!src) return ['https://www.pandapatches.com/assets/og-image.png'];
   try {
     return [
@@ -204,9 +219,9 @@ export default async function DynamicProductPage({ params }: { params: Promise<{
     // the schema never looked at. The OG card is our logo lockup: valid markup,
     // and useless as a product image on a shopping surface.
     //
-    // Sequin is the exception. It has no photographs at all in Sanity, so it
-    // still falls back to the OG card until someone uploads one. Flagged
-    // 9 Sept 2026.
+    // All seven are covered. An earlier version of this comment said sequin had
+    // no photographs; that was my error — I had counted only `workSamples`, and
+    // sequin's three live in `gallery`. See productImages() above.
     image: productImages(data),
     url: `https://www.pandapatches.com/custom-patches/${slug}`,
     // A stable per-type identifier. The shared template used to default every
