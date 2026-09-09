@@ -5,8 +5,7 @@ import { getSanityOgImage } from "@/lib/sanityOgImage";
 import { client } from "@/lib/sanity";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { generateSchemaScript, BRAND_ID, ORG_ID } from "@/lib/schemas";
-import { getFromPriceLabel } from "@/lib/pricingCalculator";
+import { generateSchemaScript, ORG_ID } from "@/lib/schemas";
 import MakerNote from "@/components/seo/MakerNote";
 import { buildPageMetadata } from "@/lib/seo";
 import { COUNTRY_HREFLANG } from "@/lib/countryHreflang";
@@ -59,17 +58,21 @@ export async function generateMetadata(): Promise<Metadata> {
  * 10-14 days handling against a canon of 7-14 while limiting free shipping to
  * four countries we claim to ship worldwide from everywhere else.
  *
- * Prices below now come from getFromPriceLabel, the live calculator, so this
- * list cannot drift from the type pages the way printed did.
+ * The list carries no prices at all now, which is the surest way for it not to
+ * drift: each type page publishes its own, from the live calculator, and this
+ * page points at them. An earlier version of this comment promised the prices
+ * here were calculator-fed — true for one day, and the reason seven invalid
+ * merchant listings appeared on 9 Sept. See the note at itemListElement.
  */
-const TYPE_LISTING: { name: string; product: string; href: string }[] = [
-  { name: "Custom Embroidered Patches", product: "Custom Embroidered Patches", href: "/custom-patches/embroidered" },
-  { name: "Custom PVC Patches", product: "Custom PVC Patches", href: "/custom-patches/pvc" },
-  { name: "Custom Woven Patches", product: "Custom Woven Patches", href: "/custom-patches/woven" },
-  { name: "Custom Chenille Patches", product: "Custom Chenille Patches", href: "/custom-patches/chenille" },
-  { name: "Custom Leather Patches", product: "Custom Leather Patches", href: "/custom-patches/leather" },
-  { name: "Custom Printed Patches", product: "Custom Printed Patches", href: "/custom-patches/printed" },
-  { name: "Custom Sequin Patches", product: "Custom Sequin Patches", href: "/custom-patches/sequin" },
+/** `name` is for whoever reads this array; only `href` reaches the schema. */
+const TYPE_LISTING: { name: string; href: string }[] = [
+  { name: "Custom Embroidered Patches", href: "/custom-patches/embroidered" },
+  { name: "Custom PVC Patches", href: "/custom-patches/pvc" },
+  { name: "Custom Woven Patches", href: "/custom-patches/woven" },
+  { name: "Custom Chenille Patches", href: "/custom-patches/chenille" },
+  { name: "Custom Leather Patches", href: "/custom-patches/leather" },
+  { name: "Custom Printed Patches", href: "/custom-patches/printed" },
+  { name: "Custom Sequin Patches", href: "/custom-patches/sequin" },
 ];
 
 const collectionSchema = {
@@ -87,29 +90,25 @@ const collectionSchema = {
     name: "Patch types",
     numberOfItems: TYPE_LISTING.length,
     itemListOrder: "https://schema.org/ItemListUnordered",
+    // SUMMARY FORM — url only. Do not add a nested Product here.
+    //
+    // This carried a partial `Product` per entry for one day (9 Sept 2026) and
+    // Search Console flagged all seven as INVALID merchant listings, because a
+    // Product inside an ItemList is read as a merchant listing and one without
+    // `image` is invalid rather than merely thin. It also failed the Merchant
+    // listings validation that was running at the time for a different fix.
+    //
+    // Adding image and description would clear the error and would still be the
+    // wrong shape. Google documents two forms: all-in-one, for a page where the
+    // products actually are, and summary, for a page that links to detail pages
+    // — "for each ListItem, specify only the url property". This is the second
+    // kind. Each type page already carries its own complete Product markup, so
+    // duplicating a weaker copy here puts two URLs in competition for the same
+    // product, which is the problem this whole schema was rewritten to remove.
     itemListElement: TYPE_LISTING.map((t, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      // The Product node is a pointer to the type page's own entity, carrying
-      // just enough to be useful in a list. The full Product markup, with its
-      // offers and specifications, lives on that page and stays authoritative.
-      item: {
-        "@type": "Product",
-        name: t.name,
-        url: `https://www.pandapatches.com${t.href}`,
-        brand: { "@id": BRAND_ID },
-        manufacturer: { "@id": ORG_ID },
-        offers: {
-          "@type": "Offer",
-          price: getFromPriceLabel(t.product).replace("$", ""),
-          priceCurrency: "USD",
-          availability: "https://schema.org/InStock",
-          itemCondition: "https://schema.org/NewCondition",
-          // Stated so the price is not read as a flat unit price: it is the
-          // per-piece figure at the canonical basis, and smaller runs cost more.
-          eligibleQuantity: { "@type": "QuantitativeValue", value: 1000, unitCode: "C62" },
-        },
-      },
+      url: `https://www.pandapatches.com${t.href}`,
     })),
   },
 };
