@@ -12,7 +12,8 @@
     "lint": "eslint . --ext .ts,.tsx",
     "verify:canon": "tsx scripts/verify-canon.ts",
     "audit:sanity": "tsx scripts/audit-sanity-canon.ts",
-    "audit:faq": "tsx scripts/audit-faq-visibility.ts"
+    "audit:faq": "tsx scripts/audit-faq-visibility.ts",
+    "audit:db": "tsx scripts/audit-supabase-columns.ts"
   },
   "dependencies": {
     "@portabletext/react": "^3.0.0",
