@@ -160,6 +160,11 @@ export default function HeroForm({
             instructions: sanitizeString([data.instructions || '', isCustomSize && customSize ? `Custom Size: ${customSize}` : '', data.hearAbout ? `Source: ${data.hearAbout === 'Other' ? (hearAboutOther.trim() || 'Other') : data.hearAbout}` : ''].filter(Boolean).join(' | ')),
             patchType: sanitizeString(data.type || ''),
             ...(showDeadline ? { deadline: sanitizeString(data.deadline || '') } : {}),
+            // A REQUIRED deadline means this is the rush form — /rush-custom-patches
+            // is the only caller that passes showDeadlineField. Everywhere else the
+            // date is a deadline to plan around, and must not be read as a request
+            // for rush service or priced as one (CEO, 9 Sept 2026).
+            isRushRequest: deadlineRequired,
             ...(showZipField ? { country: sanitizeString(data.zip || '') } : {}),
           },
           artworkUrl: uploadedFiles[0]?.url || null,

@@ -278,7 +278,7 @@ export default function RushCustomPatchesPage() {
           <h2 className="text-[1.375rem] md:text-[1.75rem] font-black text-panda-dark mb-2">
             Recent Rush Orders
           </h2>
-          <p className="text-[0.875rem] text-gray-500 mb-1">Real orders from our production log — updated as rush orders complete. About 1 in 10 orders is a rush job: 117 of 1,200 orders to 5 September 2026 were flagged urgent or placed against a customer deadline.</p>
+          <p className="text-[0.875rem] text-gray-500 mb-1">Real orders from our production log — updated as rush orders complete. Rush is the exception, not the norm: 72 of 1,217 orders to 9 September 2026, about 1 in 17. That counts orders where rush was actually requested or the rush fee was charged. An earlier version of this line said 1 in 10 by also counting any order carrying a customer deadline, which is a different thing — telling us when you need patches is not the same as asking us to rush them.</p>
           <p className="text-[0.75rem] text-gray-400 mb-6">Last updated: {RUSH_ORDERS_LAST_UPDATED_LABEL}</p>
           <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
             <table className="w-full text-sm">

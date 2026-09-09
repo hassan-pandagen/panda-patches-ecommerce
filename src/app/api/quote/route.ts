@@ -1,4 +1,5 @@
 import { NextResponse, after } from 'next/server';
+import { addBusinessDays, formatShortDate } from '@/lib/businessDays';
 import { z } from 'zod';
 import { SendMailClient } from 'zeptomail';
 import { sendMetaEvent } from '@/lib/metaCapi';
@@ -35,6 +36,9 @@ const QuoteSchema = z.object({
   artworkUrl: z.string().url().optional().or(z.null()),
   artworkUrl2: z.string().url().optional().or(z.null()),
   isBulkOrder: z.boolean().optional(),
+  /** True ONLY from /rush-custom-patches. A date on any other form is a
+   *  deadline to plan around, not a request for paid rush service. */
+  isRushRequest: z.boolean().optional(),
   pageUrl: z.string().max(500).optional().or(z.literal('')),
   basePrice: z.number().min(0).optional(),
   attribution: z.object({
@@ -126,7 +130,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const { customer, details, artworkUrl, artworkUrl2, isBulkOrder, pageUrl, basePrice, attribution: bodyAttribution, eventId: clientEventId, internalOnly, botSignal } = validationResult.data;
+    const { customer, details, artworkUrl, artworkUrl2, isBulkOrder, isRushRequest, pageUrl, basePrice, attribution: bodyAttribution, eventId: clientEventId, internalOnly, botSignal } = validationResult.data;
 
     // Audit P0-4: gibberish names (real surnames like VanSchyndel trip the heuristic)
     // and fast submits (autofill users) used to be silently DROPPED with a fake
@@ -194,10 +198,44 @@ export async function POST(req: Request) {
     const deadlineLabel = details.deadline
       ? new Date(details.deadline + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
       : null;
+
+    /**
+     * What standard turnaround actually delivers, if the mockup were approved
+     * today, and whether the customer's date fits inside it.
+     *
+     * Built from the SLOW end of canon on purpose — 14 business days production
+     * plus 5 transit. An agent who quotes the optimistic end is how a customer
+     * ends up believing "about 10 days", which is the expectation problem that
+     * produced our worst review of the quarter.
+     *
+     * The point is to make rush an OFFER when standard misses the date, rather
+     * than an assumption triggered by the customer mentioning a date at all.
+     */
+    const standardEstimate = (() => {
+      if (!rushDateIso) return null;
+      const today = new Date();
+      const earliest = addBusinessDays(today, 7 + 3);
+      const latest = addBusinessDays(today, 14 + 5);
+      const wanted = new Date(rushDateIso + 'T00:00:00');
+      const verdict =
+        wanted >= latest
+          ? 'Standard makes this comfortably.'
+          : wanted >= earliest
+            ? 'Tight — standard may miss it. Confirm with production before promising.'
+            : 'Standard cannot make this date. Offer rush.';
+      return { earliest: formatShortDate(earliest), latest: formatShortDate(latest), verdict };
+    })();
+    // RUSH belongs only on an actual rush request. Until 9 Sept 2026 ANY deadline
+    // produced a RUSH subject, which was correct when only the rush page could
+    // send one and wrong the moment the main form gained the field: agents saw
+    // RUSH, replied as rush, and added 25% to customers who had merely told us
+    // their date.
     const subject = `${suspectedBot ? '[SUSPECTED BOT] ' : ''}${
-      deadlineLabel
-        ? `RUSH — ${details.quantity} pcs — needed ${deadlineLabel}`
-        : isBulkOrder
+      deadlineLabel && isRushRequest
+        ? `RUSH quote — ${customer.name} — in hand by ${deadlineLabel}`
+        : deadlineLabel
+          ? `Quote request — ${customer.name} — needs by ${deadlineLabel}`
+          : isBulkOrder
           ? `New Bulk Quote Request from ${customer.name}`
           : `New Quote Request from ${customer.name}`
     }`;
@@ -247,7 +285,8 @@ export async function POST(req: Request) {
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Size</td><td style="padding:9px 14px;">${esc(sizeLabel)}</td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Quantity</td><td style="padding:9px 14px;font-weight:600;">${details.quantity} pcs</td></tr>
       <tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Backing</td><td style="padding:9px 14px;">${esc(details.backing)}</td></tr>
-      ${deadlineLabel ? `<tr style="background:#fff3e0;"><td style="padding:9px 14px;color:#9a5b00;font-weight:600;">Needed By</td><td style="padding:9px 14px;font-weight:700;color:#9a5b00;">${esc(deadlineLabel)}${country ? ` — ${esc(country)}` : ''}</td></tr>` : ''}
+      ${deadlineLabel ? `<tr style="background:${isRushRequest ? '#ffe0e0' : '#fff3e0'};"><td style="padding:9px 14px;color:#9a5b00;font-weight:600;">${isRushRequest ? 'RUSH REQUESTED' : 'Needed by'}</td><td style="padding:9px 14px;font-weight:700;color:#9a5b00;">${esc(deadlineLabel)}${country ? ` — ${esc(country)}` : ''}</td></tr>` : ''}
+      ${standardEstimate ? `<tr style="background:#fafafa;"><td style="padding:9px 14px;color:#666;vertical-align:top;">Standard estimate</td><td style="padding:9px 14px;color:#333;">In hand <strong>${esc(standardEstimate.earliest)}&ndash;${esc(standardEstimate.latest)}</strong> if approved today.<br><span style="color:#9a5b00;font-weight:600;">${esc(standardEstimate.verdict)}</span>${isRushRequest ? '' : '<br><span style="color:#666;font-size:12px;">This customer gave a date, they did not ask for rush. Quote standard; offer rush only if standard misses.</span>'}</td></tr>` : ''}
       ${flaggedInstructions ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;vertical-align:top;">Instructions</td><td style="padding:9px 14px;white-space:pre-wrap;">${esc(flaggedInstructions)}</td></tr>` : ''}
       ${artworkUrl ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Artwork 1</td><td style="padding:9px 14px;"><a href="${artworkUrl}" style="color:#fb6e1d;font-weight:600;">View File</a></td></tr>` : ''}
       ${artworkUrl2 ? `<tr><td style="padding:9px 14px;color:#666;background:#fafafa;">Artwork 2</td><td style="padding:9px 14px;"><a href="${artworkUrl2}" style="color:#fb6e1d;font-weight:600;">View File</a></td></tr>` : ''}
@@ -396,21 +435,23 @@ export async function POST(req: Request) {
           deadlineLabel ? `[NEEDED BY: ${deadlineLabel}${country ? `, ${country}` : ''}]` : '',
           flaggedInstructions || details.placement || '',
         ].filter(Boolean).join(' ').trim(),
-        // Structured, not just the `[NEEDED BY: …]` string above. Without it a rush
-        // quote cannot be filtered, sorted or counted — the only signal is the quote
-        // amount looking higher, which is inference rather than data. Same meaning as
-        // `orders.rush_date`, so a quote and the order it converts to are comparable.
+        // TWO FIELDS, TWO MEANINGS (CEO, 9 Sept 2026). Same date, and which column
+        // it lands in decides whether the customer gets charged 25% more.
         //
-        // THIS LINE CAUSED A 30-HOUR OUTAGE ON 2026-09-07. The column did not exist
-        // on `quotes` then — it is on `orders`, and I assumed both. PostgREST rejects
-        // an insert naming an unknown column outright (PGRST204) and fails the WHOLE
-        // row, so every full quote submission was silently lost while partials, which
-        // do not send this field, kept working.
+        //   rush_date      — they asked for rush, via /rush-custom-patches.
+        //   needed_by_date — they told us when they need it. Plan around it.
+        //                    No fee implied, and it must NEVER set is_urgent.
         //
-        // The column was added to `quotes` on 2026-09-09 and confirmed present before
-        // this came back. `npm run audit:db` now checks every column written here
-        // against the live schema, and catches exactly this.
-        rush_date: rushDateIso,
+        // Getting this wrong is not academic: for two days every main-form date
+        // produced a RUSH-flagged email and agents quoted the rush rate to people
+        // who had simply answered the question we asked them.
+        //
+        // Both columns were added and confirmed present before anything wrote to
+        // them — the 30-hour outage on 7 Sept came from doing that in the other
+        // order, and `npm run audit:db` now checks every column written here
+        // against the live schema.
+        rush_date: isRushRequest ? rushDateIso : null,
+        needed_by_date: isRushRequest ? null : rushDateIso,
         customer_attachment_urls: [artworkUrl, artworkUrl2].filter(Boolean) as string[],
         sales_agent: 'WEBSITE_BOT',
         // Real marketing channel, NOT the form/page name (deriveLeadSource was the

@@ -139,10 +139,11 @@ export default function BulkQuoteForm({
             phone: sanitizePhone(data.phone || ""),
           },
           details: {
-            // Optional; /api/quote writes it to orders.rush_date when it parses,
-            // so a bulk order with a real deadline is a filterable rush rather
-            // than a sentence buried in instructions.
+            // Optional, and NOT a rush request. A bulk buyer with an event date
+            // is telling us when they need it; quoting them at the rush rate for
+            // saying so is the bug this flag exists to prevent (CEO, 9 Sept 2026).
             deadline: sanitizeString(data.deadline || ""),
+            isRushRequest: false,
             quantity: parseInt(data.quantityRange?.split("-")[0] || "100"),
             width: Math.min(parseFloat(data.size?.toLowerCase().split(/\s*x\s*/i)[0]) || 3, 50),
             height: Math.min(parseFloat(data.size?.toLowerCase().split(/\s*x\s*/i)[1]) || 3, 50),
